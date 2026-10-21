@@ -981,6 +981,12 @@
         AppState.singlePlayTickets = d.singlePlayTickets || {};
         AppState.selectedGrade = d.selectedGrade || 4;
         if (d.soundEnabled !== undefined) AppState.soundEnabled = d.soundEnabled;
+        if (isAdminAccount()) {
+          AppState.ownedChibis = AVATAR_LOOKBOOKS.map(x => x.id);
+          const allItems = [];
+          Object.values(AVATAR_ITEMS).forEach(arr => arr.forEach(it => allItems.push(it.id)));
+          AppState.ownedItems = allItems;
+        }
       }
     } catch (e) {
       console.warn('Lỗi localStorage:', e);
@@ -3848,7 +3854,8 @@
 
   function isAdminAccount() {
     const name = (AppState.studentName || '').toLowerCase().trim();
-    return name === 'uyenlp1310' && !!AppState.isAdmin;
+    const accId = (AppState.customAccountId || '').toLowerCase().trim();
+    return (name === 'uyenlp1310' || accId === 'uyenlp1310') && !!AppState.isAdmin;
   }
 
   function isRoundUnlocked(roundNum) {
@@ -3929,6 +3936,7 @@
     SoundEngine.playClick();
     const modalContainer = document.getElementById('modal-container');
     const stars = AppState.stars || 0;
+    const isAdmin = isAdminAccount();
     const owned = AppState.ownedItems || ['hair_suon_hoa', 'outfit_ao_dai_hoa', 'acc_no_cai_toc'];
     const curCfg = AppState.avatarConfig || { hair: 'hair_suon_hoa', outfit: 'outfit_ao_dai_hoa', accessory: 'acc_no_cai_toc' };
 
@@ -3939,7 +3947,7 @@
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 max-h-[50vh] overflow-y-auto p-1">
           ${AVATAR_LOOKBOOKS.map(lb => {
             const isEquipped = (AppState.selectedChibiId === lb.id || (lb.id === 'chibi_co_be_de_thuong' && AppState.selectedChibiId === 'chibi_trang_thong_thai'));
-            const isOwned = (AppState.ownedChibis || []).includes(lb.id) || (lb.id === 'chibi_co_be_de_thuong' && (AppState.ownedChibis || []).includes('chibi_trang_thong_thai')) || lb.price === 0;
+            const isOwned = isAdmin || (AppState.ownedChibis || []).includes(lb.id) || (lb.id === 'chibi_co_be_de_thuong' && (AppState.ownedChibis || []).includes('chibi_trang_thong_thai')) || lb.price === 0;
 
             return `
               <div class="p-3 rounded-2xl border-2 ${isEquipped ? 'border-red-500 bg-red-50/80 ring-2 ring-red-400' : 'border-amber-200 bg-amber-50/40 hover:bg-amber-100/60'} flex items-center gap-3 transition-all">
@@ -3949,8 +3957,10 @@
                 <div class="flex-1 min-w-0">
                   <div class="flex items-center justify-between gap-1">
                     <h4 class="font-black text-xs sm:text-sm text-slate-800 truncate">${lb.name}</h4>
-                    ${!isOwned && lb.price > 0 ? `
+                    ${!isOwned && !isAdmin && lb.price > 0 ? `
                       <span class="shrink-0 text-[10px] font-extrabold text-amber-900 bg-amber-200/90 px-2 py-0.5 rounded-full">${lb.price} ⭐</span>
+                    ` : isAdmin ? `
+                      <span class="shrink-0 text-[10px] font-extrabold text-emerald-800 bg-emerald-100 px-2 py-0.5 rounded-full">Admin Mở ✓</span>
                     ` : ''}
                   </div>
                   <p class="text-[10px] text-slate-500 line-clamp-2 mt-0.5 leading-snug">${lb.sub}</p>
@@ -3986,7 +3996,7 @@
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 max-h-[50vh] overflow-y-auto p-1">
           ${items.map(item => {
             const isEquipped = (currentEquippedId === item.id);
-            const isOwned = owned.includes(item.id) || item.price === 0;
+            const isOwned = isAdmin || owned.includes(item.id) || item.price === 0;
 
             return `
               <div class="p-2.5 rounded-2xl border-2 ${isEquipped ? 'border-red-500 bg-red-50 ring-2 ring-red-400' : 'border-amber-200 bg-amber-50/40 hover:bg-amber-100/50'} flex items-center gap-2.5 transition-all">
@@ -3996,8 +4006,10 @@
                 <div class="flex-1 min-w-0">
                   <div class="flex items-center justify-between">
                     <h5 class="font-extrabold text-xs text-slate-800 line-clamp-1">${item.name}</h5>
-                    ${item.price > 0 && !isOwned ? `
+                    ${item.price > 0 && !isOwned && !isAdmin ? `
                       <span class="text-[10px] font-extrabold text-amber-900 bg-amber-200/80 px-2 py-0.5 rounded-full">${item.price} ⭐</span>
+                    ` : isAdmin && item.price > 0 ? `
+                      <span class="text-[10px] font-extrabold text-emerald-800 bg-emerald-100 px-2 py-0.5 rounded-full">Admin Mở ✓</span>
                     ` : ''}
                   </div>
                   <p class="text-[10px] text-slate-500 line-clamp-1 mt-0.5">${item.desc}</p>
@@ -4049,15 +4061,21 @@
               </div>
               <h3 class="text-base sm:text-lg font-black text-amber-950 leading-tight truncate">${AppState.avatarName || 'Công chúa tóc mây'}</h3>
               <div class="mt-1 flex flex-wrap items-center gap-2">
-                <span class="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-amber-100 border border-amber-300 text-amber-900 font-black text-xs sm:text-sm shadow-sm">
-                  <span>⭐</span>
-                  <span id="wardrobe-stars-count">${stars}</span>
-                  <span class="text-[11px] font-bold">Sao</span>
-                </span>
-                <button onclick="watchRewardedAdForStars(30)" class="btn-3d btn-3d-green px-3 py-1 rounded-full text-white font-black text-xs shadow-sm flex items-center gap-1 active:scale-95" title="Xem 1 video ngắn nhận ngay 30 sao đổi đồ">
-                  <span>🎬</span>
-                  <span>+30 ⭐ (Xem Video)</span>
-                </button>
+                ${isAdmin ? `
+                  <span class="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-red-600 text-yellow-200 font-black text-xs shadow-sm border border-yellow-300">
+                    👑 Đặc quyền Admin: Mở khóa tất cả Chibi & Phụ kiện
+                  </span>
+                ` : `
+                  <span class="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-amber-100 border border-amber-300 text-amber-900 font-black text-xs sm:text-sm shadow-sm">
+                    <span>⭐</span>
+                    <span id="wardrobe-stars-count">${stars}</span>
+                    <span class="text-[11px] font-bold">Sao</span>
+                  </span>
+                  <button onclick="watchRewardedAdForStars(30)" class="btn-3d btn-3d-green px-3 py-1 rounded-full text-white font-black text-xs shadow-sm flex items-center gap-1 active:scale-95" title="Xem 1 video ngắn nhận ngay 30 sao đổi đồ">
+                    <span>🎬</span>
+                    <span>+30 ⭐ (Xem Video)</span>
+                  </button>
+                `}
               </div>
             </div>
           </div>
@@ -4115,13 +4133,16 @@
 
   function buyAndEquipAvatarItem(category, itemId, price) {
     const curStars = AppState.stars || 0;
-    if (curStars < price) {
+    const isAdmin = isAdminAccount();
+    if (!isAdmin && curStars < price) {
       SoundEngine.playWrong();
       showCustomAlert(`Bé cần thêm ${price - curStars} ⭐ nữa! Hoặc bé có thể bấm nút "🎬 Video" để nhận ngay miễn phí nhé!`);
       return;
     }
 
-    AppState.stars = curStars - price;
+    if (!isAdmin) {
+      AppState.stars = curStars - price;
+    }
     if (!AppState.ownedItems) AppState.ownedItems = [];
     if (!AppState.ownedItems.includes(itemId)) {
       AppState.ownedItems.push(itemId);
@@ -4139,7 +4160,7 @@
       prevEl.innerHTML = getCurrentAvatarHtml(76);
     }
     openAvatarModal(category);
-    showCustomAlert('Chúc mừng bé đã đổi và mặc thành công vật phẩm mới! ⭐✨');
+    showCustomAlert(isAdmin ? '👑 Quyền Admin: Đã mặc trang phục mới hoàn toàn miễn phí!' : 'Chúc mừng bé đã đổi và mặc thành công vật phẩm mới! ⭐✨');
   }
 
   function applyLookbook(lookbookId) {
@@ -4166,13 +4187,16 @@
     const lb = AVATAR_LOOKBOOKS.find(x => x.id === lookbookId || (lookbookId === 'chibi_trang_thong_thai' && x.id === 'chibi_co_be_de_thuong'));
     if (!lb) return;
     const curStars = AppState.stars || 0;
-    if (curStars < neededStars) {
+    const isAdmin = isAdminAccount();
+    if (!isAdmin && curStars < neededStars) {
       SoundEngine.playWrong();
       showCustomAlert(`Bé cần thêm ${neededStars - curStars} ⭐ để đổi nhân vật ${lb.name}! Hoặc bé có thể bấm nút "🎬 Video" để mở khóa miễn phí nhé!`);
       return;
     }
 
-    AppState.stars = curStars - neededStars;
+    if (!isAdmin) {
+      AppState.stars = curStars - neededStars;
+    }
     if (!AppState.ownedChibis) AppState.ownedChibis = [];
     if (!AppState.ownedChibis.includes(lb.id)) {
       AppState.ownedChibis.push(lb.id);
@@ -4192,7 +4216,7 @@
       prevEl.innerHTML = getCurrentAvatarHtml(76);
     }
     openAvatarModal('lookbook');
-    showCustomAlert(`Tuyệt vời! Bé đã mở thành công nhân vật ${lb.name}! ⭐🎉`);
+    showCustomAlert(isAdmin ? `👑 Quyền Admin: Đã chọn nhân vật ${lb.name} hoàn toàn miễn phí!` : `Tuyệt vời! Bé đã mở thành công nhân vật ${lb.name}! ⭐🎉`);
   }
 
   function watchRewardedAdForChibi(chibiId) {
@@ -4317,9 +4341,13 @@
         AppState.isVip1 = true;
         AppState.isVip2 = true;
         AppState.unlockedRounds = Array.from({length: 18}, (_, i) => i + 1);
+        AppState.ownedChibis = AVATAR_LOOKBOOKS.map(x => x.id);
+        const allItems = [];
+        Object.values(AVATAR_ITEMS).forEach(arr => arr.forEach(it => allItems.push(it.id)));
+        AppState.ownedItems = allItems;
         savePersistedState();
         SoundEngine.playSuccess();
-        showCustomAlert('Đăng nhập Admin thành công!');
+        showCustomAlert('Đăng nhập Admin thành công! Mở khóa toàn bộ Vòng thi và Tủ Đồ Chibi miễn phí!');
         closeModal();
         updateHeaderUI();
         renderHome();
