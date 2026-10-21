@@ -407,9 +407,9 @@
       id: 'chibi_hoang_tu',
       name: 'Hoàng tử hào hoa',
       image: 'chibi_hoang_tu.png',
-      sub: 'Khôi ngô tuấn tú, đồng phục Đội viên thanh lịch (Nửa thân trên)',
+      sub: 'Khôi ngô tuấn tú, đồng phục học sinh thanh lịch (Nửa thân trên)',
       price: 0,
-      config: { hair: 'hair_lang_tu', outfit: 'outfit_doi_vien', glasses: 'glasses_none', accessory: 'acc_canh_dieu' }
+      config: { hair: 'hair_lang_tu', outfit: 'outfit_hoc_sinh', glasses: 'glasses_none', accessory: 'acc_canh_dieu' }
     },
     {
       id: 'chibi_nam_sinh_ao_dai',
@@ -417,13 +417,12 @@
       image: 'chibi_gau_con.png',
       sub: 'Áo dài nam sinh thanh lịch, phong thái tự tin (Nửa thân trên)',
       price: 40,
-      config: { hair: 'hair_lang_tu', outfit: 'outfit_hoc_sinh', glasses: 'glasses_kinh_tron', accessory: 'acc_but_long' }
+      config: { hair: 'hair_lang_tu', outfit: 'outfit_hoc_sinh', glasses: 'glasses_kinh_tron', accessory: 'acc_canh_dieu' }
     }
   ];
 
   const AVATAR_ITEMS = {
     hair: [
-      { id: 'hair_trang_thong_thai', name: 'Mũ Trạng Cánh Chuồn', price: 0, desc: 'Mũ cánh chuồn khoa cử truyền thống', icon: '🎓' },
       { id: 'hair_bim_no', name: 'Tóc Bím Kẹp Nơ', price: 50, desc: 'Tóc thắt bím 2 bên duyên dáng', icon: '🎀' },
       { id: 'hair_ngan_bupbe', name: 'Tóc Ngắn Búp Bê', price: 40, desc: 'Tóc ngắn búp bê tinh nghịch đáng yêu', icon: '👧' },
       { id: 'hair_suon_hoa', name: 'Tóc Dài Sườn Xám', price: 60, desc: 'Tóc thề thướt tha truyền thống', icon: '🌸' },
@@ -434,15 +433,11 @@
       { id: 'outfit_trang_thong_thai', name: 'Áo Gấm Cung Đình', price: 0, desc: 'Áo trạng truyền thống màu đỏ hoàng gia', icon: '👘' },
       { id: 'outfit_dam_cong_chua', name: 'Đầm Công Chúa Lộng Lẫy', price: 50, desc: 'Đầm dạ hội công chúa kiêu sa', icon: '👗' },
       { id: 'outfit_ao_dai_hoa', name: 'Áo Dài Hoa Thêu', price: 60, desc: 'Áo dài lụa thêu hoa sen tinh tế', icon: '🌸' },
-      { id: 'outfit_doi_vien', name: 'Đồng Phục Khăn Quàng', price: 0, desc: 'Áo trắng thanh lịch cùng khăn quàng đỏ', icon: '🚩' },
       { id: 'outfit_hoc_sinh', name: 'Đồng Phục Áo Cổ Sen', price: 40, desc: 'Trang phục đến trường năng động', icon: '👕' },
       { id: 'outfit_ba_ba', name: 'Áo Bà Ba Nam Bộ', price: 45, desc: 'Áo bà ba truyền thống dân gian', icon: '🌾' },
       { id: 'outfit_da_hoi', name: 'Đầm Dạ Hội Hoàng Gia', price: 70, desc: 'Trang phục dạ hội tím huyền bí', icon: '👑' }
     ],
     accessory: [
-      { id: 'acc_but_long', name: 'Bút Lông Trạng Nhí', price: 0, desc: 'Bút lông thư pháp tinh anh', icon: '🖌️' },
-      { id: 'acc_sach_tre', name: 'Cuốn Sách Tre', price: 50, desc: 'Tập sách cổ tích lũy tinh hoa', icon: '📜' },
-      { id: 'acc_quat_giay', name: 'Quạt Ba Tiêu Chibi', price: 40, desc: 'Quạt nan giấy thanh phong', icon: '🪭' },
       { id: 'acc_vuong_mien', name: 'Vương Miện Vàng', price: 60, desc: 'Vương miện hoàng gia lộng lẫy', icon: '👑' },
       { id: 'acc_no_cai_toc', name: 'Nơ Cài Tóc Đỏ', price: 30, desc: 'Nơ cài nhung đỏ duyên dáng', icon: '🎀' },
       { id: 'acc_bom_hoa', name: 'Bờm Hoa Dại', price: 35, desc: 'Bờm hoa tươi tắn rạng rỡ', icon: '🌸' },
@@ -877,11 +872,11 @@
     currentAvatarImage: 'chibi_cong_chua_toc_may.png',
     avatarName: 'Công chúa tóc mây',
     ownedChibis: ['chibi_cong_chua_toc_may', 'chibi_co_be_de_thuong', 'chibi_hoang_tu'],
-    ownedItems: ['hair_trang_thong_thai', 'outfit_trang_thong_thai', 'acc_but_long'],
+    ownedItems: ['hair_suon_hoa', 'outfit_ao_dai_hoa', 'acc_no_cai_toc'],
     avatarConfig: {
-      hair: 'hair_trang_thong_thai',
-      outfit: 'outfit_trang_thong_thai',
-      accessory: 'acc_but_long'
+      hair: 'hair_suon_hoa',
+      outfit: 'outfit_ao_dai_hoa',
+      accessory: 'acc_no_cai_toc'
     },
     isAdmin: false,         // Quyền Admin: Chỉ kích hoạt khi nhập đúng ID uyenlp1310 và mật khẩu Vudung177.
     stars: 180,
@@ -931,7 +926,7 @@
         AppState.selectedChibiId = d.selectedChibiId || 'chibi_cong_chua_toc_may';
         AppState.currentAvatarImage = d.currentAvatarImage || 'chibi_cong_chua_toc_may.png';
         AppState.ownedChibis = d.ownedChibis || ['chibi_cong_chua_toc_may', 'chibi_co_be_de_thuong', 'chibi_hoang_tu'];
-        AppState.ownedItems = d.ownedItems || ['hair_trang_thong_thai', 'outfit_trang_thong_thai', 'acc_but_long'];
+        AppState.ownedItems = d.ownedItems || ['hair_suon_hoa', 'outfit_ao_dai_hoa', 'acc_no_cai_toc'];
         if (d.avatarConfig) {
           AppState.avatarConfig = { ...AppState.avatarConfig, ...d.avatarConfig };
         }
@@ -959,11 +954,24 @@
             AppState.ownedChibis.push('chibi_co_be_de_thuong');
           }
         }
-        if (AppState.avatarConfig && AppState.avatarConfig.hair === 'hair_dai_bong') {
-          AppState.avatarConfig.hair = 'hair_suon_hoa';
+        // Tự động dọn dẹp các phụ kiện đã xóa
+        const removedItemsList = ['hair_trang_thong_thai', 'outfit_doi_vien', 'acc_but_long', 'acc_sach_tre', 'acc_quat_giay', 'hair_dai_bong'];
+        if (AppState.avatarConfig) {
+          if (AppState.avatarConfig.hair === 'hair_trang_thong_thai' || AppState.avatarConfig.hair === 'hair_dai_bong') {
+            AppState.avatarConfig.hair = 'hair_suon_hoa';
+          }
+          if (AppState.avatarConfig.outfit === 'outfit_doi_vien') {
+            AppState.avatarConfig.outfit = 'outfit_ao_dai_hoa';
+          }
+          if (['acc_but_long', 'acc_sach_tre', 'acc_quat_giay'].includes(AppState.avatarConfig.accessory)) {
+            AppState.avatarConfig.accessory = 'acc_no_cai_toc';
+          }
         }
         if (Array.isArray(AppState.ownedItems)) {
-          AppState.ownedItems = AppState.ownedItems.filter(id => id !== 'hair_dai_bong');
+          AppState.ownedItems = AppState.ownedItems.filter(id => !removedItemsList.includes(id));
+          if (!AppState.ownedItems.includes('hair_suon_hoa')) AppState.ownedItems.push('hair_suon_hoa');
+          if (!AppState.ownedItems.includes('outfit_ao_dai_hoa')) AppState.ownedItems.push('outfit_ao_dai_hoa');
+          if (!AppState.ownedItems.includes('acc_no_cai_toc')) AppState.ownedItems.push('acc_no_cai_toc');
         }
         AppState.isAdmin = !!d.isAdmin;
         AppState.stars = d.stars !== undefined ? d.stars : AppState.stars;
@@ -3921,8 +3929,8 @@
     SoundEngine.playClick();
     const modalContainer = document.getElementById('modal-container');
     const stars = AppState.stars || 0;
-    const owned = AppState.ownedItems || ['hair_trang_thong_thai', 'outfit_trang_thong_thai', 'acc_but_long'];
-    const curCfg = AppState.avatarConfig || { hair: 'hair_trang_thong_thai', outfit: 'outfit_trang_thong_thai', accessory: 'acc_but_long' };
+    const owned = AppState.ownedItems || ['hair_suon_hoa', 'outfit_ao_dai_hoa', 'acc_no_cai_toc'];
+    const curCfg = AppState.avatarConfig || { hair: 'hair_suon_hoa', outfit: 'outfit_ao_dai_hoa', accessory: 'acc_no_cai_toc' };
 
     let tabContentHtml = '';
 
@@ -4090,7 +4098,7 @@
 
   function equipAvatarItem(category, itemId) {
     if (!AppState.avatarConfig) {
-      AppState.avatarConfig = { hair: 'hair_trang_thong_thai', outfit: 'outfit_trang_thong_thai', glasses: 'glasses_none', accessory: 'acc_but_long' };
+      AppState.avatarConfig = { hair: 'hair_suon_hoa', outfit: 'outfit_ao_dai_hoa', glasses: 'glasses_none', accessory: 'acc_no_cai_toc' };
     }
     AppState.avatarConfig[category] = itemId;
     AppState.useCustomAvatar = true;
@@ -4119,7 +4127,7 @@
       AppState.ownedItems.push(itemId);
     }
     if (!AppState.avatarConfig) {
-      AppState.avatarConfig = { hair: 'hair_trang_thong_thai', outfit: 'outfit_trang_thong_thai', glasses: 'glasses_none', accessory: 'acc_but_long' };
+      AppState.avatarConfig = { hair: 'hair_suon_hoa', outfit: 'outfit_ao_dai_hoa', glasses: 'glasses_none', accessory: 'acc_no_cai_toc' };
     }
     AppState.avatarConfig[category] = itemId;
     AppState.useCustomAvatar = true;
@@ -7077,7 +7085,7 @@
         AppState.ownedItems.push(itemId);
       }
       if (!AppState.avatarConfig) {
-        AppState.avatarConfig = { hair: 'hair_trang_thong_thai', outfit: 'outfit_trang_thong_thai', accessory: 'acc_but_long' };
+        AppState.avatarConfig = { hair: 'hair_suon_hoa', outfit: 'outfit_ao_dai_hoa', accessory: 'acc_no_cai_toc' };
       }
       AppState.avatarConfig[cat] = itemId;
       AppState.useCustomAvatar = true;
