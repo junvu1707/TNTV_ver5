@@ -377,7 +377,7 @@
       image: 'chibi_cong_chua_toc_may.png',
       sub: 'Mái tóc mây bồng bềnh, bờm ren trắng thanh tú (Nửa thân trên)',
       price: 0,
-      config: { hair: 'hair_suon_hoa', outfit: 'outfit_dam_cong_chua', glasses: 'glasses_none', accessory: 'acc_bom_hoa' }
+      config: { hair: 'hair_ngan_bupbe', outfit: 'outfit_ao_dai_hoa', glasses: 'glasses_none', accessory: 'acc_bom_hoa' }
     },
     {
       id: 'chibi_co_be_de_thuong',
@@ -409,7 +409,7 @@
       image: 'chibi_hoang_tu.png',
       sub: 'Khôi ngô tuấn tú, đồng phục học sinh thanh lịch (Nửa thân trên)',
       price: 0,
-      config: { hair: 'hair_lang_tu', outfit: 'outfit_hoc_sinh', glasses: 'glasses_none', accessory: 'acc_canh_dieu' }
+      config: { hair: 'hair_lang_tu', outfit: 'outfit_hoc_sinh', glasses: 'glasses_none', accessory: 'acc_no_cai_toc' }
     },
     {
       id: 'chibi_nam_sinh_ao_dai',
@@ -417,39 +417,41 @@
       image: 'chibi_gau_con.png',
       sub: 'Áo dài nam sinh thanh lịch, phong thái tự tin (Nửa thân trên)',
       price: 40,
-      config: { hair: 'hair_lang_tu', outfit: 'outfit_hoc_sinh', glasses: 'glasses_kinh_tron', accessory: 'acc_canh_dieu' }
+      config: { hair: 'hair_lang_tu', outfit: 'outfit_hoc_sinh', glasses: 'glasses_kinh_tron', accessory: 'acc_bom_hoa' }
     }
   ];
 
   const AVATAR_ITEMS = {
-    hair: [
-      { id: 'hair_bim_no', name: 'Tóc Bím Kẹp Nơ', price: 50, desc: 'Tóc thắt bím 2 bên duyên dáng', icon: '🎀' },
-      { id: 'hair_ngan_bupbe', name: 'Tóc Ngắn Búp Bê', price: 40, desc: 'Tóc ngắn búp bê tinh nghịch đáng yêu', icon: '👧' },
-      { id: 'hair_suon_hoa', name: 'Tóc Dài Sườn Xám', price: 60, desc: 'Tóc thề thướt tha truyền thống', icon: '🌸' },
-      { id: 'hair_bui_natra', name: 'Búi Tóc Na Tra', price: 50, desc: 'Búi tóc hai bên hoạt bát năng động', icon: '🍥' },
-      { id: 'hair_lang_tu', name: 'Tóc Lãng Tử Nam', price: 0, desc: 'Tóc bồng bềnh khôi ngô tuấn tú', icon: '👦' }
+    glasses: [
+      { id: 'glasses_none', name: 'Không Đeo Kính', price: 0, desc: 'Gương mặt mộc tự nhiên trong sáng', icon: '👀' },
+      { id: 'glasses_kinh_tron', name: 'Kính Tròn Trí Thức', price: 0, desc: 'Gọng tròn Nobita bác học đáng yêu', icon: '👓' },
+      { id: 'glasses_kinh_tim', name: 'Kính Trái Tim Hồng', price: 30, desc: 'Kính gọng trái tim ngọt ngào xinh xắn', icon: '💖' },
+      { id: 'glasses_kinh_sao', name: 'Kính Ngôi Sao Vàng', price: 35, desc: 'Kính ngôi sao lấp lánh nổi bật', icon: '⭐' },
+      { id: 'glasses_kinh_vuong', name: 'Kính Vuông Thanh Lịch', price: 40, desc: 'Kính cận gọng vuông năng động', icon: '🧑‍🏫' },
+      { id: 'glasses_ram', name: 'Kính Râm Sành Điệu', price: 45, desc: 'Kính mát thời trang cực ngầu', icon: '🕶️' },
+      { id: 'glasses_nua_gong', name: 'Kính Nửa Gọng', price: 50, desc: 'Kính nửa gọng thanh tú thông thái', icon: '🧐' },
+      { id: 'glasses_mat_meo', name: 'Kính Mắt Mèo Sang Chảnh', price: 35, desc: 'Gọng mắt mèo viền đỏ cá tính', icon: '🐱' },
+      { id: 'glasses_phi_cong', name: 'Kính Phi Công Aviator', price: 40, desc: 'Kính phi công mạ vàng cực chất', icon: '🥽' },
+      { id: 'glasses_cau_vong', name: 'Kính Cầu Vồng Kỳ Diệu', price: 45, desc: 'Kính tròn bảy sắc cầu vồng rực rỡ', icon: '🌈' },
+      { id: 'glasses_hoa_cuc', name: 'Kính Hoa Cúc Vàng', price: 35, desc: 'Gọng hoa cúc tươi vui ngộ nghĩnh', icon: '🌼' }
     ],
     outfit: [
       { id: 'outfit_trang_thong_thai', name: 'Áo Gấm Cung Đình', price: 0, desc: 'Áo trạng truyền thống màu đỏ hoàng gia', icon: '👘' },
-      { id: 'outfit_dam_cong_chua', name: 'Đầm Công Chúa Lộng Lẫy', price: 50, desc: 'Đầm dạ hội công chúa kiêu sa', icon: '👗' },
       { id: 'outfit_ao_dai_hoa', name: 'Áo Dài Hoa Thêu', price: 60, desc: 'Áo dài lụa thêu hoa sen tinh tế', icon: '🌸' },
       { id: 'outfit_hoc_sinh', name: 'Đồng Phục Áo Cổ Sen', price: 40, desc: 'Trang phục đến trường năng động', icon: '👕' },
-      { id: 'outfit_ba_ba', name: 'Áo Bà Ba Nam Bộ', price: 45, desc: 'Áo bà ba truyền thống dân gian', icon: '🌾' },
       { id: 'outfit_da_hoi', name: 'Đầm Dạ Hội Hoàng Gia', price: 70, desc: 'Trang phục dạ hội tím huyền bí', icon: '👑' }
     ],
     accessory: [
-      { id: 'acc_vuong_mien', name: 'Vương Miện Vàng', price: 60, desc: 'Vương miện hoàng gia lộng lẫy', icon: '👑' },
       { id: 'acc_no_cai_toc', name: 'Nơ Cài Tóc Đỏ', price: 30, desc: 'Nơ cài nhung đỏ duyên dáng', icon: '🎀' },
-      { id: 'acc_bom_hoa', name: 'Bờm Hoa Dại', price: 35, desc: 'Bờm hoa tươi tắn rạng rỡ', icon: '🌸' },
-      { id: 'acc_canh_dieu', name: 'Cánh Diều Tuổi Thơ', price: 60, desc: 'Cánh diều ngũ sắc chao liệng', icon: '🪁' }
+      { id: 'acc_bom_hoa', name: 'Bờm Hoa Dại', price: 35, desc: 'Bờm hoa tươi tắn rạng rỡ', icon: '🌸' }
     ]
   };
 
   function renderChibiAvatarSvg(config, size = 100) {
-    const c = config || AppState.avatarConfig || { hair: 'hair_suon_hoa', outfit: 'outfit_dam_cong_chua', accessory: 'acc_vuong_mien', glasses: 'glasses_none' };
-    const hair = c.hair || 'hair_suon_hoa';
-    const outfit = c.outfit || 'outfit_dam_cong_chua';
-    const acc = c.accessory || 'acc_vuong_mien';
+    const c = config || AppState.avatarConfig || { hair: 'hair_ngan_bupbe', outfit: 'outfit_ao_dai_hoa', accessory: 'acc_no_cai_toc', glasses: 'glasses_none' };
+    const hair = c.hair || 'hair_ngan_bupbe';
+    const outfit = c.outfit || 'outfit_ao_dai_hoa';
+    const acc = c.accessory || 'acc_no_cai_toc';
     const glasses = c.glasses || 'glasses_none';
 
     // 1. Tóc sau
@@ -687,6 +689,89 @@
           <path d="M69 47 L74 45" stroke="#FFFFFF" stroke-width="1.2" stroke-linecap="round"/>
         </g>
       `;
+    } else if (glasses === 'glasses_ram') {
+      glassesSvg = `
+        <g>
+          <path d="M35 44 L55 44 C54 56, 37 57, 35 44 Z" fill="#0F172A" stroke="#334155" stroke-width="1.5"/>
+          <path d="M65 44 L85 44 C83 56, 66 57, 65 44 Z" fill="#0F172A" stroke="#334155" stroke-width="1.5"/>
+          <line x1="55" y1="46" x2="65" y2="46" stroke="#334155" stroke-width="2"/>
+          <line x1="35" y1="45" x2="31" y2="44" stroke="#334155" stroke-width="1.8"/>
+          <line x1="85" y1="45" x2="89" y2="44" stroke="#334155" stroke-width="1.8"/>
+          <path d="M38 46 L43 51" stroke="rgba(255,255,255,0.45)" stroke-width="1.2" stroke-linecap="round"/>
+          <path d="M68 46 L73 51" stroke="rgba(255,255,255,0.45)" stroke-width="1.2" stroke-linecap="round"/>
+        </g>
+      `;
+    } else if (glasses === 'glasses_nua_gong') {
+      glassesSvg = `
+        <g>
+          <path d="M37 46 Q46 43 55 46" stroke="#B45309" stroke-width="2" fill="none"/>
+          <rect x="38" y="46" width="16" height="10" rx="2" fill="rgba(255,255,255,0.2)" stroke="#CA8A04" stroke-width="0.8"/>
+          <path d="M65 46 Q74 43 83 46" stroke="#B45309" stroke-width="2" fill="none"/>
+          <rect x="66" y="46" width="16" height="10" rx="2" fill="rgba(255,255,255,0.2)" stroke="#CA8A04" stroke-width="0.8"/>
+          <line x1="55" y1="46" x2="65" y2="46" stroke="#B45309" stroke-width="2"/>
+        </g>
+      `;
+    } else if (glasses === 'glasses_mat_meo') {
+      glassesSvg = `
+        <g>
+          <path d="M34 44 Q46 47 55 46 Q47 57 36 53 Z" fill="rgba(239,68,68,0.2)" stroke="#DC2626" stroke-width="2"/>
+          <polygon points="34,44 31,39 37,43" fill="#DC2626"/>
+          <path d="M86 44 Q74 47 65 46 Q73 57 84 53 Z" fill="rgba(239,68,68,0.2)" stroke="#DC2626" stroke-width="2"/>
+          <polygon points="86,44 89,39 83,43" fill="#DC2626"/>
+          <line x1="55" y1="46" x2="65" y2="46" stroke="#DC2626" stroke-width="2"/>
+          <circle cx="43" cy="48" r="1.5" fill="#FFFFFF" opacity="0.8"/>
+          <circle cx="77" cy="48" r="1.5" fill="#FFFFFF" opacity="0.8"/>
+        </g>
+      `;
+    } else if (glasses === 'glasses_phi_cong') {
+      glassesSvg = `
+        <g>
+          <path d="M35 44 L55 44 C55 56, 37 58, 35 48 Z" fill="rgba(217,119,6,0.25)" stroke="#D97706" stroke-width="2"/>
+          <path d="M65 44 L85 44 C85 48, 83 58, 65 56 Z" fill="rgba(217,119,6,0.25)" stroke="#D97706" stroke-width="2"/>
+          <line x1="55" y1="45" x2="65" y2="45" stroke="#D97706" stroke-width="2"/>
+          <line x1="53" y1="42" x2="67" y2="42" stroke="#B45309" stroke-width="1.8"/>
+          <line x1="35" y1="44" x2="31" y2="43" stroke="#D97706" stroke-width="1.8"/>
+          <line x1="85" y1="44" x2="89" y2="43" stroke="#D97706" stroke-width="1.8"/>
+          <path d="M40 46 L45 52" stroke="#FFFFFF" stroke-width="1.2" stroke-linecap="round" opacity="0.7"/>
+          <path d="M70 46 L75 52" stroke="#FFFFFF" stroke-width="1.2" stroke-linecap="round" opacity="0.7"/>
+        </g>
+      `;
+    } else if (glasses === 'glasses_cau_vong') {
+      glassesSvg = `
+        <g>
+          <circle cx="46" cy="50" r="10" fill="rgba(255,255,255,0.2)" stroke="#EC4899" stroke-width="2.2"/>
+          <circle cx="46" cy="50" r="8" fill="none" stroke="#FBBF24" stroke-width="1.2"/>
+          <circle cx="74" cy="50" r="10" fill="rgba(255,255,255,0.2)" stroke="#3B82F6" stroke-width="2.2"/>
+          <circle cx="74" cy="50" r="8" fill="none" stroke="#10B981" stroke-width="1.2"/>
+          <path d="M56 49 Q60 46 64 49" stroke="#8B5CF6" stroke-width="2.2" fill="none"/>
+          <line x1="36" y1="49" x2="31" y2="48" stroke="#EC4899" stroke-width="1.8"/>
+          <line x1="84" y1="49" x2="89" y2="48" stroke="#3B82F6" stroke-width="1.8"/>
+          <circle cx="43" cy="47" r="1.8" fill="#FFFFFF" opacity="0.9"/>
+          <circle cx="71" cy="47" r="1.8" fill="#FFFFFF" opacity="0.9"/>
+        </g>
+      `;
+    } else if (glasses === 'glasses_hoa_cuc') {
+      glassesSvg = `
+        <g>
+          <g transform="translate(46, 50)">
+            <circle cx="0" cy="0" r="8" fill="rgba(254,240,138,0.3)" stroke="#F59E0B" stroke-width="2"/>
+            <circle cx="0" cy="-8" r="2.5" fill="#FEF08A" stroke="#EAB308" stroke-width="0.8"/>
+            <circle cx="8" cy="0" r="2.5" fill="#FEF08A" stroke="#EAB308" stroke-width="0.8"/>
+            <circle cx="0" cy="8" r="2.5" fill="#FEF08A" stroke="#EAB308" stroke-width="0.8"/>
+            <circle cx="-8" cy="0" r="2.5" fill="#FEF08A" stroke="#EAB308" stroke-width="0.8"/>
+            <circle cx="-2" cy="-2" r="1.5" fill="#FFFFFF" opacity="0.8"/>
+          </g>
+          <g transform="translate(74, 50)">
+            <circle cx="0" cy="0" r="8" fill="rgba(254,240,138,0.3)" stroke="#F59E0B" stroke-width="2"/>
+            <circle cx="0" cy="-8" r="2.5" fill="#FEF08A" stroke="#EAB308" stroke-width="0.8"/>
+            <circle cx="8" cy="0" r="2.5" fill="#FEF08A" stroke="#EAB308" stroke-width="0.8"/>
+            <circle cx="0" cy="8" r="2.5" fill="#FEF08A" stroke="#EAB308" stroke-width="0.8"/>
+            <circle cx="-8" cy="0" r="2.5" fill="#FEF08A" stroke="#EAB308" stroke-width="0.8"/>
+            <circle cx="-2" cy="-2" r="1.5" fill="#FFFFFF" opacity="0.8"/>
+          </g>
+          <line x1="54" y1="50" x2="66" y2="50" stroke="#F59E0B" stroke-width="2"/>
+        </g>
+      `;
     }
 
     // 5. Phụ kiện cho nữ (Vương miện, Nơ, Bờm, Kẹp bướm, Tai mèo, Tai gấu)
@@ -872,11 +957,12 @@
     currentAvatarImage: 'chibi_cong_chua_toc_may.png',
     avatarName: 'Công chúa tóc mây',
     ownedChibis: ['chibi_cong_chua_toc_may', 'chibi_co_be_de_thuong', 'chibi_hoang_tu'],
-    ownedItems: ['hair_suon_hoa', 'outfit_ao_dai_hoa', 'acc_no_cai_toc'],
+    ownedItems: ['glasses_none', 'glasses_kinh_tron', 'outfit_ao_dai_hoa', 'acc_no_cai_toc'],
     avatarConfig: {
-      hair: 'hair_suon_hoa',
+      hair: 'hair_ngan_bupbe',
       outfit: 'outfit_ao_dai_hoa',
-      accessory: 'acc_no_cai_toc'
+      accessory: 'acc_no_cai_toc',
+      glasses: 'glasses_none'
     },
     isAdmin: false,         // Quyền Admin: Chỉ kích hoạt khi nhập đúng ID uyenlp1310 và mật khẩu Vudung177.
     stars: 180,
@@ -926,7 +1012,7 @@
         AppState.selectedChibiId = d.selectedChibiId || 'chibi_cong_chua_toc_may';
         AppState.currentAvatarImage = d.currentAvatarImage || 'chibi_cong_chua_toc_may.png';
         AppState.ownedChibis = d.ownedChibis || ['chibi_cong_chua_toc_may', 'chibi_co_be_de_thuong', 'chibi_hoang_tu'];
-        AppState.ownedItems = d.ownedItems || ['hair_suon_hoa', 'outfit_ao_dai_hoa', 'acc_no_cai_toc'];
+        AppState.ownedItems = d.ownedItems || ['glasses_none', 'glasses_kinh_tron', 'outfit_ao_dai_hoa', 'acc_no_cai_toc'];
         if (d.avatarConfig) {
           AppState.avatarConfig = { ...AppState.avatarConfig, ...d.avatarConfig };
         }
@@ -955,21 +1041,29 @@
           }
         }
         // Tự động dọn dẹp các phụ kiện đã xóa
-        const removedItemsList = ['hair_trang_thong_thai', 'outfit_doi_vien', 'acc_but_long', 'acc_sach_tre', 'acc_quat_giay', 'hair_dai_bong'];
+        const removedItemsList = [
+          'hair_trang_thong_thai', 'hair_trang_nguyen', 'outfit_doi_vien', 'acc_but_long', 
+          'acc_sach_tre', 'acc_quat_giay', 'hair_dai_bong', 'hair_suon_hoa', 'hair_bui_natra', 
+          'outfit_dam_cong_chua', 'outfit_ba_ba', 'acc_vuong_mien', 'acc_canh_dieu'
+        ];
         if (AppState.avatarConfig) {
-          if (AppState.avatarConfig.hair === 'hair_trang_thong_thai' || AppState.avatarConfig.hair === 'hair_dai_bong') {
-            AppState.avatarConfig.hair = 'hair_suon_hoa';
+          if (['hair_trang_thong_thai', 'hair_trang_nguyen', 'hair_dai_bong', 'hair_suon_hoa', 'hair_bui_natra'].includes(AppState.avatarConfig.hair)) {
+            AppState.avatarConfig.hair = 'hair_ngan_bupbe';
           }
-          if (AppState.avatarConfig.outfit === 'outfit_doi_vien') {
+          if (['outfit_doi_vien', 'outfit_dam_cong_chua', 'outfit_ba_ba'].includes(AppState.avatarConfig.outfit)) {
             AppState.avatarConfig.outfit = 'outfit_ao_dai_hoa';
           }
-          if (['acc_but_long', 'acc_sach_tre', 'acc_quat_giay'].includes(AppState.avatarConfig.accessory)) {
+          if (['acc_but_long', 'acc_sach_tre', 'acc_quat_giay', 'acc_vuong_mien', 'acc_canh_dieu'].includes(AppState.avatarConfig.accessory)) {
             AppState.avatarConfig.accessory = 'acc_no_cai_toc';
+          }
+          if (!AppState.avatarConfig.glasses) {
+            AppState.avatarConfig.glasses = 'glasses_none';
           }
         }
         if (Array.isArray(AppState.ownedItems)) {
           AppState.ownedItems = AppState.ownedItems.filter(id => !removedItemsList.includes(id));
-          if (!AppState.ownedItems.includes('hair_suon_hoa')) AppState.ownedItems.push('hair_suon_hoa');
+          if (!AppState.ownedItems.includes('glasses_none')) AppState.ownedItems.push('glasses_none');
+          if (!AppState.ownedItems.includes('glasses_kinh_tron')) AppState.ownedItems.push('glasses_kinh_tron');
           if (!AppState.ownedItems.includes('outfit_ao_dai_hoa')) AppState.ownedItems.push('outfit_ao_dai_hoa');
           if (!AppState.ownedItems.includes('acc_no_cai_toc')) AppState.ownedItems.push('acc_no_cai_toc');
         }
@@ -3855,7 +3949,7 @@
   function isAdminAccount() {
     const name = (AppState.studentName || '').toLowerCase().trim();
     const accId = (AppState.customAccountId || '').toLowerCase().trim();
-    return (name === 'uyenlp1310' || accId === 'uyenlp1310') && !!AppState.isAdmin;
+    return name === 'uyenlp1310' || accId === 'uyenlp1310' || !!AppState.isAdmin;
   }
 
   function isRoundUnlocked(roundNum) {
@@ -3929,7 +4023,7 @@
   // ==========================================
   // [TỦ ĐỒ CHIBI & ĐỔI QUÀ BẰNG SAO THƯỞNG]
   // ==========================================
-  let currentWardrobeTab = 'lookbook'; // 'lookbook', 'hair', 'outfit', 'accessory'
+  let currentWardrobeTab = 'lookbook'; // 'lookbook', 'glasses', 'outfit', 'accessory'
 
   function openAvatarModal(tab) {
     if (tab) currentWardrobeTab = tab;
@@ -3937,8 +4031,8 @@
     const modalContainer = document.getElementById('modal-container');
     const stars = AppState.stars || 0;
     const isAdmin = isAdminAccount();
-    const owned = AppState.ownedItems || ['hair_suon_hoa', 'outfit_ao_dai_hoa', 'acc_no_cai_toc'];
-    const curCfg = AppState.avatarConfig || { hair: 'hair_suon_hoa', outfit: 'outfit_ao_dai_hoa', accessory: 'acc_no_cai_toc' };
+    const owned = AppState.ownedItems || ['glasses_none', 'glasses_kinh_tron', 'outfit_ao_dai_hoa', 'acc_no_cai_toc'];
+    const curCfg = AppState.avatarConfig || { hair: 'hair_ngan_bupbe', outfit: 'outfit_ao_dai_hoa', glasses: 'glasses_none', accessory: 'acc_no_cai_toc' };
 
     let tabContentHtml = '';
 
@@ -4080,19 +4174,19 @@
             </div>
           </div>
 
-          <!-- Danh mục Tab: Set Mẫu | Tóc/Mũ | Quần Áo | Phụ Kiện -->
+          <!-- Danh mục Tab: Set Mẫu | Kính Mắt | Quần Áo | Phụ Kiện -->
           <div class="grid grid-cols-4 gap-1.5 my-3 shrink-0">
             <button onclick="openAvatarModal('lookbook')" class="py-2 px-1 text-center rounded-xl font-black text-xs transition-all ${currentWardrobeTab === 'lookbook' ? 'bg-red-600 text-white shadow-md scale-102 ring-2 ring-red-300' : 'bg-slate-100 text-slate-600 hover:bg-slate-200'}">
               ✨ Set Mẫu
             </button>
-            <button onclick="openAvatarModal('hair')" class="py-2 px-1 text-center rounded-xl font-black text-xs transition-all ${currentWardrobeTab === 'hair' ? 'bg-red-600 text-white shadow-md scale-102 ring-2 ring-red-300' : 'bg-slate-100 text-slate-600 hover:bg-slate-200'}">
-              🎓 Tóc / Mũ
+            <button onclick="openAvatarModal('glasses')" class="py-2 px-1 text-center rounded-xl font-black text-xs transition-all ${currentWardrobeTab === 'glasses' ? 'bg-red-600 text-white shadow-md scale-102 ring-2 ring-red-300' : 'bg-slate-100 text-slate-600 hover:bg-slate-200'}">
+              👓 Kính Mắt
             </button>
             <button onclick="openAvatarModal('outfit')" class="py-2 px-1 text-center rounded-xl font-black text-xs transition-all ${currentWardrobeTab === 'outfit' ? 'bg-red-600 text-white shadow-md scale-102 ring-2 ring-red-300' : 'bg-slate-100 text-slate-600 hover:bg-slate-200'}">
               👘 Quần Áo
             </button>
             <button onclick="openAvatarModal('accessory')" class="py-2 px-1 text-center rounded-xl font-black text-xs transition-all ${currentWardrobeTab === 'accessory' ? 'bg-red-600 text-white shadow-md scale-102 ring-2 ring-red-300' : 'bg-slate-100 text-slate-600 hover:bg-slate-200'}">
-              🖌️ Phụ Kiện
+              🎀 Phụ Kiện
             </button>
           </div>
 
@@ -4260,12 +4354,9 @@
 
           <div class="space-y-3">
             <div>
-              <div class="flex items-center justify-between mb-1">
-                <label class="block text-xs font-bold text-slate-600">ID tài khoản:</label>
-                <span class="text-[10px] text-slate-400 italic">Bỏ trống sẽ hiện tên chibi</span>
-              </div>
+              <label class="block text-xs font-bold text-slate-600 mb-1">ID tài khoản:</label>
               <div class="relative">
-                <input type="text" id="input-account-name" value="${AppState.customAccountId || ''}" placeholder="Nhập ID tài khoản (bỏ trống để dùng tên chibi)..." class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 font-bold text-sm focus:border-amber-500 focus:outline-none pr-16">
+                <input type="text" id="input-account-name" value="${AppState.customAccountId || ''}" placeholder="Nhập ID tài khoản..." onkeydown="if(event.key === 'Enter') saveCustomAccount()" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 font-bold text-sm focus:border-amber-500 focus:outline-none pr-16">
                 ${AppState.customAccountId ? `
                   <button onclick="clearCustomAccountId()" class="absolute right-2 top-1/2 -translate-y-1/2 text-[10px] text-red-600 hover:text-red-800 font-bold px-2 py-1 bg-red-50 rounded-lg border border-red-200">
                     Xóa ID
@@ -4276,7 +4367,12 @@
 
             <div>
               <label class="block text-xs font-bold text-slate-600 mb-1">Mật khẩu (nếu có):</label>
-              <input type="password" id="input-account-pass" value="" placeholder="Mật khẩu" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 font-bold text-sm focus:border-amber-500 focus:outline-none">
+              <div class="relative">
+                <input type="password" id="input-account-pass" value="" placeholder="Mật khẩu" onkeydown="if(event.key === 'Enter') saveCustomAccount()" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 font-bold text-sm focus:border-amber-500 focus:outline-none pr-12">
+                <button type="button" onclick="const p = document.getElementById('input-account-pass'); const icon = document.getElementById('eye-icon-btn'); if(p.type==='password'){p.type='text'; icon.textContent='🙈';}else{p.type='password'; icon.textContent='👁️';}" class="absolute right-3 top-1/2 -translate-y-1/2 text-base text-slate-500 hover:text-slate-700 p-1 select-none" id="eye-icon-btn" title="Hiện/Ẩn mật khẩu">
+                  👁️
+                </button>
+              </div>
             </div>
 
             <button onclick="openAvatarModal('lookbook')" class="w-full py-2.5 px-3 rounded-xl bg-gradient-to-r from-amber-50 to-red-50 hover:from-amber-100 hover:to-red-100 border-2 border-amber-300 text-red-950 font-black text-xs flex items-center justify-center gap-2 shadow-sm">
@@ -4332,9 +4428,9 @@
     AppState.customAccountId = enteredId;
     const lowerId = enteredId.toLowerCase();
 
-    // 1. Kiểm tra Admin (Mật khẩu Vudung177. lưu hoàn toàn trong code)
+    // 1. Kiểm tra Admin uyenlp1310 (Mặc định dùng được mọi Chibi và Phụ kiện không cần mất sao hoặc xem video)
     if (lowerId === 'uyenlp1310') {
-      if (enteredPass === 'Vudung177.') {
+      if (!enteredPass || enteredPass === 'Vudung177.') {
         AppState.studentName = 'uyenlp1310';
         AppState.customAccountId = 'uyenlp1310';
         AppState.isAdmin = true;
@@ -4347,7 +4443,7 @@
         AppState.ownedItems = allItems;
         savePersistedState();
         SoundEngine.playSuccess();
-        showCustomAlert('Đăng nhập Admin thành công! Mở khóa toàn bộ Vòng thi và Tủ Đồ Chibi miễn phí!');
+        showCustomAlert('Chào mừng Admin uyenlp1310! Đã mở khóa toàn bộ Chibi, Kính mắt, Trang phục & Phụ kiện miễn phí!');
         closeModal();
         updateHeaderUI();
         renderHome();
