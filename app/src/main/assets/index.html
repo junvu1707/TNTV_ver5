@@ -372,12 +372,20 @@
   // ==========================================
   const AVATAR_LOOKBOOKS = [
     {
-      id: 'chibi_cong_chua_thong_thai',
-      name: 'Công chúa thông thái',
-      image: 'chibi_cong_chua_thong_thai.png',
-      sub: 'Tóc bím cài nơ duyên dáng, áo dài thêu hoa hồng (Nửa thân trên)',
-      price: 50,
-      config: { hair: 'hair_bim_no', outfit: 'outfit_ao_dai_hoa', glasses: 'glasses_none', accessory: 'acc_no_cai_toc' }
+      id: 'chibi_cong_chua_toc_may',
+      name: 'Công chúa tóc mây',
+      image: 'chibi_cong_chua_toc_may.png',
+      sub: 'Mái tóc mây bồng bềnh, bờm ren trắng thanh tú (Nửa thân trên)',
+      price: 0,
+      config: { hair: 'hair_suon_hoa', outfit: 'outfit_dam_cong_chua', glasses: 'glasses_none', accessory: 'acc_bom_hoa' }
+    },
+    {
+      id: 'chibi_co_be_de_thuong',
+      name: 'Cô bé dễ thương',
+      image: 'chibi_trang_vui_tinh.png',
+      sub: 'Cô bé dễ thương với nụ cười trong sáng, cài nơ vàng xinh xắn (Nửa thân trên)',
+      price: 0,
+      config: { hair: 'hair_ngan_bupbe', outfit: 'outfit_ao_dai_hoa', glasses: 'glasses_none', accessory: 'acc_no_cai_toc' }
     },
     {
       id: 'chibi_nu_sinh_ao_dai',
@@ -385,15 +393,15 @@
       image: 'chibi_co_be_bim_toc.png',
       sub: 'Áo dài truyền thống thướt tha, nụ cười anime trong sáng (Nửa thân trên)',
       price: 40,
-      config: { hair: 'hair_ngan_bupbe', outfit: 'outfit_ao_dai_hoa', glasses: 'glasses_kinh_tim', accessory: 'acc_bom_hoa' }
+      config: { hair: 'hair_bim_no', outfit: 'outfit_ao_dai_hoa', glasses: 'glasses_kinh_tim', accessory: 'acc_bom_hoa' }
     },
     {
-      id: 'chibi_trang_nguyen_nu',
-      name: 'Trạng nguyên nhí nữ',
-      image: 'chibi_trang_thong_thai.png',
-      sub: 'Mũ trạng nguyên cánh chuồn, y phục trạng nhí trang nghiêm (Nửa thân trên)',
-      price: 60,
-      config: { hair: 'hair_trang_thong_thai', outfit: 'outfit_trang_thong_thai', glasses: 'glasses_none', accessory: 'acc_but_long' }
+      id: 'chibi_cong_chua_thong_thai',
+      name: 'Công chúa thông thái',
+      image: 'chibi_cong_chua_thong_thai.png',
+      sub: 'Tóc bím cài nơ duyên dáng, áo dài thêu hoa hồng (Nửa thân trên)',
+      price: 50,
+      config: { hair: 'hair_bim_no', outfit: 'outfit_ao_dai_hoa', glasses: 'glasses_none', accessory: 'acc_no_cai_toc' }
     },
     {
       id: 'chibi_hoang_tu',
@@ -404,43 +412,18 @@
       config: { hair: 'hair_lang_tu', outfit: 'outfit_doi_vien', glasses: 'glasses_none', accessory: 'acc_canh_dieu' }
     },
     {
-      id: 'chibi_trang_thong_thai',
-      name: 'Trạng thông thái nam',
-      image: 'chibi_trang_vui_tinh.png',
-      sub: 'Mũ Trạng cánh chuồn uy nghiêm, áo gấm cung đình (Nửa thân trên)',
-      price: 0,
-      config: { hair: 'hair_trang_thong_thai', outfit: 'outfit_trang_thong_thai', glasses: 'glasses_none', accessory: 'acc_sach_tre' }
-    },
-    {
       id: 'chibi_nam_sinh_ao_dai',
       name: 'Nam sinh áo dài xanh',
       image: 'chibi_gau_con.png',
       sub: 'Áo dài nam sinh thanh lịch, phong thái tự tin (Nửa thân trên)',
       price: 40,
       config: { hair: 'hair_lang_tu', outfit: 'outfit_hoc_sinh', glasses: 'glasses_kinh_tron', accessory: 'acc_but_long' }
-    },
-    {
-      id: 'chibi_trang_vui_tinh',
-      name: 'Trạng vui tính',
-      image: 'chibi_cong_chua_thong_thai_raw.png',
-      sub: 'Trạng nhí tinh nghịch hóm hỉnh, nụ cười tươi tắn (Nửa thân trên)',
-      price: 40,
-      config: { hair: 'hair_bui_natra', outfit: 'outfit_ba_ba', glasses: 'glasses_kinh_sao', accessory: 'acc_quat_giay' }
-    },
-    {
-      id: 'chibi_hoang_tu_rong',
-      name: 'Hoàng tử rồng vàng',
-      image: 'chibi_hoang_tu.png',
-      sub: 'Áo giáp rồng oai phong lẫm liệt, khí chất anh tài (Nửa thân trên)',
-      price: 60,
-      config: { hair: 'hair_lang_tu', outfit: 'outfit_trang_thong_thai', glasses: 'glasses_kinh_tron', accessory: 'acc_canh_dieu' }
     }
   ];
 
   const AVATAR_ITEMS = {
     hair: [
       { id: 'hair_trang_thong_thai', name: 'Mũ Trạng Cánh Chuồn', price: 0, desc: 'Mũ cánh chuồn khoa cử truyền thống', icon: '🎓' },
-      { id: 'hair_dai_bong', name: 'Tóc Dài Bồng Bềnh', price: 0, desc: 'Mái tóc mây bồng bềnh thanh tú', icon: '✨' },
       { id: 'hair_bim_no', name: 'Tóc Bím Kẹp Nơ', price: 50, desc: 'Tóc thắt bím 2 bên duyên dáng', icon: '🎀' },
       { id: 'hair_ngan_bupbe', name: 'Tóc Ngắn Búp Bê', price: 40, desc: 'Tóc ngắn búp bê tinh nghịch đáng yêu', icon: '👧' },
       { id: 'hair_suon_hoa', name: 'Tóc Dài Sườn Xám', price: 60, desc: 'Tóc thề thướt tha truyền thống', icon: '🌸' },
@@ -468,8 +451,8 @@
   };
 
   function renderChibiAvatarSvg(config, size = 100) {
-    const c = config || AppState.avatarConfig || { hair: 'hair_dai_bong', outfit: 'outfit_dam_cong_chua', accessory: 'acc_vuong_mien', glasses: 'glasses_none' };
-    const hair = c.hair || 'hair_dai_bong';
+    const c = config || AppState.avatarConfig || { hair: 'hair_suon_hoa', outfit: 'outfit_dam_cong_chua', accessory: 'acc_vuong_mien', glasses: 'glasses_none' };
+    const hair = c.hair || 'hair_suon_hoa';
     const outfit = c.outfit || 'outfit_dam_cong_chua';
     const acc = c.accessory || 'acc_vuong_mien';
     const glasses = c.glasses || 'glasses_none';
@@ -874,6 +857,9 @@
   }
 
   function getCurrentAvatarHtml(size = 40) {
+    if (!AppState.useCustomAvatar && AppState.currentAvatarImage) {
+      return `<img src="${AppState.currentAvatarImage}" alt="Avatar" class="w-full h-full object-cover object-[center_15%] rounded-full" onerror="this.onerror=null; this.src='app_logo.png';">`;
+    }
     return renderChibiAvatarSvg(AppState.avatarConfig, size);
   }
 
@@ -890,7 +876,7 @@
     selectedChibiId: 'chibi_cong_chua_toc_may',
     currentAvatarImage: 'chibi_cong_chua_toc_may.png',
     avatarName: 'Công chúa tóc mây',
-    ownedChibis: ['chibi_cong_chua_toc_may', 'chibi_trang_thong_thai'],
+    ownedChibis: ['chibi_cong_chua_toc_may', 'chibi_co_be_de_thuong', 'chibi_hoang_tu'],
     ownedItems: ['hair_trang_thong_thai', 'outfit_trang_thong_thai', 'acc_but_long'],
     avatarConfig: {
       hair: 'hair_trang_thong_thai',
@@ -944,10 +930,40 @@
         AppState.avatarId = d.avatarId || 'chibi_cong_chua_toc_may';
         AppState.selectedChibiId = d.selectedChibiId || 'chibi_cong_chua_toc_may';
         AppState.currentAvatarImage = d.currentAvatarImage || 'chibi_cong_chua_toc_may.png';
-        AppState.ownedChibis = d.ownedChibis || ['chibi_cong_chua_toc_may', 'chibi_trang_thong_thai'];
+        AppState.ownedChibis = d.ownedChibis || ['chibi_cong_chua_toc_may', 'chibi_co_be_de_thuong', 'chibi_hoang_tu'];
         AppState.ownedItems = d.ownedItems || ['hair_trang_thong_thai', 'outfit_trang_thong_thai', 'acc_but_long'];
         if (d.avatarConfig) {
           AppState.avatarConfig = { ...AppState.avatarConfig, ...d.avatarConfig };
+        }
+        // Tự động chuyển đổi các avatar đã xóa hoặc đổi tên
+        if (AppState.avatarName === 'Trạng thông thái nam' || AppState.avatarName === 'Trạng nguyên nhí nam') {
+          AppState.avatarName = 'Cô bé dễ thương';
+          AppState.selectedChibiId = 'chibi_co_be_de_thuong';
+          AppState.currentAvatarImage = 'chibi_trang_vui_tinh.png';
+        }
+        if (AppState.selectedChibiId === 'chibi_trang_thong_thai') {
+          AppState.selectedChibiId = 'chibi_co_be_de_thuong';
+          AppState.currentAvatarImage = 'chibi_trang_vui_tinh.png';
+          if (!AppState.avatarName || AppState.avatarName === 'Trạng thông thái nam' || AppState.avatarName === 'Trạng nguyên nhí nam') {
+            AppState.avatarName = 'Cô bé dễ thương';
+          }
+        }
+        if (AppState.selectedChibiId === 'chibi_trang_nguyen_nu' || AppState.selectedChibiId === 'chibi_hoang_tu_rong') {
+          AppState.selectedChibiId = 'chibi_co_be_de_thuong';
+          AppState.avatarName = 'Cô bé dễ thương';
+          AppState.currentAvatarImage = 'chibi_trang_vui_tinh.png';
+        }
+        if (Array.isArray(AppState.ownedChibis)) {
+          AppState.ownedChibis = AppState.ownedChibis.filter(id => id !== 'chibi_trang_nguyen_nu' && id !== 'chibi_hoang_tu_rong');
+          if (AppState.ownedChibis.includes('chibi_trang_thong_thai') && !AppState.ownedChibis.includes('chibi_co_be_de_thuong')) {
+            AppState.ownedChibis.push('chibi_co_be_de_thuong');
+          }
+        }
+        if (AppState.avatarConfig && AppState.avatarConfig.hair === 'hair_dai_bong') {
+          AppState.avatarConfig.hair = 'hair_suon_hoa';
+        }
+        if (Array.isArray(AppState.ownedItems)) {
+          AppState.ownedItems = AppState.ownedItems.filter(id => id !== 'hair_dai_bong');
         }
         AppState.isAdmin = !!d.isAdmin;
         AppState.stars = d.stars !== undefined ? d.stars : AppState.stars;
@@ -2499,26 +2515,38 @@
           const matchPools = [
             {
               title: `Lớp 2 • Cấp ${cap}: Phân loại nhóm từ`,
-              pairs: "(1) sách vở, bàn ghế ~ a. từ chỉ sự vật; (2) quét nhà, tập viết ~ b. từ chỉ hoạt động; (3) hiền hậu, xinh đẹp ~ c. từ chỉ đặc điểm",
-              match: "1-a, 2-b, 3-c",
+              pairs: [
+                { a: "sách vở, bàn ghế", b: "từ chỉ sự vật" },
+                { a: "quét nhà, tập viết", b: "từ chỉ hoạt động" },
+                { a: "hiền hậu, xinh đẹp", b: "từ chỉ đặc điểm" }
+              ],
               ex: "Sách vở (sự vật), quét nhà (hoạt động), hiền hậu (đặc điểm)."
             },
             {
               title: `Lớp 2 • Cấp ${cap}: Nối vế câu tương ứng`,
-              pairs: "(1) Cánh đồng lúa chín ~ a. Vàng rực như tấm thảm; (2) Dòng sông quê em ~ b. Uốn lượn hiền hòa; (3) Bác nông dân ~ c. Gặt lúa trên đồng",
-              match: "1-a, 2-b, 3-c",
+              pairs: [
+                { a: "Cánh đồng lúa chín", b: "Vàng rực như tấm thảm" },
+                { a: "Dòng sông quê em", b: "Uốn lượn hiền hòa" },
+                { a: "Bác nông dân", b: "Gặt lúa trên đồng" }
+              ],
               ex: "Ghép vế câu miêu tả hợp lý."
             },
             {
               title: `Lớp 2 • Cấp ${cap}: Nối vế tục ngữ, thành ngữ`,
-              pairs: "(1) Kính trên ~ a. nhường dưới; (2) Chị ngã ~ b. em nâng; (3) Uống nước ~ c. nhớ nguồn",
-              match: "1-a, 2-b, 3-c",
+              pairs: [
+                { a: "Kính trên", b: "nhường dưới" },
+                { a: "Chị ngã", b: "em nâng" },
+                { a: "Uống nước", b: "nhớ nguồn" }
+              ],
               ex: "Các vế tục ngữ, thành ngữ dân gian."
             },
             {
               title: `Lớp 2 • Cấp ${cap}: Nối người và công việc`,
-              pairs: "(1) Thầy giáo vùng cao ~ a. ân cần giảng bài; (2) Bác thợ nề ~ b. xây từng bức tường gạch; (3) Bác sĩ ~ c. tận tụy khám bệnh",
-              match: "1-a, 2-b, 3-c",
+              pairs: [
+                { a: "Thầy giáo vùng cao", b: "ân cần giảng bài" },
+                { a: "Bác thợ nề", b: "xây từng bức tường gạch" },
+                { a: "Bác sĩ", b: "tận tụy khám bệnh" }
+              ],
               ex: "Nối đúng hoạt động nghề nghiệp."
             }
           ];
@@ -2528,8 +2556,8 @@
             id: qIdx + 1,
             type: 'MATCH_MINI',
             title: item.title,
-            pairsStr: item.pairs,
-            correctMatch: item.match,
+            instruction: 'Bấm chọn 1 ô ở Cột A rồi bấm ô tương ứng ở Cột B:',
+            pairs: item.pairs,
             explain: item.ex
           });
         } else if (qIdx < 27) {
@@ -2543,13 +2571,23 @@
           ];
 
           const item = orderPools[(globalSeq + qIdx) % orderPools.length];
+          const correct = item.order;
+          const wrongs = [
+            seededShuffle([...item.elements], globalSeq * 7).join(' ').replace(/\s+\./g, '.'),
+            seededShuffle([...item.elements], globalSeq * 11).join(' ').replace(/\s+\./g, '.'),
+            seededShuffle([...item.elements], globalSeq * 13).join(' ').replace(/\s+\./g, '.')
+          ].filter(s => s !== correct);
+          while (wrongs.length < 3) {
+            wrongs.push(item.elements.slice(1).concat(item.elements[0]).join(' ').replace(/\s+\./g, '.'));
+          }
+          const allOptions = seededShuffle([correct, ...wrongs.slice(0, 3)], globalSeq * 17);
           questions.push({
             id: qIdx + 1,
-            type: 'ORDER',
+            type: 'MCQ',
             title: `Lớp 2 • Cấp ${cap}: Sắp xếp từ thành câu`,
-            instruction: "Sắp xếp các từ/cụm từ sau thành câu hoàn chỉnh:",
-            elements: item.elements,
-            correctOrder: item.order,
+            question: "Chọn câu được sắp xếp đúng thứ tự hoàn chỉnh từ các từ: " + item.elements.join(" / "),
+            options: allOptions,
+            correctIndex: allOptions.indexOf(correct),
             explain: item.ex
           });
         } else {
@@ -2721,26 +2759,42 @@
           const matchPools = [
             {
               title: `Lớp 3 • Cấp ${cap}: Nối tiếng chính tả`,
-              pairs: "(1) xôn ~ a. xao; (2) sâu ~ b. sắc; (3) chân ~ c. thật; (4) trân ~ d. trọng",
-              match: "1-a, 2-b, 3-c, 4-d",
+              pairs: [
+                { a: "xôn", b: "xao" },
+                { a: "sâu", b: "sắc" },
+                { a: "chân", b: "thật" },
+                { a: "trân", b: "trọng" }
+              ],
               ex: "Ghép các từ xôn xao, sâu sắc, chân thật, trân trọng."
             },
             {
               title: `Lớp 3 • Cấp ${cap}: Nối sự vật và đặc điểm`,
-              pairs: "(1) Hoa phượng ~ a. Đỏ rực một góc trời; (2) Dòng sông thu ~ b. Trong xanh phẳng lặng; (3) Đám mây mùa hạ ~ c. Trắng xốp bồng bềnh; (4) Trái thị chín ~ d. Vàng ươm thơm ngát",
-              match: "1-a, 2-b, 3-c, 4-d",
+              pairs: [
+                { a: "Hoa phượng", b: "Đỏ rực một góc trời" },
+                { a: "Dòng sông thu", b: "Trong xanh phẳng lặng" },
+                { a: "Đám mây mùa hạ", b: "Trắng xốp bồng bềnh" },
+                { a: "Trái thị chín", b: "Vàng ươm thơm ngát" }
+              ],
               ex: "Nối đúng nét đặc trưng của từng sự vật."
             },
             {
               title: `Lớp 3 • Cấp ${cap}: Nối cặp từ trái nghĩa`,
-              pairs: "(1) nhân hậu ~ a. độc ác; (2) dũng cảm ~ b. hèn nhát; (3) siêng năng ~ c. lười biếng; (4) khiêm tốn ~ d. kiêu ngạo",
-              match: "1-a, 2-b, 3-c, 4-d",
+              pairs: [
+                { a: "nhân hậu", b: "độc ác" },
+                { a: "dũng cảm", b: "hèn nhát" },
+                { a: "siêng năng", b: "lười biếng" },
+                { a: "khiêm tốn", b: "kiêu ngạo" }
+              ],
               ex: "Các cặp từ trái nghĩa phẩm chất con người."
             },
             {
               title: `Lớp 3 • Cấp ${cap}: Nối câu và kiểu câu`,
-              pairs: "(1) Bạn Mai là lớp trưởng. ~ a. Câu giới thiệu; (2) Chú chim đang bắt sâu. ~ b. Câu nêu hoạt động; (3) Khu vườn mùa xuân rực rỡ. ~ c. Câu nêu đặc điểm; (4) Cậu hãy giữ trật tự nhé! ~ d. Câu khiến",
-              match: "1-a, 2-b, 3-c, 4-d",
+              pairs: [
+                { a: "Bạn Mai là lớp trưởng.", b: "Câu giới thiệu" },
+                { a: "Chú chim đang bắt sâu.", b: "Câu nêu hoạt động" },
+                { a: "Khu vườn mùa xuân rực rỡ.", b: "Câu nêu đặc điểm" },
+                { a: "Cậu hãy giữ trật tự nhé!", b: "Câu khiến" }
+              ],
               ex: "Xác định kiểu câu theo mục đích giao tiếp."
             }
           ];
@@ -2750,8 +2804,8 @@
             id: qIdx + 1,
             type: 'MATCH_MINI',
             title: item.title,
-            pairsStr: item.pairs,
-            correctMatch: item.match,
+            instruction: 'Bấm chọn 1 ô ở Cột A rồi bấm ô tương ứng ở Cột B:',
+            pairs: item.pairs,
             explain: item.ex
           });
         } else if (qIdx < 27) {
@@ -2765,13 +2819,23 @@
           ];
 
           const item = orderPools[(globalSeq + qIdx) % orderPools.length];
+          const correct = item.order;
+          const wrongs = [
+            seededShuffle([...item.elements], globalSeq * 7).join(' ').replace(/\s+\./g, '.'),
+            seededShuffle([...item.elements], globalSeq * 11).join(' ').replace(/\s+\./g, '.'),
+            seededShuffle([...item.elements], globalSeq * 13).join(' ').replace(/\s+\./g, '.')
+          ].filter(s => s !== correct);
+          while (wrongs.length < 3) {
+            wrongs.push(item.elements.slice(1).concat(item.elements[0]).join(' ').replace(/\s+\./g, '.'));
+          }
+          const allOptions = seededShuffle([correct, ...wrongs.slice(0, 3)], globalSeq * 17);
           questions.push({
             id: qIdx + 1,
-            type: 'ORDER',
+            type: 'MCQ',
             title: `Lớp 3 • Cấp ${cap}: Sắp xếp từ thành câu`,
-            instruction: "Sắp xếp các từ/cụm từ sau thành câu hoàn chỉnh:",
-            elements: item.elements,
-            correctOrder: item.order,
+            question: "Chọn câu được sắp xếp đúng thứ tự hoàn chỉnh từ các từ: " + item.elements.join(" / "),
+            options: allOptions,
+            correctIndex: allOptions.indexOf(correct),
             explain: item.ex
           });
         } else {
@@ -3866,8 +3930,8 @@
       tabContentHtml = `
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 max-h-[50vh] overflow-y-auto p-1">
           ${AVATAR_LOOKBOOKS.map(lb => {
-            const isEquipped = (AppState.selectedChibiId === lb.id);
-            const isOwned = (AppState.ownedChibis || []).includes(lb.id) || lb.price === 0;
+            const isEquipped = (AppState.selectedChibiId === lb.id || (lb.id === 'chibi_co_be_de_thuong' && AppState.selectedChibiId === 'chibi_trang_thong_thai'));
+            const isOwned = (AppState.ownedChibis || []).includes(lb.id) || (lb.id === 'chibi_co_be_de_thuong' && (AppState.ownedChibis || []).includes('chibi_trang_thong_thai')) || lb.price === 0;
 
             return `
               <div class="p-3 rounded-2xl border-2 ${isEquipped ? 'border-red-500 bg-red-50/80 ring-2 ring-red-400' : 'border-amber-200 bg-amber-50/40 hover:bg-amber-100/60'} flex items-center gap-3 transition-all">
@@ -4071,14 +4135,15 @@
   }
 
   function applyLookbook(lookbookId) {
-    const lb = AVATAR_LOOKBOOKS.find(x => x.id === lookbookId);
+    const lb = AVATAR_LOOKBOOKS.find(x => x.id === lookbookId || (lookbookId === 'chibi_trang_thong_thai' && x.id === 'chibi_co_be_de_thuong'));
     if (!lb) return;
     AppState.selectedChibiId = lb.id;
     AppState.avatarName = lb.name;
+    AppState.currentAvatarImage = lb.image;
+    AppState.useCustomAvatar = false;
     if (lb.config) {
       AppState.avatarConfig = { ...lb.config };
     }
-    AppState.useCustomAvatar = true;
     savePersistedState();
     SoundEngine.playSuccess();
     updateHeaderUI();
@@ -4090,7 +4155,7 @@
   }
 
   function unlockLookbook(lookbookId, neededStars) {
-    const lb = AVATAR_LOOKBOOKS.find(x => x.id === lookbookId);
+    const lb = AVATAR_LOOKBOOKS.find(x => x.id === lookbookId || (lookbookId === 'chibi_trang_thong_thai' && x.id === 'chibi_co_be_de_thuong'));
     if (!lb) return;
     const curStars = AppState.stars || 0;
     if (curStars < neededStars) {
@@ -4106,10 +4171,11 @@
     }
     AppState.selectedChibiId = lb.id;
     AppState.avatarName = lb.name;
+    AppState.currentAvatarImage = lb.image;
+    AppState.useCustomAvatar = false;
     if (lb.config) {
       AppState.avatarConfig = { ...lb.config };
     }
-    AppState.useCustomAvatar = true;
     savePersistedState();
     SoundEngine.playFanfare();
     updateHeaderUI();
@@ -6120,6 +6186,7 @@
         break;
       }
       case 'MATCH_MINI': {
+        const miniPairs = curQ.pairs || [];
         questionBodyHtml = `
           <div class="mb-3">
             <span class="text-xs font-bold bg-amber-100 text-amber-900 px-3 py-1 rounded-full border border-amber-300">
@@ -6130,7 +6197,7 @@
           <div class="grid grid-cols-2 gap-4 my-4" id="mini-match-area">
             <div class="flex flex-col gap-2">
               <div class="text-xs font-bold text-red-900 uppercase">Cột A:</div>
-              ${curQ.pairs.map((p, i) => `
+              ${miniPairs.map((p, i) => `
                 <button onclick="selectMiniMatchColA(${i})" id="btn-colA-${i}" class="scroll-card p-2.5 text-xs sm:text-sm font-bold text-left border-2 border-amber-300 hover:bg-amber-50">
                   ${i + 1}. ${p.a}
                 </button>
@@ -6138,7 +6205,7 @@
             </div>
             <div class="flex flex-col gap-2">
               <div class="text-xs font-bold text-red-900 uppercase">Cột B:</div>
-              ${curQ.pairs.map((p, i) => `
+              ${miniPairs.map((p, i) => `
                 <button onclick="selectMiniMatchColB(${i})" id="btn-colB-${i}" class="scroll-card p-2.5 text-xs sm:text-sm font-bold text-left border-2 border-amber-300 hover:bg-amber-50">
                   ${String.fromCharCode(65 + i)}. ${p.b}
                 </button>
@@ -6150,10 +6217,10 @@
         break;
       }
       case 'CLASSIFY_MINI': {
-        const groups = curQ.groups;
+        const groups = curQ.groups || [];
         const allWords = [];
         groups.forEach((g, gIdx) => {
-          g.words.forEach(w => allWords.push({ text: w, groupIdx: gIdx }));
+          (g.words || []).forEach(w => allWords.push({ text: w, groupIdx: gIdx }));
         });
 
         questionBodyHtml = `
@@ -6228,6 +6295,28 @@
           </div>
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-3" id="mcq-grid">
             ${curQ.options.map((opt, i) => `
+              <button onclick="answerMCQ30(${i})" class="scroll-card p-3.5 text-left rounded-xl border-2 transition-all flex items-center gap-3 ${savedAns === i ? 'border-red-600 bg-red-50 text-red-950 font-black ring-2 ring-red-400' : 'border-amber-200 hover:border-amber-400 font-bold text-slate-800'}">
+                <span class="w-7 h-7 rounded-full ${savedAns === i ? 'bg-red-600 text-white' : 'bg-amber-400 text-amber-950'} flex items-center justify-center font-extrabold text-xs shrink-0">
+                  ${String.fromCharCode(65 + i)}
+                </span>
+                <span class="text-xs sm:text-sm">${opt}</span>
+              </button>
+            `).join('')}
+          </div>
+        `;
+        break;
+      }
+      default: {
+        const opts = curQ.options || [];
+        questionBodyHtml = `
+          <div class="mb-4">
+            <span class="text-xs font-bold bg-amber-100 text-amber-900 px-3 py-1 rounded-full border border-amber-300">
+              Câu ${curIdx + 1}: ${curQ.title || 'Câu hỏi kiến thức'} (10 điểm)
+            </span>
+          </div>
+          <h3 class="text-base sm:text-lg font-black text-slate-800 mb-4 leading-snug">${curQ.question || curQ.title || 'Hãy chọn đáp án đúng:'}</h3>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3" id="mcq-grid">
+            ${opts.map((opt, i) => `
               <button onclick="answerMCQ30(${i})" class="scroll-card p-3.5 text-left rounded-xl border-2 transition-all flex items-center gap-3 ${savedAns === i ? 'border-red-600 bg-red-50 text-red-950 font-black ring-2 ring-red-400' : 'border-amber-200 hover:border-amber-400 font-bold text-slate-800'}">
                 <span class="w-7 h-7 rounded-full ${savedAns === i ? 'bg-red-600 text-white' : 'bg-amber-400 text-amber-950'} flex items-center justify-center font-extrabold text-xs shrink-0">
                   ${String.fromCharCode(65 + i)}
@@ -6967,7 +7056,7 @@
       if (!AppState.ownedChibis.includes(targetId)) {
         AppState.ownedChibis.push(targetId);
       }
-      const lb = AVATAR_LOOKBOOKS.find(x => x.id === targetId);
+      const lb = AVATAR_LOOKBOOKS.find(x => x.id === targetId || (targetId === 'chibi_trang_thong_thai' && x.id === 'chibi_co_be_de_thuong'));
       if (lb) {
         AppState.selectedChibiId = lb.id;
         AppState.currentAvatarImage = lb.image;

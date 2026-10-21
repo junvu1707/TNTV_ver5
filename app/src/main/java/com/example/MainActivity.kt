@@ -11,9 +11,12 @@ import android.util.Log
 import android.view.Gravity
 import android.view.View
 import android.view.ViewGroup
+import android.webkit.ConsoleMessage
 import android.webkit.JavascriptInterface
 import android.webkit.JsResult
 import android.webkit.WebChromeClient
+import android.webkit.WebResourceError
+import android.webkit.WebResourceRequest
 import android.webkit.WebSettings
 import android.webkit.WebView
 import android.webkit.WebViewClient
@@ -118,9 +121,21 @@ class MainActivity : ComponentActivity() {
         builtInZoomControls = false
         mediaPlaybackRequiresUserGesture = false
         allowFileAccess = true
+        allowContentAccess = true
+        mixedContentMode = WebSettings.MIXED_CONTENT_ALWAYS_ALLOW
+        cacheMode = WebSettings.LOAD_DEFAULT
+        @Suppress("DEPRECATION")
+        allowFileAccessFromFileURLs = true
+        @Suppress("DEPRECATION")
+        allowUniversalAccessFromFileURLs = true
       }
 
       webChromeClient = object : WebChromeClient() {
+        override fun onConsoleMessage(consoleMessage: ConsoleMessage?): Boolean {
+          Log.d("WebViewConsole", "${consoleMessage?.message()} [${consoleMessage?.sourceId()}:${consoleMessage?.lineNumber()}]")
+          return true
+        }
+
         override fun onJsAlert(
           view: WebView?,
           url: String?,
@@ -156,8 +171,18 @@ class MainActivity : ComponentActivity() {
       }
 
       webViewClient = object : WebViewClient() {
+        override fun onReceivedError(
+          view: WebView?,
+          request: WebResourceRequest?,
+          error: WebResourceError?
+        ) {
+          super.onReceivedError(view, request, error)
+          Log.w(TAG, "WebView error: ${error?.description} for ${request?.url}")
+        }
+
         override fun onPageFinished(view: WebView?, url: String?) {
           super.onPageFinished(view, url)
+          Log.d(TAG, "WebView onPageFinished: $url")
         }
       }
 
@@ -331,12 +356,16 @@ class MainActivity : ComponentActivity() {
 
   override fun onPause() {
     bannerAdView?.pause()
+    webView?.onPause()
+    webView?.pauseTimers()
     super.onPause()
   }
 
   override fun onResume() {
     super.onResume()
     bannerAdView?.resume()
+    webView?.onResume()
+    webView?.resumeTimers()
   }
 
   override fun onDestroy() {
