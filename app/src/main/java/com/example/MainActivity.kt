@@ -1,7 +1,6 @@
 package com.example
 
 import android.annotation.SuppressLint
-import android.app.Activity
 import android.app.AlertDialog
 import android.content.Intent
 import android.graphics.Color
@@ -41,13 +40,13 @@ import com.google.android.gms.ads.interstitial.InterstitialAd
 import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback
 import com.google.android.gms.ads.rewarded.RewardedAd
 import com.google.android.gms.ads.rewarded.RewardedAdLoadCallback
+import org.json.JSONObject
 
 class MainActivity : ComponentActivity() {
 
   companion object {
-    private const val TAG = "AdMobHelper"
-    // Các Test Ad Unit IDs chính thức từ Google AdMob (dành cho kiểm thử an toàn, không sợ bị khóa tài khoản)
-    // Khi phát hành thực tế trên CH Play, thay bằng Unit ID thật từ console AdMob
+    private const val TAG = "MainActivity"
+    // Các Test Ad Unit IDs chính thức từ Google AdMob (dành cho kiểm thử an toàn)
     const val TEST_BANNER_ID = "ca-app-pub-3940256099942544/6300978111"
     const val TEST_INTERSTITIAL_ID = "ca-app-pub-3940256099942544/1033173712"
     const val TEST_REWARDED_ID = "ca-app-pub-3940256099942544/5224354917"
@@ -60,13 +59,33 @@ class MainActivity : ComponentActivity() {
   private var isAdMobInitialized = false
   private var bannerContainer: FrameLayout? = null
 
+  // Trạng thái VIP & Billing Manager
+  lateinit var vipPrefs: VipPreferenceManager
+  lateinit var emailJSManager: EmailJSManager
+  lateinit var billingManager: BillingManager
+
   @SuppressLint("SetJavaScriptEnabled")
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     enableEdgeToEdge()
 
-    // 1. Cấu hình tuân thủ Google Play Families Policy (Chính sách gia đình & trẻ em)
-    // Rất quan trọng khi xuất bản ứng dụng giáo dục Tiểu học trên Google Play CH Play
+    // 1. Khởi tạo VIP Manager, EmailJS Manager và Billing Manager
+    vipPrefs = VipPreferenceManager(this)
+    emailJSManager = EmailJSManager()
+    billingManager = BillingManager(this, vipPrefs, emailJSManager)
+
+    // Đăng ký callback khi mua gói VIP thành công
+    billingManager.onPurchaseSuccessCallback = { productId, vipLevel ->
+      runOnUiThread {
+        updateAdMobForVipStatus()
+        webView?.evaluateJavascript(
+          "if (window.onPurchaseSuccess) { window.onPurchaseSuccess('$productId', $vipLevel); } if (window.onVipStatusChanged) { window.onVipStatusChanged($vipLevel); }",
+          null
+        )
+      }
+    }
+
+    // 2. Cấu hình tuân thủ Google Play Families Policy (Chính sách gia đình & trẻ em)
     val requestConfiguration = RequestConfiguration.Builder()
       .setTagForChildDirectedTreatment(RequestConfiguration.TAG_FOR_CHILD_DIRECTED_TREATMENT_TRUE)
       .setMaxAdContentRating(RequestConfiguration.MAX_AD_CONTENT_RATING_G)
@@ -78,12 +97,14 @@ class MainActivity : ComponentActivity() {
       Log.d(TAG, "AdMob SDK Initialized: $status")
       isAdMobInitialized = true
       runOnUiThread {
-        loadInterstitialAd()
+        if (vipPrefs.shouldShowInterstitialAd()) {
+          loadInterstitialAd()
+        }
         loadRewardedAd()
       }
     }
 
-    // 2. Giao diện chứa: WebView + Banner Ad ở chân màn hình
+    // 3. Giao diện chứa: WebView + Banner Ad ở chân màn hình
     val rootLayout = LinearLayout(this).apply {
       layoutParams = ViewGroup.LayoutParams(
         ViewGroup.LayoutParams.MATCH_PARENT,
@@ -93,12 +114,12 @@ class MainActivity : ComponentActivity() {
       setBackgroundColor(Color.parseColor("#FEF3C7"))
     }
 
-    // Xử lý Edge-to-Edge System Bars (Status bar + Navigation bar)
-    ViewCompat.setOnApplyWindowInsetsListener(rootLayout) { v, insets ->
+    // Xử lý Edge-to-Edge System Bars
+    ViewCompat.setOnApplyWindowInsetsListener(rootLayout) { _, insets ->
       val bars = insets.getInsets(
         WindowInsetsCompat.Type.systemBars() or WindowInsetsCompat.Type.displayCutout()
       )
-      v.setPadding(bars.left, bars.top, bars.right, bars.bottom)
+      rootLayout.setPadding(bars.left, bars.top, bars.right, bars.bottom)
       insets
     }
 
@@ -202,15 +223,17 @@ class MainActivity : ComponentActivity() {
         ViewGroup.LayoutParams.MATCH_PARENT,
         ViewGroup.LayoutParams.WRAP_CONTENT
       )
-      visibility = View.VISIBLE
+      visibility = if (vipPrefs.shouldShowBannerAd()) View.VISIBLE else View.GONE
     }
     bannerContainer = bContainer
     rootLayout.addView(bContainer)
 
     setContentView(rootLayout)
 
-    // Khởi tạo và nạp Banner Ad
-    initBannerAd()
+    // Khởi tạo và nạp Banner Ad (nếu không phải gói VIP 2)
+    if (vipPrefs.shouldShowBannerAd()) {
+      initBannerAd()
+    }
 
     onBackPressedDispatcher.addCallback(this, object : OnBackPressedCallback(true) {
       override fun handleOnBackPressed() {
@@ -222,9 +245,16 @@ class MainActivity : ComponentActivity() {
     })
   }
 
-  // --- QUẢN LÝ ADMOB ADS ---
+  // --- QUẢN LÝ QUẢNG CÁO THEO GÓI VIP ---
 
-  private fun initBannerAd() {
+  fun initBannerAd() {
+    if (!vipPrefs.shouldShowBannerAd()) {
+      bannerContainer?.visibility = View.GONE
+      bannerAdView?.destroy()
+      bannerAdView = null
+      return
+    }
+
     try {
       val adView = AdView(this).apply {
         setAdSize(AdSize.BANNER)
@@ -232,7 +262,9 @@ class MainActivity : ComponentActivity() {
         adListener = object : AdListener() {
           override fun onAdLoaded() {
             Log.d(TAG, "AdMob Banner loaded successfully")
-            bannerContainer?.visibility = View.VISIBLE
+            if (vipPrefs.shouldShowBannerAd()) {
+              bannerContainer?.visibility = View.VISIBLE
+            }
           }
           override fun onAdFailedToLoad(error: LoadAdError) {
             Log.w(TAG, "AdMob Banner failed to load: ${error.message}")
@@ -253,13 +285,33 @@ class MainActivity : ComponentActivity() {
     }
   }
 
+  fun updateAdMobForVipStatus() {
+    if (!vipPrefs.shouldShowBannerAd()) {
+      bannerContainer?.visibility = View.GONE
+      bannerAdView?.destroy()
+      bannerAdView = null
+    } else {
+      if (bannerAdView == null) {
+        initBannerAd()
+      } else {
+        bannerContainer?.visibility = View.VISIBLE
+      }
+    }
+  }
+
   fun setBannerVisibility(visible: Boolean) {
     runOnUiThread {
-      bannerContainer?.visibility = if (visible) View.VISIBLE else View.GONE
+      if (!vipPrefs.shouldShowBannerAd()) {
+        bannerContainer?.visibility = View.GONE
+      } else {
+        bannerContainer?.visibility = if (visible) View.VISIBLE else View.GONE
+      }
     }
   }
 
   fun loadInterstitialAd() {
+    if (!vipPrefs.shouldShowInterstitialAd()) return
+
     val adRequest = AdRequest.Builder().build()
     InterstitialAd.load(
       this,
@@ -280,12 +332,19 @@ class MainActivity : ComponentActivity() {
 
   fun showInterstitialAd(onClosed: () -> Unit) {
     runOnUiThread {
+      // Bỏ qua hiển thị nếu VIP 2 (0%) hoặc VIP 1 không trúng xác suất 20%
+      if (!vipPrefs.shouldShowInterstitialAd()) {
+        Log.d(TAG, "Bỏ qua Interstitial Ad theo chính sách VIP Level ${vipPrefs.getVipLevel()}")
+        onClosed()
+        return@runOnUiThread
+      }
+
       val ad = interstitialAd
       if (ad != null) {
         ad.fullScreenContentCallback = object : FullScreenContentCallback() {
           override fun onAdDismissedFullScreenContent() {
             interstitialAd = null
-            loadInterstitialAd() // Tự động nạp sẵn cho lần tiếp theo
+            loadInterstitialAd()
             onClosed()
           }
           override fun onAdFailedToShowFullScreenContent(error: AdError) {
@@ -296,7 +355,6 @@ class MainActivity : ComponentActivity() {
         }
         ad.show(this)
       } else {
-        // Nếu chưa nạp xong hoặc ngoại tuyến, gọi callback tiếp tục mượt mà
         loadInterstitialAd()
         onClosed()
       }
@@ -324,13 +382,20 @@ class MainActivity : ComponentActivity() {
 
   fun showRewardedAd(onRewarded: () -> Unit, onFailedOrDismissed: () -> Unit) {
     runOnUiThread {
+      // Nếu là tài khoản VIP, tự động thưởng luôn mà không cần xem quảng cáo
+      if (vipPrefs.isVip()) {
+        Log.d(TAG, "Tài khoản VIP -> Tự động nhận thưởng không cần xem QC")
+        onRewarded()
+        return@runOnUiThread
+      }
+
       val ad = rewardedAd
       if (ad != null) {
         var userEarnedReward = false
         ad.fullScreenContentCallback = object : FullScreenContentCallback() {
           override fun onAdDismissedFullScreenContent() {
             rewardedAd = null
-            loadRewardedAd() // Tự động nạp sẵn cho lần sau
+            loadRewardedAd()
             if (userEarnedReward) {
               onRewarded()
             } else {
@@ -366,6 +431,11 @@ class MainActivity : ComponentActivity() {
     bannerAdView?.resume()
     webView?.onResume()
     webView?.resumeTimers()
+    
+    // Đồng bộ lại giao dịch khi mở lại ứng dụng
+    if (::billingManager.isInitialized) {
+      billingManager.queryPurchases()
+    }
   }
 
   override fun onDestroy() {
@@ -378,8 +448,7 @@ class MainActivity : ComponentActivity() {
 }
 
 /**
- * Android Native Bridge cho Google AdMob và Google Play Billing
- * Tích hợp đầy đủ các hàm gọi AdMob Native hai chiều giữa JavaScript và Android Native.
+ * Android Native Bridge kết nối giữa JavaScript (WebView) và Kotlin Native
  */
 class AndroidBridge(
   private val activity: MainActivity,
@@ -387,13 +456,96 @@ class AndroidBridge(
 ) {
 
   /**
-   * Gọi hiển thị Video Quảng Cáo Có Thưởng (Rewarded Video Ad)
-   * @param rewardType Loại phần thưởng: 'round' (mở 1 lượt chơi vòng 4-18), 'stars' (+30 sao tủ đồ chibi), 'explanation' (mở lời giải), 'chibi' (mở nhân vật), 'item' (mở trang phục)
-   * @param targetId ID mục tiêu (ví dụ số vòng thi: 4, 5... hoặc mã nhân vật 'chibi_gau_con')
+   * Kích hoạt luồng thanh toán Google Play Billing từ JavaScript
+   * @param productId ID gói ('vip_package_1' hoặc 'vip_package_2')
+   * @param userEmail Email người dùng đăng ký / nhận mail xác nhận
    */
   @JavascriptInterface
-  fun requestRewardedAd(rewardType: String, targetId: Int) {
-    requestRewardedAd(rewardType, targetId.toString())
+  fun launchBillingFlow(productId: String, userEmail: String) {
+    activity.runOnUiThread {
+      activity.billingManager.launchBillingFlow(activity, productId, userEmail)
+    }
+  }
+
+  @JavascriptInterface
+  fun launchBillingFlow(productId: String) {
+    launchBillingFlow(productId, "")
+  }
+
+  @JavascriptInterface
+  fun buyVip1(userEmail: String) {
+    launchBillingFlow(BillingManager.PRODUCT_VIP_1, userEmail)
+  }
+
+  @JavascriptInterface
+  fun buyVip2(userEmail: String) {
+    launchBillingFlow(BillingManager.PRODUCT_VIP_2, userEmail)
+  }
+
+  /**
+   * Khôi phục giao dịch mua VIP
+   */
+  @JavascriptInterface
+  fun restorePurchases() {
+    activity.runOnUiThread {
+      activity.billingManager.queryPurchases()
+    }
+  }
+
+  /**
+   * Trả về cấp độ VIP hiện tại (0: Free, 1: VIP 1, 2: VIP 2)
+   */
+  @JavascriptInterface
+  fun getVipLevel(): Int {
+    return activity.vipPrefs.getVipLevel()
+  }
+
+  @JavascriptInterface
+  fun isVip(): Boolean {
+    return activity.vipPrefs.isVip()
+  }
+
+  @JavascriptInterface
+  fun isVip2(): Boolean {
+    return activity.vipPrefs.isVip2()
+  }
+
+  /**
+   * Lấy Unique Device ID
+   */
+  @JavascriptInterface
+  fun getDeviceId(): String {
+    return activity.vipPrefs.getDeviceId()
+  }
+
+  @JavascriptInterface
+  fun getUserEmail(): String {
+    return activity.vipPrefs.getUserEmail()
+  }
+
+  /**
+   * Kiểm tra xem vòng thi (1-18) có mở khóa hay không
+   */
+  @JavascriptInterface
+  fun isRoundUnlocked(roundIndex: Int): Boolean {
+    return activity.vipPrefs.isRoundUnlocked(roundIndex)
+  }
+
+  /**
+   * Trả về toàn bộ thông tin VIP ở dạng JSON cho JavaScript
+   */
+  @JavascriptInterface
+  fun getVipInfoJson(): String {
+    val json = JSONObject().apply {
+      put("vipLevel", activity.vipPrefs.getVipLevel())
+      put("isVip", activity.vipPrefs.isVip())
+      put("isVip1", activity.vipPrefs.getVipLevel() == VipPreferenceManager.VIP_LEVEL_1)
+      put("isVip2", activity.vipPrefs.getVipLevel() == VipPreferenceManager.VIP_LEVEL_2)
+      put("deviceId", activity.vipPrefs.getDeviceId())
+      put("userEmail", activity.vipPrefs.getUserEmail())
+      put("lastOrderId", activity.vipPrefs.getLastOrderId())
+    }
+    return json.toString()
   }
 
   @JavascriptInterface
@@ -401,7 +553,6 @@ class AndroidBridge(
     activity.runOnUiThread {
       activity.showRewardedAd(
         onRewarded = {
-          // Trả kết quả thành công về WebView JS
           activity.runOnUiThread {
             webViewProvider()?.evaluateJavascript(
               "if (window.onRewardedAdSuccess) { window.onRewardedAdSuccess('$rewardType', '$targetId'); }",
@@ -410,7 +561,6 @@ class AndroidBridge(
           }
         },
         onFailedOrDismissed = {
-          // Nếu AdMob chưa nạp kịp hoặc người dùng thoát giữa chừng
           activity.runOnUiThread {
             webViewProvider()?.evaluateJavascript(
               "if (window.onRewardedAdFallback) { window.onRewardedAdFallback('$rewardType', '$targetId'); }",
@@ -422,18 +572,16 @@ class AndroidBridge(
     }
   }
 
-  /**
-   * Tương thích ngược với hàm requestRewardedAd cũ nhận 1 tham số roundIndex
-   */
+  @JavascriptInterface
+  fun requestRewardedAd(rewardType: String, targetId: Int) {
+    requestRewardedAd(rewardType, targetId.toString())
+  }
+
   @JavascriptInterface
   fun requestRewardedAd(roundIndex: Int) {
     requestRewardedAd("round", roundIndex.toString())
   }
 
-  /**
-   * Gọi hiển thị Quảng cáo Chuyển trang Toàn màn hình (Interstitial Ad)
-   * Hiển thị khi học sinh hoàn thành một game (Game 1, Game 2, Game 3) hoặc hoàn thành cả vòng thi
-   */
   @JavascriptInterface
   fun requestInterstitialAd() {
     activity.runOnUiThread {
@@ -448,27 +596,9 @@ class AndroidBridge(
     }
   }
 
-  /**
-   * Ẩn hoặc hiện Banner Ad ở chân màn hình (ví dụ khi làm bài thi hoặc khi người dùng đã mua VIP)
-   */
   @JavascriptInterface
   fun setBannerVisible(visible: Boolean) {
     activity.setBannerVisibility(visible)
-  }
-
-  @JavascriptInterface
-  fun launchBillingFlow(productId: String) {
-    activity.runOnUiThread {
-      Toast.makeText(
-        activity,
-        "Đang kích hoạt Google Play Billing cho gói: $productId...",
-        Toast.LENGTH_SHORT
-      ).show()
-      webViewProvider()?.evaluateJavascript(
-        "if (window.onPurchaseSuccess) { window.onPurchaseSuccess('$productId'); }",
-        null
-      )
-    }
   }
 
   @JavascriptInterface

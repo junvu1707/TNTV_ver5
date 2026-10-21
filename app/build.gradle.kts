@@ -33,7 +33,12 @@ android {
       keyPassword = System.getenv("KEY_PASSWORD")
     }
     create("debugConfig") {
-      storeFile = file("${rootDir}/debug.keystore")
+      val debugKeyFile = file("${rootDir}/debug.keystore")
+      if (debugKeyFile.exists()) {
+        storeFile = debugKeyFile
+      } else {
+        storeFile = file("${System.getProperty("user.home")}/.android/debug.keystore")
+      }
       storePassword = "android"
       keyAlias = "androiddebugkey"
       keyPassword = "android"
@@ -125,6 +130,7 @@ dependencies {
   implementation(libs.moshi.kotlin)
   implementation(libs.okhttp)
   implementation(libs.play.services.ads)
+  implementation(libs.billing.ktx)
   // implementation(libs.play.services.location)
   implementation(libs.retrofit)
   testImplementation(libs.androidx.compose.ui.test.junit4)
