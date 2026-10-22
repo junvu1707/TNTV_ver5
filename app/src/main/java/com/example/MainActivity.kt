@@ -99,7 +99,7 @@ class MainActivity : ComponentActivity() {
         ViewGroup.LayoutParams.MATCH_PARENT
       )
       orientation = LinearLayout.VERTICAL
-      setBackgroundColor(Color.parseColor("#F1F8E9"))
+      setBackgroundColor(Color.parseColor("#E7F3D9"))
     }
 
     // Xử lý Edge-to-Edge System Bars
@@ -117,7 +117,7 @@ class MainActivity : ComponentActivity() {
         0,
         1f
       )
-      setBackgroundColor(Color.parseColor("#F1F8E9"))
+      setBackgroundColor(Color.parseColor("#E7F3D9"))
 
       clearCache(false)
       settings.apply {
