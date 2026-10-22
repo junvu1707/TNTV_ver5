@@ -36,14 +36,14 @@
   <style>
     /* Hoạ tiết vân mây trống đồng và giấy điệp dân gian */
     html {
-      background-color: #E0F2FE;
+      background-color: #F1F8E9;
     }
     body {
-      background-color: #E0F2FE;
+      background-color: #F1F8E9;
       background-image: 
-        radial-gradient(circle at 50% 0%, rgba(59, 130, 246, 0.15) 0%, transparent 75%),
-        radial-gradient(circle at 100% 100%, rgba(14, 165, 233, 0.08) 0%, transparent 50%),
-        radial-gradient(circle at 0% 100%, rgba(99, 102, 241, 0.08) 0%, transparent 50%);
+        radial-gradient(circle at 50% 0%, rgba(46, 125, 50, 0.08) 0%, transparent 75%),
+        radial-gradient(circle at 100% 100%, rgba(76, 175, 80, 0.06) 0%, transparent 50%),
+        radial-gradient(circle at 0% 100%, rgba(255, 160, 0, 0.05) 0%, transparent 50%);
       user-select: none;
       -webkit-user-select: none;
       -webkit-touch-callout: none;
@@ -93,11 +93,11 @@
       box-shadow: 0 1px 0 #1E40AF;
     }
 
-    /* Thẻ bài phong cách khoa cử truyền thống */
+    /* Thẻ bài phong cách khu vườn học tập */
     .scroll-card {
       background: #FFFFFF;
-      border: 3px solid #FCD34D;
-      box-shadow: 0 8px 16px -2px rgba(217, 119, 6, 0.15);
+      border: 2px solid #C8E6C9;
+      box-shadow: 0 6px 16px -2px rgba(46, 125, 50, 0.08);
       border-radius: 1.25rem;
     }
 
@@ -185,7 +185,7 @@
   <!-- ======================================================== -->
   <!-- HEADER & THANH TRẠNG THÁI TRẠNG NGUYÊN NHÍ -->
   <!-- ======================================================== -->
-  <header id="main-app-header" class="sticky top-0 z-40 bg-gradient-to-r from-blue-700 via-indigo-600 to-blue-900 text-white shadow-xl border-b-4 border-blue-400 px-3 py-2.5">
+  <header id="main-app-header" class="sticky top-0 z-40 bg-[#2E7D32] text-white shadow-md border-b-4 border-[#1B5E20] px-3 py-2.5">
     <div class="max-w-5xl mx-auto flex items-center justify-between gap-2">
       <!-- Học sinh & Chibi Avatar -->
       <div class="flex items-center gap-2 cursor-pointer" onclick="openAvatarModal()" title="Bấm để vào Tủ Đồ Chibi & Đổi quà bằng Sao">
@@ -4888,7 +4888,7 @@
         }
 
         roundsInStage += `
-          <div onclick="selectRound(${r})" class="relative group cursor-pointer scroll-card p-3 sm:p-4 text-center transition-all hover:-translate-y-1 hover:shadow-xl ${isUnlocked ? 'border-amber-400 bg-white' : 'border-slate-300 bg-slate-50 opacity-90'}">
+          <div onclick="selectRound(${r})" class="relative group cursor-pointer scroll-card p-3 sm:p-4 text-center transition-all hover:-translate-y-1 hover:shadow-lg ${isUnlocked ? 'border-[#C8E6C9] bg-white' : 'border-slate-200 bg-slate-50 opacity-80'}">
             <div class="absolute -top-3 left-1/2 -translate-x-1/2 px-2.5 py-0.5 rounded-full text-[10px] font-bold shadow-sm ${badgeColor}">
               ${badgeText}
             </div>
@@ -4897,9 +4897,11 @@
             <h4 class="font-extrabold text-slate-800 text-sm sm:text-base">Chặng ${r}</h4>
             <p class="text-[11px] text-slate-500 mt-0.5">${stage.tag} • ${isMode2 ? '30 câu' : 'Minigame'}</p>
             
-            <div class="mt-2 pt-2 border-t border-amber-100 flex items-center justify-center gap-1 text-xs font-semibold ${isUnlocked ? 'text-amber-700' : 'text-slate-400'}">
-              <span>${isUnlocked ? (isAdmin ? 'Test Chặng' : 'Khám Phá') : 'Mở Khóa'}</span>
-              <i data-lucide="chevron-right" class="w-3.5 h-3.5"></i>
+            <div class="mt-2.5 pt-2 border-t border-slate-100 flex items-center justify-center">
+              <span class="w-full py-1.5 px-2 rounded-xl font-bold text-xs shadow-sm flex items-center justify-center gap-1 transition-all ${isUnlocked ? 'bg-[#FFA000] text-white hover:bg-[#FF8F00] active:scale-95' : 'bg-slate-200 text-slate-500'}">
+                <span>${isUnlocked ? (isAdmin ? 'Test Chặng' : 'Khám Phá') : 'Mở Khóa'}</span>
+                <i data-lucide="chevron-right" class="w-3.5 h-3.5"></i>
+              </span>
             </div>
           </div>
         `;
@@ -4908,9 +4910,9 @@
       stagesHtml += `
         <div class="mb-6">
           <div class="flex items-center gap-2 mb-1">
-            <div class="w-2.5 h-6 bg-red-600 rounded-full"></div>
+            <div class="w-2.5 h-6 bg-[#2E7D32] rounded-full"></div>
             <div>
-              <h3 class="font-black text-sm sm:text-base text-red-950">${stage.name}</h3>
+              <h3 class="font-black text-sm sm:text-base text-slate-800">${stage.name}</h3>
               <p class="text-[11px] text-slate-500">${stage.sub}</p>
             </div>
           </div>
@@ -4923,7 +4925,7 @@
 
     root.innerHTML = `
       <!-- Banner Tiêu Đề Trạng Sĩ Nhí & Khối Lớp -->
-      <div class="scroll-card p-4 sm:p-5 mb-5 bg-gradient-to-r from-amber-50 via-white to-red-50 border-2 border-amber-300 relative overflow-hidden shadow-md">
+      <div class="scroll-card p-4 sm:p-5 mb-5 bg-white border-2 border-[#C8E6C9] relative overflow-hidden shadow-sm">
         <div class="dong-son-pattern absolute inset-0 pointer-events-none opacity-40"></div>
         <div class="relative z-10 flex flex-row items-center justify-between gap-3 w-full">
           <!-- Tiêu Đề Kèm Hình Đại Diện Trạng Sĩ Nhí Tiếng Việt Sinh Động -->
@@ -5171,63 +5173,12 @@
   }
 
   function openPolicyHtmlInBrowser() {
-    const policyHtml = `<!DOCTYPE html>
-<html lang="vi">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Chính sách quyền riêng tư & Bản quyền - Ôn luyện Trạng nhí Tiếng Việt</title>
-  <style>
-    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; line-height: 1.6; padding: 20px; max-width: 720px; margin: 0 auto; color: #1e293b; background: #f8fafc; }
-    h1 { color: #047857; font-size: 22px; margin-bottom: 4px; }
-    .sub { color: #64748b; font-size: 13px; font-weight: 600; margin-bottom: 20px; border-bottom: 2px solid #e2e8f0; padding-bottom: 10px; }
-    .sec { background: white; border: 1px solid #e2e8f0; border-radius: 12px; padding: 16px; margin-bottom: 14px; box-shadow: 0 1px 2px rgba(0,0,0,0.04); }
-    h2 { color: #059669; font-size: 15px; margin-top: 0; }
-    p, li { font-size: 13px; color: #334155; margin: 6px 0; }
-    b { color: #0f172a; }
-    .contact-box { background: #ecfdf5; border: 1px solid #a7f3d0; border-radius: 8px; padding: 10px 14px; font-size: 13px; margin-top: 8px; }
-  </style>
-</head>
-<body>
-  <h1>Chính sách quyền riêng tư & Tuyên bố bản quyền</h1>
-  <div class="sub">Ôn luyện Trạng nhí Tiếng Việt • Cam kết tuân thủ chính sách bản quyền & GDPT 2018</div>
-  <div class="sec">
-    <h2>1. Tuyên bố độc lập & Miễn trừ trách nhiệm bản quyền</h2>
-    <p>Ứng dụng <b>"Ôn luyện Trạng nhí Tiếng Việt"</b> là phần mềm học tập bổ trợ độc lập dành cho học sinh Tiểu học, được xây dựng theo định hướng Chương trình GDPT 2018 của Bộ GD&ĐT.</p>
-    <p><b>TUYÊN BỐ RÕ RÀNG:</b> Ứng dụng <b>KHÔNG PHẢI</b> là ứng dụng chính thức, không liên kết, không hợp tác, không được bảo trợ, tài trợ, ủy quyền hay đại diện cho bất kỳ cơ quan, tổ chức khảo thí nào.</p>
-    <p>Hình tượng nhân vật Trạng nhí và Công chúa trong ứng dụng hoàn toàn bắt nguồn từ văn hóa truyền thống hiếu học dân gian Việt Nam, không xâm phạm hay gây nhầm lẫn với bất kỳ nhãn hiệu thương mại nào.</p>
-  </div>
-  <div class="sec">
-    <h2>2. Quyền sở hữu trí tuệ & Ngân hàng câu hỏi</h2>
-    <p>Toàn bộ câu hỏi, bài tập, thuật toán sinh đề, hình ảnh Chibi và mã nguồn ứng dụng đều được xây dựng độc lập 100%.</p>
-    <p>Ứng dụng KHÔNG sao chép, KHÔNG trích xuất trái phép đề thi chính thức hoặc cơ sở dữ liệu của bất kỳ đơn vị nào khác. Các câu tục ngữ, ca dao, thành ngữ, câu đố và nhân vật lịch sử thuộc về di sản văn hóa công cộng (Public Domain).</p>
-  </div>
-  <div class="sec">
-    <h2>3. Quyền riêng tư & An toàn trẻ em (Local-First Security)</h2>
-    <p>Ứng dụng tuân thủ nghiêm ngặt Chính sách dành cho gia đình của Google Play và đạo luật COPPA. Hoạt động cục bộ (Local-First), không yêu cầu quyền camera, danh bạ, vị trí GPS hay micro. Không thu thập hay chia sẻ dữ liệu định danh của trẻ em.</p>
-  </div>
-  <div class="sec">
-    <h2>4. Quyền kiểm soát & Xóa dữ liệu</h2>
-    <p>Tuân thủ chính sách Google Play, toàn bộ điểm số và tiến trình học tập được lưu cục bộ trên máy. Người dùng có toàn quyền làm mới hoặc xóa sạch toàn bộ dữ liệu tại mục Quản lý tài khoản. Khi gỡ ứng dụng, dữ liệu sẽ tự động được xóa sạch.</p>
-  </div>
-  <div class="sec">
-    <h2>5. Thông tin nhà phát triển & Cơ chế gỡ bỏ (Notice & Takedown)</h2>
-    <p><b>Nhà phát triển:</b> Đội ngũ phát triển Trạng Nhí Đại Việt</p>
-    <p><b>Email hỗ trợ & Bản quyền:</b> junvu1707@gmail.com</p>
-    <div class="contact-box">
-      <b>Cơ chế tiếp nhận:</b> Chúng tôi luôn tôn trọng quyền sở hữu trí tuệ. Nếu có bất kỳ câu hỏi hoặc khiếu nại bản quyền, vui lòng gửi email về <b>junvu1707@gmail.com</b> để được xử lý và gỡ bỏ kịp thời trong vòng 24 - 48 giờ.
-    </div>
-  </div>
-</body>
-</html>`;
-
+    SoundEngine.playClick();
+    const webUrl = 'https://ais-pre-26bhyqdchn5lcuuybrdybh-53627996710.asia-southeast1.run.app/privacy.html';
     if (window.AndroidBridge && typeof window.AndroidBridge.openBrowserUrl === 'function') {
-      const dataUri = 'data:text/html;charset=utf-8,' + encodeURIComponent(policyHtml);
-      window.AndroidBridge.openBrowserUrl(dataUri);
+      window.AndroidBridge.openBrowserUrl(webUrl);
     } else {
-      const blob = new Blob([policyHtml], { type: 'text/html;charset=utf-8' });
-      const url = URL.createObjectURL(blob);
-      window.open(url, '_blank');
+      window.open('privacy.html', '_blank');
     }
   }
 

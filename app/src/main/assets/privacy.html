@@ -1,103 +1,248 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chính sách Quyền riêng tư & Điều khoản - Đấu Trường Trạng Nhí</title>
-    <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            background-color: #FEF3C7;
-            margin: 0;
-            padding: 20px;
-        }
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            background: #ffffff;
-            padding: 30px;
-            border-radius: 16px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-        }
-        h1 {
-            color: #B45309;
-            text-align: center;
-            margin-bottom: 10px;
-        }
-        h2 {
-            color: #D97706;
-            border-bottom: 2px solid #FDE68A;
-            padding-bottom: 8px;
-            margin-top: 30px;
-        }
-        p, li {
-            margin-bottom: 12px;
-            text-align: justify;
-        }
-        ul {
-            padding-left: 20px;
-        }
-        .footer {
-            text-align: center;
-            margin-top: 40px;
-            font-size: 0.9em;
-            color: #666;
-            border-top: 1px solid #eee;
-            padding-top: 20px;
-        }
-        .back-btn {
-            display: inline-block;
-            margin-bottom: 20px;
-            background-color: #F59E0B;
-            color: white;
-            padding: 10px 20px;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: bold;
-        }
-        .back-btn:hover {
-            background-color: #D97706;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <title>Chính sách Quyền riêng tư & Bản quyền - Ôn Tiếng Việt - Trạng Sĩ Nhí</title>
+  <style>
+    :root {
+      --primary: #2E7D32;
+      --primary-dark: #1B5E20;
+      --bg: #F1F8E9;
+      --card-border: #C8E6C9;
+      --accent: #FFA000;
+      --text-main: #1E293B;
+      --text-muted: #64748B;
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      line-height: 1.7;
+      color: var(--text-main);
+      background-color: var(--bg);
+      background-image: 
+        radial-gradient(circle at 50% 0%, rgba(46, 125, 50, 0.08) 0%, transparent 75%),
+        radial-gradient(circle at 100% 100%, rgba(76, 175, 80, 0.06) 0%, transparent 50%),
+        radial-gradient(circle at 0% 100%, rgba(255, 160, 0, 0.05) 0%, transparent 50%);
+      padding: 16px;
+      min-height: 100vh;
+    }
+    .wrapper {
+      max-width: 820px;
+      margin: 0 auto;
+      background: #FFFFFF;
+      border: 2px solid var(--card-border);
+      border-radius: 20px;
+      box-shadow: 0 10px 25px -5px rgba(46, 125, 50, 0.1);
+      overflow: hidden;
+    }
+    .header {
+      background: linear-gradient(135deg, #2E7D32 0%, #1B5E20 100%);
+      color: #FFFFFF;
+      padding: 30px 24px;
+      text-align: center;
+      position: relative;
+    }
+    .badge {
+      display: inline-block;
+      background: rgba(255, 255, 255, 0.2);
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      padding: 4px 14px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 700;
+      margin-bottom: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .header h1 {
+      font-size: 24px;
+      font-weight: 900;
+      margin-bottom: 8px;
+      line-height: 1.3;
+    }
+    .header p {
+      font-size: 14px;
+      opacity: 0.95;
+    }
+    .nav-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 14px 24px;
+      background: #E8F5E9;
+      border-bottom: 1px solid var(--card-border);
+    }
+    .btn-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--accent);
+      color: #FFFFFF;
+      padding: 8px 16px;
+      border-radius: 12px;
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 700;
+      transition: all 0.2s ease;
+      box-shadow: 0 2px 4px rgba(255, 160, 0, 0.3);
+    }
+    .btn-back:hover {
+      background: #FF8F00;
+      transform: translateY(-1px);
+    }
+    .content {
+      padding: 28px 24px;
+    }
+    .section {
+      margin-bottom: 24px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid #F1F5F9;
+    }
+    .section:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+    .section-title {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--primary);
+      font-size: 17px;
+      font-weight: 800;
+      margin-bottom: 12px;
+    }
+    .icon {
+      font-size: 20px;
+    }
+    p, li {
+      font-size: 14px;
+      color: #334155;
+      margin-bottom: 10px;
+      text-align: justify;
+    }
+    ul {
+      padding-left: 22px;
+      margin-bottom: 12px;
+    }
+    li {
+      margin-bottom: 6px;
+    }
+    .highlight-box {
+      background: #F0FDF4;
+      border: 1px solid #BBF7D0;
+      border-left: 4px solid var(--primary);
+      padding: 14px 16px;
+      border-radius: 8px;
+      margin: 14px 0;
+    }
+    .contact-box {
+      background: #FEF3C7;
+      border: 1px solid #FDE68A;
+      border-left: 4px solid var(--accent);
+      padding: 14px 16px;
+      border-radius: 8px;
+      margin-top: 14px;
+    }
+    .footer {
+      background: #F8FAFC;
+      border-top: 1px solid #E2E8F0;
+      padding: 20px;
+      text-align: center;
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .header h1 { font-size: 20px; }
+      .content { padding: 20px 16px; }
+    }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <a href="index.html" class="back-btn">&#8592; Quay lại Trò chơi</a>
-        
-        <h1>Chính sách Quyền riêng tư & Điều khoản Sử dụng</h1>
-        <p style="text-align: center; font-style: italic;">Ứng dụng: Đấu Trường Tiếng Việt & Lịch Sử - Trạng Nhí (Dành cho học sinh Tiểu học)</p>
-
-        <h2>1. Chính sách Quyền riêng tư (Privacy Policy)</h2>
-        <p>Chúng tôi (Đấu Trường Trạng Nhí) cam kết bảo vệ tuyệt đối quyền riêng tư và dữ liệu cá nhân của người dùng, đặc biệt là học sinh và phụ huynh:</p>
-        <ul>
-            <li><strong>Thu thập thông tin tối thiểu:</strong> Ứng dụng không thu thập thông tin định danh cá nhân nhạy cảm. Dữ liệu tiến trình học tập, điểm số và tủ đồ được lưu trữ an toàn trên thiết bị hoặc hệ thống máy chủ được mã hóa.</li>
-            <li><strong>Bảo vệ trẻ em:</strong> Ứng dụng tuân thủ nghiêm ngặt Chính sách Gia đình và Trẻ em của Google Play. Chúng tôi không thu thập thông tin cá nhân của trẻ em dưới 13 tuổi mà không có sự đồng ý của phụ huynh.</li>
-            <li><strong>Quảng cáo an toàn:</strong> Sử dụng Google AdMob với bộ lọc nội dung gia đình (G-rated, thiết lập hướng trẻ em), không hiển thị quảng cáo không phù hợp lứa tuổi tiểu học.</li>
-        </ul>
-
-        <h2>2. Chính sách Bản quyền & Sở hữu Trí tuệ</h2>
-        <p>Toàn bộ nội dung trong ứng dụng bao gồm câu hỏi trắc nghiệm, hình ảnh nhân vật Chibi, âm thanh, đồ họa và mã nguồn đều thuộc quyền sở hữu trí tuệ hợp pháp của Đấu Trường Trạng Nhí:</p>
-        <ul>
-            <li>Mọi hành vi sao chép, phân phối lại hoặc sử dụng thương mại mà không có văn bản chấp thuận đều là vi phạm bản quyền.</li>
-            <li>Hình ảnh minh họa và tài nguyên thiết kế được tối ưu độc quyền cho mục đích giáo dục lứa tuổi tiểu học.</li>
-        </ul>
-
-        <h2>3. Chính sách Đăng ký VIP, Thanh toán & Hoàn tiền</h2>
-        <p>Ứng dụng cung cấp các gói nâng cấp VIP (VIP 1 và VIP 2) qua Google Play Billing với các quyền lợi vượt trội:</p>
-        <ul>
-            <li><strong>Quyền lợi VIP:</strong> Mở khóa toàn bộ vòng thi từ 1 đến 18, loại bỏ hoàn toàn quảng cáo gián đoạn, nhận quà thưởng đặc biệt và lưu trữ tiến độ học tập trên mây.</li>
-            <li><strong>Thanh toán an toàn:</strong> Mọi giao dịch thanh toán được xử lý bảo mật trực tiếp thông qua hệ thống Google Play In-App Billing. Chúng tôi không lưu trữ thông tin thẻ tín dụng của bạn.</li>
-            <li><strong>Chính sách hoàn tiền (Refund Policy):</strong> Yêu cầu hoàn tiền được giải quyết theo chính sách hoàn tiền chuẩn của Google Play Store (trong vòng 48 giờ kể từ khi mua qua Google Play Support). Bạn có thể khôi phục giao dịch bất cứ lúc nào bằng nút "Khôi phục VIP" trong ứng dụng.</li>
-        </ul>
-
-        <h2>4. Liên hệ Hỗ trợ</h2>
-        <p>Mọi thắc mắc về quyền riêng tư, bản quyền hoặc yêu cầu hỗ trợ tài khoản VIP, vui lòng liên hệ qua email hỗ trợ của chúng tôi.</p>
-
-        <div class="footer">
-            &copy; 2026 Đấu Trường Tiếng Việt & Lịch Sử - Trạng Nhí. Bảo lưu mọi quyền.
-        </div>
+  <div class="wrapper">
+    <div class="header">
+      <div class="badge">An Toàn • Minh Bạch • Bản Quyền Độc Lập</div>
+      <h1>Chính sách Quyền riêng tư & Tuyên bố Bản quyền</h1>
+      <p>Ứng dụng: <b>Ôn Tiếng Việt - Trạng Sĩ Nhí</b> (Dành cho Học sinh & Giáo viên Tiểu học GDPT)</p>
     </div>
+
+    <div class="nav-bar">
+      <span style="font-size: 13px; font-weight: 600; color: #2E7D32;">🌱 Cập nhật lần cuối: Tháng 10/2026</span>
+      <a href="index.html" class="btn-back">&#8592; Quay lại ứng dụng</a>
+    </div>
+
+    <div class="content">
+      <!-- MỤC 1 -->
+      <div class="section">
+        <div class="section-title">
+          <span class="icon">🏛️</span>
+          <span>1. Tuyên bố độc lập & Miễn trừ trách nhiệm bản quyền</span>
+        </div>
+        <p>• Ứng dụng <b>"Ôn Tiếng Việt - Trạng Sĩ Nhí"</b> là phần mềm học tập và rèn luyện bổ trợ hoàn toàn độc lập, do đội ngũ nhà giáo dục và lập trình viên tự nghiên cứu biên soạn nhằm hỗ trợ học sinh Tiểu học trau dồi kiến thức ngôn ngữ tiếng Việt bám sát Chương trình Giáo dục Phổ thông (GDPT) của Bộ Giáo dục & Đào tạo.</p>
+        <div class="highlight-box">
+          <p style="margin: 0;"><b>TUYÊN BỐ MINH BẠCH:</b> Ứng dụng <b>KHÔNG PHẢI</b> là ứng dụng chính thức, <b>KHÔNG CÓ</b> bất kỳ sự liên kết, hợp tác, ủy quyền, tài trợ, bảo trợ hay đại diện cho bất kỳ đơn vị, tổ chức khảo thí hay ban tổ chức cuộc thi độc quyền nào.</p>
+        </div>
+        <p>• Hình tượng nhân vật Trạng Sĩ Nhí và Công Chúa trong ứng dụng hoàn toàn xuất phát từ truyền thống văn hóa hiếu học dân gian ngàn đời của dân tộc Việt Nam, chỉ mang tính biểu trưng khích lệ tinh thần hiếu học của thiếu nhi và không nhằm mục đích gây nhầm lẫn với bất kỳ nhãn hiệu thương mại nào.</p>
+      </div>
+
+      <!-- MỤC 2 -->
+      <div class="section">
+        <div class="section-title">
+          <span class="icon">📚</span>
+          <span>2. Bản quyền nội dung & Ngân hàng câu hỏi</span>
+        </div>
+        <p>• Toàn bộ ngân hàng câu hỏi, bài tập, giải thích chi tiết, thuật toán sinh đề liên hoàn 18 chặng, hình ảnh nhân vật Chibi và toàn bộ mã nguồn ứng dụng đều được đội ngũ phát triển nghiên cứu, biên soạn và sáng tạo độc lập 100%.</p>
+        <p>• Chúng tôi cam kết <b>KHÔNG sao chép</b>, <b>KHÔNG trích xuất trái phép</b> đề thi chính thức, tài liệu độc quyền hay cơ sở dữ liệu có bản quyền của bất kỳ tổ chức hoặc bên thứ ba nào.</p>
+        <p>• Toàn bộ các ngữ liệu ca dao, tục ngữ, thành ngữ, câu đố và dữ kiện nhân vật lịch sử được sử dụng đều thuộc về kho tàng di sản văn hóa dân gian và tri thức công cộng mở (Public Domain).</p>
+      </div>
+
+      <!-- MỤC 3 -->
+      <div class="section">
+        <div class="section-title">
+          <span class="icon">🛡️</span>
+          <span>3. Bảo vệ quyền riêng tư & An toàn trẻ em (COPPA / GDPR / Google Play Family)</span>
+        </div>
+        <p>• Ứng dụng tuân thủ nghiêm ngặt Chính sách dành cho gia đình của Google Play (Google Play Families Policy) và đạo luật COPPA về bảo vệ trẻ em trên môi trường kỹ thuật số:</p>
+        <ul>
+          <li><b>Cơ chế an toàn tuyệt đối (Local-First Security):</b> Không yêu cầu bất kỳ quyền truy cập nhạy cảm nào như Danh bạ, Vị trí GPS, Camera, Micro hay Bộ nhớ ngoài thiết bị.</li>
+          <li><b>Không thu thập danh tính:</b> Ứng dụng không thu thập, không theo dõi và không chia sẻ thông tin định danh cá nhân nhạy cảm của học sinh cho bất kỳ bên thứ ba nào.</li>
+          <li><b>Quảng cáo thân thiện lứa tuổi thiếu nhi:</b> Tích hợp Google AdMob tuân thủ nghiêm ngặt chuẩn xếp hạng gia đình (G-rated, thiết lập hướng trẻ em), chỉ xuất hiện khi học sinh chủ động lựa chọn mở thêm lượt chơi bằng video có thưởng.</li>
+        </ul>
+      </div>
+
+      <!-- MỤC 4 -->
+      <div class="section">
+        <div class="section-title">
+          <span class="icon">💾</span>
+          <span>4. Quyền kiểm soát & Xóa dữ liệu học tập</span>
+        </div>
+        <p>• Toàn bộ số sao đạt được, kết quả học tập qua các chặng và trang phục nhân vật Chibi được lưu trữ an toàn trong bộ nhớ cục bộ trên thiết bị của bạn.</p>
+        <p>• Người dùng có toàn quyền làm mới, xóa dữ liệu hoặc thiết lập lại tiến độ học tập bất kỳ lúc nào tại mục Quản lý tài khoản. Khi gỡ cài đặt ứng dụng, toàn bộ dữ liệu trên máy sẽ tự động được xóa sạch.</p>
+      </div>
+
+      <!-- MỤC 5 -->
+      <div class="section">
+        <div class="section-title">
+          <span class="icon">📮</span>
+          <span>5. Thông tin liên hệ & Cơ chế tiếp nhận gỡ bỏ (Notice & Takedown)</span>
+        </div>
+        <p>• <b>Đơn vị phát triển:</b> Đội ngũ Ôn Tiếng Việt - Trạng Sĩ Nhí</p>
+        <p>• <b>Email tiếp nhận hỗ trợ & Bản quyền:</b> <a href="mailto:junvu1707@gmail.com" style="color: #2E7D32; font-weight: bold;">junvu1707@gmail.com</a></p>
+        <div class="contact-box">
+          <p style="margin: 0;"><b>Cam kết xử lý nhanh chóng:</b> Chúng tôi luôn tôn trọng quyền sở hữu trí tuệ của mọi tổ chức và tác giả. Nếu bất kỳ cá nhân hay tổ chức nào nhận thấy bất kỳ nội dung nào cần đóng góp, làm rõ hoặc có nghi vấn bản quyền, xin vui lòng gửi email về <b>junvu1707@gmail.com</b>. Chúng tôi cam kết tiếp nhận, xác minh và xử lý gỡ bỏ ngay lập tức trong vòng <b>24 - 48 giờ làm việc</b>.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer">
+      <p>&copy; 2026 Ôn Tiếng Việt - Trạng Sĩ Nhí. Bản quyền nội dung rèn luyện độc lập. Bảo lưu mọi quyền.</p>
+    </div>
+  </div>
 </body>
 </html>

@@ -99,7 +99,7 @@ class MainActivity : ComponentActivity() {
         ViewGroup.LayoutParams.MATCH_PARENT
       )
       orientation = LinearLayout.VERTICAL
-      setBackgroundColor(Color.parseColor("#FEF3C7"))
+      setBackgroundColor(Color.parseColor("#F1F8E9"))
     }
 
     // Xử lý Edge-to-Edge System Bars
@@ -117,7 +117,7 @@ class MainActivity : ComponentActivity() {
         0,
         1f
       )
-      setBackgroundColor(Color.parseColor("#FEF3C7"))
+      setBackgroundColor(Color.parseColor("#F1F8E9"))
 
       clearCache(false)
       settings.apply {
@@ -226,6 +226,10 @@ class MainActivity : ComponentActivity() {
 
     onBackPressedDispatcher.addCallback(this, object : OnBackPressedCallback(true) {
       override fun handleOnBackPressed() {
+        if (webView?.url?.contains("privacy.html") == true) {
+          webView?.loadUrl("file:///android_asset/index.html")
+          return
+        }
         webView?.evaluateJavascript(
           "if (window.handleAndroidBack) { window.handleAndroidBack(); } else if (window.history.length > 1) { window.history.back(); } else { if (typeof AndroidBridge !== 'undefined' && AndroidBridge.exitApp) { AndroidBridge.exitApp(); } }",
           null
@@ -619,10 +623,20 @@ class AndroidBridge(
   fun openBrowserUrl(url: String) {
     activity.runOnUiThread {
       try {
-        val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+        val targetUri = if (url.startsWith("http://") || url.startsWith("https://")) {
+          Uri.parse(url)
+        } else if (url == "privacy.html" || url.endsWith("/privacy.html")) {
+          Uri.parse("https://ais-pre-26bhyqdchn5lcuuybrdybh-53627996710.asia-southeast1.run.app/privacy.html")
+        } else {
+          Uri.parse(url)
+        }
+        val intent = Intent(Intent.ACTION_VIEW, targetUri).apply {
+          addCategory(Intent.CATEGORY_BROWSABLE)
+          flags = Intent.FLAG_ACTIVITY_NEW_TASK
+        }
         activity.startActivity(intent)
       } catch (e: Exception) {
-        Toast.makeText(activity, "Không thể mở liên kết", Toast.LENGTH_SHORT).show()
+        webViewProvider()?.loadUrl("file:///android_asset/privacy.html")
       }
     }
   }
