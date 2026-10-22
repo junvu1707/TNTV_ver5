@@ -178,9 +178,54 @@
       background-position: 0 0, 12px 12px;
       opacity: 0.12;
     }
+
+    @keyframes bounceSubtle {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+    }
+    .animate-bounce-subtle {
+      animation: bounceSubtle 2.5s ease-in-out infinite;
+    }
   </style>
 </head>
 <body class="min-h-screen text-slate-800 flex flex-col font-sans">
+
+  <!-- ======================================================== -->
+  <!-- MÀN HÌNH CHÀO (SPLASH SCREEN) KHI BẮT ĐẦU VÀO APP -->
+  <!-- ======================================================== -->
+  <div id="app-splash-screen" onclick="dismissSplashScreen()" class="fixed inset-0 z-50 flex flex-col items-center justify-center p-6 select-none cursor-pointer" style="background-color: #E7F3D9; transition: opacity 0.5s ease, transform 0.5s ease;">
+    <!-- Nền vân mây trống đồng nhẹ -->
+    <div class="dong-son-pattern absolute inset-0 pointer-events-none opacity-25"></div>
+
+    <div class="relative z-10 flex flex-col items-center justify-center w-full max-w-sm text-center" onclick="event.stopPropagation(); dismissSplashScreen();">
+      <!-- HÌNH TRÒN LOGO CHIẾM 75% CHIỀU NGANG MÀN HÌNH (75vw) -->
+      <div class="relative w-[75vw] max-w-[340px] aspect-square rounded-full p-2.5 bg-white shadow-2xl border-4 border-[#C8E6C9] flex items-center justify-center mb-6 transform animate-bounce-subtle">
+        <div class="w-full h-full rounded-full overflow-hidden shadow-inner flex items-center justify-center bg-white">
+          <img src="app_logo.png" alt="Logo Trạng Sĩ Nhí" class="w-full h-full object-cover rounded-full" onerror="this.onerror=null; this.src='chibi_cong_chua_toc_may.png';">
+        </div>
+        <!-- Vòng hào quang nhẹ bao quanh -->
+        <div class="absolute -inset-1 rounded-full border-2 border-emerald-500/30 pointer-events-none animate-pulse"></div>
+      </div>
+
+      <!-- TÊN ỨNG DỤNG & LỜI CHÀO -->
+      <h1 class="text-2xl sm:text-3xl font-black text-slate-800 tracking-tight leading-tight mb-1">
+        Ôn Tiếng Việt
+      </h1>
+      <h2 class="text-xl sm:text-2xl font-black text-[#2E7D32] tracking-tight mb-2">
+        Trạng Sĩ Nhí
+      </h2>
+      <p class="text-xs sm:text-sm font-bold text-slate-600 mb-6">
+        Học Vui • Nhớ Lâu • Ôn Thi Tiểu Học
+      </p>
+
+      <!-- NÚT BẮT ĐẦU VÀO APP -->
+      <button onclick="dismissSplashScreen()" class="btn-3d px-8 py-3 rounded-2xl bg-[#FFA000] hover:bg-[#FF8F00] text-white font-black text-sm sm:text-base shadow-lg flex items-center gap-2 transform active:scale-95 transition-all">
+        <span>Bắt Đầu Khám Phá 🚀</span>
+      </button>
+
+      <span class="text-[11px] text-slate-500 font-medium mt-3">Chạm vào màn hình để bắt đầu ngay</span>
+    </div>
+  </div>
 
   <!-- ======================================================== -->
   <!-- HEADER & THANH TRẠNG THÁI TRẠNG NGUYÊN NHÍ -->
@@ -3737,7 +3782,7 @@
   function isAdminAccount() {
     const name = (AppState.studentName || '').toLowerCase().trim();
     const accId = (AppState.customAccountId || '').toLowerCase().trim();
-    return name === 'uyenlp1310' || accId === 'uyenlp1310' || !!AppState.isAdmin;
+    return name === 'uyenlp1310' || accId === 'uyenlp1310' || name === 'testapp' || accId === 'testapp' || !!AppState.isAdmin;
   }
 
   function isRoundUnlocked(roundNum) {
@@ -4218,7 +4263,35 @@
     AppState.customAccountId = enteredId;
     const lowerId = enteredId.toLowerCase();
 
-    // 1. Kiểm tra Admin uyenlp1310 (Mặc định dùng được mọi Chibi và Phụ kiện không cần mất sao hoặc xem video)
+    // 1. Kiểm tra Admin testapp (ID: testapp, Pass: abc123)
+    if (lowerId === 'testapp') {
+      if (enteredPass === 'abc123') {
+        AppState.studentName = 'testapp';
+        AppState.customAccountId = 'testapp';
+        AppState.isAdmin = true;
+        AppState.isVip1 = true;
+        AppState.isVip2 = true;
+        AppState.stars = Math.max(AppState.stars || 0, 9999);
+        AppState.unlockedRounds = Array.from({length: 18}, (_, i) => i + 1);
+        AppState.ownedChibis = AVATAR_LOOKBOOKS.map(x => x.id);
+        const allItems = [];
+        Object.values(AVATAR_ITEMS).forEach(arr => arr.forEach(it => allItems.push(it.id)));
+        AppState.ownedItems = allItems;
+        savePersistedState();
+        SoundEngine.playSuccess();
+        showCustomAlert('Chào mừng Admin testapp! Đã mở khóa toàn bộ 18 Chặng thi, VIP MAX, Chibi & Phụ kiện!');
+        closeModal();
+        updateHeaderUI();
+        renderHome();
+      } else {
+        SoundEngine.playWrong();
+        AppState.isAdmin = false;
+        showCustomAlert('Mật khẩu không chính xác!');
+      }
+      return;
+    }
+
+    // Kiểm tra Admin uyenlp1310
     if (lowerId === 'uyenlp1310') {
       if (!enteredPass || enteredPass === 'Vudung177.') {
         AppState.studentName = 'uyenlp1310';
@@ -4930,10 +5003,10 @@
         <div class="relative z-10 flex flex-row items-center justify-between gap-3 w-full">
           <!-- Tiêu Đề Kèm Hình Đại Diện Trạng Sĩ Nhí Tiếng Việt Sinh Động -->
           <div class="flex items-center gap-2.5 sm:gap-4 min-w-0">
-            <!-- Hình Đại Diện Trạng Sĩ Nhí Mới Của App (Tăng kích thước 1.3 lần) -->
+            <!-- Hình Đại Diện Trạng Sĩ Nhí Mới Của App (Hình tròn đồng bộ) -->
             <div class="relative shrink-0 cursor-pointer" onclick="openAvatarModal()" title="Hình đại diện Trạng sĩ nhí Tiếng Việt • Vào Tủ Đồ Chibi">
-              <div class="w-[78px] h-[78px] sm:w-[104px] sm:h-[104px] rounded-2xl bg-gradient-to-br from-amber-200 via-amber-300 to-amber-400 p-1 shadow-lg border-2 border-amber-300 flex items-center justify-center transform hover:scale-105 transition-all overflow-hidden bg-white">
-                <img src="app_logo.png" alt="Ôn luyện Trạng sĩ nhí Tiếng Việt" class="w-full h-full object-cover rounded-xl" onerror="this.onerror=null; this.src='chibi_cong_chua_toc_may.png';">
+              <div class="w-[82px] h-[82px] sm:w-[104px] sm:h-[104px] rounded-full bg-gradient-to-br from-emerald-100 via-white to-emerald-200 p-1 shadow-md border-2 border-[#C8E6C9] flex items-center justify-center transform hover:scale-105 transition-all overflow-hidden bg-white">
+                <img src="app_logo.png" alt="Ôn luyện Trạng sĩ nhí Tiếng Việt" class="w-full h-full object-cover rounded-full" onerror="this.onerror=null; this.src='chibi_cong_chua_toc_may.png';">
               </div>
             </div>
 
@@ -7323,10 +7396,31 @@
     }
   };
 
+  function dismissSplashScreen() {
+    const splash = document.getElementById('app-splash-screen');
+    if (!splash || splash.dataset.dismissed) return;
+    splash.dataset.dismissed = 'true';
+    if (typeof SoundEngine !== 'undefined' && SoundEngine.playClick) {
+      SoundEngine.playClick();
+    }
+    splash.style.opacity = '0';
+    splash.style.transform = 'scale(1.05)';
+    splash.style.pointerEvents = 'none';
+    setTimeout(() => {
+      if (splash && splash.parentNode) {
+        splash.parentNode.removeChild(splash);
+      }
+    }, 500);
+  }
+
   // Khởi động
   window.addEventListener('DOMContentLoaded', () => {
     loadPersistedState();
     renderHome();
+    // Tự động chuyển vào màn hình chính sau 2.2 giây nếu học sinh không chạm vào màn hình
+    setTimeout(() => {
+      dismissSplashScreen();
+    }, 2200);
   });
   </script>
 </body>

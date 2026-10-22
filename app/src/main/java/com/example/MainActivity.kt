@@ -5,7 +5,9 @@ import android.app.AlertDialog
 import android.content.Intent
 import android.graphics.Color
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
+import java.io.File
 import android.util.Log
 import android.view.Gravity
 import android.view.View
@@ -68,6 +70,15 @@ class MainActivity : ComponentActivity() {
     super.onCreate(savedInstanceState)
     enableEdgeToEdge()
 
+    // Dọn dẹp variations_seed thiếu chữ ký/hỏng của Chromium nội bộ trước khi khởi tạo WebView
+    try {
+      val webViewDir = File(dataDir, "app_webview")
+      val seedFile = File(webViewDir, "variations_seed")
+      val seedNewFile = File(webViewDir, "variations_seed_new")
+      if (seedFile.exists()) seedFile.delete()
+      if (seedNewFile.exists()) seedNewFile.delete()
+    } catch (_: Exception) {}
+
     // 1. Khởi tạo VIP Manager và EmailJS Manager
     vipPrefs = VipPreferenceManager(this)
     emailJSManager = EmailJSManager()
@@ -119,12 +130,9 @@ class MainActivity : ComponentActivity() {
       )
       setBackgroundColor(Color.parseColor("#E7F3D9"))
 
-      clearCache(false)
       settings.apply {
         javaScriptEnabled = true
         domStorageEnabled = true
-        @Suppress("DEPRECATION")
-        databaseEnabled = true
         useWideViewPort = true
         loadWithOverviewMode = true
         displayZoomControls = false
@@ -132,12 +140,10 @@ class MainActivity : ComponentActivity() {
         mediaPlaybackRequiresUserGesture = false
         allowFileAccess = true
         allowContentAccess = true
-        mixedContentMode = WebSettings.MIXED_CONTENT_ALWAYS_ALLOW
         cacheMode = WebSettings.LOAD_DEFAULT
-        @Suppress("DEPRECATION")
-        allowFileAccessFromFileURLs = true
-        @Suppress("DEPRECATION")
-        allowUniversalAccessFromFileURLs = true
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+          safeBrowsingEnabled = false
+        }
       }
 
       webChromeClient = object : WebChromeClient() {
