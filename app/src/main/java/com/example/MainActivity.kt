@@ -75,7 +75,7 @@ class MainActivity : ComponentActivity() {
     billingManager = BillingManager(this, vipPrefs, emailJSManager)
 
     // Đăng ký callback khi mua gói VIP thành công
-    billingManager.onPurchaseSuccessCallback = { productId, vipLevel ->
+    billingManager.onPurchaseSuccessCallback = { productId: String, vipLevel: Int ->
       runOnUiThread {
         updateAdMobForVipStatus()
         webView?.evaluateJavascript(
