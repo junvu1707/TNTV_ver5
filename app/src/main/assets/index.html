@@ -36,10 +36,10 @@
   <style>
     /* Hoạ tiết vân mây trống đồng và giấy điệp dân gian */
     html {
-      background-color: #E7F3D9;
+      background-color: #F8FCF5;
     }
     body {
-      background-color: #E7F3D9;
+      background-color: #F8FCF5;
       background-image: 
         radial-gradient(circle at 50% 0%, rgba(46, 125, 50, 0.09) 0%, transparent 75%),
         radial-gradient(circle at 100% 100%, rgba(76, 175, 80, 0.07) 0%, transparent 50%),
@@ -193,7 +193,7 @@
   <!-- ======================================================== -->
   <!-- MÀN HÌNH CHÀO (SPLASH SCREEN) KHI BẮT ĐẦU VÀO APP -->
   <!-- ======================================================== -->
-  <div id="app-splash-screen" onclick="dismissSplashScreen()" class="fixed inset-0 z-50 flex flex-col items-center justify-center p-6 select-none cursor-pointer" style="background-color: #E7F3D9; transition: opacity 0.5s ease, transform 0.5s ease;">
+  <div id="app-splash-screen" onclick="dismissSplashScreen()" class="fixed inset-0 z-50 flex flex-col items-center justify-center p-6 select-none cursor-pointer" style="background-color: #F8FCF5; transition: opacity 0.5s ease, transform 0.5s ease;">
     <!-- Nền vân mây trống đồng nhẹ -->
     <div class="dong-son-pattern absolute inset-0 pointer-events-none opacity-25"></div>
 
@@ -230,7 +230,7 @@
   <!-- ======================================================== -->
   <!-- HEADER & THANH TRẠNG THÁI TRẠNG NGUYÊN NHÍ -->
   <!-- ======================================================== -->
-  <header id="main-app-header" class="sticky top-0 z-40 bg-[#2E7D32] text-white shadow-md border-b-4 border-[#1B5E20] px-3 py-2.5">
+  <header id="main-app-header" class="sticky top-0 z-40 bg-gradient-to-r from-[#81C784] via-[#4CAF50] to-[#388E3C] text-white shadow-md border-b-4 border-[#2E7D32] px-3 py-2.5">
     <div class="max-w-5xl mx-auto flex items-center justify-between gap-2">
       <!-- Học sinh & Chibi Avatar -->
       <div class="flex items-center gap-2 cursor-pointer" onclick="openAvatarModal()" title="Bấm để vào Tủ Đồ Chibi & Đổi quà bằng Sao">
@@ -1245,7 +1245,7 @@
     if (!pool || pool.length === 0) return [];
     const grouped = new Map();
     for (const item of pool) {
-      const qText = item.q || item.question || item.poem || item.passage || '';
+      const qText = item.q || item.question || item.poem || item.passage || item.title || '';
       const key = normalizeQuestionKey(qText);
       if (!grouped.has(key)) {
         grouped.set(key, []);
@@ -4909,28 +4909,28 @@
     const roundStages = [
       { 
         name: 'Chú Ong Chăm Chỉ (Chặng 1 - 6)', 
-        sub: 'Minigame liên hoàn: Bé tinh mắt, Bé thông minh, Bé học vui, Bé sáng tạo',
+        sub: '',
         range: [1, 6],
         tag: 'Ôn Tập',
         icon: '🐝'
       },
       { 
         name: 'Khu Vườn Kỳ Diệu (Chặng 7 - 10)', 
-        sub: 'Đấu trường Khu Vườn Kỳ Diệu • Đề thi tổng hợp 30 câu',
+        sub: '',
         range: [7, 10],
         tag: 'Khu Vườn',
         icon: '🌺'
       },
       { 
         name: 'Mê Cung Kỳ Bí (Chặng 11 - 14)', 
-        sub: 'Đấu trường Mê Cung Kỳ Bí • Đề thi tổng hợp 30 câu',
+        sub: '',
         range: [11, 14],
         tag: 'Mê Cung',
         icon: '🌀'
       },
       { 
         name: 'Chinh Phục Đỉnh Cao (Chặng 15 - 18)', 
-        sub: 'Đấu trường Chinh Phục Đỉnh Cao • Đề thi tổng hợp 30 câu',
+        sub: '',
         range: [15, 18],
         tag: 'Đỉnh Cao',
         icon: '👑'
@@ -4972,7 +4972,7 @@
             
             <div class="mt-2.5 pt-2 border-t border-slate-100 flex items-center justify-center">
               <span class="w-full py-1.5 px-2 rounded-xl font-bold text-xs shadow-sm flex items-center justify-center gap-1 transition-all ${isUnlocked ? 'bg-[#FFA000] text-white hover:bg-[#FF8F00] active:scale-95' : 'bg-slate-200 text-slate-500'}">
-                <span>${isUnlocked ? (isAdmin ? 'Test Chặng' : 'Khám Phá') : 'Mở Khóa'}</span>
+                <span>${isUnlocked ? (isAdmin ? 'Thi Thử' : 'Khám Phá') : 'Mở Khóa'}</span>
                 <i data-lucide="chevron-right" class="w-3.5 h-3.5"></i>
               </span>
             </div>
@@ -4983,7 +4983,7 @@
       stagesHtml += `
         <div class="mb-6">
           <div class="flex items-center gap-2 mb-1">
-            <div class="w-2.5 h-6 bg-[#2E7D32] rounded-full"></div>
+            <div class="w-2.5 h-6 bg-[#4CAF50] rounded-full"></div>
             <div>
               <h3 class="font-black text-sm sm:text-base text-slate-800">${stage.name}</h3>
               <p class="text-[11px] text-slate-500">${stage.sub}</p>
@@ -4999,7 +4999,7 @@
     root.innerHTML = `
       <!-- Banner Tiêu Đề Trạng Sĩ Nhí & Khối Lớp -->
       <div class="scroll-card p-4 sm:p-5 mb-5 bg-white border-2 border-[#C8E6C9] relative overflow-hidden shadow-sm">
-        <div class="dong-son-pattern absolute inset-0 pointer-events-none opacity-40"></div>
+        <div class="dong-son-pattern absolute inset-0 pointer-events-none opacity-15"></div>
         <div class="relative z-10 flex flex-row items-center justify-between gap-3 w-full">
           <!-- Tiêu Đề Kèm Hình Đại Diện Trạng Sĩ Nhí Tiếng Việt Sinh Động -->
           <div class="flex items-center gap-2.5 sm:gap-4 min-w-0">
@@ -5015,19 +5015,19 @@
                 <span class="block text-center">Ôn Tiếng Việt</span>
                 <span class="block text-center">Trạng Sĩ Nhí</span>
               </h1>
-              <div class="inline-block bg-red-100 text-red-800 font-black px-2 py-0.5 rounded-full uppercase tracking-wider mt-1 border border-red-200 text-[8px] sm:text-[10px] leading-tight text-center">
+              <div class="inline-block bg-slate-50 text-slate-500 font-bold px-2 py-0.5 rounded-full uppercase tracking-wider mt-1 border border-slate-200 text-[8px] sm:text-[10px] leading-tight text-center">
                 Dành cho Học sinh & Giáo viên Tiểu học
               </div>
             </div>
           </div>
           
-          <!-- Nút Tủ Đồ & Quản Lý Tài Khoản (Dịch hẳn sang bên phải tạo sự cân đối) -->
+          <!-- Nút Quản Lý Tài Khoản & Tủ Đồ (Dịch hẳn sang bên phải tạo sự cân đối) -->
           <div class="flex flex-col sm:flex-row items-end sm:items-center gap-1.5 sm:gap-2.5 shrink-0 ml-auto">
-            <button onclick="openAvatarModal()" class="btn-3d bg-amber-100 hover:bg-amber-200 border-2 border-amber-400 text-amber-950 font-black text-[11px] sm:text-xs px-2.5 sm:px-3.5 py-1.5 sm:py-2 rounded-xl flex items-center gap-1.5 shadow-sm active:scale-95 whitespace-nowrap" title="Tủ đồ Chibi (Đổi quà bằng Sao)">
-              <span>🎭 Tủ Đồ</span>
-            </button>
             <button onclick="openAccountModal()" class="btn-3d bg-white hover:bg-amber-50 border-2 border-amber-300 text-slate-800 font-black text-[11px] sm:text-xs px-2.5 sm:px-3.5 py-1.5 sm:py-2 rounded-xl flex items-center gap-1.5 shadow-sm active:scale-95 whitespace-nowrap" title="Quản lý tài khoản">
               <span>👤 Tài Khoản</span>
+            </button>
+            <button onclick="openAvatarModal()" class="btn-3d bg-amber-100 hover:bg-amber-200 border-2 border-amber-400 text-amber-950 font-black text-[11px] sm:text-xs px-2.5 sm:px-3.5 py-1.5 sm:py-2 rounded-xl flex items-center gap-1.5 shadow-sm active:scale-95 whitespace-nowrap" title="Tủ đồ Chibi (Đổi quà bằng Sao)">
+              <span>🎭 Tủ Đồ</span>
             </button>
           </div>
         </div>
@@ -5535,7 +5535,7 @@
       <div class="scroll-card p-3 sm:p-4 mb-3 bg-gradient-to-r from-red-800 via-amber-700 to-red-900 text-white flex items-center justify-between gap-2 shadow-lg border-2 border-amber-400">
         <div>
           <div class="text-[11px] font-bold text-yellow-300 uppercase tracking-wider">
-            🏛️ VÒNG ${AppState.currentRoundNum} • LỚP ${AppState.selectedGrade}
+            🏛️ LỚP ${AppState.selectedGrade} • CHẶNG ${AppState.currentRoundNum}
           </div>
           <h2 class="text-sm sm:text-base font-black text-white">${formatQuestionTitle(subTitle)}</h2>
         </div>
@@ -5654,7 +5654,7 @@
 
         <!-- Nút Nộp Bài & Nút Bài Tiếp Theo -->
         <div class="mt-4 pt-3 border-t border-amber-200 flex items-center justify-between gap-2">
-          <button onclick="finishRoundExam()" class="btn-3d btn-3d-gold px-3.5 py-2 rounded-xl font-black text-amber-950 text-xs sm:text-sm shadow">
+          <button onclick="finishRoundExam()" class="btn-3d btn-3d-gold px-3.5 py-2 rounded-xl font-black text-amber-950 text-xs sm:text-sm shadow" style="display: none;">
             📝 Nộp Bài Tính Điểm
           </button>
           <button onclick="skipToNextSubGameMode1()" class="btn-3d btn-3d-blue px-4 py-2 rounded-xl font-black text-white text-xs sm:text-sm shadow flex items-center gap-1">
@@ -5811,7 +5811,7 @@
 
         <!-- Nút Nộp Bài & Nút Bài Tiếp Theo -->
         <div class="mt-4 pt-3 border-t border-amber-200 flex items-center justify-between gap-2">
-          <button onclick="finishRoundExam()" class="btn-3d btn-3d-gold px-3.5 py-2 rounded-xl font-black text-amber-950 text-xs sm:text-sm shadow">
+          <button onclick="finishRoundExam()" class="btn-3d btn-3d-gold px-3.5 py-2 rounded-xl font-black text-amber-950 text-xs sm:text-sm shadow" style="display: none;">
             📝 Nộp Bài Tính Điểm
           </button>
           <button onclick="skipToNextSubGameMode1()" class="btn-3d btn-3d-blue px-4 py-2 rounded-xl font-black text-white text-xs sm:text-sm shadow flex items-center gap-1">
@@ -5912,7 +5912,7 @@
 
             <!-- Nút Nộp Bài & Nút Bài Tiếp Theo -->
             <div class="mt-5 pt-3 border-t border-amber-200 flex items-center justify-between gap-2">
-              <button onclick="finishRoundExam()" class="btn-3d btn-3d-gold px-3.5 py-2 rounded-xl font-black text-amber-950 text-xs sm:text-sm shadow">
+              <button onclick="finishRoundExam()" class="btn-3d btn-3d-gold px-3.5 py-2 rounded-xl font-black text-amber-950 text-xs sm:text-sm shadow" style="display: none;">
                 📝 Nộp Bài Tính Điểm
               </button>
               <button onclick="skipToNextSubGameMode1()" class="btn-3d btn-3d-blue px-4 py-2 rounded-xl font-black text-white text-xs sm:text-sm shadow flex items-center gap-1">
@@ -5962,7 +5962,7 @@
 
             <!-- Nút Nộp Bài & Nút Bài Tiếp Theo -->
             <div class="mt-5 pt-3 border-t border-amber-200 flex items-center justify-between gap-2">
-              <button onclick="finishRoundExam()" class="btn-3d btn-3d-gold px-3.5 py-2 rounded-xl font-black text-amber-950 text-xs sm:text-sm shadow">
+              <button onclick="finishRoundExam()" class="btn-3d btn-3d-gold px-3.5 py-2 rounded-xl font-black text-amber-950 text-xs sm:text-sm shadow" style="display: none;">
                 📝 Nộp Bài Tính Điểm
               </button>
               <button onclick="skipToNextSubGameMode1()" class="btn-3d btn-3d-blue px-4 py-2 rounded-xl font-black text-white text-xs sm:text-sm shadow flex items-center gap-1">
@@ -6034,7 +6034,7 @@
 
           <!-- Nút Nộp Bài & Nút Bài Tiếp Theo -->
           <div class="mt-5 pt-3 border-t border-amber-200 flex items-center justify-between gap-2">
-            <button onclick="finishRoundExam()" class="btn-3d btn-3d-gold px-3.5 py-2 rounded-xl font-black text-amber-950 text-xs sm:text-sm shadow">
+            <button onclick="finishRoundExam()" class="btn-3d btn-3d-gold px-3.5 py-2 rounded-xl font-black text-amber-950 text-xs sm:text-sm shadow" style="display: none;">
               📝 Nộp Bài Tính Điểm
             </button>
             <button onclick="skipToNextSubGameMode1()" class="btn-3d btn-3d-blue px-4 py-2 rounded-xl font-black text-white text-xs sm:text-sm shadow flex items-center gap-1">
@@ -6109,7 +6109,7 @@
 
           <!-- Nút Nộp Bài & Hoàn Thành Vòng -->
           <div class="mt-5 pt-3 border-t border-amber-200 flex items-center justify-between gap-2">
-            <button onclick="finishRoundExam()" class="btn-3d btn-3d-gold px-3.5 py-2 rounded-xl font-black text-amber-950 text-xs sm:text-sm shadow">
+            <button onclick="finishRoundExam()" class="btn-3d btn-3d-gold px-3.5 py-2 rounded-xl font-black text-amber-950 text-xs sm:text-sm shadow" style="display: none;">
               📝 Nộp Bài Tính Điểm
             </button>
             <button onclick="finishRoundExam()" class="btn-3d btn-3d-green px-4 py-2 rounded-xl font-black text-white text-xs sm:text-sm shadow flex items-center gap-1">
@@ -6377,10 +6377,9 @@
       <!-- Thanh Tiêu Đề Phòng Thi Vòng 7 - 18 -->
       <div class="scroll-card p-3 sm:p-4 mb-3 bg-gradient-to-r from-red-800 via-amber-700 to-red-900 text-white flex items-center justify-between gap-2 shadow-lg border-2 border-amber-400">
         <div>
-          <div class="text-[11px] font-bold text-yellow-300 uppercase tracking-wider">
-            🏛️ VÒNG ${AppState.currentRoundNum} • LỚP ${AppState.selectedGrade}
-          </div>
-          <h2 class="text-sm sm:text-base font-black text-white">Đề Thi Tổng Hợp 30 Câu • Câu ${curIdx + 1}</h2>
+          <h2 class="text-sm sm:text-base font-black text-yellow-300 uppercase tracking-wider">
+            🏛️ LỚP ${AppState.selectedGrade} • CHẶNG ${AppState.currentRoundNum}
+          </h2>
         </div>
 
         <div class="flex items-center gap-2 sm:gap-3">
@@ -6408,9 +6407,8 @@
       <div class="scroll-card p-3 sm:p-4 mb-4 bg-white border-2 border-amber-300">
         <div class="flex items-center justify-between text-xs font-bold text-slate-600 mb-2">
           <span>DANH SÁCH 30 CÂU HỎI (Bấm số để nhảy câu):</span>
-          <span class="text-emerald-700">Đã làm: ${Object.keys(AppState.userAnswers30).length} / 30</span>
         </div>
-        <div class="flex flex-wrap gap-1.5 sm:gap-2 justify-center">
+        <div class="grid grid-cols-10 gap-1.5 sm:gap-2 justify-items-center">
           ${navPillsHtml}
         </div>
       </div>
@@ -6426,7 +6424,7 @@
           ◄ Câu Trước
         </button>
 
-        <button onclick="handleMode2SubmitClick()" class="btn-3d btn-3d-gold px-4 py-2 rounded-xl font-black text-amber-950 text-xs sm:text-sm shadow">
+        <button onclick="handleMode2SubmitClick()" class="btn-3d btn-3d-gold px-4 py-2 rounded-xl font-black text-amber-950 text-xs sm:text-sm shadow" style="visibility: hidden;">
           📝 Nộp Bài Tính Điểm
         </button>
 
