@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>Ôn luyện Trạng nhí Tiếng Việt</title>
+  <title>Ôn Tiếng Việt - Trạng Tí Nhỏ</title>
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
   <!-- Lucide Icons CDN -->
@@ -4335,36 +4335,61 @@
     const honorDiv = document.createElement('div');
     honorDiv.id = 'honor-board-popup';
     honorDiv.style.position = 'fixed';
-    honorDiv.style.top = '20px';
-    honorDiv.style.left = '50%';
-    honorDiv.style.transform = 'translateX(-50%)';
+    honorDiv.style.inset = '0';
     honorDiv.style.zIndex = '999999';
-    honorDiv.className = 'animate-bounce';
+    honorDiv.className = 'bg-black/70 backdrop-blur-sm flex items-center justify-center p-4';
+    
+    let rankName = 'Trạng Thông Thái';
+    let rankEmoji = '🥈';
+    if (score === 300) { rankName = 'Thủ Khoa Trạng Nhí'; rankEmoji = '👑'; }
+    else if (score >= 280) { rankName = 'Siêu Trạng Nhí'; rankEmoji = '🥇'; }
+    else if (score >= 250) { rankName = 'Trạng Thông Thái'; rankEmoji = '🥈'; }
+
     honorDiv.innerHTML = `
-      <div class="bg-gradient-to-r from-amber-500 via-yellow-400 to-amber-500 text-amber-950 px-6 py-3 rounded-2xl shadow-2xl border-4 border-white flex items-center gap-3">
-        <div class="text-3xl">🏆</div>
-        <div>
-          <div class="text-[11px] font-black uppercase tracking-wider text-amber-900">Bảng Vinh Danh • Vòng ${roundNum}</div>
-          <div class="text-base sm:text-lg font-black">${escapeHtml(studentName)} - ${score} / 300 điểm</div>
+      <div class="scroll-card max-w-md w-full p-6 sm:p-7 bg-white rounded-3xl text-center shadow-2xl border-4 border-amber-400 relative overflow-hidden">
+        <div class="absolute -top-10 -right-10 w-28 h-28 bg-amber-200 rounded-full opacity-40 pointer-events-none"></div>
+        <div class="absolute -bottom-10 -left-10 w-28 h-28 bg-red-200 rounded-full opacity-40 pointer-events-none"></div>
+        
+        <div class="text-5xl sm:text-6xl mb-2 animate-bounce">${rankEmoji}</div>
+        <div class="inline-block px-4 py-1 rounded-full bg-red-600 text-white font-black text-xs sm:text-sm mb-2 shadow">
+          BẢNG VINH DANH ĐẤU TRƯỜNG • VÒNG ${roundNum}
         </div>
-        <div class="ml-2 bg-red-600 text-white text-xs font-black px-2 py-1 rounded-full animate-pulse" id="honor-countdown">3s</div>
+        
+        <h3 class="text-xl sm:text-2xl font-black text-amber-950 mb-1">${rankName}</h3>
+        
+        <div class="my-4 p-4 rounded-2xl bg-gradient-to-r from-amber-100 via-yellow-100 to-amber-100 border-2 border-amber-300 shadow-inner">
+          <div class="text-xs uppercase tracking-wider text-amber-900 font-bold mb-1">Thí Sinh Vinh Danh</div>
+          <div class="text-lg sm:text-xl font-black text-red-900 truncate">${escapeHtml(studentName || 'Học sinh')}</div>
+          <div class="text-3xl sm:text-4xl font-black text-amber-800 mt-2">${score} <span class="text-sm font-bold text-slate-600">/ 300 điểm</span></div>
+        </div>
+
+        <p class="text-xs sm:text-sm text-slate-600 mb-5 font-medium leading-relaxed">
+          Bé đã xuất sắc chinh phục Vòng ${roundNum} với số điểm cao ngất ngây! Hãy cùng đón chờ màn pháo hoa chúc mừng hoành tráng nhé!
+        </p>
+
+        <button id="btn-trigger-fireworks" class="btn-3d btn-3d-gold w-full py-3 rounded-2xl font-black text-amber-950 text-sm sm:text-base shadow-lg flex items-center justify-center gap-2">
+          <span>🎆 Bắn Pháo Hoa Vinh Danh!</span>
+        </button>
       </div>
     `;
+
     document.body.appendChild(honorDiv);
 
-    let timeLeft = 3;
-    const interval = setInterval(() => {
-      timeLeft--;
-      const cd = document.getElementById('honor-countdown');
-      if (cd) cd.textContent = timeLeft + 's';
-      if (timeLeft <= 0) {
-        clearInterval(interval);
-        if (honorDiv && honorDiv.parentNode) {
-          honorDiv.parentNode.removeChild(honorDiv);
-        }
-        if (typeof onComplete === 'function') onComplete();
+    const btn = document.getElementById('btn-trigger-fireworks');
+    const dismiss = () => {
+      clearTimeout(autoTimer);
+      SoundEngine.playClick();
+      if (honorDiv && honorDiv.parentNode) {
+        honorDiv.parentNode.removeChild(honorDiv);
       }
-    }, 1000);
+      if (typeof onComplete === 'function') {
+        onComplete();
+      }
+    };
+
+    btn.addEventListener('click', dismiss);
+    const autoTimer = setTimeout(dismiss, 6000);
+    honorDiv._autoTimer = autoTimer;
   }
 
   function playCelebrationFireworks(score, roundNum) {
@@ -4810,38 +4835,31 @@
     // 2 Chế độ thi thực tế
     const roundStages = [
       { 
-        name: 'Vòng Tự Luyện (Vòng 1 - 6)', 
+        name: 'Chú Ong Chăm Chỉ (Vòng 1 - 6)', 
         sub: 'Minigame liên hoàn: Bé tinh mắt, Bé thông minh, Bé học vui, Bé sáng tạo',
         range: [1, 6],
         tag: 'Tự luyện',
-        icon: '📜'
+        icon: '🐝'
       },
       { 
-        name: 'Vòng Cơ Sở (Vòng 7 - 10)', 
-        sub: 'Đấu trường cấp Cơ sở • Đề thi tổng hợp 30 câu',
+        name: 'Khu Vườn Kỳ Diệu (Vòng 7 - 10)', 
+        sub: 'Đấu trường Khu Vườn Kỳ Diệu • Đề thi tổng hợp 30 câu',
         range: [7, 10],
-        tag: 'Cơ sở',
-        icon: '🏫'
+        tag: 'Khu Vườn',
+        icon: '🌺'
       },
       { 
-        name: 'Vòng Khu Vực (Vòng 11 - 14)', 
-        sub: 'Đấu trường cấp Khu vực • Đề thi tổng hợp 30 câu',
+        name: 'Mê Cung Kỳ Bí (Vòng 11 - 14)', 
+        sub: 'Đấu trường Mê Cung Kỳ Bí • Đề thi tổng hợp 30 câu',
         range: [11, 14],
-        tag: 'Khu vực',
-        icon: '🏛️'
+        tag: 'Mê Cung',
+        icon: '🌀'
       },
       { 
-        name: 'Vòng Tinh Hoa (Vòng 15 - 16)', 
-        sub: 'Đấu trường Tinh hoa • Đề thi tổng hợp 30 câu',
-        range: [15, 16],
-        tag: 'Tinh hoa',
-        icon: '🎖️'
-      },
-      { 
-        name: 'Vòng Tranh Tài (Vòng 17 - 18)', 
-        sub: 'Đấu trường Tranh tài Toàn Quốc • Đề thi tổng hợp 30 câu',
-        range: [17, 18],
-        tag: 'Tranh tài',
+        name: 'Tranh tài siêu cấp (Vòng 15 - 18)', 
+        sub: 'Đấu trường Tranh tài siêu cấp • Đề thi tổng hợp 30 câu',
+        range: [15, 18],
+        tag: 'Siêu Cấp',
         icon: '👑'
       }
     ];
@@ -4919,8 +4937,8 @@
 
             <div class="min-w-0 flex flex-col items-center text-center">
               <h1 class="text-base sm:text-2xl md:text-3xl font-black text-red-900 tracking-tight leading-tight text-center">
-                <span class="block">Ôn luyện Trạng nhí</span>
-                <span class="block text-center">Tiếng Việt</span>
+                <span class="block text-center">Ôn Tiếng Việt</span>
+                <span class="block text-center">Trạng Tí Nhỏ</span>
               </h1>
               <div class="inline-block bg-red-100 text-red-800 font-black px-2 py-0.5 rounded-full uppercase tracking-wider mt-1 border border-red-200 text-[8px] sm:text-[10px] leading-tight text-center">
                 Dành cho Học sinh & Giáo viên Tiểu học
@@ -4972,7 +4990,7 @@
           </button>
         </div>
         <p class="text-[11px] text-slate-400 mt-2.5">
-          Phiên bản 2.5 • Bản quyền nội dung rèn luyện độc lập © 2026 Ôn luyện Trạng nhí Tiếng Việt
+          Trạng nhí_V05_VIP • Bản quyền nội dung rèn luyện độc lập © 2026 Ôn luyện Trạng nhí Tiếng Việt
         </p>
       </footer>
     `;
@@ -6921,7 +6939,7 @@
               👑
             </div>
             <h3 class="text-lg font-black text-amber-950 uppercase tracking-tight">NÂNG CẤP TÀI KHOẢN VIP</h3>
-            <p class="text-xs text-slate-500 font-semibold mt-0.5">Thanh toán qua chuyển khoản VietQR & Xác nhận qua EmailJS</p>
+            <p class="text-xs text-slate-500 font-semibold mt-0.5">Trải nghiệm học tập & ôn luyện đỉnh cao không giới hạn</p>
           </div>
 
           <div class="space-y-3 mb-4">
@@ -6937,8 +6955,8 @@
                 <li class="flex items-center gap-1">✓ Mở khóa toàn bộ 18 vòng thi & 1000 bộ đề</li>
                 <li class="flex items-center gap-1">✓ Xem lời giải chi tiết và mẹo làm bài chuẩn</li>
               </ul>
-              <button onclick="openVietQrModal('vip1')" class="btn-3d w-full py-2 rounded-xl text-white font-black text-xs ${AppState.isVip1 ? 'bg-slate-400 cursor-not-allowed' : 'btn-3d-red'}">
-                ${AppState.isVip1 ? 'Đã kích hoạt VIP 1 ✓' : 'Thanh Toán VietQR VIP 1 (49.000đ)'}
+              <button onclick="simulateBuyVip('vip1')" class="btn-3d w-full py-2 rounded-xl text-white font-black text-xs ${AppState.isVip1 ? 'bg-slate-400 cursor-not-allowed' : 'btn-3d-red'}">
+                ${AppState.isVip1 ? 'Đã kích hoạt VIP 1 ✓' : 'Kích Hoạt VIP 1 (49.000đ)'}
               </button>
             </div>
 
@@ -6958,8 +6976,8 @@
                 <li class="flex items-center gap-1 font-bold text-emerald-800">✓ TẮT HOÀN TOÀN 100% QUẢNG CÁO</li>
                 <li class="flex items-center gap-1">✓ Sử dụng trọn đời không gia hạn</li>
               </ul>
-              <button onclick="openVietQrModal('vip2')" class="btn-3d btn-3d-green w-full py-2.5 rounded-xl text-white font-black text-xs shadow-md">
-                ${AppState.isVip2 ? 'Đang sở hữu gói VIP Trọn Đời ✓' : 'Thanh Toán VietQR VIP 2 (99.000đ)'}
+              <button onclick="simulateBuyVip('vip2')" class="btn-3d btn-3d-green w-full py-2.5 rounded-xl text-white font-black text-xs shadow-md">
+                ${AppState.isVip2 ? 'Đang sở hữu gói VIP Trọn Đời ✓' : 'Nâng Cấp Trọn Đời (99.000đ)'}
               </button>
             </div>
           </div>
@@ -6978,83 +6996,16 @@
     safeCreateIcons();
   }
 
-  function openVietQrModal(packageCode) {
-    SoundEngine.playClick();
-    const modalContainer = document.getElementById('modal-container');
-    const amount = packageCode === 'vip2' ? 99000 : 49000;
-    const packageName = packageCode === 'vip2' ? 'VIP 2 (Trọn Đời - 99.000đ)' : 'VIP 1 (Học Kì - 49.000đ)';
-    const deviceId = (window.AndroidBridge && AndroidBridge.getDeviceId) ? AndroidBridge.getDeviceId() : 'DEVICE_DEFAULT';
-    const userEmail = (window.AndroidBridge && AndroidBridge.getUserEmail) ? AndroidBridge.getUserEmail() : (AppState.userEmail || '');
-
-    const addInfo = encodeURIComponent(`${packageCode.toUpperCase()} ${deviceId}`);
-    const qrUrl = `https://img.vietqr.io/image/MB-0358462088-compact2.png?amount=${amount}&addInfo=${addInfo}`;
-
-    modalContainer.innerHTML = `
-      <div class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4">
-        <div class="scroll-card max-w-md w-full p-5 sm:p-6 bg-white border-4 border-amber-400 relative shadow-2xl overflow-y-auto max-h-[95vh]">
-          <button onclick="openVipModal()" class="absolute top-3 right-3 text-slate-400 hover:text-slate-600 p-1">
-            <i data-lucide="x" class="w-5 h-5"></i>
-          </button>
-
-          <div class="text-center mb-3">
-            <h3 class="text-base sm:text-lg font-black text-amber-950 uppercase tracking-tight">THANH TOÁN VIETQR • ${packageName}</h3>
-            <p class="text-xs text-slate-500 font-semibold mt-0.5">Quét mã QR qua App Ngân hàng để chuyển khoản tự động</p>
-          </div>
-
-          <!-- Ảnh VietQR -->
-          <div class="flex flex-col items-center justify-center bg-amber-50 p-3 rounded-2xl border-2 border-amber-300 mb-3">
-            <div class="w-48 h-48 sm:w-56 sm:h-56 bg-white rounded-xl p-2 border border-amber-200 shadow flex items-center justify-center overflow-hidden">
-              <img src="${qrUrl}" alt="VietQR Thanh Toán VIP" class="w-full h-full object-contain rounded-lg">
-            </div>
-            <div class="text-center mt-2 text-xs text-slate-700 font-bold">
-              Số tiền: <span class="text-red-600 text-sm font-black">${amount.toLocaleString('vi-VN')} đ</span>
-            </div>
-          </div>
-
-          <!-- Thông tin chuyển khoản & Device ID -->
-          <div class="p-3 bg-slate-50 rounded-xl border border-slate-200 text-xs text-slate-700 space-y-1.5 mb-3">
-            <div><b>Ngân hàng:</b> MB Bank (Quân Đội)</div>
-            <div><b>Số tài khoản:</b> <span class="text-red-600 font-bold select-all">0358462088</span></div>
-            <div><b>Chủ tài khoản:</b> <span class="font-bold">LE VU QUYEN</span></div>
-            <div><b>Nội dung CK:</b> <span class="text-amber-800 font-bold select-all">${packageCode.toUpperCase()} ${deviceId}</span></div>
-            <div><b>Device ID của bạn:</b> <span class="text-slate-500 font-mono text-[10px] select-all">${deviceId}</span></div>
-          </div>
-
-          <!-- Ô nhập Email -->
-          <div class="mb-4">
-            <label class="block text-xs font-black text-slate-700 mb-1">Email nhận thông báo kích hoạt:</label>
-            <input type="email" id="vietqr-user-email" value="${userEmail}" placeholder="Nhập email của phụ huynh..." class="w-full px-3.5 py-2.5 rounded-xl border-2 border-amber-300 text-xs font-bold text-slate-800 focus:outline-none focus:border-red-600">
-          </div>
-
-          <div class="space-y-2">
-            <button onclick="submitVietQrTransfer('${packageCode}')" class="btn-3d btn-3d-red w-full py-3 rounded-xl font-black text-white text-xs sm:text-sm shadow flex items-center justify-center gap-2">
-              <span>🚀 Tôi Đã Chuyển Khoản / Gửi Yêu Cầu</span>
-            </button>
-            <button onclick="openVipModal()" class="w-full py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-600 font-bold text-xs">
-              Quay lại chọn gói
-            </button>
-          </div>
-        </div>
-      </div>
-    `;
-    safeCreateIcons();
-  }
-
-  function submitVietQrTransfer(packageCode) {
-    const emailInput = document.getElementById('vietqr-user-email');
-    const email = emailInput ? emailInput.value.trim() : '';
-    if (!email || !email.includes('@')) {
-      showCustomAlert('Vui lòng nhập địa chỉ email hợp lệ để nhận thông báo kích hoạt VIP!');
-      return;
+  function simulateBuyVip(packageCode) {
+    if (window.AndroidBridge && typeof window.AndroidBridge.launchBillingFlow === 'function') {
+      window.AndroidBridge.launchBillingFlow(packageCode);
     }
-
-    if (window.AndroidBridge && typeof window.AndroidBridge.sendVipTransferRequest === 'function') {
-      window.AndroidBridge.sendVipTransferRequest(packageCode, email);
-    }
-
-    if (packageCode === 'vip2') {
+    if (packageCode === 'vip2' || packageCode === 'all') {
       AppState.isVip1 = true;
       AppState.isVip2 = true;
+      if (window.AndroidBridge && typeof window.AndroidBridge.setBannerVisible === 'function') {
+        window.AndroidBridge.setBannerVisible(false);
+      }
     } else {
       AppState.isVip1 = true;
     }
@@ -7062,7 +7013,7 @@
     SoundEngine.playFanfare();
     closeModal();
     updateHeaderUI();
-    showCustomAlert('🎉 Đã gửi yêu cầu kích hoạt VietQR thành công! Hệ thống đã gửi email xác nhận và kích hoạt tạm thời VIP cho thiết bị của bạn.');
+    showCustomAlert('🎉 Chúc mừng bạn đã nâng cấp VIP thành công! Toàn bộ 18 vòng và 1000 bộ đề thi đã được kích hoạt.');
     renderHome();
   }
 

@@ -16,8 +16,8 @@ android {
     applicationId = "com.aistudio.trangnguyen.vnhub"
     minSdk = 24
     targetSdk = 36
-    versionCode = 3
-    versionName = "1.2"
+    versionCode = 5
+    versionName = "Trạng nhí_V05_VIP"
 
     testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
   }
