@@ -185,7 +185,7 @@
   <!-- ======================================================== -->
   <!-- HEADER & THANH TRẠNG THÁI TRẠNG NGUYÊN NHÍ -->
   <!-- ======================================================== -->
-  <header id="main-app-header" class="sticky top-0 z-40 bg-gradient-to-r from-red-700 via-amber-600 to-red-800 text-white shadow-lg border-b-4 border-amber-400 px-3 py-2.5">
+  <header id="main-app-header" class="sticky top-0 z-40 bg-gradient-to-r from-sky-500 via-sky-400 to-sky-600 text-white shadow-lg border-b-4 border-sky-300 px-3 py-2.5">
     <div class="max-w-5xl mx-auto flex items-center justify-between gap-2">
       <!-- Học sinh & Chibi Avatar -->
       <div class="flex items-center gap-2 cursor-pointer" onclick="openAvatarModal()" title="Bấm để vào Tủ Đồ Chibi & Đổi quà bằng Sao">
@@ -6629,9 +6629,30 @@
         userAnswer: userText,
         correctAnswer: correctText,
         isCorrect,
-        explain: q.explain || 'Kiến thức trọng tâm chuẩn GDPT 2018.'
+        explain: q.explain || 'Kiến thức trọng tâm chuẩn GDPT 2018.',
+        topic: q.title || 'Kiến thức chung'
       });
     });
+
+    // Phân tích chuyên đề yếu nhất
+    const topicStats = {};
+    history.forEach(h => {
+      if (!topicStats[h.topic]) topicStats[h.topic] = { correct: 0, total: 0 };
+      topicStats[h.topic].total++;
+      if (h.isCorrect) topicStats[h.topic].correct++;
+    });
+
+    let weakestTopic = '';
+    let lowestAccuracy = 1.0;
+    for (const topic in topicStats) {
+      const accuracy = topicStats[topic].correct / topicStats[topic].total;
+      if (accuracy < lowestAccuracy) {
+        lowestAccuracy = accuracy;
+        weakestTopic = topic;
+      }
+    }
+    AppState.weakestTopic = weakestTopic;
+    AppState.lowestAccuracy = lowestAccuracy;
 
     AppState.roundTotalScore = correctCount * 10;
     AppState.roundAnswersHistory = history;
@@ -6766,22 +6787,62 @@
           </div>
         ` : ''}
 
-        <!-- Khung tổng kết điểm và thời gian -->
-        <div class="my-4 sm:my-5 p-4 bg-gradient-to-r ${rankColor} rounded-2xl text-white shadow-lg flex items-center justify-around">
-          <div>
-            <div class="text-[11px] uppercase tracking-wider opacity-90 font-bold">Tổng Điểm</div>
-            <div class="text-3xl sm:text-4xl font-black">${total} <span class="text-sm font-normal opacity-80">/ 300</span></div>
+        <!-- 3 Thẻ bài tổng kết cổ trang (Tách biệt rõ ràng Điểm số, Thời gian, và Chuyên đề cần ôn tập) -->
+        <div class="my-5 grid grid-cols-1 md:grid-cols-3 gap-4 text-left">
+          
+          <!-- Thẻ 1: Điểm số & Xếp hạng -->
+          <div class="scroll-card p-4 bg-gradient-to-br from-amber-50 via-white to-yellow-50 border-2 border-amber-400 relative overflow-hidden shadow-md">
+            <div class="absolute top-0 right-0 bg-amber-400 text-amber-950 px-3 py-0.5 rounded-bl-xl font-black text-[10px] tracking-wider uppercase">
+              Điểm Số
+            </div>
+            <div class="flex items-center gap-3 mb-2">
+              <div class="w-10 h-10 rounded-xl bg-amber-500 text-white flex items-center justify-center text-xl shadow-inner font-black">🏆</div>
+              <div>
+                <div class="text-[11px] font-bold text-amber-900 uppercase">Kết Quả Thi</div>
+                <div class="text-2xl font-black text-red-700">${total} <span class="text-xs font-bold text-slate-600">/ 300 đ</span></div>
+              </div>
+            </div>
+            <div class="pt-2 border-t border-amber-200 flex items-center justify-between text-xs font-extrabold text-slate-700">
+              <span>Sao thưởng:</span>
+              <span class="text-amber-600 font-black text-sm">+${starReward} ⭐</span>
+            </div>
           </div>
-          <div class="h-10 w-px bg-white/30"></div>
-          <div>
-            <div class="text-[11px] uppercase tracking-wider opacity-90 font-bold">Thời Gian</div>
-            <div class="text-base sm:text-lg font-black">${timeString}</div>
+
+          <!-- Thẻ 2: Thời gian làm bài & Tiến độ -->
+          <div class="scroll-card p-4 bg-gradient-to-br from-blue-50 via-white to-sky-50 border-2 border-sky-300 relative overflow-hidden shadow-md">
+            <div class="absolute top-0 right-0 bg-sky-500 text-white px-3 py-0.5 rounded-bl-xl font-black text-[10px] tracking-wider uppercase">
+              Thời Gian
+            </div>
+            <div class="flex items-center gap-3 mb-2">
+              <div class="w-10 h-10 rounded-xl bg-sky-500 text-white flex items-center justify-center text-xl shadow-inner font-black">⏱️</div>
+              <div>
+                <div class="text-[11px] font-bold text-sky-900 uppercase">Thời Gian Làm</div>
+                <div class="text-base font-black text-slate-800">${timeString}</div>
+              </div>
+            </div>
+            <div class="pt-2 border-t border-sky-200 flex items-center justify-between text-xs font-extrabold text-slate-700">
+              <span>Đúng / Tổng:</span>
+              <span class="text-emerald-700 font-black">${correctCount} / 30 câu</span>
+            </div>
           </div>
-          <div class="h-10 w-px bg-white/30"></div>
-          <div>
-            <div class="text-[11px] uppercase tracking-wider opacity-90 font-bold">Sao Thưởng</div>
-            <div class="text-2xl sm:text-3xl font-black text-yellow-200">+${starReward} ⭐</div>
+
+          <!-- Thẻ 3: Chuyên đề cần ôn tập -->
+          <div class="scroll-card p-4 bg-gradient-to-br from-red-50 via-white to-amber-50 border-2 border-red-300 relative overflow-hidden shadow-md md:col-span-3 lg:col-span-1">
+            <div class="absolute top-0 right-0 bg-red-600 text-white px-3 py-0.5 rounded-bl-xl font-black text-[10px] tracking-wider uppercase">
+              Cần Ôn Tập
+            </div>
+            <div class="flex items-center gap-3 mb-2">
+              <div class="w-10 h-10 rounded-xl bg-red-600 text-white flex items-center justify-center text-xl shadow-inner font-black">🎯</div>
+              <div>
+                <div class="text-[11px] font-bold text-red-900 uppercase">Chuyên Đề Yếu Nhất</div>
+                <div class="text-xs font-black text-red-800">${AppState.weakestTopic || 'Kiến thức chung'}</div>
+              </div>
+            </div>
+            <div class="pt-2 border-t border-red-200 text-[11px] font-bold text-slate-700 leading-relaxed">
+              ${AppState.weakestTopic && AppState.lowestAccuracy < 1.0 ? `Tỷ lệ chính xác: <b class="text-red-700">${Math.round(AppState.lowestAccuracy * 100)}%</b>. Bé nên xem lại lý thuyết phần này.` : `🎉 Tuyệt vời! Bé nắm vững tất cả các chuyên đề.`}
+            </div>
           </div>
+
         </div>
 
         <!-- Chỉ hiển thị Tổng Điểm chính và thông tin vinh danh, không hiển thị chi tiết các mini game -->
