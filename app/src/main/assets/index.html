@@ -6647,7 +6647,8 @@
     // Điểm qua các vòng thi là số sao nhận được (theo đúng yêu cầu của người dùng)
     const starReward = total;
 
-    // Vòng 4-18 khi học sinh đạt điểm trên 250 (từ 250 đến 300) sẽ kích hoạt hiệu ứng pháo hoa chúc mừng hoành tráng
+    // Vòng 7-18 (và Vòng 4-18) khi học sinh hoàn thành 30 câu với điểm số cao trên 250 điểm sẽ kích hoạt hiệu ứng pháo hoa rực rỡ và bảng vàng vinh danh
+    const isRound7To18 = AppState.currentRoundNum >= 7 && AppState.currentRoundNum <= 18;
     const isRound4To18 = AppState.currentRoundNum >= 4 && AppState.currentRoundNum <= 18;
     const isPerfect300 = (total === 300);
 
@@ -6655,7 +6656,7 @@
       rankTitle = 'Thủ Khoa Trạng Nhí';
       rankBadge = '👑';
       rankColor = 'from-amber-500 via-red-600 to-amber-500';
-      if (isRound4To18) {
+      if (isRound4To18 || isRound7To18) {
         showHonorBoardPopup(AppState.studentName, total, AppState.currentRoundNum, () => {
           playCelebrationFireworks(total, AppState.currentRoundNum);
         });
@@ -6666,7 +6667,7 @@
       rankTitle = 'Siêu Trạng Nhí';
       rankBadge = '🥇';
       rankColor = 'from-amber-500 via-red-600 to-amber-600';
-      if (isRound4To18) {
+      if (isRound4To18 || isRound7To18) {
         showHonorBoardPopup(AppState.studentName, total, AppState.currentRoundNum, () => {
           playCelebrationFireworks(total, AppState.currentRoundNum);
         });
@@ -6677,7 +6678,7 @@
       rankTitle = 'Trạng Thông Thái';
       rankBadge = '🥈';
       rankColor = 'from-amber-600 to-red-600';
-      if (isRound4To18) {
+      if (isRound4To18 || isRound7To18) {
         showHonorBoardPopup(AppState.studentName, total, AppState.currentRoundNum, () => {
           playCelebrationFireworks(total, AppState.currentRoundNum);
         });
