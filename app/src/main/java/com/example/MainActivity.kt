@@ -88,6 +88,7 @@ class MainActivity : ComponentActivity() {
     // 2. Cấu hình tuân thủ Google Play Families Policy (Chính sách gia đình & trẻ em)
     val requestConfiguration = RequestConfiguration.Builder()
       .setTagForChildDirectedTreatment(RequestConfiguration.TAG_FOR_CHILD_DIRECTED_TREATMENT_TRUE)
+      .setTagForUnderAgeOfConsent(RequestConfiguration.TAG_FOR_UNDER_AGE_OF_CONSENT_TRUE)
       .setMaxAdContentRating(RequestConfiguration.MAX_AD_CONTENT_RATING_G)
       .build()
     MobileAds.setRequestConfiguration(requestConfiguration)
@@ -247,6 +248,15 @@ class MainActivity : ComponentActivity() {
 
   // --- QUẢN LÝ QUẢNG CÁO THEO GÓI VIP ---
 
+  private fun buildAdRequest(): AdRequest {
+    val extras = Bundle().apply {
+      putString("npa", "1")
+    }
+    return AdRequest.Builder()
+      .addNetworkExtrasBundle(com.google.ads.mediation.admob.AdMobAdapter::class.java, extras)
+      .build()
+  }
+
   fun initBannerAd() {
     if (!vipPrefs.shouldShowBannerAd()) {
       bannerContainer?.visibility = View.GONE
@@ -278,7 +288,7 @@ class MainActivity : ComponentActivity() {
         FrameLayout.LayoutParams.WRAP_CONTENT,
         Gravity.CENTER
       ))
-      val adRequest = AdRequest.Builder().build()
+      val adRequest = buildAdRequest()
       adView.loadAd(adRequest)
     } catch (e: Exception) {
       Log.e(TAG, "Lỗi tạo Banner Ad: ${e.message}")
@@ -312,7 +322,7 @@ class MainActivity : ComponentActivity() {
   fun loadInterstitialAd() {
     if (!vipPrefs.shouldShowInterstitialAd()) return
 
-    val adRequest = AdRequest.Builder().build()
+    val adRequest = buildAdRequest()
     InterstitialAd.load(
       this,
       TEST_INTERSTITIAL_ID,
@@ -362,7 +372,7 @@ class MainActivity : ComponentActivity() {
   }
 
   fun loadRewardedAd() {
-    val adRequest = AdRequest.Builder().build()
+    val adRequest = buildAdRequest()
     RewardedAd.load(
       this,
       TEST_REWARDED_ID,

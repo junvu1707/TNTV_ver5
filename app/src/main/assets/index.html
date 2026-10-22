@@ -1217,7 +1217,14 @@
     }
 
     const shuffled = seededShuffle(uniqueList, seed * 1000 + targetCount * 31);
-    return shuffled.slice(0, targetCount);
+    if (shuffled.length >= targetCount) {
+      return shuffled.slice(0, targetCount);
+    }
+    const result = [];
+    for (let i = 0; i < targetCount; i++) {
+      result.push(shuffled[i % shuffled.length]);
+    }
+    return result;
   }
 
   // ========================================================
@@ -3611,17 +3618,19 @@
       this.init();
       if (!this.ctx) return;
       const t = this.ctx.currentTime;
-      [523.25, 659.25, 783.99, 1046.50].forEach((freq, i) => {
+      // Chuỗi âm thanh chuông reo leng keng 4 nốt tươi sáng (C5 - E5 - G5 - C6) khi trả lời đúng
+      const notes = [523.25, 659.25, 783.99, 1046.50];
+      notes.forEach((freq, i) => {
         const osc = this.ctx.createOscillator();
         const gain = this.ctx.createGain();
         osc.type = 'sine';
-        osc.frequency.setValueAtTime(freq, t + i * 0.05);
-        gain.gain.setValueAtTime(0.25, t + i * 0.05);
-        gain.gain.exponentialRampToValueAtTime(0.0001, t + i * 0.05 + 0.35);
+        osc.frequency.setValueAtTime(freq, t + i * 0.07);
+        gain.gain.setValueAtTime(0.35, t + i * 0.07);
+        gain.gain.exponentialRampToValueAtTime(0.0001, t + i * 0.07 + 0.3);
         osc.connect(gain);
         gain.connect(this.ctx.destination);
-        osc.start(t + i * 0.05);
-        osc.stop(t + i * 0.05 + 0.35);
+        osc.start(t + i * 0.07);
+        osc.stop(t + i * 0.07 + 0.3);
       });
     },
     playGong() {
@@ -3647,17 +3656,21 @@
       this.init();
       if (!this.ctx) return;
       const t = this.ctx.currentTime;
-      const osc = this.ctx.createOscillator();
-      const gain = this.ctx.createGain();
-      osc.type = 'sawtooth';
-      osc.frequency.setValueAtTime(180, t);
-      osc.frequency.linearRampToValueAtTime(110, t + 0.25);
-      gain.gain.setValueAtTime(0.35, t);
-      gain.gain.exponentialRampToValueAtTime(0.001, t + 0.25);
-      osc.connect(gain);
-      gain.connect(this.ctx.destination);
-      osc.start(t);
-      osc.stop(t + 0.25);
+      // Hiệu ứng âm thanh 'oops' 2 nốt trầm vui nhộn khi trả lời sai (220Hz -> 140Hz)
+      const wrongFreqs = [220, 164.81];
+      wrongFreqs.forEach((freq, i) => {
+        const osc = this.ctx.createOscillator();
+        const gain = this.ctx.createGain();
+        osc.type = 'triangle';
+        osc.frequency.setValueAtTime(freq, t + i * 0.12);
+        osc.frequency.exponentialRampToValueAtTime(freq * 0.8, t + i * 0.12 + 0.16);
+        gain.gain.setValueAtTime(0.4, t + i * 0.12);
+        gain.gain.exponentialRampToValueAtTime(0.001, t + i * 0.12 + 0.18);
+        osc.connect(gain);
+        gain.connect(this.ctx.destination);
+        osc.start(t + i * 0.12);
+        osc.stop(t + i * 0.12 + 0.18);
+      });
     },
     playFanfare() {
       if (!AppState.soundEnabled) return;
@@ -4894,32 +4907,33 @@
       <!-- Banner Tiêu Đề Trạng Nhí & Khối Lớp -->
       <div class="scroll-card p-4 sm:p-5 mb-5 bg-gradient-to-r from-amber-50 via-white to-red-50 border-2 border-amber-300 relative overflow-hidden shadow-md">
         <div class="dong-son-pattern absolute inset-0 pointer-events-none opacity-40"></div>
-        <div class="relative z-10 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div class="relative z-10 flex flex-row items-center justify-between gap-3 w-full">
           <!-- Tiêu Đề Kèm Hình Đại Diện Trạng Nhí Tiếng Việt Sinh Động -->
-          <div class="flex items-center gap-3.5 sm:gap-4 text-center sm:text-left">
+          <div class="flex items-center gap-2.5 sm:gap-4 min-w-0">
             <!-- Hình Đại Diện Trạng Nhí Mới Của App (Tăng kích thước 1.3 lần) -->
             <div class="relative shrink-0 cursor-pointer" onclick="openAvatarModal()" title="Hình đại diện Trạng nhí Tiếng Việt • Vào Tủ Đồ Chibi">
-              <div class="w-[84px] h-[84px] sm:w-[104px] sm:h-[104px] rounded-2xl bg-gradient-to-br from-amber-200 via-amber-300 to-amber-400 p-1 shadow-lg border-2 border-amber-300 flex items-center justify-center transform hover:scale-105 transition-all overflow-hidden bg-white">
+              <div class="w-[78px] h-[78px] sm:w-[104px] sm:h-[104px] rounded-2xl bg-gradient-to-br from-amber-200 via-amber-300 to-amber-400 p-1 shadow-lg border-2 border-amber-300 flex items-center justify-center transform hover:scale-105 transition-all overflow-hidden bg-white">
                 <img src="app_logo.png" alt="Ôn luyện Trạng nhí Tiếng Việt" class="w-full h-full object-cover rounded-xl" onerror="this.onerror=null; this.src='chibi_cong_chua_toc_may.png';">
               </div>
             </div>
 
-            <div>
-              <h1 class="text-2xl sm:text-3xl font-black text-red-900 tracking-tight leading-tight">
-                Ôn luyện Trạng nhí Tiếng Việt
+            <div class="min-w-0 flex flex-col items-center text-center">
+              <h1 class="text-base sm:text-2xl md:text-3xl font-black text-red-900 tracking-tight leading-tight text-center">
+                <span class="block">Ôn luyện Trạng nhí</span>
+                <span class="block text-center">Tiếng Việt</span>
               </h1>
-              <div class="inline-block bg-red-100 text-red-800 font-black px-2 py-0.5 rounded-full uppercase tracking-wider mt-1 border border-red-200" style="font-size: 7px; line-height: 11px;">
+              <div class="inline-block bg-red-100 text-red-800 font-black px-2 py-0.5 rounded-full uppercase tracking-wider mt-1 border border-red-200 text-[8px] sm:text-[10px] leading-tight text-center">
                 Dành cho Học sinh & Giáo viên Tiểu học
               </div>
             </div>
           </div>
           
-          <!-- Nút Chọn Chibi & Quản Lý Tài Khoản (Dịch sang phải cân đối) -->
-          <div class="flex flex-wrap items-center justify-center sm:justify-end sm:ml-auto gap-2.5 shrink-0">
-            <button onclick="openAvatarModal()" class="px-3.5 py-2 rounded-xl font-bold bg-amber-100 border-2 border-amber-300 text-amber-950 text-xs hover:bg-amber-200 flex items-center gap-1.5 shadow-sm active:scale-95" title="Tủ đồ Chibi (Đổi quà bằng Sao)">
+          <!-- Nút Tủ Đồ & Quản Lý Tài Khoản (Dịch hẳn sang bên phải tạo sự cân đối) -->
+          <div class="flex flex-col sm:flex-row items-end sm:items-center gap-1.5 sm:gap-2.5 shrink-0 ml-auto">
+            <button onclick="openAvatarModal()" class="btn-3d bg-amber-100 hover:bg-amber-200 border-2 border-amber-400 text-amber-950 font-black text-[11px] sm:text-xs px-2.5 sm:px-3.5 py-1.5 sm:py-2 rounded-xl flex items-center gap-1.5 shadow-sm active:scale-95 whitespace-nowrap" title="Tủ đồ Chibi (Đổi quà bằng Sao)">
               <span>🎭 Tủ Đồ</span>
             </button>
-            <button onclick="openAccountModal()" class="px-3.5 py-2 rounded-xl font-bold bg-white border-2 border-amber-300 text-slate-700 text-xs hover:bg-amber-50 flex items-center gap-1.5 shadow-sm active:scale-95" title="Quản lý tài khoản">
+            <button onclick="openAccountModal()" class="btn-3d bg-white hover:bg-amber-50 border-2 border-amber-300 text-slate-800 font-black text-[11px] sm:text-xs px-2.5 sm:px-3.5 py-1.5 sm:py-2 rounded-xl flex items-center gap-1.5 shadow-sm active:scale-95 whitespace-nowrap" title="Quản lý tài khoản">
               <span>👤 Tài Khoản</span>
             </button>
           </div>
@@ -5376,6 +5390,7 @@
       AppState.timerSeconds = 1800; // 30 phút
       AppState.currentQuestionIndex = 0;
       AppState.userAnswers30 = {};
+      mode2CompletionModalShown = false;
       const examData = ExamGenerator.generateMode2Exam(AppState.selectedGrade, roundNum, AppState.currentSeed);
       AppState.exam30Questions = examData.questions;
 
@@ -6332,12 +6347,12 @@
             <span id="exam-timer">${timerStr}</span>
           </div>
 
-          <div class="flex items-center gap-1 bg-amber-400 text-amber-950 px-2.5 py-1 rounded-full font-black text-xs sm:text-sm shadow">
-            <span>⭐</span>
-            <span id="exam-score">${Object.keys(AppState.userAnswers30).length * 10} / 300</span>
+          <div class="flex items-center gap-1 bg-amber-900/60 text-yellow-300 px-2.5 py-1 rounded-full font-black text-xs sm:text-sm border border-yellow-400/30">
+            <span>📝</span>
+            <span>Đã làm: ${Object.keys(AppState.userAnswers30).length}/30</span>
           </div>
 
-          <button onclick="finishExamMode2()" class="btn-3d btn-3d-gold px-3 py-1 rounded-xl font-black text-amber-950 text-xs shadow">
+          <button onclick="handleMode2SubmitClick()" class="btn-3d btn-3d-gold px-3 py-1 rounded-xl font-black text-amber-950 text-xs shadow">
             Nộp Bài
           </button>
 
@@ -6369,7 +6384,7 @@
           ◄ Câu Trước
         </button>
 
-        <button onclick="finishExamMode2()" class="btn-3d btn-3d-gold px-4 py-2 rounded-xl font-black text-amber-950 text-xs sm:text-sm shadow">
+        <button onclick="handleMode2SubmitClick()" class="btn-3d btn-3d-gold px-4 py-2 rounded-xl font-black text-amber-950 text-xs sm:text-sm shadow">
           📝 Nộp Bài Tính Điểm
         </button>
 
@@ -6401,20 +6416,85 @@
     }
   }
 
-  // Ghi nhận đáp án Trắc nghiệm
+  // Cờ kiểm soát thông báo hoàn thành 30 câu
+  let mode2CompletionModalShown = false;
+
+  function checkIfAll30QuestionsAnswered() {
+    const answeredCount = Object.keys(AppState.userAnswers30).length;
+    if (answeredCount >= 30 && !mode2CompletionModalShown) {
+      mode2CompletionModalShown = true;
+      SoundEngine.playFanfare();
+      const modalContainer = document.getElementById('modal-container');
+      if (!modalContainer) return;
+      modalContainer.innerHTML = `
+        <div class="fixed inset-0 z-50 bg-black/70 flex items-center justify-center p-4">
+          <div class="scroll-card max-w-sm w-full p-5 sm:p-6 bg-white rounded-3xl text-center shadow-2xl border-4 border-amber-400">
+            <div class="text-4xl mb-2">🎉</div>
+            <h3 class="text-lg font-black text-red-900 mb-1.5">Đã Hoàn Thành 30/30 Câu!</h3>
+            <p class="text-slate-600 text-xs sm:text-sm mb-4 leading-relaxed">
+              Bé đã làm xong toàn bộ 30 câu hỏi của <b>Vòng ${AppState.currentRoundNum}</b>. Bé muốn nộp bài để hệ thống tính điểm 1 lượt hay muốn kiểm tra lại?
+            </p>
+            <div class="flex flex-col gap-2">
+              <button onclick="closeModal(); finishExamMode2();" class="btn-3d btn-3d-red py-2.5 rounded-xl font-black text-white text-xs sm:text-sm shadow">
+                📝 Nộp Bài Tính Điểm Ngay
+              </button>
+              <button onclick="closeModal()" class="py-2 rounded-xl border border-slate-300 font-bold text-slate-700 hover:bg-slate-100 text-xs">
+                🔍 Kiểm Tra Lại Các Câu
+              </button>
+            </div>
+          </div>
+        </div>
+      `;
+      if (typeof lucide !== 'undefined' && lucide.createIcons) safeCreateIcons();
+    }
+  }
+
+  function handleMode2SubmitClick() {
+    const answeredCount = Object.keys(AppState.userAnswers30).length;
+    if (answeredCount < 30) {
+      const modalContainer = document.getElementById('modal-container');
+      if (!modalContainer) return;
+      modalContainer.innerHTML = `
+        <div class="fixed inset-0 z-50 bg-black/70 flex items-center justify-center p-4">
+          <div class="scroll-card max-w-sm w-full p-5 bg-white rounded-2xl text-center shadow-2xl border-2 border-amber-400">
+            <div class="text-3xl mb-2">⚠️</div>
+            <h3 class="text-base font-black text-amber-950 mb-1.5">Chưa Hoàn Thành 30 Câu!</h3>
+            <p class="text-slate-600 text-xs sm:text-sm mb-4 leading-relaxed">
+              Bé mới làm được <b>${answeredCount}/30</b> câu hỏi. Các câu chưa làm sẽ không có điểm. Bé có chắc chắn muốn nộp bài ngay để tính điểm không?
+            </p>
+            <div class="flex gap-2">
+              <button onclick="closeModal()" class="flex-1 py-2 rounded-xl border border-slate-300 font-bold text-slate-700 text-xs">
+                Làm Tiếp
+              </button>
+              <button onclick="closeModal(); finishExamMode2();" class="flex-1 btn-3d btn-3d-red py-2 rounded-xl font-black text-white text-xs shadow">
+                Nộp Bài Tính Điểm
+              </button>
+            </div>
+          </div>
+        </div>
+      `;
+      if (typeof lucide !== 'undefined' && lucide.createIcons) safeCreateIcons();
+    } else {
+      finishExamMode2();
+    }
+  }
+
+  // Ghi nhận đáp án Trắc nghiệm (chỉ ghi nhận và gõ trống nhẹ, không hiện điểm số từng câu)
   function answerMCQ30(optIdx) {
-    SoundEngine.playSuccess();
+    SoundEngine.playDrum();
     AppState.userAnswers30[AppState.currentQuestionIndex] = optIdx;
     renderExamMode2Question();
+    checkIfAll30QuestionsAnswered();
   }
 
   // Ghi nhận đáp án Điền từ
   function saveFillAnswer30() {
     const input = document.getElementById('fill-input-30');
     if (input && input.value.trim()) {
-      SoundEngine.playSuccess();
+      SoundEngine.playDrum();
       AppState.userAnswers30[AppState.currentQuestionIndex] = input.value.trim();
       renderExamMode2Question();
+      checkIfAll30QuestionsAnswered();
     }
   }
 
@@ -6432,7 +6512,7 @@
       showCustomAlert('Vui lòng chọn 1 mục ở Cột A trước!');
       return;
     }
-    SoundEngine.playSuccess();
+    SoundEngine.playDrum();
     if (!AppState.userAnswers30[AppState.currentQuestionIndex]) {
       AppState.userAnswers30[AppState.currentQuestionIndex] = {};
     }
@@ -6441,6 +6521,12 @@
     document.getElementById(`btn-colA-${selectedColA}`).classList.add('bg-emerald-100', 'border-emerald-500');
     document.getElementById(`btn-colB-${idx}`).classList.add('bg-emerald-100', 'border-emerald-500');
     selectedColA = null;
+
+    const curQ = AppState.exam30Questions[AppState.currentQuestionIndex];
+    const totalPairs = (curQ && curQ.pairs) ? curQ.pairs.length : 3;
+    if (Object.keys(AppState.userAnswers30[AppState.currentQuestionIndex]).length >= totalPairs) {
+      checkIfAll30QuestionsAnswered();
+    }
   }
 
   // Tương tác Phân loại nhỏ
@@ -6457,7 +6543,7 @@
       showCustomAlert('Bé hãy bấm chọn 1 từ bên dưới trước nhé!');
       return;
     }
-    SoundEngine.playSuccess();
+    SoundEngine.playDrum();
     const grpEl = document.querySelector(`[data-grp="${grpIdx}"] .grp-items`);
     const tag = document.createElement('span');
     tag.className = 'bg-emerald-100 text-emerald-800 text-[11px] px-2 py-0.5 rounded font-bold';
@@ -6467,10 +6553,15 @@
     selectedMiniWord.btn.remove();
     selectedMiniWord = null;
     AppState.userAnswers30[AppState.currentQuestionIndex] = true;
+
+    const remaining = document.querySelectorAll('#mini-words-pool button');
+    if (remaining.length === 0) {
+      checkIfAll30QuestionsAnswered();
+    }
   }
 
   // ========================================================
-  // [KẾT THÚC & CHẤM ĐIỂM ĐỀ THI TỔNG HỢP 30 CÂU]
+  // [KẾT THÚC & CHẤM ĐIỂM ĐỀ THI TỔNG HỢP 30 CÂU: CHẤM 1 LƯỢT SAU KHI THI HẾT 30 CÂU]
   // ========================================================
   function finishExamMode2() {
     if (AppState.timerInterval) clearInterval(AppState.timerInterval);
@@ -6482,13 +6573,28 @@
       const userAns = AppState.userAnswers30[idx];
       let isCorrect = false;
 
-      if (q.type === 'MCQ' || q.type === 'READING') {
+      if (q.type === 'MCQ' || q.type === 'READING' || q.type === 'IMAGE_MCQ') {
         isCorrect = (userAns === q.correctIndex);
       } else if (q.type === 'FILL') {
-        isCorrect = (userAns && userAns.toLowerCase().trim() === q.answer.toLowerCase().trim());
+        isCorrect = (userAns && userAns.toString().toLowerCase().trim() === q.answer.toString().toLowerCase().trim());
+      } else if (q.type === 'MATCH_MINI') {
+        if (userAns && typeof userAns === 'object') {
+          const pairs = q.pairs || [];
+          let allMatchCorrect = (Object.keys(userAns).length === pairs.length);
+          for (let pIdx = 0; pIdx < pairs.length; pIdx++) {
+            if (userAns[pIdx] !== pIdx) {
+              allMatchCorrect = false;
+              break;
+            }
+          }
+          isCorrect = allMatchCorrect;
+        } else {
+          isCorrect = false;
+        }
+      } else if (q.type === 'CLASSIFY_MINI') {
+        isCorrect = (userAns !== undefined && userAns !== null && userAns !== false);
       } else {
-        // MATCH_MINI hoặc CLASSIFY_MINI
-        isCorrect = (userAns !== undefined);
+        isCorrect = (userAns === q.correctIndex);
       }
 
       if (isCorrect) correctCount++;
@@ -6659,44 +6765,7 @@
           </div>
         </div>
 
-        <!-- Thông số chi tiết câu làm -->
-        <div class="grid grid-cols-3 gap-2 sm:gap-3 mb-5">
-          ${isMode2 ? `
-            <div class="p-2.5 bg-emerald-50 rounded-xl border border-emerald-200">
-              <div class="text-[11px] text-emerald-800 font-bold">Câu Đúng</div>
-              <div class="text-base sm:text-lg font-black text-emerald-700">${correctCount} / ${totalQuestions}</div>
-            </div>
-            <div class="p-2.5 bg-red-50 rounded-xl border border-red-200">
-              <div class="text-[11px] text-red-800 font-bold">Câu Sai</div>
-              <div class="text-base sm:text-lg font-black text-red-700">${wrongCount} câu</div>
-            </div>
-            <div class="p-2.5 bg-amber-50 rounded-xl border border-amber-200">
-              <div class="text-[11px] text-amber-800 font-bold">Tỉ Lệ Đúng</div>
-              <div class="text-base sm:text-lg font-black text-amber-800">${totalQuestions > 0 ? Math.round((correctCount / totalQuestions) * 100) : 0}%</div>
-            </div>
-          ` : `
-            <div class="p-2.5 bg-amber-50 rounded-xl border border-amber-200">
-              <div class="text-[11px] text-slate-500 font-bold">Bài 1: Bé tinh mắt</div>
-              <div class="text-base font-extrabold text-red-700">${AppState.subGameScores[0] || 0}đ</div>
-            </div>
-            <div class="p-2.5 bg-amber-50 rounded-xl border border-amber-200">
-              <div class="text-[11px] text-slate-500 font-bold">Bài 2: Bé thông minh</div>
-              <div class="text-base font-extrabold text-red-700">${AppState.subGameScores[1] || 0}đ</div>
-            </div>
-            <div class="p-2.5 bg-amber-50 rounded-xl border border-amber-200">
-              <div class="text-[11px] text-slate-500 font-bold">Bài 3: Bé học vui</div>
-              <div class="text-base font-extrabold text-red-700">${AppState.subGameScores[2] || 0}đ</div>
-            </div>
-            <div class="p-2.5 bg-amber-50 rounded-xl border border-amber-200">
-              <div class="text-[11px] text-slate-500 font-bold">Bài 4: Bé sáng tạo</div>
-              <div class="text-base font-extrabold text-red-700">${AppState.subGameScores[3] || 0}đ</div>
-            </div>
-            <div class="p-2.5 bg-amber-50 rounded-xl border border-amber-200">
-              <div class="text-[11px] text-slate-500 font-bold">Bài 5: Bé nhanh tay</div>
-              <div class="text-base font-extrabold text-red-700">${AppState.subGameScores[4] || 0}đ</div>
-            </div>
-          `}
-        </div>
+        <!-- Chỉ hiển thị Tổng Điểm chính và thông tin vinh danh, không hiển thị chi tiết các mini game -->
 
         <!-- Vùng Xem Lời Giải Chi Tiết & Mẹo Làm Bài -->
         <div class="text-left mt-5 pt-5 border-t-2 border-amber-200">
