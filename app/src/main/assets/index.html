@@ -6921,7 +6921,7 @@
               👑
             </div>
             <h3 class="text-lg font-black text-amber-950 uppercase tracking-tight">NÂNG CẤP TÀI KHOẢN VIP</h3>
-            <p class="text-xs text-slate-500 font-semibold mt-0.5">Trải nghiệm học tập & ôn luyện đỉnh cao không giới hạn</p>
+            <p class="text-xs text-slate-500 font-semibold mt-0.5">Thanh toán qua chuyển khoản VietQR & Xác nhận qua EmailJS</p>
           </div>
 
           <div class="space-y-3 mb-4">
@@ -6937,8 +6937,8 @@
                 <li class="flex items-center gap-1">✓ Mở khóa toàn bộ 18 vòng thi & 1000 bộ đề</li>
                 <li class="flex items-center gap-1">✓ Xem lời giải chi tiết và mẹo làm bài chuẩn</li>
               </ul>
-              <button onclick="simulateBuyVip('vip1')" class="btn-3d w-full py-2 rounded-xl text-white font-black text-xs ${AppState.isVip1 ? 'bg-slate-400 cursor-not-allowed' : 'btn-3d-red'}">
-                ${AppState.isVip1 ? 'Đã kích hoạt VIP 1 ✓' : 'Kích Hoạt VIP 1 (49.000đ)'}
+              <button onclick="openVietQrModal('vip1')" class="btn-3d w-full py-2 rounded-xl text-white font-black text-xs ${AppState.isVip1 ? 'bg-slate-400 cursor-not-allowed' : 'btn-3d-red'}">
+                ${AppState.isVip1 ? 'Đã kích hoạt VIP 1 ✓' : 'Thanh Toán VietQR VIP 1 (49.000đ)'}
               </button>
             </div>
 
@@ -6958,8 +6958,8 @@
                 <li class="flex items-center gap-1 font-bold text-emerald-800">✓ TẮT HOÀN TOÀN 100% QUẢNG CÁO</li>
                 <li class="flex items-center gap-1">✓ Sử dụng trọn đời không gia hạn</li>
               </ul>
-              <button onclick="simulateBuyVip('vip2')" class="btn-3d btn-3d-green w-full py-2.5 rounded-xl text-white font-black text-xs shadow-md">
-                ${AppState.isVip2 ? 'Đang sở hữu gói VIP Trọn Đời ✓' : 'Nâng Cấp Trọn Đời (99.000đ)'}
+              <button onclick="openVietQrModal('vip2')" class="btn-3d btn-3d-green w-full py-2.5 rounded-xl text-white font-black text-xs shadow-md">
+                ${AppState.isVip2 ? 'Đang sở hữu gói VIP Trọn Đời ✓' : 'Thanh Toán VietQR VIP 2 (99.000đ)'}
               </button>
             </div>
           </div>
@@ -6978,16 +6978,83 @@
     safeCreateIcons();
   }
 
-  function simulateBuyVip(packageCode) {
-    if (window.AndroidBridge && typeof window.AndroidBridge.launchBillingFlow === 'function') {
-      window.AndroidBridge.launchBillingFlow(packageCode);
+  function openVietQrModal(packageCode) {
+    SoundEngine.playClick();
+    const modalContainer = document.getElementById('modal-container');
+    const amount = packageCode === 'vip2' ? 99000 : 49000;
+    const packageName = packageCode === 'vip2' ? 'VIP 2 (Trọn Đời - 99.000đ)' : 'VIP 1 (Học Kì - 49.000đ)';
+    const deviceId = (window.AndroidBridge && AndroidBridge.getDeviceId) ? AndroidBridge.getDeviceId() : 'DEVICE_DEFAULT';
+    const userEmail = (window.AndroidBridge && AndroidBridge.getUserEmail) ? AndroidBridge.getUserEmail() : (AppState.userEmail || '');
+
+    const addInfo = encodeURIComponent(`${packageCode.toUpperCase()} ${deviceId}`);
+    const qrUrl = `https://img.vietqr.io/image/MB-0358462088-compact2.png?amount=${amount}&addInfo=${addInfo}`;
+
+    modalContainer.innerHTML = `
+      <div class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="scroll-card max-w-md w-full p-5 sm:p-6 bg-white border-4 border-amber-400 relative shadow-2xl overflow-y-auto max-h-[95vh]">
+          <button onclick="openVipModal()" class="absolute top-3 right-3 text-slate-400 hover:text-slate-600 p-1">
+            <i data-lucide="x" class="w-5 h-5"></i>
+          </button>
+
+          <div class="text-center mb-3">
+            <h3 class="text-base sm:text-lg font-black text-amber-950 uppercase tracking-tight">THANH TOÁN VIETQR • ${packageName}</h3>
+            <p class="text-xs text-slate-500 font-semibold mt-0.5">Quét mã QR qua App Ngân hàng để chuyển khoản tự động</p>
+          </div>
+
+          <!-- Ảnh VietQR -->
+          <div class="flex flex-col items-center justify-center bg-amber-50 p-3 rounded-2xl border-2 border-amber-300 mb-3">
+            <div class="w-48 h-48 sm:w-56 sm:h-56 bg-white rounded-xl p-2 border border-amber-200 shadow flex items-center justify-center overflow-hidden">
+              <img src="${qrUrl}" alt="VietQR Thanh Toán VIP" class="w-full h-full object-contain rounded-lg">
+            </div>
+            <div class="text-center mt-2 text-xs text-slate-700 font-bold">
+              Số tiền: <span class="text-red-600 text-sm font-black">${amount.toLocaleString('vi-VN')} đ</span>
+            </div>
+          </div>
+
+          <!-- Thông tin chuyển khoản & Device ID -->
+          <div class="p-3 bg-slate-50 rounded-xl border border-slate-200 text-xs text-slate-700 space-y-1.5 mb-3">
+            <div><b>Ngân hàng:</b> MB Bank (Quân Đội)</div>
+            <div><b>Số tài khoản:</b> <span class="text-red-600 font-bold select-all">0358462088</span></div>
+            <div><b>Chủ tài khoản:</b> <span class="font-bold">LE VU QUYEN</span></div>
+            <div><b>Nội dung CK:</b> <span class="text-amber-800 font-bold select-all">${packageCode.toUpperCase()} ${deviceId}</span></div>
+            <div><b>Device ID của bạn:</b> <span class="text-slate-500 font-mono text-[10px] select-all">${deviceId}</span></div>
+          </div>
+
+          <!-- Ô nhập Email -->
+          <div class="mb-4">
+            <label class="block text-xs font-black text-slate-700 mb-1">Email nhận thông báo kích hoạt:</label>
+            <input type="email" id="vietqr-user-email" value="${userEmail}" placeholder="Nhập email của phụ huynh..." class="w-full px-3.5 py-2.5 rounded-xl border-2 border-amber-300 text-xs font-bold text-slate-800 focus:outline-none focus:border-red-600">
+          </div>
+
+          <div class="space-y-2">
+            <button onclick="submitVietQrTransfer('${packageCode}')" class="btn-3d btn-3d-red w-full py-3 rounded-xl font-black text-white text-xs sm:text-sm shadow flex items-center justify-center gap-2">
+              <span>🚀 Tôi Đã Chuyển Khoản / Gửi Yêu Cầu</span>
+            </button>
+            <button onclick="openVipModal()" class="w-full py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-600 font-bold text-xs">
+              Quay lại chọn gói
+            </button>
+          </div>
+        </div>
+      </div>
+    `;
+    safeCreateIcons();
+  }
+
+  function submitVietQrTransfer(packageCode) {
+    const emailInput = document.getElementById('vietqr-user-email');
+    const email = emailInput ? emailInput.value.trim() : '';
+    if (!email || !email.includes('@')) {
+      showCustomAlert('Vui lòng nhập địa chỉ email hợp lệ để nhận thông báo kích hoạt VIP!');
+      return;
     }
-    if (packageCode === 'vip2' || packageCode === 'all') {
+
+    if (window.AndroidBridge && typeof window.AndroidBridge.sendVipTransferRequest === 'function') {
+      window.AndroidBridge.sendVipTransferRequest(packageCode, email);
+    }
+
+    if (packageCode === 'vip2') {
       AppState.isVip1 = true;
       AppState.isVip2 = true;
-      if (window.AndroidBridge && typeof window.AndroidBridge.setBannerVisible === 'function') {
-        window.AndroidBridge.setBannerVisible(false);
-      }
     } else {
       AppState.isVip1 = true;
     }
@@ -6995,7 +7062,7 @@
     SoundEngine.playFanfare();
     closeModal();
     updateHeaderUI();
-    showCustomAlert('🎉 Chúc mừng bạn đã nâng cấp VIP thành công! Toàn bộ 18 vòng và 1000 bộ đề thi đã được kích hoạt.');
+    showCustomAlert('🎉 Đã gửi yêu cầu kích hoạt VietQR thành công! Hệ thống đã gửi email xác nhận và kích hoạt tạm thời VIP cho thiết bị của bạn.');
     renderHome();
   }
 

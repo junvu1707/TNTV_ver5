@@ -59,31 +59,18 @@ class MainActivity : ComponentActivity() {
   private var isAdMobInitialized = false
   private var bannerContainer: FrameLayout? = null
 
-  // Trạng thái VIP & Billing Manager
+  // Trạng thái VIP & EmailJS Manager (Thanh toán qua VietQR & Xác thực EmailJS)
   lateinit var vipPrefs: VipPreferenceManager
   lateinit var emailJSManager: EmailJSManager
-  lateinit var billingManager: BillingManager
 
   @SuppressLint("SetJavaScriptEnabled")
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     enableEdgeToEdge()
 
-    // 1. Khởi tạo VIP Manager, EmailJS Manager và Billing Manager
+    // 1. Khởi tạo VIP Manager và EmailJS Manager
     vipPrefs = VipPreferenceManager(this)
     emailJSManager = EmailJSManager()
-    billingManager = BillingManager(this, vipPrefs, emailJSManager)
-
-    // Đăng ký callback khi mua gói VIP thành công
-    billingManager.onPurchaseSuccessCallback = { productId: String, vipLevel: Int ->
-      runOnUiThread {
-        updateAdMobForVipStatus()
-        webView?.evaluateJavascript(
-          "if (window.onPurchaseSuccess) { window.onPurchaseSuccess('$productId', $vipLevel); } if (window.onVipStatusChanged) { window.onVipStatusChanged($vipLevel); }",
-          null
-        )
-      }
-    }
 
     // 2. Cấu hình tuân thủ Google Play Families Policy (Chính sách gia đình & trẻ em)
     val requestConfiguration = RequestConfiguration.Builder()
@@ -442,10 +429,8 @@ class MainActivity : ComponentActivity() {
     webView?.onResume()
     webView?.resumeTimers()
     
-    // Đồng bộ lại giao dịch khi mở lại ứng dụng
-    if (::billingManager.isInitialized) {
-      billingManager.queryPurchases()
-    }
+    // Đồng bộ trạng thái khi mở lại ứng dụng
+    updateAdMobForVipStatus()
   }
 
   override fun onDestroy() {
@@ -470,35 +455,39 @@ class AndroidBridge(
    * @param productId ID gói ('vip_package_1' hoặc 'vip_package_2')
    * @param userEmail Email người dùng đăng ký / nhận mail xác nhận
    */
+  /**
+   * Gửi yêu cầu kích hoạt VIP qua chuyển khoản VietQR & EmailJS
+   * @param productId ID gói ('vip1' hoặc 'vip2')
+   * @param userEmail Email phụ huynh/học sinh
+   */
   @JavascriptInterface
-  fun launchBillingFlow(productId: String, userEmail: String) {
+  fun sendVipTransferRequest(productId: String, userEmail: String) {
     activity.runOnUiThread {
-      activity.billingManager.launchBillingFlow(activity, productId, userEmail)
+      if (userEmail.isNotBlank()) {
+        activity.vipPrefs.setUserEmail(userEmail)
+      }
+      val level = if (productId == "vip2" || productId == "vip_package_2") VipPreferenceManager.VIP_LEVEL_2 else VipPreferenceManager.VIP_LEVEL_1
+      val orderId = "VIETQR_" + System.currentTimeMillis()
+      activity.vipPrefs.setLastOrderId(orderId)
+      activity.vipPrefs.setVipLevel(level)
+
+      // Gửi xác nhận qua EmailJS
+      activity.emailJSManager.sendOrderConfirmation(userEmail, orderId, level) { success ->
+        Log.d("AndroidBridge", "VietQR & EmailJS request sent: $success")
+      }
+
+      activity.updateAdMobForVipStatus()
+      webViewProvider()?.evaluateJavascript(
+        "if (window.onVipStatusChanged) { window.onVipStatusChanged($level); }",
+        null
+      )
     }
   }
 
   @JavascriptInterface
-  fun launchBillingFlow(productId: String) {
-    launchBillingFlow(productId, "")
-  }
-
-  @JavascriptInterface
-  fun buyVip1(userEmail: String) {
-    launchBillingFlow(BillingManager.PRODUCT_VIP_1, userEmail)
-  }
-
-  @JavascriptInterface
-  fun buyVip2(userEmail: String) {
-    launchBillingFlow(BillingManager.PRODUCT_VIP_2, userEmail)
-  }
-
-  /**
-   * Khôi phục giao dịch mua VIP
-   */
-  @JavascriptInterface
   fun restorePurchases() {
     activity.runOnUiThread {
-      activity.billingManager.queryPurchases()
+      Toast.makeText(activity, "Đã khôi phục trạng thái VIP từ thiết bị thành công!", Toast.LENGTH_SHORT).show()
     }
   }
 
