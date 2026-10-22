@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>Ôn Tiếng Việt - Trạng Tí Nhỏ</title>
+  <title>Ôn Tiếng Việt - Trạng Sĩ Nhí</title>
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
   <!-- Lucide Icons CDN -->
@@ -36,14 +36,14 @@
   <style>
     /* Hoạ tiết vân mây trống đồng và giấy điệp dân gian */
     html {
-      background-color: #FEF3C7;
+      background-color: #E0F2FE;
     }
     body {
-      background-color: #FEF3C7;
+      background-color: #E0F2FE;
       background-image: 
-        radial-gradient(circle at 50% 0%, rgba(245, 158, 11, 0.15) 0%, transparent 75%),
-        radial-gradient(circle at 100% 100%, rgba(220, 38, 38, 0.08) 0%, transparent 50%),
-        radial-gradient(circle at 0% 100%, rgba(5, 150, 105, 0.08) 0%, transparent 50%);
+        radial-gradient(circle at 50% 0%, rgba(59, 130, 246, 0.15) 0%, transparent 75%),
+        radial-gradient(circle at 100% 100%, rgba(14, 165, 233, 0.08) 0%, transparent 50%),
+        radial-gradient(circle at 0% 100%, rgba(99, 102, 241, 0.08) 0%, transparent 50%);
       user-select: none;
       -webkit-user-select: none;
       -webkit-touch-callout: none;
@@ -185,7 +185,7 @@
   <!-- ======================================================== -->
   <!-- HEADER & THANH TRẠNG THÁI TRẠNG NGUYÊN NHÍ -->
   <!-- ======================================================== -->
-  <header id="main-app-header" class="sticky top-0 z-40 bg-gradient-to-r from-sky-500 via-sky-400 to-sky-600 text-white shadow-lg border-b-4 border-sky-300 px-3 py-2.5">
+  <header id="main-app-header" class="sticky top-0 z-40 bg-gradient-to-r from-blue-700 via-indigo-600 to-blue-900 text-white shadow-xl border-b-4 border-blue-400 px-3 py-2.5">
     <div class="max-w-5xl mx-auto flex items-center justify-between gap-2">
       <!-- Học sinh & Chibi Avatar -->
       <div class="flex items-center gap-2 cursor-pointer" onclick="openAvatarModal()" title="Bấm để vào Tủ Đồ Chibi & Đổi quà bằng Sao">
@@ -4835,31 +4835,31 @@
     // 2 Chế độ thi thực tế
     const roundStages = [
       { 
-        name: 'Chú Ong Chăm Chỉ (Vòng 1 - 6)', 
+        name: 'Chú Ong Chăm Chỉ (Chặng 1 - 6)', 
         sub: 'Minigame liên hoàn: Bé tinh mắt, Bé thông minh, Bé học vui, Bé sáng tạo',
         range: [1, 6],
-        tag: 'Tự luyện',
+        tag: 'Ôn Tập',
         icon: '🐝'
       },
       { 
-        name: 'Khu Vườn Kỳ Diệu (Vòng 7 - 10)', 
+        name: 'Khu Vườn Kỳ Diệu (Chặng 7 - 10)', 
         sub: 'Đấu trường Khu Vườn Kỳ Diệu • Đề thi tổng hợp 30 câu',
         range: [7, 10],
         tag: 'Khu Vườn',
         icon: '🌺'
       },
       { 
-        name: 'Mê Cung Kỳ Bí (Vòng 11 - 14)', 
+        name: 'Mê Cung Kỳ Bí (Chặng 11 - 14)', 
         sub: 'Đấu trường Mê Cung Kỳ Bí • Đề thi tổng hợp 30 câu',
         range: [11, 14],
         tag: 'Mê Cung',
         icon: '🌀'
       },
       { 
-        name: 'Tranh tài siêu cấp (Vòng 15 - 18)', 
-        sub: 'Đấu trường Tranh tài siêu cấp • Đề thi tổng hợp 30 câu',
+        name: 'Chinh Phục Đỉnh Cao (Chặng 15 - 18)', 
+        sub: 'Đấu trường Chinh Phục Đỉnh Cao • Đề thi tổng hợp 30 câu',
         range: [15, 18],
-        tag: 'Siêu Cấp',
+        tag: 'Đỉnh Cao',
         icon: '👑'
       }
     ];
@@ -4894,11 +4894,11 @@
             </div>
 
             <div class="mt-2 text-2xl sm:text-3xl mb-1">${isUnlocked ? stage.icon : '🔒'}</div>
-            <h4 class="font-extrabold text-slate-800 text-sm sm:text-base">Vòng ${r}</h4>
+            <h4 class="font-extrabold text-slate-800 text-sm sm:text-base">Chặng ${r}</h4>
             <p class="text-[11px] text-slate-500 mt-0.5">${stage.tag} • ${isMode2 ? '30 câu' : 'Minigame'}</p>
             
             <div class="mt-2 pt-2 border-t border-amber-100 flex items-center justify-center gap-1 text-xs font-semibold ${isUnlocked ? 'text-amber-700' : 'text-slate-400'}">
-              <span>${isUnlocked ? (isAdmin ? 'Test Vòng' : 'Vào Thi') : 'Mở Khóa'}</span>
+              <span>${isUnlocked ? (isAdmin ? 'Test Chặng' : 'Khám Phá') : 'Mở Khóa'}</span>
               <i data-lucide="chevron-right" class="w-3.5 h-3.5"></i>
             </div>
           </div>
@@ -4922,23 +4922,23 @@
     }
 
     root.innerHTML = `
-      <!-- Banner Tiêu Đề Trạng Nhí & Khối Lớp -->
+      <!-- Banner Tiêu Đề Trạng Sĩ Nhí & Khối Lớp -->
       <div class="scroll-card p-4 sm:p-5 mb-5 bg-gradient-to-r from-amber-50 via-white to-red-50 border-2 border-amber-300 relative overflow-hidden shadow-md">
         <div class="dong-son-pattern absolute inset-0 pointer-events-none opacity-40"></div>
         <div class="relative z-10 flex flex-row items-center justify-between gap-3 w-full">
-          <!-- Tiêu Đề Kèm Hình Đại Diện Trạng Nhí Tiếng Việt Sinh Động -->
+          <!-- Tiêu Đề Kèm Hình Đại Diện Trạng Sĩ Nhí Tiếng Việt Sinh Động -->
           <div class="flex items-center gap-2.5 sm:gap-4 min-w-0">
-            <!-- Hình Đại Diện Trạng Nhí Mới Của App (Tăng kích thước 1.3 lần) -->
-            <div class="relative shrink-0 cursor-pointer" onclick="openAvatarModal()" title="Hình đại diện Trạng nhí Tiếng Việt • Vào Tủ Đồ Chibi">
+            <!-- Hình Đại Diện Trạng Sĩ Nhí Mới Của App (Tăng kích thước 1.3 lần) -->
+            <div class="relative shrink-0 cursor-pointer" onclick="openAvatarModal()" title="Hình đại diện Trạng sĩ nhí Tiếng Việt • Vào Tủ Đồ Chibi">
               <div class="w-[78px] h-[78px] sm:w-[104px] sm:h-[104px] rounded-2xl bg-gradient-to-br from-amber-200 via-amber-300 to-amber-400 p-1 shadow-lg border-2 border-amber-300 flex items-center justify-center transform hover:scale-105 transition-all overflow-hidden bg-white">
-                <img src="app_logo.png" alt="Ôn luyện Trạng nhí Tiếng Việt" class="w-full h-full object-cover rounded-xl" onerror="this.onerror=null; this.src='chibi_cong_chua_toc_may.png';">
+                <img src="app_logo.png" alt="Ôn luyện Trạng sĩ nhí Tiếng Việt" class="w-full h-full object-cover rounded-xl" onerror="this.onerror=null; this.src='chibi_cong_chua_toc_may.png';">
               </div>
             </div>
 
             <div class="min-w-0 flex flex-col items-center text-center">
               <h1 class="text-base sm:text-2xl md:text-3xl font-black text-red-900 tracking-tight leading-tight text-center">
                 <span class="block text-center">Ôn Tiếng Việt</span>
-                <span class="block text-center">Trạng Tí Nhỏ</span>
+                <span class="block text-center">Trạng Sĩ Nhí</span>
               </h1>
               <div class="inline-block bg-red-100 text-red-800 font-black px-2 py-0.5 rounded-full uppercase tracking-wider mt-1 border border-red-200 text-[8px] sm:text-[10px] leading-tight text-center">
                 Dành cho Học sinh & Giáo viên Tiểu học
@@ -4981,7 +4981,7 @@
       <!-- CHÂN TRANG & THÔNG TIN PHÁP LÝ (CHUẨN GOOGLE PLAY POLICY) -->
       <footer class="mt-8 pt-6 pb-6 border-t-2 border-amber-300/60 text-center text-xs text-slate-500">
         <p class="font-medium text-slate-600 mb-2.5">
-          Ôn luyện Trạng nhí Tiếng Việt • Nền tảng học tập & rèn luyện tiếng Việt độc lập cho Học sinh & Giáo viên GDPT
+          Ôn luyện Tiếng Việt - Trạng Sĩ Nhí • Nền tảng học tập & rèn luyện tiếng Việt độc lập cho Học sinh & Giáo viên GDPT
         </p>
         <div class="flex flex-wrap items-center justify-center gap-2 mb-2">
           <button onclick="openDisclaimerModal()" class="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-white border-2 border-emerald-400 shadow-sm text-emerald-900 font-extrabold hover:bg-emerald-50 active:scale-95 transition-all text-xs">
@@ -4990,7 +4990,7 @@
           </button>
         </div>
         <p class="text-[11px] text-slate-400 mt-2.5">
-          Trạng nhí_V05_VIP • Bản quyền nội dung rèn luyện độc lập © 2026 Ôn luyện Trạng nhí Tiếng Việt
+          Trạng Sĩ Nhí V06 • Bản quyền nội dung rèn luyện độc lập © 2026 Ôn luyện Tiếng Việt - Trạng Sĩ Nhí
         </p>
       </footer>
     `;
