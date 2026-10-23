@@ -2,6 +2,7 @@ package com.example
 
 import android.app.Activity
 import android.util.Log
+import android.widget.Toast
 import com.android.billingclient.api.*
 
 class BillingManager(
@@ -16,6 +17,7 @@ class BillingManager(
     const val PRODUCT_VIP_2 = "vip2"
     const val PRODUCT_VIP_1_ALIAS = "vip_package_1"
     const val PRODUCT_VIP_2_ALIAS = "vip_package_2"
+    const val PRODUCT_VIP_2_TRONDOI = "vip_2_trondoi"
   }
 
   var onPurchaseSuccessCallback: ((productId: String, vipLevel: Int) -> Unit)? = null
@@ -83,17 +85,16 @@ class BillingManager(
     }
 
     val targetProductId = when (productId) {
-      PRODUCT_VIP_2, PRODUCT_VIP_2_ALIAS -> PRODUCT_VIP_2
+      PRODUCT_VIP_2, PRODUCT_VIP_2_ALIAS, PRODUCT_VIP_2_TRONDOI -> PRODUCT_VIP_2
       else -> PRODUCT_VIP_1
     }
 
-    val level = if (targetProductId == PRODUCT_VIP_2) VipPreferenceManager.VIP_LEVEL_2 else VipPreferenceManager.VIP_LEVEL_1
+    val aliasProductId = if (targetProductId == PRODUCT_VIP_2) PRODUCT_VIP_2_ALIAS else PRODUCT_VIP_1_ALIAS
 
     if (!billingClient.isReady) {
       Log.w(TAG, "Billing client not ready, reconnecting...")
       startBillingConnection()
-      // Test Sandbox fallback cho môi trường dev / thử nghiệm
-      processSuccessfulVIPActivation(targetProductId, level, "SANDBOX_" + System.currentTimeMillis(), "TOKEN_SANDBOX_" + System.currentTimeMillis())
+      showToastOnUi("Đang kết nối dịch vụ Google Play, vui lòng bấm Thanh toán lại sau giây lát...")
       return
     }
 
@@ -103,7 +104,11 @@ class BillingManager(
         .setProductType(BillingClient.ProductType.INAPP)
         .build(),
       QueryProductDetailsParams.Product.newBuilder()
-        .setProductId(if (targetProductId == PRODUCT_VIP_2) PRODUCT_VIP_2_ALIAS else PRODUCT_VIP_1_ALIAS)
+        .setProductId(aliasProductId)
+        .setProductType(BillingClient.ProductType.INAPP)
+        .build(),
+      QueryProductDetailsParams.Product.newBuilder()
+        .setProductId(PRODUCT_VIP_2_TRONDOI)
         .setProductType(BillingClient.ProductType.INAPP)
         .build()
     )
@@ -125,30 +130,46 @@ class BillingManager(
           )
           .build()
 
-        billingClient.launchBillingFlow(activity, flowParams)
+        val result = billingClient.launchBillingFlow(activity, flowParams)
+        Log.d(TAG, "launchBillingFlow response code: ${result.responseCode}")
       } else {
         Log.w(TAG, "Product details not found on Play Console for $targetProductId: ${billingResult.debugMessage}")
-        // Development Sandbox Fallback khi app chưa release Play Console
-        processSuccessfulVIPActivation(targetProductId, level, "DEV_ORDER_" + System.currentTimeMillis(), "DEV_TOKEN_" + System.currentTimeMillis())
+        showToastOnUi("Không thể lấy thông tin giá từ Google Play (${billingResult.debugMessage}). Vui lòng kiểm tra ứng dụng trên CH Play.")
       }
     }
   }
 
   override fun onPurchasesUpdated(billingResult: BillingResult, purchases: MutableList<Purchase>?) {
-    if (billingResult.responseCode == BillingClient.BillingResponseCode.OK && purchases != null) {
-      for (purchase in purchases) {
-        handlePurchase(purchase)
+    when (billingResult.responseCode) {
+      BillingClient.BillingResponseCode.OK -> {
+        if (!purchases.isNullOrEmpty()) {
+          for (purchase in purchases) {
+            handlePurchase(purchase)
+          }
+        }
       }
-    } else if (billingResult.responseCode == BillingClient.BillingResponseCode.USER_CANCELED) {
-      Log.d(TAG, "User canceled purchase")
-    } else {
-      Log.w(TAG, "Purchase failed: ${billingResult.debugMessage}")
+      BillingClient.BillingResponseCode.USER_CANCELED -> {
+        Log.d(TAG, "User canceled purchase")
+        showToastOnUi("Bạn đã hủy giao dịch thanh toán Google Play.")
+      }
+      BillingClient.BillingResponseCode.ITEM_ALREADY_OWNED -> {
+        Log.d(TAG, "Item already owned")
+        showToastOnUi("Tài khoản của bạn đã sở hữu gói VIP này. Đang khôi phục quyền lợi...")
+        queryPurchases()
+      }
+      else -> {
+        Log.w(TAG, "Purchase failed: ${billingResult.debugMessage}")
+        showToastOnUi("Thanh toán Google Play không thành công: ${billingResult.debugMessage}")
+      }
     }
   }
 
   private fun handlePurchase(purchase: Purchase) {
     if (purchase.purchaseState == Purchase.PurchaseState.PURCHASED) {
-      val isVip2 = purchase.products.contains(PRODUCT_VIP_2) || purchase.products.contains(PRODUCT_VIP_2_ALIAS)
+      val isVip2 = purchase.products.contains(PRODUCT_VIP_2) ||
+          purchase.products.contains(PRODUCT_VIP_2_ALIAS) ||
+          purchase.products.contains(PRODUCT_VIP_2_TRONDOI)
+
       val level = if (isVip2) VipPreferenceManager.VIP_LEVEL_2 else VipPreferenceManager.VIP_LEVEL_1
       val productId = if (isVip2) PRODUCT_VIP_2 else PRODUCT_VIP_1
 
@@ -162,6 +183,8 @@ class BillingManager(
           Log.d(TAG, "Purchase acknowledged: ${result.responseCode}")
         }
       }
+    } else if (purchase.purchaseState == Purchase.PurchaseState.PENDING) {
+      showToastOnUi("Giao dịch đang được xử lý bởi Google Play. Vui lòng chờ xác nhận...")
     }
   }
 
@@ -238,7 +261,10 @@ class BillingManager(
 
         for (purchase in purchasesList) {
           if (purchase.purchaseState == Purchase.PurchaseState.PURCHASED) {
-            val isVip2 = purchase.products.contains(PRODUCT_VIP_2) || purchase.products.contains(PRODUCT_VIP_2_ALIAS)
+            val isVip2 = purchase.products.contains(PRODUCT_VIP_2) ||
+                purchase.products.contains(PRODUCT_VIP_2_ALIAS) ||
+                purchase.products.contains(PRODUCT_VIP_2_TRONDOI)
+
             val level = if (isVip2) VipPreferenceManager.VIP_LEVEL_2 else VipPreferenceManager.VIP_LEVEL_1
             if (level > highestLevel) {
               highestLevel = level
@@ -278,10 +304,15 @@ class BillingManager(
     }
   }
 
+  private fun showToastOnUi(message: String) {
+    activity.runOnUiThread {
+      Toast.makeText(activity, message, Toast.LENGTH_LONG).show()
+    }
+  }
+
   fun destroy() {
     if (billingClient.isReady) {
       billingClient.endConnection()
     }
   }
 }
-

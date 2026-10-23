@@ -2235,9 +2235,9 @@
 
       // TUYỂN CHỌN ĐỘC NHẤT 100% BẰNG SEED (Gom variants, xoay vòng theo seed, không bao giờ trùng câu trong 1 đề)
       const selectedMCQs = selectUniqueQuestionsForExam(mcqMasterPool, 15, seed);
-      const selectedFills = selectUniqueQuestionsForExam(fillMasterPool, 6, seed + 11);
-      const selectedMatches = selectUniqueQuestionsForExam(matchMasterPool, 4, seed + 23);
-      const selectedClassifies = selectUniqueQuestionsForExam(classifyMasterPool, 5, seed + 37);
+      const selectedFills = selectUniqueQuestionsForExam(fillMasterPool, 9, seed + 11);
+      const selectedMatches = selectUniqueQuestionsForExam(matchMasterPool, 3, seed + 23);
+      const selectedClassifies = selectUniqueQuestionsForExam(classifyMasterPool, 3, seed + 37);
 
       const questions = [];
       let currentId = 1;
@@ -2464,9 +2464,9 @@
 
       // Tuyển chọn 30 câu độc nhất 100% cho số đề (seed)
       const selectedMCQs = selectUniqueQuestionsForExam(mcqMasterPool, 15, seed);
-      const selectedFills = selectUniqueQuestionsForExam(fillMasterPool, 6, seed + 13);
-      const selectedMatches = selectUniqueQuestionsForExam(matchMasterPool, 4, seed + 29);
-      const selectedClassifies = selectUniqueQuestionsForExam(classifyMasterPool, 5, seed + 41);
+      const selectedFills = selectUniqueQuestionsForExam(fillMasterPool, 9, seed + 13);
+      const selectedMatches = selectUniqueQuestionsForExam(matchMasterPool, 3, seed + 29);
+      const selectedClassifies = selectUniqueQuestionsForExam(classifyMasterPool, 3, seed + 41);
 
       const questions = [];
       let currentId = 1;
@@ -2695,9 +2695,9 @@
 
       // Tuyển chọn 30 câu độc nhất 100% cho số đề (seed)
       const selectedMCQs = selectUniqueQuestionsForExam(mcqMasterPool, 15, seed);
-      const selectedFills = selectUniqueQuestionsForExam(fillMasterPool, 6, seed + 17);
-      const selectedMatches = selectUniqueQuestionsForExam(matchMasterPool, 4, seed + 31);
-      const selectedClassifies = selectUniqueQuestionsForExam(classifyMasterPool, 5, seed + 47);
+      const selectedFills = selectUniqueQuestionsForExam(fillMasterPool, 9, seed + 17);
+      const selectedMatches = selectUniqueQuestionsForExam(matchMasterPool, 3, seed + 31);
+      const selectedClassifies = selectUniqueQuestionsForExam(classifyMasterPool, 3, seed + 47);
 
       const questions = [];
       let currentId = 1;
@@ -2920,9 +2920,9 @@
 
       // Tuyển chọn 30 câu độc nhất 100% cho số đề (seed)
       const selectedMCQs = selectUniqueQuestionsForExam(mcqMasterPool, 15, seed);
-      const selectedFills = selectUniqueQuestionsForExam(fillMasterPool, 6, seed + 19);
-      const selectedMatches = selectUniqueQuestionsForExam(matchMasterPool, 4, seed + 33);
-      const selectedClassifies = selectUniqueQuestionsForExam(classifyMasterPool, 5, seed + 49);
+      const selectedFills = selectUniqueQuestionsForExam(fillMasterPool, 9, seed + 19);
+      const selectedMatches = selectUniqueQuestionsForExam(matchMasterPool, 3, seed + 33);
+      const selectedClassifies = selectUniqueQuestionsForExam(classifyMasterPool, 3, seed + 49);
 
       const questions = [];
       let currentId = 1;
@@ -3145,9 +3145,9 @@
 
       // Tuyển chọn 30 câu độc nhất 100% cho số đề (seed)
       const selectedMCQs = selectUniqueQuestionsForExam(mcqMasterPool, 15, seed);
-      const selectedFills = selectUniqueQuestionsForExam(fillMasterPool, 6, seed + 21);
-      const selectedMatches = selectUniqueQuestionsForExam(matchMasterPool, 4, seed + 37);
-      const selectedClassifies = selectUniqueQuestionsForExam(classifyMasterPool, 5, seed + 53);
+      const selectedFills = selectUniqueQuestionsForExam(fillMasterPool, 9, seed + 21);
+      const selectedMatches = selectUniqueQuestionsForExam(matchMasterPool, 3, seed + 37);
+      const selectedClassifies = selectUniqueQuestionsForExam(classifyMasterPool, 3, seed + 53);
 
       const questions = [];
       let currentId = 1;
@@ -6312,29 +6312,63 @@
       }
       case 'MATCH_MINI': {
         const miniPairs = curQ.pairs || [];
+        let savedAns = AppState.userAnswers30[AppState.currentQuestionIndex];
+        if (typeof savedAns !== 'object' || savedAns === null) {
+          savedAns = {};
+        }
+
         questionBodyHtml = `
           <div class="mb-3">
             <span class="text-xs font-bold bg-amber-100 text-amber-900 px-3 py-1 rounded-full border border-amber-300">
               Câu ${curIdx + 1}: ${formatQuestionTitle(curQ.title) || 'Nối cặp tương ứng'} (10 điểm)
             </span>
-            <p class="text-xs text-slate-600 mt-1">${curQ.instruction || 'Hãy nối cặp tương ứng:'}</p>
+            <p class="text-xs text-slate-600 mt-1">Bấm 1 lần để chọn, bấm lại lần nữa vào mục đã chọn/nối để hủy chọn:</p>
           </div>
-          <div class="grid grid-cols-2 gap-4 my-4" id="mini-match-area">
+          <div class="grid grid-cols-2 gap-3 sm:gap-4 my-4" id="mini-match-area">
             <div class="flex flex-col gap-2">
               <div class="text-xs font-bold text-red-900 uppercase">Cột A:</div>
-              ${miniPairs.map((p, i) => `
-                <button onclick="selectMiniMatchColA(${i})" id="btn-colA-${i}" class="scroll-card p-2.5 text-xs sm:text-sm font-bold text-left border-2 border-amber-300 hover:bg-amber-50">
-                  ${i + 1}. ${p.a}
-                </button>
-              `).join('')}
+              ${miniPairs.map((p, i) => {
+                const isSelected = (selectedColA === i);
+                const pairedB = savedAns[i];
+                const isPaired = (pairedB !== undefined);
+
+                let btnClass = "scroll-card p-2.5 text-xs sm:text-sm font-bold text-left border-2 transition-all flex items-center justify-between ";
+                if (isSelected) {
+                  btnClass += "border-amber-500 bg-amber-100 ring-2 ring-amber-400 text-slate-900";
+                } else if (isPaired) {
+                  btnClass += "border-emerald-500 bg-emerald-50 text-emerald-900";
+                } else {
+                  btnClass += "border-amber-300 hover:bg-amber-50 text-slate-800";
+                }
+
+                return `
+                  <button onclick="selectMiniMatchColA(${i})" id="btn-colA-${i}" class="${btnClass}">
+                    <span>${i + 1}. ${p.a}</span>
+                    ${isPaired ? `<span class="text-[10px] bg-emerald-600 text-white px-1.5 py-0.5 rounded font-black ml-1">➔ ${String.fromCharCode(65 + pairedB)}</span>` : ''}
+                  </button>
+                `;
+              }).join('')}
             </div>
             <div class="flex flex-col gap-2">
               <div class="text-xs font-bold text-red-900 uppercase">Cột B:</div>
-              ${miniPairs.map((p, i) => `
-                <button onclick="selectMiniMatchColB(${i})" id="btn-colB-${i}" class="scroll-card p-2.5 text-xs sm:text-sm font-bold text-left border-2 border-amber-300 hover:bg-amber-50">
-                  ${String.fromCharCode(65 + i)}. ${p.b}
-                </button>
-              `).join('')}
+              ${miniPairs.map((p, j) => {
+                const pairedAKey = Object.keys(savedAns).find(k => savedAns[k] === j);
+                const isPaired = (pairedAKey !== undefined);
+
+                let btnClass = "scroll-card p-2.5 text-xs sm:text-sm font-bold text-left border-2 transition-all flex items-center justify-between ";
+                if (isPaired) {
+                  btnClass += "border-emerald-500 bg-emerald-50 text-emerald-900";
+                } else {
+                  btnClass += "border-amber-300 hover:bg-amber-50 text-slate-800";
+                }
+
+                return `
+                  <button onclick="selectMiniMatchColB(${j})" id="btn-colB-${j}" class="${btnClass}">
+                    <span>${String.fromCharCode(65 + j)}. ${p.b}</span>
+                    ${isPaired ? `<span class="text-[10px] bg-emerald-600 text-white px-1.5 py-0.5 rounded font-black ml-1">⬅ ${Number(pairedAKey) + 1}</span>` : ''}
+                  </button>
+                `;
+              }).join('')}
             </div>
           </div>
           <div id="mini-match-status" class="text-xs font-bold text-emerald-700 text-center"></div>
@@ -6348,29 +6382,66 @@
           (g.words || []).forEach(w => allWords.push({ text: w, groupIdx: gIdx }));
         });
 
+        let savedAns = AppState.userAnswers30[AppState.currentQuestionIndex];
+        if (typeof savedAns !== 'object' || savedAns === null) {
+          savedAns = {};
+        }
+
         questionBodyHtml = `
           <div class="mb-3">
             <span class="text-xs font-bold bg-amber-100 text-amber-900 px-3 py-1 rounded-full border border-amber-300">
               Câu ${curIdx + 1}: ${formatQuestionTitle(curQ.title) || 'Phân loại từ ngữ'} (10 điểm)
             </span>
-            <p class="text-xs text-slate-600 mt-1">${curQ.instruction || 'Bấm chọn từ xếp vào giỏ:'}</p>
+            <p class="text-xs text-slate-600 mt-1">Bấm chọn từ bên dưới rồi bấm giỏ để xếp. Bấm vào từ trong giỏ để quay về vị trí ban đầu:</p>
           </div>
           <div class="grid grid-cols-2 gap-3 mb-4" id="classify-mini-groups">
-            ${groups.map((g, i) => `
-              <div onclick="dropToMiniGroup(${i})" data-grp="${i}" class="p-3 rounded-xl border-2 border-dashed border-amber-400 bg-amber-50/50 min-h-[90px] cursor-pointer hover:border-emerald-500">
-                <div class="font-extrabold text-xs text-red-950 pb-1 border-b border-amber-200">🧺 ${g.name}</div>
-                <div class="grp-items flex flex-wrap gap-1 mt-2"></div>
-              </div>
-            `).join('')}
+            ${groups.map((g, gIdx) => {
+              const wordsInGroup = [];
+              Object.keys(savedAns).forEach(wIdxStr => {
+                const wIdx = Number(wIdxStr);
+                if (savedAns[wIdx] === gIdx && allWords[wIdx]) {
+                  wordsInGroup.push({ wIdx, text: allWords[wIdx].text });
+                }
+              });
+
+              return `
+                <div onclick="dropToMiniGroup(${gIdx})" data-grp="${gIdx}" class="p-3 rounded-xl border-2 border-dashed border-amber-400 bg-amber-50/50 min-h-[100px] cursor-pointer hover:border-emerald-500 transition-all">
+                  <div class="font-extrabold text-xs text-red-950 pb-1 border-b border-amber-200 flex items-center justify-between">
+                    <span>🧺 ${g.name}</span>
+                    <span class="text-[10px] text-emerald-800 bg-emerald-100 px-1.5 py-0.2 rounded font-bold">${wordsInGroup.length} từ</span>
+                  </div>
+                  <div class="grp-items flex flex-wrap gap-1.5 mt-2">
+                    ${wordsInGroup.map(item => `
+                      <span onclick="event.stopPropagation(); removeWordFromMiniGroup(${item.wIdx})" class="bg-emerald-100 hover:bg-red-100 text-emerald-800 hover:text-red-800 border border-emerald-300 hover:border-red-300 text-xs px-2 py-1 rounded-lg font-bold cursor-pointer transition-all flex items-center gap-1 shadow-sm" title="Bấm để trả từ này về khung ban đầu">
+                        <span>${item.text}</span>
+                        <span class="text-[10px] text-red-600 font-extrabold">✕</span>
+                      </span>
+                    `).join('')}
+                  </div>
+                </div>
+              `;
+            }).join('')}
           </div>
-          <div class="p-2.5 bg-amber-100/70 rounded-xl border border-amber-300">
-            <div class="text-xs font-bold text-slate-700 mb-1.5">Bấm chọn từ:</div>
-            <div class="flex flex-wrap gap-1.5" id="mini-words-pool">
-              ${allWords.map((w, i) => `
-                <button onclick="pickMiniWord(this, ${w.groupIdx})" class="btn-3d bg-white text-xs font-bold px-3 py-1.5 rounded-lg border border-amber-300">
-                  ${w.text}
-                </button>
-              `).join('')}
+          <div class="p-3 bg-amber-100/70 rounded-xl border border-amber-300">
+            <div class="text-xs font-bold text-slate-700 mb-2">Bấm chọn từ bên dưới:</div>
+            <div class="flex flex-wrap gap-2" id="mini-words-pool">
+              ${allWords.map((w, wIdx) => {
+                if (savedAns[wIdx] !== undefined) return '';
+
+                const isSelected = (selectedMiniWordIndex === wIdx);
+                let btnClass = "btn-3d text-xs font-bold px-3 py-2 rounded-xl border transition-all ";
+                if (isSelected) {
+                  btnClass += "bg-amber-300 border-amber-500 text-amber-950 ring-2 ring-amber-400 scale-105";
+                } else {
+                  btnClass += "bg-white border-amber-300 text-slate-800 hover:bg-amber-50";
+                }
+
+                return `
+                  <button onclick="pickMiniWord(${wIdx})" class="${btnClass}">
+                    ${w.text}
+                  </button>
+                `;
+              }).join('')}
             </div>
           </div>
         `;
@@ -6622,64 +6693,132 @@
 
   // Tương tác Mini-Match
   let selectedColA = null;
+
   function selectMiniMatchColA(idx) {
     SoundEngine.playDrum();
+    let savedAns = AppState.userAnswers30[AppState.currentQuestionIndex];
+    if (typeof savedAns !== 'object' || savedAns === null) {
+      savedAns = {};
+      AppState.userAnswers30[AppState.currentQuestionIndex] = savedAns;
+    }
+
+    // Nếu ô Cột A này đang được chọn -> Bấm lại lần nữa là bỏ chọn (Deselect)
+    if (selectedColA === idx) {
+      selectedColA = null;
+      renderExamMode2Question();
+      return;
+    }
+
+    // Nếu ô Cột A này ĐÃ NỐI -> Bấm vào để hủy nối (Unpair)
+    if (savedAns[idx] !== undefined) {
+      delete savedAns[idx];
+      if (Object.keys(savedAns).length === 0) {
+        delete AppState.userAnswers30[AppState.currentQuestionIndex];
+      }
+      selectedColA = null;
+      renderExamMode2Question();
+      return;
+    }
+
+    // Chọn ô Cột A này
     selectedColA = idx;
-    document.querySelectorAll('[id^="btn-colA-"]').forEach(b => b.classList.remove('ring-4', 'ring-amber-500', 'bg-amber-100'));
-    document.getElementById(`btn-colA-${idx}`).classList.add('ring-4', 'ring-amber-500', 'bg-amber-100');
+    renderExamMode2Question();
   }
 
   function selectMiniMatchColB(idx) {
+    let savedAns = AppState.userAnswers30[AppState.currentQuestionIndex];
+    if (typeof savedAns !== 'object' || savedAns === null) {
+      savedAns = {};
+      AppState.userAnswers30[AppState.currentQuestionIndex] = savedAns;
+    }
+
+    const pairedAKey = Object.keys(savedAns).find(k => savedAns[k] === idx);
+
+    // Bấm vào ô Cột B đã nối khi không chọn Cột A -> Hủy nối
+    if (pairedAKey !== undefined && selectedColA === null) {
+      SoundEngine.playDrum();
+      delete savedAns[pairedAKey];
+      if (Object.keys(savedAns).length === 0) {
+        delete AppState.userAnswers30[AppState.currentQuestionIndex];
+      }
+      renderExamMode2Question();
+      return;
+    }
+
     if (selectedColA === null) {
       showCustomAlert('Vui lòng chọn 1 mục ở Cột A trước!');
       return;
     }
+
     SoundEngine.playDrum();
-    if (!AppState.userAnswers30[AppState.currentQuestionIndex]) {
-      AppState.userAnswers30[AppState.currentQuestionIndex] = {};
+    if (pairedAKey !== undefined) {
+      delete savedAns[pairedAKey];
     }
-    AppState.userAnswers30[AppState.currentQuestionIndex][selectedColA] = idx;
-    
-    document.getElementById(`btn-colA-${selectedColA}`).classList.add('bg-emerald-100', 'border-emerald-500');
-    document.getElementById(`btn-colB-${idx}`).classList.add('bg-emerald-100', 'border-emerald-500');
+
+    savedAns[selectedColA] = idx;
     selectedColA = null;
+
+    renderExamMode2Question();
 
     const curQ = AppState.exam30Questions[AppState.currentQuestionIndex];
     const totalPairs = (curQ && curQ.pairs) ? curQ.pairs.length : 3;
-    if (Object.keys(AppState.userAnswers30[AppState.currentQuestionIndex]).length >= totalPairs) {
+    if (Object.keys(savedAns).length >= totalPairs) {
       checkIfAll30QuestionsAnswered();
     }
   }
 
   // Tương tác Phân loại nhỏ
-  let selectedMiniWord = null;
-  function pickMiniWord(btn, correctGroup) {
+  let selectedMiniWordIndex = null;
+
+  function pickMiniWord(wIdx) {
     SoundEngine.playDrum();
-    document.querySelectorAll('#mini-words-pool button').forEach(b => b.classList.remove('ring-4', 'ring-amber-500', 'bg-amber-200'));
-    selectedMiniWord = { btn, correctGroup, text: btn.textContent.trim() };
-    btn.classList.add('ring-4', 'ring-amber-500', 'bg-amber-200');
+    if (selectedMiniWordIndex === wIdx) {
+      selectedMiniWordIndex = null;
+    } else {
+      selectedMiniWordIndex = wIdx;
+    }
+    renderExamMode2Question();
   }
 
   function dropToMiniGroup(grpIdx) {
-    if (!selectedMiniWord) {
-      showCustomAlert('Bé hãy bấm chọn 1 từ bên dưới trước nhé!');
+    if (selectedMiniWordIndex === null) {
+      showCustomAlert('Bé hãy bấm chọn 1 từ ở khung bên dưới trước nhé!');
       return;
     }
     SoundEngine.playDrum();
-    const grpEl = document.querySelector(`[data-grp="${grpIdx}"] .grp-items`);
-    const tag = document.createElement('span');
-    tag.className = 'bg-emerald-100 text-emerald-800 text-[11px] px-2 py-0.5 rounded font-bold';
-    tag.textContent = selectedMiniWord.text;
-    grpEl.appendChild(tag);
 
-    selectedMiniWord.btn.remove();
-    selectedMiniWord = null;
-    AppState.userAnswers30[AppState.currentQuestionIndex] = true;
-
-    const remaining = document.querySelectorAll('#mini-words-pool button');
-    if (remaining.length === 0) {
-      checkIfAll30QuestionsAnswered();
+    let savedAns = AppState.userAnswers30[AppState.currentQuestionIndex];
+    if (typeof savedAns !== 'object' || savedAns === null) {
+      savedAns = {};
+      AppState.userAnswers30[AppState.currentQuestionIndex] = savedAns;
     }
+
+    savedAns[selectedMiniWordIndex] = grpIdx;
+    selectedMiniWordIndex = null;
+
+    renderExamMode2Question();
+
+    const curQ = AppState.exam30Questions[AppState.currentQuestionIndex];
+    if (curQ && curQ.groups) {
+      let totalWords = 0;
+      curQ.groups.forEach(g => totalWords += (g.words || []).length);
+      if (Object.keys(savedAns).length >= totalWords) {
+        checkIfAll30QuestionsAnswered();
+      }
+    }
+  }
+
+  function removeWordFromMiniGroup(wIdx) {
+    SoundEngine.playDrum();
+    let savedAns = AppState.userAnswers30[AppState.currentQuestionIndex];
+    if (typeof savedAns === 'object' && savedAns !== null) {
+      delete savedAns[wIdx];
+      if (Object.keys(savedAns).length === 0) {
+        delete AppState.userAnswers30[AppState.currentQuestionIndex];
+      }
+    }
+    selectedMiniWordIndex = null;
+    renderExamMode2Question();
   }
 
   // ========================================================
@@ -6714,7 +6853,23 @@
           isCorrect = false;
         }
       } else if (q.type === 'CLASSIFY_MINI') {
-        isCorrect = (userAns !== undefined && userAns !== null && userAns !== false);
+        if (userAns && typeof userAns === 'object') {
+          const groups = q.groups || [];
+          const allWords = [];
+          groups.forEach((g, gIdx) => {
+            (g.words || []).forEach(w => allWords.push({ text: w, groupIdx: gIdx }));
+          });
+          let allClassifyCorrect = (Object.keys(userAns).length === allWords.length);
+          for (let wIdx = 0; wIdx < allWords.length; wIdx++) {
+            if (userAns[wIdx] !== allWords[wIdx].groupIdx) {
+              allClassifyCorrect = false;
+              break;
+            }
+          }
+          isCorrect = allClassifyCorrect;
+        } else {
+          isCorrect = false;
+        }
       } else {
         isCorrect = (userAns === q.correctIndex);
       }
