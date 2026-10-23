@@ -1017,6 +1017,7 @@
     unlockedRounds: [1, 2, 3],
     singlePlayTickets: {},  // Vé 1 lần chơi cho Vòng 4-18 (xem video nhận 1 lượt, chơi xong lại xem tiếp)
     currentSeed: 1,         // Đề số 1 đến 1000
+    roundAdShown: false,    // Kiểm soát chỉ hiện 1 lần quảng cáo khi chơi xong cả chặng 1-6
 
     // Trạng thái bài thi hiện tại
     examMode: 1,            // 1: Vòng Tự Luyện (3 game), 2: Vòng Thi Các Cấp (Đề Tổng Hợp 30 câu)
@@ -4189,24 +4190,14 @@
 
           <div class="space-y-3">
             <div>
-              <label class="block text-xs font-bold text-slate-600 mb-1">ID tài khoản:</label>
+              <label class="block text-xs font-bold text-slate-600 mb-1">Tên tài khoản:</label>
               <div class="relative">
-                <input type="text" id="input-account-name" value="${AppState.customAccountId || ''}" placeholder="Nhập ID tài khoản..." onkeydown="if(event.key === 'Enter') saveCustomAccount()" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 font-bold text-sm focus:border-amber-500 focus:outline-none pr-16">
+                <input type="text" id="input-account-name" value="${AppState.customAccountId || ''}" placeholder="Nhập tên tài khoản..." onkeydown="if(event.key === 'Enter') saveCustomAccount()" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 font-bold text-sm focus:border-amber-500 focus:outline-none pr-16">
                 ${AppState.customAccountId ? `
                   <button onclick="clearCustomAccountId()" class="absolute right-2 top-1/2 -translate-y-1/2 text-[10px] text-red-600 hover:text-red-800 font-bold px-2 py-1 bg-red-50 rounded-lg border border-red-200">
-                    Xóa ID
+                    Xóa
                   </button>
                 ` : ''}
-              </div>
-            </div>
-
-            <div>
-              <label class="block text-xs font-bold text-slate-600 mb-1">Mật khẩu (nếu có):</label>
-              <div class="relative">
-                <input type="password" id="input-account-pass" value="" placeholder="Mật khẩu" onkeydown="if(event.key === 'Enter') saveCustomAccount()" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 font-bold text-sm focus:border-amber-500 focus:outline-none pr-12">
-                <button type="button" onclick="const p = document.getElementById('input-account-pass'); const icon = document.getElementById('eye-icon-btn'); if(p.type==='password'){p.type='text'; icon.textContent='🙈';}else{p.type='password'; icon.textContent='👁️';}" class="absolute right-3 top-1/2 -translate-y-1/2 text-base text-slate-500 hover:text-slate-700 p-1 select-none" id="eye-icon-btn" title="Hiện/Ẩn mật khẩu">
-                  👁️
-                </button>
               </div>
             </div>
 
@@ -4245,9 +4236,7 @@
 
   function saveCustomAccount() {
     const nameInput = document.getElementById('input-account-name');
-    const passInput = document.getElementById('input-account-pass');
     const enteredId = nameInput ? nameInput.value.trim() : '';
-    const enteredPass = passInput ? passInput.value.trim() : '';
 
     if (!enteredId) {
       AppState.customAccountId = '';
@@ -4263,61 +4252,53 @@
     AppState.customAccountId = enteredId;
     const lowerId = enteredId.toLowerCase();
 
-    // 1. Kiểm tra Admin apptest / testapp (ID: apptest, Pass: abc123)
+    // 1. Kiểm tra Admin apptest / testapp (ID: apptest, không cần mật khẩu)
     if (lowerId === 'apptest' || lowerId === 'testapp') {
-      if (enteredPass === 'abc123') {
-        AppState.studentName = enteredId;
-        AppState.customAccountId = enteredId;
-        AppState.isAdmin = true;
-        AppState.isVip1 = true;
-        AppState.isVip2 = true;
-        AppState.stars = Math.max(AppState.stars || 0, 9999);
-        AppState.unlockedRounds = Array.from({length: 18}, (_, i) => i + 1);
-        AppState.ownedChibis = AVATAR_LOOKBOOKS.map(x => x.id);
-        const allItems = [];
-        Object.values(AVATAR_ITEMS).forEach(arr => arr.forEach(it => allItems.push(it.id)));
-        AppState.ownedItems = allItems;
-        if (window.AndroidBridge && typeof window.AndroidBridge.setBannerVisible === 'function') {
-          window.AndroidBridge.setBannerVisible(false);
-        }
-        savePersistedState();
-        SoundEngine.playSuccess();
-        showCustomAlert(`Chào mừng Admin ${enteredId}! Đã mở khóa toàn bộ 18 Chặng thi, VIP MAX, Chibi & Phụ kiện!`);
-        closeModal();
-        updateHeaderUI();
-        renderHome();
-      } else {
-        SoundEngine.playWrong();
-        AppState.isAdmin = false;
-        showCustomAlert('Mật khẩu không chính xác!');
+      AppState.studentName = enteredId;
+      AppState.customAccountId = enteredId;
+      AppState.isAdmin = true;
+      AppState.isVip1 = true;
+      AppState.isVip2 = true;
+      AppState.stars = Math.max(AppState.stars || 0, 9999);
+      AppState.unlockedRounds = Array.from({length: 18}, (_, i) => i + 1);
+      AppState.ownedChibis = AVATAR_LOOKBOOKS.map(x => x.id);
+      const allItems = [];
+      Object.values(AVATAR_ITEMS).forEach(arr => arr.forEach(it => allItems.push(it.id)));
+      AppState.ownedItems = allItems;
+      if (window.AndroidBridge && typeof window.AndroidBridge.setBannerVisible === 'function') {
+        window.AndroidBridge.setBannerVisible(false);
       }
+      savePersistedState();
+      SoundEngine.playSuccess();
+      showCustomAlert(`Chào mừng Admin ${enteredId}! Đã mở khóa toàn bộ 18 Chặng thi, VIP MAX, Chibi & Phụ kiện!`);
+      closeModal();
+      updateHeaderUI();
+      renderHome();
       return;
     }
 
-    // Kiểm tra Admin uyenlp1310
+    // Kiểm tra Admin uyenlp1310 (không cần mật khẩu)
     if (lowerId === 'uyenlp1310') {
-      if (!enteredPass || enteredPass === 'Vudung177.') {
-        AppState.studentName = 'uyenlp1310';
-        AppState.customAccountId = 'uyenlp1310';
-        AppState.isAdmin = true;
-        AppState.isVip1 = true;
-        AppState.isVip2 = true;
-        AppState.unlockedRounds = Array.from({length: 18}, (_, i) => i + 1);
-        AppState.ownedChibis = AVATAR_LOOKBOOKS.map(x => x.id);
-        const allItems = [];
-        Object.values(AVATAR_ITEMS).forEach(arr => arr.forEach(it => allItems.push(it.id)));
-        AppState.ownedItems = allItems;
-        savePersistedState();
-        SoundEngine.playSuccess();
-        showCustomAlert('Chào mừng Admin uyenlp1310! Đã mở khóa toàn bộ Chibi, Kính mắt, Trang phục & Phụ kiện miễn phí!');
-        closeModal();
-        updateHeaderUI();
-        renderHome();
-      } else {
-        SoundEngine.playWrong();
-        AppState.isAdmin = false;
-        showCustomAlert('Mật khẩu không chính xác!');
+      AppState.studentName = 'uyenlp1310';
+      AppState.customAccountId = 'uyenlp1310';
+      AppState.isAdmin = true;
+      AppState.isVip1 = true;
+      AppState.isVip2 = true;
+      AppState.stars = Math.max(AppState.stars || 0, 9999);
+      AppState.unlockedRounds = Array.from({length: 18}, (_, i) => i + 1);
+      AppState.ownedChibis = AVATAR_LOOKBOOKS.map(x => x.id);
+      const allItems = [];
+      Object.values(AVATAR_ITEMS).forEach(arr => arr.forEach(it => allItems.push(it.id)));
+      AppState.ownedItems = allItems;
+      if (window.AndroidBridge && typeof window.AndroidBridge.setBannerVisible === 'function') {
+        window.AndroidBridge.setBannerVisible(false);
       }
+      savePersistedState();
+      SoundEngine.playSuccess();
+      showCustomAlert('Chào mừng Admin uyenlp1310! Đã mở khóa toàn bộ Chibi, Kính mắt, Trang phục & Phụ kiện miễn phí!');
+      closeModal();
+      updateHeaderUI();
+      renderHome();
       return;
     }
 
@@ -5416,6 +5397,7 @@
     AppState.roundTotalScore = 0;
     AppState.roundAnswersHistory = [];
     AppState.subGameMistakes = 0;
+    AppState.roundAdShown = false;
 
     closeModal();
 
@@ -5511,7 +5493,14 @@
     const idx = AppState.currentSubGameIndex;
 
     if (idx >= exam.subGames.length) {
-      finishRoundExam();
+      if (!AppState.roundAdShown && !AppState.isVip2 && !isAdminAccount()) {
+        AppState.roundAdShown = true;
+        showInterstitialAd(() => {
+          finishRoundExam();
+        });
+      } else {
+        finishRoundExam();
+      }
       return;
     }
 
@@ -5731,13 +5720,16 @@
 
           AppState.roundAnswersHistory.push({
             game: 'Bé tinh mắt',
+            topic: 'Nối cặp từ & Thành ngữ',
             question: `${leftTile.textContent.replace('✓', '').trim()} 🔗 ${rightTile.textContent.replace('✓', '').trim()}`,
+            userAnswer: rightTile.textContent.replace('✓', '').trim(),
+            correctAnswer: rightTile.textContent.replace('✓', '').trim(),
             isCorrect: true,
             explain: 'Nối đúng cặp vế tương ứng giữa cột Trái và cột Phải.'
           });
 
           if (matchedCount >= totalPairs) {
-            setTimeout(() => showInterstitialAd(() => nextSubGameMode1()), 600);
+            setTimeout(() => nextSubGameMode1(), 600);
           }
         } else {
           // NỐI SAI CẶP
@@ -5745,6 +5737,16 @@
           AppState.subGameMistakes++;
           const mistakeEl = document.getElementById('mistake-count');
           if (mistakeEl) mistakeEl.textContent = AppState.subGameMistakes;
+
+          AppState.roundAnswersHistory.push({
+            game: 'Bé tinh mắt',
+            topic: 'Nối cặp từ & Thành ngữ',
+            question: `Ghép cặp cho từ: "${leftTile.textContent.replace('✓', '').trim()}"`,
+            userAnswer: rightTile.textContent.replace('✓', '').trim(),
+            correctAnswer: 'Từ ghép / vế thành ngữ tương ứng',
+            isCorrect: false,
+            explain: 'Bé cần chú ý nghĩa của từ vựng và cấu trúc thành ngữ, tục ngữ quen thuộc để nối cho chuẩn xác.'
+          });
 
           leftTile.classList.add('wrong-shake', 'border-red-500', 'bg-red-100');
           rightTile.classList.add('wrong-shake', 'border-red-500', 'bg-red-100');
@@ -5755,7 +5757,7 @@
 
           if (AppState.subGameMistakes >= 3) {
             showCustomAlert('Bạn đã nối sai 3 lần! Hệ thống tự động chuyển sang bài tiếp theo.');
-            showInterstitialAd(() => nextSubGameMode1());
+            nextSubGameMode1();
           }
         }
       }
@@ -5861,6 +5863,7 @@
 
           AppState.roundAnswersHistory.push({
             game: 'Bé thông minh',
+            topic: 'Phân loại từ & Ngữ nghĩa',
             question: `Phân loại từ "${wordText}" vào nhóm "${baskets[chosenBasket].name}"`,
             userAnswer: baskets[chosenBasket].name,
             correctAnswer: baskets[correctBasket].name,
@@ -5873,13 +5876,23 @@
           placedCount++;
 
           if (placedCount >= totalWords) {
-            setTimeout(() => showInterstitialAd(() => nextSubGameMode1()), 600);
+            setTimeout(() => nextSubGameMode1(), 600);
           }
         } else {
           SoundEngine.playWrong();
           mistakes++;
           bEl.classList.add('wrong-shake');
           setTimeout(() => bEl.classList.remove('wrong-shake'), 400);
+
+          AppState.roundAnswersHistory.push({
+            game: 'Bé thông minh',
+            topic: 'Phân loại từ & Ngữ nghĩa',
+            question: `Phân loại từ: "${wordText}"`,
+            userAnswer: baskets[chosenBasket].name,
+            correctAnswer: baskets[correctBasket].name,
+            isCorrect: false,
+            explain: `Từ "${wordText}" thuộc nhóm "${baskets[correctBasket].name}". Bé lưu ý phân biệt danh từ, động từ, tính từ hoặc trường nghĩa.`
+          });
         }
       });
     });
@@ -5895,7 +5908,7 @@
 
     function showQ() {
       if (qIdx >= questions.length) {
-        showInterstitialAd(() => nextSubGameMode1());
+        nextSubGameMode1();
         return;
       }
 
@@ -5940,6 +5953,7 @@
           }
           AppState.roundAnswersHistory.push({
             game: 'Bé học vui',
+            topic: q.topic || 'Chính tả & Điền từ',
             question: q.question,
             userAnswer: val || 'Chưa nhập',
             correctAnswer: q.answer,
@@ -5991,6 +6005,7 @@
           }
           AppState.roundAnswersHistory.push({
             game: 'Bé học vui',
+            topic: q.topic || q.title || 'Luyện từ và câu',
             question: q.question,
             userAnswer: (q.options && q.options[chosen] !== undefined) ? q.options[chosen] : '',
             correctAnswer: (q.options && q.options[q.correctIndex] !== undefined) ? q.options[q.correctIndex] : '',
@@ -6015,7 +6030,7 @@
 
     function showRiddle() {
       if (qIdx >= riddles.length) {
-        showInterstitialAd(() => nextSubGameMode1());
+        nextSubGameMode1();
         return;
       }
 
@@ -6064,6 +6079,7 @@
         }
         AppState.roundAnswersHistory.push({
           game: 'Bé sáng tạo',
+          topic: r.topic || 'Câu đố & Tư duy ngôn ngữ',
           question: r.poem || r.question,
           userAnswer: r.options[chosen] || '',
           correctAnswer: r.options[r.correctIndex] || '',
@@ -6087,7 +6103,14 @@
 
     function showImgQ() {
       if (qIdx >= items.length) {
-        finishRoundExam();
+        if (!AppState.roundAdShown && !AppState.isVip2 && !isAdminAccount()) {
+          AppState.roundAdShown = true;
+          showInterstitialAd(() => {
+            finishRoundExam();
+          });
+        } else {
+          finishRoundExam();
+        }
         return;
       }
 
@@ -6139,6 +6162,7 @@
         }
         AppState.roundAnswersHistory.push({
           game: 'Bé nhanh tay',
+          topic: item.topic || 'Quan sát & Nhận biết hình ảnh',
           question: item.question,
           userAnswer: item.options[chosen] || '',
           correctAnswer: item.options[item.correctIndex] || '',
@@ -6154,10 +6178,20 @@
   }
 
   function nextSubGameMode1() {
-    showInterstitialAd(() => {
-      AppState.currentSubGameIndex++;
+    AppState.currentSubGameIndex++;
+    const exam = AppState.currentExamMode1;
+    if (exam && AppState.currentSubGameIndex >= exam.subGames.length) {
+      if (!AppState.roundAdShown && !AppState.isVip2 && !isAdminAccount()) {
+        AppState.roundAdShown = true;
+        showInterstitialAd(() => {
+          finishRoundExam();
+        });
+      } else {
+        finishRoundExam();
+      }
+    } else {
       renderCurrentSubGameMode1();
-    });
+    }
   }
 
   // ========================================================
@@ -6685,6 +6719,38 @@
   }
 
   // ========================================================
+  // [GỢI Ý SƯ PHẠM THEO CHUYÊN ĐỀ DÀNH CHO BÉ]
+  // ========================================================
+  function getTopicPedagogicalAdvice(topicName) {
+    const t = (topicName || '').toLowerCase();
+    if (t.includes('nối') || t.includes('cặp') || t.includes('tinh mắt')) {
+      return 'Bé nên ôn tập thêm các cặp từ đồng nghĩa, trái nghĩa và cấu trúc thành ngữ, tục ngữ dân gian để nối nhanh và chuẩn xác.';
+    }
+    if (t.includes('phân loại') || t.includes('thông minh') || t.includes('từ loại')) {
+      return 'Bé hãy chú ý phân biệt rõ danh từ (chỉ người, vật), động từ (chỉ hoạt động) và tính từ (chỉ đặc điểm, tính chất).';
+    }
+    if (t.includes('chính tả') || t.includes('điền') || t.includes('học vui')) {
+      return 'Bé cần chú ý các quy tắc chính tả phân biệt l/n, ch/tr, s/x, d/r/gi và dấu hỏi/ngã khi điền từ vào chỗ trống.';
+    }
+    if (t.includes('đố') || t.includes('sáng tạo')) {
+      return 'Bé hãy đọc kỹ các gợi ý gieo vần, đặc điểm sự vật được nhân hóa trong bài thơ để suy luận ra đáp án đúng.';
+    }
+    if (t.includes('nhanh tay') || t.includes('hình ảnh') || t.includes('quan sát')) {
+      return 'Bé hãy quan sát thật kỹ các chi tiết, hành động trong tranh minh họa trước khi chọn đáp án nhé!';
+    }
+    if (t.includes('tu từ') || t.includes('so sánh') || t.includes('nhân hóa')) {
+      return 'Bé nên xem lại dấu hiệu nhận biết biện pháp tu từ so sánh (từ: như, là, tựa...) và nhân hóa (gọi, tả đồ vật như người).';
+    }
+    if (t.includes('dấu câu') || t.includes('câu')) {
+      return 'Bé nhớ quy tắc đặt dấu chấm cuối câu kể, dấu chấm hỏi cuối câu hỏi và dấu chấm than cuối câu cảm thán/khiến.';
+    }
+    if (t.includes('đọc hiểu')) {
+      return 'Bé hãy đọc kỹ từng đoạn văn, gạch chân các từ khóa và chi tiết quan trọng trước khi trả lời câu hỏi đọc hiểu.';
+    }
+    return 'Bé hãy ôn luyện lại các dạng bài tập trong sách giáo khoa Tiếng Việt và làm lại đề thi để củng cố vững chắc kiến thức.';
+  }
+
+  // ========================================================
   // ========================================================
   // [TỔNG KẾT VÒNG THI & VINH DANH TRẠNG NGUYÊN]
   // ========================================================
@@ -6703,20 +6769,40 @@
     const spentSeconds = timeSpent % 60;
     const timeString = `${spentMinutes} phút ${spentSeconds.toString().padStart(2, '0')} giây`;
 
+    // Kiểm tra xem thí sinh có làm câu nào hay không
+    let answeredCount = 0;
+    if (AppState.examMode === 2) {
+      if (AppState.userAnswers30) {
+        answeredCount = Object.keys(AppState.userAnswers30).filter(k => {
+          const val = AppState.userAnswers30[k];
+          return val !== undefined && val !== null && val !== false && val !== '';
+        }).length;
+      }
+    } else {
+      answeredCount = (AppState.roundAnswersHistory || []).filter(h => {
+        return h.userAnswer && h.userAnswer !== 'Chưa làm' && h.userAnswer !== 'Chưa nhập';
+      }).length;
+    }
+    const isNoAnswerSubmitted = (answeredCount === 0);
+
     // So sánh chuẩn hóa điểm số (0 đến 300)
-    const total = Math.max(0, Math.min(300, AppState.roundTotalScore || 0));
+    const total = isNoAnswerSubmitted ? 0 : Math.max(0, Math.min(300, AppState.roundTotalScore || 0));
     let rankTitle = 'Học Sĩ Chăm Chỉ';
     let rankBadge = '📜';
     let rankColor = 'from-slate-600 to-amber-700';
     // Điểm qua các vòng thi là số sao nhận được (theo đúng yêu cầu của người dùng)
-    const starReward = total;
+    const starReward = isNoAnswerSubmitted ? 0 : total;
 
     // Vòng 7-18 (và Vòng 4-18) khi học sinh hoàn thành 30 câu với điểm số cao trên 250 điểm sẽ kích hoạt hiệu ứng pháo hoa rực rỡ và bảng vàng vinh danh
     const isRound7To18 = AppState.currentRoundNum >= 7 && AppState.currentRoundNum <= 18;
     const isRound4To18 = AppState.currentRoundNum >= 4 && AppState.currentRoundNum <= 18;
-    const isPerfect300 = (total === 300);
+    const isPerfect300 = (!isNoAnswerSubmitted && total === 300);
 
-    if (total === 300) {
+    if (isNoAnswerSubmitted) {
+      rankTitle = 'Bé cố gắng lên nhé';
+      rankBadge = '🌱';
+      rankColor = 'from-amber-600 to-amber-800';
+    } else if (total === 300) {
       rankTitle = 'Thủ Khoa Trạng Nhí';
       rankBadge = '👑';
       rankColor = 'from-amber-500 via-red-600 to-amber-500';
@@ -6761,7 +6847,11 @@
     // Tích lũy số sao nhận được tương ứng với điểm thi
     AppState.stars = (AppState.stars || 0) + starReward;
     savePersistedState();
-    SoundEngine.playFanfare();
+    if (isNoAnswerSubmitted) {
+      SoundEngine.playClick();
+    } else {
+      SoundEngine.playFanfare();
+    }
 
     // Tự động cuộn lên đầu trang để người dùng xem kết quả ngay
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -6770,10 +6860,49 @@
     const isVip = isAdminAccount() || AppState.isVip1 || AppState.isVip2;
     const isMode2 = AppState.examMode === 2;
 
+    // Phân tích chuyên đề & các nội dung làm sai cho cả Vòng 1-6 và Vòng 7-18
+    const topicStats = {};
+    const wrongItems = [];
+    (AppState.roundAnswersHistory || []).forEach(h => {
+      const topicName = h.topic || h.game || 'Kiến thức tổng hợp';
+      if (!topicStats[topicName]) topicStats[topicName] = { correct: 0, wrong: 0, total: 0 };
+      topicStats[topicName].total++;
+      if (h.isCorrect) {
+        topicStats[topicName].correct++;
+      } else {
+        topicStats[topicName].wrong++;
+        wrongItems.push(h);
+      }
+    });
+
+    let weakestTopic = '';
+    let lowestAccuracy = 1.0;
+    for (const topic in topicStats) {
+      const stat = topicStats[topic];
+      const accuracy = stat.total > 0 ? (stat.correct / stat.total) : 1.0;
+      if (accuracy < lowestAccuracy) {
+        lowestAccuracy = accuracy;
+        weakestTopic = topic;
+      }
+    }
+    if (isNoAnswerSubmitted) {
+      AppState.weakestTopic = 'Bé cố gắng lên nhé';
+      AppState.lowestAccuracy = 0;
+    } else if (weakestTopic) {
+      AppState.weakestTopic = weakestTopic;
+      AppState.lowestAccuracy = lowestAccuracy;
+    } else if (wrongItems.length > 0) {
+      AppState.weakestTopic = wrongItems[0].topic || wrongItems[0].game;
+      AppState.lowestAccuracy = 0;
+    } else {
+      AppState.weakestTopic = '';
+      AppState.lowestAccuracy = 1.0;
+    }
+
     // Đếm số câu đúng / sai
-    const totalQuestions = AppState.roundAnswersHistory.length;
-    const correctCount = AppState.roundAnswersHistory.filter(h => h.isCorrect).length;
-    const wrongCount = totalQuestions - correctCount;
+    const totalQuestions = AppState.roundAnswersHistory.length || (AppState.examMode === 2 ? 30 : 25);
+    const correctCount = isNoAnswerSubmitted ? 0 : AppState.roundAnswersHistory.filter(h => h.isCorrect).length;
+    const wrongCount = Math.max(0, totalQuestions - correctCount);
 
     root.innerHTML = `
       <div class="scroll-card p-4 sm:p-7 max-w-2xl mx-auto text-center border-4 border-amber-400 bg-gradient-to-b from-amber-50 via-white to-amber-50 shadow-2xl">
@@ -6783,7 +6912,7 @@
         </div>
         <h2 class="text-2xl sm:text-3xl font-black text-amber-900 leading-tight">${rankTitle}</h2>
         <p class="text-slate-600 text-xs sm:text-sm mt-1">
-          Chúc mừng thí sinh <b>${AppState.studentName}</b> đã hoàn thành Vòng ${AppState.currentRoundNum}!
+          ${isNoAnswerSubmitted ? `Thí sinh <b>${AppState.studentName}</b> vừa nộp bài Vòng ${AppState.currentRoundNum}.` : `Chúc mừng thí sinh <b>${AppState.studentName}</b> đã hoàn thành Vòng ${AppState.currentRoundNum}!`}
         </p>
 
         ${(isRound4To18 && isPerfect300) ? `
@@ -6847,7 +6976,7 @@
             </div>
             <div class="pt-2 border-t border-sky-200 flex items-center justify-between text-xs font-extrabold text-slate-700">
               <span>Đúng / Tổng:</span>
-              <span class="text-emerald-700 font-black">${correctCount} / 30 câu</span>
+              <span class="text-emerald-700 font-black">${correctCount} / ${totalQuestions} câu</span>
             </div>
           </div>
 
@@ -6859,15 +6988,128 @@
             <div class="flex items-center gap-3 mb-2">
               <div class="w-10 h-10 rounded-xl bg-red-600 text-white flex items-center justify-center text-xl shadow-inner font-black">🎯</div>
               <div>
-                <div class="text-[11px] font-bold text-red-900 uppercase">Chuyên Đề Yếu Nhất</div>
-                <div class="text-xs font-black text-red-800">${AppState.weakestTopic || 'Kiến thức chung'}</div>
+                <div class="text-[11px] font-bold text-red-900 uppercase">Chuyên Đề Cần Rèn Luyện</div>
+                <div class="text-xs font-black text-red-800">${isNoAnswerSubmitted ? 'Bé cố gắng lên nhé' : (AppState.weakestTopic || 'Kiến thức chung')}</div>
               </div>
             </div>
             <div class="pt-2 border-t border-red-200 text-[11px] font-bold text-slate-700 leading-relaxed">
-              ${AppState.weakestTopic && AppState.lowestAccuracy < 1.0 ? `Tỷ lệ chính xác: <b class="text-red-700">${Math.round(AppState.lowestAccuracy * 100)}%</b>. Bé nên xem lại lý thuyết phần này.` : `🎉 Tuyệt vời! Bé nắm vững tất cả các chuyên đề.`}
+              ${isNoAnswerSubmitted ? `<span class="text-amber-800 font-extrabold">Bé cố gắng lên nhé!</span> Hãy tự tin làm bài để tích lũy kiến thức và điểm số.` : (AppState.weakestTopic && AppState.lowestAccuracy < 1.0 ? `Tỷ lệ chính xác: <b class="text-red-700">${Math.round(AppState.lowestAccuracy * 100)}%</b>. Bé nên xem lại lý thuyết phần này.` : `🎉 Tuyệt vời! Bé nắm vững tất cả các chuyên đề.`)}
             </div>
           </div>
 
+        </div>
+
+        <!-- CHUYÊN MỤC ĐỀ XUẤT TỔNG HỢP NỘI DUNG LÀM SAI & GỢI Ý CẢI THIỆN (Áp dụng cho cả Vòng 1-6 và Vòng 7-18) -->
+        <div class="my-5 p-4 sm:p-5 rounded-2xl bg-gradient-to-br from-amber-50 via-white to-red-50 border-2 border-amber-300 text-left shadow-md">
+          <div class="flex items-center justify-between pb-3 border-b border-amber-200 mb-3.5">
+            <div class="flex items-center gap-2">
+              <span class="text-2xl">📋</span>
+              <div>
+                <h3 class="font-black text-sm sm:text-base text-red-950">
+                  Tổng Hợp Nội Dung Cần Cải Thiện & Đề Xuất Ôn Luyện
+                </h3>
+                <div class="text-[11px] font-bold text-slate-500">
+                  Phân tích tự động dựa trên kết quả làm bài của bé (Vòng ${AppState.currentRoundNum})
+                </div>
+              </div>
+            </div>
+            <span class="px-2.5 py-1 rounded-full text-[10px] sm:text-xs font-black ${isNoAnswerSubmitted ? 'bg-amber-100 text-amber-900 border border-amber-300' : (wrongItems.length === 0 ? 'bg-emerald-100 text-emerald-800 border border-emerald-300' : 'bg-red-100 text-red-800 border border-red-300')}">
+              ${isNoAnswerSubmitted ? 'Bé cố gắng lên nhé' : (wrongItems.length === 0 ? 'Xuất sắc 100%' : `Có ${wrongItems.length} câu cần lưu ý`)}
+            </span>
+          </div>
+
+          <!-- Danh sách các chuyên đề & Tỷ lệ hoàn thành -->
+          <div class="mb-4">
+            <div class="text-xs font-black text-amber-950 mb-2 flex items-center gap-1.5">
+              <span>📊</span> <span>Độ chính xác theo từng dạng bài:</span>
+            </div>
+            ${isNoAnswerSubmitted ? `
+              <div class="p-3 rounded-xl bg-amber-50/60 border border-amber-200 text-center text-xs font-bold text-amber-900">
+                Chưa có dữ liệu làm bài do bé chưa thực hiện câu hỏi nào trước khi nộp bài.
+              </div>
+            ` : `
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                ${Object.keys(topicStats).map(tName => {
+                  const st = topicStats[tName];
+                  const pct = st.total > 0 ? Math.round((st.correct / st.total) * 100) : 100;
+                  const isWeak = pct < 70;
+                  return `
+                    <div class="p-2.5 rounded-xl border ${isWeak ? 'border-red-200 bg-red-50/50' : 'border-amber-200 bg-white'} flex items-center justify-between text-xs shadow-sm">
+                      <span class="font-extrabold text-slate-800 truncate mr-2" title="${tName}">${tName}</span>
+                      <span class="font-black shrink-0 ${pct === 100 ? 'text-emerald-700' : (pct >= 70 ? 'text-blue-700' : 'text-red-700')}">
+                        ${st.correct}/${st.total} (${pct}%)
+                      </span>
+                    </div>
+                  `;
+                }).join('')}
+              </div>
+            `}
+          </div>
+
+          <!-- Lời khuyên và định hướng cải thiện sư phạm -->
+          <div class="p-3.5 rounded-xl bg-amber-100/70 border border-amber-300 mb-4">
+            <div class="flex items-start gap-2.5">
+              <span class="text-xl shrink-0">💡</span>
+              <div class="text-xs text-amber-950 leading-relaxed">
+                <span class="font-black text-red-900">Gợi ý từ Thầy Đồ Trạng Sĩ:</span>
+                ${isNoAnswerSubmitted ? `
+                  <div class="text-base font-black text-amber-950 mt-1">Bé cố gắng lên nhé!</div>
+                  <p class="text-xs text-slate-700 mt-1 leading-relaxed">
+                    Bé vừa bấm nộp bài khi chưa làm câu nào. Đừng nản lòng nhé, mỗi lần làm bài là một lần tích lũy kiến thức bổ ích. Bé hãy bấm nút <b>"Thi Lại Đề Khác"</b> bên dưới để thử sức trả lời từng câu nha!
+                  </p>
+                ` : (AppState.weakestTopic && AppState.lowestAccuracy < 1.0 ? `
+                  Chuyên đề <b>"${AppState.weakestTopic}"</b> đang có tỷ lệ chưa cao (${Math.round(AppState.lowestAccuracy * 100)}%). ${getTopicPedagogicalAdvice(AppState.weakestTopic)}
+                ` : `
+                  Bé đã làm rất xuất sắc các nội dung của vòng này! Hãy tiếp tục duy trì phong độ đọc kỹ đề và phân tích câu từ ở các chặng tiếp theo nhé!
+                `)}
+              </div>
+            </div>
+          </div>
+
+          <!-- Danh sách câu làm sai chi tiết (nếu có câu sai) hoặc thông báo chưa làm câu nào -->
+          ${isNoAnswerSubmitted ? `
+            <div class="p-4 sm:p-5 rounded-2xl bg-amber-50/90 border-2 border-amber-300 text-center shadow-sm">
+              <div class="text-3xl sm:text-4xl mb-1.5 animate-bounce">🌱</div>
+              <div class="text-base sm:text-lg font-black text-red-900 mb-1">
+                Bé cố gắng lên nhé!
+              </div>
+              <p class="text-xs sm:text-sm text-slate-600 font-medium max-w-md mx-auto leading-relaxed">
+                Bé chưa hoàn thành câu hỏi nào trước khi bấm nộp bài. Hãy bấm <b>"Thi Lại Đề Khác"</b> bên dưới để bắt đầu thử sức và ghi danh Bảng Vàng nhé!
+              </p>
+            </div>
+          ` : (wrongItems.length > 0 ? `
+            <div class="mt-3 pt-3 border-t border-amber-200">
+              <div class="text-xs font-black text-red-900 mb-2.5 flex items-center gap-1.5">
+                <span>⚠️</span> <span>Tổng hợp câu bé làm chưa đúng (${wrongItems.length} câu):</span>
+              </div>
+              <div class="space-y-2 max-h-60 overflow-y-auto pr-1">
+                ${wrongItems.map((w, wIdx) => `
+                  <div class="p-3 rounded-xl border border-red-200 bg-white shadow-sm text-xs">
+                    <div class="font-bold text-slate-900 mb-1 flex items-start gap-1.5">
+                      <span class="text-red-600 shrink-0">●</span>
+                      <div>
+                        ${w.game ? `<span class="text-amber-800 font-extrabold">[${w.game}]</span> ` : ''}
+                        <span>${w.question}</span>
+                      </div>
+                    </div>
+                    <div class="text-[11px] text-slate-600 bg-red-50/60 p-2 rounded-lg border border-red-100 space-y-1 mt-1.5">
+                      <div>Lựa chọn của bé: <b class="text-red-700">${w.userAnswer || 'Chưa làm'}</b></div>
+                      <div>Đáp án đúng: <b class="text-emerald-700">${w.correctAnswer || 'Xem lời giải'}</b></div>
+                      <div class="text-amber-900 font-medium pt-1 border-t border-red-100/60">
+                        <b>Gợi ý khắc phục:</b> ${w.explain || getTopicPedagogicalAdvice(w.topic || w.game)}
+                      </div>
+                    </div>
+                  </div>
+                `).join('')}
+              </div>
+            </div>
+          ` : `
+            <div class="p-3 rounded-xl bg-emerald-50 border border-emerald-200 text-center text-xs font-bold text-emerald-800 flex items-center justify-center gap-2">
+              <span>🌟</span>
+              <span>Bé không làm sai câu nào! Trí tuệ tuyệt vời xứng danh Trạng Nguyên Nhí!</span>
+              <span>🌟</span>
+            </div>
+          `)}
         </div>
 
         <!-- Chỉ hiển thị Tổng Điểm chính và thông tin vinh danh, không hiển thị chi tiết các mini game -->
@@ -6950,7 +7192,7 @@
           <button onclick="restartExamWithNewSeed()" class="btn-3d btn-3d-gold px-5 py-2.5 rounded-xl font-black text-amber-950 text-xs sm:text-sm flex items-center gap-1.5 shadow">
             <span>🎲 Thi Lại Đề Khác</span>
           </button>
-          <button onclick="showInterstitialAd(() => renderHome())" class="btn-3d btn-3d-gold px-6 py-2.5 rounded-xl font-black text-amber-950 text-xs sm:text-sm flex items-center gap-1.5 shadow">
+          <button onclick="onFinishScreenGoHome()" class="btn-3d btn-3d-gold px-6 py-2.5 rounded-xl font-black text-amber-950 text-xs sm:text-sm flex items-center gap-1.5 shadow">
             <span>🏠 Quay Về Trang Chủ</span>
           </button>
         </div>
@@ -6959,6 +7201,15 @@
 
     safeCreateIcons();
     updateHeaderUI();
+  }
+
+  function onFinishScreenGoHome() {
+    if (!AppState.roundAdShown && !AppState.isVip2 && !isAdminAccount()) {
+      AppState.roundAdShown = true;
+      showInterstitialAd(() => renderHome());
+    } else {
+      renderHome();
+    }
   }
 
   function restartExamWithNewSeed() {
@@ -6970,7 +7221,12 @@
       // Vòng 4 trở lên: 1000 bộ đề
       nextSeed = Math.floor(Math.random() * 1000) + 1;
     }
-    startRoundExam(AppState.currentRoundNum, nextSeed);
+    if (!AppState.roundAdShown && !AppState.isVip2 && !isAdminAccount()) {
+      AppState.roundAdShown = true;
+      showInterstitialAd(() => startRoundExam(AppState.currentRoundNum, nextSeed));
+    } else {
+      startRoundExam(AppState.currentRoundNum, nextSeed);
+    }
   }
 
   // ==========================================
@@ -7060,6 +7316,7 @@
               <ul class="text-[11px] text-slate-700 space-y-1 mb-2.5 font-medium">
                 <li class="flex items-center gap-1 font-bold text-red-800">✓ TẤT CẢ quyền lợi của VIP 1</li>
                 <li class="flex items-center gap-1 font-bold text-emerald-800">✓ TẮT HOÀN TOÀN 100% QUẢNG CÁO</li>
+                <li class="flex items-center gap-1 font-bold text-amber-900">✓ Tự động cập nhật ngân hàng câu hỏi mới miễn phí</li>
                 <li class="flex items-center gap-1">✓ Sử dụng trọn đời không gia hạn</li>
               </ul>
               <button onclick="simulateBuyVip('vip2')" class="btn-3d btn-3d-green w-full py-2.5 rounded-xl text-white font-black text-xs shadow-md">
