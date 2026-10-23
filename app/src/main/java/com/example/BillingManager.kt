@@ -225,31 +225,46 @@ class BillingManager(
     userEmail: String,
     callback: (success: Boolean, vipLevel: Int, message: String) -> Unit
   ) {
-    if (userName.isNotBlank()) vipPrefs.setUserName(userName)
-    if (userEmail.isNotBlank()) vipPrefs.setUserEmail(userEmail)
+    val inputEmail = userEmail.trim()
+    val inputName = userName.trim()
+
+    if (inputEmail.isBlank()) {
+      activity.runOnUiThread {
+        callback(
+          false,
+          VipPreferenceManager.VIP_LEVEL_0,
+          "Vui lòng nhập Email đã dùng khi đăng ký mua VIP để khôi phục!"
+        )
+      }
+      return
+    }
 
     if (!billingClient.isReady) {
       billingClient.startConnection(object : BillingClientStateListener {
         override fun onBillingSetupFinished(billingResult: BillingResult) {
           if (billingResult.responseCode == BillingClient.BillingResponseCode.OK) {
             isServiceConnected = true
-            executeScanPurchases(callback)
+            executeScanPurchases(inputName, inputEmail, callback)
           } else {
-            executeLocalFallbackScan(callback)
+            executeLocalFallbackScan(inputName, inputEmail, callback)
           }
         }
 
         override fun onBillingServiceDisconnected() {
-          executeLocalFallbackScan(callback)
+          executeLocalFallbackScan(inputName, inputEmail, callback)
         }
       })
       return
     }
 
-    executeScanPurchases(callback)
+    executeScanPurchases(inputName, inputEmail, callback)
   }
 
-  private fun executeScanPurchases(callback: (Boolean, Int, String) -> Unit) {
+  private fun executeScanPurchases(
+    inputName: String,
+    inputEmail: String,
+    callback: (Boolean, Int, String) -> Unit
+  ) {
     val params = QueryPurchasesParams.newBuilder()
       .setProductType(BillingClient.ProductType.INAPP)
       .build()
@@ -274,32 +289,67 @@ class BillingManager(
         }
 
         if (highestLevel > VipPreferenceManager.VIP_LEVEL_0) {
+          val savedEmail = vipPrefs.getUserEmail().trim()
+          val deviceId = vipPrefs.getDeviceId()
+
+          // Kiểm tra xem Email nhập vào có khớp với Email đã đăng ký VIP cho thiết bị này không
+          if (savedEmail.isNotEmpty() && !savedEmail.equals(inputEmail, ignoreCase = true)) {
+            activity.runOnUiThread {
+              callback(
+                false,
+                VipPreferenceManager.VIP_LEVEL_0,
+                "Khôi phục thất bại! Email '$inputEmail' không khớp với Email đã đăng ký VIP ($savedEmail) của thiết bị này (ID: $deviceId)!"
+              )
+            }
+            return@queryPurchasesAsync
+          }
+
+          vipPrefs.setUserEmail(inputEmail)
+          if (inputName.isNotEmpty()) vipPrefs.setUserName(inputName)
           vipPrefs.setVipLevel(highestLevel)
           if (activeToken.isNotBlank()) vipPrefs.setPurchaseToken(activeToken)
+
           activity.runOnUiThread {
-            callback(true, highestLevel, "Đã tìm thấy giao dịch VIP hợp lệ trên Google Play!")
+            callback(true, highestLevel, "Đã khôi phục thành công gói VIP cho Email '$inputEmail' và ID thiết bị $deviceId!")
           }
         } else {
-          executeLocalFallbackScan(callback)
+          executeLocalFallbackScan(inputName, inputEmail, callback)
         }
       } else {
-        executeLocalFallbackScan(callback)
+        executeLocalFallbackScan(inputName, inputEmail, callback)
       }
     }
   }
 
-  private fun executeLocalFallbackScan(callback: (Boolean, Int, String) -> Unit) {
+  private fun executeLocalFallbackScan(
+    inputName: String,
+    inputEmail: String,
+    callback: (Boolean, Int, String) -> Unit
+  ) {
     val savedLevel = vipPrefs.getVipLevel()
-    val savedToken = vipPrefs.getPurchaseToken()
-    if (savedLevel > VipPreferenceManager.VIP_LEVEL_0 || savedToken.isNotBlank()) {
-      val level = if (savedLevel > 0) savedLevel else VipPreferenceManager.VIP_LEVEL_1
-      vipPrefs.setVipLevel(level)
+    val savedEmail = vipPrefs.getUserEmail().trim()
+    val deviceId = vipPrefs.getDeviceId()
+
+    // Yêu cầu bắt buộc: Đã có VIP (>0), đã có Email đăng ký (>0) VÀ Email nhập vào phải KHỚP 100% với Email đã đăng ký + ID thiết bị
+    if (savedLevel > VipPreferenceManager.VIP_LEVEL_0 &&
+        savedEmail.isNotEmpty() &&
+        savedEmail.equals(inputEmail, ignoreCase = true)
+    ) {
+      if (inputName.isNotEmpty()) vipPrefs.setUserName(inputName)
       activity.runOnUiThread {
-        callback(true, level, "Đã khôi phục thành công trạng thái VIP từ dữ liệu đã xác thực!")
+        callback(
+          true,
+          savedLevel,
+          "Xác thực thành công tài khoản VIP cho Email '$inputEmail' và ID thiết bị $deviceId!"
+        )
       }
     } else {
       activity.runOnUiThread {
-        callback(false, VipPreferenceManager.VIP_LEVEL_0, "Chưa tìm thấy gói VIP đã đăng ký cho thông tin tài khoản này.")
+        callback(
+          false,
+          VipPreferenceManager.VIP_LEVEL_0,
+          "Khôi phục thất bại! Email '$inputEmail' không khớp với thông tin đã đăng ký VIP cho ID thiết bị $deviceId."
+        )
       }
     }
   }

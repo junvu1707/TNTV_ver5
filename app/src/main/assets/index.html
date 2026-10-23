@@ -458,9 +458,9 @@
     },
     {
       id: 'chibi_nam_sinh_ao_dai',
-      name: 'Nam sinh áo dài xanh',
+      name: 'Cậu bé tinh nghịch',
       image: 'chibi_gau_con.png',
-      sub: 'Áo dài nam sinh thanh lịch, phong thái tự tin (Nửa thân trên)',
+      sub: 'Phong thái tinh nghịch, năng động tự tin (Nửa thân trên)',
       price: 40,
       config: { hair: 'hair_lang_tu', outfit: 'outfit_hoc_sinh', glasses: 'glasses_kinh_tron', accessory: 'acc_bom_hoa' }
     }
@@ -484,11 +484,22 @@
       { id: 'outfit_trang_thong_thai', name: 'Áo Gấm Cung Đình', price: 0, desc: 'Áo trạng truyền thống màu đỏ hoàng gia', icon: '👘' },
       { id: 'outfit_ao_dai_hoa', name: 'Áo Dài Hoa Thêu', price: 60, desc: 'Áo dài lụa thêu hoa sen tinh tế', icon: '🌸' },
       { id: 'outfit_hoc_sinh', name: 'Đồng Phục Áo Cổ Sen', price: 40, desc: 'Trang phục đến trường năng động', icon: '👕' },
-      { id: 'outfit_da_hoi', name: 'Đầm Dạ Hội Hoàng Gia', price: 70, desc: 'Trang phục dạ hội tím huyền bí', icon: '👑' }
+      { id: 'outfit_da_hoi', name: 'Đầm Dạ Hội Hoàng Gia', price: 70, desc: 'Trang phục dạ hội lộng lẫy', icon: '👑' },
+      { id: 'outfit_ba_ba', name: 'Áo Bà Ba Duyên Dáng', price: 35, desc: 'Trang phục Nam Bộ thân thương duyên dáng', icon: '🌾' },
+      { id: 'outfit_ao_tu_than', name: 'Áo Tứ Thân Kinh Bắc', price: 50, desc: 'Trang phục quan họ truyền thống Kinh Bắc', icon: '🪕' }
     ],
     accessory: [
+      { id: 'acc_none', name: 'Không Phụ Kiện', price: 0, desc: 'Giữ nguyên nét đẹp tự nhiên', icon: '✨' },
       { id: 'acc_no_cai_toc', name: 'Nơ Cài Tóc Đỏ', price: 30, desc: 'Nơ cài nhung đỏ duyên dáng', icon: '🎀' },
-      { id: 'acc_bom_hoa', name: 'Bờm Hoa Dại', price: 35, desc: 'Bờm hoa tươi tắn rạng rỡ', icon: '🌸' }
+      { id: 'acc_bom_hoa', name: 'Bờm Hoa Dại', price: 35, desc: 'Bờm hoa tươi tắn rạng rỡ', icon: '🌸' },
+      { id: 'acc_vuong_mien', name: 'Vương Miện Lấp Lánh', price: 50, desc: 'Vương miện công chúa đính ngọc', icon: '👑' },
+      { id: 'acc_bom_tai_meo', name: 'Bờm Tai Mèo Hồng', price: 40, desc: 'Tai mèo xinh xắn đáng yêu', icon: '🐱' },
+      { id: 'acc_kep_buom', name: 'Kẹp Tóc Bươm Bướm', price: 30, desc: 'Kẹp tóc bướm vàng đung đưa', icon: '🦋' },
+      { id: 'acc_tai_gau', name: 'Bờm Tai Gấu Nâu', price: 35, desc: 'Bờm tai gấu ngộ nghĩnh', icon: '🐻' },
+      { id: 'acc_non_la', name: 'Nón Lá Truyền Thống', price: 40, desc: 'Nón lá bài thơ duyên dáng', icon: '👒' },
+      { id: 'acc_mu_sinh_nhat', name: 'Mũ Sinh Nhật Rực Rỡ', price: 30, desc: 'Mũ chóp sinh nhật vui tươi', icon: '🎉' },
+      { id: 'acc_vong_hoa', name: 'Vòng Hoa Nguyệt Quế', price: 45, desc: 'Vòng hoa vinh danh nhà vô địch', icon: '🌿' },
+      { id: 'acc_but_long', name: 'Bút Lông Trạng Nguyên', price: 40, desc: 'Bút lông khoa bảng thông thái', icon: '🖌️' }
     ]
   };
 
@@ -623,6 +634,14 @@
         <path d="M30 106 C32 92, 38 85, 60 85 C82 85, 88 92, 90 106 Z" fill="#6D28D9" stroke="#4C1D95" stroke-width="1.5"/>
         <path d="M44 73 Q60 81 76 73" stroke="#FDE047" stroke-width="2" fill="none"/>
         <polygon points="60,77 63,82 68,82 64,85 66,90 60,87 54,90 56,85 52,82 57,82" fill="#FBBF24"/>
+      `;
+    } else if (outfit === 'outfit_ao_tu_than' || outfit === 'outfit_tu_than') {
+      outfitSvg = `
+        <path d="M36 106 C34 85, 45 74, 60 74 C75 74, 86 85, 84 106 Z" fill="#F43F5E" stroke="#E11D48" stroke-width="1.5"/>
+        <path d="M42 74 L54 106 L66 106 L78 74 Z" fill="#0EA5E9" opacity="0.9"/>
+        <path d="M48 74 L60 106 L72 74 Z" fill="#FACC15"/>
+        <path d="M48 82 Q60 88 72 82" stroke="#16A34A" stroke-width="2.5" fill="none"/>
+        <circle cx="60" cy="85" r="2.5" fill="#E11D48"/>
       `;
     }
 
@@ -921,6 +940,36 @@
           <path d="M0 0 L-14 -18 A20 20 0 0 1 14 -18 Z" fill="#FBCFE8" stroke="#DB2777" stroke-width="1"/>
           <circle cx="0" cy="-10" r="3" fill="#F43F5E"/>
           <line x1="0" y1="0" x2="0" y2="8" stroke="#B45309" stroke-width="2"/>
+        </g>
+      `;
+    } else if (acc === 'acc_non_la') {
+      accSvg = `
+        <g>
+          <polygon points="60,8 20,38 100,38" fill="#FDE047" stroke="#D97706" stroke-width="1.5"/>
+          <line x1="60" y1="8" x2="35" y2="38" stroke="#D97706" stroke-width="0.8"/>
+          <line x1="60" y1="8" x2="85" y2="38" stroke="#D97706" stroke-width="0.8"/>
+          <line x1="60" y1="8" x2="60" y2="38" stroke="#D97706" stroke-width="0.8"/>
+          <path d="M20 38 Q60 44 100 38" fill="#FACC15" stroke="#D97706" stroke-width="1.2"/>
+        </g>
+      `;
+    } else if (acc === 'acc_mu_sinh_nhat') {
+      accSvg = `
+        <g>
+          <polygon points="60,10 40,36 80,36" fill="#EC4899" stroke="#BE123C" stroke-width="1.2"/>
+          <circle cx="60" cy="8" r="3.5" fill="#FDE047"/>
+          <line x1="48" y1="22" x2="72" y2="22" stroke="#FFFFFF" stroke-width="2"/>
+          <line x1="44" y1="28" x2="76" y2="28" stroke="#FBBF24" stroke-width="2"/>
+        </g>
+      `;
+    } else if (acc === 'acc_vong_hoa') {
+      accSvg = `
+        <g>
+          <path d="M30 32 Q60 14 90 32" stroke="#16A34A" stroke-width="3.5" stroke-linecap="round" fill="none"/>
+          <circle cx="36" cy="28" r="3" fill="#F43F5E"/>
+          <circle cx="48" cy="22" r="3.5" fill="#FACC15"/>
+          <circle cx="60" cy="18" r="3" fill="#38BDF8"/>
+          <circle cx="72" cy="22" r="3.5" fill="#F43F5E"/>
+          <circle cx="84" cy="28" r="3" fill="#FACC15"/>
         </g>
       `;
     }
@@ -3975,36 +4024,51 @@
     modalContainer.innerHTML = `
       <div class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-center justify-center p-3 sm:p-4">
         <div class="scroll-card max-w-lg w-full p-4 sm:p-5 bg-white border-4 border-amber-400 relative shadow-2xl flex flex-col max-h-[92vh]">
-          <button onclick="closeModal()" class="absolute top-3 right-3 text-slate-400 hover:text-slate-600 p-1 rounded-full hover:bg-slate-100 transition-colors">
+          <!-- Nút X đóng modal ở góc trên phải -->
+          <button onclick="closeModal()" class="absolute top-2.5 right-2.5 z-10 text-slate-400 hover:text-slate-600 p-1 rounded-full hover:bg-slate-100 transition-colors">
             <i data-lucide="x" class="w-5 h-5"></i>
           </button>
 
-          <!-- Header Chibi & Số sao hiện có -->
-          <div class="flex items-center gap-3.5 pb-3 border-b-2 border-amber-200 pr-8">
+          <!-- HÀNG 1: Button Tủ Đồ & Cửa Hàng Sao (phía trên cùng bên trái) & Số Sao (phía trên cùng bên phải) -->
+          <div class="flex items-center justify-between gap-2 mb-2.5 pb-2 border-b border-amber-200/80 pr-7">
+            <!-- Phía trên cùng bên trái: Button Tủ Đồ & Cửa Hàng Sao -->
+            <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-xl bg-red-600 text-white font-black text-xs shadow-sm">
+              <span>🎭</span>
+              <span>Tủ Đồ & Cửa Hàng Sao</span>
+            </div>
+
+            <!-- Phía trên cùng bên phải (cùng hàng): Số sao -->
+            <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-xl bg-amber-100 border border-amber-300 text-amber-900 font-black text-xs sm:text-sm shadow-sm">
+              <span>⭐</span>
+              <span id="wardrobe-stars-count">${stars}</span>
+              <span class="text-[11px] font-bold">Sao</span>
+            </div>
+          </div>
+
+          <!-- HÀNG 2: Màn xem Chibi to hơn 1.7 lần (bên trái) & Tên Chibi + Xem Video dịch sang bên phải -->
+          <div class="flex items-center gap-3.5 pb-3 border-b-2 border-amber-200">
+            <!-- Hình Chibi to hơn 1.7 lần -->
             <div class="relative shrink-0">
-              <div class="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-gradient-to-br from-amber-200 via-amber-300 to-amber-400 p-1 border-2 border-amber-300 shadow-inner flex items-center justify-center overflow-hidden bg-white">
+              <div class="w-[110px] h-[110px] sm:w-[136px] sm:h-[136px] rounded-2xl bg-gradient-to-br from-amber-200 via-amber-300 to-amber-400 p-1.5 border-2 border-amber-400 shadow-inner flex items-center justify-center overflow-hidden bg-white">
                 <div id="wardrobe-current-avatar-preview" class="w-full h-full flex items-center justify-center">
-                  ${getCurrentAvatarHtml(76)}
+                  ${getCurrentAvatarHtml(125)}
                 </div>
               </div>
             </div>
-            <div class="flex-1 min-w-0">
-              <div class="inline-block px-2 py-0.5 rounded-full bg-red-600 text-white font-black text-[10px] mb-0.5">
-                TỦ ĐỒ & CỬA HÀNG SAO
+
+            <!-- Tên Chibi & Nút Xem Video dịch sang bên phải -->
+            <div class="flex-1 min-w-0 flex flex-col justify-center space-y-2">
+              <div>
+                <h3 class="text-base sm:text-xl font-black text-amber-950 leading-snug truncate">${AppState.avatarName || 'Công chúa tóc mây'}</h3>
               </div>
-              <h3 class="text-base sm:text-lg font-black text-amber-950 leading-tight truncate">${AppState.avatarName || 'Công chúa tóc mây'}</h3>
-              <div class="mt-1 flex flex-wrap items-center gap-2">
+
+              <div>
                 ${isAdmin ? `
-                  <span class="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-red-600 text-yellow-200 font-black text-xs shadow-sm border border-yellow-300">
-                    👑 Đặc quyền Admin: Mở khóa tất cả Chibi & Phụ kiện
+                  <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-red-600 text-yellow-200 font-black text-[11px] shadow-sm border border-yellow-300">
+                    👑 Admin: Mở khóa tất cả
                   </span>
                 ` : `
-                  <span class="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-amber-100 border border-amber-300 text-amber-900 font-black text-xs sm:text-sm shadow-sm">
-                    <span>⭐</span>
-                    <span id="wardrobe-stars-count">${stars}</span>
-                    <span class="text-[11px] font-bold">Sao</span>
-                  </span>
-                  <button onclick="watchRewardedAdForStars(30)" class="btn-3d btn-3d-green px-3 py-1 rounded-full text-white font-black text-xs shadow-sm flex items-center gap-1 active:scale-95" title="Xem 1 video ngắn nhận ngay 30 sao đổi đồ">
+                  <button onclick="watchRewardedAdForStars(30)" class="btn-3d btn-3d-green px-3 py-1.5 rounded-xl text-white font-black text-xs shadow flex items-center justify-center gap-1.5 active:scale-95 transition-all" title="Xem 1 video ngắn nhận ngay 30 sao đổi đồ">
                     <span>🎬</span>
                     <span>+30 ⭐ (Xem Video)</span>
                   </button>
@@ -4047,22 +4111,38 @@
     safeCreateIcons();
   }
 
+  function showWardrobeToast(msg) {
+    let toast = document.getElementById('wardrobe-toast');
+    if (!toast) {
+      toast = document.createElement('div');
+      toast.id = 'wardrobe-toast';
+      toast.className = 'fixed top-14 left-1/2 -translate-x-1/2 z-[999999] bg-emerald-600 text-white font-extrabold text-xs sm:text-sm px-4 py-2 rounded-full shadow-2xl border-2 border-yellow-300 transition-all flex items-center gap-1.5 animate-bounce';
+      document.body.appendChild(toast);
+    }
+    toast.innerHTML = `<span>✨</span> <span>${msg}</span>`;
+    toast.style.display = 'flex';
+    if (toast._timer) clearTimeout(toast._timer);
+    toast._timer = setTimeout(() => {
+      if (toast) toast.style.display = 'none';
+    }, 2200);
+  }
+
   function equipAvatarItem(category, itemId) {
     if (!AppState.avatarConfig) {
       AppState.avatarConfig = { hair: 'hair_suon_hoa', outfit: 'outfit_ao_dai_hoa', glasses: 'glasses_none', accessory: 'acc_no_cai_toc' };
     }
     AppState.avatarConfig[category] = itemId;
     AppState.useCustomAvatar = true;
-    AppState.avatarName = 'Bé Trạng';
+    AppState.avatarName = 'Siêu Trạng Nhí';
     savePersistedState();
     SoundEngine.playClick();
     updateHeaderUI();
     const prevEl = document.getElementById('wardrobe-current-avatar-preview');
     if (prevEl) {
-      prevEl.innerHTML = getCurrentAvatarHtml(76);
+      prevEl.innerHTML = getCurrentAvatarHtml(125);
     }
     openAvatarModal(category);
-    showCustomAlert('Chúc mừng bé đã cập nhật và mặc thành công vật phẩm mới! (Nhân vật sẽ đổi sang Bé Trạng) ⭐✨');
+    showWardrobeToast('Đã mặc thành công vật phẩm mới! (Nhân vật đổi sang Siêu Trạng Nhí)');
   }
 
   function buyAndEquipAvatarItem(category, itemId, price) {
@@ -4070,7 +4150,7 @@
     const isAdmin = isAdminAccount();
     if (!isAdmin && curStars < price) {
       SoundEngine.playWrong();
-      showCustomAlert(`Bé cần thêm ${price - curStars} ⭐ nữa! Hoặc bé có thể bấm nút "🎬 Video" để nhận ngay miễn phí nhé!`);
+      showWardrobeToast(`Bé cần thêm ${price - curStars} ⭐ nữa để đổi!`);
       return;
     }
 
@@ -4086,16 +4166,16 @@
     }
     AppState.avatarConfig[category] = itemId;
     AppState.useCustomAvatar = true;
-    AppState.avatarName = 'Bé Trạng';
+    AppState.avatarName = 'Siêu Trạng Nhí';
     savePersistedState();
     SoundEngine.playSuccess();
     updateHeaderUI();
     const prevEl = document.getElementById('wardrobe-current-avatar-preview');
     if (prevEl) {
-      prevEl.innerHTML = getCurrentAvatarHtml(76);
+      prevEl.innerHTML = getCurrentAvatarHtml(125);
     }
     openAvatarModal(category);
-    showCustomAlert(isAdmin ? '👑 Quyền Admin: Đã mặc trang phục mới hoàn toàn miễn phí! (Nhân vật sẽ đổi sang Bé Trạng)' : 'Chúc mừng bé đã đổi và mặc thành công vật phẩm mới! (Nhân vật sẽ đổi sang Bé Trạng) ⭐✨');
+    showWardrobeToast(isAdmin ? '👑 Quyền Admin: Đã mặc vật phẩm mới miễn phí!' : 'Đã đổi & mặc thành công vật phẩm mới!');
   }
 
   function applyLookbook(lookbookId) {
@@ -4113,9 +4193,10 @@
     updateHeaderUI();
     const prevEl = document.getElementById('wardrobe-current-avatar-preview');
     if (prevEl) {
-      prevEl.innerHTML = getCurrentAvatarHtml(76);
+      prevEl.innerHTML = getCurrentAvatarHtml(125);
     }
     openAvatarModal('lookbook');
+    showWardrobeToast(`Đã chọn nhân vật ${lb.name}!`);
   }
 
   function unlockLookbook(lookbookId, neededStars) {
@@ -4125,7 +4206,7 @@
     const isAdmin = isAdminAccount();
     if (!isAdmin && curStars < neededStars) {
       SoundEngine.playWrong();
-      showCustomAlert(`Bé cần thêm ${neededStars - curStars} ⭐ để đổi nhân vật ${lb.name}! Hoặc bé có thể bấm nút "🎬 Video" để mở khóa miễn phí nhé!`);
+      showWardrobeToast(`Bé cần thêm ${neededStars - curStars} ⭐ để đổi ${lb.name}!`);
       return;
     }
 
@@ -4148,10 +4229,10 @@
     updateHeaderUI();
     const prevEl = document.getElementById('wardrobe-current-avatar-preview');
     if (prevEl) {
-      prevEl.innerHTML = getCurrentAvatarHtml(76);
+      prevEl.innerHTML = getCurrentAvatarHtml(125);
     }
     openAvatarModal('lookbook');
-    showCustomAlert(isAdmin ? `👑 Quyền Admin: Đã chọn nhân vật ${lb.name} hoàn toàn miễn phí!` : `Tuyệt vời! Bé đã mở thành công nhân vật ${lb.name}! ⭐🎉`);
+    showWardrobeToast(isAdmin ? `👑 Admin: Mở khóa ${lb.name}!` : `Mở thành công nhân vật ${lb.name}! ⭐🎉`);
   }
 
   function watchRewardedAdForChibi(chibiId) {
@@ -7105,7 +7186,36 @@
     const wrongCount = Math.max(0, totalQuestions - correctCount);
 
     root.innerHTML = `
-      <div class="scroll-card p-4 sm:p-7 max-w-2xl mx-auto text-center border-4 border-amber-400 bg-gradient-to-b from-amber-50 via-white to-amber-50 shadow-2xl">
+      <div class="scroll-card p-4 sm:p-7 max-w-2xl mx-auto text-center border-4 border-amber-400 bg-gradient-to-b from-amber-50 via-white to-amber-50 shadow-2xl relative">
+
+        <!-- Hàng nút điều hướng & tiện ích trên cùng phiếu thông báo -->
+        <div class="space-y-2 mb-3 pb-3 border-b border-amber-200/80">
+          <!-- Hàng 1: Trang chủ (trái) - Thi đề khác (phải) -->
+          <div class="flex items-center justify-between gap-2">
+            <button onclick="onFinishScreenGoHome()" class="btn-3d btn-3d-gold px-3 sm:px-4 py-1.5 rounded-xl font-black text-amber-950 text-xs sm:text-sm flex items-center gap-1.5 shadow active:scale-95 transition-all" title="Quay về trang chủ">
+              <span>🏠</span>
+              <span>Trang chủ</span>
+            </button>
+
+            <button onclick="restartExamWithNewSeed()" class="btn-3d btn-3d-gold px-3 sm:px-4 py-1.5 rounded-xl font-black text-amber-950 text-xs sm:text-sm flex items-center gap-1.5 shadow active:scale-95 transition-all" title="Thi đề khác">
+              <span>🎲</span>
+              <span>Thi đề khác</span>
+            </button>
+          </div>
+
+          <!-- Hàng 2: Nút Xem Video nhận Sao + Nút Tủ Đồ Chibi đặt ngay cạnh dưới Trang chủ & Thi đề khác -->
+          <div class="flex items-center justify-center gap-2 pt-0.5">
+            <button onclick="watchRewardedAdForStars(30)" class="btn-3d btn-3d-green px-3 sm:px-4 py-1.5 rounded-xl font-black text-white text-xs flex items-center gap-1.5 shadow active:scale-95 transition-all">
+              <span>🎬</span>
+              <span>+30 ⭐ (Xem Video)</span>
+            </button>
+            <button onclick="openAvatarModal('lookbook')" class="btn-3d btn-3d-red px-3 sm:px-4 py-1.5 rounded-xl font-black text-white text-xs flex items-center gap-1.5 shadow active:scale-95 transition-all">
+              <span>🎭</span>
+              <span>Tủ Đồ Chibi (⭐ ${AppState.stars})</span>
+            </button>
+          </div>
+        </div>
+
         <div class="text-5xl sm:text-6xl mb-2 animate-bounce">${rankBadge}</div>
         <div class="inline-block px-4 py-1 rounded-full bg-red-600 text-white font-black text-xs sm:text-sm mb-2 shadow">
           BẢNG VÀNG TRẠNG NGUYÊN NHÍ • 2026
@@ -7269,7 +7379,6 @@
           <!-- Danh sách câu làm sai chi tiết (nếu có câu sai) hoặc thông báo chưa làm câu nào -->
           ${isNoAnswerSubmitted ? `
             <div class="p-4 sm:p-5 rounded-2xl bg-amber-50/90 border-2 border-amber-300 text-center shadow-sm">
-              <div class="text-3xl sm:text-4xl mb-1.5 animate-bounce">🌱</div>
               <div class="text-base sm:text-lg font-black text-red-900 mb-1">
                 Bé cố gắng lên nhé!
               </div>
@@ -7376,26 +7485,14 @@
           </div>
         </div>
 
-        <!-- Các nút điều hướng kết thúc -->
-        <div class="mt-6 flex flex-wrap justify-center gap-3">
-          ${(isRound4To18 && total >= 250) ? `
+        ${(isRound4To18 && total >= 250) ? `
+          <div class="mt-6 flex justify-center">
             <button onclick="playCelebrationFireworks(${total}, ${AppState.currentRoundNum})" class="btn-3d btn-3d-gold px-5 py-2.5 rounded-xl font-black text-amber-950 text-xs sm:text-sm flex items-center gap-1.5 shadow animate-bounce">
               <span>🎆 Bắn Lại Pháo Hoa (${total}đ)</span>
             </button>
-          ` : ''}
-          <button onclick="watchRewardedAdForStars(30)" class="btn-3d btn-3d-green px-5 py-2.5 rounded-xl font-black text-white text-xs sm:text-sm flex items-center gap-1.5 shadow">
-            <span>🎬 Nhận +30 ⭐ (Xem Video)</span>
-          </button>
-          <button onclick="openAvatarModal('lookbook')" class="btn-3d btn-3d-red px-5 py-2.5 rounded-xl font-black text-white text-xs sm:text-sm flex items-center gap-1.5 shadow">
-            <span>🎭 Tủ Đồ Chibi (⭐ ${AppState.stars})</span>
-          </button>
-          <button onclick="restartExamWithNewSeed()" class="btn-3d btn-3d-gold px-5 py-2.5 rounded-xl font-black text-amber-950 text-xs sm:text-sm flex items-center gap-1.5 shadow">
-            <span>🎲 Thi Lại Đề Khác</span>
-          </button>
-          <button onclick="onFinishScreenGoHome()" class="btn-3d btn-3d-gold px-6 py-2.5 rounded-xl font-black text-amber-950 text-xs sm:text-sm flex items-center gap-1.5 shadow">
-            <span>🏠 Quay Về Trang Chủ</span>
-          </button>
-        </div>
+          </div>
+        ` : ''}
+      </div>
       </div>
     `;
 
@@ -7743,12 +7840,12 @@
       }
       AppState.avatarConfig[cat] = itemId;
       AppState.useCustomAvatar = true;
-      AppState.avatarName = 'Bé Trạng';
+      AppState.avatarName = 'Siêu Trạng Nhí';
       savePersistedState();
       SoundEngine.playFanfare();
       updateHeaderUI();
       openAvatarModal(cat);
-      showCustomAlert(`🎉 Chúc mừng bạn đã xem video và nhận thành công trang phục mới! (Nhân vật sẽ đổi sang Bé Trạng)`);
+      showWardrobeToast(`🎉 Đã mở khóa trang phục mới! (Nhân vật đổi sang Siêu Trạng Nhí)`);
     } else if (rewardType === 'explanation') {
       AppState.isVip1 = true;
       savePersistedState();
