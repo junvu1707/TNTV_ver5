@@ -197,9 +197,91 @@ class BillingManager(
     }
   }
 
+  fun scanAndRestoreVip(
+    userName: String,
+    userEmail: String,
+    callback: (success: Boolean, vipLevel: Int, message: String) -> Unit
+  ) {
+    if (userName.isNotBlank()) vipPrefs.setUserName(userName)
+    if (userEmail.isNotBlank()) vipPrefs.setUserEmail(userEmail)
+
+    if (!billingClient.isReady) {
+      billingClient.startConnection(object : BillingClientStateListener {
+        override fun onBillingSetupFinished(billingResult: BillingResult) {
+          if (billingResult.responseCode == BillingClient.BillingResponseCode.OK) {
+            isServiceConnected = true
+            executeScanPurchases(callback)
+          } else {
+            executeLocalFallbackScan(callback)
+          }
+        }
+
+        override fun onBillingServiceDisconnected() {
+          executeLocalFallbackScan(callback)
+        }
+      })
+      return
+    }
+
+    executeScanPurchases(callback)
+  }
+
+  private fun executeScanPurchases(callback: (Boolean, Int, String) -> Unit) {
+    val params = QueryPurchasesParams.newBuilder()
+      .setProductType(BillingClient.ProductType.INAPP)
+      .build()
+
+    billingClient.queryPurchasesAsync(params) { billingResult, purchasesList ->
+      if (billingResult.responseCode == BillingClient.BillingResponseCode.OK && purchasesList.isNotEmpty()) {
+        var highestLevel = VipPreferenceManager.VIP_LEVEL_0
+        var activeToken = ""
+
+        for (purchase in purchasesList) {
+          if (purchase.purchaseState == Purchase.PurchaseState.PURCHASED) {
+            val isVip2 = purchase.products.contains(PRODUCT_VIP_2) || purchase.products.contains(PRODUCT_VIP_2_ALIAS)
+            val level = if (isVip2) VipPreferenceManager.VIP_LEVEL_2 else VipPreferenceManager.VIP_LEVEL_1
+            if (level > highestLevel) {
+              highestLevel = level
+              activeToken = purchase.purchaseToken
+            }
+          }
+        }
+
+        if (highestLevel > VipPreferenceManager.VIP_LEVEL_0) {
+          vipPrefs.setVipLevel(highestLevel)
+          if (activeToken.isNotBlank()) vipPrefs.setPurchaseToken(activeToken)
+          activity.runOnUiThread {
+            callback(true, highestLevel, "Đã tìm thấy giao dịch VIP hợp lệ trên Google Play!")
+          }
+        } else {
+          executeLocalFallbackScan(callback)
+        }
+      } else {
+        executeLocalFallbackScan(callback)
+      }
+    }
+  }
+
+  private fun executeLocalFallbackScan(callback: (Boolean, Int, String) -> Unit) {
+    val savedLevel = vipPrefs.getVipLevel()
+    val savedToken = vipPrefs.getPurchaseToken()
+    if (savedLevel > VipPreferenceManager.VIP_LEVEL_0 || savedToken.isNotBlank()) {
+      val level = if (savedLevel > 0) savedLevel else VipPreferenceManager.VIP_LEVEL_1
+      vipPrefs.setVipLevel(level)
+      activity.runOnUiThread {
+        callback(true, level, "Đã khôi phục thành công trạng thái VIP từ dữ liệu đã xác thực!")
+      }
+    } else {
+      activity.runOnUiThread {
+        callback(false, VipPreferenceManager.VIP_LEVEL_0, "Chưa tìm thấy gói VIP đã đăng ký cho thông tin tài khoản này.")
+      }
+    }
+  }
+
   fun destroy() {
     if (billingClient.isReady) {
       billingClient.endConnection()
     }
   }
 }
+

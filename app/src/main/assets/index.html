@@ -4169,44 +4169,83 @@
     runWebFallbackRewarded('item', key);
   }
 
+  function triggerScanAndRestoreVip() {
+    if (typeof SoundEngine !== 'undefined' && SoundEngine.playClick) {
+      SoundEngine.playClick();
+    }
+    const nameInput = document.getElementById('input-account-name');
+    const emailInput = document.getElementById('input-account-email');
+    const enteredName = nameInput ? nameInput.value.trim() : '';
+    const enteredEmail = emailInput ? emailInput.value.trim() : '';
+
+    if (enteredName) {
+      AppState.customAccountId = enteredName;
+      AppState.studentName = enteredName;
+      savePersistedState();
+    }
+
+    if (window.AndroidBridge && typeof window.AndroidBridge.scanAndRestoreVip === 'function') {
+      window.AndroidBridge.scanAndRestoreVip(enteredName, enteredEmail);
+    } else {
+      showCustomAlert('🔍 Đang thực hiện quét Google Play Billing để kiểm tra và khôi phục tài khoản VIP...');
+    }
+  }
+
   function openAccountModal() {
-    SoundEngine.playClick();
+    if (typeof SoundEngine !== 'undefined' && SoundEngine.playClick) {
+      SoundEngine.playClick();
+    }
     const modalContainer = document.getElementById('modal-container');
+    const userEmail = (window.AndroidBridge && typeof window.AndroidBridge.getUserEmail === 'function') ? window.AndroidBridge.getUserEmail() : '';
+    const deviceId = (window.AndroidBridge && typeof window.AndroidBridge.getDeviceId === 'function') ? window.AndroidBridge.getDeviceId() : '1nabj';
 
     modalContainer.innerHTML = `
       <div class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4">
-        <div class="scroll-card max-w-sm w-full p-5 bg-white border-2 border-amber-400 relative">
+        <div class="scroll-card max-w-sm w-full p-5 bg-white border-2 border-amber-400 relative shadow-xl">
           <button onclick="closeModal()" class="absolute top-3 right-3 text-slate-400 hover:text-slate-600 p-1">
             <i data-lucide="x" class="w-5 h-5"></i>
           </button>
 
-          <div class="text-center mb-4">
+          <div class="text-center mb-3">
             <div class="relative inline-block">
-              <div class="w-16 h-16 bg-gradient-to-br from-amber-200 to-amber-400 rounded-full flex items-center justify-center mx-auto mb-2 border-2 border-amber-300 shadow-inner overflow-hidden p-0.5 bg-white">
-                <div class="w-full h-full flex items-center justify-center">${getCurrentAvatarHtml(56)}</div>
+              <div class="w-14 h-14 bg-gradient-to-br from-amber-200 to-amber-400 rounded-full flex items-center justify-center mx-auto mb-1 border-2 border-amber-300 shadow-inner overflow-hidden p-0.5 bg-white">
+                <div class="w-full h-full flex items-center justify-center">${getCurrentAvatarHtml(52)}</div>
               </div>
-              <button onclick="openAvatarModal('lookbook')" class="absolute -bottom-1 -right-1 bg-red-600 text-white text-[10px] px-2 py-0.5 rounded-full font-bold shadow" title="Vào Tủ đồ Chibi">
+              <button onclick="openAvatarModal('lookbook')" class="absolute -bottom-1 -right-1 bg-red-600 text-white text-[9px] px-2 py-0.5 rounded-full font-bold shadow" title="Vào Tủ đồ Chibi">
                 Tủ đồ
               </button>
             </div>
-            <h3 class="text-base font-black text-slate-800">Tài Khoản & Ảnh Đại Diện</h3>
+            <h3 class="text-base font-black text-slate-800">Thông Tin Tài Khoản</h3>
             <p class="text-xs text-amber-800 font-bold mt-0.5">${AppState.avatarName || 'Nhân vật Chibi'} • ⭐ ${AppState.stars || 0} Sao</p>
           </div>
 
-          <div class="space-y-3">
-            <div>
-              <label class="block text-xs font-bold text-slate-600 mb-1">Tên tài khoản:</label>
-              <div class="relative">
-                <input type="text" id="input-account-name" value="${AppState.customAccountId || ''}" placeholder="Nhập tên tài khoản..." onkeydown="if(event.key === 'Enter') saveCustomAccount()" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 font-bold text-sm focus:border-amber-500 focus:outline-none pr-16">
-                ${AppState.customAccountId ? `
-                  <button onclick="clearCustomAccountId()" class="absolute right-2 top-1/2 -translate-y-1/2 text-[10px] text-red-600 hover:text-red-800 font-bold px-2 py-1 bg-red-50 rounded-lg border border-red-200">
-                    Xóa
-                  </button>
-                ` : ''}
-              </div>
+          <div class="space-y-2 mb-3 text-left">
+            <!-- Dòng 1: Tài khoản -->
+            <div class="flex items-center gap-2 bg-[#FFFBEB] p-2.5 rounded-xl border border-amber-300 shadow-sm">
+              <span class="text-xs font-black text-amber-900 whitespace-nowrap min-w-[70px]">Tài khoản :</span>
+              <input type="text" id="input-account-name" value="${AppState.customAccountId || ''}" placeholder="Nhập tên tài khoản..." class="flex-1 bg-white px-2.5 py-1.5 rounded-lg border border-amber-200 text-xs font-bold text-slate-800 focus:outline-none focus:border-amber-500">
             </div>
 
-            <button onclick="openAvatarModal('lookbook')" class="w-full py-2.5 px-3 rounded-xl bg-gradient-to-r from-amber-50 to-red-50 hover:from-amber-100 hover:to-red-100 border-2 border-amber-300 text-red-950 font-black text-xs flex items-center justify-center gap-2 shadow-sm">
+            <!-- Dòng 2: Email -->
+            <div class="flex items-center gap-2 bg-[#FFFBEB] p-2.5 rounded-xl border border-amber-300 shadow-sm">
+              <span class="text-xs font-black text-amber-900 whitespace-nowrap min-w-[70px]">Email :</span>
+              <input type="email" id="input-account-email" value="${userEmail}" placeholder="phuhuynh@gmail.com" class="flex-1 bg-white px-2.5 py-1.5 rounded-lg border border-amber-200 text-xs font-bold text-slate-800 focus:outline-none focus:border-amber-500">
+            </div>
+
+            <!-- Dòng 3: ID -->
+            <div class="flex items-center gap-2 bg-[#FEF3C7] p-2.5 rounded-xl border border-amber-400 shadow-sm">
+              <span class="text-xs font-black text-amber-950 whitespace-nowrap min-w-[70px]">ID :</span>
+              <span class="flex-1 text-xs font-black text-red-700 truncate">${deviceId}</span>
+            </div>
+          </div>
+
+          <!-- Nút Quét & Khôi Phục VIP -->
+          <button onclick="triggerScanAndRestoreVip()" class="w-full mb-3 py-2.5 px-3 rounded-xl btn-3d bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-600 hover:to-teal-700 text-white font-black text-xs sm:text-sm flex items-center justify-center gap-2 shadow-md">
+            <span>🔍</span> Quét & Khôi Phục VIP
+          </button>
+
+          <div class="space-y-2">
+            <button onclick="openAvatarModal('lookbook')" class="w-full py-2 px-3 rounded-xl bg-gradient-to-r from-amber-50 to-red-50 hover:from-amber-100 hover:to-red-100 border border-amber-300 text-red-950 font-extrabold text-xs flex items-center justify-center gap-2 shadow-sm">
               <span>🎭</span> Tủ Đồ Chibi: Đổi trang phục bằng Sao ⭐
             </button>
 
@@ -4215,11 +4254,11 @@
             </button>
           </div>
 
-          <div class="flex gap-2 mt-5">
-            <button onclick="saveCustomAccount()" class="btn-3d btn-3d-green flex-1 py-2.5 rounded-xl text-white font-black text-xs sm:text-sm shadow">
-              Xác Nhận
+          <div class="flex gap-2 mt-4">
+            <button onclick="saveCustomAccount()" class="btn-3d btn-3d-green flex-1 py-2 rounded-xl text-white font-black text-xs sm:text-sm shadow">
+              Lưu Thay Đổi
             </button>
-            <button onclick="closeModal()" class="px-4 py-2.5 rounded-xl bg-slate-200 hover:bg-slate-300 text-slate-700 font-bold text-xs">
+            <button onclick="closeModal()" class="px-4 py-2 rounded-xl bg-slate-200 hover:bg-slate-300 text-slate-700 font-bold text-xs">
               Đóng
             </button>
           </div>
@@ -4228,6 +4267,7 @@
     `;
     safeCreateIcons();
   }
+
 
   function clearCustomAccountId() {
     AppState.customAccountId = '';

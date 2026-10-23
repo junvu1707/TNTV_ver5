@@ -54,7 +54,7 @@ class MainActivity : ComponentActivity() {
     const val TEST_REWARDED_ID = "ca-app-pub-3940256099942544/5224354917"
   }
 
-  private var webView: WebView? = null
+  var webView: WebView? = null
   private var bannerAdView: AdView? = null
   private var interstitialAd: InterstitialAd? = null
   private var rewardedAd: RewardedAd? = null
@@ -608,6 +608,28 @@ class MainActivity : ComponentActivity() {
 
           billingManager.launchBillingFlow(this, productId, inputEmailStr, inputName)
         }
+        .setNeutralButton("🔍 Quét & Khôi Phục VIP") { _, _ ->
+          val inputName = inputAccount.text.toString().trim()
+          val inputEmailStr = inputEmail.text.toString().trim()
+          billingManager.scanAndRestoreVip(inputName, inputEmailStr) { success, vipLevel, message ->
+            runOnUiThread {
+              if (success) {
+                updateAdMobForVipStatus()
+                val activeName = inputName.ifBlank { vipPrefs.getUserName().ifBlank { "Tài khoản VIP" } }
+                vipPrefs.setUserName(activeName)
+                if (inputEmailStr.isNotBlank()) vipPrefs.setUserEmail(inputEmailStr)
+
+                webView?.evaluateJavascript(
+                  "if (window.onVipStatusChanged) { window.onVipStatusChanged($vipLevel, '$activeName'); }",
+                  null
+                )
+                Toast.makeText(this, "🎉 $message", Toast.LENGTH_LONG).show()
+              } else {
+                Toast.makeText(this, "🔍 $message", Toast.LENGTH_LONG).show()
+              }
+            }
+          }
+        }
         .setNegativeButton("Hủy", null)
         .create()
 
@@ -615,6 +637,10 @@ class MainActivity : ComponentActivity() {
 
       dialog.getButton(AlertDialog.BUTTON_POSITIVE)?.apply {
         setTextColor(Color.parseColor("#059669"))
+        setTypeface(null, android.graphics.Typeface.BOLD)
+      }
+      dialog.getButton(AlertDialog.BUTTON_NEUTRAL)?.apply {
+        setTextColor(Color.parseColor("#D97706"))
         setTypeface(null, android.graphics.Typeface.BOLD)
       }
       dialog.getButton(AlertDialog.BUTTON_NEGATIVE)?.apply {
@@ -625,6 +651,7 @@ class MainActivity : ComponentActivity() {
   }
 
   fun showVipSuccessDialog(productId: String, vipLevel: Int) {
+
     runOnUiThread {
       val vipName = if (vipLevel >= 2) "VIP 2 (Trọn Đời)" else "VIP 1 (Mùa Thi)"
       val email = vipPrefs.getUserEmail()
@@ -740,6 +767,31 @@ class AndroidBridge(
       Toast.makeText(activity, "Đã kiểm tra và đồng bộ trạng thái VIP thành công!", Toast.LENGTH_SHORT).show()
     }
   }
+
+  @JavascriptInterface
+  fun scanAndRestoreVip(userName: String, userEmail: String) {
+    activity.runOnUiThread {
+      activity.billingManager.scanAndRestoreVip(userName, userEmail) { success, vipLevel, message ->
+        activity.runOnUiThread {
+          if (success) {
+            activity.updateAdMobForVipStatus()
+            val activeName = userName.ifBlank { activity.vipPrefs.getUserName().ifBlank { "Tài khoản VIP" } }
+            activity.vipPrefs.setUserName(activeName)
+            if (userEmail.isNotBlank()) activity.vipPrefs.setUserEmail(userEmail)
+
+            activity.webView?.evaluateJavascript(
+              "if (window.onVipStatusChanged) { window.onVipStatusChanged($vipLevel, '$activeName'); }",
+              null
+            )
+            Toast.makeText(activity, "🎉 $message", Toast.LENGTH_LONG).show()
+          } else {
+            Toast.makeText(activity, "🔍 $message", Toast.LENGTH_LONG).show()
+          }
+        }
+      }
+    }
+  }
+
 
   /**
    * Trả về cấp độ VIP hiện tại (0: Free, 1: VIP 1, 2: VIP 2)
