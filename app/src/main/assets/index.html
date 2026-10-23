@@ -1454,7 +1454,7 @@
         const provOffset = (globalIndex * 5) % filteredProverbs.length;
         const quizItems = [];
 
-        for (let i = 0; i < 5; i++) {
+        for (let i = 0; i < 9; i++) {
           const p = filteredProverbs[(provOffset + i) % filteredProverbs.length];
           quizItems.push({
             type: 'DT',
@@ -1712,18 +1712,26 @@
         ];
       }
 
-      // Bài 3: Bé học vui - 10 câu trắc nghiệm & điền từ Lớp 2
+      // Bài 3: Bé học vui - 18 câu trắc nghiệm & điền từ Lớp 2
       const quizItems = [
         { type: 'TN', question: "Từ nào viết đúng chính tả âm l/n?", options: ["Lo lắng", "No lắng", "Lo nắng", "No nắng"], correctIndex: 0, explain: "Lo lắng viết đúng l/n." },
         { type: 'TN', question: "Từ nào là từ chỉ hoạt động của học sinh trong giờ học?", options: ["Nghe giảng", "Bút chì", "Thước kẻ", "Thông minh"], correctIndex: 0, explain: "Nghe giảng là từ chỉ hoạt động." },
         { type: 'TN', question: "Câu nào dưới đây thuộc mẫu câu 'Ai làm gì?'?", options: ["Bé Mai tưới nước cho luống rau cải.", "Hoa mai vàng rực rỡ.", "Bác Nam là bác sĩ.", "Bầu trời trong xanh."], correctIndex: 0, explain: "Tưới nước là động từ chỉ hoạt động." },
         { type: 'TN', question: "Từ nào trái nghĩa với từ 'chăm chỉ'?", options: ["Lười biếng", "Ngoan ngoãn", "Cần cù", "Nhanh nhẹn"], correctIndex: 0, explain: "Lười biếng trái nghĩa với chăm chỉ." },
         { type: 'TN', question: "Tên riêng nào dưới đây được viết hoa đúng quy tắc?", options: ["Lê Văn Tám", "lê Văn Tám", "Lê văn tám", "Lê Văn tám"], correctIndex: 0, explain: "Viết hoa tất cả các âm tiết tên riêng." },
+        { type: 'TN', question: "Từ nào chỉ tình cảm của con cái dành cho cha mẹ?", options: ["Hiếu thảo", "Chăm chỉ", "Thông minh", "Nhanh nhẹn"], correctIndex: 0, explain: "Hiếu thảo chỉ tình cảm gia đình." },
+        { type: 'TN', question: "Câu ca dao nào nói về công lao to lớn của cha mẹ?", options: ["Công cha như núi Thái Sơn", "Chị ngã em nâng", "Lá lành đùm lá rách", "Gần mực thì đen"], correctIndex: 0, explain: "Công cha như núi Thái Sơn." },
+        { type: 'TN', question: "Mùa nào có hoa đào nở rực rỡ đón xuân về?", options: ["Mùa xuân", "Mùa hạ", "Mùa thu", "Mùa đông"], correctIndex: 0, explain: "Mùa xuân hoa đào nở." },
+        { type: 'TN', question: "Từ nào chỉ đồ dùng dùng để học sinh kẻ đường thẳng?", options: ["Thước kẻ", "Cục tẩy", "Quyển vở", "Cặp sách"], correctIndex: 0, explain: "Thước kẻ." },
         { type: 'DT', question: "Điền từ còn thiếu vào câu thành ngữ: 'Uống nước nhớ [...]'", answer: "nguồn", explain: "Thành ngữ: Uống nước nhớ nguồn." },
         { type: 'DT', question: "Điền chữ l hoặc n thích hợp: Nết [...]a nết đẹp.", answer: "n", explain: "Từ đúng là nết na." },
         { type: 'DT', question: "Điền tiếng bắt đầu bằng g hoặc gh: Chiếc [...]ế gỗ.", answer: "ghế", explain: "Trước ê viết bằng gh: ghế gỗ." },
         { type: 'DT', question: "Điền từ còn thiếu vào câu ca dao: 'Chị ngã em [...]'", answer: "nâng", explain: "Chị ngã em nâng." },
-        { type: 'DT', question: "Điền từ còn thiếu: 'Lá cờ đỏ sao [...]'", answer: "vàng", explain: "Lá cờ đỏ sao vàng." }
+        { type: 'DT', question: "Điền từ còn thiếu: 'Lá cờ đỏ sao [...]'", answer: "vàng", explain: "Lá cờ đỏ sao vàng." },
+        { type: 'DT', question: "Điền từ còn thiếu: 'Ăn quả nhớ kẻ [...] cây.'", answer: "trồng", explain: "Ăn quả nhớ kẻ trồng cây." },
+        { type: 'DT', question: "Điền từ còn thiếu: 'Có chí thì [...]'", answer: "nên", explain: "Có chí thì nên." },
+        { type: 'DT', question: "Điền từ còn thiếu: 'Thức khuya dậy [...]'", answer: "sớm", explain: "Thức khuya dậy sớm." },
+        { type: 'DT', question: "Điền từ còn thiếu: 'Kính trên nhường [...]'", answer: "dưới", explain: "Kính trên nhường dưới." }
       ];
 
       // Bài 4: Bé sáng tạo - 5 câu đố Lớp 2
@@ -1830,18 +1838,26 @@
         ];
       }
 
-      // Bài 3: Bé học vui - 10 câu trắc nghiệm & điền từ Lớp 3
+      // Bài 3: Bé học vui - 18 câu trắc nghiệm & điền từ Lớp 3
       const quizItems = [
         { type: 'TN', question: "Từ các tiếng 'tài, đức, hoa', tạo được bao nhiêu từ ghép hai tiếng?", options: ["4 từ", "5 từ", "3 từ", "2 từ"], correctIndex: 0, explain: "Tạo được 4 từ: tài đức, đức tài, tài hoa, hoa tài." },
         { type: 'TN', question: "Câu tục ngữ nào khuyên con người kiên trì, bền chí?", options: ["Chớ thấy sóng cả mà ngã tay chèo.", "Gần mực thì đen, gần đèn thì rạng.", "Lá lành đùm lá rách.", "Ăn quả nhớ kẻ trồng cây."], correctIndex: 0, explain: "Chớ thấy sóng cả mà ngã tay chèo." },
         { type: 'TN', question: "Từ nào đồng nghĩa với từ 'chăm chỉ'?", options: ["cần cù", "thông minh", "thật thà", "dũng cảm"], correctIndex: 0, explain: "Cần cù đồng nghĩa với chăm chỉ." },
         { type: 'TN', question: "Dòng nào gồm các từ chỉ đặc điểm?", options: ["xanh biếc, êm ả, tròn xoe", "chạy nhảy, vui đùa, ríu rít", "dòng sông, cánh đồng, ngôi nhà", "thầy giáo, giảng bài, ân cần"], correctIndex: 0, explain: "Xanh biếc, êm ả, tròn xoe chỉ đặc điểm." },
         { type: 'TN', question: "Sự vật nào được so sánh trong: 'Mặt trời như quả cầu lửa khổng lồ'?", options: ["Mặt trời và quả cầu lửa", "Mặt trời và ngọn núi", "Ngọn núi và quả cầu lửa", "Quả cầu và ngọn núi"], correctIndex: 0, explain: "Mặt trời so sánh với quả cầu lửa." },
+        { type: 'TN', question: "Từ nào trái nghĩa với từ 'dũng cảm'?", options: ["hèn nhát", "thật thà", "chăm chỉ", "kiên cường"], correctIndex: 0, explain: "Hèn nhát trái nghĩa với dũng cảm." },
+        { type: 'TN', question: "Trong câu 'Chú chim hót ríu rít trên cành', từ nào chỉ hoạt động?", options: ["hót", "chú chim", "cành", "ríu rít"], correctIndex: 0, explain: "'Hót' là từ chỉ hoạt động." },
+        { type: 'TN', question: "Hình ảnh nhân hóa nào xuất hiện trong câu 'Bác đa cổ thụ đứng trầm ngâm'?", options: ["Bác đa đứng trầm ngâm", "Cành lá xanh tươi", "Gió thổi xào xạc", "Mặt trời mọc"], correctIndex: 0, explain: "Gọi cây đa bằng 'Bác' và tả 'trầm ngâm' là nhân hóa." },
+        { type: 'TN', question: "Biện pháp tu từ nào được dùng trong 'Tiếng suối trong như tiếng hát xa'?", options: ["So sánh", "Nhân hóa", "Điệp từ", "Ẩn dụ"], correctIndex: 0, explain: "Từ 'như' thể hiện biện pháp so sánh." },
         { type: 'DT', question: "Điền từ còn thiếu: Lời nói chẳng mất tiền mua, Lựa lời mà nói cho [...] lòng nhau.", answer: "vừa", explain: "cho vừa lòng nhau." },
         { type: 'DT', question: "Điền từ còn thiếu vào thành ngữ: Cần cù bù [...]", answer: "thông minh", explain: "Cần cù bù thông minh." },
         { type: 'DT', question: "Điền từ còn thiếu vào tục ngữ: Đói cho sạch, [...] cho thơm.", answer: "rách", explain: "Đói cho sạch, rách cho thơm." },
         { type: 'DT', question: "Điền từ còn thiếu: Gạn đục khơi [...]", answer: "trong", explain: "Gạn đục khơi trong." },
-        { type: 'DT', question: "Điền từ còn thiếu: Non xanh nước [...]", answer: "biếc", explain: "Non xanh nước biếc." }
+        { type: 'DT', question: "Điền từ còn thiếu: Non xanh nước [...]", answer: "biếc", explain: "Non xanh nước biếc." },
+        { type: 'DT', question: "Điền từ còn thiếu: Thuận buồm xuôi [...]", answer: "gió", explain: "Thuận buồm xuôi gió." },
+        { type: 'DT', question: "Điền từ còn thiếu: Học một biết [...]", answer: "mười", explain: "Học một biết mười." },
+        { type: 'DT', question: "Điền từ còn thiếu: Anh em như thể [...] chân.", answer: "tay", explain: "Anh em như thể tay chân." },
+        { type: 'DT', question: "Điền từ còn thiếu: Có công mài sắt có ngày nên [...]", answer: "kim", explain: "Có công mài sắt có ngày nên kim." }
       ];
 
       // Bài 4: Bé sáng tạo - 5 câu đố Lớp 3
@@ -1937,18 +1953,26 @@
         ];
       }
 
-      // Bài 3: Bé học vui - 10 câu trắc nghiệm & điền từ Lớp 4
+      // Bài 3: Bé học vui - 18 câu trắc nghiệm & điền từ Lớp 4
       const quizItems = [
         { type: 'TN', question: "Từ nào dưới đây là từ ghép tổng hợp?", options: ["quần áo", "bút bi", "xe máy", "tàu thủy"], correctIndex: 0, explain: "'Quần áo' là từ ghép tổng hợp." },
         { type: 'TN', question: "Trong câu: 'Sáng sớm, trên cánh đồng, bà con nông dân đang gặt lúa.', bộ phận 'Sáng sớm' là gì?", options: ["Trạng ngữ chỉ thời gian", "Chủ ngữ", "Vị ngữ", "Trạng ngữ chỉ nơi chốn"], correctIndex: 0, explain: "'Sáng sớm' là trạng ngữ chỉ thời gian." },
         { type: 'TN', question: "Vị thầy giáo mẫu mực muôn đời của dân tộc ta dưới thời Lê sơ là ai?", options: ["Chu Văn An", "Nguyễn Trãi", "Lương Thế Vinh", "Nguyễn Hiền"], correctIndex: 0, explain: "Thầy Chu Văn An." },
         { type: 'TN', question: "Tác phẩm 'Bình Ngô đại cáo' do ai sáng tác?", options: ["Nguyễn Trãi", "Lý Thường Kiệt", "Trần Hưng Đạo", "Lê Thánh Tông"], correctIndex: 0, explain: "Nguyễn Trãi sáng tác Bình Ngô đại cáo." },
         { type: 'TN', question: "Từ nào dưới đây là động từ?", options: ["học tập", "cái bàn", "xinh đẹp", "thông minh"], correctIndex: 0, explain: "'Học tập' là từ chỉ hoạt động (động từ)." },
+        { type: 'TN', question: "Từ nào dưới đây là từ láy?", options: ["lung linh", "nhà cửa", "xe đạp", "bút chì"], correctIndex: 0, explain: "'Lung linh' là từ láy." },
+        { type: 'TN', question: "Trong câu 'Học sinh đang hăng hái phát biểu', bộ phận 'đang hăng hái phát biểu' là gì?", options: ["Vị ngữ", "Chủ ngữ", "Trạng ngữ", "Bổ ngữ"], correctIndex: 0, explain: "Vị ngữ chỉ hoạt động của chủ ngữ." },
+        { type: 'TN', question: "Vị anh hùng dân tộc 3 lần đại phá quân Nguyên Mông là ai?", options: ["Trần Hưng Đạo", "Quang Trung", "Lê Lợi", "Nông Quốc Tuấn"], correctIndex: 0, explain: "Hưng Đạo Đại Vương Trần Quốc Tuấn." },
+        { type: 'TN', question: "Dấu ngoặc kép trong câu văn dùng để làm gì khi dẫn lời nói trực tiếp?", options: ["Đánh dấu lời dẫn trực tiếp", "Liệt kê các sự vật", "Giải thích nghĩa của từ", "Kết thúc câu hỏi"], correctIndex: 0, explain: "Đánh dấu lời dẫn trực tiếp." },
         { type: 'DT', question: "Điền từ còn thiếu vào thành ngữ: 'Có công mài sắt, có ngày nên [...]'", answer: "kim", explain: "Có công mài sắt, có ngày nên kim." },
         { type: 'DT', question: "Điền từ còn thiếu: 'Thương người như thể thương [...]'", answer: "thân", explain: "Thương người như thể thương thân." },
         { type: 'DT', question: "Điền từ còn thiếu vào tục ngữ: 'Ăn quả nhớ kẻ [...] cây'", answer: "trồng", explain: "Ăn quả nhớ kẻ trồng cây." },
         { type: 'DT', question: "Điền từ còn thiếu: 'Gần mực thì đen, gần [...] thì rạng.'", answer: "đèn", explain: "Gần mực thì đen, gần đèn thì rạng." },
-        { type: 'DT', question: "Điền từ còn thiếu: 'Non xanh nước [...]'", answer: "biếc", explain: "Non xanh nước biếc." }
+        { type: 'DT', question: "Điền từ còn thiếu: 'Non xanh nước [...]'", answer: "biếc", explain: "Non xanh nước biếc." },
+        { type: 'DT', question: "Điền từ còn thiếu: 'Lá lành đùm lá [...]'", answer: "rách", explain: "Lá lành đùm lá rách." },
+        { type: 'DT', question: "Điền từ còn thiếu: 'Học thầy không tày học [...]'", answer: "bạn", explain: "Học thầy không tày học bạn." },
+        { type: 'DT', question: "Điền từ còn thiếu: 'Đi một ngày đàng học một sàng [...]'", answer: "khôn", explain: "một sàng khôn." },
+        { type: 'DT', question: "Điền từ còn thiếu vào thành ngữ: 'Vạn sự khởi đầu [...]'", answer: "nan", explain: "Vạn sự khởi đầu nan." }
       ];
 
       // Bài 4: Bé sáng tạo (DO_VUI)
@@ -2055,18 +2079,26 @@
         ];
       }
 
-      // Bài 3: Bé học vui - 10 câu trắc nghiệm & điền từ Lớp 5
+      // Bài 3: Bé học vui - 18 câu trắc nghiệm & điền từ Lớp 5
       const quizItems = [
         { type: 'TN', question: "Cặp quan hệ từ 'Tuy... nhưng...' biểu thị mối quan hệ gì giữa hai vế câu ghép?", options: ["Tương phản", "Nguyên nhân - kết quả", "Điều kiện - kết quả", "Tăng tiến"], correctIndex: 0, explain: "Tuy... nhưng... biểu thị quan hệ tương phản." },
         { type: 'TN', question: "Từ 'chân' trong câu 'Những ngôi nhà sàn nép mình dưới chân núi.' được dùng theo nghĩa nào?", options: ["Nghĩa chuyển (phương thức ẩn dụ)", "Nghĩa gốc chỉ bộ phận đi đứng", "Nghĩa đồng âm", "Nghĩa hoán dụ"], correctIndex: 0, explain: "Chân núi là nghĩa chuyển ẩn dụ." },
-        { type: 'DT', question: "Điền từ còn thiếu vào câu thành ngữ: 'Uống nước nhớ [...]'", blankAnswer: "nguồn", explain: "Uống nước nhớ nguồn." },
         { type: 'TN', question: "Vị anh hùng lấp lỗ châu mai trong chiến dịch Điện Biên Phủ năm 1954 là ai?", options: ["Phan Đình Giót", "Bế Văn Đàn", "La Văn Cầu", "Nguyễn Văn Trỗi"], correctIndex: 0, explain: "Anh hùng Phan Đình Giót." },
         { type: 'TN', question: "Từ nào dưới đây KHÔNG phải là từ Hán Việt đồng nghĩa với 'đất nước'?", options: ["Bằng hữu", "Giang sơn", "Sơn hà", "Xã tắc"], correctIndex: 0, explain: "Bằng hữu có nghĩa là bạn bè." },
-        { type: 'DT', question: "Điền quan hệ từ thích hợp vào chỗ trống: 'Vì trời mưa to [...] đường trơn trượt.'", blankAnswer: "nên", explain: "Vì... nên... chỉ nguyên nhân kết quả." },
         { type: 'TN', question: "Biện pháp nghệ thuật nào được sử dụng trong câu: 'Mặt trời xuống biển như hòn lửa - Sóng đã cài then, đêm sập cửa.'?", options: ["Cả so sánh và nhân hóa", "Chỉ có so sánh", "Chỉ có nhân hóa", "Chỉ có ẩn dụ"], correctIndex: 0, explain: "So sánh (như hòn lửa) và nhân hóa (sóng cài then, đêm sập cửa)." },
         { type: 'TN', question: "Từ nào trái nghĩa với từ 'dũng cảm'?", options: ["Hèn nhát", "Can đảm", "Bạo dạn", "Anh dũng"], correctIndex: 0, explain: "Hèn nhát trái nghĩa với dũng cảm." },
-        { type: 'DT', question: "Điền từ còn thiếu vào câu tục ngữ: 'Thương người như thể thương [...]'", blankAnswer: "thân", explain: "Thương người như thể thương thân." },
-        { type: 'TN', question: "Văn Miếu - Quốc Tử Giám được coi là trường đại học đầu tiên của nước ta, thuộc thành phố nào?", options: ["Hà Nội", "Huế", "Đà Nẵng", "Ninh Bình"], correctIndex: 0, explain: "Nằm ở thủ đô Hà Nội." }
+        { type: 'TN', question: "Văn Miếu - Quốc Tử Giám được coi là trường đại học đầu tiên của nước ta, thuộc thành phố nào?", options: ["Hà Nội", "Huế", "Đà Nẵng", "Ninh Bình"], correctIndex: 0, explain: "Nằm ở thủ đô Hà Nội." },
+        { type: 'TN', question: "Thần đồng đỗ Trạng nguyên năm 13 tuổi dưới triều Trần là vị trạng nguyên nào?", options: ["Nguyễn Hiền", "Mạc Đĩnh Chi", "Lương Thế Vinh", "Nguyễn Bỉnh Khiêm"], correctIndex: 0, explain: "Trạng nguyên Nguyễn Hiền." },
+        { type: 'TN', question: "Từ nào dưới đây là đại từ xưng hô thể hiện sự kính trọng với người lớn tuổi?", options: ["Thưa cụ", "Mày", "Nó", "Hắn"], correctIndex: 0, explain: "'Thưa cụ' thể hiện sự kính trọng." },
+        { type: 'DT', question: "Điền từ còn thiếu vào câu thành ngữ: 'Uống nước nhớ [...]'", answer: "nguồn", explain: "Uống nước nhớ nguồn." },
+        { type: 'DT', question: "Điền quan hệ từ thích hợp vào chỗ trống: 'Vì trời mưa to [...] đường trơn trượt.'", answer: "nên", explain: "Vì... nên... chỉ nguyên nhân kết quả." },
+        { type: 'DT', question: "Điền từ còn thiếu vào câu tục ngữ: 'Thương người như thể thương [...]'", answer: "thân", explain: "Thương người như thể thương thân." },
+        { type: 'DT', question: "Điền từ còn thiếu: 'Ăn quả nhớ kẻ [...] cây'", answer: "trồng", explain: "Ăn quả nhớ kẻ trồng cây." },
+        { type: 'DT', question: "Điền từ còn thiếu: 'Tiên học lễ, hậu học [...]'", answer: "văn", explain: "Tiên học lễ, hậu học văn." },
+        { type: 'DT', question: "Điền từ còn thiếu: 'Gần mực thì đen, gần [...] thì rạng.'", answer: "đèn", explain: "Gần mực thì đen, gần đèn thì rạng." },
+        { type: 'DT', question: "Điền tiếng còn thiếu vào thành ngữ: 'Đồng tâm [...] lực'", answer: "hiệp", explain: "Đồng tâm hiệp lực." },
+        { type: 'DT', question: "Điền từ còn thiếu vào ca dao: 'Bầu ơi thương lấy [...] cùng'", answer: "bí", explain: "Bầu ơi thương lấy bí cùng." },
+        { type: 'DT', question: "Điền từ Hán Việt có nghĩa là 'xanh da trời': 'thiên [...]'", answer: "thanh", explain: "Thiên thanh = xanh da trời." }
       ];
 
       // Bài 4: Bé sáng tạo (DO_VUI)
@@ -6025,10 +6057,10 @@
     safeCreateIcons();
   }
 
-  // GAME 3: BÉ HỌC VUI (8 CÂU HỎI x 10 ĐIỂM = 80 ĐIỂM)
+  // GAME 3: BÉ HỌC VUI (18 CÂU HỎI x 10 ĐIỂM = 180 ĐIỂM)
   function renderGame3_QuizMode1(subGame) {
     const root = document.getElementById('app-root');
-    const questions = subGame.data.slice(0, 8);
+    const questions = subGame.data.slice(0, 18);
     let qIdx = 0;
     let correctCount = 0;
 
@@ -7181,7 +7213,7 @@
     }
 
     // Đếm số câu đúng / sai
-    const totalQuestions = AppState.roundAnswersHistory.length || (AppState.examMode === 2 ? 30 : 25);
+    const totalQuestions = AppState.roundAnswersHistory.length || 30;
     const correctCount = isNoAnswerSubmitted ? 0 : AppState.roundAnswersHistory.filter(h => h.isCorrect).length;
     const wrongCount = Math.max(0, totalQuestions - correctCount);
 
