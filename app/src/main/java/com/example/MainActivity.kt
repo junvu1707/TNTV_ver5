@@ -61,9 +61,10 @@ class MainActivity : ComponentActivity() {
   private var isAdMobInitialized = false
   private var bannerContainer: FrameLayout? = null
 
-  // Trạng thái VIP & EmailJS Manager (Thanh toán qua VietQR & Xác thực EmailJS)
+  // Trạng thái VIP, Google Play Billing & EmailJS Manager
   lateinit var vipPrefs: VipPreferenceManager
   lateinit var emailJSManager: EmailJSManager
+  lateinit var billingManager: BillingManager
 
   @SuppressLint("SetJavaScriptEnabled")
   override fun onCreate(savedInstanceState: Bundle?) {
@@ -79,9 +80,21 @@ class MainActivity : ComponentActivity() {
       if (seedNewFile.exists()) seedNewFile.delete()
     } catch (_: Exception) {}
 
-    // 1. Khởi tạo VIP Manager và EmailJS Manager
+    // 1. Khởi tạo VIP Manager, EmailJS Manager & Google Play Billing
     vipPrefs = VipPreferenceManager(this)
     emailJSManager = EmailJSManager()
+    billingManager = BillingManager(this, vipPrefs, emailJSManager)
+    billingManager.onPurchaseSuccessCallback = { productId, level ->
+      runOnUiThread {
+        updateAdMobForVipStatus()
+        val userName = vipPrefs.getUserName().ifBlank { "Tài khoản VIP" }
+        webView?.evaluateJavascript(
+          "if (window.onVipStatusChanged) { window.onVipStatusChanged($level, '$userName'); }",
+          null
+        )
+        showVipSuccessDialog(productId, level)
+      }
+    }
 
     // 2. Cấu hình tuân thủ Google Play Families Policy (Chính sách gia đình & trẻ em)
     val requestConfiguration = RequestConfiguration.Builder()
@@ -427,6 +440,215 @@ class MainActivity : ComponentActivity() {
     }
   }
 
+  fun showVipRegistrationDialog(productId: String, defaultName: String = "") {
+    runOnUiThread {
+      val isVip2Target = productId == "vip2" || productId == "vip_package_2"
+      val vipTitleName = if (isVip2Target) "Gói VIP 2 (Trọn Đời - 99.000đ)" else "Gói VIP 1 (Mùa Thi - 49.000đ)"
+      val deviceId = vipPrefs.getDeviceId()
+      val savedEmail = vipPrefs.getUserEmail()
+      val savedName = if (defaultName.isNotBlank()) defaultName else vipPrefs.getUserName()
+
+      val container = LinearLayout(this).apply {
+        orientation = LinearLayout.VERTICAL
+        setPadding(48, 36, 48, 24)
+        val bgDrawable = android.graphics.drawable.GradientDrawable().apply {
+          setColor(Color.parseColor("#FFFBEB"))
+          setStroke(6, Color.parseColor("#F59E0B"))
+          cornerRadius = 36f
+        }
+        background = bgDrawable
+      }
+
+      val titleHeader = android.widget.TextView(this).apply {
+        text = "👑 KÍCH HOẠT TÀI KHOẢN VIP"
+        setTextColor(Color.parseColor("#991B1B"))
+        textSize = 15f
+        setTypeface(null, android.graphics.Typeface.BOLD)
+        gravity = android.view.Gravity.CENTER
+        setPadding(0, 0, 0, 8)
+      }
+      container.addView(titleHeader)
+
+      val subTitle = android.widget.TextView(this).apply {
+        text = vipTitleName
+        setTextColor(Color.parseColor("#D97706"))
+        textSize = 12f
+        setTypeface(null, android.graphics.Typeface.BOLD)
+        gravity = android.view.Gravity.CENTER
+        setPadding(0, 0, 0, 20)
+      }
+      container.addView(subTitle)
+
+      // Dòng 1: Tài khoản : [input]
+      val rowAccount = LinearLayout(this).apply {
+        orientation = LinearLayout.HORIZONTAL
+        gravity = android.view.Gravity.CENTER_VERTICAL
+        setPadding(24, 14, 24, 14)
+        val rowBg = android.graphics.drawable.GradientDrawable().apply {
+          setColor(Color.WHITE)
+          setStroke(3, Color.parseColor("#FDE68A"))
+          cornerRadius = 20f
+        }
+        background = rowBg
+        layoutParams = LinearLayout.LayoutParams(
+          LinearLayout.LayoutParams.MATCH_PARENT,
+          LinearLayout.LayoutParams.WRAP_CONTENT
+        ).apply { setMargins(0, 0, 0, 14) }
+      }
+
+      val lblAccount = android.widget.TextView(this).apply {
+        text = "Tài khoản :"
+        setTextColor(Color.parseColor("#78350F"))
+        textSize = 13f
+        setTypeface(null, android.graphics.Typeface.BOLD)
+        setPadding(0, 0, 12, 0)
+      }
+
+      val inputAccount = android.widget.EditText(this).apply {
+        hint = "Nhập tên tài khoản..."
+        setText(if (savedName.isNotBlank() && savedName != "Công chúa tóc mây") savedName else "Tài khoản VIP")
+        setSingleLine(true)
+        setTextColor(Color.parseColor("#1E293B"))
+        textSize = 13f
+        setTypeface(null, android.graphics.Typeface.BOLD)
+        background = null
+        layoutParams = LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 1f)
+      }
+
+      rowAccount.addView(lblAccount)
+      rowAccount.addView(inputAccount)
+      container.addView(rowAccount)
+
+      // Dòng 2: Email : [input]
+      val rowEmail = LinearLayout(this).apply {
+        orientation = LinearLayout.HORIZONTAL
+        gravity = android.view.Gravity.CENTER_VERTICAL
+        setPadding(24, 14, 24, 14)
+        val rowBg = android.graphics.drawable.GradientDrawable().apply {
+          setColor(Color.WHITE)
+          setStroke(3, Color.parseColor("#FDE68A"))
+          cornerRadius = 20f
+        }
+        background = rowBg
+        layoutParams = LinearLayout.LayoutParams(
+          LinearLayout.LayoutParams.MATCH_PARENT,
+          LinearLayout.LayoutParams.WRAP_CONTENT
+        ).apply { setMargins(0, 0, 0, 14) }
+      }
+
+      val lblEmail = android.widget.TextView(this).apply {
+        text = "Email :"
+        setTextColor(Color.parseColor("#78350F"))
+        textSize = 13f
+        setTypeface(null, android.graphics.Typeface.BOLD)
+        setPadding(0, 0, 12, 0)
+      }
+
+      val inputEmail = android.widget.EditText(this).apply {
+        hint = "phuhuynh@gmail.com"
+        setText(savedEmail)
+        inputType = android.text.InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS
+        setSingleLine(true)
+        setTextColor(Color.parseColor("#1E293B"))
+        textSize = 13f
+        setTypeface(null, android.graphics.Typeface.BOLD)
+        background = null
+        layoutParams = LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 1f)
+      }
+
+      rowEmail.addView(lblEmail)
+      rowEmail.addView(inputEmail)
+      container.addView(rowEmail)
+
+      // Dòng 3: ID : [1nabj]
+      val rowDevice = LinearLayout(this).apply {
+        orientation = LinearLayout.HORIZONTAL
+        gravity = android.view.Gravity.CENTER_VERTICAL
+        setPadding(24, 14, 24, 14)
+        val rowBg = android.graphics.drawable.GradientDrawable().apply {
+          setColor(Color.parseColor("#FEF3C7"))
+          setStroke(3, Color.parseColor("#F59E0B"))
+          cornerRadius = 20f
+        }
+        background = rowBg
+        layoutParams = LinearLayout.LayoutParams(
+          LinearLayout.LayoutParams.MATCH_PARENT,
+          LinearLayout.LayoutParams.WRAP_CONTENT
+        )
+      }
+
+      val lblDevice = android.widget.TextView(this).apply {
+        text = "ID :"
+        setTextColor(Color.parseColor("#78350F"))
+        textSize = 13f
+        setTypeface(null, android.graphics.Typeface.BOLD)
+        setPadding(0, 0, 12, 0)
+      }
+
+      val textDevice = android.widget.TextView(this).apply {
+        text = deviceId
+        setTextColor(Color.parseColor("#991B1B"))
+        textSize = 13f
+        setTypeface(null, android.graphics.Typeface.BOLD)
+        layoutParams = LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 1f)
+      }
+
+      rowDevice.addView(lblDevice)
+      rowDevice.addView(textDevice)
+      container.addView(rowDevice)
+
+      val dialog = AlertDialog.Builder(this)
+        .setView(container)
+        .setPositiveButton("Thanh toán Google Play") { _, _ ->
+          val inputName = inputAccount.text.toString().trim()
+          val inputEmailStr = inputEmail.text.toString().trim()
+
+          if (inputName.isNotBlank()) vipPrefs.setUserName(inputName)
+          if (inputEmailStr.isNotBlank()) vipPrefs.setUserEmail(inputEmailStr)
+
+          billingManager.launchBillingFlow(this, productId, inputEmailStr, inputName)
+        }
+        .setNegativeButton("Hủy", null)
+        .create()
+
+      dialog.show()
+
+      dialog.getButton(AlertDialog.BUTTON_POSITIVE)?.apply {
+        setTextColor(Color.parseColor("#059669"))
+        setTypeface(null, android.graphics.Typeface.BOLD)
+      }
+      dialog.getButton(AlertDialog.BUTTON_NEGATIVE)?.apply {
+        setTextColor(Color.parseColor("#DC2626"))
+        setTypeface(null, android.graphics.Typeface.BOLD)
+      }
+    }
+  }
+
+  fun showVipSuccessDialog(productId: String, vipLevel: Int) {
+    runOnUiThread {
+      val vipName = if (vipLevel >= 2) "VIP 2 (Trọn Đời)" else "VIP 1 (Mùa Thi)"
+      val email = vipPrefs.getUserEmail()
+      val name = vipPrefs.getUserName()
+      val deviceId = vipPrefs.getDeviceId()
+
+      AlertDialog.Builder(this)
+        .setTitle("Kích Hoạt VIP Thành Công 🎉")
+        .setMessage(
+          "Chúc mừng ${if (name.isNotBlank()) name else "bé"} đã nâng cấp thành công gói $vipName!\n\n" +
+          "• Tài khoản: ${if (name.isNotBlank()) name else "Học sinh"}\n" +
+          "• Email xác nhận: ${if (email.isNotBlank()) email else "Đã ghi nhận"}\n" +
+          "• Mã thiết bị: $deviceId\n" +
+          "• Trạng thái: Toàn bộ 18 vòng thi và tính năng VIP đã sẵn sàng.\n\n" +
+          "Thông tin kích hoạt đã được gửi tự động về email quản trị (junvu1707@gmail.com)."
+        )
+        .setPositiveButton("Bắt đầu học ngay") { dialog, _ ->
+          dialog.dismiss()
+        }
+        .setCancelable(false)
+        .show()
+    }
+  }
+
   override fun onPause() {
     bannerAdView?.pause()
     webView?.onPause()
@@ -445,6 +667,9 @@ class MainActivity : ComponentActivity() {
   }
 
   override fun onDestroy() {
+    try {
+      billingManager.destroy()
+    } catch (_: Exception) {}
     bannerAdView?.destroy()
     bannerAdView = null
     webView?.destroy()
@@ -463,13 +688,26 @@ class AndroidBridge(
 
   /**
    * Kích hoạt luồng thanh toán Google Play Billing từ JavaScript
-   * @param productId ID gói ('vip_package_1' hoặc 'vip_package_2')
-   * @param userEmail Email người dùng đăng ký / nhận mail xác nhận
    */
+  @JavascriptInterface
+  fun launchBillingFlow(productId: String) {
+    activity.showVipRegistrationDialog(productId, activity.vipPrefs.getUserName())
+  }
+
+  @JavascriptInterface
+  fun launchBillingFlowWithInfo(productId: String, userEmail: String, userName: String) {
+    activity.runOnUiThread {
+      activity.billingManager.launchBillingFlow(activity, productId, userEmail, userName)
+    }
+  }
+
+  @JavascriptInterface
+  fun openVipPurchaseDialog(productId: String, defaultName: String) {
+    activity.showVipRegistrationDialog(productId, defaultName)
+  }
+
   /**
    * Gửi yêu cầu kích hoạt VIP qua chuyển khoản VietQR & EmailJS
-   * @param productId ID gói ('vip1' hoặc 'vip2')
-   * @param userEmail Email phụ huynh/học sinh
    */
   @JavascriptInterface
   fun sendVipTransferRequest(productId: String, userEmail: String) {
@@ -498,7 +736,8 @@ class AndroidBridge(
   @JavascriptInterface
   fun restorePurchases() {
     activity.runOnUiThread {
-      Toast.makeText(activity, "Đã khôi phục trạng thái VIP từ thiết bị thành công!", Toast.LENGTH_SHORT).show()
+      activity.billingManager.queryPurchases()
+      Toast.makeText(activity, "Đã kiểm tra và đồng bộ trạng thái VIP thành công!", Toast.LENGTH_SHORT).show()
     }
   }
 
@@ -521,7 +760,7 @@ class AndroidBridge(
   }
 
   /**
-   * Lấy Unique Device ID
+   * Lấy Unique Device ID (Settings.Secure.ANDROID_ID)
    */
   @JavascriptInterface
   fun getDeviceId(): String {
@@ -531,6 +770,11 @@ class AndroidBridge(
   @JavascriptInterface
   fun getUserEmail(): String {
     return activity.vipPrefs.getUserEmail()
+  }
+
+  @JavascriptInterface
+  fun getUserName(): String {
+    return activity.vipPrefs.getUserName()
   }
 
   /**
@@ -552,6 +796,7 @@ class AndroidBridge(
       put("isVip1", activity.vipPrefs.getVipLevel() == VipPreferenceManager.VIP_LEVEL_1)
       put("isVip2", activity.vipPrefs.getVipLevel() == VipPreferenceManager.VIP_LEVEL_2)
       put("deviceId", activity.vipPrefs.getDeviceId())
+      put("userName", activity.vipPrefs.getUserName())
       put("userEmail", activity.vipPrefs.getUserEmail())
       put("lastOrderId", activity.vipPrefs.getLastOrderId())
     }

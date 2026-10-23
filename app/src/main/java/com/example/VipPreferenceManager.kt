@@ -10,6 +10,8 @@ class VipPreferenceManager(private val context: Context) {
     const val PREF_NAME = "trang_nhi_vip_prefs"
     const val KEY_VIP_LEVEL = "vip_level"
     const val KEY_USER_EMAIL = "user_email"
+    const val KEY_USER_NAME = "user_name"
+    const val KEY_PURCHASE_TOKEN = "purchase_token"
     const val KEY_LAST_ORDER_ID = "last_order_id"
     const val KEY_DEVICE_ID = "device_id"
     const val KEY_UNLOCKED_ROUNDS = "unlocked_rounds"
@@ -71,6 +73,22 @@ class VipPreferenceManager(private val context: Context) {
 
   fun setUserEmail(email: String) {
     prefs.edit().putString(KEY_USER_EMAIL, email).apply()
+  }
+
+  fun getUserName(): String {
+    return prefs.getString(KEY_USER_NAME, "") ?: ""
+  }
+
+  fun setUserName(name: String) {
+    prefs.edit().putString(KEY_USER_NAME, name).apply()
+  }
+
+  fun getPurchaseToken(): String {
+    return prefs.getString(KEY_PURCHASE_TOKEN, "") ?: ""
+  }
+
+  fun setPurchaseToken(token: String) {
+    prefs.edit().putString(KEY_PURCHASE_TOKEN, token).apply()
   }
 
   fun getLastOrderId(): String {

@@ -3807,8 +3807,13 @@
     const headerVipBtn = document.getElementById('btn-header-vip-upgrade');
 
     const accId = (AppState.customAccountId || '').trim();
+    const studentName = (AppState.studentName || '').trim();
     const chibiName = AppState.avatarName || 'Công chúa tóc mây';
-    const displayName = accId ? accId : chibiName;
+
+    let displayName = accId ? accId : (studentName && studentName !== 'Công chúa tóc mây' ? studentName : chibiName);
+    if ((AppState.isVip1 || AppState.isVip2) && (!displayName || displayName === 'Công chúa tóc mây')) {
+      displayName = 'Tài khoản VIP';
+    }
 
     if (nameEl) nameEl.textContent = displayName;
     if (gradeEl) gradeEl.textContent = `Lớp ${AppState.selectedGrade}`;
@@ -7340,7 +7345,11 @@
   }
 
   function simulateBuyVip(packageCode) {
-    if (window.AndroidBridge && typeof window.AndroidBridge.launchBillingFlow === 'function') {
+    if (window.AndroidBridge && typeof window.AndroidBridge.openVipPurchaseDialog === 'function') {
+      window.AndroidBridge.openVipPurchaseDialog(packageCode, AppState.customAccountId || AppState.studentName || 'Tài khoản VIP');
+      closeModal();
+      return;
+    } else if (window.AndroidBridge && typeof window.AndroidBridge.launchBillingFlow === 'function') {
       window.AndroidBridge.launchBillingFlow(packageCode);
     }
     if (packageCode === 'vip2' || packageCode === 'all') {
@@ -7352,6 +7361,10 @@
     } else {
       AppState.isVip1 = true;
     }
+    if (!AppState.customAccountId || AppState.customAccountId === 'Công chúa tóc mây') {
+      AppState.studentName = 'Tài khoản VIP';
+      AppState.customAccountId = 'Tài khoản VIP';
+    }
     savePersistedState();
     SoundEngine.playFanfare();
     closeModal();
@@ -7359,6 +7372,43 @@
     showCustomAlert('🎉 Chúc mừng bạn đã nâng cấp VIP thành công! Toàn bộ 18 vòng và 1000 bộ đề thi đã được kích hoạt.');
     renderHome();
   }
+
+  window.onVipStatusChanged = function(vipLevel, userName) {
+    if (vipLevel >= 2) {
+      AppState.isVip1 = true;
+      AppState.isVip2 = true;
+      if (window.AndroidBridge && typeof window.AndroidBridge.setBannerVisible === 'function') {
+        window.AndroidBridge.setBannerVisible(false);
+      }
+    } else if (vipLevel >= 1) {
+      AppState.isVip1 = true;
+    }
+
+    let accName = userName;
+    if (!accName && window.AndroidBridge && typeof window.AndroidBridge.getUserName === 'function') {
+      accName = window.AndroidBridge.getUserName();
+    }
+
+    if (accName && accName.trim() && accName.trim() !== 'Công chúa tóc mây') {
+      AppState.studentName = accName.trim();
+      AppState.customAccountId = accName.trim();
+    } else {
+      if (!AppState.customAccountId || AppState.customAccountId === 'Công chúa tóc mây') {
+        AppState.studentName = 'Tài khoản VIP';
+        AppState.customAccountId = 'Tài khoản VIP';
+      }
+    }
+
+    savePersistedState();
+    if (typeof SoundEngine !== 'undefined' && SoundEngine.playFanfare) {
+      SoundEngine.playFanfare();
+    }
+    updateHeaderUI();
+    if (typeof renderHome === 'function') {
+      renderHome();
+    }
+  };
+
 
   // ==========================================
   // [GOOGLE ADMOB INTEGRATION & BRIDGES]

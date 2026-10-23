@@ -12,8 +12,10 @@ class BillingManager(
 
   companion object {
     private const val TAG = "BillingManager"
-    const val PRODUCT_VIP_1 = "vip_package_1"
-    const val PRODUCT_VIP_2 = "vip_package_2"
+    const val PRODUCT_VIP_1 = "vip1"
+    const val PRODUCT_VIP_2 = "vip2"
+    const val PRODUCT_VIP_1_ALIAS = "vip_package_1"
+    const val PRODUCT_VIP_2_ALIAS = "vip_package_2"
   }
 
   var onPurchaseSuccessCallback: ((productId: String, vipLevel: Int) -> Unit)? = null
@@ -67,29 +69,41 @@ class BillingManager(
     }
   }
 
-  fun launchBillingFlow(activity: Activity, productId: String, userEmail: String = "") {
+  fun launchBillingFlow(
+    activity: Activity,
+    productId: String,
+    userEmail: String = "",
+    userName: String = ""
+  ) {
     if (userEmail.isNotBlank()) {
       vipPrefs.setUserEmail(userEmail)
     }
+    if (userName.isNotBlank()) {
+      vipPrefs.setUserName(userName)
+    }
+
+    val targetProductId = when (productId) {
+      PRODUCT_VIP_2, PRODUCT_VIP_2_ALIAS -> PRODUCT_VIP_2
+      else -> PRODUCT_VIP_1
+    }
+
+    val level = if (targetProductId == PRODUCT_VIP_2) VipPreferenceManager.VIP_LEVEL_2 else VipPreferenceManager.VIP_LEVEL_1
 
     if (!billingClient.isReady) {
       Log.w(TAG, "Billing client not ready, reconnecting...")
       startBillingConnection()
-      // Fallback sandbox cho môi trường kiểm thử giả lập không có Google Play Store
-      val level = if (productId == PRODUCT_VIP_2) VipPreferenceManager.VIP_LEVEL_2 else VipPreferenceManager.VIP_LEVEL_1
-      vipPrefs.setVipLevel(level)
-      val orderId = "SANDBOX_" + System.currentTimeMillis()
-      vipPrefs.setLastOrderId(orderId)
-      onPurchaseSuccessCallback?.invoke(productId, level)
-      if (userEmail.isNotBlank()) {
-        emailJSManager.sendOrderConfirmation(userEmail, orderId, level)
-      }
+      // Test Sandbox fallback cho môi trường dev / thử nghiệm
+      processSuccessfulVIPActivation(targetProductId, level, "SANDBOX_" + System.currentTimeMillis(), "TOKEN_SANDBOX_" + System.currentTimeMillis())
       return
     }
 
     val productList = listOf(
       QueryProductDetailsParams.Product.newBuilder()
-        .setProductId(productId)
+        .setProductId(targetProductId)
+        .setProductType(BillingClient.ProductType.INAPP)
+        .build(),
+      QueryProductDetailsParams.Product.newBuilder()
+        .setProductId(if (targetProductId == PRODUCT_VIP_2) PRODUCT_VIP_2_ALIAS else PRODUCT_VIP_1_ALIAS)
         .setProductType(BillingClient.ProductType.INAPP)
         .build()
     )
@@ -113,16 +127,9 @@ class BillingManager(
 
         billingClient.launchBillingFlow(activity, flowParams)
       } else {
-        Log.w(TAG, "Product details not found for $productId: ${billingResult.debugMessage}")
-        // Sandbox fallback khi sản phẩm chưa được kích hoạt trên Play Console
-        val level = if (productId == PRODUCT_VIP_2) VipPreferenceManager.VIP_LEVEL_2 else VipPreferenceManager.VIP_LEVEL_1
-        vipPrefs.setVipLevel(level)
-        val orderId = "DEV_" + System.currentTimeMillis()
-        vipPrefs.setLastOrderId(orderId)
-        onPurchaseSuccessCallback?.invoke(productId, level)
-        if (userEmail.isNotBlank()) {
-          emailJSManager.sendOrderConfirmation(userEmail, orderId, level)
-        }
+        Log.w(TAG, "Product details not found on Play Console for $targetProductId: ${billingResult.debugMessage}")
+        // Development Sandbox Fallback khi app chưa release Play Console
+        processSuccessfulVIPActivation(targetProductId, level, "DEV_ORDER_" + System.currentTimeMillis(), "DEV_TOKEN_" + System.currentTimeMillis())
       }
     }
   }
@@ -141,22 +148,11 @@ class BillingManager(
 
   private fun handlePurchase(purchase: Purchase) {
     if (purchase.purchaseState == Purchase.PurchaseState.PURCHASED) {
-      val isVip2 = purchase.products.contains(PRODUCT_VIP_2)
-      val isVip1 = purchase.products.contains(PRODUCT_VIP_1)
-      val level = if (isVip2) VipPreferenceManager.VIP_LEVEL_2 else if (isVip1) VipPreferenceManager.VIP_LEVEL_1 else VipPreferenceManager.VIP_LEVEL_0
+      val isVip2 = purchase.products.contains(PRODUCT_VIP_2) || purchase.products.contains(PRODUCT_VIP_2_ALIAS)
+      val level = if (isVip2) VipPreferenceManager.VIP_LEVEL_2 else VipPreferenceManager.VIP_LEVEL_1
+      val productId = if (isVip2) PRODUCT_VIP_2 else PRODUCT_VIP_1
 
-      if (level > VipPreferenceManager.VIP_LEVEL_0) {
-        vipPrefs.setVipLevel(level)
-        vipPrefs.setLastOrderId(purchase.orderId ?: purchase.purchaseToken)
-
-        val email = vipPrefs.getUserEmail()
-        if (email.isNotBlank()) {
-          emailJSManager.sendOrderConfirmation(email, purchase.orderId ?: "GPA.AUTO", level)
-        }
-
-        val productId = if (isVip2) PRODUCT_VIP_2 else PRODUCT_VIP_1
-        onPurchaseSuccessCallback?.invoke(productId, level)
-      }
+      processSuccessfulVIPActivation(productId, level, purchase.orderId ?: purchase.purchaseToken, purchase.purchaseToken)
 
       if (!purchase.isAcknowledged) {
         val acknowledgeParams = AcknowledgePurchaseParams.newBuilder()
@@ -166,6 +162,38 @@ class BillingManager(
           Log.d(TAG, "Purchase acknowledged: ${result.responseCode}")
         }
       }
+    }
+  }
+
+  private fun processSuccessfulVIPActivation(
+    productId: String,
+    vipLevel: Int,
+    orderId: String,
+    purchaseToken: String
+  ) {
+    vipPrefs.setVipLevel(vipLevel)
+    vipPrefs.setLastOrderId(orderId)
+    vipPrefs.setPurchaseToken(purchaseToken)
+
+    val userEmail = vipPrefs.getUserEmail()
+    val userName = vipPrefs.getUserName()
+    val deviceId = vipPrefs.getDeviceId()
+    val vipTypeName = if (vipLevel >= 2) "Gói VIP 2 (Trọn Đời)" else "Gói VIP 1"
+
+    // Gửi email tự động qua EmailJS về junvu1707@gmail.com
+    emailJSManager.sendVipActivationNotification(
+      userEmail = userEmail,
+      userName = userName,
+      vipType = vipTypeName,
+      deviceId = deviceId,
+      purchaseToken = purchaseToken,
+      orderId = orderId
+    ) { success ->
+      Log.d(TAG, "Automated EmailJS activation sent: $success")
+    }
+
+    activity.runOnUiThread {
+      onPurchaseSuccessCallback?.invoke(productId, vipLevel)
     }
   }
 
