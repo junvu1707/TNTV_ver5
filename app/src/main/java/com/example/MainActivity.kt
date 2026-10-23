@@ -159,7 +159,7 @@ class MainActivity : ComponentActivity() {
           result: JsResult?
         ): Boolean {
           AlertDialog.Builder(this@MainActivity)
-            .setTitle("Ôn luyện Trạng nhí Tiếng Việt")
+            .setTitle("Siêu Trạng Nhí Tiếng Việt")
             .setMessage(message ?: "")
             .setPositiveButton("Đồng ý") { _, _ -> result?.confirm() }
             .setOnCancelListener { result?.cancel() }
@@ -175,7 +175,7 @@ class MainActivity : ComponentActivity() {
           result: JsResult?
         ): Boolean {
           AlertDialog.Builder(this@MainActivity)
-            .setTitle("Ôn luyện Trạng nhí Tiếng Việt")
+            .setTitle("Siêu Trạng Nhí Tiếng Việt")
             .setMessage(message ?: "")
             .setPositiveButton("Có") { _, _ -> result?.confirm() }
             .setNegativeButton("Không") { _, _ -> result?.cancel() }

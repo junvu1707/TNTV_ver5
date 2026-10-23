@@ -22,6 +22,6 @@ dependencyResolutionManagement {
   }
 }
 
-rootProject.name = "Ôn luyện Trạng nhí Tiếng Việt"
+rootProject.name = "Siêu Trạng Nhí Tiếng Việt"
 
 include(":app")

@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>Ôn Tiếng Việt - Trạng Sĩ Nhí</title>
+  <title>Siêu Trạng Nhí Tiếng Việt</title>
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
   <!-- Lucide Icons CDN -->
@@ -201,7 +201,7 @@
       <!-- HÌNH TRÒN LOGO CHIẾM 75% CHIỀU NGANG MÀN HÌNH (75vw) -->
       <div class="relative w-[75vw] max-w-[340px] aspect-square rounded-full p-2.5 bg-white shadow-2xl border-4 border-[#C8E6C9] flex items-center justify-center mb-6 transform animate-bounce-subtle">
         <div class="w-full h-full rounded-full overflow-hidden shadow-inner flex items-center justify-center bg-white">
-          <img src="app_logo.png" alt="Logo Trạng Sĩ Nhí" class="w-full h-full object-cover rounded-full" onerror="this.onerror=null; this.src='chibi_cong_chua_toc_may.png';">
+          <img src="app_logo.png" alt="Logo Siêu Trạng Nhí Tiếng Việt" class="w-full h-full object-cover rounded-full" onerror="this.onerror=null; this.src='chibi_cong_chua_toc_may.png';">
         </div>
         <!-- Vòng hào quang nhẹ bao quanh -->
         <div class="absolute -inset-1 rounded-full border-2 border-emerald-500/30 pointer-events-none animate-pulse"></div>
@@ -209,10 +209,10 @@
 
       <!-- TÊN ỨNG DỤNG & LỜI CHÀO -->
       <h1 class="text-2xl sm:text-3xl font-black text-slate-800 tracking-tight leading-tight mb-1">
-        Ôn Tiếng Việt
+        Siêu Trạng Nhí
       </h1>
       <h2 class="text-xl sm:text-2xl font-black text-[#2E7D32] tracking-tight mb-2">
-        Trạng Sĩ Nhí
+        Tiếng Việt
       </h2>
       <p class="text-xs sm:text-sm font-bold text-slate-600 mb-6">
         Học Vui • Nhớ Lâu • Ôn Thi Tiểu Học
@@ -3782,7 +3782,7 @@
   function isAdminAccount() {
     const name = (AppState.studentName || '').toLowerCase().trim();
     const accId = (AppState.customAccountId || '').toLowerCase().trim();
-    return name === 'uyenlp1310' || accId === 'uyenlp1310' || name === 'testapp' || accId === 'testapp' || !!AppState.isAdmin;
+    return name === 'uyenlp1310' || accId === 'uyenlp1310' || name === 'apptest' || accId === 'apptest' || name === 'testapp' || accId === 'testapp' || !!AppState.isAdmin;
   }
 
   function isRoundUnlocked(roundNum) {
@@ -4263,11 +4263,11 @@
     AppState.customAccountId = enteredId;
     const lowerId = enteredId.toLowerCase();
 
-    // 1. Kiểm tra Admin testapp (ID: testapp, Pass: abc123)
-    if (lowerId === 'testapp') {
+    // 1. Kiểm tra Admin apptest / testapp (ID: apptest, Pass: abc123)
+    if (lowerId === 'apptest' || lowerId === 'testapp') {
       if (enteredPass === 'abc123') {
-        AppState.studentName = 'testapp';
-        AppState.customAccountId = 'testapp';
+        AppState.studentName = enteredId;
+        AppState.customAccountId = enteredId;
         AppState.isAdmin = true;
         AppState.isVip1 = true;
         AppState.isVip2 = true;
@@ -4277,9 +4277,12 @@
         const allItems = [];
         Object.values(AVATAR_ITEMS).forEach(arr => arr.forEach(it => allItems.push(it.id)));
         AppState.ownedItems = allItems;
+        if (window.AndroidBridge && typeof window.AndroidBridge.setBannerVisible === 'function') {
+          window.AndroidBridge.setBannerVisible(false);
+        }
         savePersistedState();
         SoundEngine.playSuccess();
-        showCustomAlert('Chào mừng Admin testapp! Đã mở khóa toàn bộ 18 Chặng thi, VIP MAX, Chibi & Phụ kiện!');
+        showCustomAlert(`Chào mừng Admin ${enteredId}! Đã mở khóa toàn bộ 18 Chặng thi, VIP MAX, Chibi & Phụ kiện!`);
         closeModal();
         updateHeaderUI();
         renderHome();
@@ -4997,23 +5000,23 @@
     }
 
     root.innerHTML = `
-      <!-- Banner Tiêu Đề Trạng Sĩ Nhí & Khối Lớp -->
+      <!-- Banner Tiêu Đề Siêu Trạng Nhí Tiếng Việt & Khối Lớp -->
       <div class="scroll-card p-4 sm:p-5 mb-5 bg-white border-2 border-[#C8E6C9] relative overflow-hidden shadow-sm">
         <div class="dong-son-pattern absolute inset-0 pointer-events-none opacity-15"></div>
         <div class="relative z-10 flex flex-row items-center justify-between gap-3 w-full">
-          <!-- Tiêu Đề Kèm Hình Đại Diện Trạng Sĩ Nhí Tiếng Việt Sinh Động -->
+          <!-- Tiêu Đề Kèm Hình Đại Diện Siêu Trạng Nhí Tiếng Việt Sinh Động -->
           <div class="flex items-center gap-2.5 sm:gap-4 min-w-0">
-            <!-- Hình Đại Diện Trạng Sĩ Nhí Mới Của App (Hình tròn đồng bộ) -->
-            <div class="relative shrink-0 cursor-pointer" onclick="openAvatarModal()" title="Hình đại diện Trạng sĩ nhí Tiếng Việt • Vào Tủ Đồ Chibi">
+            <!-- Hình Đại Diện Siêu Trạng Nhí Tiếng Việt (Hình tròn đồng bộ) -->
+            <div class="relative shrink-0 cursor-pointer" onclick="openAvatarModal()" title="Hình đại diện Siêu Trạng Nhí Tiếng Việt • Vào Tủ Đồ Chibi">
               <div class="w-[82px] h-[82px] sm:w-[104px] sm:h-[104px] rounded-full bg-gradient-to-br from-emerald-100 via-white to-emerald-200 p-1 shadow-md border-2 border-[#C8E6C9] flex items-center justify-center transform hover:scale-105 transition-all overflow-hidden bg-white">
-                <img src="app_logo.png" alt="Ôn luyện Trạng sĩ nhí Tiếng Việt" class="w-full h-full object-cover rounded-full" onerror="this.onerror=null; this.src='chibi_cong_chua_toc_may.png';">
+                <img src="app_logo.png" alt="Siêu Trạng Nhí Tiếng Việt" class="w-full h-full object-cover rounded-full" onerror="this.onerror=null; this.src='chibi_cong_chua_toc_may.png';">
               </div>
             </div>
 
             <div class="min-w-0 flex flex-col items-center text-center">
               <h1 class="text-base sm:text-2xl md:text-3xl font-black text-red-900 tracking-tight leading-tight text-center">
-                <span class="block text-center">Ôn Tiếng Việt</span>
-                <span class="block text-center">Trạng Sĩ Nhí</span>
+                <span class="block text-center">Siêu Trạng Nhí</span>
+                <span class="block text-center text-emerald-700">Tiếng Việt</span>
               </h1>
               <div class="inline-block bg-slate-50 text-slate-500 font-bold px-2 py-0.5 rounded-full uppercase tracking-wider mt-1 border border-slate-200 text-[8px] sm:text-[10px] leading-tight text-center">
                 Dành cho Học sinh & Giáo viên Tiểu học
@@ -5056,7 +5059,7 @@
       <!-- CHÂN TRANG & THÔNG TIN PHÁP LÝ (CHUẨN GOOGLE PLAY POLICY) -->
       <footer class="mt-8 pt-6 pb-6 border-t-2 border-amber-300/60 text-center text-xs text-slate-500">
         <p class="font-medium text-slate-600 mb-2.5">
-          Ôn luyện Tiếng Việt - Trạng Sĩ Nhí • Nền tảng học tập & rèn luyện tiếng Việt độc lập cho Học sinh & Giáo viên GDPT
+          Siêu Trạng Nhí Tiếng Việt • Nền tảng học tập & rèn luyện tiếng Việt độc lập cho Học sinh & Giáo viên GDPT
         </p>
         <div class="flex flex-wrap items-center justify-center gap-2 mb-2">
           <button onclick="openDisclaimerModal()" class="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-white border-2 border-emerald-400 shadow-sm text-emerald-900 font-extrabold hover:bg-emerald-50 active:scale-95 transition-all text-xs">
@@ -5065,7 +5068,7 @@
           </button>
         </div>
         <p class="text-[11px] text-slate-400 mt-2.5">
-          Trạng Sĩ Nhí V06 • Bản quyền nội dung rèn luyện độc lập © 2026 Ôn luyện Tiếng Việt - Trạng Sĩ Nhí
+          Siêu Trạng Nhí Tiếng Việt V06 • Bản quyền nội dung rèn luyện độc lập © 2026 Siêu Trạng Nhí Tiếng Việt
         </p>
       </footer>
     `;
@@ -5099,7 +5102,7 @@
           <div class="overflow-y-auto pr-1.5 space-y-3.5 text-xs sm:text-[13px] text-slate-600 leading-relaxed text-justify border-y border-slate-100 py-3 my-1">
             <div>
               <h4 class="font-black text-emerald-700 text-xs sm:text-sm mb-1">1. Tuyên bố độc lập & Miễn trừ trách nhiệm bản quyền</h4>
-              <p>• Ứng dụng <b>"Ôn luyện Trạng nhí Tiếng Việt"</b> là phần mềm học tập bổ trợ độc lập, do đội ngũ nhà giáo dục và lập trình viên tự nghiên cứu biên soạn nhằm hỗ trợ học sinh Tiểu học rèn luyện kiến thức tiếng Việt bám sát Chương trình Giáo dục Phổ thông (GDPT) của Bộ GD&ĐT.</p>
+              <p>• Ứng dụng <b>"Siêu Trạng Nhí Tiếng Việt"</b> là phần mềm học tập bổ trợ độc lập, do đội ngũ nhà giáo dục và lập trình viên tự nghiên cứu biên soạn nhằm hỗ trợ học sinh Tiểu học rèn luyện kiến thức tiếng Việt bám sát Chương trình Giáo dục Phổ thông (GDPT) của Bộ GD&ĐT.</p>
               <p class="mt-1">• <b>TUYÊN BỐ MINH BẠCH:</b> Ứng dụng <b>KHÔNG PHẢI</b> là ứng dụng chính thức, <b>KHÔNG CÓ</b> bất kỳ sự liên kết, hợp tác, ủy quyền, tài trợ, bảo trợ hay đại diện cho bất kỳ cơ quan, tổ chức khảo thí nào.</p>
               <p class="mt-1">• Hình tượng nhân vật Trạng nhí và Công chúa trong ứng dụng hoàn toàn xuất phát từ truyền thống văn hóa hiếu học dân gian của dân tộc Việt Nam, chỉ mang tính khích lệ tinh thần học tập của thiếu nhi và không nhằm mục đích gây nhầm lẫn với bất kỳ nhãn hiệu thương mại nào.</p>
             </div>
@@ -5126,9 +5129,9 @@
 
             <div>
               <h4 class="font-black text-emerald-700 text-xs sm:text-sm mb-1">5. Thông tin nhà phát triển & Cơ chế tiếp nhận gỡ bỏ (Notice & Takedown)</h4>
-              <p>• <b>Nhà phát triển:</b> Đội ngũ phát triển Trạng Nhí Đại Việt</p>
+              <p>• <b>Nhà phát triển:</b> Đội ngũ Siêu Trạng Nhí Tiếng Việt</p>
               <p>• <b>Email hỗ trợ & Bản quyền:</b> junvu1707@gmail.com</p>
-              <p>• <b>Ứng dụng:</b> Ôn luyện Trạng nhí Tiếng Việt (Android)</p>
+              <p>• <b>Ứng dụng:</b> Siêu Trạng Nhí Tiếng Việt (Android)</p>
               <div class="mt-2 p-2.5 bg-emerald-50 rounded-xl border border-emerald-200 text-emerald-950 font-medium text-xs">
                 <b>Cam kết bản quyền:</b> Chúng tôi luôn tôn trọng quyền sở hữu trí tuệ của các tổ chức và tác giả. Nếu bất kỳ cá nhân hay tổ chức nào nhận thấy bất kỳ nội dung nào có nghi vấn liên quan đến bản quyền hoặc nhãn hiệu, xin vui lòng gửi email về <b>junvu1707@gmail.com</b>. Chúng tôi cam kết sẽ tiếp nhận, xác minh và xử lý gỡ bỏ ngay lập tức trong vòng 24 - 48 giờ làm việc.
               </div>
@@ -7135,7 +7138,7 @@
           <div class="text-xs uppercase tracking-wider text-slate-400 font-black mb-1">GOOGLE ADMOB • QUẢNG CÁO XEN KẼ</div>
           <div class="h-32 bg-gradient-to-tr from-amber-400 to-red-500 rounded-xl flex flex-col items-center justify-center text-white p-3 shadow-inner">
             <span class="text-3xl mb-1">🎓</span>
-            <span class="font-black text-sm">Ôn luyện Trạng nhí Tiếng Việt</span>
+            <span class="font-black text-sm">Siêu Trạng Nhí Tiếng Việt</span>
             <span class="text-[11px] opacity-90 mt-0.5">Tiếp sức tri thức Việt 2026</span>
           </div>
           <p class="text-xs text-slate-600 mt-3 font-semibold">Bé đã hoàn thành xuất sắc chặng thi vừa rồi!</p>

@@ -1,6 +1,6 @@
 {
-  "name": "Ôn Tiếng Việt - Trạng Sĩ Nhí",
-  "description": "Ứng dụng ôn luyện kiến thức tiếng Việt, rèn luyện và học tập môn Tiếng Việt dành cho học sinh Tiểu học và giáo viên theo GDPT.",
+  "name": "Siêu Trạng Nhí Tiếng Việt",
+  "description": "Ứng dụng Siêu Trạng Nhí Tiếng Việt - rèn luyện, học tập và ôn luyện kiến thức môn Tiếng Việt dành cho học sinh Tiểu học và giáo viên theo GDPT.",
   "requestFramePermissions": [],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }
