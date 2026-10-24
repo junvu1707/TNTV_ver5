@@ -1800,14 +1800,22 @@
         { poem: "Hoa gì nở hướng mặt trời\nVàng hoe rực rỡ rạng ngời sớm mai?", options: ["Hoa hướng dương", "Hoa sen", "Hoa phượng", "Hoa đào"], correctIndex: 0, explain: "Hoa hướng dương hướng về mặt trời." }
       ];
 
-      // Bài 5: Bé nhanh tay
-      const imageQuizItems = [
-        { imageKey: 'ga_trong', question: 'Hình vẽ minh họa con vật gì cất tiếng gáy ó o o báo sáng?', options: ['Con gà trống', 'Con vịt bầu', 'Con mèo nhà', 'Con chó con'], correctIndex: 0, explain: 'Gà trống cất tiếng gáy vang.' },
-        { imageKey: 'meo_con', question: 'Hình vẽ minh họa con vật gì hay nằm sưởi nắng bên hiên?', options: ['Con mèo con', 'Con thỏ trắng', 'Con lợn ỉn', 'Con trâu đen'], correctIndex: 0, explain: 'Mèo con hay nằm sưởi nắng.' },
-        { imageKey: 'cap_sach', question: 'Đồ dùng học tập nào dùng để đựng sách vở đến trường?', options: ['Cái cặp sách', 'Cái thước kẻ', 'Cục tẩy', 'Hộp màu'], correctIndex: 0, explain: 'Cặp sách đựng đồ dùng học tập.' },
-        { imageKey: 'thuoc_ke', question: 'Dụng cụ học tập nào dùng để kẻ đường thẳng ngay ngắn?', options: ['Cây thước kẻ', 'Quyển vở', 'Cái cặp', 'Cái bàn'], correctIndex: 0, explain: 'Thước kẻ dùng để kẻ đường thẳng.' },
-        { imageKey: 'qua_tao', question: 'Loại quả nào trong hình có màu đỏ tươi thơm ngon?', options: ['Quả táo đỏ', 'Quả chuối', 'Quả cam', 'Quả chanh'], correctIndex: 0, explain: 'Hình minh họa quả táo đỏ.' }
+      // Bài 5: Bé nhanh tay - 5 câu sắp xếp câu Lớp 2
+      const sentenceReorderBankG2 = [
+        { type: 'SAP_XEP_CAU', title: 'Sắp xếp câu hoàn chỉnh Lớp 2', words: ["Em", "là", "học sinh", "lớp 2"], answer: "Em là học sinh lớp 2", explain: 'Câu đúng: "Em là học sinh lớp 2."' },
+        { type: 'SAP_XEP_CAU', title: 'Sắp xếp thành ngữ Lớp 2', words: ["Công cha", "như", "núi", "Thái Sơn"], answer: "Công cha như núi Thái Sơn", explain: 'Câu ca dao: "Công cha như núi Thái Sơn."' },
+        { type: 'SAP_XEP_CAU', title: 'Sắp xếp thành ngữ Lớp 2', words: ["Trẻ em", "như", "búp", "trên cành"], answer: "Trẻ em như búp trên cành", explain: 'Câu đúng: "Trẻ em như búp trên cành."' },
+        { type: 'SAP_XEP_CAU', title: 'Sắp xếp tục ngữ Lớp 2', words: ["Uống nước", "nhớ", "nguồn"], answer: "Uống nước nhớ nguồn", explain: 'Tục ngữ: "Uống nước nhớ nguồn."' },
+        { type: 'SAP_XEP_CAU', title: 'Sắp xếp tục ngữ Lớp 2', words: ["Ăn quả", "nhớ", "kẻ", "trồng cây"], answer: "Ăn quả nhớ kẻ trồng cây", explain: 'Tục ngữ: "Ăn quả nhớ kẻ trồng cây."' },
+        { type: 'SAP_XEP_CAU', title: 'Sắp xếp câu ca dao Lớp 2', words: ["Chị ngã", "em", "nâng"], answer: "Chị ngã em nâng", explain: 'Tục ngữ: "Chị ngã em nâng."' },
+        { type: 'SAP_XEP_CAU', title: 'Sắp xếp câu Lớp 2', words: ["Học tập", "là", "nghĩa vụ", "của em"], answer: "Học tập là nghĩa vụ của em", explain: 'Câu đúng: "Học tập là nghĩa vụ của em."' },
+        { type: 'SAP_XEP_CAU', title: 'Sắp xếp tục ngữ Lớp 2', words: ["Tôn sư", "trọng", "đạo"], answer: "Tôn sư trọng đạo", explain: 'Thành ngữ: "Tôn sư trọng đạo."' },
+        { type: 'SAP_XEP_CAU', title: 'Sắp xếp tục ngữ Lớp 2', words: ["Lá lành", "đùm", "lá rách"], answer: "Lá lành đùm lá rách", explain: 'Tục ngữ: "Lá lành đùm lá rách."' },
+        { type: 'SAP_XEP_CAU', title: 'Sắp xếp câu Lớp 2', words: ["Thầy cô", "là", "người mẹ thứ hai"], answer: "Thầy cô là người mẹ thứ hai", explain: 'Câu đúng: "Thầy cô là người mẹ thứ hai."' }
       ];
+
+      const g2ReorderPool = seededShuffle(sentenceReorderBankG2, baseSeed + 800);
+      const reorderItemsG2 = g2ReorderPool.slice(0, 5);
 
       return {
         mode: 1,
@@ -1819,7 +1827,7 @@
           { type: 'PL', data: { baskets, explain: 'Phân loại từ vựng Lớp 2 vào đúng giỏ.' }, title: 'Bài 2: Bé thông minh' },
           { type: 'TN_DT', data: quizItems, title: 'Bài 3: Bé học vui' },
           { type: 'DO_VUI', data: riddleItems, title: 'Bài 4: Bé sáng tạo' },
-          { type: 'NHIN_HINH', data: imageQuizItems, title: 'Bài 5: Bé nhanh tay' }
+          { type: 'NHIN_HINH', data: reorderItemsG2, title: 'Bài 5: Bé nhanh tay' }
         ]
       };
     },
@@ -1926,14 +1934,22 @@
         { poem: "Thân tròn trùng trục, ruột thẳng băng băng\nKhi gọt nhọn đầu thì thành chữ đẹp?", options: ["Bút chì", "Thước kẻ", "Cục tẩy", "Hộp bút"], correctIndex: 0, explain: "Bút chì có ruột bằng than chì." }
       ];
 
-      // Bài 5: Bé nhanh tay
-      const imageQuizItems = [
-        { imageKey: 'van_mieu', question: 'Di tích lịch sử nào ở Hà Nội được coi là trường đại học đầu tiên của nước ta?', options: ['Văn Miếu - Quốc Tử Giám', 'Chùa Một Cột', 'Cột mốc Cờ Lũng', 'Hoàng thành Thăng Long'], correctIndex: 0, explain: 'Văn Miếu - Quốc Tử Giám là trường đại học đầu tiên.' },
-        { imageKey: 'trong_dong', question: 'Di vật lịch sử tiêu biểu nào của thời kỳ các Vua Hùng dựng nước?', options: ['Trống đồng Đông Sơn', 'Thành Cổ Loa', 'Bia tiến sĩ', 'Ấn vàng triều Nguyễn'], correctIndex: 0, explain: 'Trống đồng Đông Sơn tiêu biểu thời Hùng Vương.' },
-        { imageKey: 'khue_van_cac', question: 'Công trình kiến trúc nào ở Văn Miếu là biểu tượng của Thủ đô Hà Nội?', options: ['Khuê Văn Các', 'Cột cờ Hà Nội', 'Tháp Rùa', 'Cầu Long Biên'], correctIndex: 0, explain: 'Khuê Văn Các biểu tượng của Hà Nội.' },
-        { imageKey: 'chu_mot_cot', question: 'Ngôi chùa có kiến trúc độc đáo hình bông sen nở trên cột đá ở Hà Nội là gì?', options: ['Chùa Một Cột (Diên Hựu)', 'Chùa Trấn Quốc', 'Chùa Hương', 'Chùa Keo'], correctIndex: 0, explain: 'Chùa Một Cột kiến trúc hình bông sen.' },
-        { imageKey: 'ho_hoan_kiem', question: 'Hồ nước nổi tiếng ở trung tâm Hà Nội gắn liền với truyền thuyết vua Lê Lợi trả gươm thần?', options: ['Hồ Hoàn Kiếm (Hồ Gươm)', 'Hồ Tây', 'Hồ Trúc Bạch', 'Hồ Ba Bể'], correctIndex: 0, explain: 'Hồ Hoàn Kiếm gắn với sự tích gươm thần.' }
+      // Bài 5: Bé nhanh tay - 5 câu sắp xếp câu Lớp 3
+      const sentenceReorderBankG3 = [
+        { type: 'SAP_XEP_CAU', title: 'Sắp xếp câu hoàn chỉnh Lớp 3', words: ["Học tập", "là", "nhiệm vụ", "hàng đầu", "của em"], answer: "Học tập là nhiệm vụ hàng đầu của em", explain: 'Câu đúng: "Học tập là nhiệm vụ hàng đầu của em."' },
+        { type: 'SAP_XEP_CAU', title: 'Sắp xếp thành ngữ Lớp 3', words: ["Tre già", "măng mọc", "là truyền thống", "quí báu"], answer: "Tre già măng mọc là truyền thống quí báu", explain: 'Tục ngữ: "Tre già măng mọc là truyền thống quí báu."' },
+        { type: 'SAP_XEP_CAU', title: 'Sắp xếp câu Lớp 3', words: ["Nghỉ hè", "em", "về thăm", "ông bà"], answer: "Nghỉ hè em về thăm ông bà", explain: 'Câu đúng: "Nghỉ hè em về thăm ông bà."' },
+        { type: 'SAP_XEP_CAU', title: 'Sắp xếp tục ngữ Lớp 3', words: ["Đói cho sạch", "rách", "cho thơm"], answer: "Đói cho sạch rách cho thơm", explain: 'Tục ngữ: "Đói cho sạch rách cho thơm."' },
+        { type: 'SAP_XEP_CAU', title: 'Sắp xếp tục ngữ Lớp 3', words: ["Cần cù", "bù", "thông minh"], answer: "Cần cù bù thông minh", explain: 'Tục ngữ: "Cần cù bù thông minh."' },
+        { type: 'SAP_XEP_CAU', title: 'Sắp xếp tục ngữ Lớp 3', words: ["Học một", "biết", "mười"], answer: "Học một biết mười", explain: 'Thành ngữ: "Học một biết mười."' },
+        { type: 'SAP_XEP_CAU', title: 'Sắp xếp thành ngữ Lớp 3', words: ["Anh em", "như thể", "tay chân"], answer: "Anh em như thể tay chân", explain: 'Thành ngữ: "Anh em như thể tay chân."' },
+        { type: 'SAP_XEP_CAU', title: 'Sắp xếp tục ngữ Lớp 3', words: ["Có công mài sắt", "có ngày", "nên kim"], answer: "Có công mài sắt có ngày nên kim", explain: 'Tục ngữ: "Có công mài sắt có ngày nên kim."' },
+        { type: 'SAP_XEP_CAU', title: 'Sắp xếp tục ngữ Lớp 3', words: ["Chớ thấy sóng cả", "mà ngã", "tay chèo"], answer: "Chớ thấy sóng cả mà ngã tay chèo", explain: 'Tục ngữ: "Chớ thấy sóng cả mà ngã tay chèo."' },
+        { type: 'SAP_XEP_CAU', title: 'Sắp xếp tục ngữ Lớp 3', words: ["Lời nói", "chẳng mất", "tiền mua"], answer: "Lời nói chẳng mất tiền mua", explain: 'Tục ngữ: "Lời nói chẳng mất tiền mua."' }
       ];
+
+      const g3ReorderPool = seededShuffle(sentenceReorderBankG3, baseSeed + 800);
+      const reorderItemsG3 = g3ReorderPool.slice(0, 5);
 
       return {
         mode: 1,
@@ -1945,7 +1961,7 @@
           { type: 'PL', data: { baskets, explain: 'Phân loại từ vựng Lớp 3 vào đúng giỏ.' }, title: 'Bài 2: Bé thông minh' },
           { type: 'TN_DT', data: quizItems, title: 'Bài 3: Bé học vui' },
           { type: 'DO_VUI', data: riddleItems, title: 'Bài 4: Bé sáng tạo' },
-          { type: 'NHIN_HINH', data: imageQuizItems, title: 'Bài 5: Bé nhanh tay' }
+          { type: 'NHIN_HINH', data: reorderItemsG3, title: 'Bài 5: Bé nhanh tay' }
         ]
       };
     },
@@ -2041,14 +2057,22 @@
         { poem: "Con gì mào đỏ gáy vang\nBáo thức thức dậy đón bình minh lên?", options: ["Gà trống", "Vịt bầu", "Chim sẻ", "Đại bàng"], correctIndex: 0, explain: "Gà trống." }
       ];
 
-      // Bài 5: Bé nhanh tay (NHIN_HINH)
-      const imageQuizItems = [
-        { imageKey: 'van_mieu', question: 'Di tích lịch sử nào ở Hà Nội được coi là trường đại học đầu tiên của nước ta?', options: ['Văn Miếu - Quốc Tử Giám', 'Chùa Một Cột', 'Cột mốc Cờ Lũng', 'Hoàng thành Thăng Long'], correctIndex: 0, explain: 'Văn Miếu - Quốc Tử Giám.' },
-        { imageKey: 'trong_dong', question: 'Di vật lịch sử tiêu biểu nào của thời kỳ các Vua Hùng dựng nước?', options: ['Trống đồng Đông Sơn', 'Thành Cổ Loa', 'Bia tiến sĩ', 'Ấn vàng triều Nguyễn'], correctIndex: 0, explain: 'Trống đồng Đông Sơn.' },
-        { imageKey: 'khue_van_cac', question: 'Công trình kiến trúc nào ở Văn Miếu là biểu tượng của Thủ đô Hà Nội?', options: ['Khuê Văn Các', 'Cột cờ Hà Nội', 'Tháp Rùa', 'Cầu Long Biên'], correctIndex: 0, explain: 'Khuê Văn Các.' },
-        { imageKey: 'chu_mot_cot', question: 'Ngôi chùa có kiến trúc độc đáo hình bông sen nở trên cột đá ở Hà Nội là gì?', options: ['Chùa Một Cột (Diên Hựu)', 'Chùa Trấn Quốc', 'Chùa Hương', 'Chùa Keo'], correctIndex: 0, explain: 'Chùa Một Cột.' },
-        { imageKey: 'ho_hoan_kiem', question: 'Hồ nước nổi tiếng ở trung tâm Hà Nội gắn liền với truyền thuyết vua Lê Lợi trả gươm thần?', options: ['Hồ Hoàn Kiếm (Hồ Gươm)', 'Hồ Tây', 'Hồ Trúc Bạch', 'Hồ Ba Bể'], correctIndex: 0, explain: 'Hồ Hoàn Kiếm.' }
+      // Bài 5: Bé nhanh tay - 5 câu sắp xếp câu Lớp 4
+      const sentenceReorderBankG4 = [
+        { type: 'SAP_XEP_CAU', title: 'Sắp xếp danh nhân Lớp 4', words: ["Nguyễn Trãi", "là", "danh nhân văn hóa", "thế giới"], answer: "Nguyễn Trãi là danh nhân văn hóa thế giới", explain: 'Câu đúng: "Nguyễn Trãi là danh nhân văn hóa thế giới."' },
+        { type: 'SAP_XEP_CAU', title: 'Sắp xếp trích đoạn Lớp 4', words: ["Nước Đại Việt ta", "từ trước", "vốn xưng", "nền văn hiến", "đã lâu"], answer: "Nước Đại Việt ta từ trước vốn xưng nền văn hiến đã lâu", explain: 'Bình Ngô đại cáo: "Nước Đại Việt ta từ trước vốn xưng nền văn hiến đã lâu."' },
+        { type: 'SAP_XEP_CAU', title: 'Sắp xếp tục ngữ Lớp 4', words: ["Thất bại", "là mẹ", "thành công"], answer: "Thất bại là mẹ thành công", explain: 'Tục ngữ: "Thất bại là mẹ thành công."' },
+        { type: 'SAP_XEP_CAU', title: 'Sắp xếp thành ngữ Lớp 4', words: ["Thương người", "như thể", "thương thân"], answer: "Thương người như thể thương thân", explain: 'Tục ngữ: "Thương người như thể thương thân."' },
+        { type: 'SAP_XEP_CAU', title: 'Sắp xếp tục ngữ Lớp 4', words: ["Muốn biết", "phải hỏi", "muốn giỏi", "phải học"], answer: "Muốn biết phải hỏi muốn giỏi phải học", explain: 'Tục ngữ: "Muốn biết phải hỏi muốn giỏi phải học."' },
+        { type: 'SAP_XEP_CAU', title: 'Sắp xếp câu Lớp 4', words: ["Đoàn kết", "là", "sức mạnh", "to lớn"], answer: "Đoàn kết là sức mạnh to lớn", explain: 'Câu đúng: "Đoàn kết là sức mạnh to lớn."' },
+        { type: 'SAP_XEP_CAU', title: 'Sắp xếp câu Lớp 4', words: ["Ăn quả", "nhớ kẻ", "trồng cây"], answer: "Ăn quả nhớ kẻ trồng cây", explain: 'Tục ngữ: "Ăn quả nhớ kẻ trồng cây."' },
+        { type: 'SAP_XEP_CAU', title: 'Sắp xếp câu Lớp 4', words: ["Gần mực", "thì đen", "gần đèn", "thì rạng"], answer: "Gần mực thì đen gần đèn thì rạng", explain: 'Tục ngữ: "Gần mực thì đen gần đèn thì rạng."' },
+        { type: 'SAP_XEP_CAU', title: 'Sắp xếp tục ngữ Lớp 4', words: ["Học thầy", "không tày", "học bạn"], answer: "Học thầy không tày học bạn", explain: 'Tục ngữ: "Học thầy không tày học bạn."' },
+        { type: 'SAP_XEP_CAU', title: 'Sắp xếp tục ngữ Lớp 4', words: ["Một cây", "chẳng nên hòn", "ba cây", "chụm lại", "nên núi cao"], answer: "Một cây chẳng nên hòn ba cây chụm lại nên núi cao", explain: 'Tục ngữ: "Một cây chẳng nên hòn ba cây chụm lại nên núi cao."' }
       ];
+
+      const g4ReorderPool = seededShuffle(sentenceReorderBankG4, baseSeed + 800);
+      const reorderItemsG4 = g4ReorderPool.slice(0, 5);
 
       return {
         mode: 1,
@@ -2060,7 +2084,7 @@
           { type: 'PL', data: { baskets, explain: 'Phân loại từ vựng Lớp 4 vào đúng giỏ.' }, title: 'Bài 2: Bé thông minh' },
           { type: 'TN_DT', data: quizItems, title: 'Bài 3: Bé học vui' },
           { type: 'DO_VUI', data: riddleItems, title: 'Bài 4: Bé sáng tạo' },
-          { type: 'NHIN_HINH', data: imageQuizItems, title: 'Bài 5: Bé nhanh tay' }
+          { type: 'NHIN_HINH', data: reorderItemsG4, title: 'Bài 5: Bé nhanh tay' }
         ]
       };
     },
@@ -2167,14 +2191,22 @@
         { poem: "Cày trên đồng ruộng trắng phau\nKhát xuống uống nước giếng sâu đen ngòm?\nLà cái gì?", options: ["Cây bút mực", "Chiếc cày", "Con trâu", "Cái kéo"], correctIndex: 0, explain: "Cây bút mực viết chữ trên giấy trắng." }
       ];
 
-      // Bài 5: Bé nhanh tay (NHIN_HINH)
-      const imageQuizItems = [
-        { imageKey: 'ga_trong', question: 'Hình vẽ minh họa con vật gì gáy báo thức buổi sáng sớm?', options: ['Con gà trống', 'Con vịt bầu', 'Con mèo nhà', 'Con chó con'], correctIndex: 0, explain: 'Hình minh họa con gà trống.' },
-        { imageKey: 'meo_con', question: 'Hình vẽ minh họa con vật gì hay bắt chuột trong nhà?', options: ['Con mèo con', 'Con thỏ trắng', 'Con lợn ỉn', 'Con trâu đen'], correctIndex: 0, explain: 'Hình minh họa con mèo con.' },
-        { imageKey: 'cap_sach', question: 'Đồ dùng học tập nào dùng để đựng sách vở đến trường?', options: ['Cái cặp sách', 'Cái thước kẻ', 'Cục tẩy', 'Hộp màu'], correctIndex: 0, explain: 'Cặp sách đựng đồ dùng học tập.' },
-        { imageKey: 'thuoc_ke', question: 'Đồ dùng học tập nào dùng để kẻ đường thẳng ngay ngắn?', options: ['Cây thước kẻ', 'Quyển vở', 'Cái cặp', 'Cái bàn'], correctIndex: 0, explain: 'Thước kẻ dùng để kẻ đường thẳng.' },
-        { imageKey: 'qua_tao', question: 'Loại quả nào trong hình có màu đỏ tươi thơm ngon?', options: ['Quả táo đỏ', 'Quả chuối', 'Quả cam', 'Quả chanh'], correctIndex: 0, explain: 'Hình minh họa quả táo đỏ.' }
+      // Bài 5: Bé nhanh tay - 5 câu sắp xếp câu Lớp 5
+      const sentenceReorderBankG5 = [
+        { type: 'SAP_XEP_CAU', title: 'Sắp xếp câu tư tưởng Lớp 5', words: ["Học tập", "và làm theo", "tấm gương", "đạo đức", "Hồ Chí Minh"], answer: "Học tập và làm theo tấm gương đạo đức Hồ Chí Minh", explain: 'Câu đúng: "Học tập và làm theo tấm gương đạo đức Hồ Chí Minh."' },
+        { type: 'SAP_XEP_CAU', title: 'Sắp xếp ca dao Lớp 5', words: ["Dù ai", "đi ngược", "về xuôi", "nhớ ngày", "giỗ Tổ", "mùng mười", "tháng ba"], answer: "Dù ai đi ngược về xuôi nhớ ngày giỗ Tổ mùng mười tháng ba", explain: 'Ca dao: "Dù ai đi ngược về xuôi nhớ ngày giỗ Tổ mùng mười tháng ba."' },
+        { type: 'SAP_XEP_CAU', title: 'Sắp xếp câu chân lý Lớp 5', words: ["Không có gì", "quý hơn", "độc lập", "tự do"], answer: "Không có gì quý hơn độc lập tự do", explain: 'Lời Bác dạy: "Không có gì quý hơn độc lập tự do."' },
+        { type: 'SAP_XEP_CAU', title: 'Sắp xếp ca dao Lớp 5', words: ["Nhiễu điều", "phủ lấy", "giá gương", "người trong một nước", "phải thương nhau cùng"], answer: "Nhiễu điều phủ lấy giá gương người trong một nước phải thương nhau cùng", explain: 'Ca dao: "Nhiễu điều phủ lấy giá gương người trong một nước phải thương nhau cùng."' },
+        { type: 'SAP_XEP_CAU', title: 'Sắp xếp câu Lớp 5', words: ["Tôi yêu", "Tiếng Việt", "vì sự", "phong phú", "và tinh tế"], answer: "Tôi yêu Tiếng Việt vì sự phong phú và tinh tế", explain: 'Câu đúng: "Tôi yêu Tiếng Việt vì sự phong phú và tinh tế."' },
+        { type: 'SAP_XEP_CAU', title: 'Sắp xếp tục ngữ Lớp 5', words: ["Uống nước", "nhớ nguồn", "là đạo lý", "truyền thống"], answer: "Uống nước nhớ nguồn là đạo lý truyền thống", explain: 'Tục ngữ: "Uống nước nhớ nguồn là đạo lý truyền thống."' },
+        { type: 'SAP_XEP_CAU', title: 'Sắp xếp câu Lớp 5', words: ["Độc lập", "tự do", "là quyền", "thiêng liêng", "của mỗi dân tộc"], answer: "Độc lập tự do là quyền thiêng liêng của mỗi dân tộc", explain: 'Câu đúng: "Độc lập tự do là quyền thiêng liêng của mỗi dân tộc."' },
+        { type: 'SAP_XEP_CAU', title: 'Sắp xếp câu Lớp 5', words: ["Thất bại", "là nấc thang", "đưa ta", "đến với", "thành công"], answer: "Thất bại là nấc thang đưa ta đến với thành công", explain: 'Câu đúng: "Thất bại là nấc thang đưa ta đến với thành công."' },
+        { type: 'SAP_XEP_CAU', title: 'Sắp xếp câu miêu tả Lớp 5', words: ["Mưa giăng", "sương mù", "bao phủ", "sườn núi"], answer: "Mưa giăng sương mù bao phủ sườn núi", explain: 'Câu miêu tả: "Mưa giăng sương mù bao phủ sườn núi."' },
+        { type: 'SAP_XEP_CAU', title: 'Sắp xếp câu Lớp 5', words: ["Tuổi trẻ", "Việt Nam", "xung kích", "sáng tạo", "xây dựng", "đất nước"], answer: "Tuổi trẻ Việt Nam xung kích sáng tạo xây dựng đất nước", explain: 'Câu đúng: "Tuổi trẻ Việt Nam xung kích sáng tạo xây dựng đất nước."' }
       ];
+
+      const g5ReorderPool = seededShuffle(sentenceReorderBankG5, baseSeed + 800);
+      const reorderItemsG5 = g5ReorderPool.slice(0, 5);
 
       return {
         mode: 1,
@@ -2186,7 +2218,7 @@
           { type: 'PL', data: { baskets, explain: 'Phân loại từ vựng & ngữ pháp Lớp 5 vào đúng giỏ.' }, title: 'Bài 2: Bé thông minh' },
           { type: 'TN_DT', data: quizItems, title: 'Bài 3: Bé học vui' },
           { type: 'DO_VUI', data: riddleItems, title: 'Bài 4: Bé sáng tạo' },
-          { type: 'NHIN_HINH', data: imageQuizItems, title: 'Bài 5: Bé nhanh tay' }
+          { type: 'NHIN_HINH', data: reorderItemsG5, title: 'Bài 5: Bé nhanh tay' }
         ]
       };
     },
@@ -5626,6 +5658,62 @@
 
     window.scrollTo({ top: 0, behavior: 'smooth' });
 
+    // 1. Kiểm tra & Nạp câu hỏi từ GitHub JSON (Offline-First)
+    let githubJsonStr = '';
+    if (window.AndroidBridge && typeof window.AndroidBridge.getGithubQuestionsJson === 'function') {
+      githubJsonStr = window.AndroidBridge.getGithubQuestionsJson(AppState.selectedGrade, roundNum);
+      if (typeof window.AndroidBridge.fetchGithubQuestions === 'function') {
+        window.AndroidBridge.fetchGithubQuestions(AppState.selectedGrade, roundNum);
+      }
+    }
+
+    if (githubJsonStr && githubJsonStr.trim().length > 0) {
+      try {
+        const githubData = JSON.parse(githubJsonStr);
+        if (githubData) {
+          if (roundNum <= 6 && githubData.subGames && Array.isArray(githubData.subGames)) {
+            AppState.examMode = 1;
+            AppState.timerSeconds = githubData.timerSeconds || 1200;
+            AppState.currentSubGameIndex = 0;
+            AppState.currentExamMode1 = githubData;
+            AppState.timerInterval = setInterval(() => {
+              AppState.timerSeconds--;
+              updateTimerDisplay();
+              if (AppState.timerSeconds <= 0) {
+                clearInterval(AppState.timerInterval);
+                showCustomAlert('Đã hết giờ làm bài! Hệ thống tự động nộp bài.');
+                finishRoundExam();
+              }
+            }, 1000);
+            SoundEngine.playGong();
+            renderCurrentSubGameMode1();
+            return;
+          } else if (roundNum >= 7 && githubData.questions && Array.isArray(githubData.questions)) {
+            AppState.examMode = 2;
+            AppState.timerSeconds = githubData.timerSeconds || 1800;
+            AppState.currentQuestionIndex = 0;
+            AppState.userAnswers30 = {};
+            mode2CompletionModalShown = false;
+            AppState.exam30Questions = shuffleQuestionOptions(githubData.questions, AppState.currentSeed + 701);
+            AppState.timerInterval = setInterval(() => {
+              AppState.timerSeconds--;
+              updateTimerDisplay();
+              if (AppState.timerSeconds <= 0) {
+                clearInterval(AppState.timerInterval);
+                showCustomAlert('Đã hết 30 phút làm bài! Hệ thống tự động nộp bài.');
+                finishExamMode2();
+              }
+            }, 1000);
+            SoundEngine.playGong();
+            renderExamMode2Question();
+            return;
+          }
+        }
+      } catch (e) {
+        console.warn('Lỗi đọc GitHub JSON, sử dụng bộ đề tự sinh dự phòng:', e);
+      }
+    }
+
     // Chế độ 2: Vòng 7 - 18 (Phòng thi 30 câu liên hoàn); Chế độ 1: Vòng 1 - 6 (5 Mini-games liên hoàn)
     if (roundNum >= 7) {
       AppState.examMode = 2;
@@ -6399,11 +6487,17 @@
     showRiddle();
   }
 
-  // GAME 5: BÉ NHANH TAY (5 CÂU HỎI x 10 ĐIỂM = 50 ĐIỂM)
+  // GAME 5: BÉ NHANH TAY (SẮP XẾP CÂU HOẶC NHÌN HÌNH - 5 CÂU HỎI x 10 ĐIỂM = 50 ĐIỂM)
   function renderGame5_ImageQuizMode1(subGame) {
     const root = document.getElementById('app-root');
     const rawItems = subGame.data.slice(0, 5);
-    const items = shuffleQuestionOptions(rawItems, AppState.currentSeed + AppState.currentSubGameIndex * 51);
+    const items = rawItems.map(item => {
+      if (item.options && Array.isArray(item.options)) {
+        return shuffleQuestionOptions([item], AppState.currentSeed + AppState.currentSubGameIndex * 51)[0];
+      }
+      return item;
+    });
+
     let qIdx = 0;
     let correctCount = 0;
 
@@ -6421,66 +6515,219 @@
       }
 
       const item = items[qIdx];
-      root.innerHTML = `
-        ${getExamHeaderMode1(subGame.title)}
-        <div class="scroll-card p-5 max-w-xl mx-auto">
-          <div class="text-xs font-bold text-amber-800 mb-2">Câu hỏi ${qIdx + 1} / ${items.length} • Bé nhanh tay (+10 ⭐)</div>
-          <div class="p-4 bg-amber-50 rounded-2xl border-2 border-amber-300 mb-4 flex flex-col items-center justify-center">
-            <div class="w-32 h-32 sm:w-36 sm:h-36 flex items-center justify-center bg-white rounded-2xl p-2 border-2 border-amber-200 shadow-md mb-3">
-              ${getIllustrationSvg(item.imageKey)}
+      const isSentenceOrdering = (item.type === 'SAP_XEP' || item.type === 'SAP_XEP_CAU' || (item.words && Array.isArray(item.words)));
+
+      if (isSentenceOrdering) {
+        // DẠNG SẮP XẾP CÂU TƯƠNG TÁC (CHỌN THẺ TỪ) FOR LỚP 2, 3, 4, 5
+        const targetSentence = (item.answer || item.correctSentence || '').trim();
+        const initialWords = item.words ? [...item.words] : targetSentence.split(' ');
+
+        // Seeded shuffle for initial word chips
+        const wordPool = seededShuffle([...initialWords], AppState.currentSeed + qIdx * 17 + 101).map((w, wIdx) => ({
+          id: `w_${qIdx}_${wIdx}_${Math.random()}`,
+          text: w
+        }));
+
+        let constructedWordIds = [];
+
+        function drawOrderingUI() {
+          const constructedWords = constructedWordIds.map(id => wordPool.find(w => w.id === id)).filter(Boolean);
+          const remainingWords = wordPool.filter(w => !constructedWordIds.includes(w.id));
+
+          root.innerHTML = `
+            ${getExamHeaderMode1(subGame.title)}
+            <div class="scroll-card p-5 max-w-xl mx-auto">
+              <div class="text-xs font-bold text-amber-800 mb-2">Câu hỏi ${qIdx + 1} / ${items.length} • Bé nhanh tay: Sắp xếp câu (+10 ⭐)</div>
+
+              <div class="p-4 bg-amber-50 rounded-2xl border-2 border-amber-300 mb-4">
+                <div class="text-xs font-extrabold text-amber-900 mb-2 flex items-center gap-1">
+                  <span>🧩</span>
+                  <span>Hãy bấm chọn các thẻ từ bên dưới để ghép thành câu hoàn chỉnh:</span>
+                </div>
+
+                <!-- KHUNG CHỨA CÂU GHÉP -->
+                <div class="min-h-[60px] p-3 bg-white rounded-xl border-2 border-dashed border-amber-400 flex flex-wrap gap-2 items-center justify-center shadow-inner">
+                  ${constructedWords.length === 0 ? `
+                    <span class="text-xs text-slate-400 font-semibold italic">Bấm các từ phía dưới để xếp câu tại đây...</span>
+                  ` : constructedWords.map((w) => `
+                    <button data-constructed-id="${w.id}" class="btn-constructed-word btn-3d bg-emerald-500 hover:bg-red-500 text-white font-bold text-xs sm:text-sm px-3 py-1.5 rounded-xl transition-all flex items-center gap-1">
+                      <span>${w.text}</span>
+                      <span class="text-[10px] text-emerald-100">✕</span>
+                    </button>
+                  `).join('')}
+                </div>
+
+                ${constructedWords.length > 0 ? `
+                  <div class="mt-2 text-right">
+                    <button id="btn-reset-ordering" class="text-[11px] font-bold text-red-600 hover:text-red-800 underline">
+                      🔄 Làm lại (Xóa hết)
+                    </button>
+                  </div>
+                ` : ''}
+              </div>
+
+              <!-- KHUNG THẺ TỪ CẦN CHỌN -->
+              <div class="p-3 bg-amber-100/70 rounded-2xl border border-amber-300 mb-4">
+                <div class="text-xs font-bold text-amber-950 mb-2">Thẻ từ (${remainingWords.length} từ còn lại):</div>
+                <div class="flex flex-wrap gap-2 justify-center">
+                  ${remainingWords.map(w => `
+                    <button data-chip-id="${w.id}" class="btn-pool-chip btn-3d bg-white hover:bg-amber-100 text-slate-800 border border-amber-300 font-bold text-xs sm:text-sm px-3.5 py-2 rounded-xl transition-all active:scale-95">
+                      ${w.text}
+                    </button>
+                  `).join('')}
+                </div>
+              </div>
+
+              <!-- NÚT ĐIỀU HƯỚNG -->
+              <div class="mt-5 pt-3 border-t border-amber-200 flex items-center justify-between gap-2">
+                <button onclick="prevSubGameMode1()" class="btn-3d bg-slate-200 hover:bg-slate-300 text-slate-800 px-3.5 py-2 rounded-xl font-bold text-xs sm:text-sm shadow flex items-center gap-1 active:scale-95">
+                  <span>◄</span>
+                  <span>Bài trước</span>
+                </button>
+
+                <button id="btn-submit-ordering" class="btn-3d ${constructedWords.length === wordPool.length ? 'btn-3d-blue' : 'bg-slate-300 text-slate-500 cursor-not-allowed'} px-4 py-2 rounded-xl font-black text-xs sm:text-sm shadow flex items-center gap-1 active:scale-95">
+                  <span>${qIdx === items.length - 1 ? 'Hoàn Thành Vòng ✓' : 'Bài sau ►'}</span>
+                </button>
+              </div>
             </div>
-            <h3 class="font-extrabold text-base text-slate-800 text-center">${item.question}</h3>
-          </div>
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5" id="img-quiz-opts">
-            ${item.options.map((opt, i) => `
-              <button data-opt-idx="${i}" class="scroll-card p-3 text-left border-2 border-amber-200 hover:border-red-500 rounded-xl font-bold text-xs sm:text-sm">
-                ${String.fromCharCode(65 + i)}. ${opt}
-              </button>
-            `).join('')}
-          </div>
+          `;
 
-          <!-- Nút Bài trước (trái) & Nút Hoàn Thành Vòng (phải) -->
-          <div class="mt-5 pt-3 border-t border-amber-200 flex items-center justify-between gap-2">
-            <button onclick="prevSubGameMode1()" class="btn-3d bg-slate-200 hover:bg-slate-300 text-slate-800 px-3.5 py-2 rounded-xl font-bold text-xs sm:text-sm shadow flex items-center gap-1 active:scale-95">
-              <span>◄</span>
-              <span>Bài trước</span>
-            </button>
+          // Gán sự kiện bấm chọn thẻ từ trong pool
+          document.querySelectorAll('.btn-pool-chip').forEach(btn => {
+            btn.addEventListener('click', () => {
+              SoundEngine.playClick();
+              const cId = btn.dataset.chipId;
+              constructedWordIds.push(cId);
+              drawOrderingUI();
+            });
+          });
 
-            <button onclick="finishRoundExam()" class="btn-3d btn-3d-green px-4 py-2 rounded-xl font-black text-white text-xs sm:text-sm shadow flex items-center gap-1 active:scale-95">
-              <span>Hoàn Thành Vòng</span>
-              <span>✓</span>
-            </button>
-          </div>
-        </div>
-      `;
+          // Gán sự kiện bấm vào từ trong khung đáp án để trả lại pool
+          document.querySelectorAll('.btn-constructed-word').forEach(btn => {
+            btn.addEventListener('click', () => {
+              SoundEngine.playClick();
+              const cId = btn.dataset.constructedId;
+              constructedWordIds = constructedWordIds.filter(id => id !== cId);
+              drawOrderingUI();
+            });
+          });
 
-      document.getElementById('img-quiz-opts').addEventListener('click', (e) => {
-        const btn = e.target.closest('button');
-        if (!btn) return;
-        const chosen = parseInt(btn.dataset.optIdx, 10);
-        const isRight = (chosen === item.correctIndex);
-        if (isRight) {
-          SoundEngine.playSuccess();
-          correctCount++;
-          AppState.roundTotalScore += 10;
-          const scoreEl = document.getElementById('exam-score');
-          if (scoreEl) scoreEl.textContent = `${AppState.roundTotalScore} / 300`;
-        } else {
-          SoundEngine.playWrong();
+          // Sự kiện nút Làm lại
+          const btnReset = document.getElementById('btn-reset-ordering');
+          if (btnReset) {
+            btnReset.addEventListener('click', () => {
+              SoundEngine.playClick();
+              constructedWordIds = [];
+              drawOrderingUI();
+            });
+          }
+
+          // Sự kiện nộp bài xếp câu
+          const btnSubmit = document.getElementById('btn-submit-ordering');
+          if (btnSubmit) {
+            btnSubmit.addEventListener('click', () => {
+              if (constructedWordIds.length < wordPool.length) {
+                showCustomAlert('Bé hãy bấm chọn đầy đủ tất cả các thẻ từ trước khi nộp bài nhé!');
+                return;
+              }
+
+              const constructedSentence = constructedWords.map(w => w.text).join(' ').trim();
+              const cleanUserAns = constructedSentence.toLowerCase().replace(/[.,!?;:]/g, '');
+              const cleanTargetAns = targetSentence.toLowerCase().replace(/[.,!?;:]/g, '');
+
+              const isRight = (cleanUserAns === cleanTargetAns);
+              if (isRight) {
+                SoundEngine.playSuccess();
+                correctCount++;
+                AppState.roundTotalScore += 10;
+                const scoreEl = document.getElementById('exam-score');
+                if (scoreEl) scoreEl.textContent = `${AppState.roundTotalScore} / 300`;
+              } else {
+                SoundEngine.playWrong();
+              }
+
+              AppState.roundAnswersHistory.push({
+                game: 'Bài 5: Bé nhanh tay',
+                topic: 'Sắp xếp câu hoàn chỉnh',
+                question: item.title || `Sắp xếp các từ thành câu đúng`,
+                userAnswer: constructedSentence,
+                correctAnswer: targetSentence,
+                isCorrect: isRight,
+                explain: item.explain || `Câu chuẩn: "${targetSentence}"`
+              });
+
+              qIdx++;
+              showImgQ();
+            });
+          }
+
+          safeCreateIcons();
         }
-        AppState.roundAnswersHistory.push({
-          game: 'Bé nhanh tay',
-          topic: item.topic || 'Quan sát & Nhận biết hình ảnh',
-          question: item.question,
-          userAnswer: item.options[chosen] || '',
-          correctAnswer: item.options[item.correctIndex] || '',
-          isCorrect: isRight,
-          explain: item.explain || 'Nhìn hình minh họa chọn đáp án đúng.'
+
+        drawOrderingUI();
+      } else {
+        // DẠNG TRẮC NGHIỆM / NHÌN HÌNH (LỚP 1)
+        root.innerHTML = `
+          ${getExamHeaderMode1(subGame.title)}
+          <div class="scroll-card p-5 max-w-xl mx-auto">
+            <div class="text-xs font-bold text-amber-800 mb-2">Câu hỏi ${qIdx + 1} / ${items.length} • Bé nhanh tay (+10 ⭐)</div>
+            <div class="p-4 bg-amber-50 rounded-2xl border-2 border-amber-300 mb-4 flex flex-col items-center justify-center">
+              <div class="w-32 h-32 sm:w-36 sm:h-36 flex items-center justify-center bg-white rounded-2xl p-2 border-2 border-amber-200 shadow-md mb-3">
+                ${getIllustrationSvg(item.imageKey)}
+              </div>
+              <h3 class="font-extrabold text-base text-slate-800 text-center">${item.question}</h3>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5" id="img-quiz-opts">
+              ${item.options.map((opt, i) => `
+                <button data-opt-idx="${i}" class="scroll-card p-3 text-left border-2 border-amber-200 hover:border-red-500 rounded-xl font-bold text-xs sm:text-sm">
+                  ${String.fromCharCode(65 + i)}. ${opt}
+                </button>
+              `).join('')}
+            </div>
+
+            <!-- Nút Bài trước (trái) & Nút Hoàn Thành Vòng (phải) -->
+            <div class="mt-5 pt-3 border-t border-amber-200 flex items-center justify-between gap-2">
+              <button onclick="prevSubGameMode1()" class="btn-3d bg-slate-200 hover:bg-slate-300 text-slate-800 px-3.5 py-2 rounded-xl font-bold text-xs sm:text-sm shadow flex items-center gap-1 active:scale-95">
+                <span>◄</span>
+                <span>Bài trước</span>
+              </button>
+
+              <button onclick="finishRoundExam()" class="btn-3d btn-3d-green px-4 py-2 rounded-xl font-black text-white text-xs sm:text-sm shadow flex items-center gap-1 active:scale-95">
+                <span>Hoàn Thành Vòng</span>
+                <span>✓</span>
+              </button>
+            </div>
+          </div>
+        `;
+
+        document.getElementById('img-quiz-opts').addEventListener('click', (e) => {
+          const btn = e.target.closest('button');
+          if (!btn) return;
+          const chosen = parseInt(btn.dataset.optIdx, 10);
+          const isRight = (chosen === item.correctIndex);
+          if (isRight) {
+            SoundEngine.playSuccess();
+            correctCount++;
+            AppState.roundTotalScore += 10;
+            const scoreEl = document.getElementById('exam-score');
+            if (scoreEl) scoreEl.textContent = `${AppState.roundTotalScore} / 300`;
+          } else {
+            SoundEngine.playWrong();
+          }
+          AppState.roundAnswersHistory.push({
+            game: 'Bài 5: Bé nhanh tay',
+            topic: item.topic || 'Quan sát & Nhận biết hình ảnh',
+            question: item.question,
+            userAnswer: item.options[chosen] || '',
+            correctAnswer: item.options[item.correctIndex] || '',
+            isCorrect: isRight,
+            explain: item.explain || 'Nhìn hình minh họa chọn đáp án đúng.'
+          });
+          qIdx++;
+          showImgQ();
         });
-        qIdx++;
-        showImgQ();
-      });
-      safeCreateIcons();
+        safeCreateIcons();
+      }
     }
     showImgQ();
   }
