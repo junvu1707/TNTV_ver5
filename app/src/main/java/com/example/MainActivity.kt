@@ -597,20 +597,59 @@ class MainActivity : ComponentActivity() {
       rowDevice.addView(textDevice)
       container.addView(rowDevice)
 
-      val dialog = AlertDialog.Builder(this)
-        .setView(container)
-        .setPositiveButton("Thanh toán Google Play") { _, _ ->
+      var dialogRef: AlertDialog? = null
+
+      // Dòng 4: Nút Thanh toán Google Play
+      val btnPay = android.widget.Button(this).apply {
+        text = "Thanh toán Google Play"
+        setTextColor(Color.WHITE)
+        textSize = 13f
+        setTypeface(null, android.graphics.Typeface.BOLD)
+        val btnBg = android.graphics.drawable.GradientDrawable().apply {
+          setColor(Color.parseColor("#059669"))
+          cornerRadius = 24f
+        }
+        background = btnBg
+        setPadding(0, 20, 0, 20)
+        layoutParams = LinearLayout.LayoutParams(
+          LinearLayout.LayoutParams.MATCH_PARENT,
+          LinearLayout.LayoutParams.WRAP_CONTENT
+        ).apply { setMargins(0, 20, 0, 12) }
+
+        setOnClickListener {
           val inputName = inputAccount.text.toString().trim()
           val inputEmailStr = inputEmail.text.toString().trim()
 
           if (inputName.isNotBlank()) vipPrefs.setUserName(inputName)
           if (inputEmailStr.isNotBlank()) vipPrefs.setUserEmail(inputEmailStr)
 
-          billingManager.launchBillingFlow(this, productId, inputEmailStr, inputName)
+          dialogRef?.dismiss()
+          billingManager.launchBillingFlow(this@MainActivity, productId, inputEmailStr, inputName)
         }
-        .setNeutralButton("🔍 Quét & Khôi Phục VIP") { _, _ ->
+      }
+      container.addView(btnPay)
+
+      // Dòng 5: Nút Khôi phục VIP
+      val btnRestore = android.widget.Button(this).apply {
+        text = "Khôi phục VIP"
+        setTextColor(Color.WHITE)
+        textSize = 13f
+        setTypeface(null, android.graphics.Typeface.BOLD)
+        val btnBg = android.graphics.drawable.GradientDrawable().apply {
+          setColor(Color.parseColor("#D97706"))
+          cornerRadius = 24f
+        }
+        background = btnBg
+        setPadding(0, 20, 0, 20)
+        layoutParams = LinearLayout.LayoutParams(
+          LinearLayout.LayoutParams.MATCH_PARENT,
+          LinearLayout.LayoutParams.WRAP_CONTENT
+        ).apply { setMargins(0, 0, 0, 12) }
+
+        setOnClickListener {
           val inputName = inputAccount.text.toString().trim()
           val inputEmailStr = inputEmail.text.toString().trim()
+          dialogRef?.dismiss()
           billingManager.scanAndRestoreVip(inputName, inputEmailStr) { success, vipLevel, message ->
             runOnUiThread {
               if (success) {
@@ -623,30 +662,38 @@ class MainActivity : ComponentActivity() {
                   "if (window.onVipStatusChanged) { window.onVipStatusChanged($vipLevel, '$activeName'); }",
                   null
                 )
-                Toast.makeText(this, "🎉 $message", Toast.LENGTH_LONG).show()
+                Toast.makeText(this@MainActivity, "🎉 $message", Toast.LENGTH_LONG).show()
               } else {
-                Toast.makeText(this, "🔍 $message", Toast.LENGTH_LONG).show()
+                Toast.makeText(this@MainActivity, "🔍 $message", Toast.LENGTH_LONG).show()
               }
             }
           }
         }
-        .setNegativeButton("Hủy", null)
+      }
+      container.addView(btnRestore)
+
+      // Dòng 6: Nút Hủy
+      val btnCancel = android.widget.TextView(this).apply {
+        text = "Hủy"
+        setTextColor(Color.parseColor("#DC2626"))
+        textSize = 13f
+        setTypeface(null, android.graphics.Typeface.BOLD)
+        gravity = android.view.Gravity.CENTER
+        setPadding(0, 12, 0, 4)
+        isClickable = true
+        isFocusable = true
+        setOnClickListener {
+          dialogRef?.dismiss()
+        }
+      }
+      container.addView(btnCancel)
+
+      dialogRef = AlertDialog.Builder(this)
+        .setView(container)
         .create()
 
-      dialog.show()
-
-      dialog.getButton(AlertDialog.BUTTON_POSITIVE)?.apply {
-        setTextColor(Color.parseColor("#059669"))
-        setTypeface(null, android.graphics.Typeface.BOLD)
-      }
-      dialog.getButton(AlertDialog.BUTTON_NEUTRAL)?.apply {
-        setTextColor(Color.parseColor("#D97706"))
-        setTypeface(null, android.graphics.Typeface.BOLD)
-      }
-      dialog.getButton(AlertDialog.BUTTON_NEGATIVE)?.apply {
-        setTextColor(Color.parseColor("#DC2626"))
-        setTypeface(null, android.graphics.Typeface.BOLD)
-      }
+      dialogRef.window?.setBackgroundDrawable(android.graphics.drawable.ColorDrawable(Color.TRANSPARENT))
+      dialogRef.show()
     }
   }
 

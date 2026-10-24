@@ -4300,7 +4300,7 @@
     if (window.AndroidBridge && typeof window.AndroidBridge.scanAndRestoreVip === 'function') {
       window.AndroidBridge.scanAndRestoreVip(enteredName, enteredEmail);
     } else {
-      showCustomAlert('🔍 Đang thực hiện quét Google Play Billing để kiểm tra và khôi phục tài khoản VIP...');
+      showCustomAlert('🔍 Đang thực hiện kiểm tra và khôi phục tài khoản VIP...');
     }
   }
 
@@ -4352,9 +4352,9 @@
             </div>
           </div>
 
-          <!-- Nút Quét & Khôi Phục VIP -->
+          <!-- Nút Khôi Phục VIP -->
           <button onclick="triggerScanAndRestoreVip()" class="w-full mb-3 py-2.5 px-3 rounded-xl btn-3d bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-600 hover:to-teal-700 text-white font-black text-xs sm:text-sm flex items-center justify-center gap-2 shadow-md">
-            <span>🔍</span> Quét & Khôi Phục VIP
+            <span>🔍</span> Khôi phục VIP
           </button>
 
           <div class="space-y-2">
@@ -5680,41 +5680,50 @@
     const m = Math.floor(AppState.timerSeconds / 60);
     const s = AppState.timerSeconds % 60;
     const timerStr = `${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`;
+    const answeredCount = AppState.roundAnswersHistory ? AppState.roundAnswersHistory.length : 0;
 
     return `
-      <div class="scroll-card p-3 sm:p-4 mb-3 bg-gradient-to-r from-red-800 via-amber-700 to-red-900 text-white flex items-center justify-between gap-2 shadow-lg border-2 border-amber-400">
-        <div>
-          <div class="text-[11px] font-bold text-yellow-300 uppercase tracking-wider">
-            🏛️ LỚP ${AppState.selectedGrade} • CHẶNG ${AppState.currentRoundNum}
+      <div class="scroll-card p-2.5 sm:p-3.5 mb-3 bg-gradient-to-r from-red-800 via-amber-700 to-red-900 text-white shadow-lg border-2 border-amber-400 rounded-2xl flex flex-col gap-2">
+        <!-- DÒNG 1: ICON + LỚP X CHẶNG Y (BÊN TRÁI) ---------- TÊN MINI GAME (BÊN PHẢI) -->
+        <div class="flex items-center justify-between gap-2 border-b border-amber-400/30 pb-2">
+          <div class="flex items-center gap-1.5 shrink-0">
+            <span class="text-base sm:text-lg">🏛️</span>
+            <span class="text-sm sm:text-base font-black text-yellow-300">Lớp ${AppState.selectedGrade}</span>
+            <span class="text-xs sm:text-sm font-bold text-yellow-200">Chặng ${AppState.currentRoundNum}</span>
           </div>
-          <h2 class="text-sm sm:text-base font-black text-white">${formatQuestionTitle(subTitle)}</h2>
+
+          <div class="text-xs sm:text-sm font-extrabold text-white bg-red-950/60 px-2.5 py-1 rounded-xl border border-yellow-400/30 truncate max-w-[160px] sm:max-w-[240px]">
+            ${formatQuestionTitle(subTitle)}
+          </div>
         </div>
 
-        <div class="flex flex-wrap items-center gap-1.5 sm:gap-2">
-          <div class="flex items-center gap-1 bg-red-950/80 px-2.5 py-1 rounded-full font-black text-xs sm:text-sm border border-yellow-400/40">
-            <span>⏱️</span>
-            <span id="exam-timer">${timerStr}</span>
+        <!-- DÒNG 2: ĐỒNG HỒ ĐẾM GIỜ --- SỐ CÂU ĐÃ LÀM/30 CÂU --- NỘP BÀI --- THOÁT -->
+        <div class="flex items-center justify-between gap-1.5 sm:gap-2 text-xs sm:text-sm font-bold">
+          <div class="flex items-center gap-1.5 sm:gap-2">
+            <!-- Đồng hồ đếm giờ -->
+            <div class="flex items-center gap-1 bg-red-950/80 px-2.5 py-1 rounded-xl font-black text-xs sm:text-sm border border-yellow-400/40">
+              <span>⏱️</span>
+              <span id="exam-timer">${timerStr}</span>
+            </div>
+
+            <!-- Số câu đã làm / 30 câu -->
+            <div class="flex items-center gap-1 bg-amber-900/60 text-yellow-300 px-2.5 py-1 rounded-xl font-black text-xs sm:text-sm border border-yellow-400/30">
+              <span>📝</span>
+              <span id="exam-progress-mode1">${answeredCount}/30 câu</span>
+            </div>
           </div>
 
-          <div class="flex items-center gap-1 bg-amber-400 text-amber-950 px-2.5 py-1 rounded-full font-black text-xs sm:text-sm shadow">
-            <span>⭐</span>
-            <span id="exam-score">${AppState.roundTotalScore} / 300</span>
+          <div class="flex items-center gap-1.5">
+            <!-- Nút Nộp Bài -->
+            <button onclick="finishRoundExam()" class="btn-3d btn-3d-gold px-3 sm:px-4 py-1 rounded-xl font-black text-amber-950 text-xs sm:text-sm shadow active:scale-95" title="Nộp bài và tính điểm ngay">
+              Nộp Bài
+            </button>
+
+            <!-- Nút Thoát -->
+            <button onclick="confirmExitExam()" class="text-xs bg-white/20 hover:bg-white/30 text-white px-2.5 py-1 rounded-lg font-bold transition-all">
+              Thoát
+            </button>
           </div>
-
-          <!-- Nút Nộp bài cho phép nộp bài tính điểm ngay bất cứ lúc nào -->
-          <button onclick="finishRoundExam()" class="btn-3d btn-3d-gold px-2.5 sm:px-3 py-1 rounded-xl font-black text-amber-950 text-xs shadow active:scale-95" title="Nộp bài và tính điểm ngay không cần chờ hết giờ">
-            Nộp Bài
-          </button>
-
-          <!-- Nút Bài tiếp theo cho phép chuyển sang bài sau dù chưa hoàn thành câu hỏi -->
-          <button onclick="skipToNextSubGameMode1()" class="btn-3d btn-3d-blue px-2.5 sm:px-3 py-1 rounded-xl font-black text-white text-xs shadow flex items-center gap-1 active:scale-95" title="Chuyển sang bài thi tiếp theo">
-            <span>Bài Tiếp</span>
-            <span>►</span>
-          </button>
-
-          <button onclick="confirmExitExam()" class="text-xs bg-white/20 hover:bg-white/30 text-white px-2 py-1 rounded-lg font-bold transition-all">
-            Thoát
-          </button>
         </div>
       </div>
     `;
@@ -5724,6 +5733,14 @@
     SoundEngine.playClick();
     AppState.currentSubGameIndex++;
     renderCurrentSubGameMode1();
+  }
+
+  function prevSubGameMode1() {
+    SoundEngine.playClick();
+    if (AppState.currentSubGameIndex > 0) {
+      AppState.currentSubGameIndex--;
+      renderCurrentSubGameMode1();
+    }
   }
 
   // GAME 1: BÉ TINH MẮT (6 CẶP = 6 CÂU HỎI x 10 ĐIỂM = 60 ĐIỂM)
@@ -5802,13 +5819,15 @@
           </div>
         </div>
 
-        <!-- Nút Nộp Bài & Nút Bài Tiếp Theo -->
+        <!-- Nút Bài trước (trái) & Nút Bài sau (phải) -->
         <div class="mt-4 pt-3 border-t border-amber-200 flex items-center justify-between gap-2">
-          <button onclick="finishRoundExam()" class="btn-3d btn-3d-gold px-3.5 py-2 rounded-xl font-black text-amber-950 text-xs sm:text-sm shadow" style="display: none;">
-            📝 Nộp Bài Tính Điểm
+          <button onclick="prevSubGameMode1()" ${AppState.currentSubGameIndex === 0 ? 'disabled class="opacity-40 cursor-not-allowed px-3.5 py-2 rounded-xl border border-slate-300 font-bold text-slate-500 text-xs sm:text-sm bg-slate-100"' : 'class="btn-3d bg-slate-200 hover:bg-slate-300 text-slate-800 px-3.5 py-2 rounded-xl font-bold text-xs sm:text-sm shadow flex items-center gap-1 active:scale-95"'}>
+            <span>◄</span>
+            <span>Bài trước</span>
           </button>
-          <button onclick="skipToNextSubGameMode1()" class="btn-3d btn-3d-blue px-4 py-2 rounded-xl font-black text-white text-xs sm:text-sm shadow flex items-center gap-1">
-            <span>Bài Tiếp Theo</span>
+
+          <button onclick="skipToNextSubGameMode1()" class="btn-3d btn-3d-blue px-4 py-2 rounded-xl font-black text-white text-xs sm:text-sm shadow flex items-center gap-1 active:scale-95">
+            <span>Bài sau</span>
             <span>►</span>
           </button>
         </div>
@@ -5972,13 +5991,15 @@
           </div>
         </div>
 
-        <!-- Nút Nộp Bài & Nút Bài Tiếp Theo -->
+        <!-- Nút Bài trước (trái) & Nút Bài sau (phải) -->
         <div class="mt-4 pt-3 border-t border-amber-200 flex items-center justify-between gap-2">
-          <button onclick="finishRoundExam()" class="btn-3d btn-3d-gold px-3.5 py-2 rounded-xl font-black text-amber-950 text-xs sm:text-sm shadow" style="display: none;">
-            📝 Nộp Bài Tính Điểm
+          <button onclick="prevSubGameMode1()" class="btn-3d bg-slate-200 hover:bg-slate-300 text-slate-800 px-3.5 py-2 rounded-xl font-bold text-xs sm:text-sm shadow flex items-center gap-1 active:scale-95">
+            <span>◄</span>
+            <span>Bài trước</span>
           </button>
-          <button onclick="skipToNextSubGameMode1()" class="btn-3d btn-3d-blue px-4 py-2 rounded-xl font-black text-white text-xs sm:text-sm shadow flex items-center gap-1">
-            <span>Bài Tiếp Theo</span>
+
+          <button onclick="skipToNextSubGameMode1()" class="btn-3d btn-3d-blue px-4 py-2 rounded-xl font-black text-white text-xs sm:text-sm shadow flex items-center gap-1 active:scale-95">
+            <span>Bài sau</span>
             <span>►</span>
           </button>
         </div>
@@ -6079,27 +6100,29 @@
             <div class="p-4 bg-amber-50 rounded-xl border border-amber-200 mb-4 text-center font-bold text-base text-slate-800">
               ${q.question.replace('[...]', '<span class="text-red-600 underline font-black">[ ... ]</span>')}
             </div>
-            <form id="mode1-fill-form" class="flex gap-2">
-              <input type="text" id="mode1-input" class="flex-1 px-4 py-2 border-2 border-amber-400 rounded-xl text-center font-bold" placeholder="Nhập từ còn thiếu..." autofocus autocomplete="off">
-              <button type="submit" class="btn-3d btn-3d-green text-white px-5 py-2 rounded-xl font-bold">Nộp</button>
-            </form>
+            <div class="max-w-md mx-auto">
+              <input type="text" id="mode1-input" onkeydown="if(event.key==='Enter'){event.preventDefault(); submitFillQMode1();}" class="w-full px-4 py-3 rounded-2xl border-2 border-amber-400 text-center font-bold text-base focus:outline-none focus:border-red-600 focus:ring-4 focus:ring-amber-200 shadow-sm transition-all" placeholder="Nhập từ còn thiếu..." autofocus autocomplete="off">
+            </div>
 
-            <!-- Nút Nộp Bài & Nút Bài Tiếp Theo -->
+            <!-- Nút Bài trước (trái) & Nút Bài sau (phải) -->
             <div class="mt-5 pt-3 border-t border-amber-200 flex items-center justify-between gap-2">
-              <button onclick="finishRoundExam()" class="btn-3d btn-3d-gold px-3.5 py-2 rounded-xl font-black text-amber-950 text-xs sm:text-sm shadow" style="display: none;">
-                📝 Nộp Bài Tính Điểm
+              <button onclick="prevSubGameMode1()" class="btn-3d bg-slate-200 hover:bg-slate-300 text-slate-800 px-3.5 py-2 rounded-xl font-bold text-xs sm:text-sm shadow flex items-center gap-1 active:scale-95">
+                <span>◄</span>
+                <span>Bài trước</span>
               </button>
-              <button onclick="skipToNextSubGameMode1()" class="btn-3d btn-3d-blue px-4 py-2 rounded-xl font-black text-white text-xs sm:text-sm shadow flex items-center gap-1">
-                <span>Bài Tiếp Theo</span>
+
+              <button onclick="submitFillQMode1()" class="btn-3d btn-3d-blue px-4 py-2 rounded-xl font-black text-white text-xs sm:text-sm shadow flex items-center gap-1 active:scale-95">
+                <span>Bài sau</span>
                 <span>►</span>
               </button>
             </div>
           </div>
         `;
-        document.getElementById('mode1-fill-form').addEventListener('submit', (e) => {
-          e.preventDefault();
-          const val = document.getElementById('mode1-input').value.trim();
-          const isRight = (val.toLowerCase() === q.answer.toLowerCase());
+
+        window.submitFillQMode1 = function() {
+          const input = document.getElementById('mode1-input');
+          const val = input ? input.value.trim() : '';
+          const isRight = (val.toLowerCase() === (q.answer || '').toLowerCase());
           if (isRight) {
             SoundEngine.playSuccess();
             correctCount++;
@@ -6120,7 +6143,7 @@
           });
           qIdx++;
           showQ();
-        });
+        };
       } else {
         root.innerHTML = `
           ${getExamHeaderMode1(subGame.title)}
@@ -6135,13 +6158,15 @@
               `).join('')}
             </div>
 
-            <!-- Nút Nộp Bài & Nút Bài Tiếp Theo -->
+            <!-- Nút Bài trước (trái) & Nút Bài sau (phải) -->
             <div class="mt-5 pt-3 border-t border-amber-200 flex items-center justify-between gap-2">
-              <button onclick="finishRoundExam()" class="btn-3d btn-3d-gold px-3.5 py-2 rounded-xl font-black text-amber-950 text-xs sm:text-sm shadow" style="display: none;">
-                📝 Nộp Bài Tính Điểm
+              <button onclick="prevSubGameMode1()" class="btn-3d bg-slate-200 hover:bg-slate-300 text-slate-800 px-3.5 py-2 rounded-xl font-bold text-xs sm:text-sm shadow flex items-center gap-1 active:scale-95">
+                <span>◄</span>
+                <span>Bài trước</span>
               </button>
-              <button onclick="skipToNextSubGameMode1()" class="btn-3d btn-3d-blue px-4 py-2 rounded-xl font-black text-white text-xs sm:text-sm shadow flex items-center gap-1">
-                <span>Bài Tiếp Theo</span>
+
+              <button onclick="skipToNextSubGameMode1()" class="btn-3d btn-3d-blue px-4 py-2 rounded-xl font-black text-white text-xs sm:text-sm shadow flex items-center gap-1 active:scale-95">
+                <span>Bài sau</span>
                 <span>►</span>
               </button>
             </div>
@@ -6208,13 +6233,15 @@
             `).join('')}
           </div>
 
-          <!-- Nút Nộp Bài & Nút Bài Tiếp Theo -->
+          <!-- Nút Bài trước (trái) & Nút Bài sau (phải) -->
           <div class="mt-5 pt-3 border-t border-amber-200 flex items-center justify-between gap-2">
-            <button onclick="finishRoundExam()" class="btn-3d btn-3d-gold px-3.5 py-2 rounded-xl font-black text-amber-950 text-xs sm:text-sm shadow" style="display: none;">
-              📝 Nộp Bài Tính Điểm
+            <button onclick="prevSubGameMode1()" class="btn-3d bg-slate-200 hover:bg-slate-300 text-slate-800 px-3.5 py-2 rounded-xl font-bold text-xs sm:text-sm shadow flex items-center gap-1 active:scale-95">
+              <span>◄</span>
+              <span>Bài trước</span>
             </button>
-            <button onclick="skipToNextSubGameMode1()" class="btn-3d btn-3d-blue px-4 py-2 rounded-xl font-black text-white text-xs sm:text-sm shadow flex items-center gap-1">
-              <span>Bài Tiếp Theo</span>
+
+            <button onclick="skipToNextSubGameMode1()" class="btn-3d btn-3d-blue px-4 py-2 rounded-xl font-black text-white text-xs sm:text-sm shadow flex items-center gap-1 active:scale-95">
+              <span>Bài sau</span>
               <span>►</span>
             </button>
           </div>
@@ -6291,12 +6318,14 @@
             `).join('')}
           </div>
 
-          <!-- Nút Nộp Bài & Hoàn Thành Vòng -->
+          <!-- Nút Bài trước (trái) & Nút Hoàn Thành Vòng (phải) -->
           <div class="mt-5 pt-3 border-t border-amber-200 flex items-center justify-between gap-2">
-            <button onclick="finishRoundExam()" class="btn-3d btn-3d-gold px-3.5 py-2 rounded-xl font-black text-amber-950 text-xs sm:text-sm shadow" style="display: none;">
-              📝 Nộp Bài Tính Điểm
+            <button onclick="prevSubGameMode1()" class="btn-3d bg-slate-200 hover:bg-slate-300 text-slate-800 px-3.5 py-2 rounded-xl font-bold text-xs sm:text-sm shadow flex items-center gap-1 active:scale-95">
+              <span>◄</span>
+              <span>Bài trước</span>
             </button>
-            <button onclick="finishRoundExam()" class="btn-3d btn-3d-green px-4 py-2 rounded-xl font-black text-white text-xs sm:text-sm shadow flex items-center gap-1">
+
+            <button onclick="finishRoundExam()" class="btn-3d btn-3d-green px-4 py-2 rounded-xl font-black text-white text-xs sm:text-sm shadow flex items-center gap-1 active:scale-95">
               <span>Hoàn Thành Vòng</span>
               <span>✓</span>
             </button>
@@ -6637,32 +6666,47 @@
     }
 
     root.innerHTML = `
-      <!-- Thanh Tiêu Đề Phòng Thi Vòng 7 - 18 -->
-      <div class="scroll-card p-3 sm:p-4 mb-3 bg-gradient-to-r from-red-800 via-amber-700 to-red-900 text-white flex items-center justify-between gap-2 shadow-lg border-2 border-amber-400">
-        <div>
-          <h2 class="text-sm sm:text-base font-black text-yellow-300 uppercase tracking-wider">
-            🏛️ LỚP ${AppState.selectedGrade} • CHẶNG ${AppState.currentRoundNum}
-          </h2>
+      <!-- Thanh Tiêu Đề Phòng Thi Chặng 7 - 18 -->
+      <div class="scroll-card p-2.5 sm:p-3.5 mb-3 bg-gradient-to-r from-red-800 via-amber-700 to-red-900 text-white shadow-lg border-2 border-amber-400 rounded-2xl flex flex-col gap-2">
+        <!-- DÒNG 1: BÊN TRÁI: ICON + LỚP ... ---------- BÊN PHẢI CÁCH RA: CHẶNG ... -->
+        <div class="flex items-center justify-between gap-2 border-b border-amber-400/30 pb-2">
+          <div class="flex items-center gap-1.5 shrink-0">
+            <span class="text-base sm:text-lg">🏛️</span>
+            <span class="text-sm sm:text-base font-black text-yellow-300">Lớp ${AppState.selectedGrade}</span>
+          </div>
+
+          <div class="text-xs sm:text-sm font-bold text-yellow-200 bg-red-950/60 px-2.5 py-1 rounded-xl border border-yellow-400/30 shrink-0">
+            Chặng ${AppState.currentRoundNum}
+          </div>
         </div>
 
-        <div class="flex items-center gap-2 sm:gap-3">
-          <div class="flex items-center gap-1 bg-red-950/80 px-2.5 py-1 rounded-full font-black text-xs sm:text-sm border border-yellow-400/40">
-            <span>⏱️</span>
-            <span id="exam-timer">${timerStr}</span>
+        <!-- DÒNG 2: ⏱️ ĐỒNG HỒ --- 📝 SỐ CÂU ĐÃ HOÀN THÀNH/30 CÂU --- NỘP BÀI (MÀU VÀNG 3D) --- THOÁT -->
+        <div class="flex items-center justify-between gap-1.5 sm:gap-2 text-xs sm:text-sm font-bold">
+          <div class="flex items-center gap-1.5 sm:gap-2">
+            <!-- ⏱️ Đồng hồ đếm giờ -->
+            <div class="flex items-center gap-1 bg-red-950/80 px-2.5 py-1 rounded-xl font-black text-xs sm:text-sm border border-yellow-400/40">
+              <span>⏱️</span>
+              <span id="exam-timer">${timerStr}</span>
+            </div>
+
+            <!-- 📝 Số câu đã hoàn thành trên tổng 30 câu -->
+            <div class="flex items-center gap-1 bg-amber-900/60 text-yellow-300 px-2.5 py-1 rounded-xl font-black text-xs sm:text-sm border border-yellow-400/30">
+              <span>📝</span>
+              <span>${Object.keys(AppState.userAnswers30).length}/30 câu</span>
+            </div>
           </div>
 
-          <div class="flex items-center gap-1 bg-amber-900/60 text-yellow-300 px-2.5 py-1 rounded-full font-black text-xs sm:text-sm border border-yellow-400/30">
-            <span>📝</span>
-            <span>Đã làm: ${Object.keys(AppState.userAnswers30).length}/30</span>
+          <div class="flex items-center gap-1.5">
+            <!-- Nút "Nộp Bài" (màu vàng 3D) -->
+            <button onclick="handleMode2SubmitClick()" class="btn-3d btn-3d-gold px-3 sm:px-4 py-1 rounded-xl font-black text-amber-950 text-xs sm:text-sm shadow active:scale-95">
+              Nộp Bài
+            </button>
+
+            <!-- Nút "Thoát" -->
+            <button onclick="confirmExitExam()" class="text-xs bg-white/20 hover:bg-white/30 text-white px-2.5 py-1 rounded-lg font-bold transition-all">
+              Thoát
+            </button>
           </div>
-
-          <button onclick="handleMode2SubmitClick()" class="btn-3d btn-3d-gold px-3 py-1 rounded-xl font-black text-amber-950 text-xs shadow">
-            Nộp Bài
-          </button>
-
-          <button onclick="confirmExitExam()" class="text-xs bg-white/20 hover:bg-white/30 text-white px-2.5 py-1 rounded-lg font-bold transition-all">
-            Thoát
-          </button>
         </div>
       </div>
 
