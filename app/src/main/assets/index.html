@@ -5829,12 +5829,13 @@
 
     return `
       <div class="scroll-card p-2.5 sm:p-3.5 mb-3 bg-gradient-to-r from-red-800 via-amber-700 to-red-900 text-white shadow-lg border-2 border-amber-400 rounded-2xl flex flex-col gap-2">
-        <!-- DÒNG 1: ICON + LỚP X CHẶNG Y (BÊN TRÁI) ---------- TÊN MINI GAME (BÊN PHẢI) -->
+        <!-- DÒNG 1: ICON + LỚP X CHẶNG Y + MÃ ĐỀ (BÊN TRÁI) ---------- TÊN MINI GAME (BÊN PHẢI) -->
         <div class="flex items-center justify-between gap-2 border-b border-amber-400/30 pb-2">
-          <div class="flex items-center gap-1.5 shrink-0">
+          <div class="flex items-center gap-1.5 shrink-0 flex-wrap">
             <span class="text-base sm:text-lg">🏛️</span>
             <span class="text-sm sm:text-base font-black text-yellow-300">Lớp ${AppState.selectedGrade}</span>
             <span class="text-xs sm:text-sm font-bold text-yellow-200">Chặng ${AppState.currentRoundNum}</span>
+            <span class="text-[10px] sm:text-xs font-black text-amber-200 bg-amber-950/60 px-2 py-0.5 rounded-lg border border-yellow-400/20">Mã Đề: ${AppState.currentExamId || ('Chặng ' + AppState.currentRoundNum + '_' + AppState.currentSeed)}</span>
           </div>
 
           <div class="text-xs sm:text-sm font-extrabold text-white bg-red-950/60 px-2.5 py-1 rounded-xl border border-yellow-400/30 truncate max-w-[160px] sm:max-w-[240px]">
@@ -7036,15 +7037,16 @@
     root.innerHTML = `
       <!-- Thanh Tiêu Đề Phòng Thi Chặng 7 - 18 -->
       <div class="scroll-card p-2.5 sm:p-3.5 mb-3 bg-gradient-to-r from-red-800 via-amber-700 to-red-900 text-white shadow-lg border-2 border-amber-400 rounded-2xl flex flex-col gap-2">
-        <!-- DÒNG 1: BÊN TRÁI: ICON + LỚP ... ---------- BÊN PHẢI CÁCH RA: CHẶNG ... -->
+        <!-- DÒNG 1: BÊN TRÁI: ICON + LỚP + CHẶNG ... ---------- BÊN PHẢI: MÃ ĐỀ ... -->
         <div class="flex items-center justify-between gap-2 border-b border-amber-400/30 pb-2">
           <div class="flex items-center gap-1.5 shrink-0">
             <span class="text-base sm:text-lg">🏛️</span>
             <span class="text-sm sm:text-base font-black text-yellow-300">Lớp ${AppState.selectedGrade}</span>
+            <span class="text-xs sm:text-sm font-bold text-yellow-200">Chặng ${AppState.currentRoundNum}</span>
           </div>
 
-          <div class="text-xs sm:text-sm font-bold text-yellow-200 bg-red-950/60 px-2.5 py-1 rounded-xl border border-yellow-400/30 shrink-0">
-            Chặng ${AppState.currentRoundNum}
+          <div class="text-xs sm:text-sm font-black text-yellow-200 bg-red-950/60 px-2.5 py-1 rounded-xl border border-yellow-400/30 shrink-0">
+            Mã Đề: ${AppState.currentExamId || ('Chặng ' + AppState.currentRoundNum + '_' + AppState.currentSeed)}
           </div>
         </div>
 
@@ -7648,8 +7650,11 @@
         </div>
 
         <div class="text-5xl sm:text-6xl mb-2 animate-bounce">${rankBadge}</div>
-        <div class="inline-block px-4 py-1 rounded-full bg-red-600 text-white font-black text-xs sm:text-sm mb-2 shadow">
+        <div class="inline-block px-4 py-1 rounded-full bg-red-600 text-white font-black text-xs sm:text-sm mb-1 shadow">
           BẢNG VÀNG TRẠNG NGUYÊN NHÍ • 2026
+        </div>
+        <div class="text-xs font-extrabold text-amber-950 mb-2">
+          Khối Lớp ${AppState.selectedGrade} • Mã Bộ Đề: <span class="text-red-700 font-black underline">${AppState.currentExamId || ('Chặng ' + AppState.currentRoundNum + '_' + AppState.currentSeed)}</span>
         </div>
         <h2 class="text-2xl sm:text-3xl font-black text-amber-900 leading-tight">${rankTitle}</h2>
         <p class="text-slate-600 text-xs sm:text-sm mt-1">
@@ -7941,14 +7946,18 @@
   }
 
   function restartExamWithNewSeed() {
-    let nextSeed;
-    if (AppState.currentRoundNum <= 3) {
-      // Vòng 1 đến vòng 3 có 5 đề ngẫu nhiên
-      nextSeed = (AppState.currentSeed % 5) + 1;
-    } else {
-      // Vòng 4 trở lên: 1000 bộ đề
-      nextSeed = Math.floor(Math.random() * 1000) + 1;
+    if (typeof SoundEngine !== 'undefined' && SoundEngine.playClick) {
+      SoundEngine.playClick();
     }
+    const maxSeeds = getMaxSeeds(AppState.currentRoundNum);
+    const current = AppState.currentSeed || 1;
+    let nextSeed;
+    do {
+      nextSeed = Math.floor(Math.random() * maxSeeds) + 1;
+    } while (nextSeed === current && maxSeeds > 1);
+
+    AppState.currentSeed = nextSeed;
+
     if (!AppState.roundAdShown && !AppState.isVip2 && !isAdminAccount()) {
       AppState.roundAdShown = true;
       showInterstitialAd(() => startRoundExam(AppState.currentRoundNum, nextSeed));
