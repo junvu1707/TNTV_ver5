@@ -6414,11 +6414,8 @@
               ${curQ.question.replace('[...]', '<span class="text-red-600 font-black underline">[ ... ]</span>')}
             </p>
           </div>
-          <div class="flex gap-2 max-w-md mx-auto">
-            <input type="text" id="fill-input-30" value="${savedAns || ''}" placeholder="Nhập từ hoặc chữ cái còn thiếu..." class="flex-1 px-4 py-2.5 rounded-xl border-2 border-amber-400 text-center font-bold text-base focus:outline-none focus:border-red-600">
-            <button onclick="saveFillAnswer30()" class="btn-3d btn-3d-green text-white px-5 py-2.5 rounded-xl font-black text-sm">
-              Lưu
-            </button>
+          <div class="max-w-md mx-auto">
+            <input type="text" id="fill-input-30" value="${savedAns || ''}" oninput="saveFillAnswer30()" onkeyup="saveFillAnswer30()" onchange="saveFillAnswer30()" onkeydown="if(event.key==='Enter'){event.preventDefault(); saveFillAnswer30(); nextQuestion30();}" placeholder="Nhập từ hoặc chữ cái còn thiếu..." class="w-full px-4 py-3 rounded-2xl border-2 border-amber-400 text-center font-bold text-base sm:text-lg focus:outline-none focus:border-red-600 focus:ring-4 focus:ring-amber-200 shadow-sm transition-all" autofocus autocomplete="off">
           </div>
         `;
         break;
@@ -6705,6 +6702,7 @@
 
   // Chuyển câu hỏi
   function jumpToQuestion30(idx) {
+    saveFillAnswer30();
     SoundEngine.playDrum();
     AppState.currentQuestionIndex = idx;
     renderExamMode2Question();
@@ -6726,63 +6724,42 @@
   let mode2CompletionModalShown = false;
 
   function checkIfAll30QuestionsAnswered() {
-    const answeredCount = Object.keys(AppState.userAnswers30).length;
-    if (answeredCount >= 30 && !mode2CompletionModalShown) {
-      mode2CompletionModalShown = true;
-      SoundEngine.playFanfare();
-      const modalContainer = document.getElementById('modal-container');
-      if (!modalContainer) return;
-      modalContainer.innerHTML = `
-        <div class="fixed inset-0 z-50 bg-black/70 flex items-center justify-center p-4">
-          <div class="scroll-card max-w-sm w-full p-5 sm:p-6 bg-white rounded-3xl text-center shadow-2xl border-4 border-amber-400">
-            <div class="text-4xl mb-2">🎉</div>
-            <h3 class="text-lg font-black text-red-900 mb-1.5">Đã Hoàn Thành 30/30 Câu!</h3>
-            <p class="text-slate-600 text-xs sm:text-sm mb-4 leading-relaxed">
-              Bé đã làm xong toàn bộ 30 câu hỏi của <b>Vòng ${AppState.currentRoundNum}</b>. Bé muốn nộp bài để hệ thống tính điểm 1 lượt hay muốn kiểm tra lại?
-            </p>
-            <div class="flex flex-col gap-2">
-              <button onclick="closeModal(); finishExamMode2();" class="btn-3d btn-3d-red py-2.5 rounded-xl font-black text-white text-xs sm:text-sm shadow">
-                📝 Nộp Bài Tính Điểm Ngay
-              </button>
-              <button onclick="closeModal()" class="py-2 rounded-xl border border-slate-300 font-bold text-slate-700 hover:bg-slate-100 text-xs">
-                🔍 Kiểm Tra Lại Các Câu
-              </button>
-            </div>
-          </div>
-        </div>
-      `;
-      if (typeof lucide !== 'undefined' && lucide.createIcons) safeCreateIcons();
-    }
+    saveFillAnswer30();
+    // Không tự động bật popup ngắt lời nữa, để bé chủ động bấm Nộp Bài khi làm xong 30 câu
   }
 
   function handleMode2SubmitClick() {
+    saveFillAnswer30();
     const answeredCount = Object.keys(AppState.userAnswers30).length;
-    if (answeredCount < 30) {
-      const modalContainer = document.getElementById('modal-container');
-      if (!modalContainer) return;
-      modalContainer.innerHTML = `
-        <div class="fixed inset-0 z-50 bg-black/70 flex items-center justify-center p-4">
-          <div class="scroll-card max-w-sm w-full p-5 bg-white rounded-2xl text-center shadow-2xl border-2 border-amber-400">
-            <div class="text-3xl mb-2">⚠️</div>
-            <h3 class="text-base font-black text-amber-950 mb-1.5">Chưa Hoàn Thành 30 Câu!</h3>
-            <p class="text-slate-600 text-xs sm:text-sm mb-4 leading-relaxed">
-              Bé mới làm được <b>${answeredCount}/30</b> câu hỏi. Các câu chưa làm sẽ không có điểm. Bé có chắc chắn muốn nộp bài ngay để tính điểm không?
-            </p>
-            <div class="flex gap-2">
-              <button onclick="closeModal()" class="flex-1 py-2 rounded-xl border border-slate-300 font-bold text-slate-700 text-xs">
-                Làm Tiếp
-              </button>
-              <button onclick="closeModal(); finishExamMode2();" class="flex-1 btn-3d btn-3d-red py-2 rounded-xl font-black text-white text-xs shadow">
-                Nộp Bài Tính Điểm
-              </button>
-            </div>
+
+    // Nếu đã hoàn thành đủ 30 câu -> Nộp bài luôn lập tức mà KHÔNG hỏi lại
+    if (answeredCount >= 30) {
+      finishExamMode2();
+      return;
+    }
+
+    const modalContainer = document.getElementById('modal-container');
+    if (!modalContainer) return;
+    modalContainer.innerHTML = `
+      <div class="fixed inset-0 z-50 bg-black/70 flex items-center justify-center p-4">
+        <div class="scroll-card max-w-sm w-full p-5 bg-white rounded-2xl text-center shadow-2xl border-2 border-amber-400">
+          <div class="text-3xl mb-2">⚠️</div>
+          <h3 class="text-base font-black text-amber-950 mb-1.5">Chưa Hoàn Thành 30 Câu!</h3>
+          <p class="text-slate-600 text-xs sm:text-sm mb-4 leading-relaxed">
+            Bé mới làm được <b>${answeredCount}/30</b> câu hỏi. Các câu chưa làm sẽ không có điểm. Bé có chắc chắn muốn nộp bài ngay để tính điểm không?
+          </p>
+          <div class="flex gap-2">
+            <button onclick="closeModal()" class="flex-1 py-2 rounded-xl border border-slate-300 font-bold text-slate-700 text-xs">
+              Làm Tiếp
+            </button>
+            <button onclick="closeModal(); finishExamMode2();" class="flex-1 btn-3d btn-3d-red py-2 rounded-xl font-black text-white text-xs shadow">
+              Nộp Bài Tính Điểm
+            </button>
           </div>
         </div>
-      `;
-      if (typeof lucide !== 'undefined' && lucide.createIcons) safeCreateIcons();
-    } else {
-      finishExamMode2();
-    }
+      </div>
+    `;
+    if (typeof lucide !== 'undefined' && lucide.createIcons) safeCreateIcons();
   }
 
   // Ghi nhận đáp án Trắc nghiệm (chỉ ghi nhận và gõ trống nhẹ, không hiện điểm số từng câu)
@@ -6793,14 +6770,16 @@
     checkIfAll30QuestionsAnswered();
   }
 
-  // Ghi nhận đáp án Điền từ
+  // Ghi nhận đáp án Điền từ tự động
   function saveFillAnswer30() {
     const input = document.getElementById('fill-input-30');
-    if (input && input.value.trim()) {
-      SoundEngine.playDrum();
-      AppState.userAnswers30[AppState.currentQuestionIndex] = input.value.trim();
-      renderExamMode2Question();
-      checkIfAll30QuestionsAnswered();
+    if (input) {
+      const val = input.value.trim();
+      if (val) {
+        AppState.userAnswers30[AppState.currentQuestionIndex] = val;
+      } else {
+        delete AppState.userAnswers30[AppState.currentQuestionIndex];
+      }
     }
   }
 
@@ -6938,97 +6917,105 @@
   // [KẾT THÚC & CHẤM ĐIỂM ĐỀ THI TỔNG HỢP 30 CÂU: CHẤM 1 LƯỢT SAU KHI THI HẾT 30 CÂU]
   // ========================================================
   function finishExamMode2() {
-    if (AppState.timerInterval) clearInterval(AppState.timerInterval);
+    try {
+      if (AppState.timerInterval) clearInterval(AppState.timerInterval);
 
-    let correctCount = 0;
-    const history = [];
+      let correctCount = 0;
+      const history = [];
 
-    AppState.exam30Questions.forEach((q, idx) => {
-      const userAns = AppState.userAnswers30[idx];
-      let isCorrect = false;
+      (AppState.exam30Questions || []).forEach((q, idx) => {
+        if (!q) return;
+        const userAns = AppState.userAnswers30 ? AppState.userAnswers30[idx] : undefined;
+        let isCorrect = false;
 
-      if (q.type === 'MCQ' || q.type === 'READING' || q.type === 'IMAGE_MCQ') {
-        isCorrect = (userAns === q.correctIndex);
-      } else if (q.type === 'FILL') {
-        isCorrect = (userAns && userAns.toString().toLowerCase().trim() === q.answer.toString().toLowerCase().trim());
-      } else if (q.type === 'MATCH_MINI') {
-        if (userAns && typeof userAns === 'object') {
-          const pairs = q.pairs || [];
-          let allMatchCorrect = (Object.keys(userAns).length === pairs.length);
-          for (let pIdx = 0; pIdx < pairs.length; pIdx++) {
-            if (userAns[pIdx] !== pIdx) {
-              allMatchCorrect = false;
-              break;
+        if (q.type === 'MCQ' || q.type === 'READING' || q.type === 'IMAGE_MCQ') {
+          isCorrect = (typeof userAns === 'number' && userAns === q.correctIndex);
+        } else if (q.type === 'FILL') {
+          const correctAns = (q.answer || q.blankAnswer || q.a || q.mask || '').toString().toLowerCase().trim();
+          const userStr = (userAns || '').toString().toLowerCase().trim();
+          isCorrect = (userStr.length > 0 && userStr === correctAns);
+        } else if (q.type === 'MATCH_MINI') {
+          if (userAns && typeof userAns === 'object') {
+            const pairs = q.pairs || [];
+            let allMatchCorrect = (pairs.length > 0 && Object.keys(userAns).length >= pairs.length);
+            for (let pIdx = 0; pIdx < pairs.length; pIdx++) {
+              if (userAns[pIdx] !== pIdx) {
+                allMatchCorrect = false;
+                break;
+              }
             }
+            isCorrect = allMatchCorrect;
+          } else {
+            isCorrect = false;
           }
-          isCorrect = allMatchCorrect;
-        } else {
-          isCorrect = false;
-        }
-      } else if (q.type === 'CLASSIFY_MINI') {
-        if (userAns && typeof userAns === 'object') {
-          const groups = q.groups || [];
-          const allWords = [];
-          groups.forEach((g, gIdx) => {
-            (g.words || []).forEach(w => allWords.push({ text: w, groupIdx: gIdx }));
-          });
-          let allClassifyCorrect = (Object.keys(userAns).length === allWords.length);
-          for (let wIdx = 0; wIdx < allWords.length; wIdx++) {
-            if (userAns[wIdx] !== allWords[wIdx].groupIdx) {
-              allClassifyCorrect = false;
-              break;
+        } else if (q.type === 'CLASSIFY_MINI') {
+          if (userAns && typeof userAns === 'object') {
+            const groups = q.groups || [];
+            const allWords = [];
+            groups.forEach((g, gIdx) => {
+              (g.words || []).forEach(w => allWords.push({ text: w, groupIdx: gIdx }));
+            });
+            let allClassifyCorrect = (allWords.length > 0 && Object.keys(userAns).length >= allWords.length);
+            for (let wIdx = 0; wIdx < allWords.length; wIdx++) {
+              if (userAns[wIdx] !== allWords[wIdx].groupIdx) {
+                allClassifyCorrect = false;
+                break;
+              }
             }
+            isCorrect = allClassifyCorrect;
+          } else {
+            isCorrect = false;
           }
-          isCorrect = allClassifyCorrect;
         } else {
-          isCorrect = false;
+          isCorrect = (userAns === q.correctIndex);
         }
-      } else {
-        isCorrect = (userAns === q.correctIndex);
-      }
 
-      if (isCorrect) correctCount++;
-      const userText = (userAns !== undefined && userAns !== null && userAns !== '') 
-        ? (typeof userAns === 'object' ? 'Đã hoàn thành' : ((q.options && q.options[userAns] !== undefined) ? q.options[userAns] : String(userAns)))
-        : 'Chưa làm';
-      const correctText = (q.options && q.options[q.correctIndex] !== undefined) 
-        ? q.options[q.correctIndex] 
-        : (q.answer || 'Đáp án chuẩn');
+        if (isCorrect) correctCount++;
 
-      history.push({
-        game: `Câu ${idx + 1}: ${q.title || 'Kiến thức'}`,
-        question: q.question || q.title || 'Câu hỏi kiến thức',
-        userAnswer: userText,
-        correctAnswer: correctText,
-        isCorrect,
-        explain: q.explain || 'Kiến thức trọng tâm chuẩn GDPT 2018.',
-        topic: q.title || 'Kiến thức chung'
+        const userText = (userAns !== undefined && userAns !== null && userAns !== '')
+          ? (typeof userAns === 'object' ? 'Đã hoàn thành' : ((q.options && q.options[userAns] !== undefined) ? q.options[userAns] : String(userAns)))
+          : 'Chưa làm';
+        const correctText = (q.options && q.options[q.correctIndex] !== undefined)
+          ? q.options[q.correctIndex]
+          : (q.answer || q.blankAnswer || q.a || q.mask || 'Đáp án chuẩn');
+
+        history.push({
+          game: `Câu ${idx + 1}: ${q.title || 'Kiến thức'}`,
+          question: q.question || q.title || 'Câu hỏi kiến thức',
+          userAnswer: userText,
+          correctAnswer: correctText,
+          isCorrect,
+          explain: q.explain || 'Kiến thức trọng tâm chuẩn GDPT 2018.',
+          topic: q.title || 'Kiến thức chung'
+        });
       });
-    });
 
-    // Phân tích chuyên đề yếu nhất
-    const topicStats = {};
-    history.forEach(h => {
-      if (!topicStats[h.topic]) topicStats[h.topic] = { correct: 0, total: 0 };
-      topicStats[h.topic].total++;
-      if (h.isCorrect) topicStats[h.topic].correct++;
-    });
+      const topicStats = {};
+      history.forEach(h => {
+        if (!topicStats[h.topic]) topicStats[h.topic] = { correct: 0, total: 0 };
+        topicStats[h.topic].total++;
+        if (h.isCorrect) topicStats[h.topic].correct++;
+      });
 
-    let weakestTopic = '';
-    let lowestAccuracy = 1.0;
-    for (const topic in topicStats) {
-      const accuracy = topicStats[topic].correct / topicStats[topic].total;
-      if (accuracy < lowestAccuracy) {
-        lowestAccuracy = accuracy;
-        weakestTopic = topic;
+      let weakestTopic = '';
+      let lowestAccuracy = 1.0;
+      for (const topic in topicStats) {
+        const accuracy = topicStats[topic].total > 0 ? (topicStats[topic].correct / topicStats[topic].total) : 1.0;
+        if (accuracy < lowestAccuracy) {
+          lowestAccuracy = accuracy;
+          weakestTopic = topic;
+        }
       }
-    }
-    AppState.weakestTopic = weakestTopic;
-    AppState.lowestAccuracy = lowestAccuracy;
+      AppState.weakestTopic = weakestTopic;
+      AppState.lowestAccuracy = lowestAccuracy;
 
-    AppState.roundTotalScore = correctCount * 10;
-    AppState.roundAnswersHistory = history;
-    finishRoundExam();
+      AppState.roundTotalScore = correctCount * 10;
+      AppState.roundAnswersHistory = history;
+    } catch (e) {
+      console.error('Error in finishExamMode2:', e);
+    } finally {
+      finishRoundExam();
+    }
   }
 
   // ========================================================
