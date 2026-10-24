@@ -1228,6 +1228,63 @@
     return res;
   }
 
+  // Thuật toán xáo trộn đáp án câu hỏi trắc nghiệm sao cho không trùng vị trí đáp án đúng liên tiếp nhau
+  function shuffleQuestionOptions(questions, seed = 12345) {
+    if (!questions || !Array.isArray(questions)) return [];
+
+    let lastCorrectIndex = -1;
+    let repeatCount = 0;
+
+    return questions.map((q, qIdx) => {
+      const newQ = { ...q };
+
+      if (!newQ.options || !Array.isArray(newQ.options) || newQ.options.length < 2 || newQ.type === 'DT') {
+        return newQ;
+      }
+
+      let correctText = '';
+      if (typeof newQ.correctIndex === 'number' && newQ.options[newQ.correctIndex] !== undefined) {
+        correctText = newQ.options[newQ.correctIndex];
+      } else if (newQ.correctAnswer) {
+        correctText = newQ.correctAnswer;
+      } else {
+        correctText = newQ.options[0];
+      }
+
+      const itemSeed = Math.abs((seed + (qIdx + 1) * 37) % 2147483647);
+      let shuffled = seededShuffle([...newQ.options], itemSeed);
+      let newCorrectIndex = shuffled.indexOf(correctText);
+      if (newCorrectIndex === -1) {
+        shuffled[0] = correctText;
+        newCorrectIndex = 0;
+      }
+
+      if (newCorrectIndex === lastCorrectIndex) {
+        repeatCount++;
+      } else {
+        repeatCount = 1;
+      }
+
+      if (repeatCount >= 2 && shuffled.length >= 2) {
+        const swapOffset = (qIdx % (shuffled.length - 1)) + 1;
+        const targetIndex = (newCorrectIndex + swapOffset) % shuffled.length;
+
+        const temp = shuffled[newCorrectIndex];
+        shuffled[newCorrectIndex] = shuffled[targetIndex];
+        shuffled[targetIndex] = temp;
+
+        newCorrectIndex = targetIndex;
+        repeatCount = 1;
+      }
+
+      lastCorrectIndex = newCorrectIndex;
+
+      newQ.options = shuffled;
+      newQ.correctIndex = newCorrectIndex;
+      return newQ;
+    });
+  }
+
   function safeCreateIcons() {
     if (typeof lucide !== 'undefined' && lucide && typeof lucide.createIcons === 'function') {
       try { lucide.createIcons(); } catch (e) {}
@@ -5577,7 +5634,7 @@
       AppState.userAnswers30 = {};
       mode2CompletionModalShown = false;
       const examData = ExamGenerator.generateMode2Exam(AppState.selectedGrade, roundNum, AppState.currentSeed);
-      AppState.exam30Questions = examData.questions;
+      AppState.exam30Questions = shuffleQuestionOptions(examData.questions, AppState.currentSeed + 701);
 
       AppState.timerInterval = setInterval(() => {
         AppState.timerSeconds--;
@@ -6142,7 +6199,8 @@
   // GAME 3: BÉ HỌC VUI (18 CÂU HỎI x 10 ĐIỂM = 180 ĐIỂM)
   function renderGame3_QuizMode1(subGame) {
     const root = document.getElementById('app-root');
-    const questions = subGame.data.slice(0, 18);
+    const rawQuestions = subGame.data.slice(0, 18);
+    const questions = shuffleQuestionOptions(rawQuestions, AppState.currentSeed + AppState.currentSubGameIndex * 31);
     let qIdx = 0;
     let correctCount = 0;
 
@@ -6268,7 +6326,8 @@
   // GAME 4: BÉ SÁNG TẠO (5 CÂU HỎI x 10 ĐIỂM = 50 ĐIỂM)
   function renderGame4_RiddlesMode1(subGame) {
     const root = document.getElementById('app-root');
-    const riddles = subGame.data.slice(0, 5);
+    const rawRiddles = subGame.data.slice(0, 5);
+    const riddles = shuffleQuestionOptions(rawRiddles, AppState.currentSeed + AppState.currentSubGameIndex * 41);
     let qIdx = 0;
     let correctCount = 0;
 
@@ -6343,7 +6402,8 @@
   // GAME 5: BÉ NHANH TAY (5 CÂU HỎI x 10 ĐIỂM = 50 ĐIỂM)
   function renderGame5_ImageQuizMode1(subGame) {
     const root = document.getElementById('app-root');
-    const items = subGame.data.slice(0, 5);
+    const rawItems = subGame.data.slice(0, 5);
+    const items = shuffleQuestionOptions(rawItems, AppState.currentSeed + AppState.currentSubGameIndex * 51);
     let qIdx = 0;
     let correctCount = 0;
 
