@@ -61,10 +61,11 @@ class MainActivity : ComponentActivity() {
   private var isAdMobInitialized = false
   private var bannerContainer: FrameLayout? = null
 
-  // Trạng thái VIP, Google Play Billing & EmailJS Manager
+  // Trạng thái VIP, Google Play Billing & EmailJS Manager & GitHub Questions Repo
   lateinit var vipPrefs: VipPreferenceManager
   lateinit var emailJSManager: EmailJSManager
   lateinit var billingManager: BillingManager
+  lateinit var githubRepo: GitHubQuestionRepository
 
   @SuppressLint("SetJavaScriptEnabled")
   override fun onCreate(savedInstanceState: Bundle?) {
@@ -80,7 +81,10 @@ class MainActivity : ComponentActivity() {
       if (seedNewFile.exists()) seedNewFile.delete()
     } catch (_: Exception) {}
 
-    // 1. Khởi tạo VIP Manager, EmailJS Manager & Google Play Billing
+    // 1. Khởi tạo VIP Manager, EmailJS Manager, BillingManager & GitHub Question Repo
+    githubRepo = GitHubQuestionRepository(this)
+    githubRepo.syncAllGradesInBackground()
+
     vipPrefs = VipPreferenceManager(this)
     emailJSManager = EmailJSManager()
     billingManager = BillingManager(this, vipPrefs, emailJSManager)
@@ -956,6 +960,23 @@ class AndroidBridge(
   @JavascriptInterface
   fun setBannerVisible(visible: Boolean) {
     activity.setBannerVisibility(visible)
+  }
+
+  @JavascriptInterface
+  fun getGithubQuestionsJson(grade: Int, round: Int): String {
+    return activity.githubRepo.getCachedQuestionsJson(grade, round) ?: ""
+  }
+
+  @JavascriptInterface
+  fun fetchGithubQuestions(grade: Int, round: Int) {
+    activity.githubRepo.fetchAndCacheQuestions(grade, round, onSuccess = {
+      activity.runOnUiThread {
+        webViewProvider()?.evaluateJavascript(
+          "if (window.onGithubQuestionsUpdated) { window.onGithubQuestionsUpdated($grade, $round); }",
+          null
+        )
+      }
+    })
   }
 
   @JavascriptInterface
