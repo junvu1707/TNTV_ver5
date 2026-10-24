@@ -450,11 +450,11 @@ class MainActivity : ComponentActivity() {
 
       val container = LinearLayout(this).apply {
         orientation = LinearLayout.VERTICAL
-        setPadding(48, 36, 48, 24)
+        setPadding(52, 40, 52, 32)
         val bgDrawable = android.graphics.drawable.GradientDrawable().apply {
           setColor(Color.parseColor("#FFFBEB"))
-          setStroke(6, Color.parseColor("#F59E0B"))
-          cornerRadius = 36f
+          setStroke(8, Color.parseColor("#F59E0B"))
+          cornerRadius = 40f
         }
         background = bgDrawable
       }
@@ -692,7 +692,10 @@ class MainActivity : ComponentActivity() {
         .setView(container)
         .create()
 
-      dialogRef.window?.setBackgroundDrawable(android.graphics.drawable.ColorDrawable(Color.TRANSPARENT))
+      dialogRef.window?.apply {
+        setBackgroundDrawable(android.graphics.drawable.ColorDrawable(Color.TRANSPARENT))
+        clearFlags(android.view.WindowManager.LayoutParams.FLAG_DIM_BEHIND)
+      }
       dialogRef.show()
     }
   }

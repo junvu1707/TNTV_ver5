@@ -5731,6 +5731,33 @@
 
   function skipToNextSubGameMode1() {
     SoundEngine.playClick();
+    const exam = AppState.currentExamMode1;
+    if (exam && exam.subGames) {
+      const currentSub = exam.subGames[AppState.currentSubGameIndex];
+      if (currentSub) {
+        if (currentSub.type === 'NOI' && !AppState.roundAnswersHistory.some(h => h.game === 'Bài 1: Bé tinh mắt')) {
+          AppState.roundAnswersHistory.push({
+            game: 'Bài 1: Bé tinh mắt',
+            topic: 'Nối cặp từ & Thành ngữ',
+            question: 'Nối trọn vẹn 6 cặp từ vựng / vế thành ngữ, tục ngữ',
+            userAnswer: 'Chưa làm (Bỏ qua)',
+            correctAnswer: 'Hoàn thành nối 6 cặp từ',
+            isCorrect: false,
+            explain: 'Bỏ qua bài nối từ.'
+          });
+        } else if (currentSub.type === 'PL' && !AppState.roundAnswersHistory.some(h => h.game === 'Bài 2: Bé thông minh')) {
+          AppState.roundAnswersHistory.push({
+            game: 'Bài 2: Bé thông minh',
+            topic: 'Phân loại từ vựng vào giỏ',
+            question: 'Bài tập phân loại 12 từ vựng vào đúng 3 chiếc giỏ chủ đề',
+            userAnswer: 'Chưa làm (Bỏ qua)',
+            correctAnswer: 'Hoàn thành xếp 12 từ vào giỏ',
+            isCorrect: false,
+            explain: 'Bỏ qua bài phân loại từ vựng.'
+          });
+        }
+      }
+    }
     AppState.currentSubGameIndex++;
     renderCurrentSubGameMode1();
   }
@@ -5743,7 +5770,7 @@
     }
   }
 
-  // GAME 1: BÉ TINH MẮT (6 CẶP = 6 CÂU HỎI x 10 ĐIỂM = 60 ĐIỂM)
+  // GAME 1: BÉ TINH MẮT (1 CÂU = NỐI HẾT 6 CẶP TỪ VỰNG = 10 ĐIỂM)
   function renderGame1_NoiO(subGame) {
     const root = document.getElementById('app-root');
     const pairs = subGame.data.pairs;
@@ -5776,7 +5803,7 @@
         <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-3 text-xs sm:text-sm">
           <p class="text-slate-700 font-semibold flex items-center gap-1.5">
             <span>💡</span>
-            <span>Chọn 1 ô ở <b>Cột Bên Trái</b> rồi nối với 1 ô tương ứng ở <b>Cột Bên Phải</b> (Mỗi cặp đúng +10 ⭐).</span>
+            <span>Chọn 1 ô ở <b>Cột Bên Trái</b> rồi nối với 1 ô tương ứng ở <b>Cột Bên Phải</b> (Nối đủ cả 6 cặp = +10 ⭐).</span>
           </p>
           <div class="flex items-center gap-2 self-end sm:self-auto">
             <span class="text-xs font-bold text-emerald-800 bg-emerald-50 px-2.5 py-1 rounded-full border border-emerald-300">
@@ -5877,7 +5904,7 @@
         rightTile.classList.remove('selected', 'ring-4', 'ring-amber-400', 'bg-amber-200');
 
         if (leftTile.dataset.pair === rightTile.dataset.pair) {
-          // NỐI ĐÚNG CẶP (+10 ĐIỂM)
+          // NỐI ĐÚNG CẶP
           SoundEngine.playSuccess();
           leftTile.classList.add('matched', 'bg-emerald-100', 'border-emerald-500', 'text-emerald-900', 'opacity-80', 'pointer-events-none');
           rightTile.classList.add('matched', 'bg-emerald-100', 'border-emerald-500', 'text-emerald-900', 'opacity-80', 'pointer-events-none');
@@ -5891,21 +5918,21 @@
           const progressEl = document.getElementById('match-progress');
           if (progressEl) progressEl.textContent = matchedCount;
 
-          AppState.roundTotalScore += 10;
-          const scoreEl = document.getElementById('exam-score');
-          if (scoreEl) scoreEl.textContent = `${AppState.roundTotalScore} / 300`;
-
-          AppState.roundAnswersHistory.push({
-            game: 'Bé tinh mắt',
-            topic: 'Nối cặp từ & Thành ngữ',
-            question: `${leftTile.textContent.replace('✓', '').trim()} 🔗 ${rightTile.textContent.replace('✓', '').trim()}`,
-            userAnswer: rightTile.textContent.replace('✓', '').trim(),
-            correctAnswer: rightTile.textContent.replace('✓', '').trim(),
-            isCorrect: true,
-            explain: 'Nối đúng cặp vế tương ứng giữa cột Trái và cột Phải.'
-          });
-
           if (matchedCount >= totalPairs) {
+            AppState.roundTotalScore += 10;
+            const scoreEl = document.getElementById('exam-score');
+            if (scoreEl) scoreEl.textContent = `${AppState.roundTotalScore} / 300`;
+
+            AppState.roundAnswersHistory.push({
+              game: 'Bài 1: Bé tinh mắt',
+              topic: 'Nối cặp từ & Thành ngữ',
+              question: 'Nối trọn vẹn 6 cặp từ vựng / vế thành ngữ, tục ngữ',
+              userAnswer: 'Hoàn thành nối tất cả 6 cặp từ',
+              correctAnswer: 'Hoàn thành nối tất cả 6 cặp từ',
+              isCorrect: true,
+              explain: 'Nối chính xác toàn bộ 6 cặp từ vựng tương ứng.'
+            });
+
             setTimeout(() => nextSubGameMode1(), 600);
           }
         } else {
@@ -5915,16 +5942,6 @@
           const mistakeEl = document.getElementById('mistake-count');
           if (mistakeEl) mistakeEl.textContent = AppState.subGameMistakes;
 
-          AppState.roundAnswersHistory.push({
-            game: 'Bé tinh mắt',
-            topic: 'Nối cặp từ & Thành ngữ',
-            question: `Ghép cặp cho từ: "${leftTile.textContent.replace('✓', '').trim()}"`,
-            userAnswer: rightTile.textContent.replace('✓', '').trim(),
-            correctAnswer: 'Từ ghép / vế thành ngữ tương ứng',
-            isCorrect: false,
-            explain: 'Bé cần chú ý nghĩa của từ vựng và cấu trúc thành ngữ, tục ngữ quen thuộc để nối cho chuẩn xác.'
-          });
-
           leftTile.classList.add('wrong-shake', 'border-red-500', 'bg-red-100');
           rightTile.classList.add('wrong-shake', 'border-red-500', 'bg-red-100');
           setTimeout(() => {
@@ -5933,6 +5950,15 @@
           }, 450);
 
           if (AppState.subGameMistakes >= 3) {
+            AppState.roundAnswersHistory.push({
+              game: 'Bài 1: Bé tinh mắt',
+              topic: 'Nối cặp từ & Thành ngữ',
+              question: 'Nối trọn vẹn 6 cặp từ vựng / vế thành ngữ, tục ngữ',
+              userAnswer: `Chưa hoàn thành (${matchedCount}/${totalPairs} cặp)`,
+              correctAnswer: 'Hoàn thành nối tất cả các cặp',
+              isCorrect: false,
+              explain: 'Bé cần chú ý nghĩa của từ vựng và cấu trúc thành ngữ, tục ngữ để nối chuẩn xác.'
+            });
             showCustomAlert('Bạn đã nối sai 3 lần! Hệ thống tự động chuyển sang bài tiếp theo.');
             nextSubGameMode1();
           }
@@ -5943,139 +5969,174 @@
     safeCreateIcons();
   }
 
-  // GAME 2: BÉ THÔNG MINH (6 TỪ = 6 CÂU HỎI x 10 ĐIỂM = 60 ĐIỂM)
+  // GAME 2: BÉ THÔNG MINH (1 CÂU = 12 TỪ CHIA THÀNH 3 GIỎ TRONG 1 MÀN DUY NHẤT = 10 ĐIỂM)
   function renderGame2_PhanLoai(subGame) {
     const root = document.getElementById('app-root');
-    const baskets = subGame.data.baskets.map(b => ({
+    const rawBaskets = subGame.data.baskets || [];
+    const baskets = rawBaskets.map(b => ({
       name: b.name,
-      words: (b.words || []).slice(0, 2)
+      words: (b.words || []).slice(0, 4)
     }));
-    const allWords = [];
+
+    const poolWords = [];
     baskets.forEach((b, bIdx) => {
-      b.words.forEach(w => allWords.push({ text: w, basketIndex: bIdx }));
+      (b.words || []).forEach(w => poolWords.push({ text: w, basketIndex: bIdx, id: Math.random() }));
     });
-    allWords.sort(() => Math.random() - 0.5);
+    poolWords.sort(() => Math.random() - 0.5);
 
-    let activeWord = null;
-    let placedCount = 0;
-    const totalWords = allWords.length;
-    let mistakes = 0;
+    let selectedWordId = null;
+    const placements = {};
 
-    root.innerHTML = `
-      ${getExamHeaderMode1(subGame.title)}
-      <div class="scroll-card p-4 sm:p-5">
-        <div class="mb-3 text-xs sm:text-sm text-slate-600 font-medium">
-          💡 Chọn một từ bên dưới rồi bấm vào đúng <b>Chiếc Giỏ</b> tương ứng (Mỗi từ đúng +10 ⭐).
-        </div>
+    function draw() {
+      const remainingWords = poolWords.filter(w => placements[w.id] === undefined);
 
-        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-6">
-          ${baskets.map((b, idx) => `
-            <div data-basket-idx="${idx}" class="basket-zone scroll-card p-3 border-2 border-dashed border-amber-400 rounded-2xl flex flex-col cursor-pointer hover:border-emerald-500">
-              <div class="flex items-center gap-1.5 pb-2 border-b border-amber-200">
-                <span class="text-xl">🧺</span>
-                <span class="font-extrabold text-sm text-red-900">${b.name}</span>
-              </div>
-              <div class="placed-words flex flex-wrap gap-1.5 mt-2 flex-1 items-start"></div>
+      root.innerHTML = `
+        ${getExamHeaderMode1(subGame.title)}
+        <div class="scroll-card p-4 sm:p-5">
+          <div class="flex items-center justify-between gap-2 mb-3">
+            <p class="text-xs sm:text-sm text-slate-700 font-semibold">
+              💡 Bấm chọn 1 từ bên dưới rồi bấm vào <b>Chiếc Giỏ</b> tương ứng để xếp (12 từ chia vào 3 giỏ):
+            </p>
+          </div>
+
+          <!-- DẠNG GIỎ XẾP -->
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-5">
+            ${baskets.map((b, bIdx) => {
+              const wordsInBasket = poolWords.filter(w => placements[w.id] === bIdx);
+              return `
+                <div data-basket-idx="${bIdx}" class="basket-zone scroll-card p-3 border-2 border-dashed border-amber-400 rounded-2xl flex flex-col cursor-pointer hover:border-emerald-500 transition-all bg-amber-50/40">
+                  <div class="flex items-center justify-between pb-2 border-b border-amber-200">
+                    <div class="flex items-center gap-1.5 font-extrabold text-sm text-red-900">
+                      <span class="text-xl">🧺</span>
+                      <span>${b.name}</span>
+                    </div>
+                    <span class="text-[10px] font-bold text-emerald-800 bg-emerald-100 px-2 py-0.5 rounded-full border border-emerald-300">
+                      ${wordsInBasket.length} từ
+                    </span>
+                  </div>
+                  <div class="placed-words flex flex-wrap gap-1.5 mt-2.5 flex-1 items-start min-h-[50px]">
+                    ${wordsInBasket.map(w => `
+                      <button data-remove-word-id="${w.id}" class="btn-remove-word bg-emerald-100 hover:bg-red-100 text-emerald-900 hover:text-red-900 border border-emerald-300 hover:border-red-300 text-xs px-2.5 py-1 rounded-xl font-extrabold transition-all flex items-center gap-1 shadow-sm" title="Bấm để trả từ này về khung">
+                        <span>${w.text}</span>
+                        <span class="text-[10px] font-black text-red-600">✕</span>
+                      </button>
+                    `).join('')}
+                  </div>
+                </div>
+              `;
+            }).join('')}
+          </div>
+
+          <!-- KHUNG TỪ CẦN XẾP -->
+          <div class="p-3 bg-amber-100/70 rounded-2xl border border-amber-300">
+            <div class="text-xs font-bold text-amber-950 mb-2">Từ cần xếp vào giỏ (${remainingWords.length} từ còn lại):</div>
+            <div class="flex flex-wrap gap-2" id="words-pool">
+              ${remainingWords.map(w => `
+                <button data-word-id="${w.id}" class="pool-word btn-3d text-xs sm:text-sm font-bold px-3 py-1.5 rounded-xl border transition-all ${selectedWordId === w.id ? 'bg-amber-300 border-amber-500 text-amber-950 ring-2 ring-amber-400 scale-105' : 'bg-white border-amber-300 text-slate-800 hover:bg-amber-50'}">
+                  ${w.text}
+                </button>
+              `).join('')}
             </div>
-          `).join('')}
-        </div>
+          </div>
 
-        <div class="p-3 bg-amber-100/60 rounded-2xl border border-amber-300">
-          <div class="text-xs font-bold text-amber-950 mb-2">Từ cần xếp vào giỏ:</div>
-          <div class="flex flex-wrap gap-2" id="words-pool">
-            ${allWords.map((item, i) => `
-              <button data-word-idx="${i}" data-correct-basket="${item.basketIndex}" class="pool-word btn-3d bg-white hover:bg-amber-50 text-slate-800 text-xs sm:text-sm font-bold px-3 py-1.5 rounded-xl border border-amber-300">
-                ${item.text}
-              </button>
-            `).join('')}
+          <!-- Nút Bài trước (trái) & Nút Bài sau (phải) -->
+          <div class="mt-4 pt-3 border-t border-amber-200 flex items-center justify-between gap-2">
+            <button onclick="prevSubGameMode1()" class="btn-3d bg-slate-200 hover:bg-slate-300 text-slate-800 px-3.5 py-2 rounded-xl font-bold text-xs sm:text-sm shadow flex items-center gap-1 active:scale-95">
+              <span>◄</span>
+              <span>Bài trước</span>
+            </button>
+
+            <button onclick="skipToNextSubGameMode1()" class="btn-3d btn-3d-blue px-4 py-2 rounded-xl font-black text-white text-xs sm:text-sm shadow flex items-center gap-1 active:scale-95">
+              <span>Bài sau</span>
+              <span>►</span>
+            </button>
           </div>
         </div>
+      `;
 
-        <!-- Nút Bài trước (trái) & Nút Bài sau (phải) -->
-        <div class="mt-4 pt-3 border-t border-amber-200 flex items-center justify-between gap-2">
-          <button onclick="prevSubGameMode1()" class="btn-3d bg-slate-200 hover:bg-slate-300 text-slate-800 px-3.5 py-2 rounded-xl font-bold text-xs sm:text-sm shadow flex items-center gap-1 active:scale-95">
-            <span>◄</span>
-            <span>Bài trước</span>
-          </button>
-
-          <button onclick="skipToNextSubGameMode1()" class="btn-3d btn-3d-blue px-4 py-2 rounded-xl font-black text-white text-xs sm:text-sm shadow flex items-center gap-1 active:scale-95">
-            <span>Bài sau</span>
-            <span>►</span>
-          </button>
-        </div>
-      </div>
-    `;
-
-    const pool = document.getElementById('words-pool');
-    const basketEls = document.querySelectorAll('.basket-zone');
-
-    pool.addEventListener('click', (e) => {
-      const btn = e.target.closest('.pool-word');
-      if (!btn) return;
-      SoundEngine.playDrum();
-      document.querySelectorAll('.pool-word').forEach(b => b.classList.remove('ring-4', 'ring-amber-500', 'bg-amber-200'));
-      activeWord = btn;
-      btn.classList.add('ring-4', 'ring-amber-500', 'bg-amber-200');
-    });
-
-    basketEls.forEach(bEl => {
-      bEl.addEventListener('click', () => {
-        if (!activeWord) {
-          showCustomAlert('Vui lòng chọn từ phía dưới trước!');
-          return;
-        }
-
-        const chosenBasket = parseInt(bEl.dataset.basketIdx, 10);
-        const correctBasket = parseInt(activeWord.dataset.correctBasket, 10);
-        const wordText = activeWord.textContent.trim();
-
-        if (chosenBasket === correctBasket) {
-          SoundEngine.playSuccess();
-          const tag = document.createElement('span');
-          tag.className = 'bg-emerald-100 text-emerald-800 border border-emerald-300 text-xs px-2 py-0.5 rounded-lg font-bold animate-bounce';
-          tag.textContent = wordText;
-          bEl.querySelector('.placed-words').appendChild(tag);
-
-          AppState.roundTotalScore += 10;
-          const scoreEl = document.getElementById('exam-score');
-          if (scoreEl) scoreEl.textContent = `${AppState.roundTotalScore} / 300`;
-
-          AppState.roundAnswersHistory.push({
-            game: 'Bé thông minh',
-            topic: 'Phân loại từ & Ngữ nghĩa',
-            question: `Phân loại từ "${wordText}" vào nhóm "${baskets[chosenBasket].name}"`,
-            userAnswer: baskets[chosenBasket].name,
-            correctAnswer: baskets[correctBasket].name,
-            isCorrect: true,
-            explain: baskets[chosenBasket].explain || 'Phân loại từ vựng chính xác vào đúng nhóm kiến thức.'
-          });
-
-          activeWord.remove();
-          activeWord = null;
-          placedCount++;
-
-          if (placedCount >= totalWords) {
-            setTimeout(() => nextSubGameMode1(), 600);
+      document.querySelectorAll('.pool-word').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          SoundEngine.playDrum();
+          const wId = parseFloat(btn.dataset.wordId);
+          if (selectedWordId === wId) {
+            selectedWordId = null;
+          } else {
+            selectedWordId = wId;
           }
-        } else {
-          SoundEngine.playWrong();
-          mistakes++;
-          bEl.classList.add('wrong-shake');
-          setTimeout(() => bEl.classList.remove('wrong-shake'), 400);
-
-          AppState.roundAnswersHistory.push({
-            game: 'Bé thông minh',
-            topic: 'Phân loại từ & Ngữ nghĩa',
-            question: `Phân loại từ: "${wordText}"`,
-            userAnswer: baskets[chosenBasket].name,
-            correctAnswer: baskets[correctBasket].name,
-            isCorrect: false,
-            explain: `Từ "${wordText}" thuộc nhóm "${baskets[correctBasket].name}". Bé lưu ý phân biệt danh từ, động từ, tính từ hoặc trường nghĩa.`
-          });
-        }
+          draw();
+        });
       });
-    });
-    safeCreateIcons();
+
+      document.querySelectorAll('.btn-remove-word').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          SoundEngine.playDrum();
+          const wId = parseFloat(btn.dataset.removeWordId);
+          delete placements[wId];
+          selectedWordId = null;
+          draw();
+        });
+      });
+
+      document.querySelectorAll('.basket-zone').forEach(bEl => {
+        bEl.addEventListener('click', () => {
+          if (selectedWordId === null) {
+            showCustomAlert('Vui lòng chọn 1 từ ở khung bên dưới trước nhé!');
+            return;
+          }
+
+          SoundEngine.playDrum();
+
+          const bIdx = parseInt(bEl.dataset.basketIdx, 10);
+          placements[selectedWordId] = bIdx;
+          selectedWordId = null;
+
+          const placedTotal = Object.keys(placements).length;
+          if (placedTotal >= poolWords.length) {
+            let correctCount = 0;
+            poolWords.forEach(w => {
+              if (placements[w.id] === w.basketIndex) {
+                correctCount++;
+              }
+            });
+
+            const isAllCorrect = (correctCount === poolWords.length);
+            if (isAllCorrect) {
+              SoundEngine.playSuccess();
+              AppState.roundTotalScore += 10;
+            } else {
+              SoundEngine.playDrum();
+            }
+
+            const scoreEl = document.getElementById('exam-score');
+            if (scoreEl) scoreEl.textContent = `${AppState.roundTotalScore} / 300`;
+
+            AppState.roundAnswersHistory.push({
+              game: 'Bài 2: Bé thông minh',
+              topic: 'Phân loại từ vựng vào giỏ',
+              question: 'Bài tập phân loại 12 từ vựng vào đúng 3 chiếc giỏ chủ đề',
+              userAnswer: isAllCorrect ? 'Đã xếp đúng tất cả 12 từ vào giỏ' : `Đã xếp đúng ${correctCount}/${poolWords.length} từ`,
+              correctAnswer: 'Hoàn thành xếp tất cả 12 từ vào đúng giỏ',
+              isCorrect: isAllCorrect,
+              explain: 'Phân loại từ vựng chính xác theo nhóm từ loại và chủ đề.'
+            });
+
+            draw();
+
+            setTimeout(() => {
+              nextSubGameMode1();
+            }, 700);
+          } else {
+            draw();
+          }
+        });
+      });
+
+      safeCreateIcons();
+    }
+
+    draw();
   }
 
   // GAME 3: BÉ HỌC VUI (18 CÂU HỎI x 10 ĐIỂM = 180 ĐIỂM)
