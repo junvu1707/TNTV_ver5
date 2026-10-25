@@ -997,10 +997,10 @@ class AndroidBridge(
   fun openBrowserUrl(url: String) {
     activity.runOnUiThread {
       try {
-        val targetUri = if (url.startsWith("http://") || url.startsWith("https://")) {
+        val targetUri = if (url == "privacy.html" || url.endsWith("/privacy.html")) {
+          Uri.parse("https://sites.google.com/view/sieutrangnhi-tiengviet/trang-ch%E1%BB%A7")
+        } else if (url.startsWith("http://") || url.startsWith("https://")) {
           Uri.parse(url)
-        } else if (url == "privacy.html" || url.endsWith("/privacy.html")) {
-          Uri.parse("https://ais-pre-26bhyqdchn5lcuuybrdybh-53627996710.asia-southeast1.run.app/privacy.html")
         } else {
           Uri.parse(url)
         }
@@ -1010,7 +1010,7 @@ class AndroidBridge(
         }
         activity.startActivity(intent)
       } catch (e: Exception) {
-        webViewProvider()?.loadUrl("file:///android_asset/privacy.html")
+        activity.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://sites.google.com/view/sieutrangnhi-tiengviet/trang-ch%E1%BB%A7")))
       }
     }
   }
