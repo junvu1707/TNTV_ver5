@@ -6355,7 +6355,7 @@
         root.innerHTML = `
           ${getExamHeaderMode1(subGame.title)}
           <div class="scroll-card p-5 max-w-xl mx-auto">
-            <div class="text-xs font-bold text-amber-800 mb-2">Câu hỏi ${qIdx + 1} / ${questions.length} • Điền từ còn thiếu (+10 ⭐)</div>
+            <div class="text-xs font-bold text-amber-800 mb-2">Câu ${2 + qIdx + 1} / 30 • Điền từ còn thiếu (+10 ⭐)</div>
             <div class="p-4 bg-amber-50 rounded-xl border border-amber-200 mb-4 text-center font-bold text-base text-slate-800">
               ${q.question.replace('[...]', '<span class="text-red-600 underline font-black">[ ... ]</span>')}
             </div>
@@ -6407,7 +6407,7 @@
         root.innerHTML = `
           ${getExamHeaderMode1(subGame.title)}
           <div class="scroll-card p-5 max-w-xl mx-auto">
-            <div class="text-xs font-bold text-amber-800 mb-2">Câu hỏi ${qIdx + 1} / ${questions.length} • Trắc nghiệm (+10 ⭐)</div>
+            <div class="text-xs font-bold text-amber-800 mb-2">Câu ${2 + qIdx + 1} / 30 • Trắc nghiệm (+10 ⭐)</div>
             <h3 class="font-extrabold text-base text-slate-800 mb-4">${q.question}</h3>
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5" id="mode1-opts">
               ${q.options.map((opt, i) => `
@@ -6501,7 +6501,7 @@
       root.innerHTML = `
         ${getExamHeaderMode1(subGame.title)}
         <div class="scroll-card p-5 max-w-xl mx-auto">
-          <div class="text-xs font-bold text-amber-800 mb-2">Câu đố ${qIdx + 1} / ${riddles.length} • Bé sáng tạo (+10 ⭐)</div>
+          <div class="text-xs font-bold text-amber-800 mb-2">Câu ${20 + qIdx + 1} / 30 • Bé sáng tạo (+10 ⭐)</div>
           <div class="p-4 bg-amber-50 rounded-2xl border-2 border-amber-300 mb-4 text-center font-bold text-base text-slate-800 leading-relaxed whitespace-pre-line">
             🧩 ${r.poem || r.question}
           </div>
@@ -6612,7 +6612,7 @@
           root.innerHTML = `
             ${getExamHeaderMode1(subGame.title)}
             <div class="scroll-card p-5 max-w-xl mx-auto">
-              <div class="text-xs font-bold text-amber-800 mb-2">Câu hỏi ${qIdx + 1} / ${items.length} • Bé nhanh tay: Sắp xếp câu (+10 ⭐)</div>
+              <div class="text-xs font-bold text-amber-800 mb-2">Câu ${25 + qIdx + 1} / 30 • Bé nhanh tay: Sắp xếp câu (+10 ⭐)</div>
 
               <div class="p-4 bg-amber-50 rounded-2xl border-2 border-amber-300 mb-4">
                 <div class="text-xs font-extrabold text-amber-900 mb-2 flex items-center gap-1">
@@ -6661,7 +6661,7 @@
                 </button>
 
                 <button id="btn-submit-ordering" class="btn-3d ${constructedWords.length === wordPool.length ? 'btn-3d-blue' : 'bg-slate-300 text-slate-500 cursor-not-allowed'} px-4 py-2 rounded-xl font-black text-xs sm:text-sm shadow flex items-center gap-1 active:scale-95">
-                  <span>${qIdx === items.length - 1 ? 'Hoàn Thành Vòng ✓' : 'Bài sau ►'}</span>
+                  <span>${qIdx === items.length - 1 ? 'Hoàn Thành Vòng ✓' : 'Câu sau ►'}</span>
                 </button>
               </div>
             </div>
@@ -6745,7 +6745,7 @@
         root.innerHTML = `
           ${getExamHeaderMode1(subGame.title)}
           <div class="scroll-card p-5 max-w-xl mx-auto">
-            <div class="text-xs font-bold text-amber-800 mb-2">Câu hỏi ${qIdx + 1} / ${items.length} • Bé nhanh tay (+10 ⭐)</div>
+            <div class="text-xs font-bold text-amber-800 mb-2">Câu ${25 + qIdx + 1} / 30 • Bé nhanh tay (+10 ⭐)</div>
             <div class="p-4 bg-amber-50 rounded-2xl border-2 border-amber-300 mb-4 flex flex-col items-center justify-center">
               <div class="w-32 h-32 sm:w-36 sm:h-36 flex items-center justify-center bg-white rounded-2xl p-2 border-2 border-amber-200 shadow-md mb-3">
                 ${getIllustrationSvg(item.imageKey)}
@@ -7201,21 +7201,44 @@
     }
   }
 
-  // Cờ kiểm soát thông báo hoàn thành 30 câu
-  let mode2CompletionModalShown = false;
-
+  // Kiểm tra nếu bé đã làm hết 30/30 câu -> Bật Pop-up hoàn thành bài thi
   function checkIfAll30QuestionsAnswered() {
     saveFillAnswer30();
-    // Không tự động bật popup ngắt lời nữa, để bé chủ động bấm Nộp Bài khi làm xong 30 câu
+    const answeredCount = Object.keys(AppState.userAnswers30).length;
+    if (answeredCount >= 30 && !mode2CompletionModalShown) {
+      mode2CompletionModalShown = true;
+      SoundEngine.playSuccess();
+      const modalContainer = document.getElementById('modal-container');
+      if (!modalContainer) return;
+      modalContainer.innerHTML = `
+        <div class="fixed inset-0 z-50 bg-black/70 flex items-center justify-center p-4">
+          <div class="scroll-card max-w-sm w-full p-5 bg-white rounded-2xl text-center shadow-2xl border-4 border-amber-400 relative">
+            <div class="text-4xl mb-2 animate-bounce">🎉</div>
+            <h3 class="text-base sm:text-lg font-black text-amber-950 mb-1.5">Chúc Mừng Bé Đã Làm Hết 30/30 Câu!</h3>
+            <p class="text-slate-600 text-xs sm:text-sm mb-4 leading-relaxed">
+              Bé đã hoàn thành trọn vẹn cả <b>30/30 câu hỏi</b>. Bé có muốn nộp bài thi ngay để xem kết quả không?
+            </p>
+            <div class="flex gap-2">
+              <button onclick="closeModal()" class="flex-1 py-2.5 rounded-xl border-2 border-slate-300 font-bold text-slate-700 text-xs sm:text-sm hover:bg-slate-100">
+                Xem Lại Bài
+              </button>
+              <button onclick="closeModal(); finishExamMode2();" class="flex-1 btn-3d btn-3d-green py-2.5 rounded-xl font-black text-white text-xs sm:text-sm shadow">
+                Nộp Bài Tính Điểm ✓
+              </button>
+            </div>
+          </div>
+        </div>
+      `;
+      if (typeof lucide !== 'undefined' && lucide.createIcons) safeCreateIcons();
+    }
   }
 
   function handleMode2SubmitClick() {
     saveFillAnswer30();
     const answeredCount = Object.keys(AppState.userAnswers30).length;
 
-    // Nếu đã hoàn thành đủ 30 câu -> Nộp bài luôn lập tức mà KHÔNG hỏi lại
     if (answeredCount >= 30) {
-      finishExamMode2();
+      checkIfAll30QuestionsAnswered();
       return;
     }
 
@@ -7223,17 +7246,17 @@
     if (!modalContainer) return;
     modalContainer.innerHTML = `
       <div class="fixed inset-0 z-50 bg-black/70 flex items-center justify-center p-4">
-        <div class="scroll-card max-w-sm w-full p-5 bg-white rounded-2xl text-center shadow-2xl border-2 border-amber-400">
-          <div class="text-3xl mb-2">⚠️</div>
-          <h3 class="text-base font-black text-amber-950 mb-1.5">Chưa Hoàn Thành 30 Câu!</h3>
+        <div class="scroll-card max-w-sm w-full p-5 bg-white rounded-2xl text-center shadow-2xl border-2 border-amber-400 relative">
+          <div class="text-3xl mb-2">📋</div>
+          <h3 class="text-base sm:text-lg font-black text-amber-950 mb-1.5">Xác Nhận Nộp Bài Thi</h3>
           <p class="text-slate-600 text-xs sm:text-sm mb-4 leading-relaxed">
             Bé mới làm được <b>${answeredCount}/30</b> câu hỏi. Các câu chưa làm sẽ không có điểm. Bé có chắc chắn muốn nộp bài ngay để tính điểm không?
           </p>
           <div class="flex gap-2">
-            <button onclick="closeModal()" class="flex-1 py-2 rounded-xl border border-slate-300 font-bold text-slate-700 text-xs">
+            <button onclick="closeModal()" class="flex-1 py-2.5 rounded-xl border-2 border-slate-300 font-bold text-slate-700 text-xs sm:text-sm hover:bg-slate-100">
               Làm Tiếp
             </button>
-            <button onclick="closeModal(); finishExamMode2();" class="flex-1 btn-3d btn-3d-red py-2 rounded-xl font-black text-white text-xs shadow">
+            <button onclick="closeModal(); finishExamMode2();" class="flex-1 btn-3d btn-3d-red py-2.5 rounded-xl font-black text-white text-xs sm:text-sm shadow">
               Nộp Bài Tính Điểm
             </button>
           </div>
@@ -7243,12 +7266,24 @@
     if (typeof lucide !== 'undefined' && lucide.createIcons) safeCreateIcons();
   }
 
-  // Ghi nhận đáp án Trắc nghiệm (chỉ ghi nhận và gõ trống nhẹ, không hiện điểm số từng câu)
+  // Ghi nhận đáp án Trắc nghiệm: Tự động lưu đáp án và sang câu tiếp theo
   function answerMCQ30(optIdx) {
     SoundEngine.playDrum();
     AppState.userAnswers30[AppState.currentQuestionIndex] = optIdx;
     renderExamMode2Question();
-    checkIfAll30QuestionsAnswered();
+
+    const cur = AppState.currentQuestionIndex;
+    const totalAnswered = Object.keys(AppState.userAnswers30).length;
+
+    if (totalAnswered >= 30) {
+      checkIfAll30QuestionsAnswered();
+    } else if (cur < 29) {
+      setTimeout(() => {
+        if (AppState.currentQuestionIndex === cur) {
+          jumpToQuestion30(cur + 1);
+        }
+      }, 200);
+    }
   }
 
   // Ghi nhận đáp án Điền từ tự động
