@@ -1533,7 +1533,7 @@
           { question: "Từ nào viết đúng chính tả âm NG/NGH?", options: ["Lắng nghe", "Lắng ge", "Lắng nghen", "Lắng cheng"], correctIndex: 0, explain: "ngh đi với e, ê, i -> Lắng nghe." },
           { question: "Mùa nào trong năm rực rỡ nắng vàng và có tiếng ve kêu?", options: ["Mùa hạ", "Mùa xuân", "Mùa thu", "Mùa đông"], correctIndex: 0, explain: "Mùa hạ (mùa hè) có tiếng ve kêu." },
           // 4 câu bổ sung dạng trắc nghiệm / sắp xếp
-          { question: "Sắp xếp các từ sau thành câu đúng: [ em / chăm / học / ngoan ]", options: ["Em chăm học ngoan", "Học ngoan chăm em", "Em ngoan chăm học", "Chăm em học ngoan"], correctIndex: 0, explain: "Sắp xếp đúng trật tự câu: Em chăm học ngoan." },
+          { question: "Sắp xếp các từ sau thành câu ca dao đúng: [ Công / cha / như / núi / Thái Sơn ]", options: ["Công cha như núi Thái Sơn", "Công cha núi Thái Sơn như", "Thái Sơn công cha như núi", "Như công cha núi Thái Sơn"], correctIndex: 0, explain: "Câu ca dao: Công cha như núi Thái Sơn." },
           { question: "Sắp xếp các từ sau thành câu ca dao đúng: [ quả / Ăn / cây / trồng / nhớ / kẻ ]", options: ["Ăn quả nhớ kẻ trồng cây", "Nhớ ăn quả trồng cây kẻ", "Trồng cây nhớ quả ăn kẻ", "Kẻ ăn quả nhớ trồng cây"], correctIndex: 0, explain: "Sắp xếp đúng câu tục ngữ: Ăn quả nhớ kẻ trồng cây." },
           { question: "Chọn từ điền vào chỗ trống thích hợp: 'Uống nước nhớ ...'", options: ["nguồn", "sông", "biển", "suối"], correctIndex: 0, explain: "Câu tục ngữ: Uống nước nhớ nguồn." },
           { question: "Sắp xếp thứ tự các mùa trong năm bắt đầu từ mùa xuân:", options: ["Xuân - Hạ - Thu - Đông", "Đông - Thu - Hạ - Xuân", "Hạ - Thu - Đông - Xuân", "Thu - Đông - Xuân - Hạ"], correctIndex: 0, explain: "Thứ tự 4 mùa: Xuân, Hạ, Thu, Đông." }
@@ -2259,7 +2259,7 @@
         { q: "Từ nào dưới đây là từ chỉ ĐỒ DÙNG HỌC TẬP?", opts: ["cặp sách", "con thỏ", "mặt trời", "dòng sông"], c: 0, ex: "'cặp sách' là đồ dùng học tập.", title: "Từ ngữ sự vật" },
         { q: "Từ nào dưới đây là từ chỉ HOẠT ĐỘNG của học sinh?", opts: ["đọc sách", "thước kẻ", "xinh xắn", "ngôi trường"], c: 0, ex: "'đọc sách' là từ chỉ hoạt động.", title: "Từ ngữ hoạt động" },
         { q: "Từ nào dưới đây là từ chỉ ĐẶC ĐIỂM màu sắc?", opts: ["đỏ thắm", "chạy nhảy", "viết bài", "quyển vở"], c: 0, ex: "'đỏ thắm' chỉ màu sắc.", title: "Từ ngữ đặc điểm" },
-        { q: "Sắp xếp các từ sau thành câu đúng ngữ pháp: [ em / chăm / học / ngoan ]", opts: ["Em chăm học ngoan", "Học ngoan chăm em", "Em ngoan chăm học", "Chăm em học ngoan"], c: 0, ex: "Câu đúng: Em chăm học ngoan.", title: "Sắp xếp câu" },
+        { q: "Sắp xếp các từ sau thành câu ca dao đúng: [ Ăn / quả / nhớ / kẻ / trồng / cây ]", opts: ["Ăn quả nhớ kẻ trồng cây", "Ăn cây nhớ kẻ trồng quả", "Trồng cây nhớ kẻ ăn quả", "Kẻ trồng cây nhớ ăn quả"], c: 0, ex: "Câu tục ngữ: Ăn quả nhớ kẻ trồng cây.", title: "Sắp xếp câu" },
         { q: "Sắp xếp các từ sau thành câu đúng ngữ pháp: [ học bài / Bé / chăm chỉ ]", opts: ["Bé chăm chỉ học bài", "Học bài bé chăm chỉ", "Chăm chỉ bé học bài", "Bé học bài chăm"], c: 0, ex: "Câu đúng: Bé chăm chỉ học bài.", title: "Sắp xếp câu" },
         { q: "Câu tục ngữ nào khuyên chúng ta biết ơn người giúp đỡ?", opts: ["Ăn quả nhớ kẻ trồng cây", "Đi một ngày đàng học một sàng khôn", "Lá lành đùm lá rách", "Gần mực thì đen"], c: 0, ex: "Ăn quả nhớ kẻ trồng cây.", title: "Ca dao & Tục ngữ" },
         { q: "Câu ca dao nào nói về công lao to lớn của cha mẹ?", opts: ["Công cha như núi Thái Sơn", "Học thầy không tày học bạn", "Chị ngã em nâng", "Non xanh nước biếc"], c: 0, ex: "Công cha như núi Thái Sơn.", title: "Ca dao & Tục ngữ" },
@@ -5829,13 +5829,12 @@
 
     return `
       <div class="scroll-card p-2.5 sm:p-3.5 mb-3 bg-gradient-to-r from-red-800 via-amber-700 to-red-900 text-white shadow-lg border-2 border-amber-400 rounded-2xl flex flex-col gap-2">
-        <!-- DÒNG 1: ICON + LỚP X CHẶNG Y + MÃ ĐỀ (BÊN TRÁI) ---------- TÊN MINI GAME (BÊN PHẢI) -->
+        <!-- DÒNG 1: ICON + LỚP X CHẶNG Y (BÊN TRÁI) ---------- TÊN MINI GAME (BÊN PHẢI) -->
         <div class="flex items-center justify-between gap-2 border-b border-amber-400/30 pb-2">
-          <div class="flex items-center gap-1.5 shrink-0 flex-wrap">
+          <div class="flex items-center gap-1.5 shrink-0">
             <span class="text-base sm:text-lg">🏛️</span>
             <span class="text-sm sm:text-base font-black text-yellow-300">Lớp ${AppState.selectedGrade}</span>
             <span class="text-xs sm:text-sm font-bold text-yellow-200">Chặng ${AppState.currentRoundNum}</span>
-            <span class="text-[10px] sm:text-xs font-black text-amber-200 bg-amber-950/60 px-2 py-0.5 rounded-lg border border-yellow-400/20">Mã Đề: ${AppState.currentExamId || ('Chặng ' + AppState.currentRoundNum + '_' + AppState.currentSeed)}</span>
           </div>
 
           <div class="text-xs sm:text-sm font-extrabold text-white bg-red-950/60 px-2.5 py-1 rounded-xl border border-yellow-400/30 truncate max-w-[160px] sm:max-w-[240px]">
@@ -5952,6 +5951,7 @@
     const root = document.getElementById('app-root');
     const pairs = subGame.data.pairs;
     AppState.subGameMistakes = 0;
+    if (!AppState.game1MatchedPairs) AppState.game1MatchedPairs = [];
 
     const totalPairs = Math.min(6, pairs.length);
     const activePairs = pairs.slice(0, totalPairs);
@@ -5972,7 +5972,7 @@
 
     let selectedLeft = null;
     let selectedRight = null;
-    let matchedCount = 0;
+    let matchedCount = AppState.game1MatchedPairs.length;
 
     root.innerHTML = `
       ${getExamHeaderMode1(subGame.title)}
@@ -5984,7 +5984,7 @@
           </p>
           <div class="flex items-center gap-2 self-end sm:self-auto">
             <span class="text-xs font-bold text-emerald-800 bg-emerald-50 px-2.5 py-1 rounded-full border border-emerald-300">
-              Đã nối: <b id="match-progress">0</b>/${totalPairs}
+              Đã nối: <b id="match-progress">${matchedCount}</b>/${totalPairs}
             </span>
             <span class="text-xs font-bold text-red-600 bg-red-50 px-2.5 py-1 rounded-full border border-red-200">
               Sai: <b id="mistake-count">0</b>/3
@@ -6000,12 +6000,15 @@
               <span>🐾</span>
               <span>CỘT BÊN TRÁI</span>
             </div>
-            ${colA.map(item => `
-              <button data-id="${item.id}" data-col="A" data-pair="${item.pairId}" class="cat-tile scroll-card p-2.5 sm:p-3 text-center text-xs sm:text-sm font-bold border-2 border-amber-300 bg-amber-50/70 hover:bg-amber-100 text-slate-800 rounded-xl transition-all shadow-sm flex items-center justify-between gap-1">
-                <span class="flex-1 text-center">${item.text}</span>
-                <span class="status-icon text-xs hidden">✓</span>
-              </button>
-            `).join('')}
+            ${colA.map(item => {
+              const isMatched = AppState.game1MatchedPairs.includes(item.pairId);
+              return `
+                <button data-id="${item.id}" data-col="A" data-pair="${item.pairId}" class="cat-tile scroll-card p-2.5 sm:p-3 text-center text-xs sm:text-sm font-bold border-2 rounded-xl transition-all shadow-sm flex items-center justify-between gap-1 ${isMatched ? 'matched bg-emerald-100 border-emerald-500 text-emerald-900 opacity-80 pointer-events-none' : 'border-amber-300 bg-amber-50/70 hover:bg-amber-100 text-slate-800'}">
+                  <span class="flex-1 text-center">${item.text}</span>
+                  <span class="status-icon text-xs ${isMatched ? 'font-black text-emerald-700' : 'hidden'}">✓</span>
+                </button>
+              `;
+            }).join('')}
           </div>
 
           <!-- CỘT BÊN PHẢI -->
@@ -6014,24 +6017,27 @@
               <span>🐱</span>
               <span>CỘT BÊN PHẢI</span>
             </div>
-            ${colB.map(item => `
-              <button data-id="${item.id}" data-col="B" data-pair="${item.pairId}" class="cat-tile scroll-card p-2.5 sm:p-3 text-center text-xs sm:text-sm font-bold border-2 border-amber-300 bg-amber-50/70 hover:bg-amber-100 text-slate-800 rounded-xl transition-all shadow-sm flex items-center justify-between gap-1">
-                <span class="flex-1 text-center">${item.text}</span>
-                <span class="status-icon text-xs hidden">✓</span>
-              </button>
-            `).join('')}
+            ${colB.map(item => {
+              const isMatched = AppState.game1MatchedPairs.includes(item.pairId);
+              return `
+                <button data-id="${item.id}" data-col="B" data-pair="${item.pairId}" class="cat-tile scroll-card p-2.5 sm:p-3 text-center text-xs sm:text-sm font-bold border-2 rounded-xl transition-all shadow-sm flex items-center justify-between gap-1 ${isMatched ? 'matched bg-emerald-100 border-emerald-500 text-emerald-900 opacity-80 pointer-events-none' : 'border-amber-300 bg-amber-50/70 hover:bg-amber-100 text-slate-800'}">
+                  <span class="flex-1 text-center">${item.text}</span>
+                  <span class="status-icon text-xs ${isMatched ? 'font-black text-emerald-700' : 'hidden'}">✓</span>
+                </button>
+              `;
+            }).join('')}
           </div>
         </div>
 
-        <!-- Nút Bài trước (trái) & Nút Bài sau (phải) -->
+        <!-- Nút Câu trước (trái) & Nút Câu sau (phải) -->
         <div class="mt-4 pt-3 border-t border-amber-200 flex items-center justify-between gap-2">
           <button onclick="prevSubGameMode1()" ${AppState.currentSubGameIndex === 0 ? 'disabled class="opacity-40 cursor-not-allowed px-3.5 py-2 rounded-xl border border-slate-300 font-bold text-slate-500 text-xs sm:text-sm bg-slate-100"' : 'class="btn-3d bg-slate-200 hover:bg-slate-300 text-slate-800 px-3.5 py-2 rounded-xl font-bold text-xs sm:text-sm shadow flex items-center gap-1 active:scale-95"'}>
             <span>◄</span>
-            <span>Bài trước</span>
+            <span>Câu trước</span>
           </button>
 
           <button onclick="skipToNextSubGameMode1()" class="btn-3d btn-3d-blue px-4 py-2 rounded-xl font-black text-white text-xs sm:text-sm shadow flex items-center gap-1 active:scale-95">
-            <span>Bài sau</span>
+            <span>Câu sau</span>
             <span>►</span>
           </button>
         </div>
@@ -7104,16 +7110,12 @@
     root.innerHTML = `
       <!-- Thanh Tiêu Đề Phòng Thi Chặng 7 - 18 -->
       <div class="scroll-card p-2.5 sm:p-3.5 mb-3 bg-gradient-to-r from-red-800 via-amber-700 to-red-900 text-white shadow-lg border-2 border-amber-400 rounded-2xl flex flex-col gap-2">
-        <!-- DÒNG 1: BÊN TRÁI: ICON + LỚP + CHẶNG ... ---------- BÊN PHẢI: MÃ ĐỀ ... -->
+        <!-- DÒNG 1: BÊN TRÁI: ICON + LỚP + CHẶNG ... -->
         <div class="flex items-center justify-between gap-2 border-b border-amber-400/30 pb-2">
           <div class="flex items-center gap-1.5 shrink-0">
             <span class="text-base sm:text-lg">🏛️</span>
             <span class="text-sm sm:text-base font-black text-yellow-300">Lớp ${AppState.selectedGrade}</span>
             <span class="text-xs sm:text-sm font-bold text-yellow-200">Chặng ${AppState.currentRoundNum}</span>
-          </div>
-
-          <div class="text-xs sm:text-sm font-black text-yellow-200 bg-red-950/60 px-2.5 py-1 rounded-xl border border-yellow-400/30 shrink-0">
-            Mã Đề: ${AppState.currentExamId || ('Chặng ' + AppState.currentRoundNum + '_' + AppState.currentSeed)}
           </div>
         </div>
 
