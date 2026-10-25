@@ -320,7 +320,7 @@
       "level": "CAP_2_VONG_TRUONG",
       "type": "TN",
       "questionId": "k2_c2_tn_018",
-      "question": "Giải câu đố dân gian sau:\n\"Để nguyên lấp lánh trên trời / Bớt đầu thành quả ngọt bùi thơm ngon - Là chữ gì?\"",
+      "question": "Giải câu đố dân gian sau:\n\"Để nguyên lấp lánh trên trời / Bớt đầu thành chỗ cho đàn cá bơi - Là chữ gì?\"",
       "options": {
         "A": "mây",
         "B": "sao",
@@ -336,7 +336,7 @@
       "level": "CAP_2_VONG_TRUONG",
       "type": "TN",
       "questionId": "k2_c2_tn_019",
-      "question": "Giải câu đố dân gian sau:\n\"Để nguyên lấp lánh trên trời / Bớt đầu thành quả ngọt bùi thơm ngon - Là chữ gì?\"",
+      "question": "Giải câu đố dân gian sau:\n\"Để nguyên lấp lánh trên trời / Bớt đầu thành chỗ cho đàn cá bơi - Là chữ gì?\"",
       "options": {
         "A": "thật thà",
         "B": "tiếng chim",
@@ -344,7 +344,7 @@
         "D": "sao"
       },
       "answer": "D",
-      "explanation": "Chữ 'sao', bỏ chữ cái đầu 's' được chữ 'ao' (hoặc sao -> ao cá, táo -> áo)."
+      "explanation": "Chữ 'sao', bỏ chữ cái đầu 's' được chữ 'ao' ."
     },
     {
       "contest": "Trạng Nguyên Tiếng Việt",
@@ -352,7 +352,7 @@
       "level": "CAP_2_VONG_TRUONG",
       "type": "TN",
       "questionId": "k2_c2_tn_020",
-      "question": "Giải câu đố dân gian sau:\n\"Để nguyên lấp lánh trên trời / Bớt đầu thành quả ngọt bùi thơm ngon - Là chữ gì?\"",
+      "question": "Giải câu đố dân gian sau:\n\"Để nguyên lấp lánh trên trời / Bớt đầu thành chỗ cho đàn cá bơi - Là chữ gì?\"",
       "options": {
         "A": "tiếng chim",
         "B": "dòng sông",
@@ -472,7 +472,7 @@
         "D": "trăng"
       },
       "answer": "C",
-      "explanation": "Chữ 'sao' lấp lánh trời đêm, thêm dấu sắc được chữ 'sách' (hoặc 'sáo'). Ở đây 'sao' thêm sắc thành 'sáo' hoặc 'sao' -> 'sách'."
+      "explanation": "Chữ 'sao' lấp lánh trời đêm, bỏ đầu thành chữ 'ao'."
     },
     {
       "contest": "Trạng Nguyên Tiếng Việt",
@@ -6016,7 +6016,7 @@
       "level": "CAP_2_VONG_TRUONG",
       "type": "TN",
       "questionId": "k2_c2_tn_374",
-      "question": "Giải câu đố dân gian sau:\n\"Để nguyên lấp lánh trên trời / Bớt đầu thành quả ngọt bùi thơm ngon - Là chữ gì?\"",
+      "question": "Giải câu đố dân gian sau:\n\"Để nguyên lấp lánh trên trời / Bớt đầu thành chỗ cho đàn cá bơi - Là chữ gì?\"",
       "options": {
         "A": "ngôi",
         "B": "trăng",
@@ -13698,5 +13698,3483 @@
       ],
       "explanation": "Câu thành ngữ, tục ngữ hoàn chỉnh là: \"Uống nước nhớ nguồn\". Nhắc nhở con cháu phải ghi nhớ cội nguồn, tổ tiên và những người đã giúp đỡ mình."
     }
+
+   
+    {
+      "contest": "Trạng Nguyên Tiếng Việt",
+      "grade": "KHOI_2",
+      "level": "CAP_2_VONG_TRUONG",
+      "type": "TN",
+      "questionId": "k2_c2_tn_1501",
+      "question": "Cuối câu hỏi dùng để thắc mắc thông tin cần sử dụng dấu gì?",
+      "options": {
+        "A": "Dấu chấm (.)",
+        "B": "Dấu phẩy (,)",
+        "C": "Dấu chấm hỏi (?)",
+        "D": "Dấu chấm than (!)"
+      },
+      "answer": "C",
+      "explanation": "Đáp án chính xác là: Dấu chấm hỏi (?)."
+    },
+    {
+      "contest": "Trạng Nguyên Tiếng Việt",
+      "grade": "KHOI_2",
+      "level": "CAP_2_VONG_TRUONG",
+      "type": "TN",
+      "questionId": "k2_c2_tn_1502",
+      "question": "Câu nào dưới đây được viết theo mẫu câu 'Ai làm gì?'?",
+      "options": {
+        "A": "Mẹ em là cô giáo vùng cao.",
+        "B": "Bác Hồ là vị lãnh tụ vĩ đại của dân tộc ta.",
+        "C": "Đàn chim én đang chao liệng đón mùa xuân sang.",
+        "D": "Bạn Tuấn rất thông minh và tốt bụng."
+      },
+      "answer": "C",
+      "explanation": "Câu 'Đàn chim én đang chao liệng đón mùa xuân sang.' gồm Chủ ngữ: 'Đàn chim én' và Vị ngữ: 'đang chao liệng đón mùa xuân sang.', trả lời cho câu hỏi 'Ai làm gì?'."
+    },
+    {
+      "contest": "Trạng Nguyên Tiếng Việt",
+      "grade": "KHOI_2",
+      "level": "CAP_2_VONG_TRUONG",
+      "type": "TN",
+      "questionId": "k2_c2_tn_1503",
+      "question": "Câu nào dưới đây được viết theo mẫu câu 'Ai làm gì?'?",
+      "options": {
+        "A": "Bé Mai nhổ cỏ giúp bà trong vườn.",
+        "B": "Hà Nội là thủ đô của nước Việt Nam.",
+        "C": "Bác Hồ là vị lãnh tụ vĩ đại của dân tộc ta.",
+        "D": "Bạn Tuấn rất thông minh và tốt bụng."
+      },
+      "answer": "A",
+      "explanation": "Câu 'Bé Mai nhổ cỏ giúp bà trong vườn.' gồm Chủ ngữ: 'Bé Mai' và Vị ngữ: 'nhổ cỏ giúp bà trong vườn.', trả lời cho câu hỏi 'Ai làm gì?'."
+    },
+    {
+      "contest": "Trạng Nguyên Tiếng Việt",
+      "grade": "KHOI_2",
+      "level": "CAP_2_VONG_TRUONG",
+      "type": "TN",
+      "questionId": "k2_c2_tn_1504",
+      "question": "Từ nào dưới đây là từ chỉ hoạt động của con người hoặc con vật?",
+      "options": {
+        "A": "đạp xe",
+        "B": "bảng lớp",
+        "C": "chăm chỉ",
+        "D": "bàn ghế"
+      },
+      "answer": "A",
+      "explanation": "'đạp xe' là từ chỉ hoạt động."
+    },
+    {
+      "contest": "Trạng Nguyên Tiếng Việt",
+      "grade": "KHOI_2",
+      "level": "CAP_2_VONG_TRUONG",
+      "type": "TN",
+      "questionId": "k2_c2_tn_1505",
+      "question": "Câu tục ngữ, thành ngữ nào dưới đây thể hiện phẩm chất hoặc bài học về 'Tình cảm anh em'?",
+      "options": {
+        "A": "Một con ngựa đau cả tàu bỏ cỏ",
+        "B": "Tấc đất tấc vàng",
+        "C": "Chị ngã em nâng",
+        "D": "Nhiễu điều phủ lấy giá gương, người trong một nước phải thương nhau cùng"
+      },
+      "answer": "C",
+      "explanation": "'Chị ngã em nâng': Anh chị em trong một nhà phải biết nâng đỡ, thương yêu, che chở cho nhau."
+    },
+    {
+      "contest": "Trạng Nguyên Tiếng Việt",
+      "grade": "KHOI_2",
+      "level": "CAP_2_VONG_TRUONG",
+      "type": "TN",
+      "questionId": "k2_c2_tn_1506",
+      "question": "Câu nào dưới đây được viết theo mẫu câu 'Ai thế nào?'?",
+      "options": {
+        "A": "Các chú công nhân đang miệt mài xây dựng công trình mới.",
+        "B": "Mẹ em là cô giáo vùng cao.",
+        "C": "Bầu trời mùa thu trong xanh và lồng lộng gió mát.",
+        "D": "Bác Hồ là vị lãnh tụ vĩ đại của dân tộc ta."
+      },
+      "answer": "C",
+      "explanation": "Câu 'Bầu trời mùa thu trong xanh và lồng lộng gió mát.' gồm Chủ ngữ: 'Bầu trời mùa thu' và Vị ngữ: 'trong xanh và lồng lộng gió mát.', trả lời cho câu hỏi 'Ai thế nào?'."
+    },
+    {
+      "contest": "Trạng Nguyên Tiếng Việt",
+      "grade": "KHOI_2",
+      "level": "CAP_2_VONG_TRUONG",
+      "type": "TN",
+      "questionId": "k2_c2_tn_1507",
+      "question": "Giải câu đố dân gian sau:\n\"Ruột dài từ mũi đến chân / Mũi mòn ruột cũng dần dần mòn theo - Là cái gì?\"",
+      "options": {
+        "A": "bút chì",
+        "B": "quyển vở",
+        "C": "cục tẩy",
+        "D": "cái thước"
+      },
+      "answer": "A",
+      "explanation": "Bút chì có ruột chì than kéo dài từ đầu đến đuôi bút, gọt mũi mòn ruột mòn theo."
+    },
+    {
+      "contest": "Trạng Nguyên Tiếng Việt",
+      "grade": "KHOI_2",
+      "level": "CAP_2_VONG_TRUONG",
+      "type": "TN",
+      "questionId": "k2_c2_tn_1508",
+      "question": "Câu tục ngữ, thành ngữ nào dưới đây thể hiện phẩm chất hoặc bài học về 'Học hỏi, trải nghiệm'?",
+      "options": {
+        "A": "Người ta là hoa đất",
+        "B": "Ăn ngay nói thật mọi tật mọi lành",
+        "C": "Lá lành đùm lá rách",
+        "D": "Đi một ngày đàng học một sàng khôn"
+      },
+      "answer": "D",
+      "explanation": "'Đi một ngày đàng học một sàng khôn': Càng đi nhiều nơi, trải nghiệm thực tế ta càng tích lũy được nhiều hiểu biết, trí tuệ."
+    },
+    {
+      "contest": "Trạng Nguyên Tiếng Việt",
+      "grade": "KHOI_2",
+      "level": "CAP_2_VONG_TRUONG",
+      "type": "TN",
+      "questionId": "k2_c2_tn_1509",
+      "question": "Từ nào dưới đây là từ chỉ đặc điểm, tính chất?",
+      "options": {
+        "A": "nhanh nhẹn",
+        "B": "chú bộ đội",
+        "C": "bàn ghế",
+        "D": "nghe giảng"
+      },
+      "answer": "A",
+      "explanation": "'nhanh nhẹn' là từ chỉ đặc điểm."
+    },
+    {
+      "contest": "Trạng Nguyên Tiếng Việt",
+      "grade": "KHOI_2",
+      "level": "CAP_2_VONG_TRUONG",
+      "type": "TN",
+      "questionId": "k2_c2_tn_1510",
+      "question": "Câu tục ngữ, thành ngữ nào dưới đây thể hiện phẩm chất hoặc bài học về 'Ý chí, bản lĩnh'?",
+      "options": {
+        "A": "Học thầy không tày học bạn",
+        "B": "Chớ thấy sóng cả mà ngã tay chèo",
+        "C": "Công cha như núi Thái Sơn, nghĩa mẹ như nước trong nguồn chảy ra",
+        "D": "Một con ngựa đau cả tàu bỏ cỏ"
+      },
+      "answer": "B",
+      "explanation": "'Chớ thấy sóng cả mà ngã tay chèo': Đừng vì thấy khó khăn, nguy nan mà nản lòng, buông xuôi ý chí."
+    },
+    {
+      "contest": "Trạng Nguyên Tiếng Việt",
+      "grade": "KHOI_2",
+      "level": "CAP_2_VONG_TRUONG",
+      "type": "TN",
+      "questionId": "k2_c2_tn_1511",
+      "question": "Câu tục ngữ, thành ngữ nào dưới đây thể hiện phẩm chất hoặc bài học về 'Ý chí, thử thách'?",
+      "options": {
+        "A": "Đói cho sạch rách cho thơm",
+        "B": "Uống nước nhớ nguồn",
+        "C": "Vạn sự khởi đầu nan",
+        "D": "Lửa thử vàng gian nan thử sức"
+      },
+      "answer": "D",
+      "explanation": "'Lửa thử vàng gian nan thử sức': Khó khăn thử thách là thước đo lòng kiên định và bản lĩnh con người."
+    },
+    {
+      "contest": "Trạng Nguyên Tiếng Việt",
+      "grade": "KHOI_2",
+      "level": "CAP_2_VONG_TRUONG",
+      "type": "TN",
+      "questionId": "k2_c2_tn_1512",
+      "question": "Dấu câu nào dùng để ngăn cách các thành phần đồng chức năng trong câu?",
+      "options": {
+        "A": "Dấu phẩy (,)",
+        "B": "Dấu chấm (.)",
+        "C": "Dấu ngoặc kép (\"\")",
+        "D": "Dấu gạch ngang (-)"
+      },
+      "answer": "A",
+      "explanation": "Đáp án chính xác là: Dấu phẩy (,)."
+    },
+    {
+      "contest": "Trạng Nguyên Tiếng Việt",
+      "grade": "KHOI_2",
+      "level": "CAP_2_VONG_TRUONG",
+      "type": "TN",
+      "questionId": "k2_c2_tn_1513",
+      "question": "Giải câu đố dân gian sau:\n\"Hoa gì chỉ nở mùa hè / Rực màu đỏ thắm rung rinh trên cành / Gọi ve ca hát rộn ràng / Tuổi thơ cắp sách ngập tràn niềm vui?\"",
+      "options": {
+        "A": "hoa phượng",
+        "B": "hoa đào",
+        "C": "hoa mai",
+        "D": "hoa cúc"
+      },
+      "answer": "A",
+      "explanation": "Hoa phượng vĩ đỏ rực gắn liền với mùa hè và mùa chia tay của tuổi học trò."
+    },
+    {
+      "contest": "Trạng Nguyên Tiếng Việt",
+      "grade": "KHOI_2",
+      "level": "CAP_2_VONG_TRUONG",
+      "type": "TN",
+      "questionId": "k2_c2_tn_1514",
+      "question": "Từ ngữ nào dưới đây viết đúng quy tắc chính tả tiếng Việt?",
+      "options": {
+        "A": "tiếng chống",
+        "B": "bầu chời",
+        "C": "chong xanh",
+        "D": "vầng trăng"
+      },
+      "answer": "D",
+      "explanation": "'vầng trăng' là từ viết đúng chính tả. Các phương án còn lại bị viết sai phụ âm đầu hoặc dấu thanh."
+    },
+    {
+      "contest": "Trạng Nguyên Tiếng Việt",
+      "grade": "KHOI_2",
+      "level": "CAP_2_VONG_TRUONG",
+      "type": "TN",
+      "questionId": "k2_c2_tn_1515",
+      "question": "Giải câu đố dân gian sau:\n\"Con gì mào đỏ gáy vang / Đánh thức trời sáng gọi đàn dậy mau?\"",
+      "options": {
+        "A": "con vịt bầu",
+        "B": "con gà trống",
+        "C": "con chim sẻ",
+        "D": "con chim bồ câu"
+      },
+      "answer": "B",
+      "explanation": "Gà trống có mào đỏ tươi và cất tiếng gáy 'ò ó o' đánh thức bình minh."
+    },
+    {
+      "contest": "Trạng Nguyên Tiếng Việt",
+      "grade": "KHOI_2",
+      "level": "CAP_2_VONG_TRUONG",
+      "type": "TN",
+      "questionId": "k2_c2_tn_1516",
+      "question": "Câu tục ngữ, thành ngữ nào dưới đây thể hiện phẩm chất hoặc bài học về 'Ý chí, thử thách'?",
+      "options": {
+        "A": "Ăn quả nhớ kẻ trồng cây",
+        "B": "Lửa thử vàng gian nan thử sức",
+        "C": "Chim có tổ người có tông",
+        "D": "Lời nói chẳng mất tiền mua, lựa lời mà nói cho vừa lòng nhau"
+      },
+      "answer": "B",
+      "explanation": "'Lửa thử vàng gian nan thử sức': Khó khăn thử thách là thước đo lòng kiên định và bản lĩnh con người."
+    },
+    {
+      "contest": "Trạng Nguyên Tiếng Việt",
+      "grade": "KHOI_2",
+      "level": "CAP_2_VONG_TRUONG",
+      "type": "TN",
+      "questionId": "k2_c2_tn_1517",
+      "question": "Giải câu đố dân gian sau:\n\"Để nguyên lấp lánh trời đêm / Bỏ đầu thành chỗ cho đàn cá bơi - Là chữ gì?\"",
+      "options": {
+        "A": "trăng",
+        "B": "bút",
+        "C": "sao",
+        "D": "mây"
+      },
+      "answer": "C",
+      "explanation": "Chữ 'sao' lấp lánh trời đêm, bỏ đầu thành 'ao' ."
+    },
+    {
+      "contest": "Trạng Nguyên Tiếng Việt",
+      "grade": "KHOI_2",
+      "level": "CAP_2_VONG_TRUONG",
+      "type": "TN",
+      "questionId": "k2_c2_tn_1518",
+      "question": "Từ ngữ nào dưới đây viết đúng quy tắc chính tả tiếng Việt?",
+      "options": {
+        "A": "nộng nẫy",
+        "B": "làng xóm",
+        "C": "nàng xóm",
+        "D": "nực lượng"
+      },
+      "answer": "B",
+      "explanation": "'làng xóm' là từ viết đúng chính tả. Các phương án còn lại bị viết sai phụ âm đầu hoặc dấu thanh."
+    },
+    {
+      "contest": "Trạng Nguyên Tiếng Việt",
+      "grade": "KHOI_2",
+      "level": "CAP_2_VONG_TRUONG",
+      "type": "TN",
+      "questionId": "k2_c2_tn_1519",
+      "question": "Câu tục ngữ, thành ngữ nào dưới đây thể hiện phẩm chất hoặc bài học về 'Lòng biết ơn'?",
+      "options": {
+        "A": "Chớ thấy sóng cả mà ngã tay chèo",
+        "B": "Người ta là hoa đất",
+        "C": "Ăn quả nhớ kẻ trồng cây",
+        "D": "Nhiễu điều phủ lấy giá gương, người trong một nước phải thương nhau cùng"
+      },
+      "answer": "C",
+      "explanation": "'Ăn quả nhớ kẻ trồng cây': Khuyên nhủ con người khi được hưởng thành quả phải luôn biết ơn công lao người tạo dựng."
+    },
+    {
+      "contest": "Trạng Nguyên Tiếng Việt",
+      "grade": "KHOI_2",
+      "level": "CAP_2_VONG_TRUONG",
+      "type": "TN",
+      "questionId": "k2_c2_tn_1520",
+      "question": "Câu tục ngữ, thành ngữ nào dưới đây thể hiện phẩm chất hoặc bài học về 'Học hỏi, trải nghiệm'?",
+      "options": {
+        "A": "Ăn ngay nói thật mọi tật mọi lành",
+        "B": "Đi một ngày đàng học một sàng khôn",
+        "C": "Tấc đất tấc vàng",
+        "D": "Một cây làm chẳng nên non, ba cây chụm lại nên hòn núi cao"
+      },
+      "answer": "B",
+      "explanation": "'Đi một ngày đàng học một sàng khôn': Càng đi nhiều nơi, trải nghiệm thực tế ta càng tích lũy được nhiều hiểu biết, trí tuệ."
+    },
+    {
+      "contest": "Trạng Nguyên Tiếng Việt",
+      "grade": "KHOI_2",
+      "level": "CAP_2_VONG_TRUONG",
+      "type": "TN",
+      "questionId": "k2_c2_tn_1521",
+      "question": "Câu nào dưới đây được viết theo mẫu câu 'Ai là gì?'?",
+      "options": {
+        "A": "Bác Hồ là vị lãnh tụ vĩ đại của dân tộc ta.",
+        "B": "Các chú công nhân đang miệt mài xây dựng công trình mới.",
+        "C": "Bé Mai nhổ cỏ giúp bà trong vườn.",
+        "D": "Bầu trời mùa thu trong xanh và lồng lộng gió mát."
+      },
+      "answer": "A",
+      "explanation": "Câu 'Bác Hồ là vị lãnh tụ vĩ đại của dân tộc ta.' gồm Chủ ngữ: 'Bác Hồ' và Vị ngữ: 'là vị lãnh tụ vĩ đại của dân tộc ta.', trả lời cho câu hỏi 'Ai là gì?'."
+    },
+    {
+      "contest": "Trạng Nguyên Tiếng Việt",
+      "grade": "KHOI_2",
+      "level": "CAP_2_VONG_TRUONG",
+      "type": "TN",
+      "questionId": "k2_c2_tn_1522",
+      "question": "Từ nào dưới đây là từ chỉ đặc điểm, tính chất?",
+      "options": {
+        "A": "bác sĩ",
+        "B": "bơi lội",
+        "C": "chú sóc",
+        "D": "thơm ngát"
+      },
+      "answer": "D",
+      "explanation": "'thơm ngát' là từ chỉ đặc điểm."
+    },
+    {
+      "contest": "Trạng Nguyên Tiếng Việt",
+      "grade": "KHOI_2",
+      "level": "CAP_2_VONG_TRUONG",
+      "type": "TN",
+      "questionId": "k2_c2_tn_1523",
+      "question": "Câu tục ngữ, thành ngữ nào dưới đây thể hiện phẩm chất hoặc bài học về 'Biết ơn'?",
+      "options": {
+        "A": "Một cây làm chẳng nên non, ba cây chụm lại nên hòn núi cao",
+        "B": "Chớ thấy sóng cả mà ngã tay chèo",
+        "C": "Uống nước nhớ người đào giếng",
+        "D": "Thuận vợ thuận chồng tát biển Đông cũng cạn"
+      },
+      "answer": "C",
+      "explanation": "'Uống nước nhớ người đào giếng': Hưởng trái ngọt nhớ công người trồng cây, uống nước mát nhớ ơn người đào giếng."
+    },
+    {
+      "contest": "Trạng Nguyên Tiếng Việt",
+      "grade": "KHOI_2",
+      "level": "CAP_2_VONG_TRUONG",
+      "type": "TN",
+      "questionId": "k2_c2_tn_1524",
+      "question": "Từ nào dưới đây là từ chỉ đặc điểm, tính chất?",
+      "options": {
+        "A": "bơi lội",
+        "B": "rừng cọ",
+        "C": "rực rỡ",
+        "D": "ánh nắng"
+      },
+      "answer": "C",
+      "explanation": "'rực rỡ' là từ chỉ đặc điểm."
+    },
+    {
+      "contest": "Trạng Nguyên Tiếng Việt",
+      "grade": "KHOI_2",
+      "level": "CAP_2_VONG_TRUONG",
+      "type": "TN",
+      "questionId": "k2_c2_tn_1525",
+      "question": "Từ ngữ nào dưới đây viết đúng quy tắc chính tả tiếng Việt?",
+      "options": {
+        "A": "vầng trăng",
+        "B": "vầng chăng",
+        "C": "bầu chời",
+        "D": "cây che"
+      },
+      "answer": "A",
+      "explanation": "'vầng trăng' là từ viết đúng chính tả. Các phương án còn lại bị viết sai phụ âm đầu hoặc dấu thanh."
+    },
+    {
+      "contest": "Trạng Nguyên Tiếng Việt",
+      "grade": "KHOI_2",
+      "level": "CAP_2_VONG_TRUONG",
+      "type": "TN",
+      "questionId": "k2_c2_tn_1526",
+      "question": "Giải câu đố dân gian sau:\n\"Cày trên đồng ruộng trắng phau / Khát xuống uống nước giếng sâu đen ngòm - Là hành động gì?\"",
+      "options": {
+        "A": "cày ruộng thật",
+        "B": "vẽ tranh sơn dầu",
+        "C": "viết bút mực trên giấy",
+        "D": "đóng dấu đỏ"
+      },
+      "answer": "C",
+      "explanation": "Ngòi bút cày trên trang giấy trắng phau, chấm mực trong lọ mực đen ngòm."
+    },
+    {
+      "contest": "Trạng Nguyên Tiếng Việt",
+      "grade": "KHOI_2",
+      "level": "CAP_2_VONG_TRUONG",
+      "type": "TN",
+      "questionId": "k2_c2_tn_1527",
+      "question": "Từ nào dưới đây là từ chỉ sự vật?",
+      "options": {
+        "A": "thảo luận",
+        "B": "ngoan ngoãn",
+        "C": "đạp xe",
+        "D": "cơn mưa"
+      },
+      "answer": "D",
+      "explanation": "'cơn mưa' là từ chỉ sự vật (hiện tượng)."
+    },
+    {
+      "contest": "Trạng Nguyên Tiếng Việt",
+      "grade": "KHOI_2",
+      "level": "CAP_2_VONG_TRUONG",
+      "type": "TN",
+      "questionId": "k2_c2_tn_1528",
+      "question": "Từ ngữ nào dưới đây viết đúng quy tắc chính tả tiếng Việt?",
+      "options": {
+        "A": "dơm dạ",
+        "B": "dâm dan",
+        "C": "rực rỡ",
+        "D": "con dùa"
+      },
+      "answer": "C",
+      "explanation": "'rực rỡ' là từ viết đúng chính tả. Các phương án còn lại bị viết sai phụ âm đầu hoặc dấu thanh."
+    },
+    {
+      "contest": "Trạng Nguyên Tiếng Việt",
+      "grade": "KHOI_2",
+      "level": "CAP_2_VONG_TRUONG",
+      "type": "TN",
+      "questionId": "k2_c2_tn_1529",
+      "question": "Câu tục ngữ, thành ngữ nào dưới đây thể hiện phẩm chất hoặc bài học về 'Ý chí, bản lĩnh'?",
+      "options": {
+        "A": "Ăn quả nhớ kẻ trồng cây",
+        "B": "Một con ngựa đau cả tàu bỏ cỏ",
+        "C": "Có công mài sắt có ngày nên kim",
+        "D": "Chớ thấy sóng cả mà ngã tay chèo"
+      },
+      "answer": "D",
+      "explanation": "'Chớ thấy sóng cả mà ngã tay chèo': Đừng vì thấy khó khăn, nguy nan mà nản lòng, buông xuôi ý chí."
+    },
+    {
+      "contest": "Trạng Nguyên Tiếng Việt",
+      "grade": "KHOI_2",
+      "level": "CAP_2_VONG_TRUONG",
+      "type": "TN",
+      "questionId": "k2_c2_tn_1530",
+      "question": "Từ nào dưới đây là từ chỉ sự vật?",
+      "options": {
+        "A": "cơn mưa",
+        "B": "nấu nướng",
+        "C": "xinh xắn",
+        "D": "chăm sóc"
+      },
+      "answer": "A",
+      "explanation": "'cơn mưa' là từ chỉ sự vật (hiện tượng)."
+    },
+    {
+      "contest": "Trạng Nguyên Tiếng Việt",
+      "grade": "KHOI_2",
+      "level": "CAP_2_VONG_TRUONG",
+      "type": "TN",
+      "questionId": "k2_c2_tn_1531",
+      "question": "Câu nào dưới đây được viết theo mẫu câu 'Ai làm gì?'?",
+      "options": {
+        "A": "Bác Hồ là vị lãnh tụ vĩ đại của dân tộc ta.",
+        "B": "Bầu trời mùa thu trong xanh và lồng lộng gió mát.",
+        "C": "Những bông cúc họa mi trắng muốt và tinh khôi.",
+        "D": "Các chú công nhân đang miệt mài xây dựng công trình mới."
+      },
+      "answer": "D",
+      "explanation": "Câu 'Các chú công nhân đang miệt mài xây dựng công trình mới.' gồm Chủ ngữ: 'Các chú công nhân' và Vị ngữ: 'đang miệt mài xây dựng công trình mới.', trả lời cho câu hỏi 'Ai làm gì?'."
+    },
+    {
+      "contest": "Trạng Nguyên Tiếng Việt",
+      "grade": "KHOI_2",
+      "level": "CAP_2_VONG_TRUONG",
+      "type": "TN",
+      "questionId": "k2_c2_tn_1532",
+      "question": "Từ nào dưới đây là từ chỉ hoạt động của con người hoặc con vật?",
+      "options": {
+        "A": "đồng hồ",
+        "B": "ánh nắng",
+        "C": "bơi lội",
+        "D": "xinh xắn"
+      },
+      "answer": "C",
+      "explanation": "'bơi lội' là từ chỉ hoạt động."
+    },
+    {
+      "contest": "Trạng Nguyên Tiếng Việt",
+      "grade": "KHOI_2",
+      "level": "CAP_2_VONG_TRUONG",
+      "type": "TN",
+      "questionId": "k2_c2_tn_1533",
+      "question": "Câu nào dưới đây được viết theo mẫu câu 'Ai thế nào?'?",
+      "options": {
+        "A": "Bác Hồ là vị lãnh tụ vĩ đại của dân tộc ta.",
+        "B": "Bạn Tuấn rất thông minh và tốt bụng.",
+        "C": "Bé Mai nhổ cỏ giúp bà trong vườn.",
+        "D": "Các chú công nhân đang miệt mài xây dựng công trình mới."
+      },
+      "answer": "B",
+      "explanation": "Câu 'Bạn Tuấn rất thông minh và tốt bụng.' gồm Chủ ngữ: 'Bạn Tuấn' và Vị ngữ: 'rất thông minh và tốt bụng.', trả lời cho câu hỏi 'Ai thế nào?'."
+    },
+    {
+      "contest": "Trạng Nguyên Tiếng Việt",
+      "grade": "KHOI_2",
+      "level": "CAP_2_VONG_TRUONG",
+      "type": "TN",
+      "questionId": "k2_c2_tn_1534",
+      "question": "Để bộc lộ cảm xúc vui mừng, ngạc nhiên ta dùng dấu gì cuối câu?",
+      "options": {
+        "A": "Dấu chấm (.)",
+        "B": "Dấu phẩy (,)",
+        "C": "Dấu chấm than (!)",
+        "D": "Dấu hai chấm (:)"
+      },
+      "answer": "C",
+      "explanation": "Đáp án chính xác là: Dấu chấm than (!)."
+    },
+    {
+      "contest": "Trạng Nguyên Tiếng Việt",
+      "grade": "KHOI_2",
+      "level": "CAP_2_VONG_TRUONG",
+      "type": "TN",
+      "questionId": "k2_c2_tn_1535",
+      "question": "Câu tục ngữ, thành ngữ nào dưới đây thể hiện phẩm chất hoặc bài học về 'Hòa thuận gia đình'?",
+      "options": {
+        "A": "Uống nước nhớ nguồn",
+        "B": "Người ta là hoa đất",
+        "C": "Chớ thấy sóng cả mà ngã tay chèo",
+        "D": "Thuận vợ thuận chồng tát biển Đông cũng cạn"
+      },
+      "answer": "D",
+      "explanation": "'Thuận vợ thuận chồng tát biển Đông cũng cạn': Sự đồng lòng, hòa thuận trong gia đình giúp vượt qua mọi gian khó."
+    },
+    {
+      "contest": "Trạng Nguyên Tiếng Việt",
+      "grade": "KHOI_2",
+      "level": "CAP_2_VONG_TRUONG",
+      "type": "TN",
+      "questionId": "k2_c2_tn_1536",
+      "question": "Giải câu đố dân gian sau:\n\"Cây gì cho quả têm trầu / Để cho câu chuyện mở đầu nên duyên?\"",
+      "options": {
+        "A": "cây cau",
+        "B": "cây vôi",
+        "C": "cây bưởi",
+        "D": "cây trầu"
+      },
+      "answer": "A",
+      "explanation": "Cây cau cho quả cau, kết hợp với lá trầu và vôi tạo thành miếng trầu mở đầu câu chuyện."
+    },
+    {
+      "contest": "Trạng Nguyên Tiếng Việt",
+      "grade": "KHOI_2",
+      "level": "CAP_2_VONG_TRUONG",
+      "type": "TN",
+      "questionId": "k2_c2_tn_1537",
+      "question": "Câu nào dưới đây được viết theo mẫu câu 'Ai thế nào?'?",
+      "options": {
+        "A": "Những bông cúc họa mi trắng muốt và tinh khôi.",
+        "B": "Bé Mai nhổ cỏ giúp bà trong vườn.",
+        "C": "Đàn chim én đang chao liệng đón mùa xuân sang.",
+        "D": "Mẹ em là cô giáo vùng cao."
+      },
+      "answer": "A",
+      "explanation": "Câu 'Những bông cúc họa mi trắng muốt và tinh khôi.' gồm Chủ ngữ: 'Những bông cúc họa mi' và Vị ngữ: 'trắng muốt và tinh khôi.', trả lời cho câu hỏi 'Ai thế nào?'."
+    },
+    {
+      "contest": "Trạng Nguyên Tiếng Việt",
+      "grade": "KHOI_2",
+      "level": "CAP_2_VONG_TRUONG",
+      "type": "TN",
+      "questionId": "k2_c2_tn_1538",
+      "question": "Từ nào dưới đây là từ chỉ sự vật?",
+      "options": {
+        "A": "nhanh nhẹn",
+        "B": "chú bộ đội",
+        "C": "chăm sóc",
+        "D": "trò chuyện"
+      },
+      "answer": "B",
+      "explanation": "'chú bộ đội' là từ chỉ sự vật (người)."
+    },
+    {
+      "contest": "Trạng Nguyên Tiếng Việt",
+      "grade": "KHOI_2",
+      "level": "CAP_2_VONG_TRUONG",
+      "type": "TN",
+      "questionId": "k2_c2_tn_1539",
+      "question": "Từ nào sau đây viết đúng chính tả?",
+      "options": {
+        "A": "gế gỗ",
+        "B": "ghi chép",
+        "C": "gẹ xanh",
+        "D": "gềnh thác"
+      },
+      "answer": "B",
+      "explanation": "Theo quy tắc chính tả: Âm /g/ viết là 'gh' khi đứng trước e, ê, i; viết là 'g' trước các nguyên âm còn lại.. Từ đúng là 'ghi chép'."
+    },
+    {
+      "contest": "Trạng Nguyên Tiếng Việt",
+      "grade": "KHOI_2",
+      "level": "CAP_2_VONG_TRUONG",
+      "type": "TN",
+      "questionId": "k2_c2_tn_1540",
+      "question": "Từ nào dưới đây là từ chỉ hoạt động của con người hoặc con vật?",
+      "options": {
+        "A": "rộng rãi",
+        "B": "học sinh",
+        "C": "con hổ",
+        "D": "lau dọn"
+      },
+      "answer": "D",
+      "explanation": "'lau dọn' là từ chỉ hoạt động."
+    },
+    {
+      "contest": "Trạng Nguyên Tiếng Việt",
+      "grade": "KHOI_2",
+      "level": "CAP_2_VONG_TRUONG",
+      "type": "TN",
+      "questionId": "k2_c2_tn_1541",
+      "question": "Từ nào dưới đây là từ chỉ sự vật?",
+      "options": {
+        "A": "chạy nhảy",
+        "B": "nhanh nhẹn",
+        "C": "chú bộ đội",
+        "D": "lau dọn"
+      },
+      "answer": "C",
+      "explanation": "'chú bộ đội' là từ chỉ sự vật (người)."
+    },
+    {
+      "contest": "Trạng Nguyên Tiếng Việt",
+      "grade": "KHOI_2",
+      "level": "CAP_2_VONG_TRUONG",
+      "type": "TN",
+      "questionId": "k2_c2_tn_1542",
+      "question": "Câu nào dưới đây được viết theo mẫu câu 'Ai là gì?'?",
+      "options": {
+        "A": "Bạn Tuấn rất thông minh và tốt bụng.",
+        "B": "Bé Mai nhổ cỏ giúp bà trong vườn.",
+        "C": "Mẹ em là cô giáo vùng cao.",
+        "D": "Bầu trời mùa thu trong xanh và lồng lộng gió mát."
+      },
+      "answer": "C",
+      "explanation": "Câu 'Mẹ em là cô giáo vùng cao.' gồm Chủ ngữ: 'Mẹ em' và Vị ngữ: 'là cô giáo vùng cao.', trả lời cho câu hỏi 'Ai là gì?'."
+    },
+    {
+      "contest": "Trạng Nguyên Tiếng Việt",
+      "grade": "KHOI_2",
+      "level": "CAP_2_VONG_TRUONG",
+      "type": "TN",
+      "questionId": "k2_c2_tn_1543",
+      "question": "Câu nào dưới đây được viết theo mẫu câu 'Ai là gì?'?",
+      "options": {
+        "A": "Bầu trời mùa thu trong xanh và lồng lộng gió mát.",
+        "B": "Những bông cúc họa mi trắng muốt và tinh khôi.",
+        "C": "Bạn Tuấn rất thông minh và tốt bụng.",
+        "D": "Mẹ em là cô giáo vùng cao."
+      },
+      "answer": "D",
+      "explanation": "Câu 'Mẹ em là cô giáo vùng cao.' gồm Chủ ngữ: 'Mẹ em' và Vị ngữ: 'là cô giáo vùng cao.', trả lời cho câu hỏi 'Ai là gì?'."
+    },
+    {
+      "contest": "Trạng Nguyên Tiếng Việt",
+      "grade": "KHOI_2",
+      "level": "CAP_2_VONG_TRUONG",
+      "type": "TN",
+      "questionId": "k2_c2_tn_1544",
+      "question": "Câu nào dưới đây được viết theo mẫu câu 'Ai là gì?'?",
+      "options": {
+        "A": "Bạn Tuấn rất thông minh và tốt bụng.",
+        "B": "Mẹ em là cô giáo vùng cao.",
+        "C": "Đàn chim én đang chao liệng đón mùa xuân sang.",
+        "D": "Các chú công nhân đang miệt mài xây dựng công trình mới."
+      },
+      "answer": "B",
+      "explanation": "Câu 'Mẹ em là cô giáo vùng cao.' gồm Chủ ngữ: 'Mẹ em' và Vị ngữ: 'là cô giáo vùng cao.', trả lời cho câu hỏi 'Ai là gì?'."
+    },
+    {
+      "contest": "Trạng Nguyên Tiếng Việt",
+      "grade": "KHOI_2",
+      "level": "CAP_2_VONG_TRUONG",
+      "type": "TN",
+      "questionId": "k2_c2_tn_1545",
+      "question": "Câu tục ngữ, thành ngữ nào dưới đây thể hiện phẩm chất hoặc bài học về 'Học tập'?",
+      "options": {
+        "A": "Thuận vợ thuận chồng tát biển Đông cũng cạn",
+        "B": "Nhiễu điều phủ lấy giá gương, người trong một nước phải thương nhau cùng",
+        "C": "Học thầy không tày học bạn",
+        "D": "Lời nói chẳng mất tiền mua, lựa lời mà nói cho vừa lòng nhau"
+      },
+      "answer": "C",
+      "explanation": "'Học thầy không tày học bạn': Nhấn mạnh vai trò to lớn của việc học hỏi từ bạn bè xung quanh."
+    },
+    {
+      "contest": "Trạng Nguyên Tiếng Việt",
+      "grade": "KHOI_2",
+      "level": "CAP_2_VONG_TRUONG",
+      "type": "TN",
+      "questionId": "k2_c2_tn_1546",
+      "question": "Câu nào dưới đây được viết theo mẫu câu 'Ai thế nào?'?",
+      "options": {
+        "A": "Hà Nội là thủ đô của nước Việt Nam.",
+        "B": "Các chú công nhân đang miệt mài xây dựng công trình mới.",
+        "C": "Bé Mai nhổ cỏ giúp bà trong vườn.",
+        "D": "Bạn Tuấn rất thông minh và tốt bụng."
+      },
+      "answer": "D",
+      "explanation": "Câu 'Bạn Tuấn rất thông minh và tốt bụng.' gồm Chủ ngữ: 'Bạn Tuấn' và Vị ngữ: 'rất thông minh và tốt bụng.', trả lời cho câu hỏi 'Ai thế nào?'."
+    },
+    {
+      "contest": "Trạng Nguyên Tiếng Việt",
+      "grade": "KHOI_2",
+      "level": "CAP_2_VONG_TRUONG",
+      "type": "TN",
+      "questionId": "k2_c2_tn_1547",
+      "question": "Câu tục ngữ, thành ngữ nào dưới đây thể hiện phẩm chất hoặc bài học về 'Sức mạnh đoàn kết'?",
+      "options": {
+        "A": "Đi một ngày đàng học một sàng khôn",
+        "B": "Ăn quả nhớ kẻ trồng cây",
+        "C": "Tấc đất tấc vàng",
+        "D": "Một cây làm chẳng nên non, ba cây chụm lại nên hòn núi cao"
+      },
+      "answer": "D",
+      "explanation": "'Một cây làm chẳng nên non, ba cây chụm lại nên hòn núi cao': Một người lẻ loi khó làm việc lớn, nhưng khi đoàn kết lại sẽ tạo nên sức mạnh vô địch."
+    },
+    {
+      "contest": "Trạng Nguyên Tiếng Việt",
+      "grade": "KHOI_2",
+      "level": "CAP_2_VONG_TRUONG",
+      "type": "TN",
+      "questionId": "k2_c2_tn_1548",
+      "question": "Cuối câu kể thường sử dụng dấu gì?",
+      "options": {
+        "A": "Dấu than (!)",
+        "B": "Dấu chấm (.)",
+        "C": "Dấu hỏi (?)",
+        "D": "Dấu hai chấm (:)"
+      },
+      "answer": "B",
+      "explanation": "Đáp án chính xác là: Dấu chấm (.)."
+    },
+    {
+      "contest": "Trạng Nguyên Tiếng Việt",
+      "grade": "KHOI_2",
+      "level": "CAP_2_VONG_TRUONG",
+      "type": "TN",
+      "questionId": "k2_c2_tn_1549",
+      "question": "Giải câu đố dân gian sau:\n\"Quả gì nhiều mắt xung quanh / Khi chín nứt nở thơm lành khắp nơi / Cơm trắng thơm ngọt bùi bùi / Em đem dâng biếu ông bà kính yêu?\"",
+      "options": {
+        "A": "quả mít",
+        "B": "quả bưởi",
+        "C": "quả na",
+        "D": "quả chuối"
+      },
+      "answer": "C",
+      "explanation": "Quả na (mãng cầu ta) vỏ có nhiều mắt mở to khi chín, thịt màu trắng ngọt ngào."
+    },
+    {
+      "contest": "Trạng Nguyên Tiếng Việt",
+      "grade": "KHOI_2",
+      "level": "CAP_2_VONG_TRUONG",
+      "type": "TN",
+      "questionId": "k2_c2_tn_1550",
+      "question": "Từ nào sau đây viết đúng chính tả?",
+      "options": {
+        "A": "ngĩ ngợi",
+        "B": "ngệ thuật",
+        "C": "ngiêng ngiêng",
+        "D": "nghề nghiệp"
+      },
+      "answer": "D",
+      "explanation": "Theo quy tắc chính tả: Âm /ng/ viết là 'ngh' khi đứng trước e, ê, i; viết là 'ng' trước các nguyên âm còn lại.. Từ đúng là 'nghề nghiệp'."
+    },
+    {
+      "contest": "Trạng Nguyên Tiếng Việt",
+      "grade": "KHOI_2",
+      "level": "CAP_2_VONG_TRUONG",
+      "type": "TN",
+      "questionId": "k2_c2_tn_1551",
+      "question": "Giải câu đố dân gian sau:\n\"Mình tròn lưng nở phập phồng / Đứng ngoài cửa lớp trông nom học trò / Hễ ai đi học đúng giờ / Nghe em thúc giục: Tùng... tùng... vào mau! - Là cái gì?\"",
+      "options": {
+        "A": "cái bảng",
+        "B": "cái trống trường",
+        "C": "chiếc chuông",
+        "D": "cái kẻng"
+      },
+      "answer": "B",
+      "explanation": "Trống trường hình trụ tròn, phát ra tiếng 'tùng... tùng...' báo hiệu giờ học."
+    },
+    {
+      "contest": "Trạng Nguyên Tiếng Việt",
+      "grade": "KHOI_2",
+      "level": "CAP_2_VONG_TRUONG",
+      "type": "TN",
+      "questionId": "k2_c2_tn_1552",
+      "question": "Từ nào sau đây viết đúng chính tả?",
+      "options": {
+        "A": "nghề nghiệp",
+        "B": "ngèo khó",
+        "C": "ngiêng ngiêng",
+        "D": "nge ngóng"
+      },
+      "answer": "A",
+      "explanation": "Theo quy tắc chính tả: Âm /ng/ viết là 'ngh' khi đứng trước e, ê, i; viết là 'ng' trước các nguyên âm còn lại.. Từ đúng là 'nghề nghiệp'."
+    },
+    {
+      "contest": "Trạng Nguyên Tiếng Việt",
+      "grade": "KHOI_2",
+      "level": "CAP_2_VONG_TRUONG",
+      "type": "TN",
+      "questionId": "k2_c2_tn_1553",
+      "question": "Câu tục ngữ, thành ngữ nào dưới đây thể hiện phẩm chất hoặc bài học về 'Nguồn cội'?",
+      "options": {
+        "A": "Cây ngay không sợ chết đứng",
+        "B": "Chim có tổ người có tông",
+        "C": "Uống nước nhớ người đào giếng",
+        "D": "Ăn ngay nói thật mọi tật mọi lành"
+      },
+      "answer": "B",
+      "explanation": "'Chim có tổ người có tông': Mỗi con người đều có tổ tiên, cội nguồn giống như loài chim có tổ để về."
+    },
+    {
+      "contest": "Trạng Nguyên Tiếng Việt",
+      "grade": "KHOI_2",
+      "level": "CAP_2_VONG_TRUONG",
+      "type": "TN",
+      "questionId": "k2_c2_tn_1554",
+      "question": "Câu tục ngữ, thành ngữ nào dưới đây thể hiện phẩm chất hoặc bài học về 'Đoàn kết, yêu thương'?",
+      "options": {
+        "A": "Bầu ơi thương lấy bí cùng, tuy rằng khác giống nhưng chung một giàn",
+        "B": "Ăn ngay nói thật mọi tật mọi lành",
+        "C": "Ăn quả nhớ kẻ trồng cây",
+        "D": "Cây ngay không sợ chết đứng"
+      },
+      "answer": "A",
+      "explanation": "'Bầu ơi thương lấy bí cùng, tuy rằng khác giống nhưng chung một giàn': Dù xuất thân khác nhau nhưng cùng chung sống một đất nước thì phải thương yêu nhau."
+    },
+    {
+      "contest": "Trạng Nguyên Tiếng Việt",
+      "grade": "KHOI_2",
+      "level": "CAP_2_VONG_TRUONG",
+      "type": "TN",
+      "questionId": "k2_c2_tn_1555",
+      "question": "Câu tục ngữ, thành ngữ nào dưới đây thể hiện phẩm chất hoặc bài học về 'Trung thực'?",
+      "options": {
+        "A": "Ăn quả nhớ kẻ trồng cây",
+        "B": "Người ta là hoa đất",
+        "C": "Ăn ngay nói thật mọi tật mọi lành",
+        "D": "Lửa thử vàng gian nan thử sức"
+      },
+      "answer": "C",
+      "explanation": "'Ăn ngay nói thật mọi tật mọi lành': Sống chân thành, trung thực thì tâm hồn luôn thanh thản và bình an."
+    },
+    {
+      "contest": "Trạng Nguyên Tiếng Việt",
+      "grade": "KHOI_2",
+      "level": "CAP_2_VONG_TRUONG",
+      "type": "TN",
+      "questionId": "k2_c2_tn_1556",
+      "question": "Từ nào dưới đây là từ chỉ đặc điểm, tính chất?",
+      "options": {
+        "A": "cá heo",
+        "B": "cao vút",
+        "C": "nấu nướng",
+        "D": "cô giáo"
+      },
+      "answer": "B",
+      "explanation": "'cao vút' là từ chỉ đặc điểm."
+    },
+    {
+      "contest": "Trạng Nguyên Tiếng Việt",
+      "grade": "KHOI_2",
+      "level": "CAP_2_VONG_TRUONG",
+      "type": "TN",
+      "questionId": "k2_c2_tn_1557",
+      "question": "Từ nào dưới đây là từ chỉ hoạt động của con người hoặc con vật?",
+      "options": {
+        "A": "cần cù",
+        "B": "bơi lội",
+        "C": "tủ sách",
+        "D": "cơn gió"
+      },
+      "answer": "B",
+      "explanation": "'bơi lội' là từ chỉ hoạt động."
+    },
+    {
+      "contest": "Trạng Nguyên Tiếng Việt",
+      "grade": "KHOI_2",
+      "level": "CAP_2_VONG_TRUONG",
+      "type": "TN",
+      "questionId": "k2_c2_tn_1558",
+      "question": "Câu tục ngữ, thành ngữ nào dưới đây thể hiện phẩm chất hoặc bài học về 'Phẩm hạnh, tự trọng'?",
+      "options": {
+        "A": "Công cha như núi Thái Sơn, nghĩa mẹ như nước trong nguồn chảy ra",
+        "B": "Chim có tổ người có tông",
+        "C": "Vạn sự khởi đầu nan",
+        "D": "Đói cho sạch rách cho thơm"
+      },
+      "answer": "D",
+      "explanation": "'Đói cho sạch rách cho thơm': Dù trong hoàn cảnh thiếu thốn bần hàn vẫn phải giữ gìn nhân cách và danh dự trong sạch."
+    },
+    {
+      "contest": "Trạng Nguyên Tiếng Việt",
+      "grade": "KHOI_2",
+      "level": "CAP_2_VONG_TRUONG",
+      "type": "TN",
+      "questionId": "k2_c2_tn_1559",
+      "question": "Câu tục ngữ, thành ngữ nào dưới đây thể hiện phẩm chất hoặc bài học về 'Đất đai, lao động'?",
+      "options": {
+        "A": "Tấc đất tấc vàng",
+        "B": "Thuận vợ thuận chồng tát biển Đông cũng cạn",
+        "C": "Lời nói chẳng mất tiền mua, lựa lời mà nói cho vừa lòng nhau",
+        "D": "Học thầy không tày học bạn"
+      },
+      "answer": "A",
+      "explanation": "'Tấc đất tấc vàng': Mỗi tấc đất đều vô cùng quý giá như vàng vì đem lại nguồn sống cho con người."
+    },
+    {
+      "contest": "Trạng Nguyên Tiếng Việt",
+      "grade": "KHOI_2",
+      "level": "CAP_2_VONG_TRUONG",
+      "type": "TN",
+      "questionId": "k2_c2_tn_1560",
+      "question": "Câu tục ngữ, thành ngữ nào dưới đây thể hiện phẩm chất hoặc bài học về 'Tương thân tương ái'?",
+      "options": {
+        "A": "Chim có tổ người có tông",
+        "B": "Lá lành đùm lá rách",
+        "C": "Chị ngã em nâng",
+        "D": "Một cây làm chẳng nên non, ba cây chụm lại nên hòn núi cao"
+      },
+      "answer": "B",
+      "explanation": "'Lá lành đùm lá rách': Khuyên con người phải biết đùm bọc, giúp đỡ lẫn nhau khi gặp hoạn nạn, khó khăn."
+    },
+    {
+      "contest": "Trạng Nguyên Tiếng Việt",
+      "grade": "KHOI_2",
+      "level": "CAP_2_VONG_TRUONG",
+      "type": "TN",
+      "questionId": "k2_c2_tn_1561",
+      "question": "Từ nào sau đây viết đúng chính tả?",
+      "options": {
+        "A": "ngèo khó",
+        "B": "ngiêng ngiêng",
+        "C": "nghèo khó",
+        "D": "ngĩ ngợi"
+      },
+      "answer": "C",
+      "explanation": "Theo quy tắc chính tả: Âm /ng/ viết là 'ngh' khi đứng trước e, ê, i; viết là 'ng' trước các nguyên âm còn lại.. Từ đúng là 'nghèo khó'."
+    },
+    {
+      "contest": "Trạng Nguyên Tiếng Việt",
+      "grade": "KHOI_2",
+      "level": "CAP_2_VONG_TRUONG",
+      "type": "TN",
+      "questionId": "k2_c2_tn_1562",
+      "question": "Câu tục ngữ, thành ngữ nào dưới đây thể hiện phẩm chất hoặc bài học về 'Nguồn cội'?",
+      "options": {
+        "A": "Chim có tổ người có tông",
+        "B": "Cây ngay không sợ chết đứng",
+        "C": "Thương người như thể thương thân",
+        "D": "Chị ngã em nâng"
+      },
+      "answer": "A",
+      "explanation": "'Chim có tổ người có tông': Mỗi con người đều có tổ tiên, cội nguồn giống như loài chim có tổ để về."
+    },
+    {
+      "contest": "Trạng Nguyên Tiếng Việt",
+      "grade": "KHOI_2",
+      "level": "CAP_2_VONG_TRUONG",
+      "type": "TN",
+      "questionId": "k2_c2_tn_1563",
+      "question": "Câu tục ngữ, thành ngữ nào dưới đây thể hiện phẩm chất hoặc bài học về 'Giá trị con người'?",
+      "options": {
+        "A": "Chớ thấy sóng cả mà ngã tay chèo",
+        "B": "Có công mài sắt có ngày nên kim",
+        "C": "Người ta là hoa đất",
+        "D": "Một cây làm chẳng nên non, ba cây chụm lại nên hòn núi cao"
+      },
+      "answer": "C",
+      "explanation": "'Người ta là hoa đất': Ca ngợi con người là tinh hoa quý báu nhất của vũ trụ và mặt đất."
+    },
+    {
+      "contest": "Trạng Nguyên Tiếng Việt",
+      "grade": "KHOI_2",
+      "level": "CAP_2_VONG_TRUONG",
+      "type": "TN",
+      "questionId": "k2_c2_tn_1564",
+      "question": "Câu tục ngữ, thành ngữ nào dưới đây thể hiện phẩm chất hoặc bài học về 'Kiên trì, nghị lực'?",
+      "options": {
+        "A": "Chị ngã em nâng",
+        "B": "Thương người như thể thương thân",
+        "C": "Có công mài sắt có ngày nên kim",
+        "D": "Gần mực thì đen gần đèn thì sáng"
+      },
+      "answer": "C",
+      "explanation": "'Có công mài sắt có ngày nên kim': Chỉ cần kiên trì, nỗ lực và nhẫn nại thì việc khó khăn đến mấy cũng sẽ thành công."
+    },
+    {
+      "contest": "Trạng Nguyên Tiếng Việt",
+      "grade": "KHOI_2",
+      "level": "CAP_2_VONG_TRUONG",
+      "type": "TN",
+      "questionId": "k2_c2_tn_1565",
+      "question": "Câu tục ngữ, thành ngữ nào dưới đây thể hiện phẩm chất hoặc bài học về 'Tình cảm anh em'?",
+      "options": {
+        "A": "Đi một ngày đàng học một sàng khôn",
+        "B": "Chị ngã em nâng",
+        "C": "Một cây làm chẳng nên non, ba cây chụm lại nên hòn núi cao",
+        "D": "Chớ thấy sóng cả mà ngã tay chèo"
+      },
+      "answer": "B",
+      "explanation": "'Chị ngã em nâng': Anh chị em trong một nhà phải biết nâng đỡ, thương yêu, che chở cho nhau."
+    },
+    {
+      "contest": "Trạng Nguyên Tiếng Việt",
+      "grade": "KHOI_2",
+      "level": "CAP_2_VONG_TRUONG",
+      "type": "TN",
+      "questionId": "k2_c2_tn_1566",
+      "question": "Câu tục ngữ, thành ngữ nào dưới đây thể hiện phẩm chất hoặc bài học về 'Tương thân tương ái'?",
+      "options": {
+        "A": "Nhiễu điều phủ lấy giá gương, người trong một nước phải thương nhau cùng",
+        "B": "Cây ngay không sợ chết đứng",
+        "C": "Vạn sự khởi đầu nan",
+        "D": "Lá lành đùm lá rách"
+      },
+      "answer": "D",
+      "explanation": "'Lá lành đùm lá rách': Khuyên con người phải biết đùm bọc, giúp đỡ lẫn nhau khi gặp hoạn nạn, khó khăn."
+    },
+    {
+      "contest": "Trạng Nguyên Tiếng Việt",
+      "grade": "KHOI_2",
+      "level": "CAP_2_VONG_TRUONG",
+      "type": "TN",
+      "questionId": "k2_c2_tn_1567",
+      "question": "Câu tục ngữ, thành ngữ nào dưới đây thể hiện phẩm chất hoặc bài học về 'Học hỏi, trải nghiệm'?",
+      "options": {
+        "A": "Người ta là hoa đất",
+        "B": "Thuận vợ thuận chồng tát biển Đông cũng cạn",
+        "C": "Đi một ngày đàng học một sàng khôn",
+        "D": "Lời nói chẳng mất tiền mua, lựa lời mà nói cho vừa lòng nhau"
+      },
+      "answer": "C",
+      "explanation": "'Đi một ngày đàng học một sàng khôn': Càng đi nhiều nơi, trải nghiệm thực tế ta càng tích lũy được nhiều hiểu biết, trí tuệ."
+    },
+    {
+      "contest": "Trạng Nguyên Tiếng Việt",
+      "grade": "KHOI_2",
+      "level": "CAP_2_VONG_TRUONG",
+      "type": "TN",
+      "questionId": "k2_c2_tn_1568",
+      "question": "Câu tục ngữ, thành ngữ nào dưới đây thể hiện phẩm chất hoặc bài học về 'Ý chí, thử thách'?",
+      "options": {
+        "A": "Đi một ngày đàng học một sàng khôn",
+        "B": "Bầu ơi thương lấy bí cùng, tuy rằng khác giống nhưng chung một giàn",
+        "C": "Lửa thử vàng gian nan thử sức",
+        "D": "Lời nói chẳng mất tiền mua, lựa lời mà nói cho vừa lòng nhau"
+      },
+      "answer": "C",
+      "explanation": "'Lửa thử vàng gian nan thử sức': Khó khăn thử thách là thước đo lòng kiên định và bản lĩnh con người."
+    },
+    {
+      "contest": "Trạng Nguyên Tiếng Việt",
+      "grade": "KHOI_2",
+      "level": "CAP_2_VONG_TRUONG",
+      "type": "TN",
+      "questionId": "k2_c2_tn_1569",
+      "question": "Câu tục ngữ, thành ngữ nào dưới đây thể hiện phẩm chất hoặc bài học về 'Môi trường sống'?",
+      "options": {
+        "A": "Chớ thấy sóng cả mà ngã tay chèo",
+        "B": "Nhiễu điều phủ lấy giá gương, người trong một nước phải thương nhau cùng",
+        "C": "Bầu ơi thương lấy bí cùng, tuy rằng khác giống nhưng chung một giàn",
+        "D": "Gần mực thì đen gần đèn thì sáng"
+      },
+      "answer": "D",
+      "explanation": "'Gần mực thì đen gần đèn thì sáng': Ở gần người tốt sẽ học được điều hay, ở gần người xấu dễ bị lây thói hư tật xấu."
+    },
+    {
+      "contest": "Trạng Nguyên Tiếng Việt",
+      "grade": "KHOI_2",
+      "level": "CAP_2_VONG_TRUONG",
+      "type": "TN",
+      "questionId": "k2_c2_tn_1570",
+      "question": "Câu tục ngữ, thành ngữ nào dưới đây thể hiện phẩm chất hoặc bài học về 'Lòng biết ơn'?",
+      "options": {
+        "A": "Tấc đất tấc vàng",
+        "B": "Ăn ngay nói thật mọi tật mọi lành",
+        "C": "Thương người như thể thương thân",
+        "D": "Uống nước nhớ nguồn"
+      },
+      "answer": "D",
+      "explanation": "'Uống nước nhớ nguồn': Nhắc nhở con cháu phải ghi nhớ cội nguồn, tổ tiên và những người đã giúp đỡ mình."
+    },
+    {
+      "contest": "Trạng Nguyên Tiếng Việt",
+      "grade": "KHOI_2",
+      "level": "CAP_2_VONG_TRUONG",
+      "type": "TN",
+      "questionId": "k2_c2_tn_1571",
+      "question": "Câu tục ngữ, thành ngữ nào dưới đây thể hiện phẩm chất hoặc bài học về 'Kiên trì'?",
+      "options": {
+        "A": "Một con ngựa đau cả tàu bỏ cỏ",
+        "B": "Ăn ngay nói thật mọi tật mọi lành",
+        "C": "Thương người như thể thương thân",
+        "D": "Vạn sự khởi đầu nan"
+      },
+      "answer": "D",
+      "explanation": "'Vạn sự khởi đầu nan': Bất kì công việc gì lúc bắt đầu cũng đều gặp nhiều gian truân, thử thách."
+    },
+    {
+      "contest": "Trạng Nguyên Tiếng Việt",
+      "grade": "KHOI_2",
+      "level": "CAP_2_VONG_TRUONG",
+      "type": "TN",
+      "questionId": "k2_c2_tn_1572",
+      "question": "Câu tục ngữ, thành ngữ nào dưới đây thể hiện phẩm chất hoặc bài học về 'Nhân ái'?",
+      "options": {
+        "A": "Chớ thấy sóng cả mà ngã tay chèo",
+        "B": "Thương người như thể thương thân",
+        "C": "Vạn sự khởi đầu nan",
+        "D": "Uống nước nhớ người đào giếng"
+      },
+      "answer": "B",
+      "explanation": "'Thương người như thể thương thân': Yêu thương người khác như yêu quý chính bản thân mình."
+    },
+    {
+      "contest": "Trạng Nguyên Tiếng Việt",
+      "grade": "KHOI_2",
+      "level": "CAP_2_VONG_TRUONG",
+      "type": "TN",
+      "questionId": "k2_c2_tn_1573",
+      "question": "Câu tục ngữ, thành ngữ nào dưới đây thể hiện phẩm chất hoặc bài học về 'Môi trường sống'?",
+      "options": {
+        "A": "Gần mực thì đen gần đèn thì sáng",
+        "B": "Cây ngay không sợ chết đứng",
+        "C": "Học thầy không tày học bạn",
+        "D": "Một cây làm chẳng nên non, ba cây chụm lại nên hòn núi cao"
+      },
+      "answer": "A",
+      "explanation": "'Gần mực thì đen gần đèn thì sáng': Ở gần người tốt sẽ học được điều hay, ở gần người xấu dễ bị lây thói hư tật xấu."
+    },
+    {
+      "contest": "Trạng Nguyên Tiếng Việt",
+      "grade": "KHOI_2",
+      "level": "CAP_2_VONG_TRUONG",
+      "type": "TN",
+      "questionId": "k2_c2_tn_1574",
+      "question": "Câu tục ngữ, thành ngữ nào dưới đây thể hiện phẩm chất hoặc bài học về 'Đoàn kết dân tộc'?",
+      "options": {
+        "A": "Lửa thử vàng gian nan thử sức",
+        "B": "Nhiễu điều phủ lấy giá gương, người trong một nước phải thương nhau cùng",
+        "C": "Đi một ngày đàng học một sàng khôn",
+        "D": "Uống nước nhớ người đào giếng"
+      },
+      "answer": "B",
+      "explanation": "'Nhiễu điều phủ lấy giá gương, người trong một nước phải thương nhau cùng': Đồng bào cùng một giang sơn phải luôn đùm bọc, giúp đỡ lẫn nhau."
+    },
+    {
+      "contest": "Trạng Nguyên Tiếng Việt",
+      "grade": "KHOI_2",
+      "level": "CAP_2_VONG_TRUONG",
+      "type": "TN",
+      "questionId": "k2_c2_tn_1575",
+      "question": "Câu nào dưới đây được viết theo mẫu câu 'Ai làm gì?'?",
+      "options": {
+        "A": "Bác Hồ là vị lãnh tụ vĩ đại của dân tộc ta.",
+        "B": "Bé Mai nhổ cỏ giúp bà trong vườn.",
+        "C": "Hà Nội là thủ đô của nước Việt Nam.",
+        "D": "Bầu trời mùa thu trong xanh và lồng lộng gió mát."
+      },
+      "answer": "B",
+      "explanation": "Câu 'Bé Mai nhổ cỏ giúp bà trong vườn.' gồm Chủ ngữ: 'Bé Mai' và Vị ngữ: 'nhổ cỏ giúp bà trong vườn.', trả lời cho câu hỏi 'Ai làm gì?'."
+    },
+    {
+      "contest": "Trạng Nguyên Tiếng Việt",
+      "grade": "KHOI_2",
+      "level": "CAP_2_VONG_TRUONG",
+      "type": "TN",
+      "questionId": "k2_c2_tn_1576",
+      "question": "Câu tục ngữ, thành ngữ nào dưới đây thể hiện phẩm chất hoặc bài học về 'Hòa thuận gia đình'?",
+      "options": {
+        "A": "Thuận vợ thuận chồng tát biển Đông cũng cạn",
+        "B": "Tấc đất tấc vàng",
+        "C": "Một con ngựa đau cả tàu bỏ cỏ",
+        "D": "Ăn quả nhớ kẻ trồng cây"
+      },
+      "answer": "A",
+      "explanation": "'Thuận vợ thuận chồng tát biển Đông cũng cạn': Sự đồng lòng, hòa thuận trong gia đình giúp vượt qua mọi gian khó."
+    },
+    {
+      "contest": "Trạng Nguyên Tiếng Việt",
+      "grade": "KHOI_2",
+      "level": "CAP_2_VONG_TRUONG",
+      "type": "TN",
+      "questionId": "k2_c2_tn_1577",
+      "question": "Câu tục ngữ, thành ngữ nào dưới đây thể hiện phẩm chất hoặc bài học về 'Lòng biết ơn'?",
+      "options": {
+        "A": "Ăn quả nhớ kẻ trồng cây",
+        "B": "Một con ngựa đau cả tàu bỏ cỏ",
+        "C": "Tấc đất tấc vàng",
+        "D": "Lời nói chẳng mất tiền mua, lựa lời mà nói cho vừa lòng nhau"
+      },
+      "answer": "A",
+      "explanation": "'Ăn quả nhớ kẻ trồng cây': Khuyên nhủ con người khi được hưởng thành quả phải luôn biết ơn công lao người tạo dựng."
+    },
+    {
+      "contest": "Trạng Nguyên Tiếng Việt",
+      "grade": "KHOI_2",
+      "level": "CAP_2_VONG_TRUONG",
+      "type": "TN",
+      "questionId": "k2_c2_tn_1578",
+      "question": "Câu tục ngữ, thành ngữ nào dưới đây thể hiện phẩm chất hoặc bài học về 'Tình cảm anh em'?",
+      "options": {
+        "A": "Nhiễu điều phủ lấy giá gương, người trong một nước phải thương nhau cùng",
+        "B": "Đói cho sạch rách cho thơm",
+        "C": "Thuận vợ thuận chồng tát biển Đông cũng cạn",
+        "D": "Chị ngã em nâng"
+      },
+      "answer": "D",
+      "explanation": "'Chị ngã em nâng': Anh chị em trong một nhà phải biết nâng đỡ, thương yêu, che chở cho nhau."
+    },
+    {
+      "contest": "Trạng Nguyên Tiếng Việt",
+      "grade": "KHOI_2",
+      "level": "CAP_2_VONG_TRUONG",
+      "type": "TN",
+      "questionId": "k2_c2_tn_1579",
+      "question": "Câu tục ngữ, thành ngữ nào dưới đây thể hiện phẩm chất hoặc bài học về 'Học hỏi, trải nghiệm'?",
+      "options": {
+        "A": "Đi một ngày đàng học một sàng khôn",
+        "B": "Đói cho sạch rách cho thơm",
+        "C": "Bầu ơi thương lấy bí cùng, tuy rằng khác giống nhưng chung một giàn",
+        "D": "Tấc đất tấc vàng"
+      },
+      "answer": "A",
+      "explanation": "'Đi một ngày đàng học một sàng khôn': Càng đi nhiều nơi, trải nghiệm thực tế ta càng tích lũy được nhiều hiểu biết, trí tuệ."
+    },
+    {
+      "contest": "Trạng Nguyên Tiếng Việt",
+      "grade": "KHOI_2",
+      "level": "CAP_2_VONG_TRUONG",
+      "type": "TN",
+      "questionId": "k2_c2_tn_1580",
+      "question": "Câu tục ngữ, thành ngữ nào dưới đây thể hiện phẩm chất hoặc bài học về 'Giá trị con người'?",
+      "options": {
+        "A": "Gần mực thì đen gần đèn thì sáng",
+        "B": "Người ta là hoa đất",
+        "C": "Lá lành đùm lá rách",
+        "D": "Vạn sự khởi đầu nan"
+      },
+      "answer": "B",
+      "explanation": "'Người ta là hoa đất': Ca ngợi con người là tinh hoa quý báu nhất của vũ trụ và mặt đất."
+    },
+    {
+      "contest": "Trạng Nguyên Tiếng Việt",
+      "grade": "KHOI_2",
+      "level": "CAP_2_VONG_TRUONG",
+      "type": "TN",
+      "questionId": "k2_c2_tn_1581",
+      "question": "Câu tục ngữ, thành ngữ nào dưới đây thể hiện phẩm chất hoặc bài học về 'Đoàn kết, gắn bó'?",
+      "options": {
+        "A": "Chớ thấy sóng cả mà ngã tay chèo",
+        "B": "Cây ngay không sợ chết đứng",
+        "C": "Uống nước nhớ người đào giếng",
+        "D": "Một con ngựa đau cả tàu bỏ cỏ"
+      },
+      "answer": "D",
+      "explanation": "'Một con ngựa đau cả tàu bỏ cỏ': Khi một cá nhân gặp nạn, toàn thể tập thể đều chia sẻ nỗi buồn và tương trợ."
+    },
+    {
+      "contest": "Trạng Nguyên Tiếng Việt",
+      "grade": "KHOI_2",
+      "level": "CAP_2_VONG_TRUONG",
+      "type": "TN",
+      "questionId": "k2_c2_tn_1582",
+      "question": "Câu tục ngữ, thành ngữ nào dưới đây thể hiện phẩm chất hoặc bài học về 'Giao tiếp, ứng xử'?",
+      "options": {
+        "A": "Lời nói chẳng mất tiền mua, lựa lời mà nói cho vừa lòng nhau",
+        "B": "Có công mài sắt có ngày nên kim",
+        "C": "Ăn ngay nói thật mọi tật mọi lành",
+        "D": "Nhiễu điều phủ lấy giá gương, người trong một nước phải thương nhau cùng"
+      },
+      "answer": "A",
+      "explanation": "'Lời nói chẳng mất tiền mua, lựa lời mà nói cho vừa lòng nhau': Khi giao tiếp cần ăn nói lịch thiệp, nhã nhặn và tế nhị."
+    },
+    {
+      "contest": "Trạng Nguyên Tiếng Việt",
+      "grade": "KHOI_2",
+      "level": "CAP_2_VONG_TRUONG",
+      "type": "TN",
+      "questionId": "k2_c2_tn_1583",
+      "question": "Câu tục ngữ, thành ngữ nào dưới đây thể hiện phẩm chất hoặc bài học về 'Phẩm hạnh, tự trọng'?",
+      "options": {
+        "A": "Đói cho sạch rách cho thơm",
+        "B": "Học thầy không tày học bạn",
+        "C": "Một con ngựa đau cả tàu bỏ cỏ",
+        "D": "Chim có tổ người có tông"
+      },
+      "answer": "A",
+      "explanation": "'Đói cho sạch rách cho thơm': Dù trong hoàn cảnh thiếu thốn bần hàn vẫn phải giữ gìn nhân cách và danh dự trong sạch."
+    },
+    {
+      "contest": "Trạng Nguyên Tiếng Việt",
+      "grade": "KHOI_2",
+      "level": "CAP_2_VONG_TRUONG",
+      "type": "TN",
+      "questionId": "k2_c2_tn_1584",
+      "question": "Câu tục ngữ, thành ngữ nào dưới đây thể hiện phẩm chất hoặc bài học về 'Phẩm hạnh, tự trọng'?",
+      "options": {
+        "A": "Bầu ơi thương lấy bí cùng, tuy rằng khác giống nhưng chung một giàn",
+        "B": "Đói cho sạch rách cho thơm",
+        "C": "Công cha như núi Thái Sơn, nghĩa mẹ như nước trong nguồn chảy ra",
+        "D": "Uống nước nhớ nguồn"
+      },
+      "answer": "B",
+      "explanation": "'Đói cho sạch rách cho thơm': Dù trong hoàn cảnh thiếu thốn bần hàn vẫn phải giữ gìn nhân cách và danh dự trong sạch."
+    },
+    {
+      "contest": "Trạng Nguyên Tiếng Việt",
+      "grade": "KHOI_2",
+      "level": "CAP_2_VONG_TRUONG",
+      "type": "TN",
+      "questionId": "k2_c2_tn_1585",
+      "question": "Câu tục ngữ, thành ngữ nào dưới đây thể hiện phẩm chất hoặc bài học về 'Hiếu thảo'?",
+      "options": {
+        "A": "Lá lành đùm lá rách",
+        "B": "Bầu ơi thương lấy bí cùng, tuy rằng khác giống nhưng chung một giàn",
+        "C": "Ăn quả nhớ kẻ trồng cây",
+        "D": "Công cha như núi Thái Sơn, nghĩa mẹ như nước trong nguồn chảy ra"
+      },
+      "answer": "D",
+      "explanation": "'Công cha như núi Thái Sơn, nghĩa mẹ như nước trong nguồn chảy ra': Công ơn sinh thành dưỡng dục của cha mẹ to lớn vô bờ bến không gì sánh bằng."
+    },
+    {
+      "contest": "Trạng Nguyên Tiếng Việt",
+      "grade": "KHOI_2",
+      "level": "CAP_2_VONG_TRUONG",
+      "type": "TN",
+      "questionId": "k2_c2_tn_1586",
+      "question": "Câu tục ngữ, thành ngữ nào dưới đây thể hiện phẩm chất hoặc bài học về 'Nhân ái'?",
+      "options": {
+        "A": "Chim có tổ người có tông",
+        "B": "Uống nước nhớ người đào giếng",
+        "C": "Bầu ơi thương lấy bí cùng, tuy rằng khác giống nhưng chung một giàn",
+        "D": "Thương người như thể thương thân"
+      },
+      "answer": "D",
+      "explanation": "'Thương người như thể thương thân': Yêu thương người khác như yêu quý chính bản thân mình."
+    },
+    {
+      "contest": "Trạng Nguyên Tiếng Việt",
+      "grade": "KHOI_2",
+      "level": "CAP_2_VONG_TRUONG",
+      "type": "TN",
+      "questionId": "k2_c2_tn_1587",
+      "question": "Câu tục ngữ, thành ngữ nào dưới đây thể hiện phẩm chất hoặc bài học về 'Tình cảm anh em'?",
+      "options": {
+        "A": "Chị ngã em nâng",
+        "B": "Đi một ngày đàng học một sàng khôn",
+        "C": "Đói cho sạch rách cho thơm",
+        "D": "Người ta là hoa đất"
+      },
+      "answer": "A",
+      "explanation": "'Chị ngã em nâng': Anh chị em trong một nhà phải biết nâng đỡ, thương yêu, che chở cho nhau."
+    },
+    {
+      "contest": "Trạng Nguyên Tiếng Việt",
+      "grade": "KHOI_2",
+      "level": "CAP_2_VONG_TRUONG",
+      "type": "TN",
+      "questionId": "k2_c2_tn_1588",
+      "question": "Câu tục ngữ, thành ngữ nào dưới đây thể hiện phẩm chất hoặc bài học về 'Ý chí, bản lĩnh'?",
+      "options": {
+        "A": "Đói cho sạch rách cho thơm",
+        "B": "Cây ngay không sợ chết đứng",
+        "C": "Chớ thấy sóng cả mà ngã tay chèo",
+        "D": "Uống nước nhớ người đào giếng"
+      },
+      "answer": "C",
+      "explanation": "'Chớ thấy sóng cả mà ngã tay chèo': Đừng vì thấy khó khăn, nguy nan mà nản lòng, buông xuôi ý chí."
+    },
+    {
+      "contest": "Trạng Nguyên Tiếng Việt",
+      "grade": "KHOI_2",
+      "level": "CAP_2_VONG_TRUONG",
+      "type": "TN",
+      "questionId": "k2_c2_tn_1589",
+      "question": "Câu tục ngữ, thành ngữ nào dưới đây thể hiện phẩm chất hoặc bài học về 'Lòng biết ơn'?",
+      "options": {
+        "A": "Thương người như thể thương thân",
+        "B": "Ăn quả nhớ kẻ trồng cây",
+        "C": "Lá lành đùm lá rách",
+        "D": "Đi một ngày đàng học một sàng khôn"
+      },
+      "answer": "B",
+      "explanation": "'Ăn quả nhớ kẻ trồng cây': Khuyên nhủ con người khi được hưởng thành quả phải luôn biết ơn công lao người tạo dựng."
+    },
+    {
+      "contest": "Trạng Nguyên Tiếng Việt",
+      "grade": "KHOI_2",
+      "level": "CAP_2_VONG_TRUONG",
+      "type": "TN",
+      "questionId": "k2_c2_tn_1590",
+      "question": "Câu tục ngữ, thành ngữ nào dưới đây thể hiện phẩm chất hoặc bài học về 'Hòa thuận gia đình'?",
+      "options": {
+        "A": "Lời nói chẳng mất tiền mua, lựa lời mà nói cho vừa lòng nhau",
+        "B": "Vạn sự khởi đầu nan",
+        "C": "Thuận vợ thuận chồng tát biển Đông cũng cạn",
+        "D": "Đi một ngày đàng học một sàng khôn"
+      },
+      "answer": "C",
+      "explanation": "'Thuận vợ thuận chồng tát biển Đông cũng cạn': Sự đồng lòng, hòa thuận trong gia đình giúp vượt qua mọi gian khó."
+    },
+    {
+      "contest": "Trạng Nguyên Tiếng Việt",
+      "grade": "KHOI_2",
+      "level": "CAP_2_VONG_TRUONG",
+      "type": "TN",
+      "questionId": "k2_c2_tn_1591",
+      "question": "Câu tục ngữ, thành ngữ nào dưới đây thể hiện phẩm chất hoặc bài học về 'Trung thực'?",
+      "options": {
+        "A": "Đi một ngày đàng học một sàng khôn",
+        "B": "Một con ngựa đau cả tàu bỏ cỏ",
+        "C": "Lửa thử vàng gian nan thử sức",
+        "D": "Ăn ngay nói thật mọi tật mọi lành"
+      },
+      "answer": "D",
+      "explanation": "'Ăn ngay nói thật mọi tật mọi lành': Sống chân thành, trung thực thì tâm hồn luôn thanh thản và bình an."
+    },
+    {
+      "contest": "Trạng Nguyên Tiếng Việt",
+      "grade": "KHOI_2",
+      "level": "CAP_2_VONG_TRUONG",
+      "type": "TN",
+      "questionId": "k2_c2_tn_1592",
+      "question": "Câu tục ngữ, thành ngữ nào dưới đây thể hiện phẩm chất hoặc bài học về 'Kiên trì'?",
+      "options": {
+        "A": "Lời nói chẳng mất tiền mua, lựa lời mà nói cho vừa lòng nhau",
+        "B": "Học thầy không tày học bạn",
+        "C": "Vạn sự khởi đầu nan",
+        "D": "Nhiễu điều phủ lấy giá gương, người trong một nước phải thương nhau cùng"
+      },
+      "answer": "C",
+      "explanation": "'Vạn sự khởi đầu nan': Bất kì công việc gì lúc bắt đầu cũng đều gặp nhiều gian truân, thử thách."
+    },
+    {
+      "contest": "Trạng Nguyên Tiếng Việt",
+      "grade": "KHOI_2",
+      "level": "CAP_2_VONG_TRUONG",
+      "type": "TN",
+      "questionId": "k2_c2_tn_1593",
+      "question": "Câu tục ngữ, thành ngữ nào dưới đây thể hiện phẩm chất hoặc bài học về 'Hiếu thảo'?",
+      "options": {
+        "A": "Công cha như núi Thái Sơn, nghĩa mẹ như nước trong nguồn chảy ra",
+        "B": "Học thầy không tày học bạn",
+        "C": "Đói cho sạch rách cho thơm",
+        "D": "Người ta là hoa đất"
+      },
+      "answer": "A",
+      "explanation": "'Công cha như núi Thái Sơn, nghĩa mẹ như nước trong nguồn chảy ra': Công ơn sinh thành dưỡng dục của cha mẹ to lớn vô bờ bến không gì sánh bằng."
+    },
+    {
+      "contest": "Trạng Nguyên Tiếng Việt",
+      "grade": "KHOI_2",
+      "level": "CAP_2_VONG_TRUONG",
+      "type": "TN",
+      "questionId": "k2_c2_tn_1594",
+      "question": "Câu tục ngữ, thành ngữ nào dưới đây thể hiện phẩm chất hoặc bài học về 'Đoàn kết, gắn bó'?",
+      "options": {
+        "A": "Bầu ơi thương lấy bí cùng, tuy rằng khác giống nhưng chung một giàn",
+        "B": "Một con ngựa đau cả tàu bỏ cỏ",
+        "C": "Ăn quả nhớ kẻ trồng cây",
+        "D": "Học thầy không tày học bạn"
+      },
+      "answer": "B",
+      "explanation": "'Một con ngựa đau cả tàu bỏ cỏ': Khi một cá nhân gặp nạn, toàn thể tập thể đều chia sẻ nỗi buồn và tương trợ."
+    },
+    {
+      "contest": "Trạng Nguyên Tiếng Việt",
+      "grade": "KHOI_2",
+      "level": "CAP_2_VONG_TRUONG",
+      "type": "TN",
+      "questionId": "k2_c2_tn_1595",
+      "question": "Câu tục ngữ, thành ngữ nào dưới đây thể hiện phẩm chất hoặc bài học về 'Trung thực'?",
+      "options": {
+        "A": "Ăn ngay nói thật mọi tật mọi lành",
+        "B": "Ăn quả nhớ kẻ trồng cây",
+        "C": "Đi một ngày đàng học một sàng khôn",
+        "D": "Chị ngã em nâng"
+      },
+      "answer": "A",
+      "explanation": "'Ăn ngay nói thật mọi tật mọi lành': Sống chân thành, trung thực thì tâm hồn luôn thanh thản và bình an."
+    },
+    {
+      "contest": "Trạng Nguyên Tiếng Việt",
+      "grade": "KHOI_2",
+      "level": "CAP_2_VONG_TRUONG",
+      "type": "TN",
+      "questionId": "k2_c2_tn_1596",
+      "question": "Câu tục ngữ, thành ngữ nào dưới đây thể hiện phẩm chất hoặc bài học về 'Đoàn kết, yêu thương'?",
+      "options": {
+        "A": "Công cha như núi Thái Sơn, nghĩa mẹ như nước trong nguồn chảy ra",
+        "B": "Bầu ơi thương lấy bí cùng, tuy rằng khác giống nhưng chung một giàn",
+        "C": "Ăn ngay nói thật mọi tật mọi lành",
+        "D": "Một cây làm chẳng nên non, ba cây chụm lại nên hòn núi cao"
+      },
+      "answer": "B",
+      "explanation": "'Bầu ơi thương lấy bí cùng, tuy rằng khác giống nhưng chung một giàn': Dù xuất thân khác nhau nhưng cùng chung sống một đất nước thì phải thương yêu nhau."
+    },
+    {
+      "contest": "Trạng Nguyên Tiếng Việt",
+      "grade": "KHOI_2",
+      "level": "CAP_2_VONG_TRUONG",
+      "type": "TN",
+      "questionId": "k2_c2_tn_1597",
+      "question": "Câu tục ngữ, thành ngữ nào dưới đây thể hiện phẩm chất hoặc bài học về 'Nguồn cội'?",
+      "options": {
+        "A": "Chị ngã em nâng",
+        "B": "Học thầy không tày học bạn",
+        "C": "Bầu ơi thương lấy bí cùng, tuy rằng khác giống nhưng chung một giàn",
+        "D": "Chim có tổ người có tông"
+      },
+      "answer": "D",
+      "explanation": "'Chim có tổ người có tông': Mỗi con người đều có tổ tiên, cội nguồn giống như loài chim có tổ để về."
+    },
+    {
+      "contest": "Trạng Nguyên Tiếng Việt",
+      "grade": "KHOI_2",
+      "level": "CAP_2_VONG_TRUONG",
+      "type": "TN",
+      "questionId": "k2_c2_tn_1598",
+      "question": "Câu tục ngữ, thành ngữ nào dưới đây thể hiện phẩm chất hoặc bài học về 'Kiên trì, nghị lực'?",
+      "options": {
+        "A": "Lá lành đùm lá rách",
+        "B": "Có công mài sắt có ngày nên kim",
+        "C": "Ăn ngay nói thật mọi tật mọi lành",
+        "D": "Cây ngay không sợ chết đứng"
+      },
+      "answer": "B",
+      "explanation": "'Có công mài sắt có ngày nên kim': Chỉ cần kiên trì, nỗ lực và nhẫn nại thì việc khó khăn đến mấy cũng sẽ thành công."
+    },
+    {
+      "contest": "Trạng Nguyên Tiếng Việt",
+      "grade": "KHOI_2",
+      "level": "CAP_2_VONG_TRUONG",
+      "type": "TN",
+      "questionId": "k2_c2_tn_1599",
+      "question": "Câu tục ngữ, thành ngữ nào dưới đây thể hiện phẩm chất hoặc bài học về 'Đất đai, lao động'?",
+      "options": {
+        "A": "Công cha như núi Thái Sơn, nghĩa mẹ như nước trong nguồn chảy ra",
+        "B": "Chị ngã em nâng",
+        "C": "Tấc đất tấc vàng",
+        "D": "Người ta là hoa đất"
+      },
+      "answer": "C",
+      "explanation": "'Tấc đất tấc vàng': Mỗi tấc đất đều vô cùng quý giá như vàng vì đem lại nguồn sống cho con người."
+    },
+    {
+      "contest": "Trạng Nguyên Tiếng Việt",
+      "grade": "KHOI_2",
+      "level": "CAP_2_VONG_TRUONG",
+      "type": "TN",
+      "questionId": "k2_c2_tn_1600",
+      "question": "Câu tục ngữ, thành ngữ nào dưới đây thể hiện phẩm chất hoặc bài học về 'Học tập'?",
+      "options": {
+        "A": "Học thầy không tày học bạn",
+        "B": "Gần mực thì đen gần đèn thì sáng",
+        "C": "Uống nước nhớ người đào giếng",
+        "D": "Chim có tổ người có tông"
+      },
+      "answer": "A",
+      "explanation": "'Học thầy không tày học bạn': Nhấn mạnh vai trò to lớn của việc học hỏi từ bạn bè xung quanh."
+    },
+    {
+      "contest": "Trạng Nguyên Tiếng Việt",
+      "grade": "KHOI_2",
+      "level": "CAP_2_VONG_TRUONG",
+      "type": "TN",
+      "questionId": "k2_c2_tn_1601",
+      "question": "Câu tục ngữ, thành ngữ nào dưới đây thể hiện phẩm chất hoặc bài học về 'Tương thân tương ái'?",
+      "options": {
+        "A": "Lá lành đùm lá rách",
+        "B": "Ăn ngay nói thật mọi tật mọi lành",
+        "C": "Ăn quả nhớ kẻ trồng cây",
+        "D": "Nhiễu điều phủ lấy giá gương, người trong một nước phải thương nhau cùng"
+      },
+      "answer": "A",
+      "explanation": "'Lá lành đùm lá rách': Khuyên con người phải biết đùm bọc, giúp đỡ lẫn nhau khi gặp hoạn nạn, khó khăn."
+    },
+    {
+      "contest": "Trạng Nguyên Tiếng Việt",
+      "grade": "KHOI_2",
+      "level": "CAP_2_VONG_TRUONG",
+      "type": "TN",
+      "questionId": "k2_c2_tn_1602",
+      "question": "Câu tục ngữ, thành ngữ nào dưới đây thể hiện phẩm chất hoặc bài học về 'Sức mạnh đoàn kết'?",
+      "options": {
+        "A": "Một cây làm chẳng nên non, ba cây chụm lại nên hòn núi cao",
+        "B": "Uống nước nhớ nguồn",
+        "C": "Tấc đất tấc vàng",
+        "D": "Công cha như núi Thái Sơn, nghĩa mẹ như nước trong nguồn chảy ra"
+      },
+      "answer": "A",
+      "explanation": "'Một cây làm chẳng nên non, ba cây chụm lại nên hòn núi cao': Một người lẻ loi khó làm việc lớn, nhưng khi đoàn kết lại sẽ tạo nên sức mạnh vô địch."
+    },
+    {
+      "contest": "Trạng Nguyên Tiếng Việt",
+      "grade": "KHOI_2",
+      "level": "CAP_2_VONG_TRUONG",
+      "type": "TN",
+      "questionId": "k2_c2_tn_1603",
+      "question": "Câu tục ngữ, thành ngữ nào dưới đây thể hiện phẩm chất hoặc bài học về 'Giá trị con người'?",
+      "options": {
+        "A": "Người ta là hoa đất",
+        "B": "Lửa thử vàng gian nan thử sức",
+        "C": "Học thầy không tày học bạn",
+        "D": "Thương người như thể thương thân"
+      },
+      "answer": "A",
+      "explanation": "'Người ta là hoa đất': Ca ngợi con người là tinh hoa quý báu nhất của vũ trụ và mặt đất."
+    },
+    {
+      "contest": "Trạng Nguyên Tiếng Việt",
+      "grade": "KHOI_2",
+      "level": "CAP_2_VONG_TRUONG",
+      "type": "TN",
+      "questionId": "k2_c2_tn_1604",
+      "question": "Câu tục ngữ, thành ngữ nào dưới đây thể hiện phẩm chất hoặc bài học về 'Kiên trì'?",
+      "options": {
+        "A": "Đi một ngày đàng học một sàng khôn",
+        "B": "Vạn sự khởi đầu nan",
+        "C": "Lời nói chẳng mất tiền mua, lựa lời mà nói cho vừa lòng nhau",
+        "D": "Có công mài sắt có ngày nên kim"
+      },
+      "answer": "B",
+      "explanation": "'Vạn sự khởi đầu nan': Bất kì công việc gì lúc bắt đầu cũng đều gặp nhiều gian truân, thử thách."
+    },
+    {
+      "contest": "Trạng Nguyên Tiếng Việt",
+      "grade": "KHOI_2",
+      "level": "CAP_2_VONG_TRUONG",
+      "type": "TN",
+      "questionId": "k2_c2_tn_1605",
+      "question": "Câu tục ngữ, thành ngữ nào dưới đây thể hiện phẩm chất hoặc bài học về 'Nhân ái'?",
+      "options": {
+        "A": "Thương người như thể thương thân",
+        "B": "Cây ngay không sợ chết đứng",
+        "C": "Người ta là hoa đất",
+        "D": "Học thầy không tày học bạn"
+      },
+      "answer": "A",
+      "explanation": "'Thương người như thể thương thân': Yêu thương người khác như yêu quý chính bản thân mình."
+    },
+    {
+      "contest": "Trạng Nguyên Tiếng Việt",
+      "grade": "KHOI_2",
+      "level": "CAP_2_VONG_TRUONG",
+      "type": "TN",
+      "questionId": "k2_c2_tn_1606",
+      "question": "Câu tục ngữ, thành ngữ nào dưới đây thể hiện phẩm chất hoặc bài học về 'Nhân ái'?",
+      "options": {
+        "A": "Học thầy không tày học bạn",
+        "B": "Ăn quả nhớ kẻ trồng cây",
+        "C": "Thương người như thể thương thân",
+        "D": "Tấc đất tấc vàng"
+      },
+      "answer": "C",
+      "explanation": "'Thương người như thể thương thân': Yêu thương người khác như yêu quý chính bản thân mình."
+    },
+    {
+      "contest": "Trạng Nguyên Tiếng Việt",
+      "grade": "KHOI_2",
+      "level": "CAP_2_VONG_TRUONG",
+      "type": "TN",
+      "questionId": "k2_c2_tn_1607",
+      "question": "Câu tục ngữ, thành ngữ nào dưới đây thể hiện phẩm chất hoặc bài học về 'Đất đai, lao động'?",
+      "options": {
+        "A": "Người ta là hoa đất",
+        "B": "Tấc đất tấc vàng",
+        "C": "Cây ngay không sợ chết đứng",
+        "D": "Công cha như núi Thái Sơn, nghĩa mẹ như nước trong nguồn chảy ra"
+      },
+      "answer": "B",
+      "explanation": "'Tấc đất tấc vàng': Mỗi tấc đất đều vô cùng quý giá như vàng vì đem lại nguồn sống cho con người."
+    },
+    {
+      "contest": "Trạng Nguyên Tiếng Việt",
+      "grade": "KHOI_2",
+      "level": "CAP_2_VONG_TRUONG",
+      "type": "TN",
+      "questionId": "k2_c2_tn_1608",
+      "question": "Câu tục ngữ, thành ngữ nào dưới đây thể hiện phẩm chất hoặc bài học về 'Đoàn kết, yêu thương'?",
+      "options": {
+        "A": "Thương người như thể thương thân",
+        "B": "Vạn sự khởi đầu nan",
+        "C": "Chim có tổ người có tông",
+        "D": "Bầu ơi thương lấy bí cùng, tuy rằng khác giống nhưng chung một giàn"
+      },
+      "answer": "D",
+      "explanation": "'Bầu ơi thương lấy bí cùng, tuy rằng khác giống nhưng chung một giàn': Dù xuất thân khác nhau nhưng cùng chung sống một đất nước thì phải thương yêu nhau."
+    },
+    {
+      "contest": "Trạng Nguyên Tiếng Việt",
+      "grade": "KHOI_2",
+      "level": "CAP_2_VONG_TRUONG",
+      "type": "TN",
+      "questionId": "k2_c2_tn_1609",
+      "question": "Câu tục ngữ, thành ngữ nào dưới đây thể hiện phẩm chất hoặc bài học về 'Đoàn kết dân tộc'?",
+      "options": {
+        "A": "Ăn quả nhớ kẻ trồng cây",
+        "B": "Cây ngay không sợ chết đứng",
+        "C": "Nhiễu điều phủ lấy giá gương, người trong một nước phải thương nhau cùng",
+        "D": "Học thầy không tày học bạn"
+      },
+      "answer": "C",
+      "explanation": "'Nhiễu điều phủ lấy giá gương, người trong một nước phải thương nhau cùng': Đồng bào cùng một giang sơn phải luôn đùm bọc, giúp đỡ lẫn nhau."
+    },
+    {
+      "contest": "Trạng Nguyên Tiếng Việt",
+      "grade": "KHOI_2",
+      "level": "CAP_2_VONG_TRUONG",
+      "type": "TN",
+      "questionId": "k2_c2_tn_1610",
+      "question": "Câu tục ngữ, thành ngữ nào dưới đây thể hiện phẩm chất hoặc bài học về 'Phẩm hạnh, tự trọng'?",
+      "options": {
+        "A": "Cây ngay không sợ chết đứng",
+        "B": "Uống nước nhớ người đào giếng",
+        "C": "Đói cho sạch rách cho thơm",
+        "D": "Có công mài sắt có ngày nên kim"
+      },
+      "answer": "C",
+      "explanation": "'Đói cho sạch rách cho thơm': Dù trong hoàn cảnh thiếu thốn bần hàn vẫn phải giữ gìn nhân cách và danh dự trong sạch."
+    },
+    {
+      "contest": "Trạng Nguyên Tiếng Việt",
+      "grade": "KHOI_2",
+      "level": "CAP_2_VONG_TRUONG",
+      "type": "TN",
+      "questionId": "k2_c2_tn_1611",
+      "question": "Câu tục ngữ, thành ngữ nào dưới đây thể hiện phẩm chất hoặc bài học về 'Giá trị con người'?",
+      "options": {
+        "A": "Uống nước nhớ người đào giếng",
+        "B": "Học thầy không tày học bạn",
+        "C": "Lửa thử vàng gian nan thử sức",
+        "D": "Người ta là hoa đất"
+      },
+      "answer": "D",
+      "explanation": "'Người ta là hoa đất': Ca ngợi con người là tinh hoa quý báu nhất của vũ trụ và mặt đất."
+    },
+    {
+      "contest": "Trạng Nguyên Tiếng Việt",
+      "grade": "KHOI_2",
+      "level": "CAP_2_VONG_TRUONG",
+      "type": "TN",
+      "questionId": "k2_c2_tn_1612",
+      "question": "Câu tục ngữ, thành ngữ nào dưới đây thể hiện phẩm chất hoặc bài học về 'Trung thực'?",
+      "options": {
+        "A": "Cây ngay không sợ chết đứng",
+        "B": "Ăn ngay nói thật mọi tật mọi lành",
+        "C": "Chị ngã em nâng",
+        "D": "Người ta là hoa đất"
+      },
+      "answer": "B",
+      "explanation": "'Ăn ngay nói thật mọi tật mọi lành': Sống chân thành, trung thực thì tâm hồn luôn thanh thản và bình an."
+    },
+    {
+      "contest": "Trạng Nguyên Tiếng Việt",
+      "grade": "KHOI_2",
+      "level": "CAP_2_VONG_TRUONG",
+      "type": "TN",
+      "questionId": "k2_c2_tn_1613",
+      "question": "Câu tục ngữ, thành ngữ nào dưới đây thể hiện phẩm chất hoặc bài học về 'Môi trường sống'?",
+      "options": {
+        "A": "Uống nước nhớ nguồn",
+        "B": "Gần mực thì đen gần đèn thì sáng",
+        "C": "Thương người như thể thương thân",
+        "D": "Lá lành đùm lá rách"
+      },
+      "answer": "B",
+      "explanation": "'Gần mực thì đen gần đèn thì sáng': Ở gần người tốt sẽ học được điều hay, ở gần người xấu dễ bị lây thói hư tật xấu."
+    },
+    {
+      "contest": "Trạng Nguyên Tiếng Việt",
+      "grade": "KHOI_2",
+      "level": "CAP_2_VONG_TRUONG",
+      "type": "TN",
+      "questionId": "k2_c2_tn_1614",
+      "question": "Câu tục ngữ, thành ngữ nào dưới đây thể hiện phẩm chất hoặc bài học về 'Hiếu thảo'?",
+      "options": {
+        "A": "Vạn sự khởi đầu nan",
+        "B": "Ăn quả nhớ kẻ trồng cây",
+        "C": "Công cha như núi Thái Sơn, nghĩa mẹ như nước trong nguồn chảy ra",
+        "D": "Lửa thử vàng gian nan thử sức"
+      },
+      "answer": "C",
+      "explanation": "'Công cha như núi Thái Sơn, nghĩa mẹ như nước trong nguồn chảy ra': Công ơn sinh thành dưỡng dục của cha mẹ to lớn vô bờ bến không gì sánh bằng."
+    },
+    {
+      "contest": "Trạng Nguyên Tiếng Việt",
+      "grade": "KHOI_2",
+      "level": "CAP_2_VONG_TRUONG",
+      "type": "TN",
+      "questionId": "k2_c2_tn_1615",
+      "question": "Câu tục ngữ, thành ngữ nào dưới đây thể hiện phẩm chất hoặc bài học về 'Nguồn cội'?",
+      "options": {
+        "A": "Bầu ơi thương lấy bí cùng, tuy rằng khác giống nhưng chung một giàn",
+        "B": "Nhiễu điều phủ lấy giá gương, người trong một nước phải thương nhau cùng",
+        "C": "Chim có tổ người có tông",
+        "D": "Thương người như thể thương thân"
+      },
+      "answer": "C",
+      "explanation": "'Chim có tổ người có tông': Mỗi con người đều có tổ tiên, cội nguồn giống như loài chim có tổ để về."
+    },
+    {
+      "contest": "Trạng Nguyên Tiếng Việt",
+      "grade": "KHOI_2",
+      "level": "CAP_2_VONG_TRUONG",
+      "type": "TN",
+      "questionId": "k2_c2_tn_1616",
+      "question": "Câu tục ngữ, thành ngữ nào dưới đây thể hiện phẩm chất hoặc bài học về 'Giao tiếp, ứng xử'?",
+      "options": {
+        "A": "Đi một ngày đàng học một sàng khôn",
+        "B": "Thuận vợ thuận chồng tát biển Đông cũng cạn",
+        "C": "Chớ thấy sóng cả mà ngã tay chèo",
+        "D": "Lời nói chẳng mất tiền mua, lựa lời mà nói cho vừa lòng nhau"
+      },
+      "answer": "D",
+      "explanation": "'Lời nói chẳng mất tiền mua, lựa lời mà nói cho vừa lòng nhau': Khi giao tiếp cần ăn nói lịch thiệp, nhã nhặn và tế nhị."
+    },
+    {
+      "contest": "Trạng Nguyên Tiếng Việt",
+      "grade": "KHOI_2",
+      "level": "CAP_2_VONG_TRUONG",
+      "type": "TN",
+      "questionId": "k2_c2_tn_1617",
+      "question": "Câu tục ngữ, thành ngữ nào dưới đây thể hiện phẩm chất hoặc bài học về 'Biết ơn'?",
+      "options": {
+        "A": "Uống nước nhớ người đào giếng",
+        "B": "Ăn quả nhớ kẻ trồng cây",
+        "C": "Học thầy không tày học bạn",
+        "D": "Một cây làm chẳng nên non, ba cây chụm lại nên hòn núi cao"
+      },
+      "answer": "A",
+      "explanation": "'Uống nước nhớ người đào giếng': Hưởng trái ngọt nhớ công người trồng cây, uống nước mát nhớ ơn người đào giếng."
+    },
+    {
+      "contest": "Trạng Nguyên Tiếng Việt",
+      "grade": "KHOI_2",
+      "level": "CAP_2_VONG_TRUONG",
+      "type": "TN",
+      "questionId": "k2_c2_tn_1618",
+      "question": "Câu tục ngữ, thành ngữ nào dưới đây thể hiện phẩm chất hoặc bài học về 'Đoàn kết, gắn bó'?",
+      "options": {
+        "A": "Người ta là hoa đất",
+        "B": "Ăn quả nhớ kẻ trồng cây",
+        "C": "Một con ngựa đau cả tàu bỏ cỏ",
+        "D": "Lửa thử vàng gian nan thử sức"
+      },
+      "answer": "C",
+      "explanation": "'Một con ngựa đau cả tàu bỏ cỏ': Khi một cá nhân gặp nạn, toàn thể tập thể đều chia sẻ nỗi buồn và tương trợ."
+    },
+    {
+      "contest": "Trạng Nguyên Tiếng Việt",
+      "grade": "KHOI_2",
+      "level": "CAP_2_VONG_TRUONG",
+      "type": "TN",
+      "questionId": "k2_c2_tn_1619",
+      "question": "Câu tục ngữ, thành ngữ nào dưới đây thể hiện phẩm chất hoặc bài học về 'Biết ơn'?",
+      "options": {
+        "A": "Chớ thấy sóng cả mà ngã tay chèo",
+        "B": "Uống nước nhớ người đào giếng",
+        "C": "Cây ngay không sợ chết đứng",
+        "D": "Học thầy không tày học bạn"
+      },
+      "answer": "B",
+      "explanation": "'Uống nước nhớ người đào giếng': Hưởng trái ngọt nhớ công người trồng cây, uống nước mát nhớ ơn người đào giếng."
+    },
+    {
+      "contest": "Trạng Nguyên Tiếng Việt",
+      "grade": "KHOI_2",
+      "level": "CAP_2_VONG_TRUONG",
+      "type": "TN",
+      "questionId": "k2_c2_tn_1620",
+      "question": "Câu tục ngữ, thành ngữ nào dưới đây thể hiện phẩm chất hoặc bài học về 'Giao tiếp, ứng xử'?",
+      "options": {
+        "A": "Bầu ơi thương lấy bí cùng, tuy rằng khác giống nhưng chung một giàn",
+        "B": "Công cha như núi Thái Sơn, nghĩa mẹ như nước trong nguồn chảy ra",
+        "C": "Lời nói chẳng mất tiền mua, lựa lời mà nói cho vừa lòng nhau",
+        "D": "Người ta là hoa đất"
+      },
+      "answer": "C",
+      "explanation": "'Lời nói chẳng mất tiền mua, lựa lời mà nói cho vừa lòng nhau': Khi giao tiếp cần ăn nói lịch thiệp, nhã nhặn và tế nhị."
+    },
+    {
+      "contest": "Trạng Nguyên Tiếng Việt",
+      "grade": "KHOI_2",
+      "level": "CAP_2_VONG_TRUONG",
+      "type": "TN",
+      "questionId": "k2_c2_tn_1621",
+      "question": "Câu tục ngữ, thành ngữ nào dưới đây thể hiện phẩm chất hoặc bài học về 'Đoàn kết dân tộc'?",
+      "options": {
+        "A": "Chim có tổ người có tông",
+        "B": "Lời nói chẳng mất tiền mua, lựa lời mà nói cho vừa lòng nhau",
+        "C": "Gần mực thì đen gần đèn thì sáng",
+        "D": "Nhiễu điều phủ lấy giá gương, người trong một nước phải thương nhau cùng"
+      },
+      "answer": "D",
+      "explanation": "'Nhiễu điều phủ lấy giá gương, người trong một nước phải thương nhau cùng': Đồng bào cùng một giang sơn phải luôn đùm bọc, giúp đỡ lẫn nhau."
+    },
+    {
+      "contest": "Trạng Nguyên Tiếng Việt",
+      "grade": "KHOI_2",
+      "level": "CAP_2_VONG_TRUONG",
+      "type": "TN",
+      "questionId": "k2_c2_tn_1622",
+      "question": "Câu tục ngữ, thành ngữ nào dưới đây thể hiện phẩm chất hoặc bài học về 'Đoàn kết dân tộc'?",
+      "options": {
+        "A": "Nhiễu điều phủ lấy giá gương, người trong một nước phải thương nhau cùng",
+        "B": "Chị ngã em nâng",
+        "C": "Lời nói chẳng mất tiền mua, lựa lời mà nói cho vừa lòng nhau",
+        "D": "Cây ngay không sợ chết đứng"
+      },
+      "answer": "A",
+      "explanation": "'Nhiễu điều phủ lấy giá gương, người trong một nước phải thương nhau cùng': Đồng bào cùng một giang sơn phải luôn đùm bọc, giúp đỡ lẫn nhau."
+    },
+    {
+      "contest": "Trạng Nguyên Tiếng Việt",
+      "grade": "KHOI_2",
+      "level": "CAP_2_VONG_TRUONG",
+      "type": "TN",
+      "questionId": "k2_c2_tn_1623",
+      "question": "Câu tục ngữ, thành ngữ nào dưới đây thể hiện phẩm chất hoặc bài học về 'Kiên trì'?",
+      "options": {
+        "A": "Vạn sự khởi đầu nan",
+        "B": "Thương người như thể thương thân",
+        "C": "Đi một ngày đàng học một sàng khôn",
+        "D": "Gần mực thì đen gần đèn thì sáng"
+      },
+      "answer": "A",
+      "explanation": "'Vạn sự khởi đầu nan': Bất kì công việc gì lúc bắt đầu cũng đều gặp nhiều gian truân, thử thách."
+    },
+    {
+      "contest": "Trạng Nguyên Tiếng Việt",
+      "grade": "KHOI_2",
+      "level": "CAP_2_VONG_TRUONG",
+      "type": "TN",
+      "questionId": "k2_c2_tn_1624",
+      "question": "Câu tục ngữ, thành ngữ nào dưới đây thể hiện phẩm chất hoặc bài học về 'Đoàn kết, yêu thương'?",
+      "options": {
+        "A": "Công cha như núi Thái Sơn, nghĩa mẹ như nước trong nguồn chảy ra",
+        "B": "Người ta là hoa đất",
+        "C": "Bầu ơi thương lấy bí cùng, tuy rằng khác giống nhưng chung một giàn",
+        "D": "Nhiễu điều phủ lấy giá gương, người trong một nước phải thương nhau cùng"
+      },
+      "answer": "C",
+      "explanation": "'Bầu ơi thương lấy bí cùng, tuy rằng khác giống nhưng chung một giàn': Dù xuất thân khác nhau nhưng cùng chung sống một đất nước thì phải thương yêu nhau."
+    },
+    {
+      "contest": "Trạng Nguyên Tiếng Việt",
+      "grade": "KHOI_2",
+      "level": "CAP_2_VONG_TRUONG",
+      "type": "TN",
+      "questionId": "k2_c2_tn_1625",
+      "question": "Câu tục ngữ, thành ngữ nào dưới đây thể hiện phẩm chất hoặc bài học về 'Ý chí, thử thách'?",
+      "options": {
+        "A": "Lửa thử vàng gian nan thử sức",
+        "B": "Lời nói chẳng mất tiền mua, lựa lời mà nói cho vừa lòng nhau",
+        "C": "Uống nước nhớ người đào giếng",
+        "D": "Chim có tổ người có tông"
+      },
+      "answer": "A",
+      "explanation": "'Lửa thử vàng gian nan thử sức': Khó khăn thử thách là thước đo lòng kiên định và bản lĩnh con người."
+    },
+    {
+      "contest": "Trạng Nguyên Tiếng Việt",
+      "grade": "KHOI_2",
+      "level": "CAP_2_VONG_TRUONG",
+      "type": "TN",
+      "questionId": "k2_c2_tn_1626",
+      "question": "Câu tục ngữ, thành ngữ nào dưới đây thể hiện phẩm chất hoặc bài học về 'Tương thân tương ái'?",
+      "options": {
+        "A": "Công cha như núi Thái Sơn, nghĩa mẹ như nước trong nguồn chảy ra",
+        "B": "Lửa thử vàng gian nan thử sức",
+        "C": "Lá lành đùm lá rách",
+        "D": "Thương người như thể thương thân"
+      },
+      "answer": "C",
+      "explanation": "'Lá lành đùm lá rách': Khuyên con người phải biết đùm bọc, giúp đỡ lẫn nhau khi gặp hoạn nạn, khó khăn."
+    },
+    {
+      "contest": "Trạng Nguyên Tiếng Việt",
+      "grade": "KHOI_2",
+      "level": "CAP_2_VONG_TRUONG",
+      "type": "TN",
+      "questionId": "k2_c2_tn_1627",
+      "question": "Câu tục ngữ, thành ngữ nào dưới đây thể hiện phẩm chất hoặc bài học về 'Kiên trì, nghị lực'?",
+      "options": {
+        "A": "Bầu ơi thương lấy bí cùng, tuy rằng khác giống nhưng chung một giàn",
+        "B": "Thuận vợ thuận chồng tát biển Đông cũng cạn",
+        "C": "Gần mực thì đen gần đèn thì sáng",
+        "D": "Có công mài sắt có ngày nên kim"
+      },
+      "answer": "D",
+      "explanation": "'Có công mài sắt có ngày nên kim': Chỉ cần kiên trì, nỗ lực và nhẫn nại thì việc khó khăn đến mấy cũng sẽ thành công."
+    },
+    {
+      "contest": "Trạng Nguyên Tiếng Việt",
+      "grade": "KHOI_2",
+      "level": "CAP_2_VONG_TRUONG",
+      "type": "TN",
+      "questionId": "k2_c2_tn_1628",
+      "question": "Câu tục ngữ, thành ngữ nào dưới đây thể hiện phẩm chất hoặc bài học về 'Trung thực, tự trọng'?",
+      "options": {
+        "A": "Cây ngay không sợ chết đứng",
+        "B": "Một cây làm chẳng nên non, ba cây chụm lại nên hòn núi cao",
+        "C": "Ăn quả nhớ kẻ trồng cây",
+        "D": "Tấc đất tấc vàng"
+      },
+      "answer": "A",
+      "explanation": "'Cây ngay không sợ chết đứng': Người sống ngay thẳng, thật thà thì không sợ bất kì lời vu khống hay thử thách nào."
+    },
+    {
+      "contest": "Trạng Nguyên Tiếng Việt",
+      "grade": "KHOI_2",
+      "level": "CAP_2_VONG_TRUONG",
+      "type": "TN",
+      "questionId": "k2_c2_tn_1629",
+      "question": "Câu tục ngữ, thành ngữ nào dưới đây thể hiện phẩm chất hoặc bài học về 'Ý chí, bản lĩnh'?",
+      "options": {
+        "A": "Chớ thấy sóng cả mà ngã tay chèo",
+        "B": "Gần mực thì đen gần đèn thì sáng",
+        "C": "Đi một ngày đàng học một sàng khôn",
+        "D": "Người ta là hoa đất"
+      },
+      "answer": "A",
+      "explanation": "'Chớ thấy sóng cả mà ngã tay chèo': Đừng vì thấy khó khăn, nguy nan mà nản lòng, buông xuôi ý chí."
+    },
+    {
+      "contest": "Trạng Nguyên Tiếng Việt",
+      "grade": "KHOI_2",
+      "level": "CAP_2_VONG_TRUONG",
+      "type": "TN",
+      "questionId": "k2_c2_tn_1630",
+      "question": "Câu tục ngữ, thành ngữ nào dưới đây thể hiện phẩm chất hoặc bài học về 'Hiếu thảo'?",
+      "options": {
+        "A": "Uống nước nhớ người đào giếng",
+        "B": "Công cha như núi Thái Sơn, nghĩa mẹ như nước trong nguồn chảy ra",
+        "C": "Chim có tổ người có tông",
+        "D": "Học thầy không tày học bạn"
+      },
+      "answer": "B",
+      "explanation": "'Công cha như núi Thái Sơn, nghĩa mẹ như nước trong nguồn chảy ra': Công ơn sinh thành dưỡng dục của cha mẹ to lớn vô bờ bến không gì sánh bằng."
+    },
+    {
+      "contest": "Trạng Nguyên Tiếng Việt",
+      "grade": "KHOI_2",
+      "level": "CAP_2_VONG_TRUONG",
+      "type": "TN",
+      "questionId": "k2_c2_tn_1631",
+      "question": "Câu tục ngữ, thành ngữ nào dưới đây thể hiện phẩm chất hoặc bài học về 'Sức mạnh đoàn kết'?",
+      "options": {
+        "A": "Đi một ngày đàng học một sàng khôn",
+        "B": "Một cây làm chẳng nên non, ba cây chụm lại nên hòn núi cao",
+        "C": "Chớ thấy sóng cả mà ngã tay chèo",
+        "D": "Lửa thử vàng gian nan thử sức"
+      },
+      "answer": "B",
+      "explanation": "'Một cây làm chẳng nên non, ba cây chụm lại nên hòn núi cao': Một người lẻ loi khó làm việc lớn, nhưng khi đoàn kết lại sẽ tạo nên sức mạnh vô địch."
+    },
+    {
+      "contest": "Trạng Nguyên Tiếng Việt",
+      "grade": "KHOI_2",
+      "level": "CAP_2_VONG_TRUONG",
+      "type": "TN",
+      "questionId": "k2_c2_tn_1632",
+      "question": "Câu tục ngữ, thành ngữ nào dưới đây thể hiện phẩm chất hoặc bài học về 'Biết ơn'?",
+      "options": {
+        "A": "Công cha như núi Thái Sơn, nghĩa mẹ như nước trong nguồn chảy ra",
+        "B": "Lá lành đùm lá rách",
+        "C": "Tấc đất tấc vàng",
+        "D": "Uống nước nhớ người đào giếng"
+      },
+      "answer": "D",
+      "explanation": "'Uống nước nhớ người đào giếng': Hưởng trái ngọt nhớ công người trồng cây, uống nước mát nhớ ơn người đào giếng."
+    },
+    {
+      "contest": "Trạng Nguyên Tiếng Việt",
+      "grade": "KHOI_2",
+      "level": "CAP_2_VONG_TRUONG",
+      "type": "TN",
+      "questionId": "k2_c2_tn_1633",
+      "question": "Câu tục ngữ, thành ngữ nào dưới đây thể hiện phẩm chất hoặc bài học về 'Giao tiếp, ứng xử'?",
+      "options": {
+        "A": "Thuận vợ thuận chồng tát biển Đông cũng cạn",
+        "B": "Lời nói chẳng mất tiền mua, lựa lời mà nói cho vừa lòng nhau",
+        "C": "Cây ngay không sợ chết đứng",
+        "D": "Đói cho sạch rách cho thơm"
+      },
+      "answer": "B",
+      "explanation": "'Lời nói chẳng mất tiền mua, lựa lời mà nói cho vừa lòng nhau': Khi giao tiếp cần ăn nói lịch thiệp, nhã nhặn và tế nhị."
+    },
+    {
+      "contest": "Trạng Nguyên Tiếng Việt",
+      "grade": "KHOI_2",
+      "level": "CAP_2_VONG_TRUONG",
+      "type": "TN",
+      "questionId": "k2_c2_tn_1634",
+      "question": "Câu tục ngữ, thành ngữ nào dưới đây thể hiện phẩm chất hoặc bài học về 'Trung thực, tự trọng'?",
+      "options": {
+        "A": "Đói cho sạch rách cho thơm",
+        "B": "Một cây làm chẳng nên non, ba cây chụm lại nên hòn núi cao",
+        "C": "Cây ngay không sợ chết đứng",
+        "D": "Ăn ngay nói thật mọi tật mọi lành"
+      },
+      "answer": "C",
+      "explanation": "'Cây ngay không sợ chết đứng': Người sống ngay thẳng, thật thà thì không sợ bất kì lời vu khống hay thử thách nào."
+    },
+    {
+      "contest": "Trạng Nguyên Tiếng Việt",
+      "grade": "KHOI_2",
+      "level": "CAP_2_VONG_TRUONG",
+      "type": "TN",
+      "questionId": "k2_c2_tn_1635",
+      "question": "Câu tục ngữ, thành ngữ nào dưới đây thể hiện phẩm chất hoặc bài học về 'Học tập'?",
+      "options": {
+        "A": "Vạn sự khởi đầu nan",
+        "B": "Học thầy không tày học bạn",
+        "C": "Đói cho sạch rách cho thơm",
+        "D": "Lửa thử vàng gian nan thử sức"
+      },
+      "answer": "B",
+      "explanation": "'Học thầy không tày học bạn': Nhấn mạnh vai trò to lớn của việc học hỏi từ bạn bè xung quanh."
+    },
+    {
+      "contest": "Trạng Nguyên Tiếng Việt",
+      "grade": "KHOI_2",
+      "level": "CAP_2_VONG_TRUONG",
+      "type": "TN",
+      "questionId": "k2_c2_tn_1636",
+      "question": "Câu tục ngữ, thành ngữ nào dưới đây thể hiện phẩm chất hoặc bài học về 'Hòa thuận gia đình'?",
+      "options": {
+        "A": "Lửa thử vàng gian nan thử sức",
+        "B": "Thuận vợ thuận chồng tát biển Đông cũng cạn",
+        "C": "Chị ngã em nâng",
+        "D": "Một con ngựa đau cả tàu bỏ cỏ"
+      },
+      "answer": "B",
+      "explanation": "'Thuận vợ thuận chồng tát biển Đông cũng cạn': Sự đồng lòng, hòa thuận trong gia đình giúp vượt qua mọi gian khó."
+    },
+    {
+      "contest": "Trạng Nguyên Tiếng Việt",
+      "grade": "KHOI_2",
+      "level": "CAP_2_VONG_TRUONG",
+      "type": "TN",
+      "questionId": "k2_c2_tn_1637",
+      "question": "Câu tục ngữ, thành ngữ nào dưới đây thể hiện phẩm chất hoặc bài học về 'Kiên trì, nghị lực'?",
+      "options": {
+        "A": "Có công mài sắt có ngày nên kim",
+        "B": "Một con ngựa đau cả tàu bỏ cỏ",
+        "C": "Gần mực thì đen gần đèn thì sáng",
+        "D": "Uống nước nhớ nguồn"
+      },
+      "answer": "A",
+      "explanation": "'Có công mài sắt có ngày nên kim': Chỉ cần kiên trì, nỗ lực và nhẫn nại thì việc khó khăn đến mấy cũng sẽ thành công."
+    },
+    {
+      "contest": "Trạng Nguyên Tiếng Việt",
+      "grade": "KHOI_2",
+      "level": "CAP_2_VONG_TRUONG",
+      "type": "TN",
+      "questionId": "k2_c2_tn_1638",
+      "question": "Câu tục ngữ, thành ngữ nào dưới đây thể hiện phẩm chất hoặc bài học về 'Sức mạnh đoàn kết'?",
+      "options": {
+        "A": "Công cha như núi Thái Sơn, nghĩa mẹ như nước trong nguồn chảy ra",
+        "B": "Gần mực thì đen gần đèn thì sáng",
+        "C": "Một cây làm chẳng nên non, ba cây chụm lại nên hòn núi cao",
+        "D": "Nhiễu điều phủ lấy giá gương, người trong một nước phải thương nhau cùng"
+      },
+      "answer": "C",
+      "explanation": "'Một cây làm chẳng nên non, ba cây chụm lại nên hòn núi cao': Một người lẻ loi khó làm việc lớn, nhưng khi đoàn kết lại sẽ tạo nên sức mạnh vô địch."
+    },
+    {
+      "contest": "Trạng Nguyên Tiếng Việt",
+      "grade": "KHOI_2",
+      "level": "CAP_2_VONG_TRUONG",
+      "type": "TN",
+      "questionId": "k2_c2_tn_1639",
+      "question": "Câu tục ngữ, thành ngữ nào dưới đây thể hiện phẩm chất hoặc bài học về 'Môi trường sống'?",
+      "options": {
+        "A": "Học thầy không tày học bạn",
+        "B": "Uống nước nhớ người đào giếng",
+        "C": "Gần mực thì đen gần đèn thì sáng",
+        "D": "Lời nói chẳng mất tiền mua, lựa lời mà nói cho vừa lòng nhau"
+      },
+      "answer": "C",
+      "explanation": "'Gần mực thì đen gần đèn thì sáng': Ở gần người tốt sẽ học được điều hay, ở gần người xấu dễ bị lây thói hư tật xấu."
+    },
+    {
+      "contest": "Trạng Nguyên Tiếng Việt",
+      "grade": "KHOI_2",
+      "level": "CAP_2_VONG_TRUONG",
+      "type": "TN",
+      "questionId": "k2_c2_tn_1640",
+      "question": "Câu tục ngữ, thành ngữ nào dưới đây thể hiện phẩm chất hoặc bài học về 'Trung thực, tự trọng'?",
+      "options": {
+        "A": "Lá lành đùm lá rách",
+        "B": "Chớ thấy sóng cả mà ngã tay chèo",
+        "C": "Ăn ngay nói thật mọi tật mọi lành",
+        "D": "Cây ngay không sợ chết đứng"
+      },
+      "answer": "D",
+      "explanation": "'Cây ngay không sợ chết đứng': Người sống ngay thẳng, thật thà thì không sợ bất kì lời vu khống hay thử thách nào."
+    },
+    {
+      "contest": "Trạng Nguyên Tiếng Việt",
+      "grade": "KHOI_2",
+      "level": "CAP_2_VONG_TRUONG",
+      "type": "TN",
+      "questionId": "k2_c2_tn_1641",
+      "question": "Câu tục ngữ, thành ngữ nào dưới đây thể hiện phẩm chất hoặc bài học về 'Học tập'?",
+      "options": {
+        "A": "Chị ngã em nâng",
+        "B": "Lửa thử vàng gian nan thử sức",
+        "C": "Công cha như núi Thái Sơn, nghĩa mẹ như nước trong nguồn chảy ra",
+        "D": "Học thầy không tày học bạn"
+      },
+      "answer": "D",
+      "explanation": "'Học thầy không tày học bạn': Nhấn mạnh vai trò to lớn của việc học hỏi từ bạn bè xung quanh."
+    },
+    {
+      "contest": "Trạng Nguyên Tiếng Việt",
+      "grade": "KHOI_2",
+      "level": "CAP_2_VONG_TRUONG",
+      "type": "TN",
+      "questionId": "k2_c2_tn_1642",
+      "question": "Câu tục ngữ, thành ngữ nào dưới đây thể hiện phẩm chất hoặc bài học về 'Trung thực, tự trọng'?",
+      "options": {
+        "A": "Công cha như núi Thái Sơn, nghĩa mẹ như nước trong nguồn chảy ra",
+        "B": "Cây ngay không sợ chết đứng",
+        "C": "Chị ngã em nâng",
+        "D": "Lửa thử vàng gian nan thử sức"
+      },
+      "answer": "B",
+      "explanation": "'Cây ngay không sợ chết đứng': Người sống ngay thẳng, thật thà thì không sợ bất kì lời vu khống hay thử thách nào."
+    },
+    {
+      "contest": "Trạng Nguyên Tiếng Việt",
+      "grade": "KHOI_2",
+      "level": "CAP_2_VONG_TRUONG",
+      "type": "TN",
+      "questionId": "k2_c2_tn_1643",
+      "question": "Câu tục ngữ, thành ngữ nào dưới đây thể hiện phẩm chất hoặc bài học về 'Đất đai, lao động'?",
+      "options": {
+        "A": "Chị ngã em nâng",
+        "B": "Chim có tổ người có tông",
+        "C": "Nhiễu điều phủ lấy giá gương, người trong một nước phải thương nhau cùng",
+        "D": "Tấc đất tấc vàng"
+      },
+      "answer": "D",
+      "explanation": "'Tấc đất tấc vàng': Mỗi tấc đất đều vô cùng quý giá như vàng vì đem lại nguồn sống cho con người."
+    },
+    {
+      "contest": "Trạng Nguyên Tiếng Việt",
+      "grade": "KHOI_2",
+      "level": "CAP_2_VONG_TRUONG",
+      "type": "TN",
+      "questionId": "k2_c2_tn_1644",
+      "question": "Câu tục ngữ, thành ngữ nào dưới đây thể hiện phẩm chất hoặc bài học về 'Đoàn kết, gắn bó'?",
+      "options": {
+        "A": "Một con ngựa đau cả tàu bỏ cỏ",
+        "B": "Một cây làm chẳng nên non, ba cây chụm lại nên hòn núi cao",
+        "C": "Ăn ngay nói thật mọi tật mọi lành",
+        "D": "Gần mực thì đen gần đèn thì sáng"
+      },
+      "answer": "A",
+      "explanation": "'Một con ngựa đau cả tàu bỏ cỏ': Khi một cá nhân gặp nạn, toàn thể tập thể đều chia sẻ nỗi buồn và tương trợ."
+    },
+    {
+      "contest": "Trạng Nguyên Tiếng Việt",
+      "grade": "KHOI_2",
+      "level": "CAP_2_VONG_TRUONG",
+      "type": "SX",
+      "questionId": "k2_c2_sx_1645",
+      "question": "Hãy sắp xếp các từ/cụm từ sau để tạo thành một câu văn hoàn chỉnh, đúng ngữ pháp tiếng Việt:",
+      "elements": [
+        "Những",
+        "đọng",
+        "trên vòm lá.",
+        "hạt sương mai"
+      ],
+      "answer": "Những hạt sương mai đọng trên vòm lá.",
+      "explanation": "Câu hoàn chỉnh đúng trật tự ngữ pháp (Chủ ngữ - Vị ngữ): \"Những hạt sương mai đọng trên vòm lá.\""
+    },
+    {
+      "contest": "Trạng Nguyên Tiếng Việt",
+      "grade": "KHOI_2",
+      "level": "CAP_2_VONG_TRUONG",
+      "type": "SX",
+      "questionId": "k2_c2_sx_1646",
+      "question": "Hãy sắp xếp các từ/cụm từ sau để tạo thành một câu tục ngữ, thành ngữ hoàn chỉnh và có nghĩa:",
+      "elements": [
+        "mà ngã",
+        "sóng cả",
+        "Chớ thấy",
+        "tay chèo"
+      ],
+      "answer": "Chớ thấy sóng cả mà ngã tay chèo",
+      "explanation": "Câu thành ngữ/tục ngữ đúng là: 'Chớ thấy sóng cả mà ngã tay chèo'. Đừng vì thấy khó khăn, nguy nan mà nản lòng, buông xuôi ý chí."
+    },
+    {
+      "contest": "Trạng Nguyên Tiếng Việt",
+      "grade": "KHOI_2",
+      "level": "CAP_2_VONG_TRUONG",
+      "type": "SX",
+      "questionId": "k2_c2_sx_1647",
+      "question": "Hãy sắp xếp các từ/cụm từ sau để tạo thành một câu văn hoàn chỉnh, đúng ngữ pháp tiếng Việt:",
+      "elements": [
+        "của",
+        "là thủ đô",
+        "nước ta.",
+        "Hà Nội"
+      ],
+      "answer": "Hà Nội là thủ đô của nước ta.",
+      "explanation": "Câu hoàn chỉnh đúng trật tự ngữ pháp (Chủ ngữ - Vị ngữ): \"Hà Nội là thủ đô của nước ta.\""
+    },
+    {
+      "contest": "Trạng Nguyên Tiếng Việt",
+      "grade": "KHOI_2",
+      "level": "CAP_2_VONG_TRUONG",
+      "type": "SX",
+      "questionId": "k2_c2_sx_1648",
+      "question": "Hãy sắp xếp các từ/cụm từ sau để tạo thành một câu văn hoàn chỉnh, đúng ngữ pháp tiếng Việt:",
+      "elements": [
+        "chào cờ.",
+        "buổi lễ",
+        "tham gia",
+        "Chúng em",
+        "hào hứng"
+      ],
+      "answer": "Chúng em hào hứng tham gia buổi lễ chào cờ.",
+      "explanation": "Câu hoàn chỉnh đúng trật tự ngữ pháp (Chủ ngữ - Vị ngữ): \"Chúng em hào hứng tham gia buổi lễ chào cờ.\""
+    },
+    {
+      "contest": "Trạng Nguyên Tiếng Việt",
+      "grade": "KHOI_2",
+      "level": "CAP_2_VONG_TRUONG",
+      "type": "SX",
+      "questionId": "k2_c2_sx_1649",
+      "question": "Hãy sắp xếp các từ/cụm từ sau để tạo thành một câu văn hoàn chỉnh, đúng ngữ pháp tiếng Việt:",
+      "elements": [
+        "ông bà.",
+        "giúp đỡ",
+        "Bé Mai",
+        "quét nhà"
+      ],
+      "answer": "Bé Mai quét nhà giúp đỡ ông bà.",
+      "explanation": "Câu hoàn chỉnh đúng trật tự ngữ pháp (Chủ ngữ - Vị ngữ): \"Bé Mai quét nhà giúp đỡ ông bà.\""
+    },
+    {
+      "contest": "Trạng Nguyên Tiếng Việt",
+      "grade": "KHOI_2",
+      "level": "CAP_2_VONG_TRUONG",
+      "type": "SX",
+      "questionId": "k2_c2_sx_1650",
+      "question": "Hãy sắp xếp các từ/cụm từ sau để tạo thành một câu văn hoàn chỉnh, đúng ngữ pháp tiếng Việt:",
+      "elements": [
+        "hiền hòa",
+        "uốn lượn.",
+        "Dòng sông",
+        "quê em"
+      ],
+      "answer": "Dòng sông quê em hiền hòa uốn lượn.",
+      "explanation": "Câu hoàn chỉnh đúng trật tự ngữ pháp (Chủ ngữ - Vị ngữ): \"Dòng sông quê em hiền hòa uốn lượn.\""
+    },
+    {
+      "contest": "Trạng Nguyên Tiếng Việt",
+      "grade": "KHOI_2",
+      "level": "CAP_2_VONG_TRUONG",
+      "type": "SX",
+      "questionId": "k2_c2_sx_1651",
+      "question": "Hãy sắp xếp các từ/cụm từ sau để tạo thành một câu tục ngữ, thành ngữ hoàn chỉnh và có nghĩa:",
+      "elements": [
+        "mọi lành",
+        "nói thật",
+        "Ăn ngay",
+        "mọi tật"
+      ],
+      "answer": "Ăn ngay nói thật mọi tật mọi lành",
+      "explanation": "Câu thành ngữ/tục ngữ đúng là: 'Ăn ngay nói thật mọi tật mọi lành'. Sống chân thành, trung thực thì tâm hồn luôn thanh thản và bình an."
+    },
+    {
+      "contest": "Trạng Nguyên Tiếng Việt",
+      "grade": "KHOI_2",
+      "level": "CAP_2_VONG_TRUONG",
+      "type": "SX",
+      "questionId": "k2_c2_sx_1652",
+      "question": "Hãy sắp xếp các từ/cụm từ sau để tạo thành một câu tục ngữ, thành ngữ hoàn chỉnh và có nghĩa:",
+      "elements": [
+        "đầu",
+        "khởi",
+        "Vạn",
+        "sự",
+        "nan"
+      ],
+      "answer": "Vạn sự khởi đầu nan",
+      "explanation": "Câu thành ngữ/tục ngữ đúng là: 'Vạn sự khởi đầu nan'. Bất kì công việc gì lúc bắt đầu cũng đều gặp nhiều gian truân, thử thách."
+    },
+    {
+      "contest": "Trạng Nguyên Tiếng Việt",
+      "grade": "KHOI_2",
+      "level": "CAP_2_VONG_TRUONG",
+      "type": "SX",
+      "questionId": "k2_c2_sx_1653",
+      "question": "Hãy sắp xếp các từ/cụm từ sau để tạo thành một câu tục ngữ, thành ngữ hoàn chỉnh và có nghĩa:",
+      "elements": [
+        "vàng gian",
+        "nan thử sức",
+        "Lửa thử"
+      ],
+      "answer": "Lửa thử vàng gian nan thử sức",
+      "explanation": "Câu thành ngữ/tục ngữ đúng là: 'Lửa thử vàng gian nan thử sức'. Khó khăn thử thách là thước đo lòng kiên định và bản lĩnh con người."
+    },
+    {
+      "contest": "Trạng Nguyên Tiếng Việt",
+      "grade": "KHOI_2",
+      "level": "CAP_2_VONG_TRUONG",
+      "type": "SX",
+      "questionId": "k2_c2_sx_1654",
+      "question": "Hãy sắp xếp các từ/cụm từ sau để tạo thành một câu văn hoàn chỉnh, đúng ngữ pháp tiếng Việt:",
+      "elements": [
+        "tỏa ánh nắng",
+        "ấm áp.",
+        "nhô lên",
+        "Mặt trời"
+      ],
+      "answer": "Mặt trời nhô lên tỏa ánh nắng ấm áp.",
+      "explanation": "Câu hoàn chỉnh đúng trật tự ngữ pháp (Chủ ngữ - Vị ngữ): \"Mặt trời nhô lên tỏa ánh nắng ấm áp.\""
+    },
+    {
+      "contest": "Trạng Nguyên Tiếng Việt",
+      "grade": "KHOI_2",
+      "level": "CAP_2_VONG_TRUONG",
+      "type": "SX",
+      "questionId": "k2_c2_sx_1655",
+      "question": "Hãy sắp xếp các từ/cụm từ sau để tạo thành một câu tục ngữ, thành ngữ hoàn chỉnh và có nghĩa:",
+      "elements": [
+        "Người",
+        "ta",
+        "hoa",
+        "đất",
+        "là"
+      ],
+      "answer": "Người ta là hoa đất",
+      "explanation": "Câu thành ngữ/tục ngữ đúng là: 'Người ta là hoa đất'. Ca ngợi con người là tinh hoa quý báu nhất của vũ trụ và mặt đất."
+    },
+    {
+      "contest": "Trạng Nguyên Tiếng Việt",
+      "grade": "KHOI_2",
+      "level": "CAP_2_VONG_TRUONG",
+      "type": "SX",
+      "questionId": "k2_c2_sx_1656",
+      "question": "Hãy sắp xếp các từ/cụm từ sau để tạo thành một câu tục ngữ, thành ngữ hoàn chỉnh và có nghĩa:",
+      "elements": [
+        "nhớ người",
+        "đào giếng",
+        "Uống nước"
+      ],
+      "answer": "Uống nước nhớ người đào giếng",
+      "explanation": "Câu thành ngữ/tục ngữ đúng là: 'Uống nước nhớ người đào giếng'. Hưởng trái ngọt nhớ công người trồng cây, uống nước mát nhớ ơn người đào giếng."
+    },
+    {
+      "contest": "Trạng Nguyên Tiếng Việt",
+      "grade": "KHOI_2",
+      "level": "CAP_2_VONG_TRUONG",
+      "type": "SX",
+      "questionId": "k2_c2_sx_1657",
+      "question": "Hãy sắp xếp các từ/cụm từ sau để tạo thành một câu tục ngữ, thành ngữ hoàn chỉnh và có nghĩa:",
+      "elements": [
+        "học bạn",
+        "không tày",
+        "Học thầy"
+      ],
+      "answer": "Học thầy không tày học bạn",
+      "explanation": "Câu thành ngữ/tục ngữ đúng là: 'Học thầy không tày học bạn'. Nhấn mạnh vai trò to lớn của việc học hỏi từ bạn bè xung quanh."
+    },
+    {
+      "contest": "Trạng Nguyên Tiếng Việt",
+      "grade": "KHOI_2",
+      "level": "CAP_2_VONG_TRUONG",
+      "type": "SX",
+      "questionId": "k2_c2_sx_1658",
+      "question": "Hãy sắp xếp các từ/cụm từ sau để tạo thành một câu tục ngữ, thành ngữ hoàn chỉnh và có nghĩa:",
+      "elements": [
+        "Chị",
+        "em",
+        "ngã",
+        "nâng"
+      ],
+      "answer": "Chị ngã em nâng",
+      "explanation": "Câu thành ngữ/tục ngữ đúng là: 'Chị ngã em nâng'. Anh chị em trong một nhà phải biết nâng đỡ, thương yêu, che chở cho nhau."
+    },
+    {
+      "contest": "Trạng Nguyên Tiếng Việt",
+      "grade": "KHOI_2",
+      "level": "CAP_2_VONG_TRUONG",
+      "type": "SX",
+      "questionId": "k2_c2_sx_1659",
+      "question": "Hãy sắp xếp các từ/cụm từ sau để tạo thành một câu tục ngữ, thành ngữ hoàn chỉnh và có nghĩa:",
+      "elements": [
+        "chết đứng",
+        "Cây ngay",
+        "không sợ"
+      ],
+      "answer": "Cây ngay không sợ chết đứng",
+      "explanation": "Câu thành ngữ/tục ngữ đúng là: 'Cây ngay không sợ chết đứng'. Người sống ngay thẳng, thật thà thì không sợ bất kì lời vu khống hay thử thách nào."
+    },
+    {
+      "contest": "Trạng Nguyên Tiếng Việt",
+      "grade": "KHOI_2",
+      "level": "CAP_2_VONG_TRUONG",
+      "type": "SX",
+      "questionId": "k2_c2_sx_1660",
+      "question": "Hãy sắp xếp các từ/cụm từ sau để tạo thành một câu tục ngữ, thành ngữ hoàn chỉnh và có nghĩa:",
+      "elements": [
+        "đùm",
+        "Lá",
+        "rách",
+        "lành",
+        "lá"
+      ],
+      "answer": "Lá lành đùm lá rách",
+      "explanation": "Câu thành ngữ/tục ngữ đúng là: 'Lá lành đùm lá rách'. Khuyên con người phải biết đùm bọc, giúp đỡ lẫn nhau khi gặp hoạn nạn, khó khăn."
+    },
+    {
+      "contest": "Trạng Nguyên Tiếng Việt",
+      "grade": "KHOI_2",
+      "level": "CAP_2_VONG_TRUONG",
+      "type": "SX",
+      "questionId": "k2_c2_sx_1661",
+      "question": "Hãy sắp xếp các từ/cụm từ sau để tạo thành một câu tục ngữ, thành ngữ hoàn chỉnh và có nghĩa:",
+      "elements": [
+        "nhớ",
+        "Uống",
+        "nước",
+        "nguồn"
+      ],
+      "answer": "Uống nước nhớ nguồn",
+      "explanation": "Câu thành ngữ/tục ngữ đúng là: 'Uống nước nhớ nguồn'. Nhắc nhở con cháu phải ghi nhớ cội nguồn, tổ tiên và những người đã giúp đỡ mình."
+    },
+    {
+      "contest": "Trạng Nguyên Tiếng Việt",
+      "grade": "KHOI_2",
+      "level": "CAP_2_VONG_TRUONG",
+      "type": "SX",
+      "questionId": "k2_c2_sx_1662",
+      "question": "Hãy sắp xếp các từ/cụm từ sau để tạo thành một câu tục ngữ, thành ngữ hoàn chỉnh và có nghĩa:",
+      "elements": [
+        "như thể",
+        "Thương người",
+        "thương thân"
+      ],
+      "answer": "Thương người như thể thương thân",
+      "explanation": "Câu thành ngữ/tục ngữ đúng là: 'Thương người như thể thương thân'. Yêu thương người khác như yêu quý chính bản thân mình."
+    },
+    {
+      "contest": "Trạng Nguyên Tiếng Việt",
+      "grade": "KHOI_2",
+      "level": "CAP_2_VONG_TRUONG",
+      "type": "SX",
+      "questionId": "k2_c2_sx_1663",
+      "question": "Hãy sắp xếp các từ/cụm từ sau để tạo thành một câu tục ngữ, thành ngữ hoàn chỉnh và có nghĩa:",
+      "elements": [
+        "vàng",
+        "đất",
+        "tấc",
+        "Tấc"
+      ],
+      "answer": "Tấc đất tấc vàng",
+      "explanation": "Câu thành ngữ/tục ngữ đúng là: 'Tấc đất tấc vàng'. Mỗi tấc đất đều vô cùng quý giá như vàng vì đem lại nguồn sống cho con người."
+    },
+    {
+      "contest": "Trạng Nguyên Tiếng Việt",
+      "grade": "KHOI_2",
+      "level": "CAP_2_VONG_TRUONG",
+      "type": "SX",
+      "questionId": "k2_c2_sx_1664",
+      "question": "Hãy sắp xếp các từ/cụm từ sau để tạo thành một câu tục ngữ, thành ngữ hoàn chỉnh và có nghĩa:",
+      "elements": [
+        "lấy giá gương, người",
+        "Nhiễu điều phủ",
+        "trong một nước",
+        "phải thương nhau cùng"
+      ],
+      "answer": "Nhiễu điều phủ lấy giá gương, người trong một nước phải thương nhau cùng",
+      "explanation": "Câu thành ngữ/tục ngữ đúng là: 'Nhiễu điều phủ lấy giá gương, người trong một nước phải thương nhau cùng'. Đồng bào cùng một giang sơn phải luôn đùm bọc, giúp đỡ lẫn nhau."
+    },
+    {
+      "contest": "Trạng Nguyên Tiếng Việt",
+      "grade": "KHOI_2",
+      "level": "CAP_2_VONG_TRUONG",
+      "type": "SX",
+      "questionId": "k2_c2_sx_1665",
+      "question": "Hãy sắp xếp các từ/cụm từ sau để tạo thành một câu tục ngữ, thành ngữ hoàn chỉnh và có nghĩa:",
+      "elements": [
+        "sạch rách",
+        "Đói cho",
+        "cho thơm"
+      ],
+      "answer": "Đói cho sạch rách cho thơm",
+      "explanation": "Câu thành ngữ/tục ngữ đúng là: 'Đói cho sạch rách cho thơm'. Dù trong hoàn cảnh thiếu thốn bần hàn vẫn phải giữ gìn nhân cách và danh dự trong sạch."
+    },
+    {
+      "contest": "Trạng Nguyên Tiếng Việt",
+      "grade": "KHOI_2",
+      "level": "CAP_2_VONG_TRUONG",
+      "type": "SX",
+      "questionId": "k2_c2_sx_1666",
+      "question": "Hãy sắp xếp các từ/cụm từ sau để tạo thành một câu tục ngữ, thành ngữ hoàn chỉnh và có nghĩa:",
+      "elements": [
+        "gần đèn",
+        "thì đen",
+        "Gần mực",
+        "thì sáng"
+      ],
+      "answer": "Gần mực thì đen gần đèn thì sáng",
+      "explanation": "Câu thành ngữ/tục ngữ đúng là: 'Gần mực thì đen gần đèn thì sáng'. Ở gần người tốt sẽ học được điều hay, ở gần người xấu dễ bị lây thói hư tật xấu."
+    },
+    {
+      "contest": "Trạng Nguyên Tiếng Việt",
+      "grade": "KHOI_2",
+      "level": "CAP_2_VONG_TRUONG",
+      "type": "SX",
+      "questionId": "k2_c2_sx_1667",
+      "question": "Hãy sắp xếp các từ/cụm từ sau để tạo thành một câu tục ngữ, thành ngữ hoàn chỉnh và có nghĩa:",
+      "elements": [
+        "tát biển",
+        "thuận chồng",
+        "Thuận vợ",
+        "Đông cũng cạn"
+      ],
+      "answer": "Thuận vợ thuận chồng tát biển Đông cũng cạn",
+      "explanation": "Câu thành ngữ/tục ngữ đúng là: 'Thuận vợ thuận chồng tát biển Đông cũng cạn'. Sự đồng lòng, hòa thuận trong gia đình giúp vượt qua mọi gian khó."
+    },
+    {
+      "contest": "Trạng Nguyên Tiếng Việt",
+      "grade": "KHOI_2",
+      "level": "CAP_2_VONG_TRUONG",
+      "type": "SX",
+      "questionId": "k2_c2_sx_1668",
+      "question": "Hãy sắp xếp các từ/cụm từ sau để tạo thành một câu tục ngữ, thành ngữ hoàn chỉnh và có nghĩa:",
+      "elements": [
+        "lấy bí cùng, tuy",
+        "rằng khác giống",
+        "nhưng chung một giàn",
+        "Bầu ơi thương"
+      ],
+      "answer": "Bầu ơi thương lấy bí cùng, tuy rằng khác giống nhưng chung một giàn",
+      "explanation": "Câu thành ngữ/tục ngữ đúng là: 'Bầu ơi thương lấy bí cùng, tuy rằng khác giống nhưng chung một giàn'. Dù xuất thân khác nhau nhưng cùng chung sống một đất nước thì phải thương yêu nhau."
+    },
+    {
+      "contest": "Trạng Nguyên Tiếng Việt",
+      "grade": "KHOI_2",
+      "level": "CAP_2_VONG_TRUONG",
+      "type": "SX",
+      "questionId": "k2_c2_sx_1669",
+      "question": "Hãy sắp xếp các từ/cụm từ sau để tạo thành một câu tục ngữ, thành ngữ hoàn chỉnh và có nghĩa:",
+      "elements": [
+        "ngày đàng",
+        "sàng khôn",
+        "học một",
+        "Đi một"
+      ],
+      "answer": "Đi một ngày đàng học một sàng khôn",
+      "explanation": "Câu thành ngữ/tục ngữ đúng là: 'Đi một ngày đàng học một sàng khôn'. Càng đi nhiều nơi, trải nghiệm thực tế ta càng tích lũy được nhiều hiểu biết, trí tuệ."
+    },
+    {
+      "contest": "Trạng Nguyên Tiếng Việt",
+      "grade": "KHOI_2",
+      "level": "CAP_2_VONG_TRUONG",
+      "type": "SX",
+      "questionId": "k2_c2_sx_1670",
+      "question": "Hãy sắp xếp các từ/cụm từ sau để tạo thành một câu văn hoàn chỉnh, đúng ngữ pháp tiếng Việt:",
+      "elements": [
+        "đón",
+        "mùa xuân sang.",
+        "Đàn chim én",
+        "bay lượn"
+      ],
+      "answer": "Đàn chim én bay lượn đón mùa xuân sang.",
+      "explanation": "Câu hoàn chỉnh đúng trật tự ngữ pháp (Chủ ngữ - Vị ngữ): \"Đàn chim én bay lượn đón mùa xuân sang.\""
+    },
+    {
+      "contest": "Trạng Nguyên Tiếng Việt",
+      "grade": "KHOI_2",
+      "level": "CAP_2_VONG_TRUONG",
+      "type": "SX",
+      "questionId": "k2_c2_sx_1671",
+      "question": "Hãy sắp xếp các từ/cụm từ sau để tạo thành một câu tục ngữ, thành ngữ hoàn chỉnh và có nghĩa:",
+      "elements": [
+        "trong nguồn chảy ra",
+        "mẹ như nước",
+        "Công cha như",
+        "núi Thái Sơn, nghĩa"
+      ],
+      "answer": "Công cha như núi Thái Sơn, nghĩa mẹ như nước trong nguồn chảy ra",
+      "explanation": "Câu thành ngữ/tục ngữ đúng là: 'Công cha như núi Thái Sơn, nghĩa mẹ như nước trong nguồn chảy ra'. Công ơn sinh thành dưỡng dục của cha mẹ to lớn vô bờ bến không gì sánh bằng."
+    },
+    {
+      "contest": "Trạng Nguyên Tiếng Việt",
+      "grade": "KHOI_2",
+      "level": "CAP_2_VONG_TRUONG",
+      "type": "SX",
+      "questionId": "k2_c2_sx_1672",
+      "question": "Hãy sắp xếp các từ/cụm từ sau để tạo thành một câu tục ngữ, thành ngữ hoàn chỉnh và có nghĩa:",
+      "elements": [
+        "cây chụm lại",
+        "Một cây làm",
+        "nên hòn núi cao",
+        "chẳng nên non, ba"
+      ],
+      "answer": "Một cây làm chẳng nên non, ba cây chụm lại nên hòn núi cao",
+      "explanation": "Câu thành ngữ/tục ngữ đúng là: 'Một cây làm chẳng nên non, ba cây chụm lại nên hòn núi cao'. Một người lẻ loi khó làm việc lớn, nhưng khi đoàn kết lại sẽ tạo nên sức mạnh vô địch."
+    },
+    {
+      "contest": "Trạng Nguyên Tiếng Việt",
+      "grade": "KHOI_2",
+      "level": "CAP_2_VONG_TRUONG",
+      "type": "SX",
+      "questionId": "k2_c2_sx_1673",
+      "question": "Hãy sắp xếp các từ/cụm từ sau để tạo thành một câu tục ngữ, thành ngữ hoàn chỉnh và có nghĩa:",
+      "elements": [
+        "trồng cây",
+        "Ăn quả",
+        "nhớ kẻ"
+      ],
+      "answer": "Ăn quả nhớ kẻ trồng cây",
+      "explanation": "Câu thành ngữ/tục ngữ đúng là: 'Ăn quả nhớ kẻ trồng cây'. Khuyên nhủ con người khi được hưởng thành quả phải luôn biết ơn công lao người tạo dựng."
+    },
+    {
+      "contest": "Trạng Nguyên Tiếng Việt",
+      "grade": "KHOI_2",
+      "level": "CAP_2_VONG_TRUONG",
+      "type": "SX",
+      "questionId": "k2_c2_sx_1674",
+      "question": "Hãy sắp xếp các từ/cụm từ sau để tạo thành một câu tục ngữ, thành ngữ hoàn chỉnh và có nghĩa:",
+      "elements": [
+        "cả tàu",
+        "bỏ cỏ",
+        "ngựa đau",
+        "Một con"
+      ],
+      "answer": "Một con ngựa đau cả tàu bỏ cỏ",
+      "explanation": "Câu thành ngữ/tục ngữ đúng là: 'Một con ngựa đau cả tàu bỏ cỏ'. Khi một cá nhân gặp nạn, toàn thể tập thể đều chia sẻ nỗi buồn và tương trợ."
+    },
+    {
+      "contest": "Trạng Nguyên Tiếng Việt",
+      "grade": "KHOI_2",
+      "level": "CAP_2_VONG_TRUONG",
+      "type": "SX",
+      "questionId": "k2_c2_sx_1675",
+      "question": "Hãy sắp xếp các từ/cụm từ sau để tạo thành một câu tục ngữ, thành ngữ hoàn chỉnh và có nghĩa:",
+      "elements": [
+        "mất tiền mua, lựa",
+        "Lời nói chẳng",
+        "cho vừa lòng nhau",
+        "lời mà nói"
+      ],
+      "answer": "Lời nói chẳng mất tiền mua, lựa lời mà nói cho vừa lòng nhau",
+      "explanation": "Câu thành ngữ/tục ngữ đúng là: 'Lời nói chẳng mất tiền mua, lựa lời mà nói cho vừa lòng nhau'. Khi giao tiếp cần ăn nói lịch thiệp, nhã nhặn và tế nhị."
+    },
+    {
+      "contest": "Trạng Nguyên Tiếng Việt",
+      "grade": "KHOI_2",
+      "level": "CAP_2_VONG_TRUONG",
+      "type": "SX",
+      "questionId": "k2_c2_sx_1676",
+      "question": "Hãy sắp xếp các từ/cụm từ sau để tạo thành một câu tục ngữ, thành ngữ hoàn chỉnh và có nghĩa:",
+      "elements": [
+        "tổ người",
+        "có tông",
+        "Chim có"
+      ],
+      "answer": "Chim có tổ người có tông",
+      "explanation": "Câu thành ngữ/tục ngữ đúng là: 'Chim có tổ người có tông'. Mỗi con người đều có tổ tiên, cội nguồn giống như loài chim có tổ để về."
+    },
+    {
+      "contest": "Trạng Nguyên Tiếng Việt",
+      "grade": "KHOI_2",
+      "level": "CAP_2_VONG_TRUONG",
+      "type": "SX",
+      "questionId": "k2_c2_sx_1677",
+      "question": "Hãy sắp xếp các từ/cụm từ sau để tạo thành một câu tục ngữ, thành ngữ hoàn chỉnh và có nghĩa:",
+      "elements": [
+        "Có công",
+        "có ngày",
+        "nên kim",
+        "mài sắt"
+      ],
+      "answer": "Có công mài sắt có ngày nên kim",
+      "explanation": "Câu thành ngữ/tục ngữ đúng là: 'Có công mài sắt có ngày nên kim'. Chỉ cần kiên trì, nỗ lực và nhẫn nại thì việc khó khăn đến mấy cũng sẽ thành công."
+    },
+    {
+      "contest": "Trạng Nguyên Tiếng Việt",
+      "grade": "KHOI_2",
+      "level": "CAP_2_VONG_TRUONG",
+      "type": "DT",
+      "questionId": "k2_c2_dt_1678",
+      "question": "Điền từ thích hợp vào chỗ trống để hoàn thành câu thành ngữ, tục ngữ: \"Đói cho (...) rách cho thơm\"",
+      "blankAnswer": "sạch",
+      "answer": "sạch",
+      "options": [
+        "sạch",
+        "khôn",
+        "đùm",
+        "ngay"
+      ],
+      "explanation": "Câu thành ngữ, tục ngữ hoàn chỉnh là: \"Đói cho sạch rách cho thơm\". Dù trong hoàn cảnh thiếu thốn bần hàn vẫn phải giữ gìn nhân cách và danh dự trong sạch."
+    },
+    {
+      "contest": "Trạng Nguyên Tiếng Việt",
+      "grade": "KHOI_2",
+      "level": "CAP_2_VONG_TRUONG",
+      "type": "DT",
+      "questionId": "k2_c2_dt_1679",
+      "question": "Điền chữ cái hoặc âm thích hợp vào chỗ trống: \"(...)ăm chỉ\"",
+      "blankAnswer": "ch",
+      "answer": "ch",
+      "options": [
+        "tr",
+        "ch",
+        "s",
+        "c"
+      ],
+      "explanation": "Từ đúng chính tả là 'chăm chỉ', do đó âm cần điền là 'ch'."
+    },
+    {
+      "contest": "Trạng Nguyên Tiếng Việt",
+      "grade": "KHOI_2",
+      "level": "CAP_2_VONG_TRUONG",
+      "type": "DT",
+      "questionId": "k2_c2_dt_1680",
+      "question": "Điền từ thích hợp vào chỗ trống để hoàn thành câu thành ngữ, tục ngữ: \"Một con ngựa đau cả tàu (...)\"",
+      "blankAnswer": "bỏ cỏ",
+      "answer": "bỏ cỏ",
+      "options": [
+        "bỏ cỏ",
+        "kim",
+        "nâng",
+        "khôn"
+      ],
+      "explanation": "Câu thành ngữ, tục ngữ hoàn chỉnh là: \"Một con ngựa đau cả tàu bỏ cỏ\". Khi một cá nhân gặp nạn, toàn thể tập thể đều chia sẻ nỗi buồn và tương trợ."
+    },
+    {
+      "contest": "Trạng Nguyên Tiếng Việt",
+      "grade": "KHOI_2",
+      "level": "CAP_2_VONG_TRUONG",
+      "type": "DT",
+      "questionId": "k2_c2_dt_1681",
+      "question": "Điền chữ cái hoặc âm thích hợp vào chỗ trống: \"con (...)ìm\"",
+      "blankAnswer": "k",
+      "answer": "k",
+      "options": [
+        "q",
+        "ch",
+        "k",
+        "c"
+      ],
+      "explanation": "Từ đúng chính tả là 'kìm', do đó âm cần điền là 'k'."
+    },
+    {
+      "contest": "Trạng Nguyên Tiếng Việt",
+      "grade": "KHOI_2",
+      "level": "CAP_2_VONG_TRUONG",
+      "type": "DT",
+      "questionId": "k2_c2_dt_1682",
+      "question": "Điền từ thích hợp vào chỗ trống để hoàn thành câu thành ngữ, tục ngữ: \"Một cây làm chẳng nên non, ba cây chụm lại nên hòn (...)\"",
+      "blankAnswer": "núi cao",
+      "answer": "núi cao",
+      "options": [
+        "nguồn",
+        "nâng",
+        "núi cao",
+        "đùm"
+      ],
+      "explanation": "Câu thành ngữ, tục ngữ hoàn chỉnh là: \"Một cây làm chẳng nên non, ba cây chụm lại nên hòn núi cao\". Một người lẻ loi khó làm việc lớn, nhưng khi đoàn kết lại sẽ tạo nên sức mạnh vô địch."
+    },
+    {
+      "contest": "Trạng Nguyên Tiếng Việt",
+      "grade": "KHOI_2",
+      "level": "CAP_2_VONG_TRUONG",
+      "type": "DT",
+      "questionId": "k2_c2_dt_1683",
+      "question": "Điền từ thích hợp vào chỗ trống để hoàn thành câu thành ngữ, tục ngữ: \"Tấc đất tấc (...)\"",
+      "blankAnswer": "vàng",
+      "answer": "vàng",
+      "options": [
+        "đùm",
+        "vàng",
+        "thật",
+        "bạn"
+      ],
+      "explanation": "Câu thành ngữ, tục ngữ hoàn chỉnh là: \"Tấc đất tấc vàng\". Mỗi tấc đất đều vô cùng quý giá như vàng vì đem lại nguồn sống cho con người."
+    },
+    {
+      "contest": "Trạng Nguyên Tiếng Việt",
+      "grade": "KHOI_2",
+      "level": "CAP_2_VONG_TRUONG",
+      "type": "DT",
+      "questionId": "k2_c2_dt_1684",
+      "question": "Điền chữ cái hoặc âm thích hợp vào chỗ trống: \"dòng (...)ông\"",
+      "blankAnswer": "s",
+      "answer": "s",
+      "options": [
+        "s",
+        "r",
+        "d",
+        "x"
+      ],
+      "explanation": "Từ đúng chính tả là 'dòng sông', do đó âm cần điền là 's'."
+    },
+    {
+      "contest": "Trạng Nguyên Tiếng Việt",
+      "grade": "KHOI_2",
+      "level": "CAP_2_VONG_TRUONG",
+      "type": "DT",
+      "questionId": "k2_c2_dt_1685",
+      "question": "Điền chữ cái hoặc âm thích hợp vào chỗ trống: \"(...)ỉ ngơi\"",
+      "blankAnswer": "ngh",
+      "answer": "ngh",
+      "options": [
+        "gh",
+        "ng",
+        "nh",
+        "ngh"
+      ],
+      "explanation": "Từ đúng chính tả là 'nghỉ ngơi', do đó âm cần điền là 'ngh'."
+    },
+    {
+      "contest": "Trạng Nguyên Tiếng Việt",
+      "grade": "KHOI_2",
+      "level": "CAP_2_VONG_TRUONG",
+      "type": "DT",
+      "questionId": "k2_c2_dt_1686",
+      "question": "Điền chữ cái hoặc âm thích hợp vào chỗ trống: \"(...)e đạp\"",
+      "blankAnswer": "x",
+      "answer": "x",
+      "options": [
+        "tr",
+        "s",
+        "x",
+        "ch"
+      ],
+      "explanation": "Từ đúng chính tả là 'xe đạp', do đó âm cần điền là 'x'."
+    },
+    {
+      "contest": "Trạng Nguyên Tiếng Việt",
+      "grade": "KHOI_2",
+      "level": "CAP_2_VONG_TRUONG",
+      "type": "DT",
+      "questionId": "k2_c2_dt_1687",
+      "question": "Điền từ thích hợp vào chỗ trống để hoàn thành câu thành ngữ, tục ngữ: \"Gần mực thì đen gần (...) thì sáng\"",
+      "blankAnswer": "đèn",
+      "answer": "đèn",
+      "options": [
+        "nguồn",
+        "khôn",
+        "nâng",
+        "đèn"
+      ],
+      "explanation": "Câu thành ngữ, tục ngữ hoàn chỉnh là: \"Gần mực thì đen gần đèn thì sáng\". Ở gần người tốt sẽ học được điều hay, ở gần người xấu dễ bị lây thói hư tật xấu."
+    },
+    {
+      "contest": "Trạng Nguyên Tiếng Việt",
+      "grade": "KHOI_2",
+      "level": "CAP_2_VONG_TRUONG",
+      "type": "DT",
+      "questionId": "k2_c2_dt_1688",
+      "question": "Điền từ thích hợp vào chỗ trống để hoàn thành câu thành ngữ, tục ngữ: \"Thương người như thể (...)\"",
+      "blankAnswer": "thương thân",
+      "answer": "thương thân",
+      "options": [
+        "trồng",
+        "đùm",
+        "vàng",
+        "thương thân"
+      ],
+      "explanation": "Câu thành ngữ, tục ngữ hoàn chỉnh là: \"Thương người như thể thương thân\". Yêu thương người khác như yêu quý chính bản thân mình."
+    },
+    {
+      "contest": "Trạng Nguyên Tiếng Việt",
+      "grade": "KHOI_2",
+      "level": "CAP_2_VONG_TRUONG",
+      "type": "DT",
+      "questionId": "k2_c2_dt_1689",
+      "question": "Điền từ thích hợp vào chỗ trống để hoàn thành câu thành ngữ, tục ngữ: \"Công cha như núi (...), nghĩa mẹ như nước trong nguồn chảy ra\"",
+      "blankAnswer": "Thái Sơn",
+      "answer": "Thái Sơn",
+      "options": [
+        "đèn",
+        "vàng",
+        "Thái Sơn",
+        "kim"
+      ],
+      "explanation": "Câu thành ngữ, tục ngữ hoàn chỉnh là: \"Công cha như núi Thái Sơn, nghĩa mẹ như nước trong nguồn chảy ra\". Công ơn sinh thành dưỡng dục của cha mẹ to lớn vô bờ bến không gì sánh bằng."
+    },
+    {
+      "contest": "Trạng Nguyên Tiếng Việt",
+      "grade": "KHOI_2",
+      "level": "CAP_2_VONG_TRUONG",
+      "type": "DT",
+      "questionId": "k2_c2_dt_1690",
+      "question": "Điền chữ cái hoặc âm thích hợp vào chỗ trống: \"(...)ôi sao\"",
+      "blankAnswer": "ng",
+      "answer": "ng",
+      "options": [
+        "nh",
+        "ng",
+        "m",
+        "ngh"
+      ],
+      "explanation": "Từ đúng chính tả là 'ngôi sao', do đó âm cần điền là 'ng'."
+    },
+    {
+      "contest": "Trạng Nguyên Tiếng Việt",
+      "grade": "KHOI_2",
+      "level": "CAP_2_VONG_TRUONG",
+      "type": "DT",
+      "questionId": "k2_c2_dt_1691",
+      "question": "Điền chữ cái hoặc âm thích hợp vào chỗ trống: \"(...)ụ cười\"",
+      "blankAnswer": "n",
+      "answer": "n",
+      "options": [
+        "l",
+        "m",
+        "đ",
+        "n"
+      ],
+      "explanation": "Từ đúng chính tả là 'nụ cười', do đó âm cần điền là 'n'."
+    },
+    {
+      "contest": "Trạng Nguyên Tiếng Việt",
+      "grade": "KHOI_2",
+      "level": "CAP_2_VONG_TRUONG",
+      "type": "DT",
+      "questionId": "k2_c2_dt_1692",
+      "question": "Điền chữ cái hoặc âm thích hợp vào chỗ trống: \"con (...)á\"",
+      "blankAnswer": "c",
+      "answer": "c",
+      "options": [
+        "c",
+        "tr",
+        "k",
+        "q"
+      ],
+      "explanation": "Từ đúng chính tả là 'cá', do đó âm cần điền là 'c'."
+    },
+    {
+      "contest": "Trạng Nguyên Tiếng Việt",
+      "grade": "KHOI_2",
+      "level": "CAP_2_VONG_TRUONG",
+      "type": "DT",
+      "questionId": "k2_c2_dt_1693",
+      "question": "Điền chữ cái hoặc âm thích hợp vào chỗ trống: \"(...)àng xóm\"",
+      "blankAnswer": "l",
+      "answer": "l",
+      "options": [
+        "n",
+        "v",
+        "d",
+        "l"
+      ],
+      "explanation": "Từ đúng chính tả là 'làng xóm', do đó âm cần điền là 'l'."
+    },
+    {
+      "contest": "Trạng Nguyên Tiếng Việt",
+      "grade": "KHOI_2",
+      "level": "CAP_2_VONG_TRUONG",
+      "type": "DT",
+      "questionId": "k2_c2_dt_1694",
+      "question": "Điền từ thích hợp vào chỗ trống để hoàn thành câu thành ngữ, tục ngữ: \"Lá lành (...) lá rách\"",
+      "blankAnswer": "đùm",
+      "answer": "đùm",
+      "options": [
+        "trồng",
+        "thật",
+        "đèn",
+        "đùm"
+      ],
+      "explanation": "Câu thành ngữ, tục ngữ hoàn chỉnh là: \"Lá lành đùm lá rách\". Khuyên con người phải biết đùm bọc, giúp đỡ lẫn nhau khi gặp hoạn nạn, khó khăn."
+    },
+    {
+      "contest": "Trạng Nguyên Tiếng Việt",
+      "grade": "KHOI_2",
+      "level": "CAP_2_VONG_TRUONG",
+      "type": "DT",
+      "questionId": "k2_c2_dt_1695",
+      "question": "Điền từ thích hợp vào chỗ trống để hoàn thành câu thành ngữ, tục ngữ: \"Lửa thử vàng gian nan (...)\"",
+      "blankAnswer": "thử sức",
+      "answer": "thử sức",
+      "options": [
+        "trồng",
+        "nguồn",
+        "bạn",
+        "thử sức"
+      ],
+      "explanation": "Câu thành ngữ, tục ngữ hoàn chỉnh là: \"Lửa thử vàng gian nan thử sức\". Khó khăn thử thách là thước đo lòng kiên định và bản lĩnh con người."
+    },
+    {
+      "contest": "Trạng Nguyên Tiếng Việt",
+      "grade": "KHOI_2",
+      "level": "CAP_2_VONG_TRUONG",
+      "type": "DT",
+      "questionId": "k2_c2_dt_1696",
+      "question": "Điền từ thích hợp vào chỗ trống để hoàn thành câu thành ngữ, tục ngữ: \"Bầu ơi (...) lấy bí cùng, tuy rằng khác giống nhưng chung một giàn\"",
+      "blankAnswer": "thương",
+      "answer": "thương",
+      "options": [
+        "đèn",
+        "kim",
+        "nâng",
+        "thương"
+      ],
+      "explanation": "Câu thành ngữ, tục ngữ hoàn chỉnh là: \"Bầu ơi thương lấy bí cùng, tuy rằng khác giống nhưng chung một giàn\". Dù xuất thân khác nhau nhưng cùng chung sống một đất nước thì phải thương yêu nhau."
+    },
+    {
+      "contest": "Trạng Nguyên Tiếng Việt",
+      "grade": "KHOI_2",
+      "level": "CAP_2_VONG_TRUONG",
+      "type": "DT",
+      "questionId": "k2_c2_dt_1697",
+      "question": "Điền từ thích hợp vào chỗ trống để hoàn thành câu thành ngữ, tục ngữ: \"Vạn sự khởi đầu (...)\"",
+      "blankAnswer": "nan",
+      "answer": "nan",
+      "options": [
+        "ngay",
+        "khôn",
+        "nan",
+        "vàng"
+      ],
+      "explanation": "Câu thành ngữ, tục ngữ hoàn chỉnh là: \"Vạn sự khởi đầu nan\". Bất kì công việc gì lúc bắt đầu cũng đều gặp nhiều gian truân, thử thách."
+    },
+    {
+      "contest": "Trạng Nguyên Tiếng Việt",
+      "grade": "KHOI_2",
+      "level": "CAP_2_VONG_TRUONG",
+      "type": "DT",
+      "questionId": "k2_c2_dt_1698",
+      "question": "Điền từ thích hợp vào chỗ trống để hoàn thành câu thành ngữ, tục ngữ: \"Chớ thấy sóng cả mà ngã tay (...)\"",
+      "blankAnswer": "chèo",
+      "answer": "chèo",
+      "options": [
+        "khôn",
+        "chèo",
+        "thật",
+        "đèn"
+      ],
+      "explanation": "Câu thành ngữ, tục ngữ hoàn chỉnh là: \"Chớ thấy sóng cả mà ngã tay chèo\". Đừng vì thấy khó khăn, nguy nan mà nản lòng, buông xuôi ý chí."
+    },
+    {
+      "contest": "Trạng Nguyên Tiếng Việt",
+      "grade": "KHOI_2",
+      "level": "CAP_2_VONG_TRUONG",
+      "type": "DT",
+      "questionId": "k2_c2_dt_1699",
+      "question": "Điền chữ cái hoặc âm thích hợp vào chỗ trống: \"con (...)à\"",
+      "blankAnswer": "g",
+      "answer": "g",
+      "options": [
+        "gi",
+        "g",
+        "gh",
+        "k"
+      ],
+      "explanation": "Từ đúng chính tả là 'gà', do đó âm cần điền là 'g'."
+    },
+    {
+      "contest": "Trạng Nguyên Tiếng Việt",
+      "grade": "KHOI_2",
+      "level": "CAP_2_VONG_TRUONG",
+      "type": "DT",
+      "questionId": "k2_c2_dt_1700",
+      "question": "Điền từ thích hợp vào chỗ trống để hoàn thành câu thành ngữ, tục ngữ: \"Người ta là (...)\"",
+      "blankAnswer": "hoa đất",
+      "answer": "hoa đất",
+      "options": [
+        "khôn",
+        "hoa đất",
+        "đèn",
+        "nguồn"
+      ],
+      "explanation": "Câu thành ngữ, tục ngữ hoàn chỉnh là: \"Người ta là hoa đất\". Ca ngợi con người là tinh hoa quý báu nhất của vũ trụ và mặt đất."
+    },
+    {
+      "contest": "Trạng Nguyên Tiếng Việt",
+      "grade": "KHOI_2",
+      "level": "CAP_2_VONG_TRUONG",
+      "type": "DT",
+      "questionId": "k2_c2_dt_1701",
+      "question": "Điền chữ cái hoặc âm thích hợp vào chỗ trống: \"cây (...)e\"",
+      "blankAnswer": "tr",
+      "answer": "tr",
+      "options": [
+        "r",
+        "ch",
+        "tr",
+        "t"
+      ],
+      "explanation": "Từ đúng chính tả là 'cây tre', do đó âm cần điền là 'tr'."
+    },
+    {
+      "contest": "Trạng Nguyên Tiếng Việt",
+      "grade": "KHOI_2",
+      "level": "CAP_2_VONG_TRUONG",
+      "type": "DT",
+      "questionId": "k2_c2_dt_1702",
+      "question": "Điền từ thích hợp vào chỗ trống để hoàn thành câu thành ngữ, tục ngữ: \"Uống nước nhớ người (...)\"",
+      "blankAnswer": "đào giếng",
+      "answer": "đào giếng",
+      "options": [
+        "đào giếng",
+        "đèn",
+        "thật",
+        "bạn"
+      ],
+      "explanation": "Câu thành ngữ, tục ngữ hoàn chỉnh là: \"Uống nước nhớ người đào giếng\". Hưởng trái ngọt nhớ công người trồng cây, uống nước mát nhớ ơn người đào giếng."
+    },
+    {
+      "contest": "Trạng Nguyên Tiếng Việt",
+      "grade": "KHOI_2",
+      "level": "CAP_2_VONG_TRUONG",
+      "type": "DT",
+      "questionId": "k2_c2_dt_1703",
+      "question": "Điền từ thích hợp vào chỗ trống để hoàn thành câu thành ngữ, tục ngữ: \"Uống nước nhớ (...)\"",
+      "blankAnswer": "nguồn",
+      "answer": "nguồn",
+      "options": [
+        "nâng",
+        "nguồn",
+        "thật",
+        "bạn"
+      ],
+      "explanation": "Câu thành ngữ, tục ngữ hoàn chỉnh là: \"Uống nước nhớ nguồn\". Nhắc nhở con cháu phải ghi nhớ cội nguồn, tổ tiên và những người đã giúp đỡ mình."
+    },
+    {
+      "contest": "Trạng Nguyên Tiếng Việt",
+      "grade": "KHOI_2",
+      "level": "CAP_2_VONG_TRUONG",
+      "type": "DT",
+      "questionId": "k2_c2_dt_1704",
+      "question": "Điền từ thích hợp vào chỗ trống để hoàn thành câu thành ngữ, tục ngữ: \"Ăn quả nhớ kẻ (...) cây\"",
+      "blankAnswer": "trồng",
+      "answer": "trồng",
+      "options": [
+        "trồng",
+        "bạn",
+        "sạch",
+        "đèn"
+      ],
+      "explanation": "Câu thành ngữ, tục ngữ hoàn chỉnh là: \"Ăn quả nhớ kẻ trồng cây\". Khuyên nhủ con người khi được hưởng thành quả phải luôn biết ơn công lao người tạo dựng."
+    },
+    {
+      "contest": "Trạng Nguyên Tiếng Việt",
+      "grade": "KHOI_2",
+      "level": "CAP_2_VONG_TRUONG",
+      "type": "DT",
+      "questionId": "k2_c2_dt_1705",
+      "question": "Điền từ thích hợp vào chỗ trống để hoàn thành câu thành ngữ, tục ngữ: \"Chị ngã em (...)\"",
+      "blankAnswer": "nâng",
+      "answer": "nâng",
+      "options": [
+        "nâng",
+        "đèn",
+        "sạch",
+        "vàng"
+      ],
+      "explanation": "Câu thành ngữ, tục ngữ hoàn chỉnh là: \"Chị ngã em nâng\". Anh chị em trong một nhà phải biết nâng đỡ, thương yêu, che chở cho nhau."
+    },
+    {
+      "contest": "Trạng Nguyên Tiếng Việt",
+      "grade": "KHOI_2",
+      "level": "CAP_2_VONG_TRUONG",
+      "type": "DT",
+      "questionId": "k2_c2_dt_1706",
+      "question": "Điền từ thích hợp vào chỗ trống để hoàn thành câu thành ngữ, tục ngữ: \"Thuận vợ thuận chồng tát (...) cũng cạn\"",
+      "blankAnswer": "biển Đông",
+      "answer": "biển Đông",
+      "options": [
+        "nguồn",
+        "biển Đông",
+        "trồng",
+        "sạch"
+      ],
+      "explanation": "Câu thành ngữ, tục ngữ hoàn chỉnh là: \"Thuận vợ thuận chồng tát biển Đông cũng cạn\". Sự đồng lòng, hòa thuận trong gia đình giúp vượt qua mọi gian khó."
+    },
+    {
+      "contest": "Trạng Nguyên Tiếng Việt",
+      "grade": "KHOI_2",
+      "level": "CAP_2_VONG_TRUONG",
+      "type": "DT",
+      "questionId": "k2_c2_dt_1707",
+      "question": "Điền từ thích hợp vào chỗ trống để hoàn thành câu thành ngữ, tục ngữ: \"Lời nói chẳng mất tiền mua, lựa lời mà nói cho vừa lòng (...)\"",
+      "blankAnswer": "nhau",
+      "answer": "nhau",
+      "options": [
+        "đùm",
+        "nhau",
+        "ngay",
+        "nguồn"
+      ],
+      "explanation": "Câu thành ngữ, tục ngữ hoàn chỉnh là: \"Lời nói chẳng mất tiền mua, lựa lời mà nói cho vừa lòng nhau\". Khi giao tiếp cần ăn nói lịch thiệp, nhã nhặn và tế nhị."
+    },
+    {
+      "contest": "Trạng Nguyên Tiếng Việt",
+      "grade": "KHOI_2",
+      "level": "CAP_2_VONG_TRUONG",
+      "type": "DT",
+      "questionId": "k2_c2_dt_1708",
+      "question": "Điền từ thích hợp vào chỗ trống để hoàn thành câu thành ngữ, tục ngữ: \"Cây (...) không sợ chết đứng\"",
+      "blankAnswer": "ngay",
+      "answer": "ngay",
+      "options": [
+        "ngay",
+        "khôn",
+        "đùm",
+        "thật"
+      ],
+      "explanation": "Câu thành ngữ, tục ngữ hoàn chỉnh là: \"Cây ngay không sợ chết đứng\". Người sống ngay thẳng, thật thà thì không sợ bất kì lời vu khống hay thử thách nào."
+    },
+    {
+      "contest": "Trạng Nguyên Tiếng Việt",
+      "grade": "KHOI_2",
+      "level": "CAP_2_VONG_TRUONG",
+      "type": "DT",
+      "questionId": "k2_c2_dt_1709",
+      "question": "Điền từ thích hợp vào chỗ trống để hoàn thành câu thành ngữ, tục ngữ: \"Học thầy không tày học (...)\"",
+      "blankAnswer": "bạn",
+      "answer": "bạn",
+      "options": [
+        "bạn",
+        "kim",
+        "ngay",
+        "đùm"
+      ],
+      "explanation": "Câu thành ngữ, tục ngữ hoàn chỉnh là: \"Học thầy không tày học bạn\". Nhấn mạnh vai trò to lớn của việc học hỏi từ bạn bè xung quanh."
+    },
+    {
+      "contest": "Trạng Nguyên Tiếng Việt",
+      "grade": "KHOI_2",
+      "level": "CAP_2_VONG_TRUONG",
+      "type": "DT",
+      "questionId": "k2_c2_dt_1710",
+      "question": "Điền từ thích hợp vào chỗ trống để hoàn thành câu thành ngữ, tục ngữ: \"Đi một ngày đàng học một sàng (...)\"",
+      "blankAnswer": "khôn",
+      "answer": "khôn",
+      "options": [
+        "thật",
+        "nâng",
+        "khôn",
+        "ngay"
+      ],
+      "explanation": "Câu thành ngữ, tục ngữ hoàn chỉnh là: \"Đi một ngày đàng học một sàng khôn\". Càng đi nhiều nơi, trải nghiệm thực tế ta càng tích lũy được nhiều hiểu biết, trí tuệ."
+    },
+    {
+      "contest": "Trạng Nguyên Tiếng Việt",
+      "grade": "KHOI_2",
+      "level": "CAP_2_VONG_TRUONG",
+      "type": "DT",
+      "questionId": "k2_c2_dt_1711",
+      "question": "Điền từ thích hợp vào chỗ trống để hoàn thành câu thành ngữ, tục ngữ: \"Nhiễu điều phủ lấy giá gương, người trong một nước phải (...) nhau cùng\"",
+      "blankAnswer": "thương",
+      "answer": "thương",
+      "options": [
+        "ngay",
+        "trồng",
+        "thương",
+        "bạn"
+      ],
+      "explanation": "Câu thành ngữ, tục ngữ hoàn chỉnh là: \"Nhiễu điều phủ lấy giá gương, người trong một nước phải thương nhau cùng\". Đồng bào cùng một giang sơn phải luôn đùm bọc, giúp đỡ lẫn nhau."
+    },
+    {
+      "contest": "Trạng Nguyên Tiếng Việt",
+      "grade": "KHOI_2",
+      "level": "CAP_2_VONG_TRUONG",
+      "type": "DT",
+      "questionId": "k2_c2_dt_1712",
+      "question": "Điền chữ cái hoặc âm thích hợp vào chỗ trống: \"cái (...)ế\"",
+      "blankAnswer": "gh",
+      "answer": "gh",
+      "options": [
+        "r",
+        "gh",
+        "g",
+        "d"
+      ],
+      "explanation": "Từ đúng chính tả là 'ghế', do đó âm cần điền là 'gh'."
+    },
+    {
+      "contest": "Trạng Nguyên Tiếng Việt",
+      "grade": "KHOI_2",
+      "level": "CAP_2_VONG_TRUONG",
+      "type": "DT",
+      "questionId": "k2_c2_dt_1713",
+      "question": "Điền từ thích hợp vào chỗ trống để hoàn thành câu thành ngữ, tục ngữ: \"Có công mài sắt có ngày nên (...)\"",
+      "blankAnswer": "kim",
+      "answer": "kim",
+      "options": [
+        "nâng",
+        "ngay",
+        "kim",
+        "sạch"
+      ],
+      "explanation": "Câu thành ngữ, tục ngữ hoàn chỉnh là: \"Có công mài sắt có ngày nên kim\". Chỉ cần kiên trì, nỗ lực và nhẫn nại thì việc khó khăn đến mấy cũng sẽ thành công."
+    },
+    {
+      "contest": "Trạng Nguyên Tiếng Việt",
+      "grade": "KHOI_2",
+      "level": "CAP_2_VONG_TRUONG",
+      "type": "DT",
+      "questionId": "k2_c2_dt_1714",
+      "question": "Điền từ thích hợp vào chỗ trống để hoàn thành câu thành ngữ, tục ngữ: \"Ăn ngay nói (...) mọi tật mọi lành\"",
+      "blankAnswer": "thật",
+      "answer": "thật",
+      "options": [
+        "thật",
+        "ngay",
+        "đèn",
+        "đùm"
+      ],
+      "explanation": "Câu thành ngữ, tục ngữ hoàn chỉnh là: \"Ăn ngay nói thật mọi tật mọi lành\". Sống chân thành, trung thực thì tâm hồn luôn thanh thản và bình an."
+    },
+    {
+      "contest": "Trạng Nguyên Tiếng Việt",
+      "grade": "KHOI_2",
+      "level": "CAP_2_VONG_TRUONG",
+      "type": "DT",
+      "questionId": "k2_c2_dt_1715",
+      "question": "Điền từ thích hợp vào chỗ trống để hoàn thành câu thành ngữ, tục ngữ: \"Chim có tổ người có (...)\"",
+      "blankAnswer": "tông",
+      "answer": "tông",
+      "options": [
+        "bạn",
+        "nâng",
+        "trồng",
+        "tông"
+      ],
+      "explanation": "Câu thành ngữ, tục ngữ hoàn chỉnh là: \"Chim có tổ người có tông\". Mỗi con người đều có tổ tiên, cội nguồn giống như loài chim có tổ để về."
+    }
+  ]
+}
   ]
 }

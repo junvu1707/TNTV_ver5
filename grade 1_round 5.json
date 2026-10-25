@@ -49,7 +49,7 @@
       "level": "CAP_5_VONG_QUOC_GIA",
       "type": "TN",
       "questionId": "k1_c5_tn_002",
-      "question": "Giải câu đố dân gian sau:\n\"Để nguyên lấp lánh trên trời / Bớt đầu thành quả ngọt bùi thơm ngon - Là chữ gì?\"",
+      "question": "Giải câu đố dân gian sau:\n\"Để nguyên lấp lánh trên trời / Bớt đầu thành chỗ cho đàn cá bơi - Là chữ gì?\"",
       "options": {
         "A": "hoa hồng",
         "B": "sao",
@@ -57,7 +57,7 @@
         "D": "cô giáo"
       },
       "answer": "B",
-      "explanation": "Chữ 'sao', bỏ chữ cái đầu 's' được chữ 'ao' (hoặc sao -> ao cá, táo -> áo)."
+      "explanation": "Chữ 'sao', bỏ chữ cái đầu 's' được chữ 'ao' "
     },
     {
       "contest": "Trạng Nguyên Tiếng Việt",
@@ -65,7 +65,7 @@
       "level": "CAP_5_VONG_QUOC_GIA",
       "type": "TN",
       "questionId": "k1_c5_tn_003",
-      "question": "Giải câu đố dân gian sau:\n\"Để nguyên lấp lánh trên trời / Bớt đầu thành quả ngọt bùi thơm ngon - Là chữ gì?\"",
+      "question": "Giải câu đố dân gian sau:\n\"Để nguyên lấp lánh trên trời / Bớt đầu thành chỗ cho đàn cá bơi - Là chữ gì?\"",
       "options": {
         "A": "non sông",
         "B": "dũng cảm",
@@ -73,7 +73,7 @@
         "D": "con trâu"
       },
       "answer": "C",
-      "explanation": "Chữ 'sao', bỏ chữ cái đầu 's' được chữ 'ao' (hoặc sao -> ao cá, táo -> áo)."
+      "explanation": "Chữ 'sao', bỏ chữ cái đầu 's' được chữ 'ao' "
     },
     {
       "contest": "Trạng Nguyên Tiếng Việt",
@@ -689,7 +689,7 @@
       "level": "CAP_5_VONG_QUOC_GIA",
       "type": "TN",
       "questionId": "k1_c5_tn_042",
-      "question": "Giải câu đố dân gian sau:\n\"Để nguyên lấp lánh trên trời / Bớt đầu thành quả ngọt bùi thơm ngon - Là chữ gì?\"",
+      "question": "Giải câu đố dân gian sau:\n\"Để nguyên lấp lánh trên trời / Bớt đầu thành chỗ cho đàn cá bơi - Là chữ gì?\"",
       "options": {
         "A": "mây",
         "B": "sao",
@@ -697,7 +697,7 @@
         "D": "ngôi"
       },
       "answer": "B",
-      "explanation": "Chữ 'sao', bỏ chữ cái đầu 's' được chữ 'ao' (hoặc sao -> ao cá, táo -> áo)."
+      "explanation": "Chữ 'sao', bỏ chữ cái đầu 's' được chữ 'ao' "
     },
     {
       "contest": "Trạng Nguyên Tiếng Việt",

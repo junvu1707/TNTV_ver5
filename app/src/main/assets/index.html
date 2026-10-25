@@ -1166,6 +1166,16 @@
         AppState.stars = d.stars !== undefined ? d.stars : AppState.stars;
         AppState.isVip1 = !!d.isVip1;
         AppState.isVip2 = !!d.isVip2;
+        AppState.vip1ExpiryTimestamp = d.vip1ExpiryTimestamp || 0;
+
+        // Kiểm tra thời hạn 1 năm (365 ngày) từ thời điểm bắt đầu đăng ký VIP 1
+        if (AppState.isVip1 && !AppState.isVip2) {
+          if (!AppState.vip1ExpiryTimestamp) {
+            AppState.vip1ExpiryTimestamp = Date.now() + (365 * 24 * 60 * 60 * 1000);
+          } else if (Date.now() > AppState.vip1ExpiryTimestamp) {
+            AppState.isVip1 = false;
+          }
+        }
         AppState.unlockedRounds = d.unlockedRounds || [1, 2, 3];
         AppState.singlePlayTickets = d.singlePlayTickets || {};
         AppState.selectedGrade = d.selectedGrade || 4;
@@ -1199,6 +1209,7 @@
         stars: AppState.stars,
         isVip1: AppState.isVip1,
         isVip2: AppState.isVip2,
+        vip1ExpiryTimestamp: AppState.vip1ExpiryTimestamp || 0,
         unlockedRounds: AppState.unlockedRounds,
         singlePlayTickets: AppState.singlePlayTickets || {},
         selectedGrade: AppState.selectedGrade,
@@ -8155,8 +8166,8 @@
                 <span class="font-black text-red-600 text-sm">49.000đ</span>
               </div>
               <ul class="text-[11px] text-slate-600 space-y-1 mb-2.5">
-                <li class="flex items-center gap-1">✓ Mở khóa toàn bộ 18 vòng thi & 1000 bộ đề</li>
-                <li class="flex items-center gap-1">✓ Xem lời giải chi tiết và mẹo làm bài chuẩn</li>
+                <li class="flex items-center gap-1">✓ Mở khóa toàn bộ 18 vòng thi trong 1 năm (từ khi đăng ký)</li>
+                <li class="flex items-center gap-1">✓ Xem lời giải chi tiết và mẹo làm bài chuẩn tất cả các đề</li>
               </ul>
               <button onclick="simulateBuyVip('vip1')" class="btn-3d w-full py-2 rounded-xl text-white font-black text-xs ${AppState.isVip1 ? 'bg-slate-400 cursor-not-allowed' : 'btn-3d-red'}">
                 ${AppState.isVip1 ? 'Đã kích hoạt VIP 1 ✓' : 'Kích Hoạt VIP 1 (49.000đ)'}
@@ -8216,6 +8227,7 @@
       }
     } else {
       AppState.isVip1 = true;
+      AppState.vip1ExpiryTimestamp = Date.now() + (365 * 24 * 60 * 60 * 1000);
     }
     if (!AppState.customAccountId || AppState.customAccountId === 'Công chúa tóc mây') {
       AppState.studentName = 'Tài khoản VIP';

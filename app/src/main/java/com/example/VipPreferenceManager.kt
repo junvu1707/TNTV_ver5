@@ -15,21 +15,46 @@ class VipPreferenceManager(private val context: Context) {
     const val KEY_LAST_ORDER_ID = "last_order_id"
     const val KEY_DEVICE_ID = "device_id"
     const val KEY_UNLOCKED_ROUNDS = "unlocked_rounds"
+    const val KEY_VIP1_EXPIRY_TIMESTAMP = "vip1_expiry_timestamp"
 
     const val VIP_LEVEL_0 = 0 // Miễn phí
-    const val VIP_LEVEL_1 = 1 // VIP 1
+    const val VIP_LEVEL_1 = 1 // VIP 1 (Thời hạn 1 năm từ khi đăng ký)
     const val VIP_LEVEL_2 = 2 // VIP 2 Trọn đời
+
+    const val ONE_YEAR_IN_MS = 365L * 24L * 60L * 60L * 1000L // 365 ngày (1 năm)
   }
 
   private val prefs: SharedPreferences =
     context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE)
 
   fun getVipLevel(): Int {
-    return prefs.getInt(KEY_VIP_LEVEL, VIP_LEVEL_0)
+    val level = prefs.getInt(KEY_VIP_LEVEL, VIP_LEVEL_0)
+    if (level == VIP_LEVEL_1) {
+      val expiryTime = prefs.getLong(KEY_VIP1_EXPIRY_TIMESTAMP, 0L)
+      if (expiryTime > 0L && System.currentTimeMillis() > expiryTime) {
+        // Đã hết hạn 1 năm kể từ thời điểm đăng ký -> Tự động đưa về tài khoản miễn phí
+        setVipLevel(VIP_LEVEL_0)
+        return VIP_LEVEL_0
+      }
+    }
+    return level
   }
 
   fun setVipLevel(level: Int) {
-    prefs.edit().putInt(KEY_VIP_LEVEL, level).apply()
+    val editor = prefs.edit().putInt(KEY_VIP_LEVEL, level)
+    if (level == VIP_LEVEL_1) {
+      // Khởi tạo thời gian hết hạn là 1 năm (365 ngày) tính từ thời điểm bắt đầu đăng ký
+      val currentExpiry = prefs.getLong(KEY_VIP1_EXPIRY_TIMESTAMP, 0L)
+      if (currentExpiry <= 0L || System.currentTimeMillis() > currentExpiry) {
+        val newExpiry = System.currentTimeMillis() + ONE_YEAR_IN_MS
+        editor.putLong(KEY_VIP1_EXPIRY_TIMESTAMP, newExpiry)
+      }
+    }
+    editor.apply()
+  }
+
+  fun getVip1ExpiryTimestamp(): Long {
+    return prefs.getLong(KEY_VIP1_EXPIRY_TIMESTAMP, 0L)
   }
 
   fun isVip(): Boolean = getVipLevel() > VIP_LEVEL_0
