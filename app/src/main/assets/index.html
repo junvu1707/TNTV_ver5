@@ -5882,24 +5882,55 @@
       const currentSub = exam.subGames[AppState.currentSubGameIndex];
       if (currentSub) {
         if (currentSub.type === 'NOI' && !AppState.roundAnswersHistory.some(h => h.game === 'Bài 1: Bé tinh mắt')) {
+          const matchedCount = (AppState.game1MatchedPairs || []).length;
+          const totalPairs = Math.min(6, (currentSub.data.pairs || []).length);
+          const isComplete = (matchedCount >= totalPairs);
+
+          if (isComplete) {
+            AppState.roundTotalScore += 10;
+          }
+
           AppState.roundAnswersHistory.push({
             game: 'Bài 1: Bé tinh mắt',
             topic: 'Nối cặp từ & Thành ngữ',
             question: 'Nối trọn vẹn 6 cặp từ vựng / vế thành ngữ, tục ngữ',
-            userAnswer: 'Chưa làm (Bỏ qua)',
-            correctAnswer: 'Hoàn thành nối 6 cặp từ',
-            isCorrect: false,
-            explain: 'Bỏ qua bài nối từ.'
+            userAnswer: isComplete ? 'Hoàn thành nối tất cả 6 cặp từ' : `Đã nối (${matchedCount}/${totalPairs} cặp)`,
+            correctAnswer: 'Hoàn thành nối tất cả 6 cặp từ',
+            isCorrect: isComplete,
+            explain: isComplete ? 'Nối chính xác toàn bộ 6 cặp từ vựng tương ứng.' : 'Cần nối đủ 6 cặp từ để hoàn thành câu thi.'
           });
         } else if (currentSub.type === 'PL' && !AppState.roundAnswersHistory.some(h => h.game === 'Bài 2: Bé thông minh')) {
+          const placedCount = Object.keys(AppState.game2Placements || {}).length;
+          const totalWords = 12;
+
+          let correctCount = 0;
+          if (currentSub.data && currentSub.data.baskets) {
+            const poolWords = [];
+            currentSub.data.baskets.forEach((b, bIdx) => {
+              (b.words || []).slice(0, 4).forEach((w, wIdx) => {
+                poolWords.push({ text: w, basketIndex: bIdx, id: (bIdx + 1) * 100 + wIdx });
+              });
+            });
+            poolWords.forEach(w => {
+              if (AppState.game2Placements && AppState.game2Placements[w.id] === w.basketIndex) {
+                correctCount++;
+              }
+            });
+          }
+
+          const isAllCorrect = (placedCount >= totalWords && correctCount === totalWords);
+          if (isAllCorrect) {
+            AppState.roundTotalScore += 10;
+          }
+
           AppState.roundAnswersHistory.push({
             game: 'Bài 2: Bé thông minh',
             topic: 'Phân loại từ vựng vào giỏ',
             question: 'Bài tập phân loại 12 từ vựng vào đúng 3 chiếc giỏ chủ đề',
-            userAnswer: 'Chưa làm (Bỏ qua)',
-            correctAnswer: 'Hoàn thành xếp 12 từ vào giỏ',
-            isCorrect: false,
-            explain: 'Bỏ qua bài phân loại từ vựng.'
+            userAnswer: isAllCorrect ? 'Đã xếp đúng tất cả 12 từ vào giỏ' : `Đã xếp (${placedCount}/12 từ)`,
+            correctAnswer: 'Hoàn thành xếp tất cả 12 từ vào đúng giỏ',
+            isCorrect: isAllCorrect,
+            explain: isAllCorrect ? 'Phân loại từ vựng chính xác theo nhóm từ loại và chủ đề.' : 'Cần xếp đúng 12 từ vào giỏ để hoàn thành câu thi.'
           });
         }
       }
@@ -6293,6 +6324,26 @@
     let qIdx = 0;
     let correctCount = 0;
 
+    window.prevQuestionMode1Quiz = function() {
+      SoundEngine.playClick();
+      if (qIdx > 0) {
+        qIdx--;
+        showQ();
+      } else {
+        prevSubGameMode1();
+      }
+    };
+
+    window.nextQuestionMode1Quiz = function() {
+      SoundEngine.playClick();
+      if (qIdx < questions.length - 1) {
+        qIdx++;
+        showQ();
+      } else {
+        skipToNextSubGameMode1();
+      }
+    };
+
     function showQ() {
       if (qIdx >= questions.length) {
         nextSubGameMode1();
@@ -6312,15 +6363,15 @@
               <input type="text" id="mode1-input" onkeydown="if(event.key==='Enter'){event.preventDefault(); submitFillQMode1();}" class="w-full px-4 py-3 rounded-2xl border-2 border-amber-400 text-center font-bold text-base focus:outline-none focus:border-red-600 focus:ring-4 focus:ring-amber-200 shadow-sm transition-all" placeholder="Nhập từ còn thiếu..." autofocus autocomplete="off">
             </div>
 
-            <!-- Nút Bài trước (trái) & Nút Bài sau (phải) -->
+            <!-- Nút Câu trước (trái) & Nút Câu sau (phải) -->
             <div class="mt-5 pt-3 border-t border-amber-200 flex items-center justify-between gap-2">
-              <button onclick="prevSubGameMode1()" class="btn-3d bg-slate-200 hover:bg-slate-300 text-slate-800 px-3.5 py-2 rounded-xl font-bold text-xs sm:text-sm shadow flex items-center gap-1 active:scale-95">
+              <button onclick="prevQuestionMode1Quiz()" class="btn-3d bg-slate-200 hover:bg-slate-300 text-slate-800 px-3.5 py-2 rounded-xl font-bold text-xs sm:text-sm shadow flex items-center gap-1 active:scale-95">
                 <span>◄</span>
-                <span>Bài trước</span>
+                <span>Câu trước</span>
               </button>
 
               <button onclick="submitFillQMode1()" class="btn-3d btn-3d-blue px-4 py-2 rounded-xl font-black text-white text-xs sm:text-sm shadow flex items-center gap-1 active:scale-95">
-                <span>Bài sau</span>
+                <span>Câu sau</span>
                 <span>►</span>
               </button>
             </div>
@@ -6366,15 +6417,15 @@
               `).join('')}
             </div>
 
-            <!-- Nút Bài trước (trái) & Nút Bài sau (phải) -->
+            <!-- Nút Câu trước (trái) & Nút Câu sau (phải) -->
             <div class="mt-5 pt-3 border-t border-amber-200 flex items-center justify-between gap-2">
-              <button onclick="prevSubGameMode1()" class="btn-3d bg-slate-200 hover:bg-slate-300 text-slate-800 px-3.5 py-2 rounded-xl font-bold text-xs sm:text-sm shadow flex items-center gap-1 active:scale-95">
+              <button onclick="prevQuestionMode1Quiz()" class="btn-3d bg-slate-200 hover:bg-slate-300 text-slate-800 px-3.5 py-2 rounded-xl font-bold text-xs sm:text-sm shadow flex items-center gap-1 active:scale-95">
                 <span>◄</span>
-                <span>Bài trước</span>
+                <span>Câu trước</span>
               </button>
 
-              <button onclick="skipToNextSubGameMode1()" class="btn-3d btn-3d-blue px-4 py-2 rounded-xl font-black text-white text-xs sm:text-sm shadow flex items-center gap-1 active:scale-95">
-                <span>Bài sau</span>
+              <button onclick="nextQuestionMode1Quiz()" class="btn-3d btn-3d-blue px-4 py-2 rounded-xl font-black text-white text-xs sm:text-sm shadow flex items-center gap-1 active:scale-95">
+                <span>Câu sau</span>
                 <span>►</span>
               </button>
             </div>
@@ -6420,6 +6471,26 @@
     let qIdx = 0;
     let correctCount = 0;
 
+    window.prevRiddleMode1 = function() {
+      SoundEngine.playClick();
+      if (qIdx > 0) {
+        qIdx--;
+        showRiddle();
+      } else {
+        prevSubGameMode1();
+      }
+    };
+
+    window.nextRiddleMode1 = function() {
+      SoundEngine.playClick();
+      if (qIdx < riddles.length - 1) {
+        qIdx++;
+        showRiddle();
+      } else {
+        skipToNextSubGameMode1();
+      }
+    };
+
     function showRiddle() {
       if (qIdx >= riddles.length) {
         nextSubGameMode1();
@@ -6442,15 +6513,15 @@
             `).join('')}
           </div>
 
-          <!-- Nút Bài trước (trái) & Nút Bài sau (phải) -->
+          <!-- Nút Câu trước (trái) & Nút Câu sau (phải) -->
           <div class="mt-5 pt-3 border-t border-amber-200 flex items-center justify-between gap-2">
-            <button onclick="prevSubGameMode1()" class="btn-3d bg-slate-200 hover:bg-slate-300 text-slate-800 px-3.5 py-2 rounded-xl font-bold text-xs sm:text-sm shadow flex items-center gap-1 active:scale-95">
+            <button onclick="prevRiddleMode1()" class="btn-3d bg-slate-200 hover:bg-slate-300 text-slate-800 px-3.5 py-2 rounded-xl font-bold text-xs sm:text-sm shadow flex items-center gap-1 active:scale-95">
               <span>◄</span>
-              <span>Bài trước</span>
+              <span>Câu trước</span>
             </button>
 
-            <button onclick="skipToNextSubGameMode1()" class="btn-3d btn-3d-blue px-4 py-2 rounded-xl font-black text-white text-xs sm:text-sm shadow flex items-center gap-1 active:scale-95">
-              <span>Bài sau</span>
+            <button onclick="nextRiddleMode1()" class="btn-3d btn-3d-blue px-4 py-2 rounded-xl font-black text-white text-xs sm:text-sm shadow flex items-center gap-1 active:scale-95">
+              <span>Câu sau</span>
               <span>►</span>
             </button>
           </div>
@@ -6502,16 +6573,19 @@
     let qIdx = 0;
     let correctCount = 0;
 
+    window.prevImgQMode1 = function() {
+      SoundEngine.playClick();
+      if (qIdx > 0) {
+        qIdx--;
+        showImgQ();
+      } else {
+        prevSubGameMode1();
+      }
+    };
+
     function showImgQ() {
       if (qIdx >= items.length) {
-        if (!AppState.roundAdShown && !AppState.isVip2 && !isAdminAccount()) {
-          AppState.roundAdShown = true;
-          showInterstitialAd(() => {
-            finishRoundExam();
-          });
-        } else {
-          finishRoundExam();
-        }
+        finishRoundExam();
         return;
       }
 
@@ -6581,9 +6655,9 @@
 
               <!-- NÚT ĐIỀU HƯỚNG -->
               <div class="mt-5 pt-3 border-t border-amber-200 flex items-center justify-between gap-2">
-                <button onclick="prevSubGameMode1()" class="btn-3d bg-slate-200 hover:bg-slate-300 text-slate-800 px-3.5 py-2 rounded-xl font-bold text-xs sm:text-sm shadow flex items-center gap-1 active:scale-95">
+                <button onclick="prevImgQMode1()" class="btn-3d bg-slate-200 hover:bg-slate-300 text-slate-800 px-3.5 py-2 rounded-xl font-bold text-xs sm:text-sm shadow flex items-center gap-1 active:scale-95">
                   <span>◄</span>
-                  <span>Bài trước</span>
+                  <span>Câu trước</span>
                 </button>
 
                 <button id="btn-submit-ordering" class="btn-3d ${constructedWords.length === wordPool.length ? 'btn-3d-blue' : 'bg-slate-300 text-slate-500 cursor-not-allowed'} px-4 py-2 rounded-xl font-black text-xs sm:text-sm shadow flex items-center gap-1 active:scale-95">
@@ -6737,14 +6811,7 @@
     AppState.currentSubGameIndex++;
     const exam = AppState.currentExamMode1;
     if (exam && AppState.currentSubGameIndex >= exam.subGames.length) {
-      if (!AppState.roundAdShown && !AppState.isVip2 && !isAdminAccount()) {
-        AppState.roundAdShown = true;
-        showInterstitialAd(() => {
-          finishRoundExam();
-        });
-      } else {
-        finishRoundExam();
-      }
+      finishRoundExam();
     } else {
       renderCurrentSubGameMode1();
     }
@@ -7937,8 +8004,10 @@
   }
 
   function onFinishScreenGoHome() {
-    if (!AppState.roundAdShown && !AppState.isVip2 && !isAdminAccount()) {
-      AppState.roundAdShown = true;
+    if (typeof SoundEngine !== 'undefined' && SoundEngine.playClick) {
+      SoundEngine.playClick();
+    }
+    if (!AppState.isVip2 && !isAdminAccount()) {
       showInterstitialAd(() => renderHome());
     } else {
       renderHome();
@@ -7958,8 +8027,7 @@
 
     AppState.currentSeed = nextSeed;
 
-    if (!AppState.roundAdShown && !AppState.isVip2 && !isAdminAccount()) {
-      AppState.roundAdShown = true;
+    if (!AppState.isVip2 && !isAdminAccount()) {
       showInterstitialAd(() => startRoundExam(AppState.currentRoundNum, nextSeed));
     } else {
       startRoundExam(AppState.currentRoundNum, nextSeed);
