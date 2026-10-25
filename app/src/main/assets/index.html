@@ -5963,12 +5963,12 @@
       pairId: pIdx
     }));
 
-    // Cột Bên Phải (Cột B) - Được hoán vị ngẫu nhiên
-    const colB = activePairs.map((p, pIdx) => ({
+    // Cột Bên Phải (Cột B) - Hoán vị ngẫu nhiên có hạt giống ổn định
+    const colB = seededShuffle(activePairs.map((p, pIdx) => ({
       id: `b_${pIdx}`,
       text: p.b,
       pairId: pIdx
-    })).sort(() => Math.random() - 0.5);
+    })), AppState.currentSeed + AppState.currentSubGameIndex * 37 + 100);
 
     let selectedLeft = null;
     let selectedRight = null;
@@ -6003,7 +6003,7 @@
             ${colA.map(item => {
               const isMatched = AppState.game1MatchedPairs.includes(item.pairId);
               return `
-                <button data-id="${item.id}" data-col="A" data-pair="${item.pairId}" class="cat-tile scroll-card p-2.5 sm:p-3 text-center text-xs sm:text-sm font-bold border-2 rounded-xl transition-all shadow-sm flex items-center justify-between gap-1 ${isMatched ? 'matched bg-emerald-100 border-emerald-500 text-emerald-900 opacity-80 pointer-events-none' : 'border-amber-300 bg-amber-50/70 hover:bg-amber-100 text-slate-800'}">
+                <button data-id="${item.id}" data-col="A" data-pair="${item.pairId}" class="cat-tile scroll-card p-2.5 sm:p-3 text-center text-xs sm:text-sm font-bold border-2 rounded-xl transition-all shadow-sm flex items-center justify-between gap-1 ${isMatched ? 'matched bg-emerald-100 border-emerald-500 text-emerald-900 opacity-90' : 'border-amber-300 bg-amber-50/70 hover:bg-amber-100 text-slate-800'}" title="${isMatched ? 'Bấm để tháo nối cặp này' : ''}">
                   <span class="flex-1 text-center">${item.text}</span>
                   <span class="status-icon text-xs ${isMatched ? 'font-black text-emerald-700' : 'hidden'}">✓</span>
                 </button>
@@ -6020,7 +6020,7 @@
             ${colB.map(item => {
               const isMatched = AppState.game1MatchedPairs.includes(item.pairId);
               return `
-                <button data-id="${item.id}" data-col="B" data-pair="${item.pairId}" class="cat-tile scroll-card p-2.5 sm:p-3 text-center text-xs sm:text-sm font-bold border-2 rounded-xl transition-all shadow-sm flex items-center justify-between gap-1 ${isMatched ? 'matched bg-emerald-100 border-emerald-500 text-emerald-900 opacity-80 pointer-events-none' : 'border-amber-300 bg-amber-50/70 hover:bg-amber-100 text-slate-800'}">
+                <button data-id="${item.id}" data-col="B" data-pair="${item.pairId}" class="cat-tile scroll-card p-2.5 sm:p-3 text-center text-xs sm:text-sm font-bold border-2 rounded-xl transition-all shadow-sm flex items-center justify-between gap-1 ${isMatched ? 'matched bg-emerald-100 border-emerald-500 text-emerald-900 opacity-90' : 'border-amber-300 bg-amber-50/70 hover:bg-amber-100 text-slate-800'}" title="${isMatched ? 'Bấm để tháo nối cặp này' : ''}">
                   <span class="flex-1 text-center">${item.text}</span>
                   <span class="status-icon text-xs ${isMatched ? 'font-black text-emerald-700' : 'hidden'}">✓</span>
                 </button>
@@ -6047,7 +6047,17 @@
     const container = document.getElementById('meo-con-grid');
     container.addEventListener('click', (e) => {
       const btn = e.target.closest('.cat-tile');
-      if (!btn || btn.classList.contains('matched')) return;
+      if (!btn) return;
+
+      const pairVal = parseInt(btn.dataset.pair, 10);
+
+      // Nếu ô này đã nối -> Bấm để tháo nối
+      if (btn.classList.contains('matched')) {
+        SoundEngine.playClick();
+        AppState.game1MatchedPairs = AppState.game1MatchedPairs.filter(p => p !== pairVal);
+        renderGame1_NoiO(subGame);
+        return;
+      }
 
       SoundEngine.playClick();
       const col = btn.dataset.col;
@@ -6097,24 +6107,31 @@
           const iconR = rightTile.querySelector('.status-icon');
           if (iconR) { iconR.classList.remove('hidden'); iconR.className = 'status-icon text-xs font-black text-emerald-700'; }
 
-          matchedCount++;
+          const pairVal = parseInt(leftTile.dataset.pair, 10);
+          if (!AppState.game1MatchedPairs.includes(pairVal)) {
+            AppState.game1MatchedPairs.push(pairVal);
+          }
+
+          matchedCount = AppState.game1MatchedPairs.length;
           const progressEl = document.getElementById('match-progress');
           if (progressEl) progressEl.textContent = matchedCount;
 
           if (matchedCount >= totalPairs) {
-            AppState.roundTotalScore += 10;
-            const scoreEl = document.getElementById('exam-score');
-            if (scoreEl) scoreEl.textContent = `${AppState.roundTotalScore} / 300`;
+            if (!AppState.roundAnswersHistory.some(h => h.game === 'Bài 1: Bé tinh mắt')) {
+              AppState.roundTotalScore += 10;
+              const scoreEl = document.getElementById('exam-score');
+              if (scoreEl) scoreEl.textContent = `${AppState.roundTotalScore} / 300`;
 
-            AppState.roundAnswersHistory.push({
-              game: 'Bài 1: Bé tinh mắt',
-              topic: 'Nối cặp từ & Thành ngữ',
-              question: 'Nối trọn vẹn 6 cặp từ vựng / vế thành ngữ, tục ngữ',
-              userAnswer: 'Hoàn thành nối tất cả 6 cặp từ',
-              correctAnswer: 'Hoàn thành nối tất cả 6 cặp từ',
-              isCorrect: true,
-              explain: 'Nối chính xác toàn bộ 6 cặp từ vựng tương ứng.'
-            });
+              AppState.roundAnswersHistory.push({
+                game: 'Bài 1: Bé tinh mắt',
+                topic: 'Nối cặp từ & Thành ngữ',
+                question: 'Nối trọn vẹn 6 cặp từ vựng / vế thành ngữ, tục ngữ',
+                userAnswer: 'Hoàn thành nối tất cả 6 cặp từ',
+                correctAnswer: 'Hoàn thành nối tất cả 6 cặp từ',
+                isCorrect: true,
+                explain: 'Nối chính xác toàn bộ 6 cặp từ vựng tương ứng.'
+              });
+            }
 
             setTimeout(() => nextSubGameMode1(), 600);
           }
@@ -6133,15 +6150,17 @@
           }, 450);
 
           if (AppState.subGameMistakes >= 3) {
-            AppState.roundAnswersHistory.push({
-              game: 'Bài 1: Bé tinh mắt',
-              topic: 'Nối cặp từ & Thành ngữ',
-              question: 'Nối trọn vẹn 6 cặp từ vựng / vế thành ngữ, tục ngữ',
-              userAnswer: `Chưa hoàn thành (${matchedCount}/${totalPairs} cặp)`,
-              correctAnswer: 'Hoàn thành nối tất cả các cặp',
-              isCorrect: false,
-              explain: 'Bé cần chú ý nghĩa của từ vựng và cấu trúc thành ngữ, tục ngữ để nối chuẩn xác.'
-            });
+            if (!AppState.roundAnswersHistory.some(h => h.game === 'Bài 1: Bé tinh mắt')) {
+              AppState.roundAnswersHistory.push({
+                game: 'Bài 1: Bé tinh mắt',
+                topic: 'Nối cặp từ & Thành ngữ',
+                question: 'Nối trọn vẹn 6 cặp từ vựng / vế thành ngữ, tục ngữ',
+                userAnswer: `Chưa hoàn thành (${matchedCount}/${totalPairs} cặp)`,
+                correctAnswer: 'Hoàn thành nối tất cả các cặp',
+                isCorrect: false,
+                explain: 'Bé cần chú ý nghĩa của từ vựng và cấu trúc thành ngữ, tục ngữ để nối chuẩn xác.'
+              });
+            }
             showCustomAlert('Bạn đã nối sai 3 lần! Hệ thống tự động chuyển sang bài tiếp theo.');
             nextSubGameMode1();
           }
