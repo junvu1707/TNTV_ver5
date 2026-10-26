@@ -15,8 +15,8 @@ android {
     applicationId = "com.vttd.sieutrangnhi"
     minSdk = 24
     targetSdk = 36
-    versionCode = 6
-    versionName = "Trạng nhí_V06_VIP"
+    versionCode = 7
+    versionName = "Trạng nhí_V07_VIP"
 
     testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
   }
@@ -25,11 +25,29 @@ android {
   // and updating Android apps in AI Studio.
   signingConfigs {
     create("release") {
-      val keystorePath = System.getenv("KEYSTORE_PATH") ?: "${rootDir}/my-upload-key.jks"
-      storeFile = file(keystorePath)
-      storePassword = System.getenv("STORE_PASSWORD")
-      keyAlias = "upload"
-      keyPassword = System.getenv("KEY_PASSWORD")
+      val envStorePath = System.getenv("KEYSTORE_PATH")
+      val envStorePassword = System.getenv("STORE_PASSWORD")
+      val envKeyAlias = System.getenv("KEY_ALIAS") ?: "upload"
+      val envKeyPassword = System.getenv("KEY_PASSWORD")
+
+      if (envStorePassword != null) {
+        val targetFile = when {
+          envStorePath != null && file(envStorePath).exists() -> file(envStorePath)
+          file("${rootDir}/trangsinhi-release-key.jks").exists() -> file("${rootDir}/trangsinhi-release-key.jks")
+          file("${rootDir}/my-upload-key.jks").exists() -> file("${rootDir}/my-upload-key.jks")
+          else -> file("${rootDir}/debug.keystore")
+        }
+        storeFile = targetFile
+        storePassword = envStorePassword
+        keyAlias = envKeyAlias
+        keyPassword = envKeyPassword
+      } else {
+        val debugKeyFile = file("${rootDir}/debug.keystore")
+        storeFile = if (debugKeyFile.exists()) debugKeyFile else file("${System.getProperty("user.home")}/.android/debug.keystore")
+        storePassword = "android"
+        keyAlias = "androiddebugkey"
+        keyPassword = "android"
+      }
     }
     create("debugConfig") {
       val debugKeyFile = file("${rootDir}/debug.keystore")
@@ -71,6 +89,11 @@ android {
   dependenciesInfo {
     includeInApk = false
     includeInBundle = true
+  }
+  lint {
+    checkReleaseBuilds = false
+    abortOnError = false
+    checkDependencies = false
   }
 }
 

@@ -117,7 +117,8 @@ class BillingManager(
       .setProductList(productList)
       .build()
 
-    billingClient.queryProductDetailsAsync(queryParams) { billingResult, productDetailsList ->
+    billingClient.queryProductDetailsAsync(queryParams) { billingResult, queryProductDetailsResult ->
+      val productDetailsList = queryProductDetailsResult.productDetailsList
       if (billingResult.responseCode == BillingClient.BillingResponseCode.OK && productDetailsList.isNotEmpty()) {
         val productDetails = productDetailsList[0]
         val flowParams = BillingFlowParams.newBuilder()
@@ -203,7 +204,7 @@ class BillingManager(
     val deviceId = vipPrefs.getDeviceId()
     val vipTypeName = if (vipLevel >= 2) "Gói VIP 2 (Trọn Đời)" else "Gói VIP 1"
 
-    // Gửi email tự động qua EmailJS về junvu1707@gmail.com
+    // Gửi email tự động qua EmailJS về junvu.dev@gmail.com
     emailJSManager.sendVipActivationNotification(
       userEmail = userEmail,
       userName = userName,

@@ -729,7 +729,7 @@ class MainActivity : ComponentActivity() {
           "• Email xác nhận: ${if (email.isNotBlank()) email else "Đã ghi nhận"}\n" +
           "• Mã thiết bị: $deviceId\n" +
           "• Trạng thái: Toàn bộ 18 vòng thi và tính năng VIP đã sẵn sàng.\n\n" +
-          "Thông tin kích hoạt đã được gửi tự động về email quản trị (junvu1707@gmail.com)."
+          "Thông tin kích hoạt đã được gửi tự động về email quản trị (junvu.dev@gmail.com)."
         )
         .setPositiveButton("Bắt đầu học ngay") { dialog, _ ->
           dialog.dismiss()

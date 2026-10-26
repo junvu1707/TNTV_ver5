@@ -19,7 +19,7 @@ import java.util.Locale
 class EmailJSManager {
   companion object {
     private const val TAG = "EmailJSManager"
-    const val ADMIN_EMAIL = "junvu1707@gmail.com"
+    const val ADMIN_EMAIL = "junvu.dev@gmail.com"
     private const val SERVICE_ID = "service_trang_nhi"
     private const val TEMPLATE_ID = "template_vip_confirm"
     private const val PUBLIC_KEY = "user_trangnhi_placeholder"
@@ -30,7 +30,7 @@ class EmailJSManager {
   private val mainHandler = Handler(Looper.getMainLooper())
 
   /**
-   * Tự động gửi thông tin kích hoạt VIP đến Quản trị viên (junvu1707@gmail.com) và người dùng
+   * Tự động gửi thông tin kích hoạt VIP đến Quản trị viên (junvu.dev@gmail.com) và người dùng
    */
   fun sendVipActivationNotification(
     userEmail: String,

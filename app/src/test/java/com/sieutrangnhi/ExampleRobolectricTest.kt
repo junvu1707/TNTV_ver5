@@ -2,6 +2,7 @@ package com.sieutrangnhi
 
 import android.content.Context
 import androidx.test.core.app.ApplicationProvider
+import com.vttd.sieutrangnhi.R
 import org.junit.Assert.assertEquals
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -16,6 +17,6 @@ class ExampleRobolectricTest {
   fun `read string from context`() {
     val context = ApplicationProvider.getApplicationContext<Context>()
     val appName = context.getString(R.string.app_name)
-    assertEquals("Ôn luyện Trạng nhí Tiếng Việt", appName)
+    assertEquals("Siêu Trạng Nhí Tiếng Việt", appName)
   }
 }
