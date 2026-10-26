@@ -2061,7 +2061,7 @@
 
       // Bài 4: Bé sáng tạo (DO_VUI)
       const riddleItems = [
-        { poem: "Để nguyên lấp lánh trời đêm\nThêm sắc thành vật gội đầu trắng phao?", options: ["sao", "sáo", "trăng", "mây"], correctIndex: 0, explain: "Để nguyên là 'sao', thêm sắc là 'sáo'." },
+        { poem: "Cây gì xòe lá ô che\nTrái tròn nhiều mắt thơm ngon ngọt lành?", options: ["Cây na", "Cây bưởi", "Cây dừa", "Cây xoài"], correctIndex: 0, explain: "Cây na (quả na thơm ngọt)." },
         { poem: "Cái gì hai má đỏ hồng\nĂn vào thơm ngọt học sinh rất thích?", options: ["Quả táo đỏ", "Quả chanh", "Củ cải", "Hạt tiêu"], correctIndex: 0, explain: "Quả táo đỏ thơm ngon." },
         { poem: "Con gì đuôi ngắn tai dài\nMắt hồng lông trắng chạy nhanh nhất vùng?", options: ["Con thỏ", "Con rùa", "Con lợn", "Con mèo"], correctIndex: 0, explain: "Con thỏ." },
         { poem: "Cái gì ruột đen thân gỗ\nGiúp em viết chữ và vẽ tranh?", options: ["Bút chì", "Thước kẻ", "Cục tẩy", "Vở ô ly"], correctIndex: 0, explain: "Bút chì." },
@@ -5134,9 +5134,28 @@
   }
 
   // ==========================================
+  // [CƠ CHẾ XÓA DỮ LIỆU ĐÁP ÁN BÀI THI KHI KẾT THÚC / THOÁT / ĐỔI ĐỀ]
+  // ==========================================
+  function clearExamSessionData() {
+    AppState.game1MatchedPairs = [];
+    AppState.game2Placements = {};
+    AppState.game3Answers = {};
+    AppState.game4Answers = {};
+    AppState.game5Answers = {};
+    AppState.userAnswers30 = {};
+    AppState.roundAnswersHistory = [];
+    AppState.roundTotalScore = 0;
+    AppState.subGameMistakes = 0;
+    AppState.currentSubGameIndex = 0;
+    AppState.currentQuestionIndex = 0;
+    mode2CompletionModalShown = false;
+  }
+
+  // ==========================================
   // [MÀN HÌNH CHÍNH & CHỌN VÒNG THI]
   // ==========================================
   function renderHome() {
+    clearExamSessionData();
     if (typeof currentFireworks300Cleanup === 'function') {
       currentFireworks300Cleanup();
     }
@@ -5644,6 +5663,7 @@
   // ĐIỀU PHỐI VÀO BÀI THI: LỚP 1 LÀM ĐỀ THI 30 CÂU TỰ SINH
   // ========================================================
   function startRoundExam(roundNum, chosenSeed = null) {
+    clearExamSessionData();
     const maxSeeds = getMaxSeeds(roundNum);
 
     // Thiết lập số đề thi
