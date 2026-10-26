@@ -1,4 +1,4 @@
-package com.sieutrangnhi.ui.theme
+package com.vttd.sieutrangnhi.ui.theme
 
 import android.os.Build
 import androidx.compose.foundation.isSystemInDarkTheme

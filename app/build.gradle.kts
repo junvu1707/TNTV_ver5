@@ -8,11 +8,11 @@ plugins {
 }
 
 android {
-  namespace = "com.sieutrangnhi"
+  namespace = "com.vttd.sieutrangnhi"
   compileSdk { version = release(36) { minorApiLevel = 1 } }
 
   defaultConfig {
-    applicationId = "com.aistudio.trangnguyen.vnhub"
+    applicationId = "com.vttd.sieutrangnhi"
     minSdk = 24
     targetSdk = 36
     versionCode = 6

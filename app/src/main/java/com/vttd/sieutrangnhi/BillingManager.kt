@@ -1,4 +1,4 @@
-package com.sieutrangnhi
+package com.vttd.sieutrangnhi
 
 import android.app.Activity
 import android.util.Log

@@ -1,4 +1,4 @@
-package com.sieutrangnhi.ui.theme
+package com.vttd.sieutrangnhi.ui.theme
 
 import androidx.compose.ui.graphics.Color
 

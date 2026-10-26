@@ -1,17 +1,22 @@
-package com.sieutrangnhi
+package com.vttd.sieutrangnhi
 
 import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.content.Intent
 import android.graphics.Color
+import android.graphics.Typeface
+import android.graphics.drawable.ColorDrawable
+import android.graphics.drawable.GradientDrawable
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
+import android.text.InputType
 import java.io.File
 import android.util.Log
 import android.view.Gravity
 import android.view.View
 import android.view.ViewGroup
+import android.view.WindowManager
 import android.webkit.ConsoleMessage
 import android.webkit.JavascriptInterface
 import android.webkit.JsResult
@@ -21,14 +26,18 @@ import android.webkit.WebResourceRequest
 import android.webkit.WebSettings
 import android.webkit.WebView
 import android.webkit.WebViewClient
+import android.widget.Button
+import android.widget.EditText
 import android.widget.FrameLayout
 import android.widget.LinearLayout
+import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.OnBackPressedCallback
 import androidx.activity.enableEdgeToEdge
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.google.ads.mediation.admob.AdMobAdapter
 import com.google.android.gms.ads.AdError
 import com.google.android.gms.ads.AdListener
 import com.google.android.gms.ads.AdRequest
@@ -268,7 +277,7 @@ class MainActivity : ComponentActivity() {
       putString("npa", "1")
     }
     return AdRequest.Builder()
-      .addNetworkExtrasBundle(com.google.ads.mediation.admob.AdMobAdapter::class.java, extras)
+      .addNetworkExtrasBundle(AdMobAdapter::class.java, extras)
       .build()
   }
 
@@ -455,7 +464,7 @@ class MainActivity : ComponentActivity() {
       val container = LinearLayout(this).apply {
         orientation = LinearLayout.VERTICAL
         setPadding(52, 40, 52, 32)
-        val bgDrawable = android.graphics.drawable.GradientDrawable().apply {
+        val bgDrawable = GradientDrawable().apply {
           setColor(Color.parseColor("#FFFBEB"))
           setStroke(8, Color.parseColor("#F59E0B"))
           cornerRadius = 40f
@@ -463,22 +472,22 @@ class MainActivity : ComponentActivity() {
         background = bgDrawable
       }
 
-      val titleHeader = android.widget.TextView(this).apply {
+      val titleHeader = TextView(this).apply {
         text = "👑 KÍCH HOẠT TÀI KHOẢN VIP"
         setTextColor(Color.parseColor("#991B1B"))
         textSize = 15f
-        setTypeface(null, android.graphics.Typeface.BOLD)
-        gravity = android.view.Gravity.CENTER
+        setTypeface(null, Typeface.BOLD)
+        gravity = Gravity.CENTER
         setPadding(0, 0, 0, 8)
       }
       container.addView(titleHeader)
 
-      val subTitle = android.widget.TextView(this).apply {
+      val subTitle = TextView(this).apply {
         text = vipTitleName
         setTextColor(Color.parseColor("#D97706"))
         textSize = 12f
-        setTypeface(null, android.graphics.Typeface.BOLD)
-        gravity = android.view.Gravity.CENTER
+        setTypeface(null, Typeface.BOLD)
+        gravity = Gravity.CENTER
         setPadding(0, 0, 0, 20)
       }
       container.addView(subTitle)
@@ -486,9 +495,9 @@ class MainActivity : ComponentActivity() {
       // Dòng 1: Tài khoản : [input]
       val rowAccount = LinearLayout(this).apply {
         orientation = LinearLayout.HORIZONTAL
-        gravity = android.view.Gravity.CENTER_VERTICAL
+        gravity = Gravity.CENTER_VERTICAL
         setPadding(24, 14, 24, 14)
-        val rowBg = android.graphics.drawable.GradientDrawable().apply {
+        val rowBg = GradientDrawable().apply {
           setColor(Color.WHITE)
           setStroke(3, Color.parseColor("#FDE68A"))
           cornerRadius = 20f
@@ -500,21 +509,21 @@ class MainActivity : ComponentActivity() {
         ).apply { setMargins(0, 0, 0, 14) }
       }
 
-      val lblAccount = android.widget.TextView(this).apply {
+      val lblAccount = TextView(this).apply {
         text = "Tài khoản :"
         setTextColor(Color.parseColor("#78350F"))
         textSize = 13f
-        setTypeface(null, android.graphics.Typeface.BOLD)
+        setTypeface(null, Typeface.BOLD)
         setPadding(0, 0, 12, 0)
       }
 
-      val inputAccount = android.widget.EditText(this).apply {
+      val inputAccount = EditText(this).apply {
         hint = "Nhập tên tài khoản..."
         setText(if (savedName.isNotBlank() && savedName != "Công chúa tóc mây") savedName else "Tài khoản VIP")
         setSingleLine(true)
         setTextColor(Color.parseColor("#1E293B"))
         textSize = 13f
-        setTypeface(null, android.graphics.Typeface.BOLD)
+        setTypeface(null, Typeface.BOLD)
         background = null
         layoutParams = LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 1f)
       }
@@ -526,9 +535,9 @@ class MainActivity : ComponentActivity() {
       // Dòng 2: Email : [input]
       val rowEmail = LinearLayout(this).apply {
         orientation = LinearLayout.HORIZONTAL
-        gravity = android.view.Gravity.CENTER_VERTICAL
+        gravity = Gravity.CENTER_VERTICAL
         setPadding(24, 14, 24, 14)
-        val rowBg = android.graphics.drawable.GradientDrawable().apply {
+        val rowBg = GradientDrawable().apply {
           setColor(Color.WHITE)
           setStroke(3, Color.parseColor("#FDE68A"))
           cornerRadius = 20f
@@ -540,22 +549,22 @@ class MainActivity : ComponentActivity() {
         ).apply { setMargins(0, 0, 0, 14) }
       }
 
-      val lblEmail = android.widget.TextView(this).apply {
+      val lblEmail = TextView(this).apply {
         text = "Email :"
         setTextColor(Color.parseColor("#78350F"))
         textSize = 13f
-        setTypeface(null, android.graphics.Typeface.BOLD)
+        setTypeface(null, Typeface.BOLD)
         setPadding(0, 0, 12, 0)
       }
 
-      val inputEmail = android.widget.EditText(this).apply {
+      val inputEmail = EditText(this).apply {
         hint = "phuhuynh@gmail.com"
         setText(savedEmail)
-        inputType = android.text.InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS
+        inputType = InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS
         setSingleLine(true)
         setTextColor(Color.parseColor("#1E293B"))
         textSize = 13f
-        setTypeface(null, android.graphics.Typeface.BOLD)
+        setTypeface(null, Typeface.BOLD)
         background = null
         layoutParams = LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 1f)
       }
@@ -567,9 +576,9 @@ class MainActivity : ComponentActivity() {
       // Dòng 3: ID : [1nabj]
       val rowDevice = LinearLayout(this).apply {
         orientation = LinearLayout.HORIZONTAL
-        gravity = android.view.Gravity.CENTER_VERTICAL
+        gravity = Gravity.CENTER_VERTICAL
         setPadding(24, 14, 24, 14)
-        val rowBg = android.graphics.drawable.GradientDrawable().apply {
+        val rowBg = GradientDrawable().apply {
           setColor(Color.parseColor("#FEF3C7"))
           setStroke(3, Color.parseColor("#F59E0B"))
           cornerRadius = 20f
@@ -581,19 +590,19 @@ class MainActivity : ComponentActivity() {
         )
       }
 
-      val lblDevice = android.widget.TextView(this).apply {
+      val lblDevice = TextView(this).apply {
         text = "ID :"
         setTextColor(Color.parseColor("#78350F"))
         textSize = 13f
-        setTypeface(null, android.graphics.Typeface.BOLD)
+        setTypeface(null, Typeface.BOLD)
         setPadding(0, 0, 12, 0)
       }
 
-      val textDevice = android.widget.TextView(this).apply {
+      val textDevice = TextView(this).apply {
         text = deviceId
         setTextColor(Color.parseColor("#991B1B"))
         textSize = 13f
-        setTypeface(null, android.graphics.Typeface.BOLD)
+        setTypeface(null, Typeface.BOLD)
         layoutParams = LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 1f)
       }
 
@@ -604,12 +613,12 @@ class MainActivity : ComponentActivity() {
       var dialogRef: AlertDialog? = null
 
       // Dòng 4: Nút Thanh toán Google Play
-      val btnPay = android.widget.Button(this).apply {
+      val btnPay = Button(this).apply {
         text = "Thanh toán Google Play"
         setTextColor(Color.WHITE)
         textSize = 13f
-        setTypeface(null, android.graphics.Typeface.BOLD)
-        val btnBg = android.graphics.drawable.GradientDrawable().apply {
+        setTypeface(null, Typeface.BOLD)
+        val btnBg = GradientDrawable().apply {
           setColor(Color.parseColor("#059669"))
           cornerRadius = 24f
         }
@@ -634,12 +643,12 @@ class MainActivity : ComponentActivity() {
       container.addView(btnPay)
 
       // Dòng 5: Nút Khôi phục VIP
-      val btnRestore = android.widget.Button(this).apply {
+      val btnRestore = Button(this).apply {
         text = "Khôi phục VIP"
         setTextColor(Color.WHITE)
         textSize = 13f
-        setTypeface(null, android.graphics.Typeface.BOLD)
-        val btnBg = android.graphics.drawable.GradientDrawable().apply {
+        setTypeface(null, Typeface.BOLD)
+        val btnBg = GradientDrawable().apply {
           setColor(Color.parseColor("#D97706"))
           cornerRadius = 24f
         }
@@ -677,12 +686,12 @@ class MainActivity : ComponentActivity() {
       container.addView(btnRestore)
 
       // Dòng 6: Nút Hủy
-      val btnCancel = android.widget.TextView(this).apply {
+      val btnCancel = TextView(this).apply {
         text = "Hủy"
         setTextColor(Color.parseColor("#DC2626"))
         textSize = 13f
-        setTypeface(null, android.graphics.Typeface.BOLD)
-        gravity = android.view.Gravity.CENTER
+        setTypeface(null, Typeface.BOLD)
+        gravity = Gravity.CENTER
         setPadding(0, 12, 0, 4)
         isClickable = true
         isFocusable = true
@@ -697,8 +706,8 @@ class MainActivity : ComponentActivity() {
         .create()
 
       dialogRef.window?.apply {
-        setBackgroundDrawable(android.graphics.drawable.ColorDrawable(Color.TRANSPARENT))
-        clearFlags(android.view.WindowManager.LayoutParams.FLAG_DIM_BEHIND)
+        setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        clearFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND)
       }
       dialogRef.show()
     }
