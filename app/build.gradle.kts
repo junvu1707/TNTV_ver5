@@ -15,8 +15,8 @@ android {
     applicationId = "com.vttd.sieutrangnhi"
     minSdk = 24
     targetSdk = 36
-    versionCode = 7
-    versionName = "Trạng nhí_V07_VIP"
+    versionCode = 2
+    versionName = "1.0.2"
 
     testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
   }
