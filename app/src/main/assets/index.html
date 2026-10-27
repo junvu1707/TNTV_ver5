@@ -3798,12 +3798,12 @@
   const SoundEngine = {
     ctx: null,
     init() {
-      if (!this.ctx) {
+      if (!this.ctx || this.ctx.state === 'closed') {
         const AudioCtx = window.AudioContext || window.webkitAudioContext;
         if (AudioCtx) this.ctx = new AudioCtx();
       }
       if (this.ctx && this.ctx.state === 'suspended') {
-        this.ctx.resume();
+        this.ctx.resume().catch(e => console.error("Error resuming AudioContext", e));
       }
     },
     playClick() {
@@ -5816,7 +5816,9 @@
         }
         AppState.currentExamMode1 = null;
         AppState.exam30Questions = [];
+        AppState.game1MatchedPairs = [];
         const appHeader = document.getElementById('main-app-header');
+
         if (appHeader) appHeader.style.display = 'block';
         closeModal();
         renderHome();
@@ -5989,9 +5991,11 @@
     const root = document.getElementById('app-root');
     const pairs = subGame.data.pairs;
     AppState.subGameMistakes = 0;
-    if (!AppState.game1MatchedPairs) AppState.game1MatchedPairs = [];
+    // Reset matched pairs when starting a new round to ensure it only persists for the current session.
+    AppState.game1MatchedPairs = [];
 
     const totalPairs = Math.min(6, pairs.length);
+
     const activePairs = pairs.slice(0, totalPairs);
 
     // Cột Bên Trái (Cột A)
@@ -7644,8 +7648,11 @@
     const spentSeconds = timeSpent % 60;
     const timeString = `${spentMinutes} phút ${spentSeconds.toString().padStart(2, '0')} giây`;
 
+    AppState.game1MatchedPairs = [];
+    
     // Kiểm tra xem thí sinh có làm câu nào hay không
     let answeredCount = 0;
+
     if (AppState.examMode === 2) {
       if (AppState.userAnswers30) {
         answeredCount = Object.keys(AppState.userAnswers30).filter(k => {
