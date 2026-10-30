@@ -5206,6 +5206,7 @@
         const isUnlocked = isRoundUnlocked(r);
         const isMode2 = r >= 7;
         const isAdmin = isAdminAccount();
+        const isVip = AppState.isVip1 || AppState.isVip2;
 
         let badgeText = 'Khóa 🔒';
         let badgeColor = 'bg-slate-400 text-white';
@@ -5213,12 +5214,24 @@
         if (isAdmin) {
           badgeText = 'Admin Mở ✓';
           badgeColor = 'bg-red-600 text-yellow-200 border border-yellow-300';
+        } else if (isVip) {
+          badgeText = 'Đã Mở ✓';
+          badgeColor = 'bg-amber-500 text-white';
         } else if (isFree) {
           badgeText = 'Miễn Phí ✓';
           badgeColor = 'bg-emerald-600 text-white';
         } else if (isUnlocked) {
           badgeText = 'Đã Mở ✓';
           badgeColor = 'bg-amber-500 text-white';
+        }
+
+        let subtitleHtml = '';
+        if (isVip) {
+          subtitleHtml = '';
+        } else if (!isUnlocked) {
+          subtitleHtml = `<p class="text-[11px] text-amber-600 font-bold mt-0.5">Chạm để mở khóa</p>`;
+        } else {
+          subtitleHtml = `<p class="text-[11px] text-slate-500 mt-0.5">${stage.tag} • ${isMode2 ? '30 câu' : 'Minigame'}</p>`;
         }
 
         roundsInStage += `
@@ -5229,7 +5242,7 @@
 
             <div class="mt-2 text-2xl sm:text-3xl mb-1">${isUnlocked ? stage.icon : '🔒'}</div>
             <h4 class="font-extrabold text-slate-800 text-sm sm:text-base">Chặng ${r}</h4>
-            <p class="text-[11px] text-slate-500 mt-0.5">${stage.tag} • ${isMode2 ? '30 câu' : 'Minigame'}</p>
+            ${subtitleHtml}
             
             <div class="mt-2.5 pt-2 border-t border-slate-100 flex items-center justify-center">
               <span class="w-full py-1.5 px-2 rounded-xl font-bold text-xs shadow-sm flex items-center justify-center gap-1 transition-all ${isUnlocked ? 'bg-[#FFA000] text-white hover:bg-[#FF8F00] active:scale-95' : 'bg-slate-200 text-slate-500'}">
@@ -8152,9 +8165,6 @@
               🎟️
             </div>
             <h3 class="text-base sm:text-lg font-black text-red-900">Mở 1 Lượt Thi Vòng ${roundNum}</h3>
-            <p class="text-xs text-slate-600 mt-1.5 leading-relaxed font-medium">
-              Vòng thi này mở khóa theo <b>1 lượt chơi miễn phí</b> khi xem một video quảng cáo ngắn (Google AdMob). Sau khi thi xong, lần sau bé lại xem video, hoặc nâng cấp VIP để chơi trọn đời không giới hạn.
-            </p>
           </div>
 
           <div class="space-y-2.5">
