@@ -12,10 +12,15 @@ import java.io.File
 import java.util.concurrent.TimeUnit
 
 /**
- * Quản lý tự động tải, đồng bộ & cache file JSON chứa câu hỏi từ GitHub Repository.
- * Thiết kế theo mô hình Offline-First:
- * - Đọc tức thì từ cache cục bộ (Storage/File) nếu thiết bị không có internet.
- * - Tự động tải/cập nhật bất đồng bộ từ GitHub khi có kết nối mạng.
+ * Quản lý tự động tải, đồng bộ & cache file JSON chứa câu hỏi từ GitHub Repository:
+ * Repository: https://github.com/junvu1707/Trangsinhi_de
+ * Cấu trúc file: grade_[Lớp]_round_[Nhóm Chặng].json
+ *
+ * Ánh xạ Nhóm Chặng (Round Group):
+ * - round 1: Lớp X - Chú Ong Chăm Chỉ (Chặng 1 - 6)
+ * - round 2: Lớp X - Khu Vườn Kỳ Diệu (Chặng 7 - 10)
+ * - round 3: Lớp X - Mê Cung Kỳ Bí (Chặng 11 - 14)
+ * - round 4: Lớp X - Chinh Phục Đỉnh Cao (Chặng 15 - 18)
  */
 class GitHubQuestionRepository(private val context: Context) {
 
@@ -24,50 +29,49 @@ class GitHubQuestionRepository(private val context: Context) {
     private const val BASE_URL = "https://raw.githubusercontent.com/junvu1707/Trangsinhi_de/main/"
 
     /**
-     * Xác định tên file JSON trên GitHub theo quy tắc ánh xạ Lớp (Grade) & Vòng (Round)
-     * 1. Lớp 1: Vòng 1-6 (round 1), Vòng 7-10 (round 2), Vòng 11-14 (round 3), Vòng 15-18 (round 4)
-     * 2. Lớp 2: Tương tự
-     * 3. Lớp 3: Tương tự
-     * 4. Lớp 4: Tương tự
-     * 5. Lớp 5: Tương tự
+     * Xác định Nhóm Vòng Thi từ số Chặng (1 - 18)
      */
-    fun getFileName(grade: Int, round: Int): String {
-      val roundGroup = when (round) {
+    fun getRoundGroup(round: Int): Int {
+      return when (round) {
         in 1..6 -> 1
         in 7..10 -> 2
         in 11..14 -> 3
         in 15..18 -> 4
         else -> 1
       }
-      val safeGrade = if (grade in 1..5) grade else 1
-      return "grade_${safeGrade}_round_${roundGroup}.json"
     }
 
     /**
-     * Trả về danh sách URL ứng viên (hỗ trợ cả dấu gạch dưới và khoảng cách URL encoding)
+     * Xác định tên file JSON chuẩn trên GitHub
+     */
+    fun getFileName(grade: Int, round: Int): String {
+      val group = getRoundGroup(round)
+      val safeGrade = if (grade in 1..5) grade else 1
+      return "grade_${safeGrade}_round_${group}.json"
+    }
+
+    /**
+     * Trả về danh sách URL ứng viên (hỗ trợ cả dấu gạch dưới, khoảng cách URL encoding và thiếu đuôi .json)
      */
     fun getCandidateUrls(grade: Int, round: Int): List<String> {
-      val roundGroup = when (round) {
-        in 1..6 -> 1
-        in 7..10 -> 2
-        in 11..14 -> 3
-        in 15..18 -> 4
-        else -> 1
-      }
+      val group = getRoundGroup(round)
       val safeGrade = if (grade in 1..5) grade else 1
       return listOf(
-        "${BASE_URL}grade_${safeGrade}_round_${roundGroup}.json",
-        "${BASE_URL}grade%20${safeGrade}_round%20${roundGroup}.json",
-        "${BASE_URL}grade%20${safeGrade}_round%20${roundGroup}",
-        "${BASE_URL}grade_${safeGrade}_round_${roundGroup}"
+        "${BASE_URL}grade_${safeGrade}_round_${group}.json",
+        "${BASE_URL}grade%20${safeGrade}_round%20${group}.json",
+        "${BASE_URL}grade%20${safeGrade}_round_${group}.json",
+        "${BASE_URL}grade_${safeGrade}_round%20${group}.json",
+        "${BASE_URL}grade${safeGrade}_round${group}.json",
+        "${BASE_URL}grade_${safeGrade}_round_${group}",
+        "${BASE_URL}grade%20${safeGrade}_round%20${group}"
       )
     }
   }
 
   private val okHttpClient: OkHttpClient by lazy {
     OkHttpClient.Builder()
-      .connectTimeout(15, TimeUnit.SECONDS)
-      .readTimeout(15, TimeUnit.SECONDS)
+      .connectTimeout(12, TimeUnit.SECONDS)
+      .readTimeout(12, TimeUnit.SECONDS)
       .build()
   }
 
@@ -78,14 +82,8 @@ class GitHubQuestionRepository(private val context: Context) {
   }
 
   private fun getCacheFile(grade: Int, round: Int): File {
-    val roundGroup = when (round) {
-      in 1..6 -> 1
-      in 7..10 -> 2
-      in 11..14 -> 3
-      in 15..18 -> 4
-      else -> 1
-    }
-    return File(cacheDir, "github_g${grade}_r${roundGroup}.json")
+    val group = getRoundGroup(round)
+    return File(cacheDir, "github_g${grade}_r${group}.json")
   }
 
   /**
@@ -158,16 +156,16 @@ class GitHubQuestionRepository(private val context: Context) {
   }
 
   /**
-   * Tự động kiểm tra và đồng bộ câu hỏi 5 khối lớp x 4 nhóm vòng thi trong nền khi có mạng
+   * Tự động kiểm tra và đồng bộ câu hỏi 5 khối lớp x 4 nhóm vòng thi trong nền khi ứng dụng khởi chạy
    */
   fun syncAllGradesInBackground() {
     CoroutineScope(Dispatchers.IO).launch {
       for (grade in 1..5) {
-        for (group in listOf(1, 7, 11, 15)) {
-          val file = getCacheFile(grade, group)
-          val isExpired = !file.exists() || (System.currentTimeMillis() - file.lastModified() > 86400000L)
+        for (roundGroup in listOf(1, 7, 11, 15)) {
+          val file = getCacheFile(grade, roundGroup)
+          val isExpired = !file.exists() || (System.currentTimeMillis() - file.lastModified() > 43200000L) // 12 giờ
           if (isExpired) {
-            fetchAndCacheQuestions(grade, group)
+            fetchAndCacheQuestions(grade, roundGroup)
           }
         }
       }
