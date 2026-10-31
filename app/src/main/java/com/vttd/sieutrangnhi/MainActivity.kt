@@ -57,10 +57,6 @@ class MainActivity : ComponentActivity() {
 
   companion object {
     private const val TAG = "MainActivity"
-    // Các Test Ad Unit IDs chính thức từ Google AdMob (dành cho kiểm thử an toàn)
-    const val TEST_BANNER_ID = "ca-app-pub-3940256099942544/6300978111"
-    const val TEST_INTERSTITIAL_ID = "ca-app-pub-3940256099942544/1033173712"
-    const val TEST_REWARDED_ID = "ca-app-pub-3940256099942544/5224354917"
   }
 
   var webView: WebView? = null
@@ -292,7 +288,7 @@ class MainActivity : ComponentActivity() {
     try {
       val adView = AdView(this).apply {
         setAdSize(AdSize.BANNER)
-        adUnitId = TEST_BANNER_ID
+        adUnitId = AdManager.getBannerAdUnitId()
         adListener = object : AdListener() {
           override fun onAdLoaded() {
             Log.d(TAG, "AdMob Banner loaded successfully")
@@ -349,7 +345,7 @@ class MainActivity : ComponentActivity() {
     val adRequest = buildAdRequest()
     InterstitialAd.load(
       this,
-      TEST_INTERSTITIAL_ID,
+      AdManager.getInterstitialAdUnitId(),
       adRequest,
       object : InterstitialAdLoadCallback() {
         override fun onAdLoaded(ad: InterstitialAd) {
@@ -399,7 +395,7 @@ class MainActivity : ComponentActivity() {
     val adRequest = buildAdRequest()
     RewardedAd.load(
       this,
-      TEST_REWARDED_ID,
+      AdManager.getRewardedAdUnitId(),
       adRequest,
       object : RewardedAdLoadCallback() {
         override fun onAdLoaded(ad: RewardedAd) {

@@ -1,4 +1,17 @@
 import com.google.gms.googleservices.GoogleServicesPlugin.MissingGoogleServicesStrategy
+import java.util.Properties
+
+// Đọc các biến cấu hình từ file .env ở thư mục gốc dự án
+val envProperties = Properties()
+val envFile = file("${rootDir}/.env")
+if (envFile.exists()) {
+  envFile.inputStream().use { envProperties.load(it) }
+}
+
+val admobAppId = envProperties.getProperty("ADMOB_APP_ID") ?: "ca-app-pub-8286024889273116~6521655166"
+val admobBannerId = envProperties.getProperty("ADMOB_BANNER_ID") ?: "ca-app-pub-8286024889273116/8008503365"
+val admobInterstitialId = envProperties.getProperty("ADMOB_INTERSTITIAL_ID") ?: "ca-app-pub-8286024889273116/6108476214"
+val admobRewardedId = envProperties.getProperty("ADMOB_REWARDED_ID") ?: "ca-app-pub-8286024889273116/9632788254"
 
 plugins {
   alias(libs.plugins.android.application)
@@ -15,10 +28,17 @@ android {
     applicationId = "com.vttd.sieutrangnhi"
     minSdk = 24
     targetSdk = 36
-    versionCode = 3
-    versionName = "1.0.3"
+    versionCode = 4
+    versionName = "1.0.4"
 
     testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
+    buildConfigField("String", "ADMOB_APP_ID", "\"$admobAppId\"")
+    buildConfigField("String", "ADMOB_BANNER_ID", "\"$admobBannerId\"")
+    buildConfigField("String", "ADMOB_INTERSTITIAL_ID", "\"$admobInterstitialId\"")
+    buildConfigField("String", "ADMOB_REWARDED_ID", "\"$admobRewardedId\"")
+
+    manifestPlaceholders["ADMOB_APP_ID"] = admobAppId
   }
 
   // Do not remove or modify these signingConfigs. They are necessary for building, installing,

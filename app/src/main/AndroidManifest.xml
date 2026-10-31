@@ -50,10 +50,10 @@
             android:name="com.google.android.gms.ads.flag.OPTIMIZE_DATAMANAGER"
             android:value="true" />
 
-        <!-- Google AdMob Sample App ID cho môi trường kiểm thử (Thay bằng App ID thật từ Google AdMob Console khi xuất bản) -->
+        <!-- Google AdMob Application ID từ .env / BuildConfig (Thật khi Release, Test ID khi Debug) -->
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
-            android:value="ca-app-pub-3940256099942544~3347511713"/>
+            android:value="${ADMOB_APP_ID}"/>
 
         <activity
             android:name=".MainActivity"
