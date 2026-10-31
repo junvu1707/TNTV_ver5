@@ -13,11 +13,8 @@ class BillingManager(
 
   companion object {
     private const val TAG = "BillingManager"
-    const val PRODUCT_VIP_1 = "vip1"
-    const val PRODUCT_VIP_2 = "vip2"
-    const val PRODUCT_VIP_1_ALIAS = "vip_package_1"
-    const val PRODUCT_VIP_2_ALIAS = "vip_package_2"
-    const val PRODUCT_VIP_2_TRONDOI = "vip_2_trondoi"
+    const val PRODUCT_VIP_1 = "vip1" // Gói VIP 1: 49.000đ / 1 năm (Mở 18 vòng + Lời giải)
+    const val PRODUCT_VIP_2 = "vip2" // Gói VIP 2: 99.000đ / Trọn Đời (Mở 18 vòng + Lời giải + TẮT 100% QUẢNG CÁO)
   }
 
   var onPurchaseSuccessCallback: ((productId: String, vipLevel: Int) -> Unit)? = null
@@ -84,12 +81,11 @@ class BillingManager(
       vipPrefs.setUserName(userName)
     }
 
-    val targetProductId = when (productId) {
-      PRODUCT_VIP_2, PRODUCT_VIP_2_ALIAS, PRODUCT_VIP_2_TRONDOI -> PRODUCT_VIP_2
-      else -> PRODUCT_VIP_1
+    val targetProductId = if (productId == PRODUCT_VIP_2 || productId == "vip_package_2" || productId == "vip_2_trondoi") {
+      PRODUCT_VIP_2
+    } else {
+      PRODUCT_VIP_1
     }
-
-    val aliasProductId = if (targetProductId == PRODUCT_VIP_2) PRODUCT_VIP_2_ALIAS else PRODUCT_VIP_1_ALIAS
 
     if (!billingClient.isReady) {
       Log.w(TAG, "Billing client not ready, reconnecting...")
@@ -104,11 +100,7 @@ class BillingManager(
         .setProductType(BillingClient.ProductType.INAPP)
         .build(),
       QueryProductDetailsParams.Product.newBuilder()
-        .setProductId(aliasProductId)
-        .setProductType(BillingClient.ProductType.INAPP)
-        .build(),
-      QueryProductDetailsParams.Product.newBuilder()
-        .setProductId(PRODUCT_VIP_2_TRONDOI)
+        .setProductId(if (targetProductId == PRODUCT_VIP_2) "vip_package_2" else "vip_package_1")
         .setProductType(BillingClient.ProductType.INAPP)
         .build()
     )
@@ -168,8 +160,8 @@ class BillingManager(
   private fun handlePurchase(purchase: Purchase) {
     if (purchase.purchaseState == Purchase.PurchaseState.PURCHASED) {
       val isVip2 = purchase.products.contains(PRODUCT_VIP_2) ||
-          purchase.products.contains(PRODUCT_VIP_2_ALIAS) ||
-          purchase.products.contains(PRODUCT_VIP_2_TRONDOI)
+          purchase.products.contains("vip_package_2") ||
+          purchase.products.contains("vip_2_trondoi")
 
       val level = if (isVip2) VipPreferenceManager.VIP_LEVEL_2 else VipPreferenceManager.VIP_LEVEL_1
       val productId = if (isVip2) PRODUCT_VIP_2 else PRODUCT_VIP_1
@@ -278,8 +270,8 @@ class BillingManager(
         for (purchase in purchasesList) {
           if (purchase.purchaseState == Purchase.PurchaseState.PURCHASED) {
             val isVip2 = purchase.products.contains(PRODUCT_VIP_2) ||
-                purchase.products.contains(PRODUCT_VIP_2_ALIAS) ||
-                purchase.products.contains(PRODUCT_VIP_2_TRONDOI)
+                purchase.products.contains("vip_package_2") ||
+                purchase.products.contains("vip_2_trondoi")
 
             val level = if (isVip2) VipPreferenceManager.VIP_LEVEL_2 else VipPreferenceManager.VIP_LEVEL_1
             if (level > highestLevel) {

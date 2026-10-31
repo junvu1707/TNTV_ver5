@@ -1510,19 +1510,19 @@
           { a: "Mặt trời", b: "tỏa ánh nắng ấm áp bình minh" },
           { a: "Mặt trăng", b: "sáng vạch bầu trời đêm rằm" },
 
-          // Nhóm từ ngữ ca dao, tục ngữ & tình cảm
-          { a: "Ăn quả", b: "nhớ kẻ trồng cây" },
-          { a: "Uống nước", b: "nhớ nguồn gốc xưa" },
-          { a: "Lá lành", b: "đùm lá rách thương yêu" },
-          { a: "Thương người", b: "như thể thương thân mình" },
-          { a: "Công cha", b: "như núi Thái Sơn cao" },
-          { a: "Nghĩa mẹ", b: "như nước trong nguồn chảy" },
-          { a: "Gần mực thì đen", b: "gần đèn thì sáng" },
-          { a: "Bầu ơi thương lấy", b: "bí cùng một giàn" },
-          { a: "Anh em", b: "như thể tay chân" },
-          { a: "Một con ngựa đau", b: "cả tàu bỏ cỏ" },
+          // Nhóm phân biệt phụ âm đầu ch/tr, c/k, g/gh, ng/ngh, s/x cho Lớp 1 (KHÔNG dùng ca dao/tục ngữ)
+          { a: "Chữ c đi với âm a", b: "ví dụ: con cá, cái ca, củ cải" },
+          { a: "Chữ k đi với e, ê, i", b: "ví dụ: thước kẻ, kéo nhỏ, kính râm" },
+          { a: "Chữ g đi với âm a", b: "ví dụ: gà trống, gõ cửa, gỗ tốt" },
+          { a: "Chữ gh đi với e, ê, i", b: "ví dụ: cái ghế, ghi nhớ, ghẹ đỏ" },
+          { a: "Chữ ng đi với âm o", b: "ví dụ: ngôi sao, ngọn cờ, ngọn núi" },
+          { a: "Chữ ngh đi với e, ê, i", b: "ví dụ: lắng nghe, nghề nghiệp, nghệ sĩ" },
+          { a: "Phụ âm CH trong Tiếng Việt", b: "ví dụ: chú chim, chăn màn, chiếc cặp" },
+          { a: "Phụ âm TR trong Tiếng Việt", b: "ví dụ: cây tre, bầu trời, con trâu" },
+          { a: "Phụ âm S trong Tiếng Việt", b: "ví dụ: quyển sổ, quả sầu riêng, sông sâu" },
+          { a: "Phụ âm X trong Tiếng Việt", b: "ví dụ: xe đạp, xinh xắn, màu xanh" },
 
-          // Nhóm tri thức quê hương & văn hóa
+          // Nhóm tri thức học đường & thiên nhiên
           { a: "Hà Nội", b: "Thủ đô ngàn năm văn hiến" },
           { a: "Thừa Thiên Huế", b: "Cố đô bên dòng sông Hương" },
           { a: "Bác Hồ", b: "Vị lãnh tụ kính yêu dân tộc" },
@@ -1590,19 +1590,27 @@
         const basketIdx = globalIndex % basketThemesBank.length;
         const baskets = basketThemesBank[basketIdx];
 
-        // BÀI 3: BÉ HỌC VUI
-        let filteredProverbs = KNOWLEDGE_BASE.proverbs.filter(p => (p.grade || 1) <= 2);
-        const provOffset = (globalIndex * 5) % filteredProverbs.length;
-        const quizItems = [];
+        // BÀI 3: BÉ HỌC VUI (Chỉ dùng các câu điền phụ âm đầu c/k, g/gh, ng/ngh, ch/tr, s/x cho Lớp 1)
+        const initialConsonantFillBank = [
+          { type: 'DT', question: "Điền c hoặc k vào chỗ trống: 'con [...]á' (loài bơi dưới nước)", answer: "c", explain: "Quy tắc: c đi với a -> con cá." },
+          { type: 'DT', question: "Điền c hoặc k vào chỗ trống: 'thước [...]ẻ' (đồ dùng học tập)", answer: "k", explain: "Quy tắc: k đi với e, ê, i -> thước kẻ." },
+          { type: 'DT', question: "Điền g hoặc gh vào chỗ trống: 'cái [...]ế' (đồ dùng ngồi học)", answer: "gh", explain: "Quy tắc: gh đi với e, ê, i -> cái ghế." },
+          { type: 'DT', question: "Điền g hoặc gh vào chỗ trống: 'con [...]à' (con vật gáy sáng)", answer: "g", explain: "Quy tắc: g đi với a -> con gà." },
+          { type: 'DT', question: "Điền ng hoặc ngh vào chỗ trống: 'lắng [...]e' (lắng nghe thầy cô)", answer: "ngh", explain: "Quy tắc: ngh đi với e, ê, i -> lắng nghe." },
+          { type: 'DT', question: "Điền ng hoặc ngh vào chỗ trống: '[...]ôi sao' (lấp lánh trời đêm)", answer: "ng", explain: "Quy tắc: ng đi với o -> ngôi sao." },
+          { type: 'DT', question: "Điền ch hoặc tr vào chỗ trống: 'cây [...]e' (cây xanh trước ngõ)", answer: "tr", explain: "Phụ âm tr -> cây tre." },
+          { type: 'DT', question: "Điền ch hoặc tr vào chỗ trống: 'gấp [...]ăn' (gấp chăn gọn gàng)", answer: "ch", explain: "Phụ âm ch -> gấp chăn." },
+          { type: 'DT', question: "Điền s hoặc x vào chỗ trống: 'xe [...]ạp' (em đi đến trường)", answer: "x", explain: "Phụ âm x -> xe đạp." },
+          { type: 'DT', question: "Điền s hoặc x vào chỗ trống: 'xinh [...]ắn' (nụ cười tươi vắn)", answer: "x", explain: "Phụ âm x -> xinh xắn." },
+          { type: 'DT', question: "Điền r, d hoặc gi vào chỗ trống: 'chiếc [...]ù' (che mưa che nắng)", answer: "d", explain: "Phụ âm d -> chiếc dù." },
+          { type: 'DT', question: "Điền r, d hoặc gi vào chỗ trống: 'cơn [...]ó' (cơn gió mát rượi)", answer: "gi", explain: "Phụ âm gi -> cơn gió." }
+        ];
 
+        const fillOffset = (globalIndex * 3) % initialConsonantFillBank.length;
+        const quizItems = [];
         for (let i = 0; i < 9; i++) {
-          const p = filteredProverbs[(provOffset + i) % filteredProverbs.length];
-          quizItems.push({
-            type: 'DT',
-            question: p.text,
-            answer: p.mask,
-            explain: `Câu ca dao/tục ngữ: "${p.full}". Ý nghĩa: ${p.theme}`
-          });
+          const item = initialConsonantFillBank[(fillOffset + i) % initialConsonantFillBank.length];
+          quizItems.push({ ...item });
         }
 
         const spellingQuestionsBank = [
