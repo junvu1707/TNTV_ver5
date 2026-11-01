@@ -6291,10 +6291,10 @@
                   </div>
                   <div class="placed-words flex flex-wrap gap-1.5 mt-2.5 flex-1 items-start min-h-[50px]">
                     ${wordsInBasket.map(w => `
-                      <button data-remove-word-id="${w.id}" class="btn-remove-word bg-emerald-100 hover:bg-red-100 text-emerald-900 hover:text-red-900 border border-emerald-300 hover:border-red-300 text-xs px-2.5 py-1 rounded-xl font-extrabold transition-all flex items-center gap-1 shadow-sm" title="Bấm để trả từ này về khung">
-                        <span>${w.text}</span>
-                        <span class="text-[10px] font-black text-red-600">✕</span>
-                      </button>
+                      <div class="bg-emerald-100 text-emerald-900 border border-emerald-300 text-xs px-2.5 py-1 rounded-xl font-extrabold flex items-center gap-1.5 shadow-sm">
+                        <span class="select-none">${w.text}</span>
+                        <button data-remove-word-id="${w.id}" class="btn-remove-x bg-red-100 hover:bg-red-200 text-red-700 font-black text-xs px-1.5 py-0.5 rounded-lg transition-all cursor-pointer active:scale-90" title="Bấm dấu X để bỏ từ ra khỏi giỏ">✕</button>
+                      </div>
                     `).join('')}
                   </div>
                 </div>
@@ -6343,7 +6343,7 @@
         });
       });
 
-      document.querySelectorAll('.btn-remove-word').forEach(btn => {
+      document.querySelectorAll('.btn-remove-x').forEach(btn => {
         btn.addEventListener('click', (e) => {
           e.stopPropagation();
           SoundEngine.playDrum();
