@@ -1,9 +1,19 @@
-<!DOCTYPE html>
-<html lang="vi">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>Siêu Trạng Nhí Tiếng Việt</title>
+  <script>
+    function dismissSplashScreen() {
+      var splash = document.getElementById('app-splash-screen');
+      if (splash) {
+        splash.style.display = 'none';
+        if (splash.parentNode) {
+          try { splash.parentNode.removeChild(splash); } catch(e) {}
+        }
+      }
+    }
+    window.dismissSplashScreen = dismissSplashScreen;
+  </script>
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
   <!-- Lucide Icons CDN -->
@@ -193,11 +203,11 @@
   <!-- ======================================================== -->
   <!-- MÀN HÌNH CHÀO (SPLASH SCREEN) KHI BẮT ĐẦU VÀO APP -->
   <!-- ======================================================== -->
-  <div id="app-splash-screen" onclick="dismissSplashScreen()" class="fixed inset-0 z-50 flex flex-col items-center justify-center p-6 select-none cursor-pointer" style="background-color: #F8FCF5; transition: opacity 0.5s ease, transform 0.5s ease;">
+  <div id="app-splash-screen" onclick="window.dismissSplashScreen()" class="fixed inset-0 z-50 flex flex-col items-center justify-center p-6 select-none cursor-pointer" style="background-color: #F8FCF5; transition: opacity 0.5s ease, transform 0.5s ease;">
     <!-- Nền vân mây trống đồng nhẹ -->
     <div class="dong-son-pattern absolute inset-0 pointer-events-none opacity-25"></div>
 
-    <div class="relative z-10 flex flex-col items-center justify-center w-full max-w-sm text-center" onclick="event.stopPropagation(); dismissSplashScreen();">
+    <div class="relative z-10 flex flex-col items-center justify-center w-full max-w-sm text-center" onclick="event.stopPropagation(); window.dismissSplashScreen();">
       <!-- HÌNH TRÒN LOGO CHIẾM 75% CHIỀU NGANG MÀN HÌNH (75vw) -->
       <div class="relative w-[75vw] max-w-[340px] aspect-square rounded-full p-2.5 bg-white shadow-2xl border-4 border-[#C8E6C9] flex items-center justify-center mb-6 transform animate-bounce-subtle">
         <div class="w-full h-full rounded-full overflow-hidden shadow-inner flex items-center justify-center bg-white">
@@ -219,7 +229,7 @@
       </p>
 
       <!-- NÚT BẮT ĐẦU VÀO APP -->
-      <button onclick="dismissSplashScreen()" class="btn-3d px-8 py-3 rounded-2xl bg-[#FFA000] hover:bg-[#FF8F00] text-white font-black text-sm sm:text-base shadow-lg flex items-center gap-2 transform active:scale-95 transition-all">
+      <button onclick="window.dismissSplashScreen()" class="btn-3d px-8 py-3 rounded-2xl bg-[#FFA000] hover:bg-[#FF8F00] text-white font-black text-sm sm:text-base shadow-lg flex items-center gap-2 transform active:scale-95 transition-all">
         <span>Bắt Đầu Khám Phá 🚀</span>
       </button>
 
@@ -5842,12 +5852,53 @@
               <span id="exam-timer">${timerStr}</span>
             </div>
 
-            <!-- Số câu đã làm / 30 câu -->
-            <div class="flex items-center gap-1 bg-amber-900/60 text-yellow-300 px-2.5 py-1 rounded-xl font-black text-xs sm:text-sm border border-yellow-400/30">
-              <span>📝</span>
-              <span id="exam-progress-mode1">${answeredCount}/30 câu</span>
-            </div>
-          </div>
+        // ========================================================
+  // [BỘ ĐỌC CÂU HỎI BẰNG ÂM THANH - OFFLINE TTS & STREAMING]
+  // ========================================================
+  let currentActiveSpeakerBtn = null;
+
+  function speakQuestionText(btn) {
+    if (!btn) return;
+    const text = btn.dataset.speechText || '';
+    const audioUrl = btn.dataset.audioUrl || '';
+
+    if (window.AndroidBridge && typeof window.AndroidBridge.speakText === 'function') {
+      currentActiveSpeakerBtn = btn;
+      window.AndroidBridge.speakText(text, audioUrl);
+    } else {
+      showCustomAlert('Tính năng đọc giọng nói Tiếng Việt hoạt động mượt mà trên ứng dụng Android!');
+    }
+  }
+
+  window.onTtsStateChanged = function(isSpeaking) {
+    if (currentActiveSpeakerBtn) {
+      if (isSpeaking) {
+        currentActiveSpeakerBtn.classList.add('bg-emerald-500', 'text-white', 'ring-2', 'ring-emerald-300');
+        currentActiveSpeakerBtn.classList.remove('bg-amber-400', 'text-amber-950');
+        currentActiveSpeakerBtn.innerHTML = '<span>🔊</span><span>Đang đọc...</span>';
+      } else {
+        currentActiveSpeakerBtn.classList.remove('bg-emerald-500', 'text-white', 'ring-2', 'ring-emerald-300');
+        currentActiveSpeakerBtn.classList.add('bg-amber-400', 'text-amber-950');
+        currentActiveSpeakerBtn.innerHTML = '<span>🔊</span><span>Đọc đề</span>';
+      }
+    }
+  };
+
+  function stopQuestionSpeech() {
+    if (window.AndroidBridge && typeof window.AndroidBridge.stopSpeaking === 'function') {
+      window.AndroidBridge.stopSpeaking();
+    }
+  }
+
+  function getSpeakerButtonHtml(questionText, audioUrl = '') {
+    const cleanText = (questionText || '').replace(/"/g, '&quot;');
+    return `
+      <button onclick="speakQuestionText(this)" data-speech-text="${cleanText}" data-audio-url="${audioUrl}" class="btn-3d bg-amber-400 hover:bg-amber-500 text-amber-950 font-black px-3 py-1.5 rounded-xl text-xs sm:text-sm flex items-center gap-1.5 shadow active:scale-95 transition-all" title="Bấm để nghe đọc câu hỏi tự động">
+        <span>🔊</span>
+        <span>Đọc đề</span>
+      </button>
+    `;
+  }
 
           <div class="flex items-center gap-1.5">
             <!-- Nút Nộp Bài -->
@@ -8554,32 +8605,21 @@
     }
   };
 
-  function dismissSplashScreen() {
-    const splash = document.getElementById('app-splash-screen');
-    if (!splash || splash.dataset.dismissed) return;
-    splash.dataset.dismissed = 'true';
-    if (typeof SoundEngine !== 'undefined' && SoundEngine.playClick) {
-      SoundEngine.playClick();
-    }
-    splash.style.opacity = '0';
-    splash.style.transform = 'scale(1.05)';
-    splash.style.pointerEvents = 'none';
-    setTimeout(() => {
-      if (splash && splash.parentNode) {
-        splash.parentNode.removeChild(splash);
-      }
-    }, 500);
-  }
-
   // Khởi động
-  window.addEventListener('DOMContentLoaded', () => {
+  function initApp() {
     loadPersistedState();
     renderHome();
     // Tự động chuyển vào màn hình chính sau 2.2 giây nếu học sinh không chạm vào màn hình
     setTimeout(() => {
       dismissSplashScreen();
     }, 2200);
-  });
+  }
+
+  if (document.readyState === 'complete' || document.readyState === 'interactive') {
+    initApp();
+  } else {
+    window.addEventListener('DOMContentLoaded', initApp);
+  }
   </script>
 </body>
 </html>

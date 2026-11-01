@@ -66,11 +66,12 @@ class MainActivity : ComponentActivity() {
   private var isAdMobInitialized = false
   private var bannerContainer: FrameLayout? = null
 
-  // Trạng thái VIP, Google Play Billing & EmailJS Manager & GitHub Questions Repo
+  // Trạng thái VIP, Google Play Billing & EmailJS Manager & GitHub Questions Repo & TTS Engine
   lateinit var vipPrefs: VipPreferenceManager
   lateinit var emailJSManager: EmailJSManager
   lateinit var billingManager: BillingManager
   lateinit var githubRepo: GitHubQuestionRepository
+  lateinit var ttsManager: TtsManager
 
   @SuppressLint("SetJavaScriptEnabled")
   override fun onCreate(savedInstanceState: Bundle?) {
@@ -86,7 +87,8 @@ class MainActivity : ComponentActivity() {
       if (seedNewFile.exists()) seedNewFile.delete()
     } catch (_: Exception) {}
 
-    // 1. Khởi tạo VIP Manager, EmailJS Manager, BillingManager & GitHub Question Repo
+    // 1. Khởi tạo VIP Manager, EmailJS Manager, BillingManager, GitHub Question Repo & TTS Engine
+    ttsManager = TtsManager(this)
     githubRepo = GitHubQuestionRepository(this)
     githubRepo.syncAllGradesInBackground()
 
@@ -736,6 +738,7 @@ class MainActivity : ComponentActivity() {
   }
 
   override fun onPause() {
+    ttsManager.stop()
     bannerAdView?.pause()
     webView?.onPause()
     webView?.pauseTimers()
@@ -753,6 +756,7 @@ class MainActivity : ComponentActivity() {
   }
 
   override fun onDestroy() {
+    ttsManager.destroy()
     try {
       billingManager.destroy()
     } catch (_: Exception) {}
@@ -982,6 +986,27 @@ class AndroidBridge(
         )
       }
     })
+  }
+
+  @JavascriptInterface
+  fun speakText(text: String, audioUrl: String = "") {
+    activity.runOnUiThread {
+      activity.ttsManager.speakQuestion(text, audioUrl, activity) { isSpeaking ->
+        activity.runOnUiThread {
+          webViewProvider()?.evaluateJavascript(
+            "if (window.onTtsStateChanged) { window.onTtsStateChanged($isSpeaking); }",
+            null
+          )
+        }
+      }
+    }
+  }
+
+  @JavascriptInterface
+  fun stopSpeaking() {
+    activity.runOnUiThread {
+      activity.ttsManager.stop()
+    }
   }
 
   @JavascriptInterface
