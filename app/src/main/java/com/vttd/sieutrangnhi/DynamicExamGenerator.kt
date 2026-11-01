@@ -88,7 +88,7 @@ class DynamicExamGenerator(
     if (q.id.isNotBlank()) return q.id.lowercase(Locale.ROOT).trim()
     val rawText = q.question.ifBlank { q.title }
     return rawText.lowercase(Locale.ROOT)
-      .replace(Regex("[^a-z0-9àáảãạăắằẳẵặâấầnẩẫậnèéẻẽẹêếềểễệìíỉĩịòóỏõọôốồổỗộơớờởỡợùúủũụưứừửữựỳýỷỹỵđ]"), "")
+      .replace(Regex("[^a-z0-9àáảãạăắằẳẵặâấầẩẫậnèéẻẽẹêếềểễệìíỉĩịòóỏõọôốồổỗộơớờởỡợùúủũụưứừửữựỳýỷỹỵđ]"), "")
       .trim()
   }
 

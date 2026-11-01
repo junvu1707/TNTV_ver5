@@ -4,19 +4,13 @@ import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.content.Intent
 import android.graphics.Color
-import android.graphics.Typeface
-import android.graphics.drawable.ColorDrawable
-import android.graphics.drawable.GradientDrawable
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
-import android.text.InputType
-import java.io.File
 import android.util.Log
 import android.view.Gravity
 import android.view.View
 import android.view.ViewGroup
-import android.view.WindowManager
 import android.webkit.ConsoleMessage
 import android.webkit.JavascriptInterface
 import android.webkit.JsResult
@@ -26,11 +20,8 @@ import android.webkit.WebResourceRequest
 import android.webkit.WebSettings
 import android.webkit.WebView
 import android.webkit.WebViewClient
-import android.widget.Button
-import android.widget.EditText
 import android.widget.FrameLayout
 import android.widget.LinearLayout
-import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.OnBackPressedCallback
@@ -52,6 +43,8 @@ import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback
 import com.google.android.gms.ads.rewarded.RewardedAd
 import com.google.android.gms.ads.rewarded.RewardedAdLoadCallback
 import org.json.JSONObject
+import java.io.File
+import java.lang.ref.WeakReference
 
 class MainActivity : ComponentActivity() {
 
@@ -454,289 +447,24 @@ class MainActivity : ComponentActivity() {
   }
 
   fun showVipRegistrationDialog(productId: String, defaultName: String = "") {
-    runOnUiThread {
-      val isVip2Target = productId == "vip2" || productId == "vip_package_2"
-      val vipTitleName = if (isVip2Target) "Gói VIP 2 (Trọn Đời - 99.000đ)" else "Gói VIP 1 (Mùa Thi - 49.000đ)"
-      val deviceId = vipPrefs.getDeviceId()
-      val savedEmail = vipPrefs.getUserEmail()
-      val savedName = if (defaultName.isNotBlank()) defaultName else vipPrefs.getUserName()
-
-      val container = LinearLayout(this).apply {
-        orientation = LinearLayout.VERTICAL
-        setPadding(52, 40, 52, 32)
-        val bgDrawable = GradientDrawable().apply {
-          setColor(Color.parseColor("#FFFBEB"))
-          setStroke(8, Color.parseColor("#F59E0B"))
-          cornerRadius = 40f
-        }
-        background = bgDrawable
-      }
-
-      val titleHeader = TextView(this).apply {
-        text = "👑 KÍCH HOẠT TÀI KHOẢN VIP"
-        setTextColor(Color.parseColor("#991B1B"))
-        textSize = 15f
-        setTypeface(null, Typeface.BOLD)
-        gravity = Gravity.CENTER
-        setPadding(0, 0, 0, 8)
-      }
-      container.addView(titleHeader)
-
-      val subTitle = TextView(this).apply {
-        text = vipTitleName
-        setTextColor(Color.parseColor("#D97706"))
-        textSize = 12f
-        setTypeface(null, Typeface.BOLD)
-        gravity = Gravity.CENTER
-        setPadding(0, 0, 0, 20)
-      }
-      container.addView(subTitle)
-
-      // Dòng 1: Tài khoản : [input]
-      val rowAccount = LinearLayout(this).apply {
-        orientation = LinearLayout.HORIZONTAL
-        gravity = Gravity.CENTER_VERTICAL
-        setPadding(24, 14, 24, 14)
-        val rowBg = GradientDrawable().apply {
-          setColor(Color.WHITE)
-          setStroke(3, Color.parseColor("#FDE68A"))
-          cornerRadius = 20f
-        }
-        background = rowBg
-        layoutParams = LinearLayout.LayoutParams(
-          LinearLayout.LayoutParams.MATCH_PARENT,
-          LinearLayout.LayoutParams.WRAP_CONTENT
-        ).apply { setMargins(0, 0, 0, 14) }
-      }
-
-      val lblAccount = TextView(this).apply {
-        text = "Tài khoản :"
-        setTextColor(Color.parseColor("#78350F"))
-        textSize = 13f
-        setTypeface(null, Typeface.BOLD)
-        setPadding(0, 0, 12, 0)
-      }
-
-      val inputAccount = EditText(this).apply {
-        hint = "Nhập tên tài khoản..."
-        setText(if (savedName.isNotBlank() && savedName != "Công chúa tóc mây") savedName else "Tài khoản VIP")
-        setSingleLine(true)
-        setTextColor(Color.parseColor("#1E293B"))
-        textSize = 13f
-        setTypeface(null, Typeface.BOLD)
-        background = null
-        layoutParams = LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 1f)
-      }
-
-      rowAccount.addView(lblAccount)
-      rowAccount.addView(inputAccount)
-      container.addView(rowAccount)
-
-      // Dòng 2: Email : [input]
-      val rowEmail = LinearLayout(this).apply {
-        orientation = LinearLayout.HORIZONTAL
-        gravity = Gravity.CENTER_VERTICAL
-        setPadding(24, 14, 24, 14)
-        val rowBg = GradientDrawable().apply {
-          setColor(Color.WHITE)
-          setStroke(3, Color.parseColor("#FDE68A"))
-          cornerRadius = 20f
-        }
-        background = rowBg
-        layoutParams = LinearLayout.LayoutParams(
-          LinearLayout.LayoutParams.MATCH_PARENT,
-          LinearLayout.LayoutParams.WRAP_CONTENT
-        ).apply { setMargins(0, 0, 0, 14) }
-      }
-
-      val lblEmail = TextView(this).apply {
-        text = "Email :"
-        setTextColor(Color.parseColor("#78350F"))
-        textSize = 13f
-        setTypeface(null, Typeface.BOLD)
-        setPadding(0, 0, 12, 0)
-      }
-
-      val inputEmail = EditText(this).apply {
-        hint = "phuhuynh@gmail.com"
-        setText(savedEmail)
-        inputType = InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS
-        setSingleLine(true)
-        setTextColor(Color.parseColor("#1E293B"))
-        textSize = 13f
-        setTypeface(null, Typeface.BOLD)
-        background = null
-        layoutParams = LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 1f)
-      }
-
-      rowEmail.addView(lblEmail)
-      rowEmail.addView(inputEmail)
-      container.addView(rowEmail)
-
-      // Dòng 3: ID : [1nabj]
-      val rowDevice = LinearLayout(this).apply {
-        orientation = LinearLayout.HORIZONTAL
-        gravity = Gravity.CENTER_VERTICAL
-        setPadding(24, 14, 24, 14)
-        val rowBg = GradientDrawable().apply {
-          setColor(Color.parseColor("#FEF3C7"))
-          setStroke(3, Color.parseColor("#F59E0B"))
-          cornerRadius = 20f
-        }
-        background = rowBg
-        layoutParams = LinearLayout.LayoutParams(
-          LinearLayout.LayoutParams.MATCH_PARENT,
-          LinearLayout.LayoutParams.WRAP_CONTENT
+    VipDialogHelper.showVipRegistrationDialog(
+      activity = this,
+      vipPrefs = vipPrefs,
+      billingManager = billingManager,
+      productId = productId,
+      defaultName = defaultName,
+      onVipUpdated = { vipLevel, activeName ->
+        updateAdMobForVipStatus()
+        webView?.evaluateJavascript(
+          "if (window.onVipStatusChanged) { window.onVipStatusChanged($vipLevel, '$activeName'); }",
+          null
         )
       }
-
-      val lblDevice = TextView(this).apply {
-        text = "ID :"
-        setTextColor(Color.parseColor("#78350F"))
-        textSize = 13f
-        setTypeface(null, Typeface.BOLD)
-        setPadding(0, 0, 12, 0)
-      }
-
-      val textDevice = TextView(this).apply {
-        text = deviceId
-        setTextColor(Color.parseColor("#991B1B"))
-        textSize = 13f
-        setTypeface(null, Typeface.BOLD)
-        layoutParams = LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 1f)
-      }
-
-      rowDevice.addView(lblDevice)
-      rowDevice.addView(textDevice)
-      container.addView(rowDevice)
-
-      var dialogRef: AlertDialog? = null
-
-      // Dòng 4: Nút Thanh toán Google Play
-      val btnPay = Button(this).apply {
-        text = "Thanh toán Google Play"
-        setTextColor(Color.WHITE)
-        textSize = 13f
-        setTypeface(null, Typeface.BOLD)
-        val btnBg = GradientDrawable().apply {
-          setColor(Color.parseColor("#059669"))
-          cornerRadius = 24f
-        }
-        background = btnBg
-        setPadding(0, 20, 0, 20)
-        layoutParams = LinearLayout.LayoutParams(
-          LinearLayout.LayoutParams.MATCH_PARENT,
-          LinearLayout.LayoutParams.WRAP_CONTENT
-        ).apply { setMargins(0, 20, 0, 12) }
-
-        setOnClickListener {
-          val inputName = inputAccount.text.toString().trim()
-          val inputEmailStr = inputEmail.text.toString().trim()
-
-          if (inputName.isNotBlank()) vipPrefs.setUserName(inputName)
-          if (inputEmailStr.isNotBlank()) vipPrefs.setUserEmail(inputEmailStr)
-
-          dialogRef?.dismiss()
-          billingManager.launchBillingFlow(this@MainActivity, productId, inputEmailStr, inputName)
-        }
-      }
-      container.addView(btnPay)
-
-      // Dòng 5: Nút Khôi phục VIP
-      val btnRestore = Button(this).apply {
-        text = "Khôi phục VIP"
-        setTextColor(Color.WHITE)
-        textSize = 13f
-        setTypeface(null, Typeface.BOLD)
-        val btnBg = GradientDrawable().apply {
-          setColor(Color.parseColor("#D97706"))
-          cornerRadius = 24f
-        }
-        background = btnBg
-        setPadding(0, 20, 0, 20)
-        layoutParams = LinearLayout.LayoutParams(
-          LinearLayout.LayoutParams.MATCH_PARENT,
-          LinearLayout.LayoutParams.WRAP_CONTENT
-        ).apply { setMargins(0, 0, 0, 12) }
-
-        setOnClickListener {
-          val inputName = inputAccount.text.toString().trim()
-          val inputEmailStr = inputEmail.text.toString().trim()
-          dialogRef?.dismiss()
-          billingManager.scanAndRestoreVip(inputName, inputEmailStr) { success, vipLevel, message ->
-            runOnUiThread {
-              if (success) {
-                updateAdMobForVipStatus()
-                val activeName = inputName.ifBlank { vipPrefs.getUserName().ifBlank { "Tài khoản VIP" } }
-                vipPrefs.setUserName(activeName)
-                if (inputEmailStr.isNotBlank()) vipPrefs.setUserEmail(inputEmailStr)
-
-                webView?.evaluateJavascript(
-                  "if (window.onVipStatusChanged) { window.onVipStatusChanged($vipLevel, '$activeName'); }",
-                  null
-                )
-                Toast.makeText(this@MainActivity, "🎉 $message", Toast.LENGTH_LONG).show()
-              } else {
-                Toast.makeText(this@MainActivity, "🔍 $message", Toast.LENGTH_LONG).show()
-              }
-            }
-          }
-        }
-      }
-      container.addView(btnRestore)
-
-      // Dòng 6: Nút Hủy
-      val btnCancel = TextView(this).apply {
-        text = "Hủy"
-        setTextColor(Color.parseColor("#DC2626"))
-        textSize = 13f
-        setTypeface(null, Typeface.BOLD)
-        gravity = Gravity.CENTER
-        setPadding(0, 12, 0, 4)
-        isClickable = true
-        isFocusable = true
-        setOnClickListener {
-          dialogRef?.dismiss()
-        }
-      }
-      container.addView(btnCancel)
-
-      dialogRef = AlertDialog.Builder(this)
-        .setView(container)
-        .create()
-
-      dialogRef.window?.apply {
-        setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-        clearFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND)
-      }
-      dialogRef.show()
-    }
+    )
   }
 
   fun showVipSuccessDialog(productId: String, vipLevel: Int) {
-
-    runOnUiThread {
-      val vipName = if (vipLevel >= 2) "VIP 2 (Trọn Đời)" else "VIP 1 (Mùa Thi)"
-      val email = vipPrefs.getUserEmail()
-      val name = vipPrefs.getUserName()
-      val deviceId = vipPrefs.getDeviceId()
-
-      AlertDialog.Builder(this)
-        .setTitle("Kích Hoạt VIP Thành Công 🎉")
-        .setMessage(
-          "Chúc mừng ${if (name.isNotBlank()) name else "bé"} đã nâng cấp thành công gói $vipName!\n\n" +
-          "• Tài khoản: ${if (name.isNotBlank()) name else "Học sinh"}\n" +
-          "• Email xác nhận: ${if (email.isNotBlank()) email else "Đã ghi nhận"}\n" +
-          "• Mã thiết bị: $deviceId\n" +
-          "• Trạng thái: Toàn bộ 18 vòng thi và tính năng VIP đã sẵn sàng.\n\n" +
-          "Thông tin kích hoạt đã được gửi tự động về email quản trị (junvu.dev@gmail.com)."
-        )
-        .setPositiveButton("Bắt đầu học ngay") { dialog, _ ->
-          dialog.dismiss()
-        }
-        .setCancelable(false)
-        .show()
-    }
+    VipDialogHelper.showVipSuccessDialog(this, vipPrefs, vipLevel)
   }
 
   override fun onPause() {
@@ -751,7 +479,7 @@ class MainActivity : ComponentActivity() {
     bannerAdView?.resume()
     webView?.onResume()
     webView?.resumeTimers()
-    
+
     // Đồng bộ trạng thái khi mở lại ứng dụng
     updateAdMobForVipStatus()
   }
@@ -769,31 +497,54 @@ class MainActivity : ComponentActivity() {
 }
 
 /**
- * Android Native Bridge kết nối giữa JavaScript (WebView) và Kotlin Native
+ * Android Native Bridge kết nối giữa JavaScript (WebView) và Kotlin Native.
+ * Dùng WeakReference để tránh nguy cơ Memory Leak với MainActivity.
  */
 class AndroidBridge(
-  private val activity: MainActivity,
+  activity: MainActivity,
   private val webViewProvider: () -> WebView?
 ) {
+
+  private val activityRef = WeakReference(activity)
+
+  private inline fun withActivity(block: (MainActivity) -> Unit) {
+    activityRef.get()?.let(block)
+  }
+
+  /**
+   * Sinh đề thi ngẫu nhiên động 1000 bộ đề từ Kotlin Native
+   */
+  @JavascriptInterface
+  fun generateDynamicExam(grade: Int, round: Int, seed: Int = 1, localQuestionsJsonStr: String = ""): String {
+    val act = activityRef.get() ?: return ""
+    val generator = DynamicExamGenerator(act.githubRepo)
+    return generator.generateDynamicMode2Exam(grade, round, seed, localQuestionsJsonStr)
+  }
 
   /**
    * Kích hoạt luồng thanh toán Google Play Billing từ JavaScript
    */
   @JavascriptInterface
   fun launchBillingFlow(productId: String) {
-    activity.showVipRegistrationDialog(productId, activity.vipPrefs.getUserName())
+    withActivity { act ->
+      act.showVipRegistrationDialog(productId, act.vipPrefs.getUserName())
+    }
   }
 
   @JavascriptInterface
   fun launchBillingFlowWithInfo(productId: String, userEmail: String, userName: String) {
-    activity.runOnUiThread {
-      activity.billingManager.launchBillingFlow(activity, productId, userEmail, userName)
+    withActivity { act ->
+      act.runOnUiThread {
+        act.billingManager.launchBillingFlow(act, productId, userEmail, userName)
+      }
     }
   }
 
   @JavascriptInterface
   fun openVipPurchaseDialog(productId: String, defaultName: String) {
-    activity.showVipRegistrationDialog(productId, defaultName)
+    withActivity { act ->
+      act.showVipRegistrationDialog(productId, defaultName)
+    }
   }
 
   /**
@@ -801,77 +552,82 @@ class AndroidBridge(
    */
   @JavascriptInterface
   fun sendVipTransferRequest(productId: String, userEmail: String) {
-    activity.runOnUiThread {
-      if (userEmail.isNotBlank()) {
-        activity.vipPrefs.setUserEmail(userEmail)
-      }
-      val level = if (productId == "vip2" || productId == "vip_package_2") VipPreferenceManager.VIP_LEVEL_2 else VipPreferenceManager.VIP_LEVEL_1
-      val orderId = "VIETQR_" + System.currentTimeMillis()
-      activity.vipPrefs.setLastOrderId(orderId)
-      activity.vipPrefs.setVipLevel(level)
+    withActivity { act ->
+      act.runOnUiThread {
+        if (userEmail.isNotBlank()) {
+          act.vipPrefs.setUserEmail(userEmail)
+        }
+        val level = if (productId == "vip2" || productId == "vip_package_2") VipPreferenceManager.VIP_LEVEL_2 else VipPreferenceManager.VIP_LEVEL_1
+        val orderId = "VIETQR_" + System.currentTimeMillis()
+        act.vipPrefs.setLastOrderId(orderId)
+        act.vipPrefs.setVipLevel(level)
 
-      // Gửi xác nhận qua EmailJS
-      activity.emailJSManager.sendOrderConfirmation(userEmail, orderId, level) { success ->
-        Log.d("AndroidBridge", "VietQR & EmailJS request sent: $success")
-      }
+        // Gửi xác nhận qua EmailJS
+        act.emailJSManager.sendOrderConfirmation(userEmail, orderId, level) { success ->
+          Log.d("AndroidBridge", "VietQR & EmailJS request sent: $success")
+        }
 
-      activity.updateAdMobForVipStatus()
-      webViewProvider()?.evaluateJavascript(
-        "if (window.onVipStatusChanged) { window.onVipStatusChanged($level); }",
-        null
-      )
+        act.updateAdMobForVipStatus()
+        webViewProvider()?.evaluateJavascript(
+          "if (window.onVipStatusChanged) { window.onVipStatusChanged($level); }",
+          null
+        )
+      }
     }
   }
 
   @JavascriptInterface
   fun restorePurchases() {
-    activity.runOnUiThread {
-      activity.billingManager.queryPurchases()
-      Toast.makeText(activity, "Đã kiểm tra và đồng bộ trạng thái VIP thành công!", Toast.LENGTH_SHORT).show()
+    withActivity { act ->
+      act.runOnUiThread {
+        act.billingManager.queryPurchases()
+        Toast.makeText(act, "Đã kiểm tra và đồng bộ trạng thái VIP thành công!", Toast.LENGTH_SHORT).show()
+      }
     }
   }
 
   @JavascriptInterface
   fun scanAndRestoreVip(userName: String, userEmail: String) {
-    activity.runOnUiThread {
-      activity.billingManager.scanAndRestoreVip(userName, userEmail) { success, vipLevel, message ->
-        activity.runOnUiThread {
-          if (success) {
-            activity.updateAdMobForVipStatus()
-            val activeName = userName.ifBlank { activity.vipPrefs.getUserName().ifBlank { "Tài khoản VIP" } }
-            activity.vipPrefs.setUserName(activeName)
-            if (userEmail.isNotBlank()) activity.vipPrefs.setUserEmail(userEmail)
+    withActivity { act ->
+      act.runOnUiThread {
+        act.billingManager.scanAndRestoreVip(userName, userEmail) { success, vipLevel, message ->
+          act.runOnUiThread {
+            if (success) {
+              act.updateAdMobForVipStatus()
+              val activeName = userName.ifBlank { act.vipPrefs.getUserName().ifBlank { "Tài khoản VIP" } }
+              act.vipPrefs.setUserName(activeName)
+              if (userEmail.isNotBlank()) act.vipPrefs.setUserEmail(userEmail)
 
-            activity.webView?.evaluateJavascript(
-              "if (window.onVipStatusChanged) { window.onVipStatusChanged($vipLevel, '$activeName'); }",
-              null
-            )
-            Toast.makeText(activity, "🎉 $message", Toast.LENGTH_LONG).show()
-          } else {
-            Toast.makeText(activity, "🔍 $message", Toast.LENGTH_LONG).show()
+              act.webView?.evaluateJavascript(
+                "if (window.onVipStatusChanged) { window.onVipStatusChanged($vipLevel, '$activeName'); }",
+                null
+              )
+              Toast.makeText(act, "🎉 $message", Toast.LENGTH_LONG).show()
+            } else {
+              Toast.makeText(act, "🔍 $message", Toast.LENGTH_LONG).show()
+            }
           }
         }
       }
     }
   }
 
-
   /**
    * Trả về cấp độ VIP hiện tại (0: Free, 1: VIP 1, 2: VIP 2)
    */
   @JavascriptInterface
   fun getVipLevel(): Int {
-    return activity.vipPrefs.getVipLevel()
+    return activityRef.get()?.vipPrefs?.getVipLevel() ?: 0
   }
 
   @JavascriptInterface
   fun isVip(): Boolean {
-    return activity.vipPrefs.isVip()
+    return activityRef.get()?.vipPrefs?.isVip() ?: false
   }
 
   @JavascriptInterface
   fun isVip2(): Boolean {
-    return activity.vipPrefs.isVip2()
+    return activityRef.get()?.vipPrefs?.isVip2() ?: false
   }
 
   /**
@@ -879,17 +635,17 @@ class AndroidBridge(
    */
   @JavascriptInterface
   fun getDeviceId(): String {
-    return activity.vipPrefs.getDeviceId()
+    return activityRef.get()?.vipPrefs?.getDeviceId() ?: ""
   }
 
   @JavascriptInterface
   fun getUserEmail(): String {
-    return activity.vipPrefs.getUserEmail()
+    return activityRef.get()?.vipPrefs?.getUserEmail() ?: ""
   }
 
   @JavascriptInterface
   fun getUserName(): String {
-    return activity.vipPrefs.getUserName()
+    return activityRef.get()?.vipPrefs?.getUserName() ?: ""
   }
 
   /**
@@ -897,7 +653,7 @@ class AndroidBridge(
    */
   @JavascriptInterface
   fun isRoundUnlocked(roundIndex: Int): Boolean {
-    return activity.vipPrefs.isRoundUnlocked(roundIndex)
+    return activityRef.get()?.vipPrefs?.isRoundUnlocked(roundIndex) ?: (roundIndex <= 6)
   }
 
   /**
@@ -905,40 +661,43 @@ class AndroidBridge(
    */
   @JavascriptInterface
   fun getVipInfoJson(): String {
+    val act = activityRef.get() ?: return "{}"
     val json = JSONObject().apply {
-      put("vipLevel", activity.vipPrefs.getVipLevel())
-      put("isVip", activity.vipPrefs.isVip())
-      put("isVip1", activity.vipPrefs.getVipLevel() == VipPreferenceManager.VIP_LEVEL_1)
-      put("isVip2", activity.vipPrefs.getVipLevel() == VipPreferenceManager.VIP_LEVEL_2)
-      put("deviceId", activity.vipPrefs.getDeviceId())
-      put("userName", activity.vipPrefs.getUserName())
-      put("userEmail", activity.vipPrefs.getUserEmail())
-      put("lastOrderId", activity.vipPrefs.getLastOrderId())
+      put("vipLevel", act.vipPrefs.getVipLevel())
+      put("isVip", act.vipPrefs.isVip())
+      put("isVip1", act.vipPrefs.getVipLevel() == VipPreferenceManager.VIP_LEVEL_1)
+      put("isVip2", act.vipPrefs.getVipLevel() == VipPreferenceManager.VIP_LEVEL_2)
+      put("deviceId", act.vipPrefs.getDeviceId())
+      put("userName", act.vipPrefs.getUserName())
+      put("userEmail", act.vipPrefs.getUserEmail())
+      put("lastOrderId", act.vipPrefs.getLastOrderId())
     }
     return json.toString()
   }
 
   @JavascriptInterface
   fun requestRewardedAd(rewardType: String, targetId: String) {
-    activity.runOnUiThread {
-      activity.showRewardedAd(
-        onRewarded = {
-          activity.runOnUiThread {
-            webViewProvider()?.evaluateJavascript(
-              "if (window.onRewardedAdSuccess) { window.onRewardedAdSuccess('$rewardType', '$targetId'); }",
-              null
-            )
+    withActivity { act ->
+      act.runOnUiThread {
+        act.showRewardedAd(
+          onRewarded = {
+            act.runOnUiThread {
+              webViewProvider()?.evaluateJavascript(
+                "if (window.onRewardedAdSuccess) { window.onRewardedAdSuccess('$rewardType', '$targetId'); }",
+                null
+              )
+            }
+          },
+          onFailedOrDismissed = {
+            act.runOnUiThread {
+              webViewProvider()?.evaluateJavascript(
+                "if (window.onRewardedAdFallback) { window.onRewardedAdFallback('$rewardType', '$targetId'); }",
+                null
+              )
+            }
           }
-        },
-        onFailedOrDismissed = {
-          activity.runOnUiThread {
-            webViewProvider()?.evaluateJavascript(
-              "if (window.onRewardedAdFallback) { window.onRewardedAdFallback('$rewardType', '$targetId'); }",
-              null
-            )
-          }
-        }
-      )
+        )
+      }
     }
   }
 
@@ -954,13 +713,15 @@ class AndroidBridge(
 
   @JavascriptInterface
   fun requestInterstitialAd() {
-    activity.runOnUiThread {
-      activity.showInterstitialAd {
-        activity.runOnUiThread {
-          webViewProvider()?.evaluateJavascript(
-            "if (window.onInterstitialAdClosed) { window.onInterstitialAdClosed(); }",
-            null
-          )
+    withActivity { act ->
+      act.runOnUiThread {
+        act.showInterstitialAd {
+          act.runOnUiThread {
+            webViewProvider()?.evaluateJavascript(
+              "if (window.onInterstitialAdClosed) { window.onInterstitialAdClosed(); }",
+              null
+            )
+          }
         }
       }
     }
@@ -968,58 +729,68 @@ class AndroidBridge(
 
   @JavascriptInterface
   fun setBannerVisible(visible: Boolean) {
-    activity.setBannerVisibility(visible)
+    withActivity { act ->
+      act.setBannerVisibility(visible)
+    }
   }
 
   @JavascriptInterface
   fun getGithubQuestionsJson(grade: Int, round: Int): String {
-    return activity.githubRepo.getCachedQuestionsJson(grade, round) ?: ""
+    return activityRef.get()?.githubRepo?.getCachedQuestionsJson(grade, round) ?: ""
   }
 
   @JavascriptInterface
   fun fetchGithubQuestions(grade: Int, round: Int) {
-    activity.githubRepo.fetchAndCacheQuestions(grade, round, onSuccess = {
-      activity.runOnUiThread {
-        webViewProvider()?.evaluateJavascript(
-          "if (window.onGithubQuestionsUpdated) { window.onGithubQuestionsUpdated($grade, $round); }",
-          null
-        )
-      }
-    })
+    withActivity { act ->
+      act.githubRepo.fetchAndCacheQuestions(grade, round, onSuccess = {
+        act.runOnUiThread {
+          webViewProvider()?.evaluateJavascript(
+            "if (window.onGithubQuestionsUpdated) { window.onGithubQuestionsUpdated($grade, $round); }",
+            null
+          )
+        }
+      })
+    }
   }
 
   @JavascriptInterface
   fun showToast(message: String) {
-    activity.runOnUiThread {
-      Toast.makeText(activity, message, Toast.LENGTH_SHORT).show()
+    withActivity { act ->
+      act.runOnUiThread {
+        Toast.makeText(act, message, Toast.LENGTH_SHORT).show()
+      }
     }
   }
 
   @JavascriptInterface
   fun exitApp() {
-    activity.runOnUiThread {
-      activity.finish()
+    withActivity { act ->
+      act.runOnUiThread {
+        act.finish()
+      }
     }
   }
 
   @JavascriptInterface
   fun openBrowserUrl(url: String) {
-    activity.runOnUiThread {
-      try {
-        val targetUri = if (url == "privacy.html" || url.endsWith("/privacy.html")) {
-          Uri.parse("https://sites.google.com/view/sieutrangnhi-tiengviet/trang-ch%E1%BB%A7")
-        } else if (url.startsWith("http://") || url.startsWith("https://")) {
-          Uri.parse(url)
-        } else {
-          Uri.parse(url)
+    withActivity { act ->
+      act.runOnUiThread {
+        try {
+          val targetUri = if (url == "privacy.html" || url.endsWith("/privacy.html")) {
+            Uri.parse("https://sites.google.com/view/sieutrangnhi-tiengviet/trang-ch%E1%BB%A7")
+          } else if (url.startsWith("http://") || url.startsWith("https://")) {
+            Uri.parse(url)
+          } else {
+            Uri.parse(url)
+          }
+          val intent = Intent(Intent.ACTION_VIEW, targetUri).apply {
+            addCategory(Intent.CATEGORY_BROWSABLE)
+            flags = Intent.FLAG_ACTIVITY_NEW_TASK
+          }
+          act.startActivity(intent)
+        } catch (_: Exception) {
+          act.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://sites.google.com/view/sieutrangnhi-tiengviet/trang-ch%E1%BB%A7")))
         }
-        val intent = Intent(Intent.ACTION_VIEW, targetUri).apply {
-          addCategory(Intent.CATEGORY_BROWSABLE)
-          flags = Intent.FLAG_ACTIVITY_NEW_TASK
-        }
-        activity.startActivity(intent)
-      } catch (e: Exception) {
-        activity.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://sites.google.com/view/sieutrangnhi-tiengviet/trang-ch%E1%BB%A7")))
       }
     }
   }
