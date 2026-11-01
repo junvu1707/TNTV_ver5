@@ -270,7 +270,7 @@ class MainActivity : ComponentActivity() {
 
   fun showVipRegistrationDialog(productId: String, defaultName: String = "") {
     runOnUiThread {
-      val isVip2Target = productId == "vip2" || productId == "vip_package_2"
+      val isVip2Target = productId == BillingManager.PRODUCT_VIP_2
       val vipTitleName = if (isVip2Target) "Gói VIP 2 (Trọn Đời - 99.000đ)" else "Gói VIP 1 (Mùa Thi - 49.000đ)"
       val deviceId = vipPrefs.getDeviceId()
       val savedEmail = vipPrefs.getUserEmail()
@@ -619,7 +619,7 @@ class AndroidBridge(
       if (userEmail.isNotBlank()) {
         activity.vipPrefs.setUserEmail(userEmail)
       }
-      val level = if (productId == "vip2" || productId == "vip_package_2") VipPreferenceManager.VIP_LEVEL_2 else VipPreferenceManager.VIP_LEVEL_1
+      val level = if (productId == BillingManager.PRODUCT_VIP_2) VipPreferenceManager.VIP_LEVEL_2 else VipPreferenceManager.VIP_LEVEL_1
       val orderId = "VIETQR_" + System.currentTimeMillis()
       activity.vipPrefs.setLastOrderId(orderId)
       activity.vipPrefs.setVipLevel(level)
