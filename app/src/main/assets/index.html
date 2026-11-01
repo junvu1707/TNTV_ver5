@@ -1072,7 +1072,7 @@
     examMode: 1,            // 1: Vòng Tự Luyện (3 game), 2: Vòng Thi Các Cấp (Đề Tổng Hợp 30 câu)
     currentRoundNum: 1,
     roundTotalScore: 0,
-    timerSeconds: 900,
+    timerSeconds: 1800,
     timerInterval: null,
 
     // Chế độ 1: 3 game con
@@ -5742,7 +5742,7 @@
           const qList = Array.isArray(githubData) ? githubData : (githubData.questions && Array.isArray(githubData.questions) ? githubData.questions : []);
           if (roundNum <= 6 && githubData.subGames && Array.isArray(githubData.subGames)) {
             AppState.examMode = 1;
-            AppState.timerSeconds = githubData.timerSeconds || 1200;
+            AppState.timerSeconds = githubData.timerSeconds || 1800; // 30 phút
             AppState.currentSubGameIndex = 0;
             AppState.currentExamMode1 = githubData;
             AppState.timerInterval = setInterval(() => {
@@ -5808,7 +5808,7 @@
     } else {
       // Chế độ 1: Vòng 1 - 6 (5 Mini-games hoạt hình liên hoàn)
       AppState.examMode = 1;
-      AppState.timerSeconds = 900;
+      AppState.timerSeconds = 1800; // 30 phút
       AppState.currentSubGameIndex = 0;
       AppState.subGameScores = [0, 0, 0, 0, 0];
       AppState.currentExamMode1 = ExamGenerator.generateMode1Exam(AppState.selectedGrade, roundNum, AppState.currentSeed);
@@ -5818,7 +5818,7 @@
         updateTimerDisplay();
         if (AppState.timerSeconds <= 0) {
           clearInterval(AppState.timerInterval);
-          showCustomAlert('Đã hết 15 phút làm bài! Hệ thống tự động nộp bài.');
+          showCustomAlert('Đã hết 30 phút làm bài! Hệ thống tự động nộp bài.');
           finishRoundExam();
         }
       }, 1000);
@@ -7673,7 +7673,7 @@
     closeModal();
 
     // Tính toán thời gian làm bài thực tế
-    const totalTimeLimit = AppState.examMode === 2 ? 1800 : 900;
+    const totalTimeLimit = 1800; // 30 phút cho tất cả bài thi
     const timeSpent = Math.max(1, totalTimeLimit - AppState.timerSeconds);
     const spentMinutes = Math.floor(timeSpent / 60);
     const spentSeconds = timeSpent % 60;
