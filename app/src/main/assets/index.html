@@ -4122,14 +4122,14 @@
     const isAdmin = isAdminAccount();
 
     const tabContentHtml = `
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 max-h-[50vh] overflow-y-auto p-1">
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 h-full overflow-y-auto p-1 pr-1.5">
         ${AVATAR_LOOKBOOKS.map(lb => {
           const isEquipped = (AppState.selectedChibiId === lb.id || (lb.id === 'chibi_co_be_de_thuong' && AppState.selectedChibiId === 'chibi_trang_thong_thai'));
           const isOwned = isAdmin || (AppState.ownedChibis || []).includes(lb.id) || (lb.id === 'chibi_co_be_de_thuong' && (AppState.ownedChibis || []).includes('chibi_trang_thong_thai')) || lb.price === 0;
 
           return `
-            <div class="p-3 rounded-2xl border-2 ${isEquipped ? 'border-red-500 bg-red-50/80 ring-2 ring-red-400' : 'border-amber-200 bg-amber-50/40 hover:bg-amber-100/60'} flex items-center gap-3 transition-all">
-              <div class="w-16 h-16 shrink-0 rounded-2xl bg-white border border-amber-300 flex items-center justify-center p-0.5 shadow-inner overflow-hidden">
+            <div class="p-2.5 rounded-2xl border-2 ${isEquipped ? 'border-red-500 bg-red-50/90 ring-2 ring-red-400' : 'border-amber-200 bg-amber-50/40 hover:bg-amber-100/60'} flex items-center gap-2.5 transition-all">
+              <div class="w-14 h-14 shrink-0 rounded-2xl bg-white border border-amber-300 flex items-center justify-center p-0.5 shadow-inner overflow-hidden">
                 <img src="${lb.image}" alt="${lb.name}" class="w-full h-full object-cover object-[center_15%] rounded-xl" onerror="this.onerror=null; this.src='app_logo.png';">
               </div>
               <div class="flex-1 min-w-0">
@@ -4142,21 +4142,21 @@
                   ` : ''}
                 </div>
                 <p class="text-[10px] text-slate-500 line-clamp-2 mt-0.5 leading-snug">${lb.sub}</p>
-                <div class="mt-2 flex items-center justify-end gap-1.5 flex-wrap">
+                <div class="mt-1.5 flex items-center justify-end gap-1.5 flex-wrap">
                   ${isEquipped ? `
-                    <span class="text-[10px] bg-red-600 text-white px-2.5 py-0.5 rounded-full font-black shadow-sm">Đang chọn ✓</span>
+                    <span class="text-[10px] bg-red-600 text-white px-2 py-0.5 rounded-full font-black shadow-sm">Đang chọn ✓</span>
                   ` : isOwned ? `
-                    <button onclick="applyLookbook('${lb.id}')" class="btn-3d btn-3d-green text-[11px] font-black px-3 py-1 rounded-xl text-white shadow">
-                      Chọn Hình Mẫu
+                    <button onclick="applyLookbook('${lb.id}')" class="btn-3d btn-3d-green text-[10px] sm:text-[11px] font-black px-2.5 py-1 rounded-xl text-white shadow">
+                      Chọn
                     </button>
                   ` : `
                     <button onclick="unlockLookbook('${lb.id}', ${lb.price})" class="btn-3d btn-3d-gold text-[10px] font-black px-2 py-1 rounded-xl text-amber-950 shadow flex items-center gap-0.5" title="Dùng ${lb.price} sao để sở hữu vĩnh viễn">
                       <span>Đổi</span>
-                      <span class="text-red-700 font-extrabold">${lb.price} ⭐</span>
+                      <span class="text-red-700 font-extrabold">${lb.price}⭐</span>
                     </button>
                     <button onclick="watchRewardedAdForChibi('${lb.id}')" class="btn-3d btn-3d-green text-[10px] font-black px-2 py-1 rounded-xl text-white shadow flex items-center gap-1 active:scale-95" title="Xem 1 video ngắn để dùng thử 1 lần">
                       <span>🎬</span>
-                      <span>Dùng thử</span>
+                      <span>Thử</span>
                     </button>
                   `}
                 </div>
@@ -4168,54 +4168,54 @@
     `;
 
     modalContainer.innerHTML = `
-      <div class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-center justify-center p-3 sm:p-4">
-        <div class="scroll-card max-w-lg w-full p-4 sm:p-5 bg-white border-4 border-amber-400 relative shadow-2xl flex flex-col max-h-[92vh]">
+      <div class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-center justify-center p-2.5 sm:p-4 pb-16 sm:pb-16">
+        <div class="scroll-card max-w-lg w-full p-3.5 sm:p-4 bg-white border-4 border-amber-400 relative shadow-2xl flex flex-col max-h-[82vh] sm:max-h-[85vh] rounded-3xl overflow-hidden">
           <!-- Nút X đóng modal ở góc trên phải -->
-          <button onclick="closeModal()" class="absolute top-2.5 right-2.5 z-10 text-slate-400 hover:text-slate-600 p-1 rounded-full hover:bg-slate-100 transition-colors">
+          <button onclick="closeModal()" class="absolute top-2 right-2 z-20 text-slate-400 hover:text-slate-600 p-1.5 rounded-full hover:bg-slate-100 transition-colors">
             <i data-lucide="x" class="w-5 h-5"></i>
           </button>
 
           <!-- HÀNG 1: Button Cửa Hàng Hình Mẫu (phía trên cùng bên trái) & Số Sao (phía trên cùng bên phía phải) -->
-          <div class="flex items-center justify-between gap-2 mb-2.5 pb-2 border-b border-amber-200/80 pr-7">
+          <div class="flex items-center justify-between gap-2 mb-2 pb-1.5 border-b border-amber-200/80 pr-8 shrink-0 flex-wrap">
             <!-- Phía trên cùng bên trái: Button Cửa Hàng Hình Mẫu -->
-            <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-xl bg-red-600 text-white font-black text-xs shadow-sm">
+            <div class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-xl bg-red-600 text-white font-black text-xs shadow-sm">
               <span>🖼️</span>
               <span>Cửa Hàng Hình Mẫu Chibi</span>
             </div>
 
-            <!-- Phía trên cùng bên phải (cùng hàng): Số sao -->
-            <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-xl bg-amber-100 border border-amber-300 text-amber-900 font-black text-xs sm:text-sm shadow-sm">
+            <!-- Phía trên cùng bên phải: Số sao -->
+            <div class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-xl bg-amber-100 border border-amber-300 text-amber-900 font-black text-xs shadow-sm">
               <span>⭐</span>
               <span id="wardrobe-stars-count">${stars}</span>
-              <span class="text-[11px] font-bold">Sao</span>
+              <span class="text-[10px] font-bold">Sao</span>
             </div>
           </div>
 
-          <!-- HÀNG 2: Màn xem Chibi (bên trái) & Tên Chibi + Xem Video dịch sang bên phải -->
-          <div class="flex items-center gap-3.5 pb-3 border-b-2 border-amber-200">
-            <!-- Hình Chibi -->
+          <!-- HÀNG 2: Màn xem Chibi gọn gàng & Tên Chibi + Xem Video -->
+          <div class="flex items-center gap-2.5 pb-2 border-b border-amber-200 shrink-0">
+            <!-- Hình Chibi gọn gàng -->
             <div class="relative shrink-0">
-              <div class="w-[110px] h-[110px] sm:w-[136px] sm:h-[136px] rounded-2xl bg-gradient-to-br from-amber-200 via-amber-300 to-amber-400 p-1.5 border-2 border-amber-400 shadow-inner flex items-center justify-center overflow-hidden bg-white">
+              <div class="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-gradient-to-br from-amber-200 via-amber-300 to-amber-400 p-1 border-2 border-amber-400 shadow-inner flex items-center justify-center overflow-hidden bg-white">
                 <div id="wardrobe-current-avatar-preview" class="w-full h-full flex items-center justify-center">
-                  ${getCurrentAvatarHtml(125)}
+                  ${getCurrentAvatarHtml(70)}
                 </div>
               </div>
             </div>
 
-            <!-- Tên Hình Mẫu & Nút Xem Video dịch sang bên phải -->
-            <div class="flex-1 min-w-0 flex flex-col justify-center space-y-2">
+            <!-- Tên Hình Mẫu & Nút Xem Video -->
+            <div class="flex-1 min-w-0 flex flex-col justify-center space-y-1">
               <div>
-                <span class="text-[10px] font-bold text-slate-500 uppercase">Hình Mẫu Đang Chọn:</span>
-                <h3 class="text-base sm:text-xl font-black text-amber-950 leading-snug truncate">${AppState.avatarName || 'Siêu Trạng Nhí'}</h3>
+                <span class="text-[9px] font-bold text-slate-500 uppercase tracking-tight">Hình Mẫu Đang Chọn:</span>
+                <h3 class="text-sm sm:text-base font-black text-amber-950 leading-tight truncate">${AppState.avatarName || 'Siêu Trạng Nhí'}</h3>
               </div>
 
               <div>
                 ${isAdmin ? `
-                  <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-red-600 text-yellow-200 font-black text-[11px] shadow-sm border border-yellow-300">
+                  <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-lg bg-red-600 text-yellow-200 font-black text-[10px] shadow-sm border border-yellow-300">
                     👑 Admin: Mở khóa tất cả
                   </span>
                 ` : `
-                  <button onclick="watchRewardedAdForStars(30)" class="btn-3d btn-3d-green px-3 py-1.5 rounded-xl text-white font-black text-xs shadow flex items-center justify-center gap-1.5 active:scale-95 transition-all" title="Xem 1 video ngắn nhận ngay 30 sao đổi hình mẫu">
+                  <button onclick="watchRewardedAdForStars(30)" class="btn-3d btn-3d-green px-2.5 py-1 rounded-xl text-white font-black text-[11px] shadow flex items-center justify-center gap-1 active:scale-95 transition-all" title="Xem 1 video ngắn nhận ngay 30 sao đổi hình mẫu">
                     <span>🎬</span>
                     <span>+30 ⭐ (Xem Video)</span>
                   </button>
@@ -4225,21 +4225,21 @@
           </div>
 
           <!-- Nhãn Tiêu Đề Danh Sách Hình Mẫu -->
-          <div class="my-2.5 shrink-0 flex items-center justify-between">
-            <span class="text-xs font-black text-amber-950 uppercase tracking-wide flex items-center gap-1">
+          <div class="my-1.5 shrink-0 flex items-center justify-between">
+            <span class="text-[11px] font-black text-amber-950 uppercase tracking-wide flex items-center gap-1">
               <span>✨</span> Danh Sách Hình Mẫu Chibi:
             </span>
           </div>
 
-          <!-- Nội dung danh sách hình mẫu -->
-          <div class="flex-1 min-h-0">
+          <!-- Nội dung danh sách hình mẫu cuộn linh hoạt -->
+          <div class="flex-1 min-h-0 relative my-0.5 overflow-hidden">
             ${tabContentHtml}
           </div>
 
-          <!-- Nút đóng -->
-          <div class="mt-3 pt-2.5 border-t border-amber-200 flex justify-between items-center shrink-0">
-            <span class="text-[11px] text-slate-500 font-medium">Hoàn thành vòng thi để nhận thêm Sao!</span>
-            <button onclick="closeModal(); updateHeaderUI(); if(!AppState.currentExamMode1 && AppState.exam30Questions.length === 0) renderHome();" class="px-5 py-2 rounded-xl bg-slate-200 hover:bg-slate-300 text-slate-700 font-bold text-xs">
+          <!-- Nút đóng chân trang -->
+          <div class="mt-2 pt-2 border-t border-amber-200 flex justify-between items-center shrink-0 gap-2">
+            <span class="text-[10px] sm:text-[11px] text-slate-500 font-medium truncate">Thi để nhận thêm Sao!</span>
+            <button onclick="closeModal(); updateHeaderUI(); if(!AppState.currentExamMode1 && AppState.exam30Questions.length === 0) renderHome();" class="px-4 py-1.5 rounded-xl bg-slate-200 hover:bg-slate-300 text-slate-700 font-bold text-xs shrink-0 active:scale-95 transition-all">
               Đóng Cửa Hàng
             </button>
           </div>
