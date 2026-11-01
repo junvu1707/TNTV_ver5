@@ -334,7 +334,7 @@ class MainActivity : ComponentActivity() {
 
       val inputAccount = EditText(this).apply {
         hint = "Nhập tên tài khoản..."
-        setText(if (savedName.isNotBlank() && savedName != "Công chúa tóc mây") savedName else "Tài khoản VIP")
+        setText(if (savedName.isNotBlank() && savedName != "Siêu Trạng Nhí") savedName else "Tài khoản VIP")
         setSingleLine(true)
         setTextColor(Color.parseColor("#1E293B"))
         textSize = 13f
