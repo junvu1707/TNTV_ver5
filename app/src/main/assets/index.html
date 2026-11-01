@@ -5289,42 +5289,45 @@
 
     root.innerHTML = `
       <!-- Banner Tiêu Đề Siêu Trạng Nhí Tiếng Việt & Khối Lớp -->
-      <div class="scroll-card p-4 sm:p-5 mb-5 bg-white border-2 border-[#C8E6C9] relative overflow-hidden shadow-sm">
+      <div class="scroll-card p-3.5 sm:p-5 mb-5 bg-white border-2 border-[#C8E6C9] relative overflow-hidden shadow-sm">
         <div class="dong-son-pattern absolute inset-0 pointer-events-none opacity-15"></div>
-        <div class="relative z-10 flex flex-row items-center justify-between gap-3 w-full">
-          <!-- Tiêu Đề Kèm Hình Đại Diện Siêu Trạng Nhí Tiếng Việt Sinh Động -->
-          <div class="flex items-center gap-2.5 sm:gap-4 min-w-0">
-            <!-- Hình Đại Diện Siêu Trạng Nhí Tiếng Việt (Hình tròn đồng bộ) -->
+        <div class="relative z-10 flex flex-col sm:flex-row items-center justify-between gap-3 sm:gap-4 w-full">
+
+          <!-- Cụm Tiêu Đề & Hình Đại Diện: Chiếm full width trên mobile, không bị ép hẹp -->
+          <div class="flex items-center gap-3 sm:gap-4 w-full sm:w-auto min-w-0 flex-1">
+            <!-- Hình Đại Diện (Siêu Trạng Nhí) -->
             <div class="relative shrink-0 cursor-pointer" onclick="openAvatarModal()" title="Hình đại diện Siêu Trạng Nhí Tiếng Việt • Vào Tủ Đồ Chibi">
-              <div class="w-[82px] h-[82px] sm:w-[104px] sm:h-[104px] rounded-full bg-gradient-to-br from-emerald-100 via-white to-emerald-200 p-1 shadow-md border-2 border-[#C8E6C9] flex items-center justify-center transform hover:scale-105 transition-all overflow-hidden bg-white">
+              <div class="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-full bg-gradient-to-br from-emerald-100 via-white to-emerald-200 p-1 shadow-md border-2 border-[#C8E6C9] flex items-center justify-center transform hover:scale-105 transition-all overflow-hidden bg-white">
                 <img src="app_logo.png" alt="Siêu Trạng Nhí Tiếng Việt" class="w-full h-full object-cover rounded-full" onerror="this.onerror=null; this.src='chibi_cong_chua_toc_may.png';">
               </div>
             </div>
 
-            <div class="min-w-0 flex flex-col items-center text-center">
-              <h1 class="text-base sm:text-2xl md:text-3xl font-black text-red-900 tracking-tight leading-tight text-center">
-                <span class="block text-center">Siêu Trạng Nhí</span>
-                <span class="block text-center text-emerald-700">Tiếng Việt</span>
+            <!-- Khối Tiêu Đề Cân Bằng: Dùng whitespace-nowrap & text-left để chữ không bao giờ bị bẻ dọc -->
+            <div class="min-w-0 flex-1 flex flex-col justify-center text-left">
+              <h1 class="text-base sm:text-2xl md:text-3xl font-black text-red-900 tracking-tight leading-tight">
+                <span class="inline-block whitespace-nowrap">Siêu Trạng Nhí</span>
+                <span class="inline-block whitespace-nowrap text-emerald-700 ml-1 sm:ml-0 sm:block">Tiếng Việt</span>
               </h1>
-              <div class="inline-block bg-slate-50 text-slate-500 font-bold px-2 py-0.5 rounded-full uppercase tracking-wider mt-1 border border-slate-200 text-[8px] sm:text-[10px] leading-tight text-center">
+              <div class="inline-block self-start bg-slate-50 text-slate-600 font-bold px-2 py-0.5 rounded-full uppercase tracking-wider mt-1 border border-slate-200 text-[9px] sm:text-[11px] leading-tight max-w-full">
                 Dành cho Học sinh & Giáo viên Tiểu học
               </div>
             </div>
           </div>
-          
-          <!-- Nút Quản Lý Tài Khoản & Tủ Đồ (Dịch hẳn sang bên phải tạo sự cân đối) -->
-          <div class="flex flex-col sm:flex-row items-end sm:items-center gap-1.5 sm:gap-2.5 shrink-0 ml-auto">
-            <button onclick="openAccountModal()" class="btn-3d bg-white hover:bg-amber-50 border-2 border-amber-300 text-slate-800 font-black text-[11px] sm:text-xs px-2.5 sm:px-3.5 py-1.5 sm:py-2 rounded-xl flex items-center gap-1.5 shadow-sm active:scale-95 whitespace-nowrap" title="Quản lý tài khoản">
+
+          <!-- Thanh 2 Nút Action: Bố trí hàng ngang gọn gàng bên dưới trên mobile, bên phải trên desktop -->
+          <div class="flex flex-row items-center justify-end gap-2 w-full sm:w-auto shrink-0 pt-2 sm:pt-0 border-t border-dashed border-amber-200 sm:border-none">
+            <button onclick="openAccountModal()" class="btn-3d flex-1 sm:flex-initial bg-white hover:bg-amber-50 border-2 border-amber-300 text-slate-800 font-black text-xs px-3 sm:px-3.5 py-1.5 sm:py-2 rounded-xl flex items-center justify-center gap-1.5 shadow-sm active:scale-95 whitespace-nowrap" title="Quản lý tài khoản">
               <span>👤 Tài Khoản</span>
             </button>
-            <button onclick="openAvatarModal()" class="btn-3d bg-amber-100 hover:bg-amber-200 border-2 border-amber-400 text-amber-950 font-black text-[11px] sm:text-xs px-2.5 sm:px-3.5 py-1.5 sm:py-2 rounded-xl flex items-center gap-1.5 shadow-sm active:scale-95 whitespace-nowrap" title="Tủ đồ Chibi (Đổi quà bằng Sao)">
+            <button onclick="openAvatarModal()" class="btn-3d flex-1 sm:flex-initial bg-amber-100 hover:bg-amber-200 border-2 border-amber-400 text-amber-950 font-black text-xs px-3 sm:px-3.5 py-1.5 sm:py-2 rounded-xl flex items-center justify-center gap-1.5 shadow-sm active:scale-95 whitespace-nowrap" title="Tủ đồ Chibi (Đổi quà bằng Sao)">
               <span>🎭 Tủ Đồ</span>
             </button>
           </div>
+
         </div>
 
         <!-- Thanh chọn Khối lớp (Lớp 1 - 5) -->
-        <div class="mt-4 pt-3.5 border-t border-amber-200/80">
+        <div class="mt-3.5 pt-3 border-t border-amber-200/80">
           <div class="flex items-center justify-between mb-2">
             <span class="text-xs font-black text-amber-950 uppercase tracking-wide flex items-center gap-1">
               <span>📚</span> Khối Lớp Của Bé:

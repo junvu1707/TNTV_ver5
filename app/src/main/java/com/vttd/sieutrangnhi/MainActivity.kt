@@ -128,6 +128,7 @@ class MainActivity : ComponentActivity() {
         allowFileAccess = true
         allowContentAccess = true
         cacheMode = WebSettings.LOAD_DEFAULT
+        textZoom = 100
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
           safeBrowsingEnabled = false
         }
