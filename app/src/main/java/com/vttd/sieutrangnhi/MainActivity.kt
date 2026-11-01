@@ -989,6 +989,19 @@ class AndroidBridge(
   }
 
   @JavascriptInterface
+  fun syncAllGithubQuestions(force: Boolean = true) {
+    activity.githubRepo.syncRepoQuestions(forceRefresh = force) { success, message ->
+      activity.runOnUiThread {
+        val safeMsg = message.replace("'", "\\'").replace("\n", " ")
+        webViewProvider()?.evaluateJavascript(
+          "if (window.onGithubSyncCompleted) { window.onGithubSyncCompleted($success, '$safeMsg'); }",
+          null
+        )
+      }
+    }
+  }
+
+  @JavascriptInterface
   fun showToast(message: String) {
     activity.runOnUiThread {
       Toast.makeText(activity, message, Toast.LENGTH_SHORT).show()

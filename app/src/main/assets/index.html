@@ -4458,6 +4458,10 @@
           </button>
 
           <div class="space-y-2">
+            <button onclick="triggerSyncGithubQuestions()" class="w-full py-2 px-3 rounded-xl bg-gradient-to-r from-sky-50 to-blue-50 hover:from-sky-100 hover:to-blue-100 border border-sky-300 text-sky-950 font-extrabold text-xs flex items-center justify-center gap-2 shadow-sm">
+              <span>🔄</span> Cập nhật đề thi từ GitHub
+            </button>
+
             <button onclick="openAvatarModal('lookbook')" class="w-full py-2 px-3 rounded-xl bg-gradient-to-r from-amber-50 to-red-50 hover:from-amber-100 hover:to-red-100 border border-amber-300 text-red-950 font-extrabold text-xs flex items-center justify-center gap-2 shadow-sm">
               <span>🎭</span> Tủ Đồ Chibi: Đổi trang phục bằng Sao ⭐
             </button>
@@ -4480,6 +4484,32 @@
     `;
     safeCreateIcons();
   }
+
+  function triggerSyncGithubQuestions() {
+    if (typeof SoundEngine !== 'undefined' && SoundEngine.playClick) {
+      SoundEngine.playClick();
+    }
+    showCustomAlert('🔄 Đang đồng bộ đề thi mới nhất từ GitHub repository...');
+    if (window.AndroidBridge && typeof window.AndroidBridge.syncAllGithubQuestions === 'function') {
+      window.AndroidBridge.syncAllGithubQuestions(true);
+    } else {
+      setTimeout(() => {
+        showCustomAlert('✨ Ngân hàng đề thi đã sẵn sàng!');
+      }, 1200);
+    }
+  }
+
+  window.onGithubSyncCompleted = function(success, message) {
+    if (success) {
+      showCustomAlert('🎉 ' + message);
+    } else {
+      showCustomAlert('⚠️ ' + message);
+    }
+  };
+
+  window.onGithubQuestionsUpdated = function(grade, round) {
+    console.log('GitHub questions updated for Grade ' + grade + ', Round ' + round);
+  };
 
 
   function clearCustomAccountId() {
@@ -5709,6 +5739,7 @@
       try {
         const githubData = JSON.parse(githubJsonStr);
         if (githubData) {
+          const qList = Array.isArray(githubData) ? githubData : (githubData.questions && Array.isArray(githubData.questions) ? githubData.questions : []);
           if (roundNum <= 6 && githubData.subGames && Array.isArray(githubData.subGames)) {
             AppState.examMode = 1;
             AppState.timerSeconds = githubData.timerSeconds || 1200;
@@ -5726,13 +5757,13 @@
             SoundEngine.playGong();
             renderCurrentSubGameMode1();
             return;
-          } else if (roundNum >= 7 && githubData.questions && Array.isArray(githubData.questions)) {
+          } else if (qList.length > 0) {
             AppState.examMode = 2;
             AppState.timerSeconds = githubData.timerSeconds || 1800;
             AppState.currentQuestionIndex = 0;
             AppState.userAnswers30 = {};
             mode2CompletionModalShown = false;
-            AppState.exam30Questions = shuffleQuestionOptions(githubData.questions, AppState.currentSeed + 701);
+            AppState.exam30Questions = shuffleQuestionOptions(qList, AppState.currentSeed + 701);
             AppState.timerInterval = setInterval(() => {
               AppState.timerSeconds--;
               updateTimerDisplay();
