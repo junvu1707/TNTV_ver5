@@ -57,16 +57,10 @@ class MainActivity : ComponentActivity() {
 
   companion object {
     private const val TAG = "MainActivity"
-    // Các Test Ad Unit IDs chính thức từ Google AdMob (dành cho kiểm thử an toàn)
-    const val TEST_BANNER_ID = "ca-app-pub-3940256099942544/6300978111"
-    const val TEST_INTERSTITIAL_ID = "ca-app-pub-3940256099942544/1033173712"
-    const val TEST_REWARDED_ID = "ca-app-pub-3940256099942544/5224354917"
   }
 
   var webView: WebView? = null
   private var bannerAdView: AdView? = null
-  private var interstitialAd: InterstitialAd? = null
-  private var rewardedAd: RewardedAd? = null
   private var isAdMobInitialized = false
   private var bannerContainer: FrameLayout? = null
 
@@ -109,23 +103,14 @@ class MainActivity : ComponentActivity() {
       }
     }
 
-    // 2. Cấu hình tuân thủ Google Play Families Policy (Chính sách gia đình & trẻ em)
-    val requestConfiguration = RequestConfiguration.Builder()
-      .setTagForChildDirectedTreatment(RequestConfiguration.TAG_FOR_CHILD_DIRECTED_TREATMENT_TRUE)
-      .setTagForUnderAgeOfConsent(RequestConfiguration.TAG_FOR_UNDER_AGE_OF_CONSENT_TRUE)
-      .setMaxAdContentRating(RequestConfiguration.MAX_AD_CONTENT_RATING_G)
-      .build()
-    MobileAds.setRequestConfiguration(requestConfiguration)
-
-    // Khởi tạo Google AdMob SDK
-    MobileAds.initialize(this) { status ->
-      Log.d(TAG, "AdMob SDK Initialized: $status")
+    // 2. Khởi tạo Google Mobile Ads SDK qua AdManager (Tuân thủ chính sách Gia đình & Trẻ em)
+    AdManager.initSdk(this) {
       isAdMobInitialized = true
       runOnUiThread {
         if (vipPrefs.shouldShowInterstitialAd()) {
-          loadInterstitialAd()
+          AdManager.loadInterstitialAd(this)
         }
-        loadRewardedAd()
+        AdManager.loadRewardedAd(this)
       }
     }
 
@@ -272,15 +257,6 @@ class MainActivity : ComponentActivity() {
 
   // --- QUẢN LÝ QUẢNG CÁO THEO GÓI VIP ---
 
-  private fun buildAdRequest(): AdRequest {
-    val extras = Bundle().apply {
-      putString("npa", "1")
-    }
-    return AdRequest.Builder()
-      .addNetworkExtrasBundle(AdMobAdapter::class.java, extras)
-      .build()
-  }
-
   fun initBannerAd() {
     if (!vipPrefs.shouldShowBannerAd()) {
       bannerContainer?.visibility = View.GONE
@@ -289,34 +265,8 @@ class MainActivity : ComponentActivity() {
       return
     }
 
-    try {
-      val adView = AdView(this).apply {
-        setAdSize(AdSize.BANNER)
-        adUnitId = TEST_BANNER_ID
-        adListener = object : AdListener() {
-          override fun onAdLoaded() {
-            Log.d(TAG, "AdMob Banner loaded successfully")
-            if (vipPrefs.shouldShowBannerAd()) {
-              bannerContainer?.visibility = View.VISIBLE
-            }
-          }
-          override fun onAdFailedToLoad(error: LoadAdError) {
-            Log.w(TAG, "AdMob Banner failed to load: ${error.message}")
-          }
-        }
-      }
-      bannerAdView = adView
-      bannerContainer?.removeAllViews()
-      bannerContainer?.addView(adView, FrameLayout.LayoutParams(
-        FrameLayout.LayoutParams.WRAP_CONTENT,
-        FrameLayout.LayoutParams.WRAP_CONTENT,
-        Gravity.CENTER
-      ))
-      val adRequest = buildAdRequest()
-      adView.loadAd(adRequest)
-    } catch (e: Exception) {
-      Log.e(TAG, "Lỗi tạo Banner Ad: ${e.message}")
-    }
+    val container = bannerContainer ?: return
+    bannerAdView = AdManager.loadBannerAd(this, container)
   }
 
   fun updateAdMobForVipStatus() {
@@ -345,112 +295,28 @@ class MainActivity : ComponentActivity() {
 
   fun loadInterstitialAd() {
     if (!vipPrefs.shouldShowInterstitialAd()) return
-
-    val adRequest = buildAdRequest()
-    InterstitialAd.load(
-      this,
-      TEST_INTERSTITIAL_ID,
-      adRequest,
-      object : InterstitialAdLoadCallback() {
-        override fun onAdLoaded(ad: InterstitialAd) {
-          interstitialAd = ad
-          Log.d(TAG, "AdMob Interstitial loaded successfully")
-        }
-        override fun onAdFailedToLoad(error: LoadAdError) {
-          interstitialAd = null
-          Log.w(TAG, "AdMob Interstitial load failed: ${error.message}")
-        }
-      }
-    )
+    AdManager.loadInterstitialAd(this)
   }
 
   fun showInterstitialAd(onClosed: () -> Unit) {
-    runOnUiThread {
-      // Bỏ qua hiển thị nếu VIP 2 (0%) hoặc VIP 1 không trúng xác suất 20%
-      if (!vipPrefs.shouldShowInterstitialAd()) {
-        Log.d(TAG, "Bỏ qua Interstitial Ad theo chính sách VIP Level ${vipPrefs.getVipLevel()}")
-        onClosed()
-        return@runOnUiThread
-      }
-
-      val ad = interstitialAd
-      if (ad != null) {
-        ad.fullScreenContentCallback = object : FullScreenContentCallback() {
-          override fun onAdDismissedFullScreenContent() {
-            interstitialAd = null
-            loadInterstitialAd()
-            onClosed()
-          }
-          override fun onAdFailedToShowFullScreenContent(error: AdError) {
-            interstitialAd = null
-            loadInterstitialAd()
-            onClosed()
-          }
-        }
-        ad.show(this)
-      } else {
-        loadInterstitialAd()
-        onClosed()
-      }
-    }
-  }
-
-  fun loadRewardedAd() {
-    val adRequest = buildAdRequest()
-    RewardedAd.load(
-      this,
-      TEST_REWARDED_ID,
-      adRequest,
-      object : RewardedAdLoadCallback() {
-        override fun onAdLoaded(ad: RewardedAd) {
-          rewardedAd = ad
-          Log.d(TAG, "AdMob Rewarded Video loaded successfully")
-        }
-        override fun onAdFailedToLoad(error: LoadAdError) {
-          rewardedAd = null
-          Log.w(TAG, "AdMob Rewarded Video load failed: ${error.message}")
-        }
-      }
+    AdManager.showInterstitialAd(
+      activity = this,
+      shouldShow = vipPrefs.shouldShowInterstitialAd(),
+      onClosed = onClosed
     )
   }
 
-  fun showRewardedAd(onRewarded: () -> Unit, onFailedOrDismissed: () -> Unit) {
-    runOnUiThread {
-      // Nếu là tài khoản VIP, tự động thưởng luôn mà không cần xem quảng cáo
-      if (vipPrefs.isVip()) {
-        Log.d(TAG, "Tài khoản VIP -> Tự động nhận thưởng không cần xem QC")
-        onRewarded()
-        return@runOnUiThread
-      }
+  fun loadRewardedAd() {
+    AdManager.loadRewardedAd(this)
+  }
 
-      val ad = rewardedAd
-      if (ad != null) {
-        var userEarnedReward = false
-        ad.fullScreenContentCallback = object : FullScreenContentCallback() {
-          override fun onAdDismissedFullScreenContent() {
-            rewardedAd = null
-            loadRewardedAd()
-            if (userEarnedReward) {
-              onRewarded()
-            } else {
-              onFailedOrDismissed()
-            }
-          }
-          override fun onAdFailedToShowFullScreenContent(error: AdError) {
-            rewardedAd = null
-            loadRewardedAd()
-            onFailedOrDismissed()
-          }
-        }
-        ad.show(this) { rewardItem ->
-          Log.d(TAG, "User earned reward: ${rewardItem.amount} ${rewardItem.type}")
-          userEarnedReward = true
-        }
-      } else {
-        loadRewardedAd()
-        onFailedOrDismissed()
-      }
-    }
+  fun showRewardedAd(onRewarded: () -> Unit, onFailedOrDismissed: () -> Unit) {
+    AdManager.showRewardedAd(
+      activity = this,
+      isVip = vipPrefs.isVip(),
+      onRewarded = onRewarded,
+      onFailedOrDismissed = onFailedOrDismissed
+    )
   }
 
   fun showVipRegistrationDialog(productId: String, defaultName: String = "") {

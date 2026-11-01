@@ -1,4 +1,15 @@
 import com.google.gms.googleservices.GoogleServicesPlugin.MissingGoogleServicesStrategy
+import java.util.Properties
+
+val envProperties = Properties()
+val envFile = rootProject.file(".env")
+if (envFile.exists()) {
+  envProperties.load(envFile.inputStream())
+}
+
+fun getEnvOrProperty(key: String, defaultValue: String): String {
+  return System.getenv(key) ?: envProperties.getProperty(key) ?: defaultValue
+}
 
 plugins {
   alias(libs.plugins.android.application)
@@ -19,6 +30,18 @@ android {
     versionName = "1.0.3"
 
     testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
+    val admobAppId = getEnvOrProperty("ADMOB_APP_ID", "ca-app-pub-8286024889273116~6521655166")
+    val bannerId = getEnvOrProperty("BANNER_ID", "ca-app-pub-8286024889273116/8008503365")
+    val interstitialId = getEnvOrProperty("INTERSTITIAL_ID", "ca-app-pub-8286024889273116/6108476214")
+    val rewardedId = getEnvOrProperty("REWARDED_ID", "ca-app-pub-8286024889273116/9632788254")
+
+    manifestPlaceholders["ADMOB_APP_ID"] = admobAppId
+
+    buildConfigField("String", "ADMOB_APP_ID", "\"$admobAppId\"")
+    buildConfigField("String", "BANNER_ID", "\"$bannerId\"")
+    buildConfigField("String", "INTERSTITIAL_ID", "\"$interstitialId\"")
+    buildConfigField("String", "REWARDED_ID", "\"$rewardedId\"")
   }
 
   // Do not remove or modify these signingConfigs. They are necessary for building, installing,
@@ -67,11 +90,13 @@ android {
       isMinifyEnabled = true
       isShrinkResources = true
       proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
+      manifestPlaceholders["ADMOB_APP_ID"] = getEnvOrProperty("ADMOB_APP_ID", "ca-app-pub-8286024889273116~6521655166")
       // Do not remove or modify this signingConfig assignment. It is necessary for Android apps in
       // AI Studio.
       signingConfig = signingConfigs.getByName("release")
     }
     debug {
+      manifestPlaceholders["ADMOB_APP_ID"] = "ca-app-pub-3940256099942544~3347511713"
       // Do not remove or modify this signingConfig assignment. It is necessary for Android apps in
       // AI Studio.
       signingConfig = signingConfigs.getByName("debugConfig")
