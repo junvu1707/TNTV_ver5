@@ -1,4 +1,5 @@
 import com.google.gms.googleservices.GoogleServicesPlugin.MissingGoogleServicesStrategy
+import java.util.Properties
 
 plugins {
   alias(libs.plugins.android.application)
@@ -6,6 +7,32 @@ plugins {
   alias(libs.plugins.google.devtools.ksp)
   alias(libs.plugins.google.services)
 }
+
+// Hàm hỗ trợ nạp các biến cấu hình từ file .env ở thư mục gốc dự án
+fun loadEnvProperties(): Properties {
+  val props = Properties()
+  val envFile = file("${rootDir}/.env")
+  if (envFile.exists()) {
+    envFile.bufferedReader().use { reader ->
+      reader.forEachLine { line ->
+        val trimmed = line.trim()
+        if (trimmed.isNotEmpty() && !trimmed.startsWith("#") && trimmed.contains("=")) {
+          val parts = trimmed.split("=", limit = 2)
+          if (parts.size == 2) {
+            props.setProperty(parts[0].trim(), parts[1].trim())
+          }
+        }
+      }
+    }
+  }
+  return props
+}
+
+val envProps = loadEnvProperties()
+val admobAppId = envProps.getProperty("ADMOB_APP_ID") ?: "ca-app-pub-3940256099942544~3347511713"
+val bannerId = envProps.getProperty("BANNER_ID") ?: "ca-app-pub-3940256099942544/6300978111"
+val interstitialId = envProps.getProperty("INTERSTITIAL_ID") ?: "ca-app-pub-3940256099942544/1033173712"
+val rewardedId = envProps.getProperty("REWARDED_ID") ?: "ca-app-pub-3940256099942544/5224354917"
 
 android {
   namespace = "com.vttd.sieutrangnhi"
@@ -15,10 +42,18 @@ android {
     applicationId = "com.vttd.sieutrangnhi"
     minSdk = 24
     targetSdk = 36
-    versionCode = 3
-    versionName = "1.0.3"
+    versionCode = 4
+    versionName = "1.0.4"
 
     testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
+    // Cấu hình Nạp các Mã AdMob từ .env vào Manifest & BuildConfig
+    manifestPlaceholders["ADMOB_APP_ID"] = admobAppId
+
+    buildConfigField("String", "ADMOB_APP_ID", "\"$admobAppId\"")
+    buildConfigField("String", "ADMOB_BANNER_ID", "\"$bannerId\"")
+    buildConfigField("String", "ADMOB_INTERSTITIAL_ID", "\"$interstitialId\"")
+    buildConfigField("String", "ADMOB_REWARDED_ID", "\"$rewardedId\"")
   }
 
   // Do not remove or modify these signingConfigs. They are necessary for building, installing,
