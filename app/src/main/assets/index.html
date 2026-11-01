@@ -413,57 +413,34 @@
   // ==========================================
   // [BLOCK 3: DATA PARSER, PROCEDURAL ENGINE & STATE]
   // ==========================================
-  // [BLOCK 3: CHIBI AVATAR ENGINE & WARDROBE SHOP]
+  // [BLOCK 3: CHIBI AVATAR ENGINE & SELECTION]
   // ==========================================
   const AVATAR_LOOKBOOKS = [
-    {
-      id: 'chibi_cong_chua_toc_may',
-      name: 'Công chúa tóc mây',
-      image: 'chibi_cong_chua_toc_may.png',
-      sub: 'Mái tóc mây bồng bềnh, bờm ren trắng thanh tú (Nửa thân trên)',
-      price: 0,
-      config: { hair: 'hair_ngan_bupbe', outfit: 'outfit_ao_dai_hoa', glasses: 'glasses_none', accessory: 'acc_bom_hoa' }
-    },
-    {
-      id: 'chibi_co_be_de_thuong',
-      name: 'Cô bé dễ thương',
-      image: 'chibi_trang_vui_tinh.png',
-      sub: 'Cô bé dễ thương với nụ cười trong sáng, cài nơ vàng xinh xắn (Nửa thân trên)',
-      price: 0,
-      config: { hair: 'hair_ngan_bupbe', outfit: 'outfit_ao_dai_hoa', glasses: 'glasses_none', accessory: 'acc_no_cai_toc' }
-    },
-    {
-      id: 'chibi_nu_sinh_ao_dai',
-      name: 'Nữ sinh áo dài hồng',
-      image: 'chibi_co_be_bim_toc.png',
-      sub: 'Áo dài truyền thống thướt tha, nụ cười anime trong sáng (Nửa thân trên)',
-      price: 40,
-      config: { hair: 'hair_bim_no', outfit: 'outfit_ao_dai_hoa', glasses: 'glasses_kinh_tim', accessory: 'acc_bom_hoa' }
-    },
-    {
-      id: 'chibi_cong_chua_thong_thai',
-      name: 'Công chúa thông thái',
-      image: 'chibi_cong_chua_thong_thai.png',
-      sub: 'Tóc bím cài nơ duyên dáng, áo dài thêu hoa hồng (Nửa thân trên)',
-      price: 50,
-      config: { hair: 'hair_bim_no', outfit: 'outfit_ao_dai_hoa', glasses: 'glasses_none', accessory: 'acc_no_cai_toc' }
-    },
-    {
-      id: 'chibi_hoang_tu',
-      name: 'Hoàng tử hào hoa',
-      image: 'chibi_hoang_tu.png',
-      sub: 'Khôi ngô tuấn tú, đồng phục học sinh thanh lịch (Nửa thân trên)',
-      price: 0,
-      config: { hair: 'hair_lang_tu', outfit: 'outfit_hoc_sinh', glasses: 'glasses_none', accessory: 'acc_no_cai_toc' }
-    },
-    {
-      id: 'chibi_nam_sinh_ao_dai',
-      name: 'Cậu bé tinh nghịch',
-      image: 'chibi_gau_con.png',
-      sub: 'Phong thái tinh nghịch, năng động tự tin (Nửa thân trên)',
-      price: 40,
-      config: { hair: 'hair_lang_tu', outfit: 'outfit_hoc_sinh', glasses: 'glasses_kinh_tron', accessory: 'acc_bom_hoa' }
-    }
+    { id: 'chibi_cong_chua_toc_may', name: 'Công chúa tóc mây', image: 'chibi_cong_chua_toc_may.png', sub: 'Mái tóc mây bồng bềnh thanh tú', price: 0 },
+    { id: 'chibi_trang_vui_tinh', name: 'Trạng vui tính', image: 'chibi_trang_vui_tinh.png', sub: 'Cô bé dễ thương nụ cười rạng rỡ', price: 0 },
+    { id: 'chibi_co_be_bim_toc', name: 'Cô bé bím tóc', image: 'chibi_co_be_bim_toc.png', sub: 'Cô bé bím tóc xinh xắn', price: 0 },
+    { id: 'chibi_cong_chua_thong_thai', name: 'Công chúa thông thái', image: 'chibi_cong_chua_thong_thai.png', sub: 'Công chúa thông thái duyên dáng', price: 0 },
+    { id: 'chibi_hoang_tu', name: 'Hoàng tử', image: 'chibi_hoang_tu.png', sub: 'Hoàng tử thanh lịch', price: 0 },
+    { id: 'chibi_gau_con', name: 'Chú gấu con', image: 'chibi_gau_con.png', sub: 'Cậu bé gấu con đáng yêu', price: 0 },
+    { id: 'chibi_trang_thong_thai', name: 'Trạng thông thái', image: 'chibi_trang_thong_thai.png', sub: 'Trạng thông thái uyên bác', price: 0 },
+    { id: 'be_cute', name: 'Bé cute', image: 'bé cute.png', sub: 'Bé cute siêu ngộ nghĩnh', price: 0 },
+    { id: 'be_tho', name: 'Bé thỏ', image: 'bé thỏ.png', sub: 'Bé thỏ vô cùng dễ thương', price: 0 },
+    { id: 'chibi_cong_chua_toc_may_raw', name: 'Công chúa tóc mây (nguyên bản)', image: 'chibi_cong_chua_toc_may_raw.png', sub: 'Công chúa nét đẹp tự nhiên', price: 0 },
+    { id: 'chu_be_de_thuong', name: 'Chú bé dễ thương', image: 'chú bé dễ thương.png', sub: 'Chú bé lém lỉnh đáng yêu', price: 0 },
+    { id: 'co_be_kem', name: 'Cô bé kem', image: 'cô bé kem.png', sub: 'Cô bé ngọt ngào như kem', price: 0 },
+    { id: 'co_be_nhut_nhat', name: 'Cô bé nhút nhát', image: 'cô bé nhút nhát.png', sub: 'Cô bé hiền lành đáng yêu', price: 0 },
+    { id: 'co_be_no_do', name: 'Cô bé nơ đỏ', image: 'cô bé nơ đỏ.png', sub: 'Cô bé cài nơ đỏ thắm', price: 0 },
+    { id: 'co_be_toc_dai', name: 'Cô bé tóc dài', image: 'cô bé tóc dài.png', sub: 'Cô bé tóc dài nữ tính', price: 0 },
+    { id: 'co_be_xinh_xan', name: 'Cô bé xinh xắn', image: 'cô bé xinh xắn.png', sub: 'Cô bé xinh xắn tươi vui', price: 0 },
+    { id: 'co_be_ao_dai', name: 'Cô bé áo dài', image: 'cô bé áo dài.png', sub: 'Cô bé mang áo dài truyền thống', price: 0 },
+    { id: 'cong_chua_vay_xanh', name: 'Công chúa váy xanh', image: 'công chúa váy xanh.png', sub: 'Công chúa váy xanh kiều diễm', price: 0 },
+    { id: 'cau_be_toc_xanh', name: 'Cậu bé tóc xanh', image: 'cậu bé tóc xanh.png', sub: 'Cậu bé tóc xanh cá tính', price: 0 },
+    { id: 'cau_be_vui_ve', name: 'Cậu bé vui vẻ', image: 'cậu bé vui vẻ.png', sub: 'Cậu bé vui vẻ hay cười', price: 0 },
+    { id: 'cau_be_dang_yeu', name: 'Cậu bé đáng yêu', image: 'cậu bé đáng yêu.png', sub: 'Cậu bé siêu đáng yêu', price: 0 },
+    { id: 'cau_be_am_ap', name: 'Cậu bé ấm áp', image: 'cậu bé ấm áp.png', sub: 'Cậu bé ấm áp chan hòa', price: 0 },
+    { id: 'hoc_sinh_nam', name: 'Học sinh nam', image: 'học sinh nam.png', sub: 'Nam sinh chăm ngoan', price: 0 },
+    { id: 'hoc_sinh_nu', name: 'Học sinh nữ', image: 'học sinh nữ.png', sub: 'Nữ sinh chăm ngoan', price: 0 },
+    { id: 'nhoc_dang_yeu', name: 'Nhóc đáng yêu', image: 'nhóc đáng yêu.png', sub: 'Em nhóc siêu đáng yêu', price: 0 }
   ];
 
   const AVATAR_ITEMS = {
@@ -1031,10 +1008,8 @@
   }
 
   function getCurrentAvatarHtml(size = 40) {
-    if (!AppState.useCustomAvatar && AppState.currentAvatarImage) {
-      return `<img src="${AppState.currentAvatarImage}" alt="Avatar" class="w-full h-full object-cover object-[center_15%] rounded-full" onerror="this.onerror=null; this.src='app_logo.png';">`;
-    }
-    return renderChibiAvatarSvg(AppState.avatarConfig, size);
+    const avatarImg = AppState.currentAvatarImage || 'chibi_cong_chua_toc_may.png';
+    return `<img src="${avatarImg}" alt="Avatar" class="w-full h-full object-cover object-[center_15%] rounded-full" onerror="this.onerror=null; this.src='app_logo.png';">`;
   }
 
   function getCurrentAvatar() {
@@ -1045,19 +1020,14 @@
     selectedGrade: 4,      // Lớp 1 - 5
     studentName: 'Công chúa tóc mây', // Tên học sinh mặc định
     customAccountId: '',   // ID tài khoản do người dùng input (nếu có)
-    useCustomAvatar: false, // Bật khi thay đổi phụ kiện / tóc / áo tùy biến
+    useCustomAvatar: false,
     avatarId: 'chibi_cong_chua_toc_may',
     selectedChibiId: 'chibi_cong_chua_toc_may',
     currentAvatarImage: 'chibi_cong_chua_toc_may.png',
     avatarName: 'Công chúa tóc mây',
-    ownedChibis: ['chibi_cong_chua_toc_may', 'chibi_co_be_de_thuong', 'chibi_hoang_tu'],
-    ownedItems: ['glasses_none', 'glasses_kinh_tron', 'outfit_ao_dai_hoa', 'acc_no_cai_toc'],
-    avatarConfig: {
-      hair: 'hair_ngan_bupbe',
-      outfit: 'outfit_ao_dai_hoa',
-      accessory: 'acc_no_cai_toc',
-      glasses: 'glasses_none'
-    },
+    ownedChibis: [],
+    ownedItems: [],
+    avatarConfig: {},
     isAdmin: false,         // Quyền Admin: Chỉ kích hoạt khi nhập đúng ID uyenlp1310 và mật khẩu Vudung177.
     stars: 180,
     isVip1: false,          // Mở 18 vòng + lời giải (còn ads)
@@ -1072,7 +1042,7 @@
     examMode: 1,            // 1: Vòng Tự Luyện (3 game), 2: Vòng Thi Các Cấp (Đề Tổng Hợp 30 câu)
     currentRoundNum: 1,
     roundTotalScore: 0,
-    timerSeconds: 900,
+    timerSeconds: 1800,
     timerInterval: null,
 
     // Chế độ 1: 3 game con
@@ -4045,131 +4015,73 @@
   // ==========================================
   let currentWardrobeTab = 'lookbook'; // 'lookbook', 'glasses', 'outfit', 'accessory'
 
-  function openAvatarModal(tab) {
-    if (tab) currentWardrobeTab = tab;
+  function openAvatarModal() {
     SoundEngine.playClick();
     const modalContainer = document.getElementById('modal-container');
     const stars = AppState.stars || 0;
     const isAdmin = isAdminAccount();
-    const owned = AppState.ownedItems || ['glasses_none', 'glasses_kinh_tron', 'outfit_ao_dai_hoa', 'acc_no_cai_toc'];
-    const curCfg = AppState.avatarConfig || { hair: 'hair_ngan_bupbe', outfit: 'outfit_ao_dai_hoa', glasses: 'glasses_none', accessory: 'acc_no_cai_toc' };
 
-    let tabContentHtml = '';
+    const tabContentHtml = `
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 max-h-[55vh] overflow-y-auto p-1">
+        ${AVATAR_LOOKBOOKS.map(lb => {
+          const isEquipped = (AppState.selectedChibiId === lb.id || AppState.currentAvatarImage === lb.image);
+          const isOwned = isAdmin || (AppState.ownedChibis || []).includes(lb.id) || lb.price === 0;
 
-    if (currentWardrobeTab === 'lookbook') {
-      tabContentHtml = `
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 max-h-[50vh] overflow-y-auto p-1">
-          ${AVATAR_LOOKBOOKS.map(lb => {
-            const isEquipped = (AppState.selectedChibiId === lb.id || (lb.id === 'chibi_co_be_de_thuong' && AppState.selectedChibiId === 'chibi_trang_thong_thai'));
-            const isOwned = isAdmin || (AppState.ownedChibis || []).includes(lb.id) || (lb.id === 'chibi_co_be_de_thuong' && (AppState.ownedChibis || []).includes('chibi_trang_thong_thai')) || lb.price === 0;
-
-            return `
-              <div class="p-3 rounded-2xl border-2 ${isEquipped ? 'border-red-500 bg-red-50/80 ring-2 ring-red-400' : 'border-amber-200 bg-amber-50/40 hover:bg-amber-100/60'} flex items-center gap-3 transition-all">
-                <div class="w-16 h-16 shrink-0 rounded-2xl bg-white border border-amber-300 flex items-center justify-center p-0.5 shadow-inner overflow-hidden">
-                  <img src="${lb.image}" alt="${lb.name}" class="w-full h-full object-cover object-[center_15%] rounded-xl" onerror="this.onerror=null; this.src='app_logo.png';">
+          return `
+            <div class="p-3 rounded-2xl border-2 ${isEquipped ? 'border-red-500 bg-red-50/80 ring-2 ring-red-400' : 'border-amber-200 bg-amber-50/40 hover:bg-amber-100/60'} flex items-center gap-3 transition-all">
+              <div class="w-16 h-16 shrink-0 rounded-2xl bg-white border border-amber-300 flex items-center justify-center p-0.5 shadow-inner overflow-hidden">
+                <img src="${lb.image}" alt="${lb.name}" class="w-full h-full object-cover object-[center_15%] rounded-xl" onerror="this.onerror=null; this.src='app_logo.png';">
+              </div>
+              <div class="flex-1 min-w-0">
+                <div class="flex items-center justify-between gap-1">
+                  <h4 class="font-black text-xs sm:text-sm text-slate-800 truncate">${lb.name}</h4>
+                  ${!isOwned && !isAdmin && lb.price > 0 ? `
+                    <span class="shrink-0 text-[10px] font-extrabold text-amber-900 bg-amber-200/90 px-2 py-0.5 rounded-full">${lb.price} ⭐</span>
+                  ` : isAdmin ? `
+                    <span class="shrink-0 text-[10px] font-extrabold text-emerald-800 bg-emerald-100 px-2 py-0.5 rounded-full">Admin Mở ✓</span>
+                  ` : ''}
                 </div>
-                <div class="flex-1 min-w-0">
-                  <div class="flex items-center justify-between gap-1">
-                    <h4 class="font-black text-xs sm:text-sm text-slate-800 truncate">${lb.name}</h4>
-                    ${!isOwned && !isAdmin && lb.price > 0 ? `
-                      <span class="shrink-0 text-[10px] font-extrabold text-amber-900 bg-amber-200/90 px-2 py-0.5 rounded-full">${lb.price} ⭐</span>
-                    ` : isAdmin ? `
-                      <span class="shrink-0 text-[10px] font-extrabold text-emerald-800 bg-emerald-100 px-2 py-0.5 rounded-full">Admin Mở ✓</span>
-                    ` : ''}
-                  </div>
-                  <p class="text-[10px] text-slate-500 line-clamp-2 mt-0.5 leading-snug">${lb.sub}</p>
-                  <div class="mt-2 flex items-center justify-end gap-1.5">
-                    ${isEquipped ? `
-                      <span class="text-[10px] bg-red-600 text-white px-2.5 py-0.5 rounded-full font-black shadow-sm">Đang chọn ✓</span>
-                    ` : isOwned ? `
-                      <button onclick="applyLookbook('${lb.id}')" class="btn-3d btn-3d-green text-[11px] font-black px-3 py-1 rounded-xl text-white shadow">
-                        Chọn avatar
-                      </button>
-                    ` : `
-                      <button onclick="unlockLookbook('${lb.id}', ${lb.price})" class="btn-3d btn-3d-gold text-[10px] font-black px-2.5 py-1 rounded-xl text-amber-950 shadow flex items-center gap-1" title="Dùng ${lb.price} sao để đổi">
-                        <span>Đổi</span>
-                        <span class="text-red-700 font-extrabold">${lb.price} ⭐</span>
-                      </button>
-                      <button onclick="watchRewardedAdForChibi('${lb.id}')" class="btn-3d btn-3d-green text-[10px] font-black px-2.5 py-1 rounded-xl text-white shadow flex items-center gap-1" title="Xem video mở khóa miễn phí">
-                        <span>🎬</span>
-                        <span>Video</span>
-                      </button>
-                    `}
-                  </div>
+                <p class="text-[10px] text-slate-500 line-clamp-2 mt-0.5 leading-snug">${lb.sub}</p>
+                <div class="mt-2 flex items-center justify-end gap-1.5">
+                  ${isEquipped ? `
+                    <span class="text-[10px] bg-red-600 text-white px-2.5 py-0.5 rounded-full font-black shadow-sm">Đang chọn ✓</span>
+                  ` : isOwned ? `
+                    <button onclick="applyLookbook('${lb.id}')" class="btn-3d btn-3d-green text-[11px] font-black px-3 py-1 rounded-xl text-white shadow">
+                      Chọn Chibi
+                    </button>
+                  ` : `
+                    <button onclick="unlockLookbook('${lb.id}', ${lb.price})" class="btn-3d btn-3d-gold text-[10px] font-black px-2.5 py-1 rounded-xl text-amber-950 shadow flex items-center gap-1" title="Dùng ${lb.price} sao để đổi">
+                      <span>Đổi</span>
+                      <span class="text-red-700 font-extrabold">${lb.price} ⭐</span>
+                    </button>
+                    <button onclick="watchRewardedAdForChibi('${lb.id}')" class="btn-3d btn-3d-green text-[10px] font-black px-2.5 py-1 rounded-xl text-white shadow flex items-center gap-1" title="Xem video mở khóa miễn phí">
+                      <span>🎬</span>
+                      <span>Video</span>
+                    </button>
+                  `}
                 </div>
               </div>
-            `;
-          }).join('')}
-        </div>
-      `;
-    } else {
-      const items = AVATAR_ITEMS[currentWardrobeTab] || [];
-      const currentEquippedId = curCfg[currentWardrobeTab] || '';
-
-      tabContentHtml = `
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 max-h-[50vh] overflow-y-auto p-1">
-          ${items.map(item => {
-            const isEquipped = (currentEquippedId === item.id);
-            const isOwned = isAdmin || owned.includes(item.id) || item.price === 0;
-
-            return `
-              <div class="p-2.5 rounded-2xl border-2 ${isEquipped ? 'border-red-500 bg-red-50 ring-2 ring-red-400' : 'border-amber-200 bg-amber-50/40 hover:bg-amber-100/50'} flex items-center gap-2.5 transition-all">
-                <div class="w-12 h-12 shrink-0 rounded-2xl bg-white border border-amber-200 flex items-center justify-center text-2xl shadow-inner">
-                  ${item.icon}
-                </div>
-                <div class="flex-1 min-w-0">
-                  <div class="flex items-center justify-between">
-                    <h5 class="font-extrabold text-xs text-slate-800 line-clamp-1">${item.name}</h5>
-                    ${item.price > 0 && !isOwned && !isAdmin ? `
-                      <span class="text-[10px] font-extrabold text-amber-900 bg-amber-200/80 px-2 py-0.5 rounded-full">${item.price} ⭐</span>
-                    ` : isAdmin && item.price > 0 ? `
-                      <span class="text-[10px] font-extrabold text-emerald-800 bg-emerald-100 px-2 py-0.5 rounded-full">Admin Mở ✓</span>
-                    ` : ''}
-                  </div>
-                  <p class="text-[10px] text-slate-500 line-clamp-1 mt-0.5">${item.desc}</p>
-                  <div class="mt-1.5 flex justify-end gap-1.5">
-                    ${isEquipped ? `
-                      <span class="text-[10px] bg-red-600 text-white px-2 py-0.5 rounded-full font-black shadow-sm">Đang dùng ✓</span>
-                    ` : isOwned ? `
-                      <button onclick="equipAvatarItem('${currentWardrobeTab}', '${item.id}')" class="btn-3d btn-3d-green text-[11px] font-black px-3 py-1 rounded-xl text-white shadow">
-                        Mặc ngay
-                      </button>
-                    ` : `
-                      <button onclick="buyAndEquipAvatarItem('${currentWardrobeTab}', '${item.id}', ${item.price})" class="btn-3d btn-3d-gold text-[10px] font-black px-2.5 py-1 rounded-xl text-amber-950 shadow flex items-center gap-1" title="Dùng ${item.price} sao để đổi">
-                        <span>Đổi</span>
-                        <span class="text-red-700 font-extrabold">${item.price} ⭐</span>
-                      </button>
-                      <button onclick="watchRewardedAdForItem('${currentWardrobeTab}', '${item.id}')" class="btn-3d btn-3d-green text-[10px] font-black px-2.5 py-1 rounded-xl text-white shadow flex items-center gap-1" title="Xem video mở khóa miễn phí">
-                        <span>🎬</span>
-                        <span>Video</span>
-                      </button>
-                    `}
-                  </div>
-                </div>
-              </div>
-            `;
-          }).join('')}
-        </div>
-      `;
-    }
+            </div>
+          `;
+        }).join('')}
+      </div>
+    `;
 
     modalContainer.innerHTML = `
       <div class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-center justify-center p-3 sm:p-4">
         <div class="scroll-card max-w-lg w-full p-4 sm:p-5 bg-white border-4 border-amber-400 relative shadow-2xl flex flex-col max-h-[92vh]">
-          <!-- Nút X đóng modal ở góc trên phải -->
+          <!-- Nút X đóng modal -->
           <button onclick="closeModal()" class="absolute top-2.5 right-2.5 z-10 text-slate-400 hover:text-slate-600 p-1 rounded-full hover:bg-slate-100 transition-colors">
             <i data-lucide="x" class="w-5 h-5"></i>
           </button>
 
-          <!-- HÀNG 1: Button Tủ Đồ & Cửa Hàng Sao (phía trên cùng bên trái) & Số Sao (phía trên cùng bên phải) -->
+          <!-- HÀNG 1: Tiêu đề & số sao -->
           <div class="flex items-center justify-between gap-2 mb-2.5 pb-2 border-b border-amber-200/80 pr-7">
-            <!-- Phía trên cùng bên trái: Button Tủ Đồ & Cửa Hàng Sao -->
             <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-xl bg-red-600 text-white font-black text-xs shadow-sm">
               <span>🎭</span>
-              <span>Tủ Đồ & Cửa Hàng Sao</span>
+              <span>Chibi Đại Diện</span>
             </div>
 
-            <!-- Phía trên cùng bên phải (cùng hàng): Số sao -->
             <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-xl bg-amber-100 border border-amber-300 text-amber-900 font-black text-xs sm:text-sm shadow-sm">
               <span>⭐</span>
               <span id="wardrobe-stars-count">${stars}</span>
@@ -4177,9 +4089,8 @@
             </div>
           </div>
 
-          <!-- HÀNG 2: Màn xem Chibi to hơn 1.7 lần (bên trái) & Tên Chibi + Xem Video dịch sang bên phải -->
+          <!-- HÀNG 2: Màn xem Chibi đại diện hiện tại -->
           <div class="flex items-center gap-3.5 pb-3 border-b-2 border-amber-200">
-            <!-- Hình Chibi to hơn 1.7 lần -->
             <div class="relative shrink-0">
               <div class="w-[110px] h-[110px] sm:w-[136px] sm:h-[136px] rounded-2xl bg-gradient-to-br from-amber-200 via-amber-300 to-amber-400 p-1.5 border-2 border-amber-400 shadow-inner flex items-center justify-center overflow-hidden bg-white">
                 <div id="wardrobe-current-avatar-preview" class="w-full h-full flex items-center justify-center">
@@ -4188,7 +4099,6 @@
               </div>
             </div>
 
-            <!-- Tên Chibi & Nút Xem Video dịch sang bên phải -->
             <div class="flex-1 min-w-0 flex flex-col justify-center space-y-2">
               <div>
                 <h3 class="text-base sm:text-xl font-black text-amber-950 leading-snug truncate">${AppState.avatarName || 'Công chúa tóc mây'}</h3>
@@ -4209,32 +4119,16 @@
             </div>
           </div>
 
-          <!-- Danh mục Tab: Set Mẫu | Kính Mắt | Quần Áo | Phụ Kiện -->
-          <div class="grid grid-cols-4 gap-1.5 my-3 shrink-0">
-            <button onclick="openAvatarModal('lookbook')" class="py-2 px-1 text-center rounded-xl font-black text-xs transition-all ${currentWardrobeTab === 'lookbook' ? 'bg-red-600 text-white shadow-md scale-102 ring-2 ring-red-300' : 'bg-slate-100 text-slate-600 hover:bg-slate-200'}">
-              ✨ Set Mẫu
-            </button>
-            <button onclick="openAvatarModal('glasses')" class="py-2 px-1 text-center rounded-xl font-black text-xs transition-all ${currentWardrobeTab === 'glasses' ? 'bg-red-600 text-white shadow-md scale-102 ring-2 ring-red-300' : 'bg-slate-100 text-slate-600 hover:bg-slate-200'}">
-              👓 Kính Mắt
-            </button>
-            <button onclick="openAvatarModal('outfit')" class="py-2 px-1 text-center rounded-xl font-black text-xs transition-all ${currentWardrobeTab === 'outfit' ? 'bg-red-600 text-white shadow-md scale-102 ring-2 ring-red-300' : 'bg-slate-100 text-slate-600 hover:bg-slate-200'}">
-              👘 Quần Áo
-            </button>
-            <button onclick="openAvatarModal('accessory')" class="py-2 px-1 text-center rounded-xl font-black text-xs transition-all ${currentWardrobeTab === 'accessory' ? 'bg-red-600 text-white shadow-md scale-102 ring-2 ring-red-300' : 'bg-slate-100 text-slate-600 hover:bg-slate-200'}">
-              🎀 Phụ Kiện
-            </button>
-          </div>
-
-          <!-- Nội dung vật phẩm -->
-          <div class="flex-1 min-h-0">
+          <!-- Nội dung danh sách Chibi -->
+          <div class="flex-1 min-h-0 my-3">
             ${tabContentHtml}
           </div>
 
           <!-- Nút đóng -->
-          <div class="mt-3 pt-2.5 border-t border-amber-200 flex justify-between items-center shrink-0">
-            <span class="text-[11px] text-slate-500 font-medium">Hoàn thành vòng thi để nhận thêm Sao!</span>
+          <div class="mt-2 pt-2.5 border-t border-amber-200 flex justify-between items-center shrink-0">
+            <span class="text-[11px] text-slate-500 font-medium">Chọn Chibi yêu thích để làm đại diện!</span>
             <button onclick="closeModal(); updateHeaderUI(); if(!AppState.currentExamMode1 && AppState.exam30Questions.length === 0) renderHome();" class="px-5 py-2 rounded-xl bg-slate-200 hover:bg-slate-300 text-slate-700 font-bold text-xs">
-              Đóng Tủ Đồ
+              Đóng Tủ Chibi
             </button>
           </div>
         </div>
@@ -5709,9 +5603,9 @@
       try {
         const githubData = JSON.parse(githubJsonStr);
         if (githubData) {
-          if (roundNum <= 6 && githubData.subGames && Array.isArray(githubData.subGames)) {
+          if (githubData.subGames && Array.isArray(githubData.subGames) && githubData.subGames.length > 0) {
             AppState.examMode = 1;
-            AppState.timerSeconds = githubData.timerSeconds || 1200;
+            AppState.timerSeconds = githubData.timerSeconds || 1800;
             AppState.currentSubGameIndex = 0;
             AppState.currentExamMode1 = githubData;
             AppState.timerInterval = setInterval(() => {
@@ -5719,14 +5613,14 @@
               updateTimerDisplay();
               if (AppState.timerSeconds <= 0) {
                 clearInterval(AppState.timerInterval);
-                showCustomAlert('Đã hết giờ làm bài! Hệ thống tự động nộp bài.');
+                showCustomAlert('Đã hết 30 phút làm bài! Hệ thống tự động nộp bài.');
                 finishRoundExam();
               }
             }, 1000);
             SoundEngine.playGong();
             renderCurrentSubGameMode1();
             return;
-          } else if (roundNum >= 7 && githubData.questions && Array.isArray(githubData.questions)) {
+          } else if (githubData.questions && Array.isArray(githubData.questions) && githubData.questions.length > 0) {
             AppState.examMode = 2;
             AppState.timerSeconds = githubData.timerSeconds || 1800;
             AppState.currentQuestionIndex = 0;
@@ -5777,7 +5671,7 @@
     } else {
       // Chế độ 1: Vòng 1 - 6 (5 Mini-games hoạt hình liên hoàn)
       AppState.examMode = 1;
-      AppState.timerSeconds = 900;
+      AppState.timerSeconds = 1800; // 30 phút
       AppState.currentSubGameIndex = 0;
       AppState.subGameScores = [0, 0, 0, 0, 0];
       AppState.currentExamMode1 = ExamGenerator.generateMode1Exam(AppState.selectedGrade, roundNum, AppState.currentSeed);
@@ -5787,7 +5681,7 @@
         updateTimerDisplay();
         if (AppState.timerSeconds <= 0) {
           clearInterval(AppState.timerInterval);
-          showCustomAlert('Đã hết 15 phút làm bài! Hệ thống tự động nộp bài.');
+          showCustomAlert('Đã hết 30 phút làm bài! Hệ thống tự động nộp bài.');
           finishRoundExam();
         }
       }, 1000);
@@ -7642,7 +7536,7 @@
     closeModal();
 
     // Tính toán thời gian làm bài thực tế
-    const totalTimeLimit = AppState.examMode === 2 ? 1800 : 900;
+    const totalTimeLimit = 1800;
     const timeSpent = Math.max(1, totalTimeLimit - AppState.timerSeconds);
     const spentMinutes = Math.floor(timeSpent / 60);
     const spentSeconds = timeSpent % 60;

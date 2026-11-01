@@ -44,7 +44,7 @@ class GitHubQuestionRepository(private val context: Context) {
     }
 
     /**
-     * Trả về danh sách URL ứng viên (hỗ trợ cả dấu gạch dưới và khoảng cách URL encoding)
+     * Trả về danh sách URL ứng viên (hỗ trợ cả dấu gạch dưới, khoảng cách URL encoding, và số chặng)
      */
     fun getCandidateUrls(grade: Int, round: Int): List<String> {
       val roundGroup = when (round) {
@@ -56,10 +56,14 @@ class GitHubQuestionRepository(private val context: Context) {
       }
       val safeGrade = if (grade in 1..5) grade else 1
       return listOf(
-        "${BASE_URL}grade_${safeGrade}_round_${roundGroup}.json",
         "${BASE_URL}grade%20${safeGrade}_round%20${roundGroup}.json",
+        "${BASE_URL}grade_${safeGrade}_round_${roundGroup}.json",
+        "${BASE_URL}grade%20${safeGrade}_round%20${round}.json",
+        "${BASE_URL}grade_${safeGrade}_round_${round}.json",
         "${BASE_URL}grade%20${safeGrade}_round%20${roundGroup}",
-        "${BASE_URL}grade_${safeGrade}_round_${roundGroup}"
+        "${BASE_URL}grade_${safeGrade}_round_${roundGroup}",
+        "${BASE_URL}grade${safeGrade}_round${roundGroup}.json",
+        "${BASE_URL}grade${safeGrade}_round${round}.json"
       )
     }
   }
@@ -158,17 +162,13 @@ class GitHubQuestionRepository(private val context: Context) {
   }
 
   /**
-   * Tự động kiểm tra và đồng bộ câu hỏi 5 khối lớp x 4 nhóm vòng thi trong nền khi có mạng
+   * Tự động kiểm tra và đồng bộ câu hỏi 5 khối lớp x các nhóm vòng thi trong nền khi có mạng
    */
   fun syncAllGradesInBackground() {
     CoroutineScope(Dispatchers.IO).launch {
       for (grade in 1..5) {
-        for (group in listOf(1, 7, 11, 15)) {
-          val file = getCacheFile(grade, group)
-          val isExpired = !file.exists() || (System.currentTimeMillis() - file.lastModified() > 86400000L)
-          if (isExpired) {
-            fetchAndCacheQuestions(grade, group)
-          }
+        for (group in listOf(1, 2, 3, 4, 5, 7, 11, 15)) {
+          fetchAndCacheQuestions(grade, group)
         }
       }
     }
