@@ -1531,11 +1531,17 @@
           { a: "Thầy cô giáo", b: "Dạy dỗ em kiến thức hay" }
         ];
 
-        const totalPairsBank = knowledgePairsBank.length;
+        // Khi roundNum <= 10 cho Lớp 1, loại bỏ hoàn toàn các cặp ca dao, tục ngữ
+        const isRound1To10 = roundNum <= 10;
+        const validPairsBank = isRound1To10
+          ? knowledgePairsBank.filter(p => !['Ăn quả', 'Uống nước', 'Lá lành', 'Thương người', 'Công cha', 'Nghĩa mẹ', 'Gần mực thì đen', 'Bầu ơi thương lấy', 'Anh em', 'Một con ngựa đau'].includes(p.a))
+          : knowledgePairsBank;
+
+        const totalPairsBank = validPairsBank.length;
         const pairStartIndex = (globalIndex * 10) % totalPairsBank;
         const pairs = [];
         for (let i = 0; i < 6; i++) {
-          const p = knowledgePairsBank[(pairStartIndex + i) % totalPairsBank];
+          const p = validPairsBank[(pairStartIndex + i) % totalPairsBank];
           pairs.push({ a: p.a, b: p.b });
         }
 
@@ -1587,21 +1593,38 @@
         const baskets = basketThemesBank[basketIdx];
 
         // BÀI 3: BÉ HỌC VUI
-        let filteredProverbs = KNOWLEDGE_BASE.proverbs.filter(p => (p.grade || 1) <= 2);
-        const provOffset = (globalIndex * 5) % filteredProverbs.length;
         const quizItems = [];
 
-        for (let i = 0; i < 9; i++) {
-          const p = filteredProverbs[(provOffset + i) % filteredProverbs.length];
-          quizItems.push({
-            type: 'DT',
-            question: p.text,
-            answer: p.mask,
-            explain: `Câu ca dao/tục ngữ: "${p.full}". Ý nghĩa: ${p.theme}`
-          });
+        if (isRound1To10) {
+          const letterFillBank = [
+            { type: 'DT', question: "Điền chữ 'c' hoặc 'k' vào chỗ trống: 'ú[...] gà'", answer: "c", explain: "Cú gà điền chữ c." },
+            { type: 'DT', question: "Điền chữ 'c' hoặc 'k' vào chỗ trống: 'cái [...]em ngọt mát'", answer: "k", explain: "Kem điền chữ k trước e." },
+            { type: 'DT', question: "Điền chữ 'g' hoặc 'gh' vào chỗ trống: 'con [...]ẹ biển'", answer: "gh", explain: "Ghẹ điền gh trước e." },
+            { type: 'DT', question: "Điền chữ 'g' hoặc 'gh' vào chỗ trống: 'cái [...]ế gỗ'", answer: "gh", explain: "Ghế điền gh trước ê." },
+            { type: 'DT', question: "Điền chữ 'ng' hoặc 'ngh' vào chỗ trống: 'lắng [...]e cô giảng'", answer: "ngh", explain: "Nghe điền ngh trước e." },
+            { type: 'DT', question: "Điền chữ 'ng' hoặc 'ngh' vào chỗ trống: 'suy [...]ĩ kĩ'", answer: "ngh", explain: "Nghĩ điền ngh trước i." },
+            { type: 'DT', question: "Điền chữ 'ch' hoặc 'tr' vào chỗ trống: 'bức [...]anh phong cảnh'", answer: "tr", explain: "Bức tranh điền tr." },
+            { type: 'DT', question: "Điền chữ 's' hoặc 'x' vào chỗ trống: 'dòng [...]ông quê em'", answer: "s", explain: "Dòng sông điền s." },
+            { type: 'DT', question: "Điền vần 'an' hoặc 'at' vào chỗ trống: 'tiếng h[...] ca rộn ràng'", answer: "at", explain: "Hát ca điền vần at." }
+          ];
+          for (let i = 0; i < 5; i++) {
+            quizItems.push(letterFillBank[(globalIndex * 2 + i) % letterFillBank.length]);
+          }
+        } else {
+          let filteredProverbs = KNOWLEDGE_BASE.proverbs.filter(p => (p.grade || 1) <= 2);
+          const provOffset = (globalIndex * 5) % filteredProverbs.length;
+          for (let i = 0; i < 5; i++) {
+            const p = filteredProverbs[(provOffset + i) % filteredProverbs.length];
+            quizItems.push({
+              type: 'DT',
+              question: p.text,
+              answer: p.mask,
+              explain: `Câu ca dao/tục ngữ: "${p.full}". Ý nghĩa: ${p.theme}`
+            });
+          }
         }
 
-        const spellingQuestionsBank = [
+        const spellingQuestionsBankAll = [
           { question: "Từ nào dưới đây viết ĐÚNG chính tả Tiếng Việt?", options: ["Thước kẻ", "Thước cẻ", "Thước gẻ", "Thướch"], correctIndex: 0, explain: "Quy tắc: k đi với e, ê, i -> Thước kẻ." },
           { question: "Từ nào dưới đây chọn ĐÚNG chính tả?", options: ["Ghế gỗ", "Gế gỗ", "Gía gỗ", "Gế gố"], correctIndex: 0, explain: "Quy tắc: gh đi với e, ê, i -> Ghế gỗ." },
           { question: "Con vật nào gáy báo thức vào buổi sáng sớm?", options: ["Gà trống", "Vịt bầu", "Mèo nhà", "Cá chép"], correctIndex: 0, explain: "Gà trống gáy ó ó o báo sáng." },
@@ -1612,15 +1635,20 @@
           { question: "Đồ dùng nào giúp em kẻ đường thẳng vuông vắn?", options: ["Thước kẻ", "Cục tẩy", "Cặp sách", "Mũ đội"], correctIndex: 0, explain: "Thước kẻ dùng để kẻ đường thẳng." },
           { question: "Từ nào viết đúng chính tả âm NG/NGH?", options: ["Lắng nghe", "Lắng ge", "Lắng nghen", "Lắng cheng"], correctIndex: 0, explain: "ngh đi với e, ê, i -> Lắng nghe." },
           { question: "Mùa nào trong năm rực rỡ nắng vàng và có tiếng ve kêu?", options: ["Mùa hạ", "Mùa xuân", "Mùa thu", "Mùa đông"], correctIndex: 0, explain: "Mùa hạ (mùa hè) có tiếng ve kêu." },
-          // 4 câu bổ sung dạng trắc nghiệm / sắp xếp
-          { question: "Sắp xếp các từ sau thành câu ca dao đúng: [ Công / cha / như / núi / Thái Sơn ]", options: ["Công cha như núi Thái Sơn", "Công cha núi Thái Sơn như", "Thái Sơn công cha như núi", "Như công cha núi Thái Sơn"], correctIndex: 0, explain: "Câu ca dao: Công cha như núi Thái Sơn." },
-          { question: "Sắp xếp các từ sau thành câu ca dao đúng: [ quả / Ăn / cây / trồng / nhớ / kẻ ]", options: ["Ăn quả nhớ kẻ trồng cây", "Nhớ ăn quả trồng cây kẻ", "Trồng cây nhớ quả ăn kẻ", "Kẻ ăn quả nhớ trồng cây"], correctIndex: 0, explain: "Sắp xếp đúng câu tục ngữ: Ăn quả nhớ kẻ trồng cây." },
-          { question: "Chọn từ điền vào chỗ trống thích hợp: 'Uống nước nhớ ...'", options: ["nguồn", "sông", "biển", "suối"], correctIndex: 0, explain: "Câu tục ngữ: Uống nước nhớ nguồn." },
           { question: "Sắp xếp thứ tự các mùa trong năm bắt đầu từ mùa xuân:", options: ["Xuân - Hạ - Thu - Đông", "Đông - Thu - Hạ - Xuân", "Hạ - Thu - Đông - Xuân", "Thu - Đông - Xuân - Hạ"], correctIndex: 0, explain: "Thứ tự 4 mùa: Xuân, Hạ, Thu, Đông." }
         ];
 
+        const spellingQuestionsBankStandard = [
+          ...spellingQuestionsBankAll,
+          { question: "Sắp xếp các từ sau thành câu ca dao đúng: [ Công / cha / như / núi / Thái Sơn ]", options: ["Công cha như núi Thái Sơn", "Công cha núi Thái Sơn như", "Thái Sơn công cha như núi", "Như công cha núi Thái Sơn"], correctIndex: 0, explain: "Câu ca dao: Công cha như núi Thái Sơn." },
+          { question: "Sắp xếp các từ sau thành câu ca dao đúng: [ quả / Ăn / cây / trồng / nhớ / kẻ ]", options: ["Ăn quả nhớ kẻ trồng cây", "Nhớ ăn quả trồng cây kẻ", "Trồng cây nhớ quả ăn kẻ", "Kẻ ăn quả nhớ trồng cây"], correctIndex: 0, explain: "Sắp xếp đúng câu tục ngữ: Ăn quả nhớ kẻ trồng cây." },
+          { question: "Chọn từ điền vào chỗ trống thích hợp: 'Uống nước nhớ ...'", options: ["nguồn", "sông", "biển", "suối"], correctIndex: 0, explain: "Câu tục ngữ: Uống nước nhớ nguồn." }
+        ];
+
+        const spellingQuestionsBank = isRound1To10 ? spellingQuestionsBankAll : spellingQuestionsBankStandard;
+
         const qBankLen = spellingQuestionsBank.length;
-        for (let j = 0; j < 9; j++) {
+        for (let j = 0; j < 5; j++) {
           const qObj = spellingQuestionsBank[(globalIndex * 2 + j) % qBankLen];
           quizItems.push({ type: 'TN', ...qObj });
         }
@@ -4121,51 +4149,47 @@
     const stars = AppState.stars || 0;
     const isAdmin = isAdminAccount();
 
-    const tabContentHtml = `
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 h-full overflow-y-auto p-1 pr-1.5">
-        ${AVATAR_LOOKBOOKS.map(lb => {
-          const isEquipped = (AppState.selectedChibiId === lb.id || (lb.id === 'chibi_co_be_de_thuong' && AppState.selectedChibiId === 'chibi_trang_thong_thai'));
-          const isOwned = isAdmin || (AppState.ownedChibis || []).includes(lb.id) || (lb.id === 'chibi_co_be_de_thuong' && (AppState.ownedChibis || []).includes('chibi_trang_thong_thai')) || lb.price === 0;
+    const itemsGridHtml = AVATAR_LOOKBOOKS.map(lb => {
+      const isEquipped = (AppState.selectedChibiId === lb.id || (lb.id === 'chibi_co_be_de_thuong' && AppState.selectedChibiId === 'chibi_trang_thong_thai'));
+      const isOwned = isAdmin || (AppState.ownedChibis || []).includes(lb.id) || (lb.id === 'chibi_co_be_de_thuong' && (AppState.ownedChibis || []).includes('chibi_trang_thong_thai')) || lb.price === 0;
 
-          return `
-            <div class="p-2.5 rounded-2xl border-2 ${isEquipped ? 'border-red-500 bg-red-50/90 ring-2 ring-red-400' : 'border-amber-200 bg-amber-50/40 hover:bg-amber-100/60'} flex items-center gap-2.5 transition-all">
-              <div class="w-14 h-14 shrink-0 rounded-2xl bg-white border border-amber-300 flex items-center justify-center p-0.5 shadow-inner overflow-hidden">
-                <img src="${lb.image}" alt="${lb.name}" class="w-full h-full object-cover object-[center_15%] rounded-xl" onerror="this.onerror=null; this.src='app_logo.png';">
-              </div>
-              <div class="flex-1 min-w-0">
-                <div class="flex items-center justify-between gap-1">
-                  <h4 class="font-black text-xs sm:text-sm text-slate-800 truncate">${lb.name}</h4>
-                  ${!isOwned && !isAdmin && lb.price > 0 ? `
-                    <span class="shrink-0 text-[10px] font-extrabold text-amber-900 bg-amber-200/90 px-2 py-0.5 rounded-full">${lb.price} ⭐</span>
-                  ` : isAdmin ? `
-                    <span class="shrink-0 text-[10px] font-extrabold text-emerald-800 bg-emerald-100 px-2 py-0.5 rounded-full">Admin Mở ✓</span>
-                  ` : ''}
-                </div>
-                <p class="text-[10px] text-slate-500 line-clamp-2 mt-0.5 leading-snug">${lb.sub}</p>
-                <div class="mt-1.5 flex items-center justify-end gap-1.5 flex-wrap">
-                  ${isEquipped ? `
-                    <span class="text-[10px] bg-red-600 text-white px-2 py-0.5 rounded-full font-black shadow-sm">Đang chọn ✓</span>
-                  ` : isOwned ? `
-                    <button onclick="applyLookbook('${lb.id}')" class="btn-3d btn-3d-green text-[10px] sm:text-[11px] font-black px-2.5 py-1 rounded-xl text-white shadow">
-                      Chọn
-                    </button>
-                  ` : `
-                    <button onclick="unlockLookbook('${lb.id}', ${lb.price})" class="btn-3d btn-3d-gold text-[10px] font-black px-2 py-1 rounded-xl text-amber-950 shadow flex items-center gap-0.5" title="Dùng ${lb.price} sao để sở hữu vĩnh viễn">
-                      <span>Đổi</span>
-                      <span class="text-red-700 font-extrabold">${lb.price}⭐</span>
-                    </button>
-                    <button onclick="watchRewardedAdForChibi('${lb.id}')" class="btn-3d btn-3d-green text-[10px] font-black px-2 py-1 rounded-xl text-white shadow flex items-center gap-1 active:scale-95" title="Xem 1 video ngắn để dùng thử 1 lần">
-                      <span>🎬</span>
-                      <span>Thử</span>
-                    </button>
-                  `}
-                </div>
-              </div>
+      return `
+        <div class="p-2.5 rounded-2xl border-2 ${isEquipped ? 'border-red-500 bg-red-50/90 ring-2 ring-red-400' : 'border-amber-200 bg-amber-50/40 hover:bg-amber-100/60'} flex items-center gap-2.5 transition-all">
+          <div class="w-14 h-14 shrink-0 rounded-2xl bg-white border border-amber-300 flex items-center justify-center p-0.5 shadow-inner overflow-hidden">
+            <img src="${lb.image}" alt="${lb.name}" class="w-full h-full object-cover object-[center_15%] rounded-xl" onerror="this.onerror=null; this.src='app_logo.png';">
+          </div>
+          <div class="flex-1 min-w-0">
+            <div class="flex items-center justify-between gap-1">
+              <h4 class="font-black text-xs sm:text-sm text-slate-800 truncate">${lb.name}</h4>
+              ${!isOwned && !isAdmin && lb.price > 0 ? `
+                <span class="shrink-0 text-[10px] font-extrabold text-amber-900 bg-amber-200/90 px-2 py-0.5 rounded-full">${lb.price} ⭐</span>
+              ` : isAdmin ? `
+                <span class="shrink-0 text-[10px] font-extrabold text-emerald-800 bg-emerald-100 px-2 py-0.5 rounded-full">Admin Mở ✓</span>
+              ` : ''}
             </div>
-          `;
-        }).join('')}
-      </div>
-    `;
+            <p class="text-[10px] text-slate-500 line-clamp-2 mt-0.5 leading-snug">${lb.sub}</p>
+            <div class="mt-1.5 flex items-center justify-end gap-1.5 flex-wrap">
+              ${isEquipped ? `
+                <span class="text-[10px] bg-red-600 text-white px-2 py-0.5 rounded-full font-black shadow-sm">Đang chọn ✓</span>
+              ` : isOwned ? `
+                <button onclick="applyLookbook('${lb.id}')" class="btn-3d btn-3d-green text-[10px] sm:text-[11px] font-black px-2.5 py-1 rounded-xl text-white shadow">
+                  Chọn
+                </button>
+              ` : `
+                <button onclick="unlockLookbook('${lb.id}', ${lb.price})" class="btn-3d btn-3d-gold text-[10px] font-black px-2 py-1 rounded-xl text-amber-950 shadow flex items-center gap-0.5" title="Dùng ${lb.price} sao để sở hữu vĩnh viễn">
+                  <span>Đổi</span>
+                  <span class="text-red-700 font-extrabold">${lb.price}⭐</span>
+                </button>
+                <button onclick="watchRewardedAdForChibi('${lb.id}')" class="btn-3d btn-3d-green text-[10px] font-black px-2 py-1 rounded-xl text-white shadow flex items-center gap-1 active:scale-95" title="Xem 1 video ngắn để dùng thử 1 lần">
+                  <span>🎬</span>
+                  <span>Thử</span>
+                </button>
+              `}
+            </div>
+          </div>
+        </div>
+      `;
+    }).join('');
 
     modalContainer.innerHTML = `
       <div class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-center justify-center p-2.5 sm:p-4 pb-16 sm:pb-16">
@@ -4227,13 +4251,15 @@
           <!-- Nhãn Tiêu Đề Danh Sách Hình Mẫu -->
           <div class="my-1.5 shrink-0 flex items-center justify-between">
             <span class="text-[11px] font-black text-amber-950 uppercase tracking-wide flex items-center gap-1">
-              <span>✨</span> Danh Sách Hình Mẫu Chibi:
+              <span>✨</span> Danh Sách Hình Mẫu Chibi (${AVATAR_LOOKBOOKS.length} nhân vật):
             </span>
           </div>
 
           <!-- Nội dung danh sách hình mẫu cuộn linh hoạt -->
-          <div class="flex-1 min-h-0 relative my-0.5 overflow-hidden">
-            ${tabContentHtml}
+          <div class="flex-1 min-h-0 overflow-y-auto p-1 pr-1.5 my-1">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+              ${itemsGridHtml}
+            </div>
           </div>
 
           <!-- Nút đóng chân trang -->
