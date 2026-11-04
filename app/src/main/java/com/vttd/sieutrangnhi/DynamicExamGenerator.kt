@@ -144,7 +144,7 @@ class DynamicExamGenerator(
       put("seed", seedVal)
       put("examId", examId)
       put("mode", 2)
-      put("timerSeconds", 1800)
+      put("timerSeconds", 1500)
       put("totalQuestions", finalQuestions.size)
       put("questions", jsonArray)
     }

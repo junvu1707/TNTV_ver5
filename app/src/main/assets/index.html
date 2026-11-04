@@ -1141,7 +1141,7 @@
     examMode: 1,            // 1: Vòng Tự Luyện (3 game), 2: Vòng Thi Các Cấp (Đề Tổng Hợp 30 câu)
     currentRoundNum: 1,
     roundTotalScore: 0,
-    timerSeconds: 1800,
+    timerSeconds: 1500,
     timerInterval: null,
 
     // Chế độ 1: 3 game con
@@ -5777,7 +5777,7 @@
           const qList = Array.isArray(githubData) ? githubData : (githubData.questions && Array.isArray(githubData.questions) ? githubData.questions : []);
           if (roundNum <= 6 && githubData.subGames && Array.isArray(githubData.subGames)) {
             AppState.examMode = 1;
-            AppState.timerSeconds = githubData.timerSeconds || 1800; // 30 phút
+            AppState.timerSeconds = githubData.timerSeconds || 1500; // 25 phút
             AppState.currentSubGameIndex = 0;
             AppState.currentExamMode1 = githubData;
             AppState.timerInterval = setInterval(() => {
@@ -5794,7 +5794,7 @@
             return;
           } else if (qList.length > 0) {
             AppState.examMode = 2;
-            AppState.timerSeconds = githubData.timerSeconds || 1800;
+            AppState.timerSeconds = githubData.timerSeconds || 1500;
             AppState.currentQuestionIndex = 0;
             AppState.userAnswers30 = {};
             mode2CompletionModalShown = false;
@@ -5804,7 +5804,7 @@
               updateTimerDisplay();
               if (AppState.timerSeconds <= 0) {
                 clearInterval(AppState.timerInterval);
-                showCustomAlert('Đã hết 30 phút làm bài! Hệ thống tự động nộp bài.');
+                showCustomAlert('Đã hết 25 phút làm bài! Hệ thống tự động nộp bài.');
                 finishExamMode2();
               }
             }, 1000);
@@ -5821,7 +5821,7 @@
     // Chế độ 2: Vòng 7 - 18 (Phòng thi 30 câu liên hoàn); Chế độ 1: Vòng 1 - 6 (5 Mini-games liên hoàn)
     if (roundNum >= 7) {
       AppState.examMode = 2;
-      AppState.timerSeconds = 1800; // 30 phút
+      AppState.timerSeconds = 1500; // 25 phút
       AppState.currentQuestionIndex = 0;
       AppState.userAnswers30 = {};
       mode2CompletionModalShown = false;
@@ -5833,7 +5833,7 @@
         updateTimerDisplay();
         if (AppState.timerSeconds <= 0) {
           clearInterval(AppState.timerInterval);
-          showCustomAlert('Đã hết 30 phút làm bài! Hệ thống tự động nộp bài.');
+          showCustomAlert('Đã hết 25 phút làm bài! Hệ thống tự động nộp bài.');
           finishExamMode2();
         }
       }, 1000);
@@ -5843,7 +5843,7 @@
     } else {
       // Chế độ 1: Vòng 1 - 6 (5 Mini-games hoạt hình liên hoàn)
       AppState.examMode = 1;
-      AppState.timerSeconds = 1800; // 30 phút
+      AppState.timerSeconds = 1500; // 25 phút
       AppState.currentSubGameIndex = 0;
       AppState.subGameScores = [0, 0, 0, 0, 0];
       AppState.currentExamMode1 = ExamGenerator.generateMode1Exam(AppState.selectedGrade, roundNum, AppState.currentSeed);
@@ -5853,7 +5853,7 @@
         updateTimerDisplay();
         if (AppState.timerSeconds <= 0) {
           clearInterval(AppState.timerInterval);
-          showCustomAlert('Đã hết 30 phút làm bài! Hệ thống tự động nộp bài.');
+          showCustomAlert('Đã hết 25 phút làm bài! Hệ thống tự động nộp bài.');
           finishRoundExam();
         }
       }, 1000);
@@ -7708,7 +7708,7 @@
     closeModal();
 
     // Tính toán thời gian làm bài thực tế
-    const totalTimeLimit = 1800; // 30 phút cho tất cả bài thi
+    const totalTimeLimit = 1500; // 25 phút cho tất cả bài thi
     const timeSpent = Math.max(1, totalTimeLimit - AppState.timerSeconds);
     const spentMinutes = Math.floor(timeSpent / 60);
     const spentSeconds = timeSpent % 60;
@@ -7885,7 +7885,7 @@
 
         <div class="text-5xl sm:text-6xl mb-2 animate-bounce">${rankBadge}</div>
         <div class="inline-block px-4 py-1 rounded-full bg-red-600 text-white font-black text-xs sm:text-sm mb-1 shadow">
-          BẢNG VÀNG TRẠNG NGUYÊN NHÍ • 2026
+          BẢNG VÀNG SIÊU TRẠNG NHÍ
         </div>
         <div class="text-xs font-extrabold text-amber-950 mb-2">
           Khối Lớp ${AppState.selectedGrade} • Mã Bộ Đề: <span class="text-red-700 font-black underline">${AppState.currentExamId || ('Chặng ' + AppState.currentRoundNum + '_' + AppState.currentSeed)}</span>
