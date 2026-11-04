@@ -13,15 +13,49 @@ class BillingManager(
 
   companion object {
     private const val TAG = "BillingManager"
-    const val PRODUCT_VIP_1 = "vip1" // Gói VIP 1 (49.000đ / 1 năm)
-    const val PRODUCT_VIP_2 = "vip2" // Gói VIP 2 (99.000đ / trọn đời)
+    // ID Sản phẩm chính xác trên Google Play Console (xem Ảnh 3 & 4)
+    const val PRODUCT_VIP_1 = "vip1_yearly"   // Gói VIP 1 (49.000đ / 1 năm) - Loại SUBS
+    const val PRODUCT_VIP_2 = "vip2_trondoi"  // Gói VIP 2 (99.000đ / trọn đời) - Loại INAPP
+
+    /**
+     * Ánh xạ mã sản phẩm từ giao diện/JS thành ID chính xác trên Google Play Console
+     */
+    fun getPlayConsoleProductId(inputCode: String): String {
+      val cleaned = inputCode.lowercase().trim()
+      return if (cleaned == "vip2" || cleaned == "vip2_trondoi" || cleaned == "vip_package_2" || cleaned == "vip_2_trondoi") {
+        PRODUCT_VIP_2
+      } else {
+        PRODUCT_VIP_1
+      }
+    }
+
+    /**
+     * Xác định Loại sản phẩm: SUBS (Thuê bao) hay INAPP (Một lần)
+     */
+    fun getProductType(productId: String): String {
+      val consoleId = getPlayConsoleProductId(productId)
+      return if (consoleId == PRODUCT_VIP_2) {
+        BillingClient.ProductType.INAPP
+      } else {
+        BillingClient.ProductType.SUBS
+      }
+    }
+
+    fun isVip2Product(productId: String): Boolean {
+      val cleaned = productId.lowercase().trim()
+      return cleaned == PRODUCT_VIP_2 || cleaned == "vip2" || cleaned == "vip_package_2" || cleaned == "vip_2_trondoi"
+    }
   }
 
   var onPurchaseSuccessCallback: ((productId: String, vipLevel: Int) -> Unit)? = null
 
   private var billingClient: BillingClient = BillingClient.newBuilder(activity)
     .setListener(this)
-    .enablePendingPurchases(PendingPurchasesParams.newBuilder().enableOneTimeProducts().build())
+    .enablePendingPurchases(
+      PendingPurchasesParams.newBuilder()
+        .enableOneTimeProducts()
+        .build()
+    )
     .build()
 
   private var isServiceConnected = false
@@ -34,7 +68,7 @@ class BillingManager(
     billingClient.startConnection(object : BillingClientStateListener {
       override fun onBillingSetupFinished(billingResult: BillingResult) {
         if (billingResult.responseCode == BillingClient.BillingResponseCode.OK) {
-          Log.d(TAG, "Billing Service Connected")
+          Log.d(TAG, "Billing Service Connected successfully")
           isServiceConnected = true
           queryPurchases()
         } else {
@@ -55,11 +89,25 @@ class BillingManager(
       return
     }
 
-    val params = QueryPurchasesParams.newBuilder()
+    // 1. Truy vấn sản phẩm mua 1 lần (INAPP)
+    val inAppParams = QueryPurchasesParams.newBuilder()
       .setProductType(BillingClient.ProductType.INAPP)
       .build()
 
-    billingClient.queryPurchasesAsync(params) { billingResult, purchasesList ->
+    billingClient.queryPurchasesAsync(inAppParams) { billingResult, purchasesList ->
+      if (billingResult.responseCode == BillingClient.BillingResponseCode.OK) {
+        for (purchase in purchasesList) {
+          handlePurchase(purchase)
+        }
+      }
+    }
+
+    // 2. Truy vấn sản phẩm gói thuê bao (SUBS)
+    val subsParams = QueryPurchasesParams.newBuilder()
+      .setProductType(BillingClient.ProductType.SUBS)
+      .build()
+
+    billingClient.queryPurchasesAsync(subsParams) { billingResult, purchasesList ->
       if (billingResult.responseCode == BillingClient.BillingResponseCode.OK) {
         for (purchase in purchasesList) {
           handlePurchase(purchase)
@@ -81,7 +129,8 @@ class BillingManager(
       vipPrefs.setUserName(userName)
     }
 
-    val targetProductId = if (productId == PRODUCT_VIP_2) PRODUCT_VIP_2 else PRODUCT_VIP_1
+    val targetProductId = getPlayConsoleProductId(productId)
+    val targetProductType = getProductType(targetProductId)
 
     if (!billingClient.isReady) {
       Log.w(TAG, "Billing client not ready, reconnecting...")
@@ -93,7 +142,7 @@ class BillingManager(
     val productList = listOf(
       QueryProductDetailsParams.Product.newBuilder()
         .setProductId(targetProductId)
-        .setProductType(BillingClient.ProductType.INAPP)
+        .setProductType(targetProductType)
         .build()
     )
 
@@ -105,21 +154,29 @@ class BillingManager(
       val productDetailsList = queryProductDetailsResult.productDetailsList
       if (billingResult.responseCode == BillingClient.BillingResponseCode.OK && productDetailsList.isNotEmpty()) {
         val productDetails = productDetailsList[0]
+
+        val productDetailsParamsBuilder = BillingFlowParams.ProductDetailsParams.newBuilder()
+          .setProductDetails(productDetails)
+
+        // Đối với gói Thuê bao (SUBS), Google Play v5+ bắt buộc phải cung cấp offerToken
+        if (targetProductType == BillingClient.ProductType.SUBS) {
+          val offerToken = productDetails.subscriptionOfferDetails?.firstOrNull()?.offerToken
+          if (offerToken != null) {
+            productDetailsParamsBuilder.setOfferToken(offerToken)
+          } else {
+            Log.w(TAG, "No subscription offer token found for $targetProductId")
+          }
+        }
+
         val flowParams = BillingFlowParams.newBuilder()
-          .setProductDetailsParamsList(
-            listOf(
-              BillingFlowParams.ProductDetailsParams.newBuilder()
-                .setProductDetails(productDetails)
-                .build()
-            )
-          )
+          .setProductDetailsParamsList(listOf(productDetailsParamsBuilder.build()))
           .build()
 
         val result = billingClient.launchBillingFlow(activity, flowParams)
         Log.d(TAG, "launchBillingFlow response code: ${result.responseCode}")
       } else {
-        Log.w(TAG, "Product details not found on Play Console for $targetProductId: ${billingResult.debugMessage}")
-        showToastOnUi("Không thể lấy thông tin giá từ Google Play (${billingResult.debugMessage}). Vui lòng kiểm tra ứng dụng trên CH Play.")
+        Log.w(TAG, "Product details not found on Play Console for $targetProductId ($targetProductType): ${billingResult.debugMessage}")
+        showToastOnUi("Không thể lấy thông tin giá từ Google Play (${billingResult.debugMessage}). Vui lòng kiểm tra tài khoản thử nghiệm trên Google Play.")
       }
     }
   }
@@ -151,7 +208,7 @@ class BillingManager(
 
   private fun handlePurchase(purchase: Purchase) {
     if (purchase.purchaseState == Purchase.PurchaseState.PURCHASED) {
-      val isVip2 = purchase.products.contains(PRODUCT_VIP_2)
+      val isVip2 = purchase.products.any { isVip2Product(it) }
       val level = if (isVip2) VipPreferenceManager.VIP_LEVEL_2 else VipPreferenceManager.VIP_LEVEL_1
       val productId = if (isVip2) PRODUCT_VIP_2 else PRODUCT_VIP_1
 
@@ -247,22 +304,42 @@ class BillingManager(
     inputEmail: String,
     callback: (Boolean, Int, String) -> Unit
   ) {
-    val params = QueryPurchasesParams.newBuilder()
+    // Quét cả hai loại INAPP và SUBS
+    val inAppParams = QueryPurchasesParams.newBuilder()
       .setProductType(BillingClient.ProductType.INAPP)
       .build()
 
-    billingClient.queryPurchasesAsync(params) { billingResult, purchasesList ->
-      if (billingResult.responseCode == BillingClient.BillingResponseCode.OK && purchasesList.isNotEmpty()) {
-        var highestLevel = VipPreferenceManager.VIP_LEVEL_0
-        var activeToken = ""
+    billingClient.queryPurchasesAsync(inAppParams) { billingResultInApp, purchasesInApp ->
+      var highestLevel = VipPreferenceManager.VIP_LEVEL_0
+      var activeToken = ""
 
-        for (purchase in purchasesList) {
+      if (billingResultInApp.responseCode == BillingClient.BillingResponseCode.OK && purchasesInApp.isNotEmpty()) {
+        for (purchase in purchasesInApp) {
           if (purchase.purchaseState == Purchase.PurchaseState.PURCHASED) {
-            val isVip2 = purchase.products.contains(PRODUCT_VIP_2)
+            val isVip2 = purchase.products.any { isVip2Product(it) }
             val level = if (isVip2) VipPreferenceManager.VIP_LEVEL_2 else VipPreferenceManager.VIP_LEVEL_1
             if (level > highestLevel) {
               highestLevel = level
               activeToken = purchase.purchaseToken
+            }
+          }
+        }
+      }
+
+      val subsParams = QueryPurchasesParams.newBuilder()
+        .setProductType(BillingClient.ProductType.SUBS)
+        .build()
+
+      billingClient.queryPurchasesAsync(subsParams) { billingResultSubs, purchasesSubs ->
+        if (billingResultSubs.responseCode == BillingClient.BillingResponseCode.OK && purchasesSubs.isNotEmpty()) {
+          for (purchase in purchasesSubs) {
+            if (purchase.purchaseState == Purchase.PurchaseState.PURCHASED) {
+              val isVip2 = purchase.products.any { isVip2Product(it) }
+              val level = if (isVip2) VipPreferenceManager.VIP_LEVEL_2 else VipPreferenceManager.VIP_LEVEL_1
+              if (level > highestLevel) {
+                highestLevel = level
+                activeToken = purchase.purchaseToken
+              }
             }
           }
         }
@@ -271,7 +348,6 @@ class BillingManager(
           val savedEmail = vipPrefs.getUserEmail().trim()
           val deviceId = vipPrefs.getDeviceId()
 
-          // Kiểm tra xem Email nhập vào có khớp với Email đã đăng ký VIP cho thiết bị này không
           if (savedEmail.isNotEmpty() && !savedEmail.equals(inputEmail, ignoreCase = true)) {
             activity.runOnUiThread {
               callback(
@@ -294,8 +370,6 @@ class BillingManager(
         } else {
           executeLocalFallbackScan(inputName, inputEmail, callback)
         }
-      } else {
-        executeLocalFallbackScan(inputName, inputEmail, callback)
       }
     }
   }
@@ -309,7 +383,6 @@ class BillingManager(
     val savedEmail = vipPrefs.getUserEmail().trim()
     val deviceId = vipPrefs.getDeviceId()
 
-    // Yêu cầu bắt buộc: Đã có VIP (>0), đã có Email đăng ký (>0) VÀ Email nhập vào phải KHỚP 100% với Email đã đăng ký + ID thiết bị
     if (savedLevel > VipPreferenceManager.VIP_LEVEL_0 &&
         savedEmail.isNotEmpty() &&
         savedEmail.equals(inputEmail, ignoreCase = true)
