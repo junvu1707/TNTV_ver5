@@ -116,30 +116,40 @@ class GitHubQuestionRepository(private val context: Context) {
   }
 
   /**
-   * Lấy câu hỏi theo cơ chế ưu tiên:
-   * 1. Cache GitHub (đã tải về hợp lệ)
-   * 2. Local Assets (file đóng gói sẵn trong app)
+   * ƯU TIÊN 1: Chỉ đọc cache GitHub đã tải về trước đó (không fallback)
    */
-  fun getCachedQuestionsJson(grade: Int, changOrRound: Int): String? {
+  fun getGithubCacheQuestionsJson(grade: Int, changOrRound: Int): String? {
     val cacheFile = getCacheFile(grade, changOrRound)
     if (cacheFile.exists() && cacheFile.length() > 0) {
       try {
         val text = cacheFile.readText()
         if (isValidJson(text)) {
-          Log.d(TAG, "[GitHub] Sử dụng đề đã tải từ GitHub (cache): ${cacheFile.name}")
+          Log.d(TAG, "[GitHub] [Ưu tiên 1] Đã nạp thành công đề từ cache GitHub: ${cacheFile.name} (Lớp $grade - Round ${mapChangToRound(changOrRound)})")
           return text
         }
       } catch (e: Exception) {
         Log.e(TAG, "[GitHub] Lỗi đọc cache ${cacheFile.name}: ${e.message}")
       }
     }
+    return null
+  }
 
-    // Nếu chưa có cache GitHub, fallback sang Local Asset
+  /**
+   * Lấy câu hỏi theo 3 tầng ưu tiên:
+   * 1. Cache GitHub (Ưu tiên 1)
+   * 2. Local Assets (Ưu tiên 2)
+   */
+  fun getCachedQuestionsJson(grade: Int, changOrRound: Int): String? {
+    val githubCache = getGithubCacheQuestionsJson(grade, changOrRound)
+    if (!githubCache.isNullOrBlank()) return githubCache
+
     val assetJson = getLocalAssetQuestionsJson(grade, changOrRound)
     if (!assetJson.isNullOrBlank() && isValidJson(assetJson)) {
+      Log.d(TAG, "[Local Assets] [Ưu tiên 2] Đã nạp thành công đề từ local asset cho Lớp $grade - Round ${mapChangToRound(changOrRound)}")
       return assetJson
     }
 
+    Log.w(TAG, "[Test Mode index.html] [Ưu tiên 3] Không tìm thấy dữ liệu ở Ưu tiên 1 & 2 cho Lớp $grade - Round ${mapChangToRound(changOrRound)}")
     return null
   }
 

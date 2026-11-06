@@ -1,5 +1,58 @@
-{
+﻿{
   "contest": "Trạng Nguyên Tiếng Việt",
+  "grade": "KHOI_5",
+  "level": "CAP_1_VONG_LOAI",
+  "startSeq": 1,
+  "seqMode": "CONTINUOUS",
+  "totalQuestions": 419,
+  "typeDistribution": {
+    "TN": 148,
+    "SX": 31,
+    "NOI": 65,
+    "DT": 144,
+    "CHON": 31
+  },
+  "knowledgeSource": "kien thuc gioi han.md + Nội dung nhập trực tiếp",
+  "knowledgeReport": {
+    "source": "kien thuc gioi han.md + Nội dung nhập trực tiếp",
+    "hasMatrix": true,
+    "summary": "",
+    "vocabCount": 61,
+    "proverbCount": 17,
+    "hanVietCount": 0
+  },
+  "sampleExamReport": {
+    "fileName": "sample_0_Cẩm nang lớp 5 - Trạng Nguyên Education.pdf + sample_1_ĐỀ 1 lớp 5.pdf + sample_2_Fiel gốc sách lớp 5TNTV.pdf + sample_3_ÔN TNTV LỚP 5 2024-2025 (ĐÁP ÁN).pdf + sample_4_ÔN TNTV LỚP 5 2024-2025 (ĐỀ).pdf",
+    "summary": "Đã tổng hợp từ 5 đề mẫu (sample_0_Cẩm nang lớp 5 - Trạng Nguyên Education.pdf + sample_1_ĐỀ 1 lớp 5.pdf + sample_2_Fiel gốc sách lớp 5TNTV.pdf + sample_3_ÔN TNTV LỚP 5 2024-2025 (ĐÁP ÁN).pdf + sample_4_ÔN TNTV LỚP 5 2024-2025 (ĐỀ).pdf): Tổng cộng 98 câu hỏi. Tỷ lệ dạng bài gộp: TN: 68%, SX: 6%, NOI: 1%, DT: 22%, CHON: 2%. Ước lượng phù hợp: KHOI_5 - CAP_1_VONG_LOAI.",
+    "typeCounts": {
+      "TN": 67,
+      "SX": 6,
+      "NOI": 1,
+      "DT": 22,
+      "CHON": 2
+    },
+    "detectedTopics": [
+      "Biện pháp tu từ",
+      "Chính tả & Âm vần",
+      "Thành ngữ & Tục ngữ",
+      "Câu đố dân gian",
+      "Từ loại & Ngữ pháp",
+      "Cấu tạo từ"
+    ]
+  },
+  "exclusionReport": null,
+  "deduplicationReport": {
+    "uniqueQuestions": 419,
+    "uniquenessRate": "100%",
+    "rejectedStats": {
+      "duplicate_hash": 27483,
+      "high_jaccard_similarity": 13053,
+      "template_overuse": 9045,
+      "failed_sanity_check": 0,
+      "excluded_by_user": 0,
+      "distractor_variant_overuse": 0
+    }
+  },
   "questions": [
     {
       "contest": "Trạng Nguyên Tiếng Việt",
@@ -42647,5 +42700,5 @@
       },
       "explanation": "Nhóm Đoàn kết, sẻ chia: Nhường cơm sẻ áo, Đồng cam cộng khổ. Nhóm Kiên trì, học tập: Có công mài sắt, có ngày nên kim, Kiến tha lâu cũng đầy tổ."
     }
-  ]
-}
+  ],
+ 

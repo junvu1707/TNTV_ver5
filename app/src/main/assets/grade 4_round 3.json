@@ -1,5 +1,51 @@
-{
+﻿{
   "contest": "Trạng Nguyên Tiếng Việt",
+  "grade": "KHOI_4",
+  "level": "CAP_3_VONG_HUONG",
+  "startSeq": 4,
+  "seqMode": "CONTINUOUS",
+  "totalQuestions": 446,
+  "typeDistribution": {
+    "TN": 162,
+    "SX": 31,
+    "NOI": 65,
+    "DT": 143,
+    "CHON": 45
+  },
+  "knowledgeSource": "kien thuc gioi han.md + Nội dung nhập trực tiếp",
+  "knowledgeReport": {
+    "source": "kien thuc gioi han.md + Nội dung nhập trực tiếp",
+    "hasMatrix": true,
+    "summary": "",
+    "vocabCount": 66,
+    "proverbCount": 17,
+    "hanVietCount": 0
+  },
+  "sampleExamReport": {
+    "fileName": "sample_0_Bộ IQ -TNTV4-NAM-2025-2026-PHANDE (1).pdf + sample_1_lớp  4-3_thi hương.docx + sample_2_lớp  4-3_thi hương.pdf + sample_3_lớp 4- 4.docx + sample_4_Nhóm chia sẻ tài liệu miễn phí.docx + sample_5_Nhóm chia sẻ tài liệu miễn phí.pdf + sample_6_tntv 4 btc.docx + sample_7_TNTV 4 mã 2.docx + sample_8_TNTV 4 yt.docx + sample_9_TNTV 4.docx + sample_10_tntv bổ sung.docx + sample_11_TV4-Ngay9-1.docx",
+    "summary": "Đã tổng hợp từ 12 đề mẫu (sample_0_Bộ IQ -TNTV4-NAM-2025-2026-PHANDE (1).pdf + sample_1_lớp  4-3_thi hương.docx + sample_2_lớp  4-3_thi hương.pdf + sample_3_lớp 4- 4.docx + sample_4_Nhóm chia sẻ tài liệu miễn phí.docx + sample_5_Nhóm chia sẻ tài liệu miễn phí.pdf + sample_6_tntv 4 btc.docx + sample_7_TNTV 4 mã 2.docx + sample_8_TNTV 4 yt.docx + sample_9_TNTV 4.docx + sample_10_tntv bổ sung.docx + sample_11_TV4-Ngay9-1.docx): Tổng cộng 43 câu hỏi. Tỷ lệ dạng bài gộp: TN: 93%, SX: 7%. Ước lượng phù hợp: KHOI_1 - CAP_1_VONG_LOAI.",
+    "typeCounts": {
+      "TN": 40,
+      "SX": 3,
+      "NOI": 0,
+      "DT": 0,
+      "CHON": 0
+    },
+    "detectedTopics": []
+  },
+  "exclusionReport": null,
+  "deduplicationReport": {
+    "uniqueQuestions": 446,
+    "uniquenessRate": "100%",
+    "rejectedStats": {
+      "duplicate_hash": 29807,
+      "high_jaccard_similarity": 6486,
+      "template_overuse": 13261,
+      "failed_sanity_check": 0,
+      "excluded_by_user": 0,
+      "distractor_variant_overuse": 0
+    }
+  },
   "questions": [
     {
       "contest": "Trạng Nguyên Tiếng Việt",
@@ -8692,8 +8738,9 @@
         ]
       },
       "explanation": "Danh từ: tình bạn, hòa bình; Động từ: xây dựng, khám phá; Tính từ: trung thực, khiêm tốn."
-    },
-    {
+    }
+
+     {
       "contest": "Trạng Nguyên Tiếng Việt",
       "grade": "KHOI_4",
       "level": "CAP_3_VONG_HUONG",

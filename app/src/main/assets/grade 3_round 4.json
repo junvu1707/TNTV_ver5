@@ -1,5 +1,59 @@
-{
+﻿{
   "contest": "Trạng Nguyên Tiếng Việt",
+  "grade": "KHOI_3",
+  "level": "CAP_4_VONG_TINH",
+  "startSeq": 2000,
+  "seqMode": "CONTINUOUS",
+  "totalQuestions": 459,
+  "typeDistribution": {
+    "TN": 177,
+    "SX": 32,
+    "NOI": 65,
+    "DT": 140,
+    "CHON": 45
+  },
+  "knowledgeSource": "kien thuc gioi han.md + Nội dung nhập trực tiếp",
+  "knowledgeReport": {
+    "source": "kien thuc gioi han.md + Nội dung nhập trực tiếp",
+    "hasMatrix": true,
+    "summary": "",
+    "vocabCount": 61,
+    "proverbCount": 17,
+    "hanVietCount": 0
+  },
+  "sampleExamReport": {
+    "fileName": "sample_0_TNTV LỚP 3-CẤP TỈNH.ĐỀ.pdf + sample_1_TNTV3- ÔN CẤP TỈNH -PHẦN ĐỀ.pdf + sample_2_Cẩm nang TNTV - lớp 3.pdf + sample_3_19 vòng TRẠNG NGUYÊN TIẾNG VIỆT LỚP 3.pdf + sample_4_Cẩm nang lớp 3 - Trạng Nguyên Education.pdf + sample_5_BỘ ĐỀ CẤP TỈNH TNTV LỚP 3.doc",
+    "summary": "Đã tổng hợp từ 6 đề mẫu (sample_0_TNTV LỚP 3-CẤP TỈNH.ĐỀ.pdf + sample_1_TNTV3- ÔN CẤP TỈNH -PHẦN ĐỀ.pdf + sample_2_Cẩm nang TNTV - lớp 3.pdf + sample_3_19 vòng TRẠNG NGUYÊN TIẾNG VIỆT LỚP 3.pdf + sample_4_Cẩm nang lớp 3 - Trạng Nguyên Education.pdf + sample_5_BỘ ĐỀ CẤP TỈNH TNTV LỚP 3.doc): Tổng cộng 1611 câu hỏi. Tỷ lệ dạng bài gộp: TN: 76%, SX: 1%, NOI: 1%, DT: 22%. Ước lượng phù hợp: KHOI_3 - CAP_4_VONG_TINH.",
+    "typeCounts": {
+      "TN": 1218,
+      "SX": 17,
+      "NOI": 23,
+      "DT": 352,
+      "CHON": 1
+    },
+    "detectedTopics": [
+      "Biện pháp tu từ",
+      "Chính tả & Âm vần",
+      "Thành ngữ & Tục ngữ",
+      "Câu đố dân gian",
+      "Từ loại & Ngữ pháp",
+      "Cấu tạo từ",
+      "Lịch sử & Địa lý"
+    ]
+  },
+  "exclusionReport": null,
+  "deduplicationReport": {
+    "uniqueQuestions": 459,
+    "uniquenessRate": "100%",
+    "rejectedStats": {
+      "duplicate_hash": 30009,
+      "high_jaccard_similarity": 7924,
+      "template_overuse": 11608,
+      "failed_sanity_check": 0,
+      "excluded_by_user": 0,
+      "distractor_variant_overuse": 0
+    }
+  },
   "questions": [
     {
       "contest": "Trạng Nguyên Tiếng Việt",

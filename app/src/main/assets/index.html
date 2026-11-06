@@ -1597,15 +1597,15 @@
 
         if (isRound1To10) {
           const letterFillBank = [
-            { type: 'DT', question: "Điền chữ 'c' hoặc 'k' vào chỗ trống: 'ú[...] gà'", answer: "c", explain: "Cú gà điền chữ c." },
+            { type: 'DT', question: "Điền chữ 'c' hoặc 'k' vào chỗ trống: '[...]ú mèo'", answer: "c", explain: "Cú mèo điền chữ c." },
             { type: 'DT', question: "Điền chữ 'c' hoặc 'k' vào chỗ trống: 'cái [...]em ngọt mát'", answer: "k", explain: "Kem điền chữ k trước e." },
-            { type: 'DT', question: "Điền chữ 'g' hoặc 'gh' vào chỗ trống: 'con [...]ẹ biển'", answer: "gh", explain: "Ghẹ điền gh trước e." },
+            { type: 'DT', question: "Điền chữ 'g' hoặc 'gh' vào chỗ trống: 'con [...]ẹ '", answer: "gh", explain: "Ghẹ điền gh trước e." },
             { type: 'DT', question: "Điền chữ 'g' hoặc 'gh' vào chỗ trống: 'cái [...]ế gỗ'", answer: "gh", explain: "Ghế điền gh trước ê." },
             { type: 'DT', question: "Điền chữ 'ng' hoặc 'ngh' vào chỗ trống: 'lắng [...]e cô giảng'", answer: "ngh", explain: "Nghe điền ngh trước e." },
             { type: 'DT', question: "Điền chữ 'ng' hoặc 'ngh' vào chỗ trống: 'suy [...]ĩ kĩ'", answer: "ngh", explain: "Nghĩ điền ngh trước i." },
             { type: 'DT', question: "Điền chữ 'ch' hoặc 'tr' vào chỗ trống: 'bức [...]anh phong cảnh'", answer: "tr", explain: "Bức tranh điền tr." },
             { type: 'DT', question: "Điền chữ 's' hoặc 'x' vào chỗ trống: 'dòng [...]ông quê em'", answer: "s", explain: "Dòng sông điền s." },
-            { type: 'DT', question: "Điền vần 'an' hoặc 'at' vào chỗ trống: 'tiếng h[...] ca rộn ràng'", answer: "at", explain: "Hát ca điền vần at." }
+            { type: 'DT', question: "Điền vần 'an' hoặc 'at' vào chỗ trống: 'Hoa b[...]' nở trắng rừng'", answer: "an", explain: "Hoa ban điền vần an." }
           ];
           for (let i = 0; i < 5; i++) {
             quizItems.push(letterFillBank[(globalIndex * 2 + i) % letterFillBank.length]);
@@ -5908,27 +5908,9 @@
     };
   }
 
-  // Lấy câu hỏi dự phòng từ ngân hàng local assets của các vòng khác cùng lớp
+  // Đã cập nhật theo yêu cầu: Chỉ lấy đề đúng file tương ứng (grade X_round Y.json), KHÔNG lấy đề từ các vòng/file khác cho vào bù.
   function getBackupQuestionsFromOtherRounds(grade, category) {
-    const backupList = [];
-    if (!window.AndroidBridge || typeof window.AndroidBridge.getLocalAssetQuestionsJson !== 'function') {
-      return backupList;
-    }
-    for (let r = 1; r <= 4; r++) {
-      try {
-        const text = window.AndroidBridge.getLocalAssetQuestionsJson(grade, (r - 1) * 4 + 1) || '';
-        if (text && text.trim().length > 0) {
-          const parsed = JSON.parse(text);
-          const list = Array.isArray(parsed) ? parsed : (parsed.questions || []);
-          list.forEach(q => {
-            if (categorizeExamQuestion(q) === category) {
-              backupList.push(q);
-            }
-          });
-        }
-      } catch (e) {}
-    }
-    return backupList;
+    return [];
   }
 
   // ========================================================
@@ -6047,8 +6029,8 @@
     console.log(`[GitHub] [Ưu tiên 1] Đang thử kết nối tải đề thi từ GitHub: ${githubUrl}`);
     try {
       let githubText = '';
-      if (window.AndroidBridge && typeof window.AndroidBridge.getGithubQuestionsJson === 'function') {
-        githubText = window.AndroidBridge.getGithubQuestionsJson(grade, chang) || '';
+      if (window.AndroidBridge && typeof window.AndroidBridge.getGithubQuestionsJsonOnly === 'function') {
+        githubText = window.AndroidBridge.getGithubQuestionsJsonOnly(grade, chang) || '';
       }
 
       if (!githubText || githubText.trim().length === 0) {

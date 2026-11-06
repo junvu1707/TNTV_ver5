@@ -1,5 +1,46 @@
-{
+﻿{
   "contest": "Trạng Nguyên Tiếng Việt",
+  "grade": "KHOI_2",
+  "level": "CAP_2_VONG_TRUONG",
+  "totalQuestions": 807,
+  "typeDistribution": {
+    "TN": 546,
+    "SX": 33,
+    "NOI": 60,
+    "DT": 168,
+    "CHON": 0
+  },
+  "knowledgeSource": "Nội dung nhập trực tiếp",
+  "sampleExamReport": {
+    "fileName": "sample_khoi2_TIENG_VIET_CAP_3.json",
+    "summary": "Đề mẫu phát hiện 48 câu hỏi. Tỷ lệ dạng bài: TN: 48%, SX: 8%, NOI: 10%, DT: 33%. Ước lượng phù hợp: KHOI_1 - CAP_1_VONG_LOAI.",
+    "typeCounts": {
+      "TN": 23,
+      "SX": 4,
+      "NOI": 5,
+      "DT": 16,
+      "CHON": 0
+    },
+    "detectedTopics": []
+  },
+  "exclusionReport": null,
+  "distractorVariationReport": {
+    "enabled": true,
+    "variantsGenerated": 15,
+    "description": "Giữ nguyên câu trả lời đúng, thay đổi các phương án sai (distractors) để tăng số lượng câu hỏi."
+  },
+  "deduplicationReport": {
+    "uniqueQuestions": 807,
+    "uniquenessRate": "100%",
+    "rejectedStats": {
+      "duplicate_hash": 162222,
+      "high_jaccard_similarity": 45493,
+      "template_overuse": 171638,
+      "failed_sanity_check": 0,
+      "excluded_by_user": 0,
+      "distractor_variant_overuse": 120902
+    }
+  },
   "questions": [
     {
       "contest": "Trạng Nguyên Tiếng Việt",

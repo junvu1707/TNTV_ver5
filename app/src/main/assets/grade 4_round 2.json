@@ -1,5 +1,58 @@
-{
+﻿{
   "contest": "Trạng Nguyên Tiếng Việt",
+  "grade": "KHOI_4",
+  "level": "CAP_2_VONG_TRUONG",
+  "startSeq": 1,
+  "seqMode": "CONTINUOUS",
+  "totalQuestions": 467,
+  "typeDistribution": {
+    "TN": 174,
+    "SX": 33,
+    "NOI": 65,
+    "DT": 150,
+    "CHON": 45
+  },
+  "knowledgeSource": "kien thuc gioi han.md + Nội dung nhập trực tiếp",
+  "knowledgeReport": {
+    "source": "kien thuc gioi han.md + Nội dung nhập trực tiếp",
+    "hasMatrix": true,
+    "summary": "",
+    "vocabCount": 61,
+    "proverbCount": 17,
+    "hanVietCount": 0
+  },
+  "sampleExamReport": {
+    "fileName": "sample_0_bộ1 ôn cấp tốcTNTV4 ĐỀ ÔN.pdf + sample_1_ĐỀ  2 LỚP 4.docx + sample_2_ĐỀ  2 LỚP 4.md + sample_3_Đề 1 lớp 4.docx + sample_4_ĐỀ 3 LỚP 4.docx + sample_5_ĐỀ 4 lớp 4.docx + sample_6_Đề 5 lớp 4.docx + sample_7_ĐỀ 6 lớp 4.docx + sample_8_ĐỀ 7 lớp 4.docx + sample_9_Đề 8 lớp 4.docx + sample_10_Đề 9 lớp 4.docx + sample_11_Đề 10 lớp 4.docx + sample_12_ÔN TNTV LỚP 4 2024-2025 (ĐỀ).pdf + sample_13_TNTV WORD 4 ( tổng hợp) .docx + sample_14_TNTV4 -  ÔN CẤP TRƯỜNG - ĐÁP ÁN hà trang.pdf + sample_15_TNTV4 - ÔN CẤP TRƯỜNG - PHẦN ĐỀ hà trang.pdf",
+    "summary": "Đã tổng hợp từ 16 đề mẫu (sample_0_bộ1 ôn cấp tốcTNTV4 ĐỀ ÔN.pdf + sample_1_ĐỀ  2 LỚP 4.docx + sample_2_ĐỀ  2 LỚP 4.md + sample_3_Đề 1 lớp 4.docx + sample_4_ĐỀ 3 LỚP 4.docx + sample_5_ĐỀ 4 lớp 4.docx + sample_6_Đề 5 lớp 4.docx + sample_7_ĐỀ 6 lớp 4.docx + sample_8_ĐỀ 7 lớp 4.docx + sample_9_Đề 8 lớp 4.docx + sample_10_Đề 9 lớp 4.docx + sample_11_Đề 10 lớp 4.docx + sample_12_ÔN TNTV LỚP 4 2024-2025 (ĐỀ).pdf + sample_13_TNTV WORD 4 ( tổng hợp) .docx + sample_14_TNTV4 -  ÔN CẤP TRƯỜNG - ĐÁP ÁN hà trang.pdf + sample_15_TNTV4 - ÔN CẤP TRƯỜNG - PHẦN ĐỀ hà trang.pdf): Tổng cộng 761 câu hỏi. Tỷ lệ dạng bài gộp: TN: 74%, SX: 4%, NOI: 1%, DT: 20%, CHON: 1%. Ước lượng phù hợp: KHOI_1 - CAP_1_VONG_LOAI.",
+    "typeCounts": {
+      "TN": 565,
+      "SX": 32,
+      "NOI": 7,
+      "DT": 149,
+      "CHON": 8
+    },
+    "detectedTopics": [
+      "Biện pháp tu từ",
+      "Chính tả & Âm vần",
+      "Thành ngữ & Tục ngữ",
+      "Câu đố dân gian",
+      "Từ loại & Ngữ pháp",
+      "Lịch sử & Địa lý"
+    ]
+  },
+  "exclusionReport": null,
+  "deduplicationReport": {
+    "uniqueQuestions": 467,
+    "uniquenessRate": "100%",
+    "rejectedStats": {
+      "duplicate_hash": 27186,
+      "high_jaccard_similarity": 7694,
+      "template_overuse": 11661,
+      "failed_sanity_check": 0,
+      "excluded_by_user": 0,
+      "distractor_variant_overuse": 0
+    }
+  },
   "questions": [
     {
       "contest": "Trạng Nguyên Tiếng Việt",
@@ -9613,7 +9666,9 @@
       },
       "explanation": "Danh từ: thủ đô, lòng dũng cảm; Động từ: khám phá, cống hiến; Tính từ: bao dung, khiêm tốn.",
       "questionNumber": 467
-    },
+    }
+
+    
     {
       "contest": "Trạng Nguyên Tiếng Việt",
       "grade": "KHOI_4",
@@ -45514,5 +45569,7 @@
       },
       "explanation": "Từ đơn: sách, trăng. Từ ghép: sách vở, đường ray. Từ láy: rón rén, bâng khuâng."
     }
+  ]
+}
   ]
 }

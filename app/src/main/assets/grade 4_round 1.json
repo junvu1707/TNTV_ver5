@@ -1,5 +1,58 @@
-{
+﻿{
   "contest": "Trạng Nguyên Tiếng Việt",
+  "grade": "KHOI_4",
+  "level": "CAP_1_VONG_LOAI",
+  "startSeq": 1,
+  "seqMode": "CONTINUOUS",
+  "totalQuestions": 451,
+  "typeDistribution": {
+    "TN": 162,
+    "SX": 31,
+    "NOI": 65,
+    "DT": 148,
+    "CHON": 45
+  },
+  "knowledgeSource": "kien thuc gioi han.md + Nội dung nhập trực tiếp",
+  "knowledgeReport": {
+    "source": "kien thuc gioi han.md + Nội dung nhập trực tiếp",
+    "hasMatrix": true,
+    "summary": "",
+    "vocabCount": 61,
+    "proverbCount": 16,
+    "hanVietCount": 0
+  },
+  "sampleExamReport": {
+    "fileName": "sample_0_img_016.png + sample_1_img_017.png + sample_2_img_018.png + sample_3_img_019.png + sample_4_img_020.png + sample_5_img_021.png + sample_6_img_022.png + sample_7_img_023.png + sample_8_img_024.png + sample_9_L4.Team Ms Hoa tặng ĐỀ ÔN TNTTV 25-26.pdf + sample_10_File gốc sách lớp 4 TNTV.pdf + sample_11_img_001.png + sample_12_img_002.png + sample_13_img_003.png + sample_14_img_004.png + sample_15_img_005.png + sample_16_img_006.png + sample_17_img_007.png + sample_18_img_008.png + sample_19_img_009.png + sample_20_img_010.png + sample_21_img_011.png + sample_22_img_012.png + sample_23_img_013.png + sample_24_img_014.png + sample_25_img_015.png",
+    "summary": "Đã tổng hợp từ 26 đề mẫu (sample_0_img_016.png + sample_1_img_017.png + sample_2_img_018.png + sample_3_img_019.png + sample_4_img_020.png + sample_5_img_021.png + sample_6_img_022.png + sample_7_img_023.png + sample_8_img_024.png + sample_9_L4.Team Ms Hoa tặng ĐỀ ÔN TNTTV 25-26.pdf + sample_10_File gốc sách lớp 4 TNTV.pdf + sample_11_img_001.png + sample_12_img_002.png + sample_13_img_003.png + sample_14_img_004.png + sample_15_img_005.png + sample_16_img_006.png + sample_17_img_007.png + sample_18_img_008.png + sample_19_img_009.png + sample_20_img_010.png + sample_21_img_011.png + sample_22_img_012.png + sample_23_img_013.png + sample_24_img_014.png + sample_25_img_015.png): Tổng cộng 151 câu hỏi. Tỷ lệ dạng bài gộp: TN: 98%, SX: 2%. Ước lượng phù hợp: KHOI_1 - CAP_1_VONG_LOAI.",
+    "typeCounts": {
+      "TN": 148,
+      "SX": 3,
+      "NOI": 0,
+      "DT": 0,
+      "CHON": 0
+    },
+    "detectedTopics": [
+      "Biện pháp tu từ",
+      "Chính tả & Âm vần",
+      "Thành ngữ & Tục ngữ",
+      "Câu đố dân gian",
+      "Từ loại & Ngữ pháp",
+      "Lịch sử & Địa lý"
+    ]
+  },
+  "exclusionReport": null,
+  "deduplicationReport": {
+    "uniqueQuestions": 451,
+    "uniquenessRate": "100%",
+    "rejectedStats": {
+      "duplicate_hash": 29867,
+      "high_jaccard_similarity": 6365,
+      "template_overuse": 13317,
+      "failed_sanity_check": 0,
+      "excluded_by_user": 0,
+      "distractor_variant_overuse": 0
+    }
+  },
   "questions": [
     {
       "contest": "Trạng Nguyên Tiếng Việt",
@@ -10996,5 +11049,176 @@
       },
       "explanation": "Danh từ: bác sĩ, cây phượng, học sinh; Động từ: chăm sóc, bảo vệ, xây dựng; Tính từ: trong trẻo, bao dung, khiêm tốn."
     }
-  ]
+  ],
+  "reviewReport": {
+    "sourceFile": "grade 4_round 1(1).json",
+    "sourceQuestionCount": 2451,
+    "sourceMetadataTotalQuestions": 451,
+    "sourceTypeCounts": {
+      "TN": 1362,
+      "SX": 181,
+      "NOI": 215,
+      "DT": 548,
+      "CHON": 145
+    },
+    "repairs": [
+      "Bổ sung dấu phẩy còn thiếu giữa hai đối tượng câu hỏi tại khoảng dòng 8946–8947.",
+      "Loại bỏ phần đóng mảng/đối tượng JSON bị lặp ở cuối tệp."
+    ],
+    "idCollisionGroups": 31,
+    "idCollisionExtraEntries": 37,
+    "idCollisionRenamedCount": 37,
+    "idCollisionRenames": [
+      {
+        "originalId": "k4_c1_dt_262",
+        "newId": "k4_c1_dt_262__dup2"
+      },
+      {
+        "originalId": "k4_c1_dt_266",
+        "newId": "k4_c1_dt_266__dup2"
+      },
+      {
+        "originalId": "k4_c1_dt_275",
+        "newId": "k4_c1_dt_275__dup2"
+      },
+      {
+        "originalId": "k4_c1_dt_278",
+        "newId": "k4_c1_dt_278__dup2"
+      },
+      {
+        "originalId": "k4_c1_dt_286",
+        "newId": "k4_c1_dt_286__dup2"
+      },
+      {
+        "originalId": "k4_c1_dt_292",
+        "newId": "k4_c1_dt_292__dup2"
+      },
+      {
+        "originalId": "k4_c1_dt_294",
+        "newId": "k4_c1_dt_294__dup2"
+      },
+      {
+        "originalId": "k4_c1_dt_300",
+        "newId": "k4_c1_dt_300__dup2"
+      },
+      {
+        "originalId": "k4_c1_dt_307",
+        "newId": "k4_c1_dt_307__dup2"
+      },
+      {
+        "originalId": "k4_c1_dt_312",
+        "newId": "k4_c1_dt_312__dup2"
+      },
+      {
+        "originalId": "k4_c1_dt_316",
+        "newId": "k4_c1_dt_316__dup2"
+      },
+      {
+        "originalId": "k4_c1_dt_320",
+        "newId": "k4_c1_dt_320__dup2"
+      },
+      {
+        "originalId": "k4_c1_dt_322",
+        "newId": "k4_c1_dt_322__dup2"
+      },
+      {
+        "originalId": "k4_c1_dt_322",
+        "newId": "k4_c1_dt_322__dup3"
+      },
+      {
+        "originalId": "k4_c1_dt_327",
+        "newId": "k4_c1_dt_327__dup2"
+      },
+      {
+        "originalId": "k4_c1_dt_333",
+        "newId": "k4_c1_dt_333__dup2"
+      },
+      {
+        "originalId": "k4_c1_dt_337",
+        "newId": "k4_c1_dt_337__dup2"
+      },
+      {
+        "originalId": "k4_c1_dt_342",
+        "newId": "k4_c1_dt_342__dup2"
+      },
+      {
+        "originalId": "k4_c1_dt_344",
+        "newId": "k4_c1_dt_344__dup2"
+      },
+      {
+        "originalId": "k4_c1_dt_348",
+        "newId": "k4_c1_dt_348__dup2"
+      },
+      {
+        "originalId": "k4_c1_dt_356",
+        "newId": "k4_c1_dt_356__dup2"
+      },
+      {
+        "originalId": "k4_c1_dt_358",
+        "newId": "k4_c1_dt_358__dup2"
+      },
+      {
+        "originalId": "k4_c1_dt_358",
+        "newId": "k4_c1_dt_358__dup3"
+      },
+      {
+        "originalId": "k4_c1_dt_365",
+        "newId": "k4_c1_dt_365__dup2"
+      },
+      {
+        "originalId": "k4_c1_dt_372",
+        "newId": "k4_c1_dt_372__dup2"
+      },
+      {
+        "originalId": "k4_c1_dt_372",
+        "newId": "k4_c1_dt_372__dup3"
+      },
+      {
+        "originalId": "k4_c1_dt_375",
+        "newId": "k4_c1_dt_375__dup2"
+      },
+      {
+        "originalId": "k4_c1_dt_381",
+        "newId": "k4_c1_dt_381__dup2"
+      },
+      {
+        "originalId": "k4_c1_dt_381",
+        "newId": "k4_c1_dt_381__dup3"
+      },
+      {
+        "originalId": "k4_c1_dt_380",
+        "newId": "k4_c1_dt_380__dup2"
+      },
+      {
+        "originalId": "k4_c1_dt_381",
+        "newId": "k4_c1_dt_381__dup4"
+      },
+      {
+        "originalId": "k4_c1_dt_387",
+        "newId": "k4_c1_dt_387__dup2"
+      },
+      {
+        "originalId": "k4_c1_dt_387",
+        "newId": "k4_c1_dt_387__dup3"
+      },
+      {
+        "originalId": "k4_c1_dt_391",
+        "newId": "k4_c1_dt_391__dup2"
+      },
+      {
+        "originalId": "k4_c1_dt_399",
+        "newId": "k4_c1_dt_399__dup2"
+      },
+      {
+        "originalId": "k4_c1_dt_400",
+        "newId": "k4_c1_dt_400__dup2"
+      },
+      {
+        "originalId": "k4_c1_dt_404",
+        "newId": "k4_c1_dt_404__dup2"
+      }
+    ],
+    "sampleExamReportNote": "Giữ nguyên sampleExamReport gốc; số liệu 151 câu và phân bố loại trong báo cáo này không khớp với tập câu hỏi thực tế và không thể suy ra lại chỉ từ danh sách câu hỏi.",
+    "validation": "JSON hợp lệ; questionId duy nhất; khóa câu hỏi-đáp án duy nhất; các trường bắt buộc theo từng dạng bài được kiểm tra."
+  }
 }

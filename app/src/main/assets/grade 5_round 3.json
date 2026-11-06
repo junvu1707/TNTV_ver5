@@ -1,5 +1,51 @@
-{
+﻿{
   "contest": "Trạng Nguyên Tiếng Việt",
+  "grade": "KHOI_5",
+  "level": "CAP_3_VONG_HUONG",
+  "startSeq": 1,
+  "seqMode": "CONTINUOUS",
+  "totalQuestions": 424,
+  "typeDistribution": {
+    "TN": 148,
+    "SX": 31,
+    "NOI": 65,
+    "DT": 149,
+    "CHON": 31
+  },
+  "knowledgeSource": "kien thuc gioi han.md + Nội dung nhập trực tiếp",
+  "knowledgeReport": {
+    "source": "kien thuc gioi han.md + Nội dung nhập trực tiếp",
+    "hasMatrix": true,
+    "summary": "",
+    "vocabCount": 61,
+    "proverbCount": 17,
+    "hanVietCount": 0
+  },
+  "sampleExamReport": {
+    "fileName": "sample_0_CHUYÊN ĐỀ LỚP 5 - ĐÁP ÁN.pdf + sample_1_CHUYÊN ĐỀ LỚP 5 - ĐỀ.pdf + sample_2_Nhóm chia sẻ tài liệu miễn phí.docx + sample_3_Nhóm chia sẻ tài liệu miễn phí.pdf + sample_4_tntv 5- 2 ma.docx + sample_5_TNTV Lop 5 cấp huyện (Ngày 09.1).docx + sample_6_TNTV lop 5 ngay mã 2 ngay 9.1.pdf",
+    "summary": "Đã tổng hợp từ 7 đề mẫu (sample_0_CHUYÊN ĐỀ LỚP 5 - ĐÁP ÁN.pdf + sample_1_CHUYÊN ĐỀ LỚP 5 - ĐỀ.pdf + sample_2_Nhóm chia sẻ tài liệu miễn phí.docx + sample_3_Nhóm chia sẻ tài liệu miễn phí.pdf + sample_4_tntv 5- 2 ma.docx + sample_5_TNTV Lop 5 cấp huyện (Ngày 09.1).docx + sample_6_TNTV lop 5 ngay mã 2 ngay 9.1.pdf): Tổng cộng 1247 câu hỏi. Tỷ lệ dạng bài gộp: TN: 56%, NOI: 12%, DT: 28%, CHON: 3%. Ước lượng phù hợp: KHOI_5 - CAP_2_VONG_TRUONG.",
+    "typeCounts": {
+      "TN": 704,
+      "SX": 5,
+      "NOI": 153,
+      "DT": 345,
+      "CHON": 40
+    },
+    "detectedTopics": []
+  },
+  "exclusionReport": null,
+  "deduplicationReport": {
+    "uniqueQuestions": 424,
+    "uniquenessRate": "100%",
+    "rejectedStats": {
+      "duplicate_hash": 28217,
+      "high_jaccard_similarity": 10547,
+      "template_overuse": 10812,
+      "failed_sanity_check": 0,
+      "excluded_by_user": 0,
+      "distractor_variant_overuse": 0
+    }
+  },
   "questions": [
     {
       "contest": "Trạng Nguyên Tiếng Việt",
@@ -6962,7 +7008,7 @@
         ]
       },
       "explanation": "Đại từ: chúng tôi, bọn họ, thế này. Quan hệ từ: chẳng những, tuy nhiên, nhưng mà."
-    },
+    }
     {
       "contest": "Trạng Nguyên Tiếng Việt",
       "grade": "KHOI_5",

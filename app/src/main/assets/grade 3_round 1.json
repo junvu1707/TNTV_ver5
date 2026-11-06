@@ -1,5 +1,46 @@
-{
+﻿{
   "contest": "Trạng Nguyên Tiếng Việt",
+  "grade": "KHOI_3",
+  "level": "CAP_1_VONG_LOAI",
+  "totalQuestions": 1360,
+  "typeDistribution": {
+    "TN": 539,
+    "SX": 33,
+    "NOI": 60,
+    "DT": 168,
+    "CHON": 0
+  },
+  "knowledgeSource": "Nội dung nhập trực tiếp",
+  "sampleExamReport": {
+    "fileName": "sample_khoi3_TIENG_VIET_CAP_3.json",
+    "summary": "Đề mẫu phát hiện 47 câu hỏi. Tỷ lệ dạng bài: TN: 68%, SX: 9%, NOI: 6%, DT: 17%. Ước lượng phù hợp: KHOI_3 - CAP_1_VONG_LOAI.",
+    "typeCounts": {
+      "TN": 32,
+      "SX": 4,
+      "NOI": 3,
+      "DT": 8,
+      "CHON": 0
+    },
+    "detectedTopics": []
+  },
+  "exclusionReport": null,
+  "distractorVariationReport": {
+    "enabled": true,
+    "variantsGenerated": 15,
+    "description": "Giữ nguyên câu trả lời đúng, thay đổi các phương án sai (distractors) để tăng số lượng câu hỏi."
+  },
+  "deduplicationReport": {
+    "uniqueQuestions": 800,
+    "uniquenessRate": "100%",
+    "rejectedStats": {
+      "duplicate_hash": 124548,
+      "high_jaccard_similarity": 77729,
+      "template_overuse": 199962,
+      "failed_sanity_check": 0,
+      "excluded_by_user": 0,
+      "distractor_variant_overuse": 98009
+    }
+  },
   "questions": [
     {
       "contest": "Trạng Nguyên Tiếng Việt",
@@ -19494,5 +19535,77 @@
       "explanation": "Các cặp đúng: 1-D: Tốt gỗ – hơn tốt nước sơn; 2-C: Cây ngay – không sợ chết đứng; 3-A: Lời nói chẳng mất tiền mua – lựa lời mà nói cho vừa lòng nhau; 4-B: Bầu ơi thương lấy bí cùng – tuy rằng khác giống nhưng chung một giàn.",
       "questionNumber": 1071
     }
-  ]
-}
+  ],
+  "qualityControlReport": {
+    "reviewedQuestions": 1360,
+    "removedIncorrectOrAmbiguousCount": 67,
+    "removedIncorrectOrAmbiguousQuestionIds": [
+      "k3_c1_tn_1507",
+      "k3_c1_tn_1568",
+      "k3_c1_tn_2023",
+      "k3_c1_tn_2032",
+      "k3_c1_tn_4238",
+      "k3_c1_tn_4239",
+      "k3_c1_tn_4240",
+      "k3_c1_tn_4241",
+      "k3_c1_tn_4242",
+      "k3_c1_tn_4243",
+      "k3_c1_tn_4244",
+      "k3_c1_tn_4245",
+      "k3_c1_tn_4246",
+      "k3_c1_tn_4247",
+      "k3_c1_tn_4248",
+      "k3_c1_tn_4249",
+      "k3_c1_tn_4250",
+      "k3_c1_tn_4251",
+      "k3_c1_tn_4252",
+      "k3_c1_tn_4253",
+      "k3_c1_tn_4254",
+      "k3_c1_tn_4255",
+      "k3_c1_tn_4256",
+      "k3_c1_tn_4257",
+      "k3_c1_tn_4258",
+      "k3_c1_tn_4259",
+      "k3_c1_tn_4260",
+      "k3_c1_tn_4261",
+      "k3_c1_tn_4262",
+      "k3_c1_tn_4263",
+      "k3_c1_tn_4264",
+      "k3_c1_tn_4265",
+      "k3_c1_tn_4266",
+      "k3_c1_tn_4267",
+      "k3_c1_tn_4268",
+      "k3_c1_tn_4269",
+      "k3_c1_tn_4270",
+      "k3_c1_tn_4272",
+      "k3_c1_tn_4273",
+      "k3_c1_tn_4274",
+      "k3_c1_tn_4275",
+      "k3_c1_tn_4277",
+      "k3_c1_tn_4278",
+      "k3_c1_tn_4279",
+      "k3_c1_tn_4280",
+      "k3_c1_tn_4281",
+      "k3_c1_tn_4282",
+      "k3_c1_tn_4283",
+      "k3_c1_tn_4284",
+      "k3_c1_tn_4285",
+      "k3_c1_tn_4286",
+      "k3_c1_tn_4287",
+      "k3_c1_tn_4288",
+      "k3_c1_tn_4289",
+      "k3_c1_tn_4290",
+      "k3_c1_tn_4291",
+      "k3_c1_tn_4292",
+      "k3_c1_tn_4293",
+      "k3_c1_tn_4294",
+      "k3_c1_tn_4295",
+      "k3_c1_tn_4296",
+      "k3_c1_tn_4297",
+      "k3_c1_tn_4298",
+      "k3_c1_tn_4299",
+      "k3_c1_tn_4300",
+      "k3_c1_tn_4301",
+      "k3_c1_tn_4302"
+    ],
+    

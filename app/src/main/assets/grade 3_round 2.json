@@ -1,5 +1,51 @@
-{
+﻿{
   "contest": "Trạng Nguyên Tiếng Việt",
+  "grade": "KHOI_3",
+  "level": "CAP_2_VONG_TRUONG",
+  "startSeq": 1000,
+  "seqMode": "CONTINUOUS",
+  "totalQuestions": 183,
+  "typeDistribution": {
+    "TN": 157,
+    "SX": 0,
+    "NOI": 0,
+    "DT": 26,
+    "CHON": 0
+  },
+  "knowledgeSource": "Nội dung nhập trực tiếp",
+  "sampleExamReport": {
+    "fileName": "sample_0_19 vòng TRẠNG NGUYÊN TIẾNG VIỆT LỚP 3.pdf",
+    "summary": "Đề mẫu phát hiện 1264 câu hỏi. Tỷ lệ dạng bài: TN: 84%, DT: 16%. Ước lượng phù hợp: KHOI_3 - CAP_1_VONG_LOAI.",
+    "typeCounts": {
+      "TN": 1064,
+      "SX": 1,
+      "NOI": 1,
+      "DT": 198,
+      "CHON": 0
+    },
+    "detectedTopics": [
+      "Thành ngữ & Tục ngữ",
+      "Cấu tạo từ",
+      "Câu đố dân gian",
+      "Lịch sử & Địa lý",
+      "Từ loại & Ngữ pháp",
+      "Biện pháp tu từ",
+      "Chính tả & Âm vần"
+    ]
+  },
+  "exclusionReport": null,
+  "deduplicationReport": {
+    "uniqueQuestions": 183,
+    "uniquenessRate": "100%",
+    "rejectedStats": {
+      "duplicate_hash": 71341,
+      "high_jaccard_similarity": 28476,
+      "template_overuse": 0,
+      "failed_sanity_check": 0,
+      "excluded_by_user": 0,
+      "distractor_variant_overuse": 0
+    }
+  },
   "questions": [
     {
       "contest": "Trạng Nguyên Tiếng Việt",
@@ -2667,5 +2713,19 @@
       ],
       "explanation": "Câu thành ngữ, tục ngữ hoàn chỉnh là: \"Vạn sự khởi đầu nan\". Bất kì công việc gì lúc bắt đầu cũng đều gặp nhiều gian truân, thử thách."
     }
-  ]
+  ],
+  "reviewReport": {
+    "sourceJsonRepairs": [
+      "Bổ sung dấu phẩy giữa các đối tượng câu hỏi bị thiếu dấu phân cách",
+      "Loại phần đóng mảng/đối tượng thừa ở cuối tệp"
+    ],
+    "scope": "Chỉ giữ 183 câu đầu thuộc dải ID k3_c2_tn_1000 đến k3_c2_dt_1182, đúng totalQuestions khai báo; loại 1000 câu nối thêm ngoài phạm vi.",
+    "validation": [
+      "JSON hợp lệ",
+      "questionId không trùng",
+      "đáp án TN trỏ tới phương án tồn tại",
+      "answer và blankAnswer của DT khớp nhau",
+      "không còn cặp trùng theo loại câu + nội dung câu hỏi + đáp án"
+    ]
+  }
 }

@@ -1,5 +1,51 @@
-{
+﻿{
   "contest": "Trạng Nguyên Tiếng Việt",
+  "grade": "KHOI_5",
+  "level": "CAP_4_VONG_TINH",
+  "startSeq": 1,
+  "seqMode": "CONTINUOUS",
+  "totalQuestions": 479,
+  "typeDistribution": {
+    "TN": 185,
+    "SX": 33,
+    "NOI": 80,
+    "DT": 150,
+    "CHON": 31
+  },
+  "knowledgeSource": "kien thuc gioi han.md + Nội dung nhập trực tiếp",
+  "knowledgeReport": {
+    "source": "kien thuc gioi han.md + Nội dung nhập trực tiếp",
+    "hasMatrix": true,
+    "summary": "",
+    "vocabCount": 61,
+    "proverbCount": 16,
+    "hanVietCount": 0
+  },
+  "sampleExamReport": {
+    "fileName": "sample_0_TNTV cấp tỉnh lớp 5.docx + sample_1_TNTV LỚP 5-CẤP 3_ TỈNH.ĐỀ.pdf + sample_2_TNTV LỚP 5-CẤP TỈNH.ĐÁP ÁN.pdf",
+    "summary": "Đã tổng hợp từ 3 đề mẫu (sample_0_TNTV cấp tỉnh lớp 5.docx + sample_1_TNTV LỚP 5-CẤP 3_ TỈNH.ĐỀ.pdf + sample_2_TNTV LỚP 5-CẤP TỈNH.ĐÁP ÁN.pdf): Tổng cộng 824 câu hỏi. Tỷ lệ dạng bài gộp: TN: 31%, SX: 6%, NOI: 16%, DT: 48%. Ước lượng phù hợp: KHOI_5 - CAP_4_VONG_TINH.",
+    "typeCounts": {
+      "TN": 256,
+      "SX": 46,
+      "NOI": 128,
+      "DT": 392,
+      "CHON": 2
+    },
+    "detectedTopics": []
+  },
+  "exclusionReport": null,
+  "deduplicationReport": {
+    "uniqueQuestions": 479,
+    "uniquenessRate": "100%",
+    "rejectedStats": {
+      "duplicate_hash": 26352,
+      "high_jaccard_similarity": 11403,
+      "template_overuse": 8139,
+      "failed_sanity_check": 0,
+      "excluded_by_user": 0,
+      "distractor_variant_overuse": 0
+    }
+  },
   "questions": [
     {
       "contest": "Trạng Nguyên Tiếng Việt",
@@ -19275,5 +19321,5 @@
       "explanation": "Câu thành ngữ, tục ngữ hoàn chỉnh là: \"Cây ngay không sợ chết đứng\". Người sống ngay thẳng, thật thà thì không sợ bất kì lời vu khống hay thử thách nào.",
       "questionId": "k5_c4_dt_2999"
     }
-  ]
-}
+  ],
+  

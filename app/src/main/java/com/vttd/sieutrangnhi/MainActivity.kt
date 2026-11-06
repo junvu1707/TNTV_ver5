@@ -791,6 +791,11 @@ class AndroidBridge(
   }
 
   @JavascriptInterface
+  fun getGithubQuestionsJsonOnly(grade: Int, changOrRound: Int): String {
+    return activity.githubRepo.getGithubCacheQuestionsJson(grade, changOrRound) ?: ""
+  }
+
+  @JavascriptInterface
   fun getGithubQuestionsJson(grade: Int, changOrRound: Int): String {
     return activity.githubRepo.getCachedQuestionsJson(grade, changOrRound) ?: ""
   }

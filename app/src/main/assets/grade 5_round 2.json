@@ -1,5 +1,58 @@
-{
+﻿{
   "contest": "Trạng Nguyên Tiếng Việt",
+  "grade": "KHOI_5",
+  "level": "CAP_2_VONG_TRUONG",
+  "startSeq": 1,
+  "seqMode": "CONTINUOUS",
+  "totalQuestions": 423,
+  "typeDistribution": {
+    "TN": 149,
+    "SX": 31,
+    "NOI": 65,
+    "DT": 147,
+    "CHON": 31
+  },
+  "knowledgeSource": "kien thuc gioi han.md + Nội dung nhập trực tiếp",
+  "knowledgeReport": {
+    "source": "kien thuc gioi han.md + Nội dung nhập trực tiếp",
+    "hasMatrix": true,
+    "summary": "",
+    "vocabCount": 62,
+    "proverbCount": 17,
+    "hanVietCount": 0
+  },
+  "sampleExamReport": {
+    "fileName": "sample_0_ĐỀ 1 lớp 5.docx + sample_1_ĐỀ 2 lớp 5.docx + sample_2_ĐỀ 3 lớp 5.docx + sample_3_ĐỀ 4 lớp 5.docx + sample_4_ĐỀ 5 lớp 5.docx + sample_5_ĐỀ 6 lớp 5.docx + sample_6_ĐỀ 7 LỚP 5.docx + sample_7_ĐỀ 8 LỚP 5.docx + sample_8_ĐỀ 9 lớp 5 .docx + sample_9_ĐỀ 10 LỚP 5.docx",
+    "summary": "Đã tổng hợp từ 10 đề mẫu (sample_0_ĐỀ 1 lớp 5.docx + sample_1_ĐỀ 2 lớp 5.docx + sample_2_ĐỀ 3 lớp 5.docx + sample_3_ĐỀ 4 lớp 5.docx + sample_4_ĐỀ 5 lớp 5.docx + sample_5_ĐỀ 6 lớp 5.docx + sample_6_ĐỀ 7 LỚP 5.docx + sample_7_ĐỀ 8 LỚP 5.docx + sample_8_ĐỀ 9 lớp 5 .docx + sample_9_ĐỀ 10 LỚP 5.docx): Tổng cộng 573 câu hỏi. Tỷ lệ dạng bài gộp: TN: 77%, SX: 1%, DT: 20%, CHON: 3%. Ước lượng phù hợp: KHOI_5 - CAP_1_VONG_LOAI.",
+    "typeCounts": {
+      "TN": 439,
+      "SX": 4,
+      "NOI": 2,
+      "DT": 112,
+      "CHON": 16
+    },
+    "detectedTopics": [
+      "Biện pháp tu từ",
+      "Chính tả & Âm vần",
+      "Thành ngữ & Tục ngữ",
+      "Câu đố dân gian",
+      "Từ loại & Ngữ pháp",
+      "Cấu tạo từ"
+    ]
+  },
+  "exclusionReport": null,
+  "deduplicationReport": {
+    "uniqueQuestions": 423,
+    "uniquenessRate": "100%",
+    "rejectedStats": {
+      "duplicate_hash": 26905,
+      "high_jaccard_similarity": 11942,
+      "template_overuse": 10730,
+      "failed_sanity_check": 0,
+      "excluded_by_user": 0,
+      "distractor_variant_overuse": 0
+    }
+  },
   "questions": [
     {
       "contest": "Trạng Nguyên Tiếng Việt",
@@ -8160,7 +8213,9 @@
         ]
       },
       "explanation": "Đại từ: bọn họ, thế này, ai đó. Quan hệ từ: bởi vì, tuy nhiên, nếu như."
-    },
+    }
+    
+
     {
       "contest": "Trạng Nguyên Tiếng Việt",
       "grade": "KHOI_5",
@@ -16218,7 +16273,9 @@
         ]
       },
       "explanation": "Đại từ: ai đó, bao nhiêu, thế này. Quan hệ từ: bởi vì, chẳng những, nhưng mà."
-    },
+    }
+
+    {
     {
       "contest": "Trạng Nguyên Tiếng Việt",
       "grade": "KHOI_5",

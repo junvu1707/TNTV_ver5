@@ -1,5 +1,46 @@
-{
+﻿{
   "contest": "Trạng Nguyên Tiếng Việt",
+  "grade": "KHOI_1",
+  "level": "CAP_3_VONG_HUONG",
+  "totalQuestions": 983,
+  "typeDistribution": {
+    "TN": 661,
+    "SX": 34,
+    "NOI": 60,
+    "DT": 168,
+    "CHON": 60
+  },
+  "knowledgeSource": "Nội dung nhập trực tiếp",
+  "sampleExamReport": {
+    "fileName": "sample_khoi1_TIENG_VIET_CAP_3.json",
+    "summary": "Đề mẫu phát hiện 50 câu hỏi. Tỷ lệ dạng bài: TN: 50%, SX: 12%, NOI: 12%, DT: 26%. Ước lượng phù hợp: KHOI_1 - CAP_1_VONG_LOAI.",
+    "typeCounts": {
+      "TN": 25,
+      "SX": 6,
+      "NOI": 6,
+      "DT": 13,
+      "CHON": 0
+    },
+    "detectedTopics": []
+  },
+  "exclusionReport": null,
+  "distractorVariationReport": {
+    "enabled": true,
+    "variantsGenerated": 15,
+    "description": "Giữ nguyên câu trả lời đúng, thay đổi các phương án sai (distractors) để tăng số lượng câu hỏi."
+  },
+  "deduplicationReport": {
+    "uniqueQuestions": 983,
+    "uniquenessRate": "100%",
+    "rejectedStats": {
+      "duplicate_hash": 22122,
+      "high_jaccard_similarity": 12970,
+      "template_overuse": 45036,
+      "failed_sanity_check": 0,
+      "excluded_by_user": 0,
+      "distractor_variant_overuse": 20181
+    }
+  },
   "questions": [
     {
       "contest": "Trạng Nguyên Tiếng Việt",
@@ -13676,5 +13717,7 @@
       },
       "explanation": "Phân loại đúng: Từ chỉ sự vật: cái giỏ, con cò; Từ chỉ hoạt động: đánh răng, kể chuyện; Từ chỉ đặc điểm: dũng cảm, mảnh mai."
     }
-  ]
-}
+  ],
+
+    },
+ 

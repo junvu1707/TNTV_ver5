@@ -1,5 +1,50 @@
-{
+﻿{
   "contest": "Trạng Nguyên Tiếng Việt",
+  "grade": "KHOI_2",
+  "level": "CAP_4_VONG_TINH",
+  "totalQuestions": 1940,
+  "typeDistribution": {
+    "TN": 539,
+    "SX": 33,
+    "NOI": 60,
+    "DT": 168,
+    "CHON": 0
+  },
+  "knowledgeSource": "Nội dung nhập trực tiếp",
+  "sampleExamReport": {
+    "fileName": "sample_khoi2_TIENG_VIET_CAP_2.json",
+    "summary": "Đề mẫu phát hiện 47 câu hỏi. Tỷ lệ dạng bài: TN: 68%, SX: 9%, NOI: 6%, DT: 17%. Ước lượng phù hợp: KHOI_1 - CAP_1_VONG_LOAI.",
+    "typeCounts": {
+      "TN": 32,
+      "SX": 4,
+      "NOI": 3,
+      "DT": 8,
+      "CHON": 0
+    },
+    "detectedTopics": []
+  },
+  "exclusionReport": {
+    "source": "exclusion_List học.xlsx",
+    "totalExcludedLoaded": 438,
+    "totalExcludedBlocked": 0
+  },
+  "distractorVariationReport": {
+    "enabled": true,
+    "variantsGenerated": 15,
+    "description": "Giữ nguyên câu trả lời đúng, thay đổi các phương án sai (distractors) để tăng số lượng câu hỏi."
+  },
+  "deduplicationReport": {
+    "uniqueQuestions": 800,
+    "uniquenessRate": "100%",
+    "rejectedStats": {
+      "duplicate_hash": 129593,
+      "high_jaccard_similarity": 72766,
+      "template_overuse": 199772,
+      "failed_sanity_check": 0,
+      "excluded_by_user": 0,
+      "distractor_variant_overuse": 98117
+    }
+  },
   "questions": [
     {
       "contest": "Trạng Nguyên Tiếng Việt",
@@ -5832,5 +5877,4 @@
       "explanation": "Câu tục ngữ khuyên gần gũi người tốt, học theo điều hay.",
       "questionNumber": 301
     }
-  ]
-}
+  

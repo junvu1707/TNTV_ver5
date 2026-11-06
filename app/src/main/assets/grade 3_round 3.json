@@ -1,5 +1,43 @@
-{
+﻿{
   "contest": "Trạng Nguyên Tiếng Việt",
+  "grade": "KHOI_3",
+  "level": "CAP_3_VONG_HUONG",
+  "startSeq": 1000,
+  "seqMode": "CONTINUOUS",
+  "totalQuestions": 157,
+  "typeDistribution": {
+    "TN": 157,
+    "SX": 0,
+    "NOI": 0,
+    "DT": 0,
+    "CHON": 0
+  },
+  "knowledgeSource": "Nội dung nhập trực tiếp",
+  "sampleExamReport": {
+    "fileName": "sample_0_TNTV LỚP 3 CẤP HUYỆN.pdf + sample_1_TNTV3-ÔN CẤP HUYỆN-PHẦN ĐÁP-hà trang.pdf + sample_2_TNTV3-ÔN CẤP HUYỆN-PHẦN ĐỀ-hà trang.pdf + sample_3_TNTV-K3- THI HUONG (HUYEN)-2023-2024 (Ma 01).pdf.pdf",
+    "summary": "Đã tổng hợp từ 4 đề mẫu (sample_0_TNTV LỚP 3 CẤP HUYỆN.pdf + sample_1_TNTV3-ÔN CẤP HUYỆN-PHẦN ĐÁP-hà trang.pdf + sample_2_TNTV3-ÔN CẤP HUYỆN-PHẦN ĐỀ-hà trang.pdf + sample_3_TNTV-K3- THI HUONG (HUYEN)-2023-2024 (Ma 01).pdf.pdf): Tổng cộng 40 câu hỏi. Tỷ lệ dạng bài gộp: TN: 100%. Ước lượng phù hợp: KHOI_1 - CAP_1_VONG_LOAI.",
+    "typeCounts": {
+      "TN": 40,
+      "SX": 0,
+      "NOI": 0,
+      "DT": 0,
+      "CHON": 0
+    },
+    "detectedTopics": []
+  },
+  "exclusionReport": null,
+  "deduplicationReport": {
+    "uniqueQuestions": 157,
+    "uniquenessRate": "100%",
+    "rejectedStats": {
+      "duplicate_hash": 66032,
+      "high_jaccard_similarity": 33811,
+      "template_overuse": 0,
+      "failed_sanity_check": 0,
+      "excluded_by_user": 0,
+      "distractor_variant_overuse": 0
+    }
+  },
   "questions": [
     {
       "contest": "Trạng Nguyên Tiếng Việt",
@@ -17185,5 +17223,16 @@
       "explanation": "Nội dung câu dùng để kể hoạt động.",
       "questionId": "k3_c3_tn_2156"
     }
-  ]
+  ],
+  "reviewReport": {
+    "sourceQuestionCount": 1157,
+    "malformedJsonRepairs": [
+      "Bổ sung dấu phẩy bị thiếu giữa hai đối tượng câu hỏi tại khoảng dòng 2554–2555.",
+      "Loại hai dòng đóng mảng/đối tượng JSON thừa ở cuối tệp."
+    ],
+    "excludedInvalidQuestions": 2,
+    "removedDuplicateQuestions": 81,
+    "finalQuestionCount": 1074,
+    "validation": "JSON hợp lệ; questionId duy nhất; không còn trùng theo khóa câu hỏi–đáp án đúng; TN có đủ options và đáp án trỏ tới một lựa chọn."
+  }
 }

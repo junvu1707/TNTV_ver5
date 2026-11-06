@@ -102,17 +102,21 @@ class DynamicExamGenerator(
   ): String {
     val pool = mutableListOf<QuestionModel>()
 
-    if (localQuestionsJsonStr.isNotBlank()) {
-      val localQuestions = parseQuestionsFromJsonString(localQuestionsJsonStr)
-      pool.addAll(localQuestions)
-      Log.d(TAG, "Nạp ${localQuestions.size} câu từ Nguồn Local Storage")
-    }
-
+    // 1. ƯU TIÊN SỐ 1: Chỉ lấy câu hỏi từ file GitHub / Asset tương ứng của Round này (không trộn/bù từ file khác)
     val cachedGithubJson = githubRepo.getCachedQuestionsJson(grade, round)
     if (!cachedGithubJson.isNullOrBlank()) {
       val githubQuestions = parseQuestionsFromJsonString(cachedGithubJson)
-      pool.addAll(githubQuestions)
-      Log.d(TAG, "Nạp ${githubQuestions.size} câu từ Nguồn GitHub JSON Cache")
+      if (githubQuestions.isNotEmpty()) {
+        pool.addAll(githubQuestions)
+        Log.d(TAG, "ƯU TIÊN 1: Nạp ${githubQuestions.size} câu chuẩn từ file GitHub (Lớp $grade - Round ${GitHubQuestionRepository.mapChangToRound(round)})")
+      }
+    }
+
+    // Chỉ dự phòng nếu file GitHub/Asset của round này hoàn toàn rỗng
+    if (pool.isEmpty() && localQuestionsJsonStr.isNotBlank()) {
+      val localQuestions = parseQuestionsFromJsonString(localQuestionsJsonStr)
+      pool.addAll(localQuestions)
+      Log.d(TAG, "Dự phòng: Nạp ${localQuestions.size} câu từ Local Storage")
     }
 
     githubRepo.fetchAndCacheQuestions(grade, round)
