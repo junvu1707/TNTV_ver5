@@ -59,14 +59,18 @@ class BillingManager(
     .build()
 
   private var isServiceConnected = false
+  private var isConnecting = false
 
   init {
     startBillingConnection()
   }
 
   private fun startBillingConnection() {
+    if (isServiceConnected || isConnecting) return
+    isConnecting = true
     billingClient.startConnection(object : BillingClientStateListener {
       override fun onBillingSetupFinished(billingResult: BillingResult) {
+        isConnecting = false
         if (billingResult.responseCode == BillingClient.BillingResponseCode.OK) {
           Log.d(TAG, "Billing Service Connected successfully")
           isServiceConnected = true
@@ -77,6 +81,7 @@ class BillingManager(
       }
 
       override fun onBillingServiceDisconnected() {
+        isConnecting = false
         Log.w(TAG, "Billing Service Disconnected")
         isServiceConnected = false
       }
@@ -413,6 +418,7 @@ class BillingManager(
   }
 
   fun destroy() {
+    onPurchaseSuccessCallback = null
     if (billingClient.isReady) {
       billingClient.endConnection()
     }

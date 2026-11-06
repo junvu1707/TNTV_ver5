@@ -151,7 +151,14 @@ class AdManager(
       container?.visibility = View.GONE
       destroyBanner()
     } else {
-      container?.visibility = if (visible) View.VISIBLE else View.GONE
+      if (visible) {
+        container?.visibility = View.VISIBLE
+        if (bannerAdView == null && container != null) {
+          initBannerAd(container)
+        }
+      } else {
+        container?.visibility = View.GONE
+      }
     }
   }
 

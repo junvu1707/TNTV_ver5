@@ -270,6 +270,7 @@ class MainActivity : ComponentActivity() {
 
   fun showVipRegistrationDialog(productId: String, defaultName: String = "") {
     runOnUiThread {
+      if (this@MainActivity.isFinishing || this@MainActivity.isDestroyed) return@runOnUiThread
       val isVip2Target = productId == BillingManager.PRODUCT_VIP_2
       val vipTitleName = if (isVip2Target) "Gói VIP 2 (Trọn Đời - 99.000đ)" else "Gói VIP 1 (Mùa Thi - 49.000đ)"
       val deviceId = vipPrefs.getDeviceId()
@@ -529,8 +530,8 @@ class MainActivity : ComponentActivity() {
   }
 
   fun showVipSuccessDialog(productId: String, vipLevel: Int) {
-
     runOnUiThread {
+      if (this@MainActivity.isFinishing || this@MainActivity.isDestroyed) return@runOnUiThread
       val vipName = if (vipLevel >= 2) "VIP 2 (Trọn Đời)" else "VIP 1 (Mùa Thi)"
       val email = vipPrefs.getUserEmail()
       val name = vipPrefs.getUserName()
@@ -576,7 +577,12 @@ class MainActivity : ComponentActivity() {
       billingManager.destroy()
     } catch (_: Exception) {}
     adManager.destroy()
-    webView?.destroy()
+    webView?.apply {
+      stopLoading()
+      clearHistory()
+      removeAllViews()
+      destroy()
+    }
     webView = null
     super.onDestroy()
   }
