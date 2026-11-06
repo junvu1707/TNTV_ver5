@@ -36,14 +36,14 @@ class GitHubQuestionRepository(private val context: Context) {
     private const val KEY_LAST_SYNC_TIME = "last_sync_time"
 
     /**
-     * Quy đổi số Vòng (Round 1..18) ra nhóm Chặng tương ứng (1..4)
-     * - Chặng 1 (Round 1): Vòng 1-6 (Chú Ong Chăm Chỉ)
-     * - Chặng 2 (Round 2): Vòng 7-10 (Khu Vườn Kỳ Diệu)
-     * - Chặng 3 (Round 3): Vòng 11-14 (Mê Cung Kỳ Bí)
-     * - Chặng 4 (Round 4): Vòng 15-18 (Chinh Phục Đỉnh Cao)
+     * Quy đổi số Chặng (1..18) về đúng chỉ số Round (1..4):
+     * - Chặng 1..6   -> round = 1
+     * - Chặng 7..10  -> round = 2
+     * - Chặng 11..14 -> round = 3
+     * - Chặng 15..18 -> round = 4
      */
-    fun getRoundGroup(round: Int): Int {
-      return when (round) {
+    fun mapChangToRound(chang: Int): Int {
+      return when (chang) {
         in 1..6 -> 1
         in 7..10 -> 2
         in 11..14 -> 3
@@ -53,36 +53,26 @@ class GitHubQuestionRepository(private val context: Context) {
     }
 
     /**
-     * Xác định tên file JSON chuẩn trên GitHub theo Lớp & Vòng
+     * Tương thích ngược với getRoundGroup
      */
-    fun getFileName(grade: Int, round: Int): String {
+    fun getRoundGroup(round: Int): Int = mapChangToRound(round)
+
+    /**
+     * Lấy đường dẫn Raw URL GitHub trực tiếp (Direct Mapping) theo Lớp (1..5) và Round (1..4)
+     */
+    fun getDirectRawUrl(grade: Int, changOrRound: Int): String {
       val safeGrade = if (grade in 1..5) grade else 1
-      val group = getRoundGroup(round)
-      return "grade_${safeGrade}_round_${group}.json"
+      val round = mapChangToRound(changOrRound)
+      return "https://raw.githubusercontent.com/junvu1707/Trangsinhi_de/refs/heads/main/grade%20${safeGrade}_round%20${round}.json"
     }
 
     /**
-     * Trả về danh sách URL ứng viên linh hoạt cho một khối lớp & vòng/chặng
-     * Hỗ trợ các kiểu đặt tên: grade_1_round_1.json, grade 1_round 1.json, grade_1_round_1, ...
+     * Tên file JSON tương ứng trong local assets
      */
-    fun getCandidateUrls(grade: Int, round: Int): List<String> {
-      val group = getRoundGroup(round)
+    fun getLocalAssetFileName(grade: Int, changOrRound: Int): String {
       val safeGrade = if (grade in 1..5) grade else 1
-
-      val names = LinkedHashSet<String>().apply {
-        add("grade_${safeGrade}_round_${group}.json")
-        add("grade_${safeGrade}_round_${round}.json")
-        add("grade_${safeGrade}_round_${group}")
-        add("grade_${safeGrade}_round_${round}")
-        add("grade%20${safeGrade}_round%20${group}.json")
-        add("grade%20${safeGrade}_round%20${round}.json")
-        add("grade%20${safeGrade}_round%20${group}")
-        add("grade%20${safeGrade}_round%20${round}")
-        add("grade${safeGrade}_round${group}.json")
-        add("grade${safeGrade}_round${round}.json")
-      }
-
-      return names.map { "${BASE_URL}$it" }
+      val round = mapChangToRound(changOrRound)
+      return "grade ${safeGrade}_round ${round}.json"
     }
   }
 
@@ -103,94 +93,107 @@ class GitHubQuestionRepository(private val context: Context) {
     }
   }
 
-  private fun getCacheFileForSpecificRound(grade: Int, round: Int): File {
-    return File(cacheDir, "github_g${grade}_r${round}.json")
-  }
-
-  private fun getCacheFileForGroup(grade: Int, round: Int): File {
-    val group = getRoundGroup(round)
-    return File(cacheDir, "github_g${grade}_r${group}.json")
+  private fun getCacheFile(grade: Int, changOrRound: Int): File {
+    val safeGrade = if (grade in 1..5) grade else 1
+    val round = mapChangToRound(changOrRound)
+    return File(cacheDir, "github_g${safeGrade}_r${round}.json")
   }
 
   /**
-   * Lấy dữ liệu JSON câu hỏi đã cache cục bộ (Offline-First).
-   * Ưu tiên file theo vòng cụ thể (r1..r18), nếu không có sẽ lấy theo file chặng group (r1..r4).
+   * Đọc dữ liệu từ local asset dự phòng (Ưu tiên 2)
    */
-  fun getCachedQuestionsJson(grade: Int, round: Int): String? {
-    val specificFile = getCacheFileForSpecificRound(grade, round)
-    if (specificFile.exists() && specificFile.length() > 0) {
+  fun getLocalAssetQuestionsJson(grade: Int, changOrRound: Int): String? {
+    val fileName = getLocalAssetFileName(grade, changOrRound)
+    return try {
+      context.assets.open(fileName).bufferedReader(Charsets.UTF_8).use { it.readText() }.also {
+        Log.d(TAG, "[Local Assets] Đã nạp thành công bộ đề dự phòng từ asset: $fileName")
+      }
+    } catch (e: Exception) {
+      Log.w(TAG, "[Local Assets] Không thể đọc asset '$fileName': ${e.message}")
+      null
+    }
+  }
+
+  /**
+   * Lấy câu hỏi theo cơ chế ưu tiên:
+   * 1. Cache GitHub (đã tải về hợp lệ)
+   * 2. Local Assets (file đóng gói sẵn trong app)
+   */
+  fun getCachedQuestionsJson(grade: Int, changOrRound: Int): String? {
+    val cacheFile = getCacheFile(grade, changOrRound)
+    if (cacheFile.exists() && cacheFile.length() > 0) {
       try {
-        val text = specificFile.readText()
-        if (isValidJson(text)) return text
+        val text = cacheFile.readText()
+        if (isValidJson(text)) {
+          Log.d(TAG, "[GitHub] Sử dụng đề đã tải từ GitHub (cache): ${cacheFile.name}")
+          return text
+        }
       } catch (e: Exception) {
-        Log.e(TAG, "Lỗi đọc cache specific g${grade} r${round}: ${e.message}")
+        Log.e(TAG, "[GitHub] Lỗi đọc cache ${cacheFile.name}: ${e.message}")
       }
     }
 
-    val groupFile = getCacheFileForGroup(grade, round)
-    if (groupFile.exists() && groupFile.length() > 0) {
-      try {
-        val text = groupFile.readText()
-        if (isValidJson(text)) return text
-      } catch (e: Exception) {
-        Log.e(TAG, "Lỗi đọc cache group g${grade} r${round}: ${e.message}")
-      }
+    // Nếu chưa có cache GitHub, fallback sang Local Asset
+    val assetJson = getLocalAssetQuestionsJson(grade, changOrRound)
+    if (!assetJson.isNullOrBlank() && isValidJson(assetJson)) {
+      return assetJson
     }
 
     return null
   }
 
   /**
-   * Tải file JSON mới nhất cho một lớp & vòng từ GitHub và lưu vào bộ nhớ cục bộ
+   * Tải file JSON mới nhất từ GitHub qua Direct Raw URL (Ưu tiên 1)
    */
   fun fetchAndCacheQuestions(
     grade: Int,
-    round: Int,
+    changOrRound: Int,
     onSuccess: ((String) -> Unit)? = null,
     onError: ((String) -> Unit)? = null
   ) {
     CoroutineScope(Dispatchers.IO).launch {
-      val urls = getCandidateUrls(grade, round)
+      val url = getDirectRawUrl(grade, changOrRound)
       var downloadedJson: String? = null
       var lastError = "Không thể kết nối mạng"
 
-      for (url in urls) {
-        try {
-          val request = Request.Builder()
-            .header("User-Agent", "TNTV-AndroidApp")
-            .url(url)
-            .build()
-          val response = okHttpClient.newCall(request).execute()
-          if (response.isSuccessful) {
-            val bodyString = response.body?.string()
-            if (isValidJson(bodyString)) {
-              downloadedJson = bodyString
-              Log.d(TAG, "Tải thành công JSON từ GitHub: $url")
-              break
-            }
+      try {
+        Log.d(TAG, "[GitHub] Đang fetch đề thi từ: $url")
+        val request = Request.Builder()
+          .header("User-Agent", "TNTV-AndroidApp")
+          .url(url)
+          .build()
+        val response = okHttpClient.newCall(request).execute()
+        if (response.isSuccessful) {
+          val bodyString = response.body?.string()
+          if (isValidJson(bodyString)) {
+            downloadedJson = bodyString
+            Log.d(TAG, "[GitHub] Tải và parse JSON thành công từ GitHub: $url")
           } else {
-            lastError = "HTTP ${response.code} tại $url"
+            lastError = "Dữ liệu trả về không phải JSON hợp lệ"
+            Log.w(TAG, "[GitHub] $lastError từ $url")
           }
-        } catch (e: Exception) {
-          lastError = e.message ?: "Lỗi kết nối"
+        } else {
+          lastError = "HTTP ${response.code} tại $url"
+          Log.w(TAG, "[GitHub] Không tải được từ GitHub: $lastError")
         }
+      } catch (e: Exception) {
+        lastError = e.message ?: "Lỗi kết nối"
+        Log.w(TAG, "[GitHub] Ngoại lệ khi tải từ GitHub: $lastError")
       }
 
       withContext(Dispatchers.Main) {
         if (downloadedJson != null) {
           try {
-            val specificFile = getCacheFileForSpecificRound(grade, round)
-            val groupFile = getCacheFileForGroup(grade, round)
-            specificFile.writeText(downloadedJson)
-            groupFile.writeText(downloadedJson)
-            Log.d(TAG, "Đã lưu thành công cache tại: ${specificFile.absolutePath}")
+            val cacheFile = getCacheFile(grade, changOrRound)
+            cacheFile.writeText(downloadedJson)
+            Log.d(TAG, "[GitHub] Đã ghi cache thành công tại: ${cacheFile.absolutePath}")
             onSuccess?.invoke(downloadedJson)
           } catch (e: Exception) {
-            Log.e(TAG, "Lỗi ghi file cache: ${e.message}")
+            Log.e(TAG, "[GitHub] Lỗi ghi file cache: ${e.message}")
             onSuccess?.invoke(downloadedJson)
           }
         } else {
-          Log.w(TAG, "Không tải được JSON từ GitHub ($lastError). Sử dụng đề dự phòng.")
+          Log.w(TAG, "[GitHub] Fetch GitHub thất bại ($lastError). Chuyển sang ƯU TIÊN 2 (Local JSON Assets).")
           onError?.invoke(lastError)
         }
       }
@@ -239,40 +242,15 @@ class GitHubQuestionRepository(private val context: Context) {
 
         var updatedCount = 0
 
-        // Cách 1: Thử quét danh sách file trực tiếp từ GitHub API Contents
-        val fileMap = fetchDirectoryFilesFromGitHubApi()
-        if (fileMap.isNotEmpty()) {
-          val regex = Regex("""grade[_\s]*(\d+)[_\s]*round[_\s]*(\d+)""", RegexOption.IGNORE_CASE)
-          for ((fileName, downloadUrl) in fileMap) {
-            val match = regex.find(fileName)
-            if (match != null) {
-              val g = match.groupValues[1].toIntOrNull() ?: 1
-              val r = match.groupValues[2].toIntOrNull() ?: 1
-              val jsonContent = downloadRawJson(downloadUrl)
-              if (isValidJson(jsonContent)) {
-                getCacheFileForSpecificRound(g, r).writeText(jsonContent!!)
-                getCacheFileForGroup(g, r).writeText(jsonContent)
-                updatedCount++
-                Log.d(TAG, "Đã cập nhật file: $fileName (Lớp $g, Vòng/Chặng $r)")
-              }
-            }
-          }
-        }
-
-        // Cách 2: Nếu API không trả về file hoặc bị giới hạn rate limit, quét dự phòng theo candidate URLs
-        if (updatedCount == 0) {
-          for (grade in 1..5) {
-            for (roundGroup in 1..4) {
-              val urls = getCandidateUrls(grade, roundGroup)
-              for (url in urls) {
-                val jsonStr = downloadRawJson(url)
-                if (isValidJson(jsonStr)) {
-                  getCacheFileForSpecificRound(grade, roundGroup).writeText(jsonStr!!)
-                  getCacheFileForGroup(grade, roundGroup).writeText(jsonStr)
-                  updatedCount++
-                  break
-                }
-              }
+        // Quét và tải trực tiếp 20 bộ đề chuẩn theo Direct Raw URL (5 Lớp x 4 Round)
+        for (g in 1..5) {
+          for (r in 1..4) {
+            val url = getDirectRawUrl(g, r)
+            val jsonStr = downloadRawJson(url)
+            if (isValidJson(jsonStr)) {
+              getCacheFile(g, r).writeText(jsonStr!!)
+              updatedCount++
+              Log.d(TAG, "[GitHub] Đồng bộ thành công đề Lớp $g Round $r từ GitHub")
             }
           }
         }

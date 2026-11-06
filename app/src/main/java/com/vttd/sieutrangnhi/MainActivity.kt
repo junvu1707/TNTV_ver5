@@ -785,16 +785,26 @@ class AndroidBridge(
   }
 
   @JavascriptInterface
-  fun getGithubQuestionsJson(grade: Int, round: Int): String {
-    return activity.githubRepo.getCachedQuestionsJson(grade, round) ?: ""
+  fun getGithubQuestionsJson(grade: Int, changOrRound: Int): String {
+    return activity.githubRepo.getCachedQuestionsJson(grade, changOrRound) ?: ""
   }
 
   @JavascriptInterface
-  fun fetchGithubQuestions(grade: Int, round: Int) {
-    activity.githubRepo.fetchAndCacheQuestions(grade, round, onSuccess = {
+  fun getLocalAssetQuestionsJson(grade: Int, changOrRound: Int): String {
+    return activity.githubRepo.getLocalAssetQuestionsJson(grade, changOrRound) ?: ""
+  }
+
+  @JavascriptInterface
+  fun getDirectRawUrl(grade: Int, changOrRound: Int): String {
+    return GitHubQuestionRepository.getDirectRawUrl(grade, changOrRound)
+  }
+
+  @JavascriptInterface
+  fun fetchGithubQuestions(grade: Int, changOrRound: Int) {
+    activity.githubRepo.fetchAndCacheQuestions(grade, changOrRound, onSuccess = {
       activity.runOnUiThread {
         webViewProvider()?.evaluateJavascript(
-          "if (window.onGithubQuestionsUpdated) { window.onGithubQuestionsUpdated($grade, $round); }",
+          "if (window.onGithubQuestionsUpdated) { window.onGithubQuestionsUpdated($grade, $changOrRound); }",
           null
         )
       }

@@ -5727,7 +5727,177 @@
   // ========================================================
   // ĐIỀU PHỐI VÀO BÀI THI: LỚP 1 LÀM ĐỀ THI 30 CÂU TỰ SINH
   // ========================================================
-  function startRoundExam(roundNum, chosenSeed = null) {
+  // ========================================================
+  // BẢNG ÁNH XẠ TRỰC TIẾP (DIRECT MAPPING) & QUY TẮC CHẶNG -> ROUND
+  // ========================================================
+  function mapChangToRound(chang) {
+    if (chang >= 1 && chang <= 6) return 1;
+    if (chang >= 7 && chang <= 10) return 2;
+    if (chang >= 11 && chang <= 14) return 3;
+    if (chang >= 15 && chang <= 18) return 4;
+    return 1;
+  }
+
+  function getDirectGitHubRawUrl(grade, chang) {
+    const safeGrade = (grade >= 1 && grade <= 5) ? grade : 1;
+    const round = mapChangToRound(chang);
+    return `https://raw.githubusercontent.com/junvu1707/Trangsinhi_de/refs/heads/main/grade%20${safeGrade}_round%20${round}.json`;
+  }
+
+  function getLocalAssetFileName(grade, chang) {
+    const safeGrade = (grade >= 1 && grade <= 5) ? grade : 1;
+    const round = mapChangToRound(chang);
+    return `grade ${safeGrade}_round ${round}.json`;
+  }
+
+  // Chuẩn hóa câu hỏi từ JSON bên ngoài (TN, DT, NOI, SX, ...) để hiển thị mượt mà trên giao diện 30 câu
+  function normalizeExamQuestion(q, idx) {
+    if (!q) return null;
+    const type = q.type || 'MCQ';
+    let options = [];
+    let correctIndex = 0;
+    let answerText = q.answer || '';
+
+    if (q.options && typeof q.options === 'object' && !Array.isArray(q.options)) {
+      const keys = ['A', 'B', 'C', 'D'].filter(k => q.options[k] !== undefined);
+      options = keys.map(k => String(q.options[k]));
+      const ansKey = String(q.answer || 'A').trim().toUpperCase();
+      const mappedIdx = keys.indexOf(ansKey);
+      correctIndex = mappedIdx !== -1 ? mappedIdx : 0;
+    } else if (Array.isArray(q.options)) {
+      options = q.options.map(o => String(o));
+      if (typeof q.correctIndex === 'number') {
+        correctIndex = q.correctIndex;
+      } else if (q.answer) {
+        const found = options.indexOf(String(q.answer));
+        correctIndex = found !== -1 ? found : 0;
+      }
+    } else if (type === 'SX' && Array.isArray(q.elements)) {
+      options = [q.answer || q.elements.join(' ')];
+      correctIndex = 0;
+    }
+
+    let qText = q.question || q.title || `Câu hỏi ${idx + 1}`;
+    let finalType = 'MCQ';
+
+    if (type === 'DT' && (options.length < 2 || !options.includes(answerText))) {
+      finalType = 'FILL';
+    } else if (type === 'NOI' && q.columnA && q.columnB) {
+      finalType = 'MATCH_MINI';
+    } else if (options.length >= 2) {
+      finalType = 'MCQ';
+    } else {
+      finalType = 'MCQ';
+      if (options.length === 0) options = [answerText || 'Đáp án đúng'];
+    }
+
+    return {
+      id: q.questionId || q.id || `q_${idx + 1}`,
+      type: finalType,
+      title: q.title || (type === 'TN' ? 'Trắc nghiệm kiến thức' : (type === 'DT' ? 'Điền từ còn thiếu' : (type === 'NOI' ? 'Nối cột tương ứng' : 'Kiến thức Tiếng Việt'))),
+      question: qText,
+      options: options,
+      correctIndex: correctIndex,
+      answer: answerText,
+      explain: q.explanation || q.explain || 'Kiến thức chuẩn GDPT Tiếng Việt Tiểu học.',
+      pairs: q.pairs || (q.columnA && q.columnB ? Object.keys(q.columnA).map(k => ({ a: q.columnA[k], b: q.columnB[q.answer ? q.answer[k] : k] || '' })) : [])
+    };
+  }
+
+  // ========================================================
+  // CƠ CHẾ THỰC THI 3 TẦNG ƯU TIÊN (PRIORITY FALLBACK CHAIN):
+  // ƯU TIÊN 1 (GitHub) -> ƯU TIÊN 2 (Local Assets) -> ƯU TIÊN 3 (Test Mode index.html)
+  // ========================================================
+  async function loadExamQuestionsWithFallback(grade, chang, seed = 1) {
+    const round = mapChangToRound(chang);
+    const githubUrl = getDirectGitHubRawUrl(grade, chang);
+    const assetFileName = getLocalAssetFileName(grade, chang);
+
+    console.log(`[Bắt đầu tải đề] Lớp: ${grade}, Chặng: ${chang} => Round: ${round}, Seed: ${seed}`);
+
+    // --- TẦNG 1: ƯU TIÊN 1 (GitHub Direct Raw URL) ---
+    console.log(`[GitHub] [Ưu tiên 1] Đang thử kết nối tải đề thi từ GitHub: ${githubUrl}`);
+    try {
+      let githubText = '';
+      if (window.AndroidBridge && typeof window.AndroidBridge.getGithubQuestionsJson === 'function') {
+        githubText = window.AndroidBridge.getGithubQuestionsJson(grade, chang) || '';
+      }
+
+      if (!githubText || githubText.trim().length === 0) {
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 6000);
+        const resp = await fetch(githubUrl, { signal: controller.signal });
+        clearTimeout(timeoutId);
+
+        if (resp.ok) {
+          githubText = await resp.text();
+          if (window.AndroidBridge && typeof window.AndroidBridge.fetchGithubQuestions === 'function') {
+            window.AndroidBridge.fetchGithubQuestions(grade, chang);
+          }
+        } else {
+          console.warn(`[GitHub] HTTP lỗi ${resp.status} khi fetch từ ${githubUrl}`);
+        }
+      }
+
+      if (githubText && githubText.trim().length > 0) {
+        const parsed = JSON.parse(githubText);
+        let rawList = Array.isArray(parsed) ? parsed : (parsed.questions && Array.isArray(parsed.questions) ? parsed.questions : []);
+        if (rawList.length > 0) {
+          const normalized = rawList.map((q, i) => normalizeExamQuestion(q, i)).filter(Boolean);
+          console.log(`[GitHub] ✅ [Ưu tiên 1 THÀNH CÔNG] Đã tải và nạp ${normalized.length} câu hỏi trực tiếp từ GitHub!`);
+          return { source: 'GitHub', questions: normalized, rawData: parsed };
+        }
+      }
+    } catch (err) {
+      console.warn(`[GitHub] [Ưu tiên 1 THẤT BẠI] Lỗi kết nối/timeout/parse GitHub: ${err.message}. Tự động kích hoạt ƯU TIÊN 2.`);
+    }
+
+    // --- TẦNG 2: ƯU TIÊN 2 (Local JSON Assets) ---
+    console.log(`[Local Assets] [Ưu tiên 2] Đang nạp file JSON dự phòng từ assets: ${assetFileName}`);
+    try {
+      let localText = '';
+      if (window.AndroidBridge && typeof window.AndroidBridge.getLocalAssetQuestionsJson === 'function') {
+        localText = window.AndroidBridge.getLocalAssetQuestionsJson(grade, chang) || '';
+      }
+
+      if (!localText || localText.trim().length === 0) {
+        const assetUrl = `./${assetFileName}`;
+        const resp = await fetch(assetUrl);
+        if (resp.ok) {
+          localText = await resp.text();
+        }
+      }
+
+      if (localText && localText.trim().length > 0) {
+        const parsedLocal = JSON.parse(localText);
+        let rawList = Array.isArray(parsedLocal) ? parsedLocal : (parsedLocal.questions && Array.isArray(parsedLocal.questions) ? parsedLocal.questions : []);
+        if (rawList.length > 0) {
+          const normalized = rawList.map((q, i) => normalizeExamQuestion(q, i)).filter(Boolean);
+          console.log(`[Local Assets] ✅ [Ưu tiên 2 THÀNH CÔNG] Đã nạp ${normalized.length} câu hỏi dự phòng từ Local Assets!`);
+          return { source: 'Local Assets', questions: normalized, rawData: parsedLocal };
+        }
+      }
+    } catch (err) {
+      console.warn(`[Local Assets] [Ưu tiên 2 THẤT BẠI] Lỗi đọc file asset ${assetFileName}: ${err.message}. Tự động kích hoạt ƯU TIÊN 3.`);
+    }
+
+    // --- TẦNG 3: ƯU TIÊN 3 (Test Mode trong index.html) ---
+    console.log(`[Test Mode index.html] ⚡ [Ưu tiên 3] Sử dụng bộ câu hỏi test mode tự sinh sẵn trong index.html`);
+    const testExam = (chang >= 7)
+      ? ExamGenerator.generateMode2Exam(grade, chang, seed)
+      : ExamGenerator.generateMode1Exam(grade, chang, seed);
+
+    return {
+      source: 'Test Mode index.html',
+      questions: testExam.questions || [],
+      rawData: testExam
+    };
+  }
+
+  // ========================================================
+  // ĐIỀU PHỐI VÀO BÀI THI: XỬ LÝ BẤT ĐỒNG BỘ 3 TẦNG ƯU TIÊN
+  // ========================================================
+  async function startRoundExam(roundNum, chosenSeed = null) {
     clearExamSessionData();
     const maxSeeds = getMaxSeeds(roundNum);
 
@@ -5761,67 +5931,84 @@
 
     window.scrollTo({ top: 0, behavior: 'smooth' });
 
-    // 1. Kiểm tra & Nạp câu hỏi từ GitHub JSON (Offline-First)
-    let githubJsonStr = '';
-    if (window.AndroidBridge && typeof window.AndroidBridge.getGithubQuestionsJson === 'function') {
-      githubJsonStr = window.AndroidBridge.getGithubQuestionsJson(AppState.selectedGrade, roundNum);
-      if (typeof window.AndroidBridge.fetchGithubQuestions === 'function') {
-        window.AndroidBridge.fetchGithubQuestions(AppState.selectedGrade, roundNum);
-      }
+    // Hiển thị loading nhẹ trong khi nạp câu hỏi
+    const root = document.getElementById('app-root');
+    if (root) {
+      root.innerHTML = `
+        <div class="flex flex-col items-center justify-center min-h-[60vh] text-center p-6">
+          <div class="w-12 h-12 border-4 border-amber-500 border-t-transparent rounded-full animate-spin mb-4"></div>
+          <div class="font-black text-amber-950 text-base">Đang tải đề thi Lớp ${AppState.selectedGrade} - Chặng ${roundNum}...</div>
+          <div class="text-xs text-slate-500 mt-2">Hệ thống đang kiểm tra ngân hàng đề thi</div>
+        </div>
+      `;
     }
 
-    if (githubJsonStr && githubJsonStr.trim().length > 0) {
-      try {
-        const githubData = JSON.parse(githubJsonStr);
-        if (githubData) {
-          const qList = Array.isArray(githubData) ? githubData : (githubData.questions && Array.isArray(githubData.questions) ? githubData.questions : []);
-          if (roundNum <= 6 && githubData.subGames && Array.isArray(githubData.subGames)) {
-            AppState.examMode = 1;
-            AppState.timerSeconds = githubData.timerSeconds || 1500; // 25 phút
-            AppState.currentSubGameIndex = 0;
-            AppState.currentExamMode1 = githubData;
-            AppState.timerInterval = setInterval(() => {
-              AppState.timerSeconds--;
-              updateTimerDisplay();
-              if (AppState.timerSeconds <= 0) {
-                clearInterval(AppState.timerInterval);
-                showCustomAlert('Đã hết giờ làm bài! Hệ thống tự động nộp bài.');
-                finishRoundExam();
-              }
-            }, 1000);
-            SoundEngine.playGong();
-            renderCurrentSubGameMode1();
-            return;
-          } else if (qList.length > 0) {
-            AppState.examMode = 2;
-            AppState.timerSeconds = githubData.timerSeconds || 1500;
-            AppState.currentQuestionIndex = 0;
-            AppState.userAnswers30 = {};
-            mode2CompletionModalShown = false;
-            AppState.exam30Questions = shuffleQuestionOptions(qList, AppState.currentSeed + 701);
-            AppState.timerInterval = setInterval(() => {
-              AppState.timerSeconds--;
-              updateTimerDisplay();
-              if (AppState.timerSeconds <= 0) {
-                clearInterval(AppState.timerInterval);
-                showCustomAlert('Đã hết 25 phút làm bài! Hệ thống tự động nộp bài.');
-                finishExamMode2();
-              }
-            }, 1000);
-            SoundEngine.playGong();
-            renderExamMode2Question();
-            return;
-          }
+    // Thực hiện nạp đề thi theo đúng 3 tầng ưu tiên
+    const examResult = await loadExamQuestionsWithFallback(AppState.selectedGrade, roundNum, AppState.currentSeed);
+    console.log(`[Nguồn đề đang sử dụng]: [${examResult.source}] cho Lớp ${AppState.selectedGrade} - Chặng ${roundNum}`);
+
+    const qList = examResult.questions || [];
+    const rawData = examResult.rawData || {};
+
+    // Nếu là Chặng 1..6 và có dữ liệu subGames riêng biệt
+    if (roundNum <= 6 && rawData.subGames && Array.isArray(rawData.subGames)) {
+      AppState.examMode = 1;
+      AppState.timerSeconds = rawData.timerSeconds || 1500;
+      AppState.currentSubGameIndex = 0;
+      AppState.subGameScores = [0, 0, 0, 0, 0];
+      AppState.currentExamMode1 = rawData;
+      AppState.timerInterval = setInterval(() => {
+        AppState.timerSeconds--;
+        updateTimerDisplay();
+        if (AppState.timerSeconds <= 0) {
+          clearInterval(AppState.timerInterval);
+          showCustomAlert('Đã hết giờ làm bài! Hệ thống tự động nộp bài.');
+          finishRoundExam();
         }
-      } catch (e) {
-        console.warn('Lỗi đọc GitHub JSON, sử dụng bộ đề tự sinh dự phòng:', e);
-      }
+      }, 1000);
+      SoundEngine.playGong();
+      renderCurrentSubGameMode1();
+      return;
     }
 
-    // Chế độ 2: Vòng 7 - 18 (Phòng thi 30 câu liên hoàn); Chế độ 1: Vòng 1 - 6 (5 Mini-games liên hoàn)
+    // Nếu có danh sách câu hỏi hợp lệ (từ GitHub hoặc Local Assets hoặc Test Mode)
+    if (qList.length > 0) {
+      AppState.examMode = 2;
+      AppState.timerSeconds = rawData.timerSeconds || 1500;
+      AppState.currentQuestionIndex = 0;
+      AppState.userAnswers30 = {};
+      mode2CompletionModalShown = false;
+
+      // Lấy đủ 30 câu (hoặc tối đa số câu trong danh sách)
+      let selectedPool = qList;
+      if (selectedPool.length > 30) {
+        const seedVal = AppState.currentSeed || 1;
+        const startIndex = ((seedVal - 1) * 30) % Math.max(1, selectedPool.length - 30);
+        selectedPool = selectedPool.slice(startIndex, startIndex + 30);
+        if (selectedPool.length < 30) {
+          selectedPool = qList.slice(0, 30);
+        }
+      }
+
+      AppState.exam30Questions = shuffleQuestionOptions(selectedPool, AppState.currentSeed + 701);
+      AppState.timerInterval = setInterval(() => {
+        AppState.timerSeconds--;
+        updateTimerDisplay();
+        if (AppState.timerSeconds <= 0) {
+          clearInterval(AppState.timerInterval);
+          showCustomAlert('Đã hết 25 phút làm bài! Hệ thống tự động nộp bài.');
+          finishExamMode2();
+        }
+      }, 1000);
+      SoundEngine.playGong();
+      renderExamMode2Question();
+      return;
+    }
+
+    // Fallback an toàn cuối cùng sang ExamGenerator
     if (roundNum >= 7) {
       AppState.examMode = 2;
-      AppState.timerSeconds = 1500; // 25 phút
+      AppState.timerSeconds = 1500;
       AppState.currentQuestionIndex = 0;
       AppState.userAnswers30 = {};
       mode2CompletionModalShown = false;
@@ -5841,9 +6028,8 @@
       SoundEngine.playGong();
       renderExamMode2Question();
     } else {
-      // Chế độ 1: Vòng 1 - 6 (5 Mini-games hoạt hình liên hoàn)
       AppState.examMode = 1;
-      AppState.timerSeconds = 1500; // 25 phút
+      AppState.timerSeconds = 1500;
       AppState.currentSubGameIndex = 0;
       AppState.subGameScores = [0, 0, 0, 0, 0];
       AppState.currentExamMode1 = ExamGenerator.generateMode1Exam(AppState.selectedGrade, roundNum, AppState.currentSeed);

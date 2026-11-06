@@ -28,11 +28,28 @@ fun loadEnvProperties(): Properties {
   return props
 }
 
+fun isValidAdMobAppId(id: String?): Boolean {
+  if (id.isNullOrBlank()) return false
+  return id.matches(Regex("""^ca-app-pub-\d+~\d+$"""))
+}
+
+fun isValidAdMobUnitId(id: String?): Boolean {
+  if (id.isNullOrBlank()) return false
+  return id.matches(Regex("""^ca-app-pub-\d+/\d+$"""))
+}
+
 val envProps = loadEnvProperties()
-val admobAppId = envProps.getProperty("ADMOB_APP_ID") ?: "ca-app-pub-3940256099942544~3347511713"
-val bannerId = envProps.getProperty("BANNER_ID") ?: "ca-app-pub-3940256099942544/6300978111"
-val interstitialId = envProps.getProperty("INTERSTITIAL_ID") ?: "ca-app-pub-3940256099942544/1033173712"
-val rewardedId = envProps.getProperty("REWARDED_ID") ?: "ca-app-pub-3940256099942544/5224354917"
+val rawAdmobAppId = envProps.getProperty("ADMOB_APP_ID")
+val admobAppId = if (isValidAdMobAppId(rawAdmobAppId)) rawAdmobAppId!! else "ca-app-pub-3940256099942544~3347511713"
+
+val rawBannerId = envProps.getProperty("BANNER_ID")
+val bannerId = if (isValidAdMobUnitId(rawBannerId)) rawBannerId!! else "ca-app-pub-3940256099942544/6300978111"
+
+val rawInterstitialId = envProps.getProperty("INTERSTITIAL_ID")
+val interstitialId = if (isValidAdMobUnitId(rawInterstitialId)) rawInterstitialId!! else "ca-app-pub-3940256099942544/1033173712"
+
+val rawRewardedId = envProps.getProperty("REWARDED_ID")
+val rewardedId = if (isValidAdMobUnitId(rawRewardedId)) rawRewardedId!! else "ca-app-pub-3940256099942544/5224354917"
 
 android {
   namespace = "com.vttd.sieutrangnhi"
