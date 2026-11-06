@@ -5750,58 +5750,286 @@
     return `grade ${safeGrade}_round ${round}.json`;
   }
 
-  // Chuẩn hóa câu hỏi từ JSON bên ngoài (TN, DT, NOI, SX, ...) để hiển thị mượt mà trên giao diện 30 câu
+  // Nhận diện loại câu hỏi theo mã ID và định dạng dữ liệu
+  function categorizeExamQuestion(q) {
+    if (!q) return 'tn';
+    const qid = String(q.questionId || q.id || '').toLowerCase();
+    const type = String(q.type || '').toUpperCase();
+
+    if (qid.includes('noi') || type === 'NOI' || type === 'MATCH' || type === 'MATCH_MINI' || (q.columnA && q.columnB)) {
+      return 'noi';
+    }
+    if (qid.includes('chon') || type === 'CHON' || type === 'CLASSIFY' || type === 'CLASSIFY_MINI' || (q.words && (q.groups || q.baskets))) {
+      return 'chon';
+    }
+    if (qid.includes('dt') || type === 'DT' || type === 'FILL' || q.blankAnswer !== undefined || (typeof q.question === 'string' && q.question.includes('[...]'))) {
+      return 'dt';
+    }
+    if (qid.includes('sx') || type === 'SX' || type === 'ORDERING' || type === 'SAP_XEP' || type === 'SAP_XEP_CAU' || (q.elements && Array.isArray(q.elements))) {
+      return 'sx';
+    }
+    return 'tn';
+  }
+
+  // Chuẩn hóa câu hỏi từ JSON bên ngoài (NOI, CHON, DT, SX, TN) để hiển thị mượt mà trên giao diện 30 câu
   function normalizeExamQuestion(q, idx) {
     if (!q) return null;
-    const type = q.type || 'MCQ';
+    const cat = categorizeExamQuestion(q);
+
+    // 1. DẠNG NỐI 2 VẾ TƯƠNG ỨNG (noi) - 2 câu
+    if (cat === 'noi') {
+      let pairs = [];
+      if (Array.isArray(q.pairs)) {
+        pairs = q.pairs.map(p => ({ a: String(p.a || p[0] || ''), b: String(p.b || p[1] || '') }));
+      } else if (q.columnA && q.columnB) {
+        const keysA = Object.keys(q.columnA);
+        pairs = keysA.map(kA => {
+          const textA = String(q.columnA[kA]);
+          const ansKeyB = (q.answer && q.answer[kA] !== undefined) ? q.answer[kA] : kA;
+          const textB = String(q.columnB[ansKeyB] || '');
+          return { a: textA, b: textB };
+        }).filter(p => p.a && p.b);
+      }
+      return {
+        id: q.questionId || q.id || `noi_${idx + 1}`,
+        type: 'MATCH_MINI',
+        category: 'noi',
+        subGameTitle: 'Bài 1: Bé tinh mắt',
+        title: 'Nối 2 vế tương ứng',
+        question: q.question || 'Chọn 1 ô ở Cột Bên Trái rồi nối với 1 ô tương ứng ở Cột Bên Phải (Nối đủ các cặp = +10 ⭐).',
+        pairs: pairs,
+        answer: q.answer || '',
+        explain: q.explanation || q.explain || 'Kiến thức từ ngữ và ca dao tục ngữ chuẩn GDPT.'
+      };
+    }
+
+    // 2. DẠNG CHỌN TỪ VÀO CÁC GIỎ TƯƠNG ỨNG (chon) - 2 câu
+    if (cat === 'chon') {
+      let groups = [];
+      if (q.groups && typeof q.groups === 'object' && !Array.isArray(q.groups)) {
+        const gKeys = Object.keys(q.groups);
+        groups = gKeys.map(k => ({
+          name: String(q.groups[k]),
+          words: (q.answer && Array.isArray(q.answer[k])) ? q.answer[k].map(String) : []
+        }));
+      } else if (Array.isArray(q.groups)) {
+        groups = q.groups;
+      } else if (Array.isArray(q.baskets)) {
+        groups = q.baskets.map(b => ({ name: b.name, words: b.words || [] }));
+      }
+
+      let words = [];
+      if (Array.isArray(q.words)) {
+        words = q.words.map(String);
+      } else {
+        groups.forEach(g => { (g.words || []).forEach(w => words.push(w)); });
+      }
+
+      return {
+        id: q.questionId || q.id || `chon_${idx + 1}`,
+        type: 'CLASSIFY_MINI',
+        category: 'chon',
+        subGameTitle: 'Bài 2: Bé thông minh',
+        title: 'Chọn từ vào các giỏ tương ứng',
+        question: q.question || 'Bấm chọn từ bên dưới rồi bấm giỏ để xếp:',
+        groups: groups,
+        words: words,
+        answer: q.answer || '',
+        explain: q.explanation || q.explain || 'Phân loại từ vựng chuẩn xác theo từ loại và chủ đề.'
+      };
+    }
+
+    // 3. DẠNG ĐIỀN TỪ VÀ PHỤ ÂM, NGUYÊN ÂM THIẾU (dt) - 6 câu
+    if (cat === 'dt') {
+      return {
+        id: q.questionId || q.id || `dt_${idx + 1}`,
+        type: 'FILL',
+        category: 'dt',
+        subGameTitle: 'Bài 3: Bé học vui',
+        title: 'Điền từ còn thiếu',
+        question: q.question || 'Điền từ còn thiếu vào chỗ trống:',
+        answer: String(q.blankAnswer || q.answer || '').trim(),
+        explain: q.explanation || q.explain || 'Chính tả và quy tắc ngữ âm Tiếng Việt chuẩn.'
+      };
+    }
+
+    // 4. DẠNG SẮP XẾP THEO ĐÚNG THỨ TỰ (sx) - 5 câu
+    if (cat === 'sx') {
+      const rawElements = q.elements || (q.words || (q.answer ? String(q.answer).split(' ') : []));
+      const elements = Array.isArray(rawElements) ? rawElements.map(String) : [];
+      return {
+        id: q.questionId || q.id || `sx_${idx + 1}`,
+        type: 'ORDERING',
+        category: 'sx',
+        subGameTitle: 'Bài 5: Bé nhanh tay',
+        title: 'Sắp xếp theo đúng thứ tự',
+        question: q.question || 'Hãy sắp xếp các từ/cụm từ sau để tạo thành câu hoàn chỉnh và có nghĩa:',
+        elements: elements,
+        words: elements,
+        answer: String(q.answer || elements.join(' ')).trim(),
+        explain: q.explanation || q.explain || 'Cấu trúc câu hoàn chỉnh và chuẩn ngữ pháp Tiếng Việt.'
+      };
+    }
+
+    // 5. DẠNG TRẮC NGHIỆM CHỌN ĐÁP ÁN ĐÚNG (tn) - 15 câu
     let options = [];
     let correctIndex = 0;
-    let answerText = q.answer || '';
+    let answerText = String(q.answer || '').trim();
 
     if (q.options && typeof q.options === 'object' && !Array.isArray(q.options)) {
       const keys = ['A', 'B', 'C', 'D'].filter(k => q.options[k] !== undefined);
       options = keys.map(k => String(q.options[k]));
-      const ansKey = String(q.answer || 'A').trim().toUpperCase();
+      const ansKey = answerText.toUpperCase();
       const mappedIdx = keys.indexOf(ansKey);
       correctIndex = mappedIdx !== -1 ? mappedIdx : 0;
     } else if (Array.isArray(q.options)) {
       options = q.options.map(o => String(o));
       if (typeof q.correctIndex === 'number') {
         correctIndex = q.correctIndex;
-      } else if (q.answer) {
-        const found = options.indexOf(String(q.answer));
+      } else if (answerText) {
+        const found = options.indexOf(answerText);
         correctIndex = found !== -1 ? found : 0;
       }
-    } else if (type === 'SX' && Array.isArray(q.elements)) {
-      options = [q.answer || q.elements.join(' ')];
-      correctIndex = 0;
-    }
-
-    let qText = q.question || q.title || `Câu hỏi ${idx + 1}`;
-    let finalType = 'MCQ';
-
-    if (type === 'DT' && (options.length < 2 || !options.includes(answerText))) {
-      finalType = 'FILL';
-    } else if (type === 'NOI' && q.columnA && q.columnB) {
-      finalType = 'MATCH_MINI';
-    } else if (options.length >= 2) {
-      finalType = 'MCQ';
     } else {
-      finalType = 'MCQ';
-      if (options.length === 0) options = [answerText || 'Đáp án đúng'];
+      options = [answerText || 'Đáp án đúng', 'Đáp án 2', 'Đáp án 3', 'Đáp án 4'];
     }
 
     return {
-      id: q.questionId || q.id || `q_${idx + 1}`,
-      type: finalType,
-      title: q.title || (type === 'TN' ? 'Trắc nghiệm kiến thức' : (type === 'DT' ? 'Điền từ còn thiếu' : (type === 'NOI' ? 'Nối cột tương ứng' : 'Kiến thức Tiếng Việt'))),
-      question: qText,
+      id: q.questionId || q.id || `tn_${idx + 1}`,
+      type: 'MCQ',
+      category: 'tn',
+      subGameTitle: 'Bài 3: Bé học vui',
+      title: 'Trắc nghiệm',
+      question: q.question || 'Hãy chọn đáp án đúng:',
       options: options,
       correctIndex: correctIndex,
-      answer: answerText,
-      explain: q.explanation || q.explain || 'Kiến thức chuẩn GDPT Tiếng Việt Tiểu học.',
-      pairs: q.pairs || (q.columnA && q.columnB ? Object.keys(q.columnA).map(k => ({ a: q.columnA[k], b: q.columnB[q.answer ? q.answer[k] : k] || '' })) : [])
+      answer: options[correctIndex] || answerText,
+      explain: q.explanation || q.explain || 'Kiến thức chuẩn GDPT Tiếng Việt Tiểu học.'
     };
+  }
+
+  // Lấy câu hỏi dự phòng từ ngân hàng local assets của các vòng khác cùng lớp
+  function getBackupQuestionsFromOtherRounds(grade, category) {
+    const backupList = [];
+    if (!window.AndroidBridge || typeof window.AndroidBridge.getLocalAssetQuestionsJson !== 'function') {
+      return backupList;
+    }
+    for (let r = 1; r <= 4; r++) {
+      try {
+        const text = window.AndroidBridge.getLocalAssetQuestionsJson(grade, (r - 1) * 4 + 1) || '';
+        if (text && text.trim().length > 0) {
+          const parsed = JSON.parse(text);
+          const list = Array.isArray(parsed) ? parsed : (parsed.questions || []);
+          list.forEach(q => {
+            if (categorizeExamQuestion(q) === category) {
+              backupList.push(q);
+            }
+          });
+        }
+      } catch (e) {}
+    }
+    return backupList;
+  }
+
+  // ========================================================
+  // HÀM PHÂN BỔ ĐỀ THI ĐÚNG CHUẨN 5 DẠNG BÀI (30 CÂU):
+  // 1. Nối 2 vế tương ứng: 2 câu (noi)
+  // 2. Chọn từ vào các giỏ: 2 câu (chon)
+  // 3. Điền từ còn thiếu: 6 câu (dt)
+  // 4. Sắp xếp đúng thứ tự: 5 câu (sx)
+  // 5. Trắc nghiệm: 15 câu (tn)
+  // ========================================================
+  function assemble30QuestionsExam(rawList, grade, chang, seed = 1) {
+    const pools = {
+      noi: [],
+      chon: [],
+      dt: [],
+      sx: [],
+      tn: []
+    };
+
+    (rawList || []).forEach(q => {
+      if (!q) return;
+      const cat = categorizeExamQuestion(q);
+      pools[cat].push(q);
+    });
+
+    const quota = { noi: 2, chon: 2, dt: 6, sx: 5, tn: 15 };
+
+    // Bù câu hỏi nếu nhóm nào trong file thiếu
+    Object.keys(quota).forEach(cat => {
+      if (pools[cat].length < quota[cat]) {
+        const fromAssets = getBackupQuestionsFromOtherRounds(grade, cat);
+        fromAssets.forEach(q => {
+          if (!pools[cat].some(existing => (existing.questionId && existing.questionId === q.questionId))) {
+            pools[cat].push(q);
+          }
+        });
+      }
+      // Nếu vẫn thiếu -> Lấy từ ExamGenerator
+      if (pools[cat].length < quota[cat]) {
+        try {
+          const genExam = ExamGenerator.generateMode1Exam(grade, chang, seed);
+          if (cat === 'noi' && genExam.subGames && genExam.subGames[0]) {
+            pools.noi.push({
+              questionId: `gen_noi_${grade}_${chang}_1`,
+              type: 'NOI',
+              pairs: genExam.subGames[0].data ? genExam.subGames[0].data.pairs : []
+            });
+            pools.noi.push({
+              questionId: `gen_noi_${grade}_${chang}_2`,
+              type: 'NOI',
+              pairs: genExam.subGames[0].data ? genExam.subGames[0].data.pairs : []
+            });
+          } else if (cat === 'chon' && genExam.subGames && genExam.subGames[1]) {
+            pools.chon.push({
+              questionId: `gen_chon_${grade}_${chang}_1`,
+              type: 'CHON',
+              baskets: genExam.subGames[1].data ? genExam.subGames[1].data.baskets : []
+            });
+            pools.chon.push({
+              questionId: `gen_chon_${grade}_${chang}_2`,
+              type: 'CHON',
+              baskets: genExam.subGames[1].data ? genExam.subGames[1].data.baskets : []
+            });
+          } else if (cat === 'dt' && genExam.subGames && genExam.subGames[2]) {
+            (genExam.subGames[2].data || []).filter(q => q.type === 'DT').forEach(q => pools.dt.push(q));
+          } else if (cat === 'sx' && genExam.subGames && genExam.subGames[4]) {
+            (genExam.subGames[4].data || []).forEach(q => pools.sx.push(q));
+          } else if (cat === 'tn' && genExam.subGames && genExam.subGames[2]) {
+            (genExam.subGames[2].data || []).filter(q => q.type !== 'DT').forEach(q => pools.tn.push(q));
+          }
+        } catch (e) {}
+      }
+    });
+
+    // Bốc mẫu câu hỏi có hạt giống ổn định cho từng nhóm
+    function pickSample(list, count, salt) {
+      if (!list || list.length === 0) return [];
+      const shuffled = seededShuffle([...list], seed * 37 + salt);
+      const picked = [];
+      for (let i = 0; i < count; i++) {
+        picked.push(shuffled[i % shuffled.length]);
+      }
+      return picked;
+    }
+
+    const pickedNoi = pickSample(pools.noi, 2, 11);
+    const pickedChon = pickSample(pools.chon, 2, 23);
+    const pickedDt = pickSample(pools.dt, 6, 37);
+    const pickedSx = pickSample(pools.sx, 5, 41);
+    const pickedTn = pickSample(pools.tn, 15, 53);
+
+    // Ghép 30 câu theo chuẩn cấu trúc: 2 Nối + 2 Chọn Giỏ + 6 Điền Từ + 5 Sắp Xếp + 15 Trắc Nghiệm
+    const combined = [
+      ...pickedNoi,
+      ...pickedChon,
+      ...pickedDt,
+      ...pickedSx,
+      ...pickedTn
+    ];
+
+    return combined.map((q, idx) => normalizeExamQuestion(q, idx)).filter(Boolean);
   }
 
   // ========================================================
@@ -5834,8 +6062,6 @@
           if (window.AndroidBridge && typeof window.AndroidBridge.fetchGithubQuestions === 'function') {
             window.AndroidBridge.fetchGithubQuestions(grade, chang);
           }
-        } else {
-          console.warn(`[GitHub] HTTP lỗi ${resp.status} khi fetch từ ${githubUrl}`);
         }
       }
 
@@ -5843,9 +6069,9 @@
         const parsed = JSON.parse(githubText);
         let rawList = Array.isArray(parsed) ? parsed : (parsed.questions && Array.isArray(parsed.questions) ? parsed.questions : []);
         if (rawList.length > 0) {
-          const normalized = rawList.map((q, i) => normalizeExamQuestion(q, i)).filter(Boolean);
-          console.log(`[GitHub] ✅ [Ưu tiên 1 THÀNH CÔNG] Đã tải và nạp ${normalized.length} câu hỏi trực tiếp từ GitHub!`);
-          return { source: 'GitHub', questions: normalized, rawData: parsed };
+          const assembled = assemble30QuestionsExam(rawList, grade, chang, seed);
+          console.log(`[GitHub] ✅ [Ưu tiên 1 THÀNH CÔNG] Đã phân bổ đúng 30 câu (${assembled.length}) từ GitHub!`);
+          return { source: 'GitHub', questions: assembled, rawData: parsed };
         }
       }
     } catch (err) {
@@ -5872,9 +6098,9 @@
         const parsedLocal = JSON.parse(localText);
         let rawList = Array.isArray(parsedLocal) ? parsedLocal : (parsedLocal.questions && Array.isArray(parsedLocal.questions) ? parsedLocal.questions : []);
         if (rawList.length > 0) {
-          const normalized = rawList.map((q, i) => normalizeExamQuestion(q, i)).filter(Boolean);
-          console.log(`[Local Assets] ✅ [Ưu tiên 2 THÀNH CÔNG] Đã nạp ${normalized.length} câu hỏi dự phòng từ Local Assets!`);
-          return { source: 'Local Assets', questions: normalized, rawData: parsedLocal };
+          const assembled = assemble30QuestionsExam(rawList, grade, chang, seed);
+          console.log(`[Local Assets] ✅ [Ưu tiên 2 THÀNH CÔNG] Đã phân bổ đúng 30 câu (${assembled.length}) từ Local Assets!`);
+          return { source: 'Local Assets', questions: assembled, rawData: parsedLocal };
         }
       }
     } catch (err) {
@@ -5887,9 +6113,12 @@
       ? ExamGenerator.generateMode2Exam(grade, chang, seed)
       : ExamGenerator.generateMode1Exam(grade, chang, seed);
 
+    const fallbackList = testExam.questions || [];
+    const assembled = assemble30QuestionsExam(fallbackList, grade, chang, seed);
+
     return {
       source: 'Test Mode index.html',
-      questions: testExam.questions || [],
+      questions: assembled.length >= 30 ? assembled : fallbackList,
       rawData: testExam
     };
   }
@@ -5938,7 +6167,7 @@
         <div class="flex flex-col items-center justify-center min-h-[60vh] text-center p-6">
           <div class="w-12 h-12 border-4 border-amber-500 border-t-transparent rounded-full animate-spin mb-4"></div>
           <div class="font-black text-amber-950 text-base">Đang tải đề thi Lớp ${AppState.selectedGrade} - Chặng ${roundNum}...</div>
-          <div class="text-xs text-slate-500 mt-2">Hệ thống đang kiểm tra ngân hàng đề thi</div>
+          <div class="text-xs text-slate-500 mt-2">Hệ thống đang chuẩn bị 30 câu hỏi theo đúng chuẩn Trạng Nguyên</div>
         </div>
       `;
     }
@@ -5950,47 +6179,15 @@
     const qList = examResult.questions || [];
     const rawData = examResult.rawData || {};
 
-    // Nếu là Chặng 1..6 và có dữ liệu subGames riêng biệt
-    if (roundNum <= 6 && rawData.subGames && Array.isArray(rawData.subGames)) {
-      AppState.examMode = 1;
-      AppState.timerSeconds = rawData.timerSeconds || 1500;
-      AppState.currentSubGameIndex = 0;
-      AppState.subGameScores = [0, 0, 0, 0, 0];
-      AppState.currentExamMode1 = rawData;
-      AppState.timerInterval = setInterval(() => {
-        AppState.timerSeconds--;
-        updateTimerDisplay();
-        if (AppState.timerSeconds <= 0) {
-          clearInterval(AppState.timerInterval);
-          showCustomAlert('Đã hết giờ làm bài! Hệ thống tự động nộp bài.');
-          finishRoundExam();
-        }
-      }, 1000);
-      SoundEngine.playGong();
-      renderCurrentSubGameMode1();
-      return;
-    }
-
-    // Nếu có danh sách câu hỏi hợp lệ (từ GitHub hoặc Local Assets hoặc Test Mode)
+    // Khởi tạo phòng thi 30 câu hỏi liên hoàn
     if (qList.length > 0) {
       AppState.examMode = 2;
       AppState.timerSeconds = rawData.timerSeconds || 1500;
       AppState.currentQuestionIndex = 0;
       AppState.userAnswers30 = {};
       mode2CompletionModalShown = false;
+      AppState.exam30Questions = qList;
 
-      // Lấy đủ 30 câu (hoặc tối đa số câu trong danh sách)
-      let selectedPool = qList;
-      if (selectedPool.length > 30) {
-        const seedVal = AppState.currentSeed || 1;
-        const startIndex = ((seedVal - 1) * 30) % Math.max(1, selectedPool.length - 30);
-        selectedPool = selectedPool.slice(startIndex, startIndex + 30);
-        if (selectedPool.length < 30) {
-          selectedPool = qList.slice(0, 30);
-        }
-      }
-
-      AppState.exam30Questions = shuffleQuestionOptions(selectedPool, AppState.currentSeed + 701);
       AppState.timerInterval = setInterval(() => {
         AppState.timerSeconds--;
         updateTimerDisplay();
@@ -7169,7 +7366,7 @@
         questionBodyHtml = `
           <div class="mb-4">
             <span class="text-xs font-bold bg-amber-100 text-amber-900 px-3 py-1 rounded-full border border-amber-300">
-              Câu ${curIdx + 1}: ${formatQuestionTitle(curQ.title) || 'Trắc nghiệm kiến thức'} (10 điểm)
+              Câu ${curIdx + 1} / 30 • Trắc nghiệm (+10 ⭐)
             </span>
           </div>
           <h3 class="text-base sm:text-lg font-black text-slate-800 mb-4 leading-snug">${curQ.question}</h3>
@@ -7190,7 +7387,7 @@
         questionBodyHtml = `
           <div class="mb-4">
             <span class="text-xs font-bold bg-amber-100 text-amber-900 px-3 py-1 rounded-full border border-amber-300">
-              Câu ${curIdx + 1}: ${formatQuestionTitle(curQ.title) || 'Điền từ / Đố chữ'} (10 điểm)
+              Câu ${curIdx + 1} / 30 • Điền từ còn thiếu (+10 ⭐)
             </span>
           </div>
           <div class="p-4 bg-amber-50 rounded-2xl border-2 border-amber-200 mb-4 text-center">
@@ -7199,7 +7396,7 @@
             </p>
           </div>
           <div class="max-w-md mx-auto">
-            <input type="text" id="fill-input-30" value="${savedAns || ''}" oninput="saveFillAnswer30()" onkeyup="saveFillAnswer30()" onchange="saveFillAnswer30()" onkeydown="if(event.key==='Enter'){event.preventDefault(); saveFillAnswer30(); nextQuestion30();}" placeholder="Nhập từ hoặc chữ cái còn thiếu..." class="w-full px-4 py-3 rounded-2xl border-2 border-amber-400 text-center font-bold text-base sm:text-lg focus:outline-none focus:border-red-600 focus:ring-4 focus:ring-amber-200 shadow-sm transition-all" autofocus autocomplete="off">
+            <input type="text" id="fill-input-30" value="${savedAns || ''}" oninput="saveFillAnswer30()" onkeyup="saveFillAnswer30()" onchange="saveFillAnswer30()" onkeydown="if(event.key==='Enter'){event.preventDefault(); saveFillAnswer30(); nextQuestion30();}" placeholder="Nhập từ còn thiếu..." class="w-full px-4 py-3 rounded-2xl border-2 border-amber-400 text-center font-bold text-base sm:text-lg focus:outline-none focus:border-red-600 focus:ring-4 focus:ring-amber-200 shadow-sm transition-all" autofocus autocomplete="off">
           </div>
         `;
         break;
@@ -7214,13 +7411,16 @@
         questionBodyHtml = `
           <div class="mb-3">
             <span class="text-xs font-bold bg-amber-100 text-amber-900 px-3 py-1 rounded-full border border-amber-300">
-              Câu ${curIdx + 1}: ${formatQuestionTitle(curQ.title) || 'Nối cặp tương ứng'} (10 điểm)
+              Câu ${curIdx + 1} / 30 • Nối 2 vế tương ứng (+10 ⭐)
             </span>
-            <p class="text-xs text-slate-600 mt-1">Bấm 1 lần để chọn, bấm lại lần nữa vào mục đã chọn/nối để hủy chọn:</p>
+            <p class="text-xs text-slate-600 mt-1">Chọn 1 ô ở Cột Bên Trái rồi nối với 1 ô tương ứng ở Cột Bên Phải (Bấm lại để hủy nối):</p>
           </div>
           <div class="grid grid-cols-2 gap-3 sm:gap-4 my-4" id="mini-match-area">
             <div class="flex flex-col gap-2">
-              <div class="text-xs font-bold text-red-900 uppercase">Cột A:</div>
+              <div class="text-center font-black text-xs sm:text-sm text-red-900 bg-red-100/90 py-1.5 px-2 rounded-xl border border-red-300 shadow-sm flex items-center justify-center gap-1.5">
+                <span>🐾</span>
+                <span>CỘT BÊN TRÁI</span>
+              </div>
               ${miniPairs.map((p, i) => {
                 const isSelected = (selectedColA === i);
                 const pairedB = savedAns[i];
@@ -7244,7 +7444,10 @@
               }).join('')}
             </div>
             <div class="flex flex-col gap-2">
-              <div class="text-xs font-bold text-red-900 uppercase">Cột B:</div>
+              <div class="text-center font-black text-xs sm:text-sm text-amber-950 bg-amber-200/90 py-1.5 px-2 rounded-xl border border-amber-300 shadow-sm flex items-center justify-center gap-1.5">
+                <span>🐱</span>
+                <span>CỘT BÊN PHẢI</span>
+              </div>
               ${miniPairs.map((p, j) => {
                 const pairedAKey = Object.keys(savedAns).find(k => savedAns[k] === j);
                 const isPaired = (pairedAKey !== undefined);
@@ -7284,7 +7487,7 @@
         questionBodyHtml = `
           <div class="mb-3">
             <span class="text-xs font-bold bg-amber-100 text-amber-900 px-3 py-1 rounded-full border border-amber-300">
-              Câu ${curIdx + 1}: ${formatQuestionTitle(curQ.title) || 'Phân loại từ ngữ'} (10 điểm)
+              Câu ${curIdx + 1} / 30 • Chọn từ vào các giỏ tương ứng (+10 ⭐)
             </span>
             <p class="text-xs text-slate-600 mt-1">Bấm chọn từ bên dưới rồi bấm giỏ để xếp. Bấm vào từ trong giỏ để quay về vị trí ban đầu:</p>
           </div>
@@ -7341,11 +7544,75 @@
         `;
         break;
       }
+      case 'ORDERING': {
+        const elements = curQ.elements || curQ.words || [];
+        const targetSentence = (curQ.answer || '').trim();
+        if (!curQ._wordPool) {
+          const rawWords = elements.length > 0 ? [...elements] : targetSentence.split(' ');
+          curQ._wordPool = seededShuffle([...rawWords], AppState.currentSeed + curIdx * 19 + 71).map((w, wIdx) => ({
+            id: `ord_${curIdx}_${wIdx}`,
+            text: w
+          }));
+        }
+
+        let constructedIds = AppState.userAnswers30[curIdx];
+        if (!Array.isArray(constructedIds)) {
+          constructedIds = [];
+        }
+
+        const constructedWords = constructedIds.map(id => curQ._wordPool.find(w => w.id === id)).filter(Boolean);
+        const remainingWords = curQ._wordPool.filter(w => !constructedIds.includes(w.id));
+
+        questionBodyHtml = `
+          <div class="mb-3">
+            <span class="text-xs font-bold bg-amber-100 text-amber-900 px-3 py-1 rounded-full border border-amber-300">
+              Câu ${curIdx + 1} / 30 • Sắp xếp theo đúng thứ tự (+10 ⭐)
+            </span>
+            <p class="text-xs text-slate-600 mt-1.5 font-medium">Bấm chọn các thẻ từ phía dưới để ghép thành câu hoàn chỉnh và có nghĩa:</p>
+          </div>
+
+          <!-- KHUNG CHỨA CÂU GHÉP -->
+          <div class="p-4 bg-amber-50 rounded-2xl border-2 border-amber-300 mb-4">
+            <div class="min-h-[64px] p-3 bg-white rounded-xl border-2 border-dashed border-amber-400 flex flex-wrap gap-2 items-center justify-center shadow-inner">
+              ${constructedWords.length === 0 ? `
+                <span class="text-xs text-slate-400 font-semibold italic">Bấm chọn các từ phía dưới để xếp câu tại đây...</span>
+              ` : constructedWords.map(w => `
+                <button onclick="removeOrderingWord('${w.id}')" class="btn-3d bg-emerald-500 hover:bg-red-500 text-white font-bold text-xs sm:text-sm px-3 py-1.5 rounded-xl transition-all flex items-center gap-1 shadow-sm active:scale-95" title="Bấm để bỏ từ này ra">
+                  <span>${w.text}</span>
+                  <span class="text-[10px] text-emerald-100 font-black">✕</span>
+                </button>
+              `).join('')}
+            </div>
+
+            ${constructedWords.length > 0 ? `
+              <div class="mt-2 text-right">
+                <button onclick="resetOrderingCurrentQ()" class="text-xs font-bold text-red-600 hover:text-red-800 underline inline-flex items-center gap-1">
+                  <span>🔄</span>
+                  <span>Làm lại (Xếp lại từ đầu)</span>
+                </button>
+              </div>
+            ` : ''}
+          </div>
+
+          <!-- KHUNG THẺ TỪ CẦN CHỌN -->
+          <div class="p-3 bg-amber-100/70 rounded-2xl border border-amber-300 mb-2">
+            <div class="text-xs font-bold text-amber-950 mb-2">Thẻ từ (${remainingWords.length} từ còn lại):</div>
+            <div class="flex flex-wrap gap-2 justify-center">
+              ${remainingWords.map(w => `
+                <button onclick="pickOrderingChip('${w.id}')" class="btn-3d bg-white hover:bg-amber-100 text-slate-800 border border-amber-300 font-bold text-xs sm:text-sm px-3.5 py-2 rounded-xl transition-all shadow-sm active:scale-95">
+                  ${w.text}
+                </button>
+              `).join('')}
+            </div>
+          </div>
+        `;
+        break;
+      }
       case 'READING': {
         questionBodyHtml = `
           <div class="mb-3">
             <span class="text-xs font-bold bg-amber-100 text-amber-900 px-3 py-1 rounded-full border border-amber-300">
-              Câu ${curIdx + 1}: ${formatQuestionTitle(curQ.title) || 'Đọc hiểu văn bản'} (10 điểm)
+              Câu ${curIdx + 1} / 30 • Đọc hiểu văn bản (+10 ⭐)
             </span>
           </div>
           <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -7374,7 +7641,7 @@
         questionBodyHtml = `
           <div class="mb-3">
             <span class="text-xs font-bold bg-amber-100 text-amber-900 px-3 py-1 rounded-full border border-amber-300">
-              Câu ${curIdx + 1}: ${formatQuestionTitle(curQ.title) || 'Nhìn hình chọn đáp án'} (10 điểm)
+              Câu ${curIdx + 1} / 30 • Nhìn hình chọn đáp án (+10 ⭐)
             </span>
           </div>
           <div class="p-4 bg-amber-50 rounded-2xl border-2 border-amber-300 mb-4 flex flex-col items-center justify-center">
@@ -7401,7 +7668,7 @@
         questionBodyHtml = `
           <div class="mb-4">
             <span class="text-xs font-bold bg-amber-100 text-amber-900 px-3 py-1 rounded-full border border-amber-300">
-              Câu ${curIdx + 1}: ${formatQuestionTitle(curQ.title) || 'Câu hỏi kiến thức'} (10 điểm)
+              Câu ${curIdx + 1} / 30 • Câu hỏi kiến thức (+10 ⭐)
             </span>
           </div>
           <h3 class="text-base sm:text-lg font-black text-slate-800 mb-4 leading-snug">${curQ.question || curQ.title || 'Hãy chọn đáp án đúng:'}</h3>
@@ -7420,15 +7687,21 @@
       }
     }
 
+    const subGameBadge = curQ.subGameTitle || (curQ.type === 'MATCH_MINI' ? 'Bài 1: Bé tinh mắt' : (curQ.type === 'CLASSIFY_MINI' ? 'Bài 2: Bé thông minh' : (curQ.type === 'ORDERING' ? 'Bài 5: Bé nhanh tay' : 'Bài 3: Bé học vui')));
+
     root.innerHTML = `
-      <!-- Thanh Tiêu Đề Phòng Thi Chặng 7 - 18 -->
+      <!-- Thanh Tiêu Đề Phòng Thi 30 Câu Liên Hoàn -->
       <div class="scroll-card p-2.5 sm:p-3.5 mb-3 bg-gradient-to-r from-red-800 via-amber-700 to-red-900 text-white shadow-lg border-2 border-amber-400 rounded-2xl flex flex-col gap-2">
-        <!-- DÒNG 1: BÊN TRÁI: ICON + LỚP + CHẶNG ... -->
+        <!-- DÒNG 1: BÊN TRÁI: ICON + LỚP + CHẶNG ... BÊN PHẢI: TÊN BÀI THI -->
         <div class="flex items-center justify-between gap-2 border-b border-amber-400/30 pb-2">
           <div class="flex items-center gap-1.5 shrink-0">
             <span class="text-base sm:text-lg">🏛️</span>
             <span class="text-sm sm:text-base font-black text-yellow-300">Lớp ${AppState.selectedGrade}</span>
             <span class="text-xs sm:text-sm font-bold text-yellow-200">Chặng ${AppState.currentRoundNum}</span>
+          </div>
+
+          <div class="text-xs sm:text-sm font-extrabold text-white bg-red-950/60 px-2.5 py-1 rounded-xl border border-yellow-400/30 truncate max-w-[160px] sm:max-w-[240px]">
+            ${subGameBadge}
           </div>
         </div>
 
@@ -7744,6 +8017,46 @@
     renderExamMode2Question();
   }
 
+  // Tương tác Sắp xếp câu (ORDERING)
+  function pickOrderingChip(chipId) {
+    SoundEngine.playDrum();
+    const curIdx = AppState.currentQuestionIndex;
+    let arr = AppState.userAnswers30[curIdx];
+    if (!Array.isArray(arr)) arr = [];
+    if (!arr.includes(chipId)) {
+      arr.push(chipId);
+    }
+    AppState.userAnswers30[curIdx] = arr;
+    renderExamMode2Question();
+
+    const curQ = AppState.exam30Questions[curIdx];
+    if (curQ && curQ._wordPool && arr.length >= curQ._wordPool.length) {
+      checkIfAll30QuestionsAnswered();
+    }
+  }
+
+  function removeOrderingWord(chipId) {
+    SoundEngine.playDrum();
+    const curIdx = AppState.currentQuestionIndex;
+    let arr = AppState.userAnswers30[curIdx];
+    if (Array.isArray(arr)) {
+      arr = arr.filter(id => id !== chipId);
+      if (arr.length === 0) {
+        delete AppState.userAnswers30[curIdx];
+      } else {
+        AppState.userAnswers30[curIdx] = arr;
+      }
+    }
+    renderExamMode2Question();
+  }
+
+  function resetOrderingCurrentQ() {
+    SoundEngine.playDrum();
+    const curIdx = AppState.currentQuestionIndex;
+    delete AppState.userAnswers30[curIdx];
+    renderExamMode2Question();
+  }
+
   // ========================================================
   // [KẾT THÚC & CHẤM ĐIỂM ĐỀ THI TỔNG HỢP 30 CÂU: CHẤM 1 LƯỢT SAU KHI THI HẾT 30 CÂU]
   // ========================================================
@@ -7765,6 +8078,18 @@
           const correctAns = (q.answer || q.blankAnswer || q.a || q.mask || '').toString().toLowerCase().trim();
           const userStr = (userAns || '').toString().toLowerCase().trim();
           isCorrect = (userStr.length > 0 && userStr === correctAns);
+        } else if (q.type === 'ORDERING') {
+          if (Array.isArray(userAns) && q._wordPool) {
+            const userWords = userAns.map(id => {
+              const item = q._wordPool.find(w => w.id === id);
+              return item ? item.text : '';
+            }).filter(Boolean);
+            const userSentence = userWords.join(' ').toLowerCase().trim().replace(/[.,!?;:]/g, '').replace(/\s+/g, ' ');
+            const correctSentence = (q.answer || '').toString().toLowerCase().trim().replace(/[.,!?;:]/g, '').replace(/\s+/g, ' ');
+            isCorrect = (userSentence.length > 0 && userSentence === correctSentence);
+          } else {
+            isCorrect = false;
+          }
         } else if (q.type === 'MATCH_MINI') {
           if (userAns && typeof userAns === 'object') {
             const pairs = q.pairs || [];
@@ -7803,9 +8128,16 @@
 
         if (isCorrect) correctCount++;
 
-        const userText = (userAns !== undefined && userAns !== null && userAns !== '')
-          ? (typeof userAns === 'object' ? 'Đã hoàn thành' : ((q.options && q.options[userAns] !== undefined) ? q.options[userAns] : String(userAns)))
-          : 'Chưa làm';
+        let userText = 'Chưa làm';
+        if (q.type === 'ORDERING' && Array.isArray(userAns) && q._wordPool) {
+          const userWords = userAns.map(id => {
+            const item = q._wordPool.find(w => w.id === id);
+            return item ? item.text : '';
+          }).filter(Boolean);
+          userText = userWords.join(' ') || 'Chưa làm';
+        } else if (userAns !== undefined && userAns !== null && userAns !== '') {
+          userText = (typeof userAns === 'object' ? 'Đã hoàn thành' : ((q.options && q.options[userAns] !== undefined) ? q.options[userAns] : String(userAns)));
+        }
         const correctText = (q.options && q.options[q.correctIndex] !== undefined)
           ? q.options[q.correctIndex]
           : (q.answer || q.blankAnswer || q.a || q.mask || 'Đáp án chuẩn');
