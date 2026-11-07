@@ -5408,6 +5408,10 @@
   // [CƠ CHẾ XÓA DỮ LIỆU ĐÁP ÁN BÀI THI KHI KẾT THÚC / THOÁT / ĐỔI ĐỀ]
   // ==========================================
   function clearExamSessionData() {
+    if (AppState.timerInterval) {
+      clearInterval(AppState.timerInterval);
+      AppState.timerInterval = null;
+    }
     AppState.game1MatchedPairs = [];
     AppState.game2Placements = {};
     AppState.game3Answers = {};
@@ -6336,7 +6340,10 @@
     const fw = document.getElementById('win-fireworks-canvas');
     if (fw && fw.parentNode) fw.parentNode.removeChild(fw);
 
-    if (AppState.timerInterval) clearInterval(AppState.timerInterval);
+    if (AppState.timerInterval) {
+      clearInterval(AppState.timerInterval);
+      AppState.timerInterval = null;
+    }
 
     const appHeader = document.getElementById('main-app-header');
     if (appHeader) appHeader.style.display = 'none';
@@ -6362,6 +6369,12 @@
     const qList = examResult.questions || [];
     const rawData = examResult.rawData || {};
 
+    // Đảm bảo không còn interval cũ trước khi tạo interval mới
+    if (AppState.timerInterval) {
+      clearInterval(AppState.timerInterval);
+      AppState.timerInterval = null;
+    }
+
     // Nếu là Chặng 1..6 và có dữ liệu subGames riêng biệt
     if (roundNum <= 6 && rawData.subGames && Array.isArray(rawData.subGames)) {
       AppState.examMode = 1;
@@ -6373,7 +6386,10 @@
         AppState.timerSeconds--;
         updateTimerDisplay();
         if (AppState.timerSeconds <= 0) {
-          clearInterval(AppState.timerInterval);
+          if (AppState.timerInterval) {
+            clearInterval(AppState.timerInterval);
+            AppState.timerInterval = null;
+          }
           showCustomAlert('Đã hết giờ làm bài! Hệ thống tự động nộp bài.');
           finishRoundExam();
         }
@@ -6408,7 +6424,10 @@
         AppState.timerSeconds--;
         updateTimerDisplay();
         if (AppState.timerSeconds <= 0) {
-          clearInterval(AppState.timerInterval);
+          if (AppState.timerInterval) {
+            clearInterval(AppState.timerInterval);
+            AppState.timerInterval = null;
+          }
           showCustomAlert('Đã hết 25 phút làm bài! Hệ thống tự động nộp bài.');
           finishExamMode2();
         }
@@ -6432,7 +6451,10 @@
         AppState.timerSeconds--;
         updateTimerDisplay();
         if (AppState.timerSeconds <= 0) {
-          clearInterval(AppState.timerInterval);
+          if (AppState.timerInterval) {
+            clearInterval(AppState.timerInterval);
+            AppState.timerInterval = null;
+          }
           showCustomAlert('Đã hết 25 phút làm bài! Hệ thống tự động nộp bài.');
           finishExamMode2();
         }
@@ -6451,7 +6473,10 @@
         AppState.timerSeconds--;
         updateTimerDisplay();
         if (AppState.timerSeconds <= 0) {
-          clearInterval(AppState.timerInterval);
+          if (AppState.timerInterval) {
+            clearInterval(AppState.timerInterval);
+            AppState.timerInterval = null;
+          }
           showCustomAlert('Đã hết 25 phút làm bài! Hệ thống tự động nộp bài.');
           finishRoundExam();
         }
@@ -6474,7 +6499,10 @@
     showCustomConfirm(
       'Bạn muốn thoát bài thi?',
       function() {
-        if (AppState.timerInterval) clearInterval(AppState.timerInterval);
+        if (AppState.timerInterval) {
+          clearInterval(AppState.timerInterval);
+          AppState.timerInterval = null;
+        }
         if (AppState.singlePlayTickets && AppState.singlePlayTickets[AppState.currentRoundNum]) {
           delete AppState.singlePlayTickets[AppState.currentRoundNum];
           savePersistedState();
@@ -8437,7 +8465,10 @@
   // ========================================================
   function finishExamMode2() {
     try {
-      if (AppState.timerInterval) clearInterval(AppState.timerInterval);
+      if (AppState.timerInterval) {
+        clearInterval(AppState.timerInterval);
+        AppState.timerInterval = null;
+      }
 
       let correctCount = 0;
       const history = [];
@@ -8628,7 +8659,10 @@
   // [TỔNG KẾT VÒNG THI & VINH DANH TRẠNG NGUYÊN]
   // ========================================================
   function finishRoundExam() {
-    if (AppState.timerInterval) clearInterval(AppState.timerInterval);
+    if (AppState.timerInterval) {
+      clearInterval(AppState.timerInterval);
+      AppState.timerInterval = null;
+    }
 
     // Hiện lại Header của ứng dụng khi đã hoàn thành bài thi
     const appHeader = document.getElementById('main-app-header');
