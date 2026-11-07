@@ -7,11 +7,14 @@ import java.util.Locale
 import java.util.Random
 
 /**
- * Data Model cho một câu hỏi thi chuẩn Trạng Nguyên Tiếng Việt
+ * Mô hình câu hỏi chuẩn Trạng Nguyên Tiếng Việt
  */
 data class QuestionModel(
   val id: String = "",
-  val type: String = "MCQ", // MCQ, DT, SAP_XEP, DO_VUI, NHIN_HINH
+  val type: String = "TN", // TN, DT, NOI, CHON, SX
+  val grade: String = "",
+  val level: String = "",
+  val round: Int = 0,
   val title: String = "",
   val question: String = "",
   val options: List<String> = emptyList(),
@@ -20,29 +23,45 @@ data class QuestionModel(
   val explain: String = "",
   val imageKey: String = "",
   val words: List<String> = emptyList(),
+  val elements: List<String> = emptyList(),
+  val rawJson: JSONObject? = null
 ) {
   fun toJson(): JSONObject {
-    return JSONObject().apply {
-      put("id", id)
-      put("type", type)
-      put("title", title)
-      put("question", question)
-      put("options", JSONArray(options))
-      put("correctIndex", correctIndex)
-      put("answer", answer)
-      put("explain", explain)
-      put("imageKey", imageKey)
-      put("words", JSONArray(words))
-    }
+    val obj = if (rawJson != null) JSONObject(rawJson.toString()) else JSONObject()
+    obj.put("id", id)
+    obj.put("type", type)
+    obj.put("title", title)
+    obj.put("question", question)
+    obj.put("options", JSONArray(options))
+    obj.put("correctIndex", correctIndex)
+    obj.put("answer", answer)
+    obj.put("explain", explain)
+    if (imageKey.isNotBlank()) obj.put("imageKey", imageKey)
+    if (words.isNotEmpty()) obj.put("words", JSONArray(words))
+    if (elements.isNotEmpty()) obj.put("elements", JSONArray(elements))
+    return obj
   }
 
   companion object {
     fun fromJson(json: JSONObject): QuestionModel {
+      val rawId = json.optString("questionId").ifBlank { json.optString("id") }
+      val rawType = json.optString("type", "TN")
+      val gradeStr = json.optString("grade", "")
+      val levelStr = json.optString("level", "")
+      val roundVal = json.optInt("round", 0)
+
       val optsList = mutableListOf<String>()
       val optsArray = json.optJSONArray("options")
       if (optsArray != null) {
         for (i in 0 until optsArray.length()) {
           optsList.add(optsArray.optString(i, ""))
+        }
+      } else {
+        val optsObj = json.optJSONObject("options")
+        if (optsObj != null) {
+          listOf("A", "B", "C", "D").forEach { k ->
+            if (optsObj.has(k)) optsList.add(optsObj.optString(k, ""))
+          }
         }
       }
 
@@ -54,27 +73,60 @@ data class QuestionModel(
         }
       }
 
+      val elemList = mutableListOf<String>()
+      val elemArray = json.optJSONArray("elements")
+      if (elemArray != null) {
+        for (i in 0 until elemArray.length()) {
+          elemList.add(elemArray.optString(i, ""))
+        }
+      }
+
+      val ans = json.optString("answer").ifBlank { json.optString("blankAnswer") }
+      var correctIdx = json.optInt("correctIndex", -1)
+      if (correctIdx == -1 && optsList.isNotEmpty()) {
+        val ansUpper = ans.trim().uppercase(Locale.ROOT)
+        correctIdx = when (ansUpper) {
+          "A" -> 0
+          "B" -> 1
+          "C" -> 2
+          "D" -> 3
+          else -> optsList.indexOf(ans).coerceAtLeast(0)
+        }
+      } else if (correctIdx < 0) {
+        correctIdx = 0
+      }
+
+      val exp = json.optString("explanation").ifBlank { json.optString("explain") }
+
       return QuestionModel(
-        id = json.optString("id", ""),
-        type = json.optString("type", "MCQ"),
-        title = json.optString("title", ""),
-        question = json.optString("question", ""),
+        id = rawId,
+        type = rawType,
+        grade = gradeStr,
+        level = levelStr,
+        round = roundVal,
+        title = json.optString("title"),
+        question = json.optString("question"),
         options = optsList,
-        correctIndex = json.optInt("correctIndex", 0),
-        answer = json.optString("answer", ""),
-        explain = json.optString("explain", ""),
-        imageKey = json.optString("imageKey", ""),
+        correctIndex = correctIdx,
+        answer = ans,
+        explain = exp,
+        imageKey = json.optString("imageKey"),
         words = wordsList,
+        elements = elemList,
+        rawJson = json
       )
     }
   }
 }
 
 /**
- * Trình sinh đề thi ngẫu nhiên động 1000 bộ đề cho Vòng 4 - 18
- * - Tự động gom và trộn toàn bộ câu hỏi từ 2 Nguồn (Local Storage + GitHub JSON)
- * - Tạo Mã ID Đề ("Chặng 4_999", "Chặng 7_123")
- * - Lọc trùng tuyệt đối bằng Kotlin Collections (.distinctBy)
+ * Trình sinh đề thi ngẫu nhiên động 30 câu chuẩn cơ cấu:
+ * - TN (Trắc nghiệm): 17 câu (~56.67%)
+ * - DT (Điền từ): 7 câu (~23.33%)
+ * - NOI (Nối): 2 câu (~6.67%)
+ * - CHON (Chọn): 2 câu (~6.67%)
+ * - SX (Sắp xếp): 2 câu (~6.67%)
+ * Thứ tự ưu tiên nguồn đề: GitHub JSON -> Local Assets -> index.html (testmode)
  */
 class DynamicExamGenerator(
   private val githubRepo: GitHubQuestionRepository,
@@ -83,6 +135,48 @@ class DynamicExamGenerator(
   companion object {
     private const val TAG = "DynamicExamGenerator"
     private val NORMALIZE_REGEX = Regex("[^a-z0-9àáảãạăắằẳẵặâấầnẩẫậnèéẻẽẹêếềểễệìíỉĩịòóỏõọôốồổỗộơớờởỡợùúủũụưứừửữựỳýỷỹỵđ]")
+
+    // Cơ cấu số lượng chuẩn cho bộ 30 câu hỏi
+    val TARGET_QUOTAS = mapOf(
+      "TN" to 17,
+      "DT" to 7,
+      "NOI" to 2,
+      "CHON" to 2,
+      "SX" to 2
+    )
+
+    /**
+     * Quy đổi số Chặng (1..18) sang Round (1..4):
+     * - Chặng 1..6: Round 1 (Cấp 1 - Vòng loại)
+     * - Chặng 7..10: Round 2 (Cấp 2 - Vòng trường)
+     * - Chặng 11..14: Round 3 (Cấp 3 - Vòng huyện/hương)
+     * - Chặng 15..18: Round 4 (Cấp 4 - Vòng tỉnh/quốc gia)
+     */
+    fun mapChangToRound(chang: Int): Int {
+      return when (chang) {
+        in 1..6 -> 1
+        in 7..10 -> 2
+        in 11..14 -> 3
+        in 15..18 -> 4
+        else -> if (chang in 1..4) chang else 1
+      }
+    }
+
+    /**
+     * Chuẩn hóa dạng câu hỏi về 5 loại chính: TN, DT, NOI, CHON, SX
+     */
+    fun standardizeType(typeStr: String?): String {
+      if (typeStr.isNullOrBlank()) return "TN"
+      val upper = typeStr.trim().uppercase(Locale.ROOT)
+      return when {
+        upper == "TN" || upper == "MCQ" || upper == "TRAC_NGHIEM" || upper == "DO_VUI" || upper == "NHIN_HINH" || upper == "READING" -> "TN"
+        upper == "DT" || upper == "FILL" || upper == "DIEN_TU" || upper == "DIEN_KHUYET" -> "DT"
+        upper == "NOI" || upper == "MATCH" || upper == "MATCH_MINI" || upper == "GHEP_DOI" -> "NOI"
+        upper == "CHON" || upper == "CLASSIFY" || upper == "CLASSIFY_MINI" || upper == "PHAN_LOAI" -> "CHON"
+        upper == "SX" || upper == "SAP_XEP" || upper == "SORT" || upper == "ORDER" -> "SX"
+        else -> "TN"
+      }
+    }
   }
 
   private fun normalizeQuestionKey(q: QuestionModel): String {
@@ -93,67 +187,179 @@ class DynamicExamGenerator(
       .trim()
   }
 
+  /**
+   * Kiểm tra lọc chuẩn xác khối lớp (grade) và vòng thi (round)
+   */
+  fun matchesGradeAndRound(q: QuestionModel, targetGrade: Int, targetRound: Int): Boolean {
+    // 1. Kiểm tra grade nếu câu hỏi có trường grade
+    if (q.grade.isNotBlank()) {
+      val gradeDigits = Regex("\\d+").find(q.grade)?.value?.toIntOrNull()
+      if (gradeDigits != null && gradeDigits != targetGrade) return false
+    }
+
+    // 2. Kiểm tra round nếu có
+    if (q.round > 0 && q.round != targetRound) return false
+
+    // 3. Kiểm tra level (Vòng thi)
+    if (q.level.isNotBlank()) {
+      val lvl = q.level.uppercase(Locale.ROOT)
+      val roundFromLevel = when {
+        lvl.contains("CAP_1") || lvl.contains("VONG_LOAI") || lvl.contains("ROUND_1") || lvl.contains("ROUND 1") -> 1
+        lvl.contains("CAP_2") || lvl.contains("VONG_TRUONG") || lvl.contains("ROUND_2") || lvl.contains("ROUND 2") -> 2
+        lvl.contains("CAP_3") || lvl.contains("VONG_HUONG") || lvl.contains("VONG_PHUONG") || lvl.contains("ROUND_3") || lvl.contains("ROUND 3") -> 3
+        lvl.contains("CAP_4") || lvl.contains("CAP_5") || lvl.contains("VONG_TINH") || lvl.contains("VONG_QUOC_GIA") || lvl.contains("ROUND_4") || lvl.contains("ROUND 4") -> 4
+        else -> null
+      }
+      if (roundFromLevel != null && roundFromLevel != targetRound) return false
+    }
+
+    // 4. Kiểm tra ID prefix như k1_c1, k2_c3
+    if (q.id.isNotBlank()) {
+      val match = Regex("^k(\\d+)_c(\\d+)", RegexOption.IGNORE_CASE).find(q.id)
+      if (match != null) {
+        val (kStr, cStr) = match.destructured
+        val kVal = kStr.toIntOrNull()
+        val cVal = cStr.toIntOrNull()
+        if (kVal != null && kVal != targetGrade) return false
+        if (cVal != null && cVal != targetRound && !(targetRound == 4 && cVal == 5)) return false
+      }
+    }
+
+    return true
+  }
+
+  /**
+   * Tải pool câu hỏi theo đúng thứ tự ưu tiên:
+   * 1. GitHub JSON Cache
+   * 2. Local Assets JSON
+   * 3. localQuestionsJsonStr (index.html testmode)
+   */
+  fun loadQuestionPool(grade: Int, changOrRound: Int, localQuestionsJsonStr: String = ""): List<QuestionModel> {
+    val round = mapChangToRound(changOrRound)
+    val pool = mutableListOf<QuestionModel>()
+
+    // Tầng 1: GitHub JSON Cache (Ưu tiên 1)
+    val cachedGithubJson = githubRepo.getCachedQuestionsJson(grade, round)
+    if (!cachedGithubJson.isNullOrBlank()) {
+      val githubQuestions = parseQuestionsFromJsonString(cachedGithubJson)
+        .filter { matchesGradeAndRound(it, grade, round) }
+      pool.addAll(githubQuestions)
+      Log.d(TAG, "[Ưu tiên 1] Nạp ${githubQuestions.size} câu từ GitHub JSON Cache (Lớp $grade - Round $round)")
+    }
+
+    // Luôn kích hoạt fetch GitHub ngầm để đảm bảo dữ liệu mới
+    githubRepo.fetchAndCacheQuestions(grade, round)
+
+    // Tầng 2: Local Assets JSON (Ưu tiên 2) nếu GitHub chưa đủ 30 câu
+    if (pool.size < 30) {
+      val assetJson = githubRepo.getLocalAssetQuestionsJson(grade, round)
+      if (!assetJson.isNullOrBlank()) {
+        val assetQuestions = parseQuestionsFromJsonString(assetJson)
+          .filter { matchesGradeAndRound(it, grade, round) }
+        pool.addAll(assetQuestions)
+        Log.d(TAG, "[Ưu tiên 2] Nạp ${assetQuestions.size} câu từ Local Assets JSON")
+      }
+    }
+
+    // Tầng 3: index.html testmode (Ưu tiên 3) nếu cả 2 tầng trên chưa đủ 30 câu
+    if (pool.size < 30 && localQuestionsJsonStr.isNotBlank()) {
+      val localQuestions = parseQuestionsFromJsonString(localQuestionsJsonStr)
+        .filter { matchesGradeAndRound(it, grade, round) }
+      pool.addAll(localQuestions)
+      Log.d(TAG, "[Ưu tiên 3] Nạp ${localQuestions.size} câu từ index.html testmode")
+    }
+
+    return pool.distinctBy { normalizeQuestionKey(it) }
+  }
+
+  /**
+   * Sinh bộ 30 câu hỏi phân bổ đúng tỷ lệ:
+   * TN: 17, DT: 7, NOI: 2, CHON: 2, SX: 2
+   * Xử lý bù trừ linh hoạt nếu một loại thiếu dữ liệu.
+   */
   fun generateDynamicMode2Exam(
     grade: Int,
-    round: Int,
+    changOrRound: Int,
     seed: Int = 1,
     localQuestionsJsonStr: String = "",
     targetCount: Int = 30
   ): String {
-    val pool = mutableListOf<QuestionModel>()
+    val round = mapChangToRound(changOrRound)
+    val safeGrade = if (grade in 1..5) grade else 1
+    val seedVal = if (seed > 0) seed else ((System.currentTimeMillis() % 1000) + 1).toInt()
+    val examId = "Chặng ${changOrRound}_$seedVal"
 
-    if (localQuestionsJsonStr.isNotBlank()) {
-      val localQuestions = parseQuestionsFromJsonString(localQuestionsJsonStr)
-      pool.addAll(localQuestions)
-      Log.d(TAG, "Nạp ${localQuestions.size} câu từ Nguồn Local Storage")
-    }
-
-    val cachedGithubJson = githubRepo.getCachedQuestionsJson(grade, round)
-    if (!cachedGithubJson.isNullOrBlank()) {
-      val githubQuestions = parseQuestionsFromJsonString(cachedGithubJson)
-      pool.addAll(githubQuestions)
-      Log.d(TAG, "Nạp ${githubQuestions.size} câu từ Nguồn GitHub JSON Cache")
-    }
-
-    githubRepo.fetchAndCacheQuestions(grade, round)
-
-    val uniquePool = pool.distinctBy { normalizeQuestionKey(it) }
-
-    val seedVal = if (seed in 1..1000) seed else ((System.currentTimeMillis() % 1000) + 1).toInt()
-    val examId = "Chặng ${round}_$seedVal"
-
-    val timeFactor = System.currentTimeMillis() / 15000L
-    val prngSeed = (grade.toLong() * 100000000L) + (round.toLong() * 1000000L) + (seedVal.toLong() * 1003001L) + (timeFactor * 37L) + 1234567L
+    // Seed PRNG kết hợp grade, round, chang và seedVal
+    val prngSeed = (safeGrade.toLong() * 1000000007L) xor
+                   (round.toLong() * 999999937L) xor
+                   (changOrRound.toLong() * 65537L) xor
+                   (seedVal.toLong() * 31337L) xor
+                   0x5DEECE66DL
     val rng = Random(prngSeed)
 
-    val shuffledPool = uniquePool.shuffled(rng)
+    val pool = loadQuestionPool(safeGrade, changOrRound, localQuestionsJsonStr)
+    Log.d(TAG, "Tổng số câu trong pool hợp lệ: ${pool.size} (Lớp $safeGrade - Chặng $changOrRound / Round $round)")
 
-    val selectedQuestions = if (shuffledPool.size >= targetCount) {
-      shuffledPool.take(targetCount)
-    } else {
-      shuffledPool
+    // Phân nhóm câu hỏi theo 5 dạng chuẩn
+    val grouped = pool.groupBy { standardizeType(it.type) }
+
+    val selected = mutableListOf<QuestionModel>()
+    val overflow = mutableListOf<QuestionModel>()
+    val actualCounts = mutableMapOf<String, Int>()
+
+    // Bốc câu hỏi theo đúng tỷ lệ định mức
+    TARGET_QUOTAS.forEach { (type, quota) ->
+      val list = (grouped[type] ?: emptyList()).shuffled(rng)
+      val takeCount = minOf(quota, list.size)
+      selected.addAll(list.take(takeCount))
+      actualCounts[type] = takeCount
+      if (list.size > takeCount) {
+        overflow.addAll(list.drop(takeCount))
+      }
     }
 
-    val finalQuestions = shuffleQuestionOptions(selectedQuestions, rng)
+    // Bù số lượng còn thiếu từ các loại khác trong overflow nếu một loại thiếu
+    if (selected.size < targetCount && overflow.isNotEmpty()) {
+      val needed = targetCount - selected.size
+      val fillList = overflow.shuffled(rng).take(needed)
+      fillList.forEach { q ->
+        val t = standardizeType(q.type)
+        actualCounts[t] = (actualCounts[t] ?: 0) + 1
+      }
+      selected.addAll(fillList)
+    }
+
+    // Xáo trộn thứ tự các câu hỏi để các dạng xuất hiện đan xen tự nhiên
+    val shuffledExam = selected.shuffled(rng)
+
+    // Xáo trộn các phương án A, B, C, D của các câu trắc nghiệm
+    val finalQuestions = shuffledExam.mapIndexed { idx, q ->
+      shuffleQuestionOptions(q, rng, idx)
+    }
 
     val jsonArray = JSONArray()
     finalQuestions.forEach { jsonArray.put(it.toJson()) }
 
+    val countsObj = JSONObject()
+    actualCounts.forEach { (k, v) -> countsObj.put(k, v) }
+
     val resultJson = JSONObject().apply {
-      put("grade", grade)
+      put("grade", safeGrade)
       put("round", round)
+      put("chang", changOrRound)
       put("seed", seedVal)
       put("examId", examId)
       put("mode", 2)
       put("timerSeconds", 1500)
       put("totalQuestions", finalQuestions.size)
+      put("typeDistribution", countsObj)
       put("questions", jsonArray)
     }
 
     return resultJson.toString()
   }
 
-  private fun parseQuestionsFromJsonString(jsonStr: String): List<QuestionModel> {
+  fun parseQuestionsFromJsonString(jsonStr: String): List<QuestionModel> {
     val list = mutableListOf<QuestionModel>()
     try {
       val trimmed = jsonStr.trim()
@@ -179,51 +385,32 @@ class DynamicExamGenerator(
     return list
   }
 
-  private fun shuffleQuestionOptions(questions: List<QuestionModel>, rng: Random): List<QuestionModel> {
-    var lastCorrectIndex = -1
-    var repeatCount = 0
+  private fun shuffleQuestionOptions(q: QuestionModel, rng: Random, qIndex: Int): QuestionModel {
+    if (q.options.size < 2 || standardizeType(q.type) != "TN") return q
 
-    return questions.mapIndexed { qIdx, q ->
-      if (q.options.size < 2 || q.type == "DT") {
-        q
-      } else {
-        val correctText = if (q.correctIndex in q.options.indices) {
-          q.options[q.correctIndex]
-        } else if (q.answer.isNotBlank()) {
-          q.answer
-        } else {
-          q.options[0]
-        }
-
-        val shuffled = q.options.shuffled(rng).toMutableList()
-        var newCorrectIndex = shuffled.indexOf(correctText)
-        if (newCorrectIndex == -1) {
-          shuffled[0] = correctText
-          newCorrectIndex = 0
-        }
-
-        if (newCorrectIndex == lastCorrectIndex) {
-          repeatCount++
-        } else {
-          repeatCount = 1
-        }
-
-        if (repeatCount >= 2 && shuffled.size >= 2) {
-          val swapOffset = (qIdx % (shuffled.size - 1)) + 1
-          val targetIndex = (newCorrectIndex + swapOffset) % shuffled.size
-
-          val temp = shuffled[newCorrectIndex]
-          shuffled[newCorrectIndex] = shuffled[targetIndex]
-          shuffled[targetIndex] = temp
-
-          newCorrectIndex = targetIndex
-          repeatCount = 1
-        }
-
-        lastCorrectIndex = newCorrectIndex
-
-        q.copy(options = shuffled, correctIndex = newCorrectIndex)
-      }
+    val correctText = if (q.correctIndex in q.options.indices) {
+      q.options[q.correctIndex]
+    } else if (q.answer.isNotBlank()) {
+      q.answer
+    } else {
+      q.options[0]
     }
+
+    val shuffled = q.options.shuffled(rng).toMutableList()
+    var newIdx = shuffled.indexOf(correctText)
+    if (newIdx == -1) {
+      shuffled[0] = correctText
+      newIdx = 0
+    }
+
+    // Tránh đáp án đúng rơi liên tục vào một vị trí cố định
+    val offset = (qIndex % (shuffled.size - 1)) + 1
+    val targetIdx = (newIdx + offset) % shuffled.size
+    val temp = shuffled[newIdx]
+    shuffled[newIdx] = shuffled[targetIdx]
+    shuffled[targetIdx] = temp
+    newIdx = targetIdx
+
+    return q.copy(options = shuffled, correctIndex = newIdx)
   }
 }

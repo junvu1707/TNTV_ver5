@@ -223,7 +223,6 @@ class GitHubQuestionRepository(private val context: Context) {
       val (success, message) = syncRepoQuestionsInternal(forceRefresh)
       withContext(Dispatchers.Main) {
         onComplete?.invoke(success, message)
-        onComplete?.invoke(success, message)
       }
     }
   }

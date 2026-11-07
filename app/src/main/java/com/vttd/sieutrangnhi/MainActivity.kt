@@ -49,11 +49,11 @@ class MainActivity : ComponentActivity() {
   var webView: WebView? = null
   private var bannerContainer: FrameLayout? = null
 
-  // Trạng thái VIP, Billing, EmailJS, GitHub Questions Repo & AdManager
   lateinit var vipPrefs: VipPreferenceManager
   lateinit var emailJSManager: EmailJSManager
   lateinit var billingManager: BillingManager
   lateinit var githubRepo: GitHubQuestionRepository
+  lateinit var examGenerator: DynamicExamGenerator
   lateinit var adManager: AdManager
 
   @SuppressLint("SetJavaScriptEnabled")
@@ -70,9 +70,10 @@ class MainActivity : ComponentActivity() {
       if (seedNewFile.exists()) seedNewFile.delete()
     } catch (_: Exception) {}
 
-    // 1. Khởi tạo VIP Manager, GitHub Repo, AdManager & Billing
+    // 1. Khởi tạo VIP Manager, GitHub Repo, Exam Generator, AdManager & Billing
     githubRepo = GitHubQuestionRepository(this)
     githubRepo.syncAllGradesInBackground()
+    examGenerator = DynamicExamGenerator(githubRepo)
 
     vipPrefs = VipPreferenceManager(this)
     adManager = AdManager(this, vipPrefs)
@@ -809,6 +810,23 @@ class AndroidBridge(
   @JavascriptInterface
   fun setBannerVisible(visible: Boolean) {
     activity?.setBannerVisibility(visible)
+  }
+
+  @JavascriptInterface
+  fun generateDynamicExam(grade: Int, changOrRound: Int, seed: Int, fallbackJson: String = ""): String {
+    val act = activity ?: return ""
+    return act.examGenerator.generateDynamicMode2Exam(
+      grade = grade,
+      changOrRound = changOrRound,
+      seed = seed,
+      localQuestionsJsonStr = fallbackJson,
+      targetCount = 30
+    )
+  }
+
+  @JavascriptInterface
+  fun generateDynamicMode2Exam(grade: Int, changOrRound: Int, seed: Int, fallbackJson: String = ""): String {
+    return generateDynamicExam(grade, changOrRound, seed, fallbackJson)
   }
 
   @JavascriptInterface

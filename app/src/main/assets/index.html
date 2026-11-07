@@ -5780,7 +5780,46 @@
     let qText = q.question || q.title || `Câu hỏi ${idx + 1}`;
     let finalType = 'MCQ';
 
-    if (type === 'DT' && (options.length < 2 || !options.includes(answerText))) {
+    if (type === 'CHON' || type === 'CLASSIFY_MINI') {
+      finalType = 'CLASSIFY_MINI';
+      let formattedGroups = [];
+      if (Array.isArray(q.groups)) {
+        formattedGroups = q.groups;
+      } else if (q.groups && typeof q.groups === 'object' && q.answer && typeof q.answer === 'object') {
+        Object.keys(q.groups).forEach(gKey => {
+          const gName = q.groups[gKey];
+          const gWords = Array.isArray(q.answer[gKey]) ? q.answer[gKey] : [];
+          formattedGroups.push({ name: gName, words: gWords });
+        });
+      }
+      return {
+        id: q.questionId || q.id || `q_${idx + 1}`,
+        type: 'CLASSIFY_MINI',
+        title: q.title || 'Phân loại từ ngữ',
+        question: qText,
+        groups: formattedGroups,
+        options: options,
+        correctIndex: 0,
+        answer: answerText,
+        explain: q.explanation || q.explain || 'Kiến thức chuẩn GDPT Tiếng Việt Tiểu học.'
+      };
+    } else if (type === 'SX') {
+      finalType = 'FILL';
+      let sxPrompt = qText;
+      if (Array.isArray(q.elements) && q.elements.length > 0) {
+        sxPrompt += `\nCác từ cần sắp xếp: [ ${q.elements.join(' / ')} ]`;
+      }
+      return {
+        id: q.questionId || q.id || `q_${idx + 1}`,
+        type: 'FILL',
+        title: q.title || 'Sắp xếp câu văn hoàn chỉnh',
+        question: sxPrompt,
+        options: options,
+        correctIndex: 0,
+        answer: q.answer || (Array.isArray(q.elements) ? q.elements.join(' ') : ''),
+        explain: q.explanation || q.explain || 'Sắp xếp đúng trật tự ngữ pháp Tiếng Việt.'
+      };
+    } else if (type === 'DT' && (options.length < 2 || !options.includes(answerText))) {
       finalType = 'FILL';
     } else if (type === 'NOI' && q.columnA && q.columnB) {
       finalType = 'MATCH_MINI';
@@ -5804,6 +5843,62 @@
     };
   }
 
+  // Thuật toán chia tỷ lệ câu hỏi chuẩn (17 TN, 7 DT, 2 NOI, 2 CHON, 2 SX) dùng khi fallback
+  function balanceExamQuestions(qList, seed = 1, targetCount = 30) {
+    if (!qList || qList.length <= targetCount) return qList || [];
+    let s = (seed * 31337 + 104729) >>> 0;
+    const nextRandom = () => {
+      s = (s * 1664525 + 1013904223) >>> 0;
+      return s / 4294967296;
+    };
+    const shuffleArray = (arr) => {
+      const copy = [...arr];
+      for (let i = copy.length - 1; i > 0; i--) {
+        const j = Math.floor(nextRandom() * (i + 1));
+        [copy[i], copy[j]] = [copy[j], copy[i]];
+      }
+      return copy;
+    };
+
+    const quotas = { TN: 17, DT: 7, NOI: 2, CHON: 2, SX: 2 };
+    const getType = (q) => {
+      const t = (q.type || 'TN').toUpperCase();
+      if (t === 'TN' || t === 'MCQ' || t === 'READING' || t === 'IMAGE_MCQ') return 'TN';
+      if (t === 'DT' || t === 'FILL') return 'DT';
+      if (t === 'NOI' || t === 'MATCH_MINI') return 'NOI';
+      if (t === 'CHON' || t === 'CLASSIFY_MINI') return 'CHON';
+      if (t === 'SX') return 'SX';
+      return 'TN';
+    };
+
+    const grouped = { TN: [], DT: [], NOI: [], CHON: [], SX: [] };
+    qList.forEach(q => {
+      const t = getType(q);
+      if (grouped[t]) grouped[t].push(q);
+      else grouped.TN.push(q);
+    });
+
+    const selected = [];
+    const overflow = [];
+
+    Object.keys(quotas).forEach(type => {
+      const quota = quotas[type];
+      const list = shuffleArray(grouped[type] || []);
+      const takeCount = Math.min(quota, list.length);
+      selected.push(...list.slice(0, takeCount));
+      if (list.length > takeCount) {
+        overflow.push(...list.slice(takeCount));
+      }
+    });
+
+    if (selected.length < targetCount && overflow.length > 0) {
+      const needed = targetCount - selected.length;
+      selected.push(...shuffleArray(overflow).slice(0, needed));
+    }
+
+    return shuffleArray(selected);
+  }
+
   // ========================================================
   // CƠ CHẾ THỰC THI 3 TẦNG ƯU TIÊN (PRIORITY FALLBACK CHAIN):
   // ƯU TIÊN 1 (GitHub) -> ƯU TIÊN 2 (Local Assets) -> ƯU TIÊN 3 (Test Mode index.html)
@@ -5814,6 +5909,24 @@
     const assetFileName = getLocalAssetFileName(grade, chang);
 
     console.log(`[Bắt đầu tải đề] Lớp: ${grade}, Chặng: ${chang} => Round: ${round}, Seed: ${seed}`);
+
+    // --- ƯU TIÊN 0: NATIVE KOTLIN DYNAMIC EXAM GENERATOR ---
+    if (window.AndroidBridge && (typeof window.AndroidBridge.generateDynamicExam === 'function' || typeof window.AndroidBridge.generateDynamicMode2Exam === 'function')) {
+      try {
+        const fn = window.AndroidBridge.generateDynamicExam || window.AndroidBridge.generateDynamicMode2Exam;
+        const examJsonStr = fn.call(window.AndroidBridge, grade, chang, seed, '');
+        if (examJsonStr && examJsonStr.trim().length > 0) {
+          const parsed = JSON.parse(examJsonStr);
+          if (parsed && Array.isArray(parsed.questions) && parsed.questions.length > 0) {
+            const normalized = parsed.questions.map((q, i) => normalizeExamQuestion(q, i)).filter(Boolean);
+            console.log(`[Native DynamicExamGenerator] ✅ Đã nạp thành công ${normalized.length} câu theo chuẩn cơ cấu 17/7/2/2/2 (Seed: ${seed})!`);
+            return { source: 'Native DynamicExamGenerator', questions: normalized, rawData: parsed };
+          }
+        }
+      } catch (err) {
+        console.warn('[Native DynamicExamGenerator] Lỗi gọi native generator, chuyển fallback sang JS:', err);
+      }
+    }
 
     // --- TẦNG 1: ƯU TIÊN 1 (GitHub Direct Raw URL) ---
     console.log(`[GitHub] [Ưu tiên 1] Đang thử kết nối tải đề thi từ GitHub: ${githubUrl}`);
@@ -5979,18 +6092,19 @@
       AppState.userAnswers30 = {};
       mode2CompletionModalShown = false;
 
-      // Lấy đủ 30 câu (hoặc tối đa số câu trong danh sách)
+      // Lấy đủ 30 câu chuẩn theo tỷ lệ
       let selectedPool = qList;
       if (selectedPool.length > 30) {
-        const seedVal = AppState.currentSeed || 1;
-        const startIndex = ((seedVal - 1) * 30) % Math.max(1, selectedPool.length - 30);
-        selectedPool = selectedPool.slice(startIndex, startIndex + 30);
-        if (selectedPool.length < 30) {
+        if (examResult.source === 'Native DynamicExamGenerator') {
           selectedPool = qList.slice(0, 30);
+        } else {
+          selectedPool = balanceExamQuestions(qList, AppState.currentSeed || 1, 30);
         }
       }
 
-      AppState.exam30Questions = shuffleQuestionOptions(selectedPool, AppState.currentSeed + 701);
+      AppState.exam30Questions = (examResult.source === 'Native DynamicExamGenerator')
+        ? selectedPool
+        : shuffleQuestionOptions(selectedPool, AppState.currentSeed + 701);
       AppState.timerInterval = setInterval(() => {
         AppState.timerSeconds--;
         updateTimerDisplay();
