@@ -9511,7 +9511,8 @@
   };
 
   window.onRewardedAdFallback = function(rewardType, targetId) {
-    // Trình phát dự phòng nếu chưa có kết nối AdMob SDK
+    // Trình phát dự phòng tự động chạy khi chưa nạp được quảng cáo AdMob hoặc mạng chập chờn
+    runWebFallbackRewarded(rewardType, targetId);
   };
 
   function runWebFallbackRewarded(rewardType, targetId) {

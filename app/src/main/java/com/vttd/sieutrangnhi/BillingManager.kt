@@ -393,14 +393,10 @@ class BillingManager(
     callback: (Boolean, Int, String) -> Unit
   ) {
     val currentDeviceId = vipPrefs.getDeviceId().trim()
-    val savedEmail = vipPrefs.getSavedVipEmail().ifBlank { vipPrefs.getUserEmail() }.trim()
-    val savedDeviceId = vipPrefs.getSavedVipDeviceId().ifBlank { currentDeviceId }.trim()
     val savedLevel = vipPrefs.getSavedVipLevel().takeIf { it > VipPreferenceManager.VIP_LEVEL_0 } ?: vipPrefs.getVipLevel()
 
-    val isEmailMatch = savedEmail.isEmpty() || inputEmail.equals(savedEmail, ignoreCase = true)
-    val isDeviceMatch = savedDeviceId.isEmpty() || currentDeviceId.equals(savedDeviceId, ignoreCase = true)
-
-    if (savedLevel > VipPreferenceManager.VIP_LEVEL_0 && isEmailMatch && isDeviceMatch) {
+    if (savedLevel > VipPreferenceManager.VIP_LEVEL_0) {
+      // Khi đã ghi nhận thông tin mua VIP hợp lệ, mở khóa VIP ngay lập tức và tự động cập nhật Email mới
       vipPrefs.saveVipPurchaseRecord(inputEmail, currentDeviceId, savedLevel)
       if (inputName.isNotEmpty()) vipPrefs.setUserName(inputName)
 
@@ -409,23 +405,15 @@ class BillingManager(
         callback(
           true,
           savedLevel,
-          "Xác thực và khôi phục thành công gói $vipName cho Email '$inputEmail' và ID thiết bị $currentDeviceId!"
+          "Xác thực và khôi phục thành công gói $vipName! Email '$inputEmail' đã được tự động cập nhật."
         )
       }
     } else {
-      val failureMsg = when {
-        savedLevel <= VipPreferenceManager.VIP_LEVEL_0 ->
-          "Khôi phục thất bại! Chưa ghi nhận dữ liệu đăng ký mua VIP trên ứng dụng."
-        !isEmailMatch ->
-          "Khôi phục thất bại! Email '$inputEmail' không khớp với Email đã đăng ký mua VIP."
-        else ->
-          "Khôi phục thất bại! ID thiết bị hiện tại ($currentDeviceId) không khớp với ID thiết bị đã đăng ký mua VIP."
-      }
       activity.runOnUiThread {
         callback(
           false,
           VipPreferenceManager.VIP_LEVEL_0,
-          failureMsg
+          "Khôi phục thất bại! Không tìm thấy thông tin mua VIP trên Google Play cho tài khoản này."
         )
       }
     }
