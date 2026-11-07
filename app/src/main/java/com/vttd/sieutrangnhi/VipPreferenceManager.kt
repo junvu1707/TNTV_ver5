@@ -17,6 +17,10 @@ class VipPreferenceManager(private val context: Context) {
     const val KEY_UNLOCKED_ROUNDS = "unlocked_rounds"
     const val KEY_VIP1_EXPIRY_TIMESTAMP = "vip1_expiry_timestamp"
 
+    const val KEY_SAVED_VIP_EMAIL = "saved_vip_email"
+    const val KEY_SAVED_VIP_DEVICE_ID = "saved_vip_device_id"
+    const val KEY_SAVED_VIP_LEVEL = "saved_vip_level"
+
     const val VIP_LEVEL_0 = 0 // Miễn phí
     const val VIP_LEVEL_1 = 1 // VIP 1 (Thời hạn 1 năm từ khi đăng ký)
     const val VIP_LEVEL_2 = 2 // VIP 2 Trọn đời
@@ -127,6 +131,36 @@ class VipPreferenceManager(private val context: Context) {
 
   fun setLastOrderId(orderId: String) {
     prefs.edit().putString(KEY_LAST_ORDER_ID, orderId).apply()
+  }
+
+  fun saveVipPurchaseRecord(email: String, deviceId: String, level: Int) {
+    val editor = prefs.edit()
+    val cleanEmail = email.trim()
+    if (cleanEmail.isNotBlank()) {
+      editor.putString(KEY_SAVED_VIP_EMAIL, cleanEmail)
+      editor.putString(KEY_USER_EMAIL, cleanEmail)
+    }
+    val activeDeviceId = deviceId.trim().ifBlank { getDeviceId() }
+    if (activeDeviceId.isNotBlank()) {
+      editor.putString(KEY_SAVED_VIP_DEVICE_ID, activeDeviceId)
+    }
+    if (level > VIP_LEVEL_0) {
+      editor.putInt(KEY_SAVED_VIP_LEVEL, level)
+    }
+    editor.apply()
+    setVipLevel(level)
+  }
+
+  fun getSavedVipEmail(): String {
+    return prefs.getString(KEY_SAVED_VIP_EMAIL, "") ?: ""
+  }
+
+  fun getSavedVipDeviceId(): String {
+    return prefs.getString(KEY_SAVED_VIP_DEVICE_ID, "") ?: ""
+  }
+
+  fun getSavedVipLevel(): Int {
+    return prefs.getInt(KEY_SAVED_VIP_LEVEL, VIP_LEVEL_0)
   }
 
   fun isRoundUnlocked(roundIndex: Int): Boolean {

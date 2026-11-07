@@ -651,16 +651,19 @@ class AndroidBridge(
   fun sendVipTransferRequest(productId: String, userEmail: String) {
     val act = activity ?: return
     act.runOnUiThread {
-      if (userEmail.isNotBlank()) {
-        act.vipPrefs.setUserEmail(userEmail)
+      val cleanEmail = userEmail.trim()
+      if (cleanEmail.isNotBlank()) {
+        act.vipPrefs.setUserEmail(cleanEmail)
       }
       val level = if (productId == BillingManager.PRODUCT_VIP_2) VipPreferenceManager.VIP_LEVEL_2 else VipPreferenceManager.VIP_LEVEL_1
+      val deviceId = act.vipPrefs.getDeviceId()
       val orderId = "VIETQR_" + System.currentTimeMillis()
+
+      act.vipPrefs.saveVipPurchaseRecord(cleanEmail, deviceId, level)
       act.vipPrefs.setLastOrderId(orderId)
-      act.vipPrefs.setVipLevel(level)
 
       // Gửi xác nhận qua EmailJS
-      act.emailJSManager.sendOrderConfirmation(userEmail, orderId, level) { success ->
+      act.emailJSManager.sendOrderConfirmation(cleanEmail, orderId, level) { success ->
         Log.d("AndroidBridge", "VietQR & EmailJS request sent: $success")
       }
 

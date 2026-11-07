@@ -51,6 +51,10 @@ val interstitialId = if (isValidAdMobUnitId(rawInterstitialId)) rawInterstitialI
 val rawRewardedId = envProps.getProperty("REWARDED_ID")
 val rewardedId = if (isValidAdMobUnitId(rawRewardedId)) rawRewardedId!! else "ca-app-pub-3940256099942544/5224354917"
 
+val emailjsServiceId = envProps.getProperty("EMAILJS_SERVICE_ID") ?: "service_trang_nhi"
+val emailjsTemplateId = envProps.getProperty("EMAILJS_TEMPLATE_ID") ?: "template_vip_confirm"
+val emailjsPublicKey = envProps.getProperty("EMAILJS_PUBLIC_KEY") ?: ""
+
 android {
   namespace = "com.vttd.sieutrangnhi"
   compileSdk { version = release(36) { minorApiLevel = 1 } }
@@ -71,6 +75,9 @@ android {
     buildConfigField("String", "ADMOB_BANNER_ID", "\"$bannerId\"")
     buildConfigField("String", "ADMOB_INTERSTITIAL_ID", "\"$interstitialId\"")
     buildConfigField("String", "ADMOB_REWARDED_ID", "\"$rewardedId\"")
+    buildConfigField("String", "EMAILJS_SERVICE_ID", "\"$emailjsServiceId\"")
+    buildConfigField("String", "EMAILJS_TEMPLATE_ID", "\"$emailjsTemplateId\"")
+    buildConfigField("String", "EMAILJS_PUBLIC_KEY", "\"$emailjsPublicKey\"")
   }
 
   // Do not remove or modify these signingConfigs. They are necessary for building, installing,

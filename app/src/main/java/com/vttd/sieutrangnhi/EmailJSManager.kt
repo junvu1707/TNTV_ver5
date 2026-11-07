@@ -20,10 +20,18 @@ class EmailJSManager {
   companion object {
     private const val TAG = "EmailJSManager"
     const val ADMIN_EMAIL = "junvu.dev@gmail.com"
-    private const val SERVICE_ID = "service_trang_nhi"
-    private const val TEMPLATE_ID = "template_vip_confirm"
-    private const val PUBLIC_KEY = "user_trangnhi_placeholder"
+    private const val DEFAULT_SERVICE_ID = "service_trang_nhi"
+    private const val DEFAULT_TEMPLATE_ID = "template_vip_confirm"
     private const val ENDPOINT = "https://api.emailjs.com/api/v1.0/email/send"
+
+    val serviceId: String
+      get() = BuildConfig.EMAILJS_SERVICE_ID.ifBlank { DEFAULT_SERVICE_ID }
+
+    val templateId: String
+      get() = BuildConfig.EMAILJS_TEMPLATE_ID.ifBlank { DEFAULT_TEMPLATE_ID }
+
+    val publicKey: String
+      get() = BuildConfig.EMAILJS_PUBLIC_KEY.ifBlank { "" }
   }
 
   private val client = OkHttpClient()
@@ -41,6 +49,13 @@ class EmailJSManager {
     orderId: String,
     callback: ((Boolean) -> Unit)? = null
   ) {
+    val activePublicKey = publicKey
+    if (activePublicKey.isBlank() || activePublicKey == "user_trangnhi_placeholder") {
+      Log.w(TAG, "EmailJS Public Key chưa được cấu hình hợp lệ trong .env (EMAILJS_PUBLIC_KEY). Bỏ qua gửi email.")
+      callback?.invoke(false)
+      return
+    }
+
     val currentTime = SimpleDateFormat("dd/MM/yyyy HH:mm:ss", Locale.getDefault()).format(Date())
 
     val templateParams = JSONObject().apply {
@@ -58,9 +73,9 @@ class EmailJSManager {
     }
 
     val jsonBody = JSONObject().apply {
-      put("service_id", SERVICE_ID)
-      put("template_id", TEMPLATE_ID)
-      put("user_id", PUBLIC_KEY)
+      put("service_id", serviceId)
+      put("template_id", templateId)
+      put("user_id", activePublicKey)
       put("template_params", templateParams)
     }
 
@@ -88,15 +103,18 @@ class EmailJSManager {
     email: String,
     orderId: String,
     vipLevel: Int,
+    userName: String = "",
+    deviceId: String = "",
+    purchaseToken: String = "",
     callback: ((Boolean) -> Unit)? = null
   ) {
     val vipType = if (vipLevel >= 2) "VIP 2 (Trọn đời)" else "VIP 1 (Mùa thi)"
     sendVipActivationNotification(
       userEmail = email,
-      userName = "",
+      userName = userName,
       vipType = vipType,
-      deviceId = "",
-      purchaseToken = "",
+      deviceId = deviceId,
+      purchaseToken = purchaseToken,
       orderId = orderId,
       callback = callback
     )

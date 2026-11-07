@@ -4483,6 +4483,12 @@
     const enteredName = nameInput ? nameInput.value.trim() : '';
     const enteredEmail = emailInput ? emailInput.value.trim() : '';
 
+    if (!enteredEmail) {
+      showCustomAlert('⚠️ Vui lòng nhập Email đã dùng khi đăng ký mua VIP để khôi phục!');
+      if (emailInput) emailInput.focus();
+      return;
+    }
+
     if (enteredName) {
       AppState.customAccountId = enteredName;
       AppState.studentName = enteredName;
