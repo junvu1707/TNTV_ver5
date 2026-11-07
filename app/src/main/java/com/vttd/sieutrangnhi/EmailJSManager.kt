@@ -77,8 +77,7 @@ class EmailJSManager {
       }
 
       override fun onResponse(call: Call, response: Response) {
-        val success = response.isSuccessful
-        response.close()
+        val success = response.use { it.isSuccessful }
         Log.d(TAG, "EmailJS response success: $success")
         mainHandler.post { callback?.invoke(success) }
       }

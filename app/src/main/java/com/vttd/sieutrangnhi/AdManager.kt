@@ -156,7 +156,11 @@ class AdManager(
   }
 
   fun destroyBanner() {
-    bannerAdView?.destroy()
+    val adView: AdView? = bannerAdView
+    if (adView != null) {
+      (adView.parent as? ViewGroup)?.removeView(adView)
+      adView.destroy()
+    }
     bannerAdView = null
   }
 

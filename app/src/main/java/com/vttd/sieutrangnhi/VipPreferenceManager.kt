@@ -76,7 +76,11 @@ class VipPreferenceManager(private val context: Context) {
     return true
   }
 
+  @Volatile
+  private var cachedDeviceId: String? = null
+
   fun getDeviceId(): String {
+    cachedDeviceId?.let { return it }
     var id = prefs.getString(KEY_DEVICE_ID, null)
     if (id.isNullOrEmpty()) {
       id = try {
@@ -89,6 +93,7 @@ class VipPreferenceManager(private val context: Context) {
       }
       prefs.edit().putString(KEY_DEVICE_ID, id).apply()
     }
+    cachedDeviceId = id
     return id
   }
 

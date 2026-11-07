@@ -82,13 +82,14 @@ class DynamicExamGenerator(
 
   companion object {
     private const val TAG = "DynamicExamGenerator"
+    private val NORMALIZE_REGEX = Regex("[^a-z0-9àáảãạăắằẳẵặâấầnẩẫậnèéẻẽẹêếềểễệìíỉĩịòóỏõọôốồổỗộơớờởỡợùúủũụưứừửữựỳýỷỹỵđ]")
   }
 
   private fun normalizeQuestionKey(q: QuestionModel): String {
     if (q.id.isNotBlank()) return q.id.lowercase(Locale.ROOT).trim()
     val rawText = q.question.ifBlank { q.title }
     return rawText.lowercase(Locale.ROOT)
-      .replace(Regex("[^a-z0-9àáảãạăắằẳẵặâấầnẩẫậnèéẻẽẹêếềểễệìíỉĩịòóỏõọôốồổỗộơớờởỡợùúủũụưứừửữựỳýỷỹỵđ]"), "")
+      .replace(NORMALIZE_REGEX, "")
       .trim()
   }
 

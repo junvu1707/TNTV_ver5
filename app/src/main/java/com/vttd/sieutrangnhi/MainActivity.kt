@@ -38,6 +38,7 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import org.json.JSONObject
 import java.io.File
+import java.lang.ref.WeakReference
 
 class MainActivity : ComponentActivity() {
 
@@ -269,7 +270,9 @@ class MainActivity : ComponentActivity() {
   }
 
   fun showVipRegistrationDialog(productId: String, defaultName: String = "") {
+    if (isFinishing() || isDestroyed()) return
     runOnUiThread {
+      if (isFinishing() || isDestroyed()) return@runOnUiThread
       val isVip2Target = productId == BillingManager.PRODUCT_VIP_2
       val vipTitleName = if (isVip2Target) "Gói VIP 2 (Trọn Đời - 99.000đ)" else "Gói VIP 1 (Mùa Thi - 49.000đ)"
       val deviceId = vipPrefs.getDeviceId()
@@ -529,8 +532,9 @@ class MainActivity : ComponentActivity() {
   }
 
   fun showVipSuccessDialog(productId: String, vipLevel: Int) {
-
+    if (isFinishing() || isDestroyed()) return
     runOnUiThread {
+      if (isFinishing() || isDestroyed()) return@runOnUiThread
       val vipName = if (vipLevel >= 2) "VIP 2 (Trọn Đời)" else "VIP 1 (Mùa Thi)"
       val email = vipPrefs.getUserEmail()
       val name = vipPrefs.getUserName()
@@ -576,7 +580,19 @@ class MainActivity : ComponentActivity() {
       billingManager.destroy()
     } catch (_: Exception) {}
     adManager.destroy()
-    webView?.destroy()
+
+    bannerContainer?.removeAllViews()
+    bannerContainer = null
+
+    val wv: WebView? = webView
+    if (wv != null) {
+      wv.stopLoading()
+      wv.removeJavascriptInterface("AndroidBridge")
+      wv.webChromeClient = null
+      (wv.parent as? ViewGroup)?.removeView(wv)
+      wv.removeAllViews()
+      wv.destroy()
+    }
     webView = null
     super.onDestroy()
   }
@@ -586,28 +602,33 @@ class MainActivity : ComponentActivity() {
  * Android Native Bridge kết nối giữa JavaScript (WebView) và Kotlin Native
  */
 class AndroidBridge(
-  private val activity: MainActivity,
+  activity: MainActivity,
   private val webViewProvider: () -> WebView?
 ) {
+  private val activityRef = WeakReference(activity)
+  private val activity: MainActivity? get() = activityRef.get()
 
   /**
    * Kích hoạt luồng thanh toán Google Play Billing từ JavaScript
    */
   @JavascriptInterface
   fun launchBillingFlow(productId: String) {
-    activity.showVipRegistrationDialog(productId, activity.vipPrefs.getUserName())
+    val act = activity ?: return
+    act.showVipRegistrationDialog(productId, act.vipPrefs.getUserName())
   }
 
   @JavascriptInterface
   fun launchBillingFlowWithInfo(productId: String, userEmail: String, userName: String) {
-    activity.runOnUiThread {
-      activity.billingManager.launchBillingFlow(activity, productId, userEmail, userName)
+    val act = activity ?: return
+    act.runOnUiThread {
+      act.billingManager.launchBillingFlow(act, productId, userEmail, userName)
     }
   }
 
   @JavascriptInterface
   fun openVipPurchaseDialog(productId: String, defaultName: String) {
-    activity.showVipRegistrationDialog(productId, defaultName)
+    val act = activity ?: return
+    act.showVipRegistrationDialog(productId, defaultName)
   }
 
   /**
@@ -615,21 +636,22 @@ class AndroidBridge(
    */
   @JavascriptInterface
   fun sendVipTransferRequest(productId: String, userEmail: String) {
-    activity.runOnUiThread {
+    val act = activity ?: return
+    act.runOnUiThread {
       if (userEmail.isNotBlank()) {
-        activity.vipPrefs.setUserEmail(userEmail)
+        act.vipPrefs.setUserEmail(userEmail)
       }
       val level = if (productId == BillingManager.PRODUCT_VIP_2) VipPreferenceManager.VIP_LEVEL_2 else VipPreferenceManager.VIP_LEVEL_1
       val orderId = "VIETQR_" + System.currentTimeMillis()
-      activity.vipPrefs.setLastOrderId(orderId)
-      activity.vipPrefs.setVipLevel(level)
+      act.vipPrefs.setLastOrderId(orderId)
+      act.vipPrefs.setVipLevel(level)
 
       // Gửi xác nhận qua EmailJS
-      activity.emailJSManager.sendOrderConfirmation(userEmail, orderId, level) { success ->
+      act.emailJSManager.sendOrderConfirmation(userEmail, orderId, level) { success ->
         Log.d("AndroidBridge", "VietQR & EmailJS request sent: $success")
       }
 
-      activity.updateAdMobForVipStatus()
+      act.updateAdMobForVipStatus()
       webViewProvider()?.evaluateJavascript(
         "if (window.onVipStatusChanged) { window.onVipStatusChanged($level); }",
         null
@@ -639,30 +661,32 @@ class AndroidBridge(
 
   @JavascriptInterface
   fun restorePurchases() {
-    activity.runOnUiThread {
-      activity.billingManager.queryPurchases()
-      Toast.makeText(activity, "Đã kiểm tra và đồng bộ trạng thái VIP thành công!", Toast.LENGTH_SHORT).show()
+    val act = activity ?: return
+    act.runOnUiThread {
+      act.billingManager.queryPurchases()
+      Toast.makeText(act, "Đã kiểm tra và đồng bộ trạng thái VIP thành công!", Toast.LENGTH_SHORT).show()
     }
   }
 
   @JavascriptInterface
   fun scanAndRestoreVip(userName: String, userEmail: String) {
-    activity.runOnUiThread {
-      activity.billingManager.scanAndRestoreVip(userName, userEmail) { success, vipLevel, message ->
-        activity.runOnUiThread {
+    val act = activity ?: return
+    act.runOnUiThread {
+      act.billingManager.scanAndRestoreVip(userName, userEmail) { success, vipLevel, message ->
+        act.runOnUiThread {
           if (success) {
-            activity.updateAdMobForVipStatus()
-            val activeName = userName.ifBlank { activity.vipPrefs.getUserName().ifBlank { "Tài khoản VIP" } }
-            activity.vipPrefs.setUserName(activeName)
-            if (userEmail.isNotBlank()) activity.vipPrefs.setUserEmail(userEmail)
+            act.updateAdMobForVipStatus()
+            val activeName = userName.ifBlank { act.vipPrefs.getUserName().ifBlank { "Tài khoản VIP" } }
+            act.vipPrefs.setUserName(activeName)
+            if (userEmail.isNotBlank()) act.vipPrefs.setUserEmail(userEmail)
 
-            activity.webView?.evaluateJavascript(
+            act.webView?.evaluateJavascript(
               "if (window.onVipStatusChanged) { window.onVipStatusChanged($vipLevel, '$activeName'); }",
               null
             )
-            Toast.makeText(activity, "🎉 $message", Toast.LENGTH_LONG).show()
+            Toast.makeText(act, "🎉 $message", Toast.LENGTH_LONG).show()
           } else {
-            Toast.makeText(activity, "🔍 $message", Toast.LENGTH_LONG).show()
+            Toast.makeText(act, "🔍 $message", Toast.LENGTH_LONG).show()
           }
         }
       }
@@ -674,17 +698,17 @@ class AndroidBridge(
    */
   @JavascriptInterface
   fun getVipLevel(): Int {
-    return activity.vipPrefs.getVipLevel()
+    return activity?.vipPrefs?.getVipLevel() ?: VipPreferenceManager.VIP_LEVEL_0
   }
 
   @JavascriptInterface
   fun isVip(): Boolean {
-    return activity.vipPrefs.isVip()
+    return activity?.vipPrefs?.isVip() ?: false
   }
 
   @JavascriptInterface
   fun isVip2(): Boolean {
-    return activity.vipPrefs.isVip2()
+    return activity?.vipPrefs?.isVip2() ?: false
   }
 
   /**
@@ -692,17 +716,17 @@ class AndroidBridge(
    */
   @JavascriptInterface
   fun getDeviceId(): String {
-    return activity.vipPrefs.getDeviceId()
+    return activity?.vipPrefs?.getDeviceId() ?: ""
   }
 
   @JavascriptInterface
   fun getUserEmail(): String {
-    return activity.vipPrefs.getUserEmail()
+    return activity?.vipPrefs?.getUserEmail() ?: ""
   }
 
   @JavascriptInterface
   fun getUserName(): String {
-    return activity.vipPrefs.getUserName()
+    return activity?.vipPrefs?.getUserName() ?: ""
   }
 
   /**
@@ -710,7 +734,7 @@ class AndroidBridge(
    */
   @JavascriptInterface
   fun isRoundUnlocked(roundIndex: Int): Boolean {
-    return activity.vipPrefs.isRoundUnlocked(roundIndex)
+    return activity?.vipPrefs?.isRoundUnlocked(roundIndex) ?: (roundIndex <= 6)
   }
 
   /**
@@ -718,25 +742,27 @@ class AndroidBridge(
    */
   @JavascriptInterface
   fun getVipInfoJson(): String {
+    val act = activity ?: return "{}"
     val json = JSONObject().apply {
-      put("vipLevel", activity.vipPrefs.getVipLevel())
-      put("isVip", activity.vipPrefs.isVip())
-      put("isVip1", activity.vipPrefs.getVipLevel() == VipPreferenceManager.VIP_LEVEL_1)
-      put("isVip2", activity.vipPrefs.getVipLevel() == VipPreferenceManager.VIP_LEVEL_2)
-      put("deviceId", activity.vipPrefs.getDeviceId())
-      put("userName", activity.vipPrefs.getUserName())
-      put("userEmail", activity.vipPrefs.getUserEmail())
-      put("lastOrderId", activity.vipPrefs.getLastOrderId())
+      put("vipLevel", act.vipPrefs.getVipLevel())
+      put("isVip", act.vipPrefs.isVip())
+      put("isVip1", act.vipPrefs.getVipLevel() == VipPreferenceManager.VIP_LEVEL_1)
+      put("isVip2", act.vipPrefs.getVipLevel() == VipPreferenceManager.VIP_LEVEL_2)
+      put("deviceId", act.vipPrefs.getDeviceId())
+      put("userName", act.vipPrefs.getUserName())
+      put("userEmail", act.vipPrefs.getUserEmail())
+      put("lastOrderId", act.vipPrefs.getLastOrderId())
     }
     return json.toString()
   }
 
   @JavascriptInterface
   fun requestRewardedAd(rewardType: String, targetId: String) {
-    activity.runOnUiThread {
-      activity.showRewardedAd(
+    val act = activity ?: return
+    act.runOnUiThread {
+      act.showRewardedAd(
         onRewarded = {
-          activity.runOnUiThread {
+          act.runOnUiThread {
             webViewProvider()?.evaluateJavascript(
               "if (window.onRewardedAdSuccess) { window.onRewardedAdSuccess('$rewardType', '$targetId'); }",
               null
@@ -744,7 +770,7 @@ class AndroidBridge(
           }
         },
         onFailedOrDismissed = {
-          activity.runOnUiThread {
+          act.runOnUiThread {
             webViewProvider()?.evaluateJavascript(
               "if (window.onRewardedAdFallback) { window.onRewardedAdFallback('$rewardType', '$targetId'); }",
               null
@@ -767,9 +793,10 @@ class AndroidBridge(
 
   @JavascriptInterface
   fun requestInterstitialAd() {
-    activity.runOnUiThread {
-      activity.showInterstitialAd {
-        activity.runOnUiThread {
+    val act = activity ?: return
+    act.runOnUiThread {
+      act.showInterstitialAd {
+        act.runOnUiThread {
           webViewProvider()?.evaluateJavascript(
             "if (window.onInterstitialAdClosed) { window.onInterstitialAdClosed(); }",
             null
@@ -781,17 +808,17 @@ class AndroidBridge(
 
   @JavascriptInterface
   fun setBannerVisible(visible: Boolean) {
-    activity.setBannerVisibility(visible)
+    activity?.setBannerVisibility(visible)
   }
 
   @JavascriptInterface
   fun getGithubQuestionsJson(grade: Int, changOrRound: Int): String {
-    return activity.githubRepo.getCachedQuestionsJson(grade, changOrRound) ?: ""
+    return activity?.githubRepo?.getCachedQuestionsJson(grade, changOrRound) ?: ""
   }
 
   @JavascriptInterface
   fun getLocalAssetQuestionsJson(grade: Int, changOrRound: Int): String {
-    return activity.githubRepo.getLocalAssetQuestionsJson(grade, changOrRound) ?: ""
+    return activity?.githubRepo?.getLocalAssetQuestionsJson(grade, changOrRound) ?: ""
   }
 
   @JavascriptInterface
@@ -801,8 +828,9 @@ class AndroidBridge(
 
   @JavascriptInterface
   fun fetchGithubQuestions(grade: Int, changOrRound: Int) {
-    activity.githubRepo.fetchAndCacheQuestions(grade, changOrRound, onSuccess = {
-      activity.runOnUiThread {
+    val act = activity ?: return
+    act.githubRepo.fetchAndCacheQuestions(grade, changOrRound, onSuccess = {
+      act.runOnUiThread {
         webViewProvider()?.evaluateJavascript(
           "if (window.onGithubQuestionsUpdated) { window.onGithubQuestionsUpdated($grade, $changOrRound); }",
           null
@@ -813,8 +841,9 @@ class AndroidBridge(
 
   @JavascriptInterface
   fun syncAllGithubQuestions(force: Boolean = true) {
-    activity.githubRepo.syncRepoQuestions(forceRefresh = force) { success, message ->
-      activity.runOnUiThread {
+    val act = activity ?: return
+    act.githubRepo.syncRepoQuestions(forceRefresh = force) { success, message ->
+      act.runOnUiThread {
         val safeMsg = message.replace("'", "\\'").replace("\n", " ")
         webViewProvider()?.evaluateJavascript(
           "if (window.onGithubSyncCompleted) { window.onGithubSyncCompleted($success, '$safeMsg'); }",
@@ -826,21 +855,24 @@ class AndroidBridge(
 
   @JavascriptInterface
   fun showToast(message: String) {
-    activity.runOnUiThread {
-      Toast.makeText(activity, message, Toast.LENGTH_SHORT).show()
+    val act = activity ?: return
+    act.runOnUiThread {
+      Toast.makeText(act, message, Toast.LENGTH_SHORT).show()
     }
   }
 
   @JavascriptInterface
   fun exitApp() {
-    activity.runOnUiThread {
-      activity.finish()
+    val act = activity ?: return
+    act.runOnUiThread {
+      act.finish()
     }
   }
 
   @JavascriptInterface
   fun openBrowserUrl(url: String) {
-    activity.runOnUiThread {
+    val act = activity ?: return
+    act.runOnUiThread {
       try {
         val targetUri = if (url == "privacy.html" || url.endsWith("/privacy.html")) {
           Uri.parse("https://sites.google.com/view/sieutrangnhi-tiengviet/trang-ch%E1%BB%A7")
@@ -853,9 +885,9 @@ class AndroidBridge(
           addCategory(Intent.CATEGORY_BROWSABLE)
           flags = Intent.FLAG_ACTIVITY_NEW_TASK
         }
-        activity.startActivity(intent)
+        act.startActivity(intent)
       } catch (e: Exception) {
-        activity.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://sites.google.com/view/sieutrangnhi-tiengviet/trang-ch%E1%BB%A7")))
+        act.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://sites.google.com/view/sieutrangnhi-tiengviet/trang-ch%E1%BB%A7")))
       }
     }
   }

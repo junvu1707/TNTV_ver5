@@ -6,6 +6,7 @@ import android.util.Log
 import androidx.core.content.edit
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import okhttp3.OkHttpClient
@@ -80,6 +81,8 @@ class GitHubQuestionRepository(private val context: Context) {
     context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
   }
 
+  private val repositoryScope = CoroutineScope(Dispatchers.IO + SupervisorJob())
+
   private val okHttpClient: OkHttpClient by lazy {
     OkHttpClient.Builder()
       .connectTimeout(15, TimeUnit.SECONDS)
@@ -151,7 +154,7 @@ class GitHubQuestionRepository(private val context: Context) {
     onSuccess: ((String) -> Unit)? = null,
     onError: ((String) -> Unit)? = null
   ) {
-    CoroutineScope(Dispatchers.IO).launch {
+    repositoryScope.launch {
       val url = getDirectRawUrl(grade, changOrRound)
       var downloadedJson: String? = null
       var lastError = "Không thể kết nối mạng"
@@ -162,35 +165,37 @@ class GitHubQuestionRepository(private val context: Context) {
           .header("User-Agent", "TNTV-AndroidApp")
           .url(url)
           .build()
-        val response = okHttpClient.newCall(request).execute()
-        if (response.isSuccessful) {
-          val bodyString = response.body?.string()
-          if (isValidJson(bodyString)) {
-            downloadedJson = bodyString
-            Log.d(TAG, "[GitHub] Tải và parse JSON thành công từ GitHub: $url")
+        okHttpClient.newCall(request).execute().use { response ->
+          if (response.isSuccessful) {
+            val bodyString = response.body?.string()
+            if (isValidJson(bodyString)) {
+              downloadedJson = bodyString
+              Log.d(TAG, "[GitHub] Tải và parse JSON thành công từ GitHub: $url")
+            } else {
+              lastError = "Dữ liệu trả về không phải JSON hợp lệ"
+              Log.w(TAG, "[GitHub] $lastError từ $url")
+            }
           } else {
-            lastError = "Dữ liệu trả về không phải JSON hợp lệ"
-            Log.w(TAG, "[GitHub] $lastError từ $url")
+            lastError = "HTTP ${response.code} tại $url"
+            Log.w(TAG, "[GitHub] Không tải được từ GitHub: $lastError")
           }
-        } else {
-          lastError = "HTTP ${response.code} tại $url"
-          Log.w(TAG, "[GitHub] Không tải được từ GitHub: $lastError")
         }
       } catch (e: Exception) {
         lastError = e.message ?: "Lỗi kết nối"
         Log.w(TAG, "[GitHub] Ngoại lệ khi tải từ GitHub: $lastError")
       }
 
+      val jsonToSave = downloadedJson
       withContext(Dispatchers.Main) {
-        if (downloadedJson != null) {
+        if (jsonToSave != null) {
           try {
             val cacheFile = getCacheFile(grade, changOrRound)
-            cacheFile.writeText(downloadedJson)
+            cacheFile.writeText(jsonToSave)
             Log.d(TAG, "[GitHub] Đã ghi cache thành công tại: ${cacheFile.absolutePath}")
-            onSuccess?.invoke(downloadedJson)
+            onSuccess?.invoke(jsonToSave)
           } catch (e: Exception) {
             Log.e(TAG, "[GitHub] Lỗi ghi file cache: ${e.message}")
-            onSuccess?.invoke(downloadedJson)
+            onSuccess?.invoke(jsonToSave)
           }
         } else {
           Log.w(TAG, "[GitHub] Fetch GitHub thất bại ($lastError). Chuyển sang ƯU TIÊN 2 (Local JSON Assets).")
@@ -205,7 +210,7 @@ class GitHubQuestionRepository(private val context: Context) {
    * Tự động quét và đồng bộ toàn bộ file đề thi của tất cả các khối lớp & chặng.
    */
   fun syncAllGradesInBackground() {
-    CoroutineScope(Dispatchers.IO).launch {
+    repositoryScope.launch {
       syncRepoQuestionsInternal(forceRefresh = false)
     }
   }
@@ -214,9 +219,10 @@ class GitHubQuestionRepository(private val context: Context) {
    * Ép buộc hoặc chủ động đồng bộ đề thi mới nhất từ GitHub Repository
    */
   fun syncRepoQuestions(forceRefresh: Boolean = true, onComplete: ((Boolean, String) -> Unit)? = null) {
-    CoroutineScope(Dispatchers.IO).launch {
+    repositoryScope.launch {
       val (success, message) = syncRepoQuestionsInternal(forceRefresh)
       withContext(Dispatchers.Main) {
+        onComplete?.invoke(success, message)
         onComplete?.invoke(success, message)
       }
     }
@@ -281,16 +287,17 @@ class GitHubQuestionRepository(private val context: Context) {
         .url(COMMITS_API_URL)
         .header("User-Agent", "TNTV-AndroidApp")
         .build()
-      val response = okHttpClient.newCall(request).execute()
-      if (response.isSuccessful) {
-        val body = response.body?.string() ?: ""
-        if (body.startsWith("[")) {
-          val jsonArr = JSONArray(body)
-          if (jsonArr.length() > 0) {
-            jsonArr.getJSONObject(0).optString("sha", "")
+      okHttpClient.newCall(request).execute().use { response ->
+        if (response.isSuccessful) {
+          val body = response.body?.string() ?: ""
+          if (body.startsWith("[")) {
+            val jsonArr = JSONArray(body)
+            if (jsonArr.length() > 0) {
+              jsonArr.getJSONObject(0).optString("sha", "")
+            } else ""
           } else ""
         } else ""
-      } else ""
+      }
     } catch (e: Exception) {
       Log.w(TAG, "Không thể kiểm tra commit SHA: ${e.message}")
       ""
@@ -304,17 +311,18 @@ class GitHubQuestionRepository(private val context: Context) {
         .url(CONTENTS_API_URL)
         .header("User-Agent", "TNTV-AndroidApp")
         .build()
-      val response = okHttpClient.newCall(request).execute()
-      if (response.isSuccessful) {
-        val body = response.body?.string() ?: ""
-        if (body.startsWith("[")) {
-          val jsonArr = JSONArray(body)
-          for (i in 0 until jsonArr.length()) {
-            val item = jsonArr.optJSONObject(i) ?: continue
-            val name = item.optString("name", "")
-            val downloadUrl = item.optString("download_url", "")
-            if (name.isNotBlank() && downloadUrl.isNotBlank()) {
-              result[name] = downloadUrl
+      okHttpClient.newCall(request).execute().use { response ->
+        if (response.isSuccessful) {
+          val body = response.body?.string() ?: ""
+          if (body.startsWith("[")) {
+            val jsonArr = JSONArray(body)
+            for (i in 0 until jsonArr.length()) {
+              val item = jsonArr.optJSONObject(i) ?: continue
+              val name = item.optString("name", "")
+              val downloadUrl = item.optString("download_url", "")
+              if (name.isNotBlank() && downloadUrl.isNotBlank()) {
+                result[name] = downloadUrl
+              }
             }
           }
         }
@@ -331,11 +339,12 @@ class GitHubQuestionRepository(private val context: Context) {
         .url(url)
         .header("User-Agent", "TNTV-AndroidApp")
         .build()
-      val response = okHttpClient.newCall(request).execute()
-      if (response.isSuccessful) {
-        val text = response.body?.string()
-        if (isValidJson(text)) text else null
-      } else null
+      okHttpClient.newCall(request).execute().use { response ->
+        if (response.isSuccessful) {
+          val text = response.body?.string()
+          if (isValidJson(text)) text else null
+        } else null
+      }
     } catch (_: Exception) {
       null
     }
