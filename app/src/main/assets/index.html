@@ -1418,6 +1418,55 @@
       .trim();
   }
 
+  // Tối ưu hóa định dạng nội dung câu hỏi: tách phần hướng dẫn ngắn gọn và phần câu văn/nội dung xuống dòng
+  function parseAndFormatQuestionText(qText, type) {
+    if (!qText) return { header: '', body: '' };
+    
+    let text = String(qText).trim();
+    let header = '';
+    let body = text;
+
+    const colonIdx = text.indexOf(':');
+    if (colonIdx !== -1 && colonIdx < text.length - 1) {
+      const rawInst = text.substring(0, colonIdx).trim();
+      const rawBody = text.substring(colonIdx + 1).trim();
+
+      if (rawInst.includes('Điền quan hệ từ')) {
+        header = 'Điền quan hệ từ thích hợp:';
+      } else if (rawInst.includes('Điền từ')) {
+        header = 'Điền từ thích hợp vào chỗ trống:';
+      } else if (rawInst.includes('Sắp xếp')) {
+        header = 'Sắp xếp thành câu:';
+      } else if (rawInst.includes('Xếp') || rawInst.includes('Phân loại')) {
+        header = 'Xếp các từ vào nhóm tương ứng:';
+      } else if (rawInst.length <= 65) {
+        header = rawInst.endsWith(':') ? rawInst : (rawInst + ':');
+      } else {
+        header = (type === 'FILL' || type === 'DT') ? 'Điền từ thích hợp:' : 'Câu hỏi:';
+      }
+
+      body = rawBody.replace(/^["“'\s]+|["”'\s]+$/g, '').trim();
+      if (body && !body.startsWith('“') && !body.startsWith('"')) {
+        body = `“${body}”`;
+      }
+    } else {
+      if (type === 'FILL' || type === 'DT') {
+        header = 'Điền từ thích hợp vào chỗ trống:';
+      } else if (type === 'ARRANGE' || type === 'SX') {
+        header = 'Sắp xếp thành câu:';
+      } else if (type === 'CLASSIFY_MINI' || type === 'CHON') {
+        header = 'Bấm chọn từ bên dưới rồi xếp vào giỏ:';
+      }
+      body = text;
+    }
+
+    const formattedBody = body
+      .replace(/\([\.\s]*\)/g, '<span class="text-red-600 font-black px-1.5 py-0.5 rounded bg-amber-100 border border-amber-300 underline">( ... )</span>')
+      .replace(/\[\.\.\.\]/g, '<span class="text-red-600 font-black px-1.5 py-0.5 rounded bg-amber-100 border border-amber-300 underline">[ ... ]</span>');
+
+    return { header, body: formattedBody };
+  }
+
   // Tiện ích chuẩn hóa nội dung câu hỏi để nhận diện câu trùng
   function normalizeQuestionKey(text) {
     if (!text) return '';
@@ -5850,15 +5899,20 @@
       finalType = 'CLASSIFY_MINI';
       let formattedGroups = [];
 
+      const cleanGroupTitle = (title) => {
+        if (!title) return 'Nhóm từ';
+        return String(title).replace(/\s*\([^)]*\)\s*/g, ' ').replace(/\s+/g, ' ').trim();
+      };
+
       if (Array.isArray(q.groups)) {
         formattedGroups = q.groups.map(g => {
-          if (typeof g === 'string') return { name: g, words: [] };
-          return { name: g.name || g.title || 'Nhóm từ', words: Array.isArray(g.words) ? g.words : [] };
+          if (typeof g === 'string') return { name: cleanGroupTitle(g), words: [] };
+          return { name: cleanGroupTitle(g.name || g.title), words: Array.isArray(g.words) ? g.words : [] };
         });
       } else if (q.groups && typeof q.groups === 'object') {
         const ansObj = (q.answer && typeof q.answer === 'object') ? q.answer : {};
         Object.keys(q.groups).forEach(gKey => {
-          const gName = q.groups[gKey];
+          const gName = cleanGroupTitle(q.groups[gKey]);
           const gWords = Array.isArray(ansObj[gKey]) ? ansObj[gKey] : [];
           formattedGroups.push({ key: gKey, name: gName, words: gWords });
         });
@@ -7431,13 +7485,28 @@
 
     switch (curQ.type) {
       case 'MCQ': {
+        const parsed = parseAndFormatQuestionText(curQ.question, 'MCQ');
+        const hasHeader = (parsed.header && parsed.body && parsed.body !== curQ.question);
         questionBodyHtml = `
-          <div class="mb-4">
+          <div class="mb-3">
             <span class="text-xs font-bold bg-amber-100 text-amber-900 px-3 py-1 rounded-full border border-amber-300">
               Câu ${curIdx + 1}: ${formatQuestionTitle(curQ.title) || 'Trắc nghiệm kiến thức'} (10 điểm)
             </span>
           </div>
-          <h3 class="text-base sm:text-lg font-black text-slate-800 mb-4 leading-snug">${curQ.question}</h3>
+          ${hasHeader ? `
+            <div class="p-3.5 bg-amber-50 rounded-2xl border-2 border-amber-200 mb-4 text-center">
+              <div class="mb-1.5">
+                <span class="text-xs sm:text-sm font-black text-amber-900 bg-amber-200/80 px-3 py-1 rounded-lg inline-block border border-amber-300 shadow-sm">
+                  💡 ${parsed.header}
+                </span>
+              </div>
+              <p class="text-base sm:text-lg font-extrabold text-slate-800 leading-relaxed mt-1">
+                ${parsed.body}
+              </p>
+            </div>
+          ` : `
+            <h3 class="text-base sm:text-lg font-black text-slate-800 mb-4 leading-snug">${parsed.body}</h3>
+          `}
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-3" id="mcq-grid">
             ${curQ.options.map((opt, i) => `
               <button onclick="answerMCQ30(${i})" class="scroll-card p-3.5 text-left rounded-xl border-2 transition-all flex items-center gap-3 ${savedAns === i ? 'border-red-600 bg-red-50 text-red-950 font-black ring-2 ring-red-400' : 'border-amber-200 hover:border-amber-400 font-bold text-slate-800'}">
@@ -7525,15 +7594,21 @@
         break;
       }
       case 'FILL': {
+        const parsed = parseAndFormatQuestionText(curQ.question, 'FILL');
         questionBodyHtml = `
-          <div class="mb-4">
+          <div class="mb-3">
             <span class="text-xs font-bold bg-amber-100 text-amber-900 px-3 py-1 rounded-full border border-amber-300">
-              Câu ${curIdx + 1}: ${formatQuestionTitle(curQ.title) || 'Điền từ / Đố chữ'} (10 điểm)
+              Câu ${curIdx + 1}: ${formatQuestionTitle(curQ.title) || 'Điền từ còn thiếu'} (10 điểm)
             </span>
           </div>
-          <div class="p-4 bg-amber-50 rounded-2xl border-2 border-amber-200 mb-4 text-center">
-            <p class="text-base sm:text-lg font-bold text-slate-800 leading-relaxed">
-              ${curQ.question.replace('[...]', '<span class="text-red-600 font-black underline">[ ... ]</span>')}
+          <div class="p-3.5 sm:p-4 bg-amber-50 rounded-2xl border-2 border-amber-200 mb-4 text-center">
+            <div class="mb-2">
+              <span class="text-xs sm:text-sm font-black text-amber-900 bg-amber-200/80 px-3 py-1 rounded-lg inline-block border border-amber-300 shadow-sm">
+                💡 ${parsed.header || 'Điền từ thích hợp vào chỗ trống:'}
+              </span>
+            </div>
+            <p class="text-base sm:text-lg font-extrabold text-slate-800 leading-relaxed mt-1">
+              ${parsed.body}
             </p>
           </div>
           <div class="max-w-md mx-auto">
@@ -7667,18 +7742,18 @@
         const remainingWordsCount = allWords.filter((w, wIdx) => savedAns[wIdx] === undefined).length;
 
         questionBodyHtml = `
-          <!-- Header hướng dẫn dạng thông báo theo Ảnh 2 -->
-          <div class="mb-3.5">
-            <div class="p-3 sm:p-4 bg-amber-50 rounded-2xl border-2 border-amber-200 text-center sm:text-left shadow-sm">
-              <p class="text-xs sm:text-sm font-black text-amber-950 leading-relaxed flex items-center gap-1.5">
+          <!-- Header hướng dẫn gọn gàng -->
+          <div class="mb-2.5">
+            <div class="p-2.5 sm:p-3 bg-amber-50 rounded-xl border border-amber-200 text-center sm:text-left shadow-sm">
+              <p class="text-xs sm:text-sm font-black text-amber-950 leading-relaxed flex items-center justify-center sm:justify-start gap-1.5">
                 <span class="text-base">💡</span>
                 <span>Bấm chọn 1 từ bên dưới rồi bấm vào <b>Chiếc Giỏ</b> tương ứng để xếp (${totalWords} từ chia vào ${totalGroups} giỏ):</span>
               </p>
             </div>
           </div>
 
-          <!-- Danh sách các Chiếc Giỏ dạng viền nét đứt màu vàng hổ phách -->
-          <div class="flex flex-col gap-3.5 mb-4" id="classify-mini-groups">
+          <!-- Danh sách các Chiếc Giỏ: 2 giỏ trên ngang hàng, giỏ thứ 3 ở dưới kéo dài bằng cả 2 giỏ trên -->
+          <div class="grid grid-cols-2 gap-2.5 sm:gap-3 mb-3" id="classify-mini-groups">
             ${groups.map((g, gIdx) => {
               const wordsInGroup = [];
               Object.keys(savedAns).forEach(wIdxStr => {
@@ -7688,24 +7763,31 @@
                 }
               });
 
+              // Làm sạch tên giỏ: loại bỏ hoàn toàn phần giải thích trong ngoặc đơn
+              const cleanName = (g.name || 'Nhóm từ').replace(/\s*\([^)]*\)\s*/g, ' ').replace(/\s+/g, ' ').trim();
+
+              // Nếu có 3 giỏ: 2 giỏ đầu chiếm 1 cột, giỏ thứ 3 chiếm 2 cột (ở dưới kéo dài cân đối)
+              const isFullWidth = (groups.length === 3 && gIdx === 2) || (groups.length === 1);
+              const colSpanClass = isFullWidth ? 'col-span-2' : 'col-span-1';
+
               return `
-                <div onclick="dropToMiniGroup(${gIdx})" data-grp="${gIdx}" class="p-3.5 sm:p-4 rounded-2xl border-2 border-dashed border-[#e6a23c] bg-[#fffbf0] cursor-pointer hover:border-emerald-500 hover:shadow-md transition-all">
-                  <div class="flex items-center justify-between pb-2 border-b border-[#fde68a]">
-                    <div class="flex items-center gap-2">
-                      <span class="text-xl">🧺</span>
-                      <span class="font-black text-sm sm:text-base text-amber-950">${g.name}</span>
+                <div onclick="dropToMiniGroup(${gIdx})" data-grp="${gIdx}" class="${colSpanClass} p-2.5 sm:p-3 rounded-2xl border-2 border-dashed border-[#e6a23c] bg-[#fffbf0] cursor-pointer hover:border-emerald-500 hover:shadow-md transition-all flex flex-col justify-between">
+                  <div class="flex items-center justify-between pb-1.5 border-b border-[#fde68a]">
+                    <div class="flex items-center gap-1.5 min-w-0">
+                      <span class="text-base shrink-0">🧺</span>
+                      <span class="font-black text-xs sm:text-sm text-amber-950 truncate" title="${cleanName}">${cleanName}</span>
                     </div>
-                    <span class="text-xs font-bold bg-[#d1fae5] text-[#065f46] border border-emerald-300 px-2.5 py-0.5 rounded-full shadow-sm">
+                    <span class="text-[11px] sm:text-xs font-bold bg-[#d1fae5] text-[#065f46] border border-emerald-300 px-2 py-0.5 rounded-full shadow-sm shrink-0 ml-1">
                       ${wordsInGroup.length} từ
                     </span>
                   </div>
-                  <div class="grp-items flex flex-wrap gap-2 mt-2.5 min-h-[48px] items-center">
+                  <div class="grp-items flex flex-wrap gap-1.5 mt-2 min-h-[38px] items-center">
                     ${wordsInGroup.length === 0 ? `
-                      <span class="text-xs text-amber-800/40 italic py-1 select-none">
-                        Chạm chọn 1 từ ở khung bên dưới rồi chạm vào đây để xếp vào giỏ...
+                      <span class="text-[11px] text-amber-800/40 italic py-0.5 select-none">
+                        Chạm giỏ để xếp từ vào đây...
                       </span>
                     ` : wordsInGroup.map(item => `
-                      <span onclick="event.stopPropagation(); removeWordFromMiniGroup(${item.wIdx})" class="bg-emerald-100 hover:bg-red-100 text-emerald-900 hover:text-red-900 border border-emerald-300 hover:border-red-300 text-xs sm:text-sm px-3 py-1.5 rounded-xl font-bold cursor-pointer transition-all flex items-center gap-1.5 shadow-sm active:scale-95" title="Bấm để trả từ này về khung bên dưới">
+                      <span onclick="event.stopPropagation(); removeWordFromMiniGroup(${item.wIdx})" class="bg-emerald-100 hover:bg-red-100 text-emerald-900 hover:text-red-900 border border-emerald-300 hover:border-red-300 text-xs px-2.5 py-1 rounded-xl font-bold cursor-pointer transition-all flex items-center gap-1 shadow-sm active:scale-95" title="Bấm để trả từ này về khung bên dưới">
                         <span>${item.text}</span>
                         <span class="text-[10px] text-red-600 font-extrabold ml-0.5">✕</span>
                       </span>
@@ -7716,22 +7798,22 @@
             }).join('')}
           </div>
 
-          <!-- Khung từ cần xếp vào giỏ ở phía dưới theo Ảnh 2 -->
-          <div class="p-4 bg-[#fff7ed] rounded-2xl border border-[#fed7aa] shadow-sm">
-            <div class="text-xs sm:text-sm font-extrabold text-amber-950 mb-3 flex items-center justify-between">
+          <!-- Khung từ cần xếp vào giỏ ở phía dưới gọn gàng -->
+          <div class="p-3 sm:p-3.5 bg-[#fff7ed] rounded-2xl border border-[#fed7aa] shadow-sm">
+            <div class="text-xs sm:text-sm font-extrabold text-amber-950 mb-2 flex items-center justify-between">
               <span>Từ cần xếp vào giỏ (${remainingWordsCount} từ còn lại):</span>
               ${remainingWordsCount < totalWords ? `
-                <button onclick="resetMiniClassifyWords()" class="text-xs text-red-600 hover:text-red-800 font-bold flex items-center gap-1 px-2.5 py-1 rounded-lg hover:bg-red-50 transition-colors">
+                <button onclick="resetMiniClassifyWords()" class="text-xs text-red-600 hover:text-red-800 font-bold flex items-center gap-1 px-2 py-0.5 rounded-lg hover:bg-red-50 transition-colors">
                   <span>↺ Làm lại</span>
                 </button>
               ` : ''}
             </div>
-            <div class="flex flex-wrap gap-2.5 justify-center" id="mini-words-pool">
+            <div class="flex flex-wrap gap-2 justify-center" id="mini-words-pool">
               ${allWords.map((w, wIdx) => {
                 if (savedAns[wIdx] !== undefined) return '';
 
                 const isSelected = (selectedMiniWordIndex === wIdx);
-                let btnClass = "btn-3d text-xs sm:text-sm font-bold px-3.5 sm:px-4 py-2 rounded-2xl border-2 transition-all shadow-sm ";
+                let btnClass = "btn-3d text-xs sm:text-sm font-bold px-3 py-1.5 sm:px-3.5 sm:py-2 rounded-xl border-2 transition-all shadow-sm ";
                 if (isSelected) {
                   btnClass += "bg-amber-400 border-amber-600 text-amber-950 ring-4 ring-amber-200 scale-105 shadow-md";
                 } else {
