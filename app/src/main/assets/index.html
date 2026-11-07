@@ -1248,6 +1248,24 @@
           AppState.ownedItems = allItems;
         }
       }
+
+      // Đọc ưu tiên trạng thái VIP & Tên tài khoản từ Native Android Bridge
+      if (window.AndroidBridge && typeof window.AndroidBridge.getVipLevel === 'function') {
+        const nativeLevel = window.AndroidBridge.getVipLevel();
+        if (nativeLevel >= 2) {
+          AppState.isVip1 = true;
+          AppState.isVip2 = true;
+        } else if (nativeLevel >= 1) {
+          AppState.isVip1 = true;
+        }
+        if (typeof window.AndroidBridge.getUserName === 'function') {
+          const nativeName = window.AndroidBridge.getUserName();
+          if (nativeName && nativeName.trim() && nativeName.trim() !== 'Siêu Trạng Nhí' && nativeName.trim() !== 'Công chúa tóc mây') {
+            AppState.studentName = nativeName.trim();
+            AppState.customAccountId = nativeName.trim();
+          }
+        }
+      }
     } catch (e) {
       console.warn('Lỗi localStorage:', e);
     }
@@ -9303,7 +9321,7 @@
     renderHome();
   }
 
-  window.onVipStatusChanged = function(vipLevel, userName) {
+  window.onVipStatusChanged = function(vipLevel, userName, isSilent = false) {
     if (vipLevel >= 2) {
       AppState.isVip1 = true;
       AppState.isVip2 = true;
@@ -9324,13 +9342,15 @@
       AppState.customAccountId = accName.trim();
     } else {
       if (!AppState.customAccountId || AppState.customAccountId === 'Siêu Trạng Nhí' || AppState.customAccountId === 'Công chúa tóc mây') {
-        AppState.studentName = 'Tài khoản VIP';
-        AppState.customAccountId = 'Tài khoản VIP';
+        if (AppState.isVip1 || AppState.isVip2) {
+          AppState.studentName = 'Tài khoản VIP';
+          AppState.customAccountId = 'Tài khoản VIP';
+        }
       }
     }
 
     savePersistedState();
-    if (typeof SoundEngine !== 'undefined' && SoundEngine.playFanfare) {
+    if (!isSilent && typeof SoundEngine !== 'undefined' && SoundEngine.playFanfare && vipLevel >= 1) {
       SoundEngine.playFanfare();
     }
     updateHeaderUI();

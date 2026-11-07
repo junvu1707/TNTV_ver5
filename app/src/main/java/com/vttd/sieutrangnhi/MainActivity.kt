@@ -189,6 +189,12 @@ class MainActivity : ComponentActivity() {
         override fun onPageFinished(view: WebView?, url: String?) {
           super.onPageFinished(view, url)
           Log.d(TAG, "WebView onPageFinished: $url")
+          val level = vipPrefs.getVipLevel()
+          val userName = vipPrefs.getUserName().replace("'", "\\'")
+          view?.evaluateJavascript(
+            "if (window.onVipStatusChanged) { window.onVipStatusChanged($level, '$userName', true); }",
+            null
+          )
         }
       }
 
