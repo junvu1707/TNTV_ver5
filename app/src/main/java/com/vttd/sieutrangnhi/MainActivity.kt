@@ -561,6 +561,12 @@ class MainActivity : ComponentActivity() {
 
   override fun onPause() {
     adManager.pause()
+    try {
+      webView?.evaluateJavascript(
+        "if (window.SoundEngine && typeof window.SoundEngine.suspend === 'function') { window.SoundEngine.suspend(); }",
+        null
+      )
+    } catch (_: Exception) {}
     webView?.onPause()
     webView?.pauseTimers()
     super.onPause()
@@ -571,6 +577,12 @@ class MainActivity : ComponentActivity() {
     adManager.resume()
     webView?.onResume()
     webView?.resumeTimers()
+    try {
+      webView?.evaluateJavascript(
+        "if (window.SoundEngine && typeof window.SoundEngine.resume === 'function') { window.SoundEngine.resume(); }",
+        null
+      )
+    } catch (_: Exception) {}
     
     // Đồng bộ trạng thái khi mở lại ứng dụng
     updateAdMobForVipStatus()

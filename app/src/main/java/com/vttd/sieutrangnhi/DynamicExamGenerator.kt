@@ -34,7 +34,11 @@ data class QuestionModel(
     obj.put("question", question)
     obj.put("options", JSONArray(options))
     obj.put("correctIndex", correctIndex)
-    obj.put("answer", answer)
+    if (rawJson != null && rawJson.has("answer") && rawJson.optJSONObject("answer") != null) {
+      obj.put("answer", rawJson.getJSONObject("answer"))
+    } else if (answer.isNotBlank() || !obj.has("answer")) {
+      obj.put("answer", answer)
+    }
     obj.put("explain", explain)
     if (imageKey.isNotBlank()) obj.put("imageKey", imageKey)
     if (words.isNotEmpty()) obj.put("words", JSONArray(words))
@@ -45,7 +49,18 @@ data class QuestionModel(
   companion object {
     fun fromJson(json: JSONObject): QuestionModel {
       val rawId = json.optString("questionId").ifBlank { json.optString("id") }
-      val rawType = json.optString("type", "TN")
+      var rawType = json.optString("type", "TN")
+      if (rawType.isBlank() || rawType.equals("TN", ignoreCase = true)) {
+        if (rawId.contains("noi", ignoreCase = true)) {
+          rawType = "NOI"
+        } else if (rawId.contains("chon", ignoreCase = true)) {
+          rawType = "CHON"
+        } else if (rawId.contains("sx", ignoreCase = true) || rawId.contains("sapxep", ignoreCase = true)) {
+          rawType = "SX"
+        } else if (rawId.contains("dt", ignoreCase = true) || rawId.contains("dien", ignoreCase = true)) {
+          rawType = "DT"
+        }
+      }
       val gradeStr = json.optString("grade", "")
       val levelStr = json.optString("level", "")
       val roundVal = json.optInt("round", 0)
@@ -97,7 +112,11 @@ data class QuestionModel(
       }
 
       val exp = json.optString("explanation").ifBlank { json.optString("explain") }
-      val finalTitle = if (rawType.equals("SX", ignoreCase = true)) "Sắp xếp câu" else json.optString("title")
+      val finalTitle = when {
+        rawType.equals("SX", ignoreCase = true) -> "Sắp xếp câu"
+        rawType.equals("NOI", ignoreCase = true) || rawId.contains("noi", ignoreCase = true) -> json.optString("title").ifBlank { "Nối cột tương ứng" }
+        else -> json.optString("title")
+      }
       val finalQuestion = if (rawType.equals("SX", ignoreCase = true)) "Sắp xếp thành câu" else json.optString("question")
 
       return QuestionModel(
@@ -263,12 +282,17 @@ class DynamicExamGenerator(
       }
     }
 
-    // Tầng 3: index.html testmode (Ưu tiên 3) nếu cả 2 tầng trên chưa đủ 30 câu
-    if (pool.size < 30 && localQuestionsJsonStr.isNotBlank()) {
-      val localQuestions = parseQuestionsFromJsonString(localQuestionsJsonStr)
-        .filter { matchesGradeAndRound(it, grade, round) }
-      pool.addAll(localQuestions)
-      Log.d(TAG, "[Ưu tiên 3] Nạp ${localQuestions.size} câu từ index.html testmode")
+    // Tầng 3: index.html testmode (Ưu tiên 3) nếu cả 2 tầng trên chưa đủ 30 câu hoặc thiếu dạng câu hỏi
+    if (localQuestionsJsonStr.isNotBlank()) {
+      val hasMissingType = TARGET_QUOTAS.keys.any { typeKey ->
+        pool.none { standardizeType(it.type) == typeKey }
+      }
+      if (pool.size < 30 || hasMissingType) {
+        val localQuestions = parseQuestionsFromJsonString(localQuestionsJsonStr)
+          .filter { matchesGradeAndRound(it, grade, round) }
+        pool.addAll(localQuestions)
+        Log.d(TAG, "[Ưu tiên 3] Nạp ${localQuestions.size} câu từ index.html testmode")
+      }
     }
 
     return pool.distinctBy { normalizeQuestionKey(it) }

@@ -154,4 +154,58 @@ class DynamicExamGeneratorTest {
     assertEquals(2, dist.getInt("CHON"))
     assertEquals(2, dist.getInt("SX"))
   }
+
+  @Test
+  fun testNoiQuestionPreservesColumnsAndAnswer() {
+    val rawJson = JSONObject().apply {
+      put("questionId", "k1_c1_noi_0006")
+      put("type", "NOI")
+      put("question", "Hãy nối mỗi tiếng ở Cột A với âm đầu tương ứng ở Cột B.")
+      put("columnA", JSONObject(mapOf("1" to "bàn", "2" to "cua", "3" to "dế", "4" to "lá")))
+      put("columnB", JSONObject(mapOf("A" to "c", "B" to "l", "C" to "b", "D" to "d")))
+      put("answer", JSONObject(mapOf("1" to "C", "2" to "A", "3" to "D", "4" to "B")))
+      put("explanation", "Mỗi tiếng được nối với đúng âm đầu của tiếng đó.")
+    }
+
+    val model = QuestionModel.fromJson(rawJson)
+    assertEquals("NOI", model.type)
+    assertEquals("k1_c1_noi_0006", model.id)
+
+    val serialized = model.toJson()
+    assertTrue("Cần bảo toàn columnA", serialized.has("columnA"))
+    assertTrue("Cần bảo toàn columnB", serialized.has("columnB"))
+    assertTrue("Cần bảo toàn answer", serialized.has("answer"))
+
+    val colA = serialized.getJSONObject("columnA")
+    assertEquals("bàn", colA.getString("1"))
+    val colB = serialized.getJSONObject("columnB")
+    assertEquals("c", colB.getString("A"))
+    val ans = serialized.getJSONObject("answer")
+    assertEquals("C", ans.getString("1"))
+  }
+
+  @Test
+  fun testChonQuestionGeneratedStructure() {
+    val generator = getGenerator()
+    val examJsonStr = generator.generateDynamicMode2Exam(
+      grade = 1,
+      changOrRound = 1,
+      seed = 100,
+      targetCount = 30
+    )
+    val examJson = JSONObject(examJsonStr)
+    val questions = examJson.getJSONArray("questions")
+    var foundChon = false
+    for (i in 0 until questions.length()) {
+      val q = questions.getJSONObject(i)
+      val type = q.getString("type")
+      if (type == "CHON") {
+        foundChon = true
+        println("CHON question: " + q.toString())
+        assertTrue("Cần có groups hoặc words", q.has("groups") || q.has("words"))
+        assertTrue("Cần có answer", q.has("answer"))
+      }
+    }
+    assertTrue("Cần có ít nhất 1 câu CHON", foundChon)
+  }
 }

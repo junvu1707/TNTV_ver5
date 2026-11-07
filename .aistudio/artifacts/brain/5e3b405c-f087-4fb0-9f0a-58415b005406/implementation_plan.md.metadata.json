@@ -1,6 +1,6 @@
 {
-  "summary":  "Kế hoạch cải tiến dạng câu hỏi Sắp xếp (SX) trong Đề thi 30 câu: chuyển từ nhập văn bản thủ công sang giao diện tương tác chạm ô từ (Tile Touch & Arrange) trực quan, chuẩn đề Trạng Nguyên.",
-  "updatedAt":  "2026-11-07T08:02:55.937339320Z",
+  "summary":  "Kế hoạch giải quyết thắc mắc về nguồn dữ liệu thống kê câu hỏi, đồng bộ dữ liệu GitHub và sửa triệt để giao diện dạng bài Phân loại từ ngữ vào các giỏ theo đúng Ảnh 2 tham khảo.",
+  "updatedAt":  "2026-11-07T09:14:18.111565037Z",
   "requestFeedback":  true,
   "userFacing":  true
 }
