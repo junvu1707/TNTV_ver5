@@ -1,43 +1,30 @@
-# Kế hoạch Loại bỏ Ghi chú Thừa & Tối ưu Hiển thị Tên Giỏ Phân loại
+# Kế hoạch tối ưu hóa hiệu năng nạp đề thi & parse JSON
 
-## 1. Mục tiêu & Yêu cầu chỉnh sửa
-
-Theo đúng hình chụp khoanh đỏ từ người dùng:
-
-1. **Loại bỏ hoàn toàn các dòng ghi chú / hướng dẫn thừa trong các dạng câu hỏi**:
-   - **Dạng Điền từ & Trắc nghiệm (Screenshot 1)**:
-     - Loại bỏ khung ghi chú `💡 Chọn phụ âm...` / `💡 Điền quan hệ từ...` thừa bên trong hộp câu hỏi.
-     - Chỉ hiển thị trực tiếp nội dung câu hỏi/câu văn ngắn gọn, rõ ràng (ví dụ: `"(...) tet dai"` hoặc `"Lời nói chẳng mất tiền mua, lựa lời mà nói cho vừa lòng (...)"`).
-   - **Dạng Sắp xếp câu (Screenshot 3)**:
-     - Loại bỏ dòng ghi chú phụ `"Chạm vào các ô từ bên dưới để đưa vào câu. Chạm vào từ trong câu để gỡ bỏ."`.
-     - Chỉ giữ lại tiêu đề ngắn gọn: **Sắp xếp thành câu**.
-   - **Dạng Phân loại vào Giỏ (Screenshot 2)**:
-     - Loại bỏ dòng ghi chú mờ `"Chạm giỏ để xếp từ vào đây..."` khi giỏ còn trống.
-
-2. **Hiển thị đầy đủ tên các Giỏ phân loại (không bị cắt chữ `...`)**:
-   - Loại bỏ class `truncate` gây cắt ngắn tên giỏ (như `Từ chỉ hoạ...`).
-   - Cho phép tên giỏ tự động xuống dòng (`whitespace-normal break-words`), đảm bảo hiển thị 100% đầy đủ tên các nhóm từ (ví dụ: **Từ chỉ hoạt động**, **Từ chỉ sự vật**, **Từ chỉ đặc điểm**...).
+## Tổng quan
+Tối ưu hóa tốc độ nạp đề thi, loại bỏ hiện tượng khựng giao diện (UI Freeze) bằng cách:
+1. Đưa các biểu thức chính quy (`Regex`) vào `companion object` (biên dịch một lần duy nhất).
+2. Thiết lập cơ chế In-Memory RAM Cache (`ConcurrentHashMap`) cho danh sách `QuestionModel` đã parse để tránh parse lại chuỗi JSON lớn nhiều lần trong một phiên làm việc.
+3. Giữ nguyên tuyệt đối thứ tự ưu tiên 3 tầng: 
+   - Ưu tiên 1: GitHub (Cache / Tải trực tiếp)
+   - Ưu tiên 2: File JSON trong Assets
+   - Ưu tiên 3: index.html (Test Mode / Dự phòng)
 
 ---
 
-## 2. Các thay đổi kỹ thuật chi tiết (`app/src/main/assets/index.html`)
+## Chi tiết kỹ thuật
 
-### A. Tối ưu dạng Điền từ (`case 'FILL'`) & Trắc nghiệm (`case 'MCQ'`)
-- Loại bỏ hoàn toàn khối `div` chứa thẻ `💡 [Phần ghi chú/hướng dẫn]`.
-- Làm sạch chuỗi câu hỏi: Tự động cắt bỏ các tiền tố dài dòng kiểu *"Chọn phụ âm đầu đúng cho tiếng trong ngoặc:"* hay *"Điền quan hệ từ vào chỗ trống phù hợp:"*, chỉ hiển thị trực tiếp câu văn chứa chỗ trống.
+### 1. Tối ưu Regex trong `DynamicExamGenerator` và `QuestionModel`
+- Khai báo các `Regex` ở `companion object`:
+  - `private val DIGIT_REGEX = Regex("\\d+")`
+  - `private val GRADE_ROUND_REGEX = Regex("^k(\\d+)_c(\\d+)", RegexOption.IGNORE_CASE)`
+  - `private val NORMALIZE_REGEX = Regex("[^a-z0-9àáảãạăắằẳẵặâấầnẩẫậnèéẻẽẹêếềểễệìíỉĩịòóỏõọôốồổỗộơớờởỡợùúủũụưứừửữựỳýỷỹỵđ]")`
 
-### B. Tối ưu dạng Sắp xếp câu (`case 'ARRANGE'`)
-- Loại bỏ thẻ `<p class="text-xs text-slate-500 mt-1 font-medium">Chạm vào các ô từ bên dưới...</p>`.
-- Chỉ giữ tiêu đề chính: `<p class="text-base sm:text-lg font-black text-slate-800">Sắp xếp thành câu</p>`.
+### 2. In-Memory RAM Cache trong `DynamicExamGenerator`
+- Sử dụng `ConcurrentHashMap<String, List<QuestionModel>>` với key dạng `"$grade_$round"` để cache kết quả parse câu hỏi.
+- Khi GitHub sync thành công hoặc khi đổi đề, có thể invalidate cache để đảm bảo nhận đề mới nhất.
 
-### C. Tối ưu dạng Phân loại vào Giỏ (`case 'CLASSIFY_MINI'`)
-- Xóa bỏ dòng placeholder `<span class="text-[11px] text-amber-800/40 italic py-0.5 select-none">Chạm giỏ để xếp từ vào đây...</span>`.
-- Bỏ class `truncate` ở thẻ tên giỏ `<span>${cleanName}</span>`, đổi sang `whitespace-normal break-words leading-tight` để nếu tên giỏ dài sẽ tự động xuống dòng đẹp mắt, đầy đủ nét chữ.
-
----
-
-## 3. Các bước triển khai & Kiểm thử
-
-1. **Cập nhật code HTML/JS (`index.html`)**: Thực hiện sửa các `case` tương ứng trong `renderExamMode2Question()`.
-2. **Kiểm thử tự động**: Chạy `gradle :app:testDebugUnitTest` xác nhận tất cả các Unit Test giao diện và dữ liệu tiếp tục vượt qua.
-3. **Biên dịch ứng dụng**: Chạy `compile_applet` xác nhận app xây dựng thành công.
+### 3. Bảo toàn thứ tự ưu tiên 3 tầng
+- `loadQuestionPool` vẫn giữ nguyên logic:
+  1. Kiểm tra cache RAM / GitHub Cache File.
+  2. Nếu không có, gọi `GitHubQuestionRepository.getLocalAssetQuestionsJson`.
+  3. Nếu vẫn không có, dùng `localQuestionsJsonStr` từ `index.html`.

@@ -171,6 +171,8 @@ class DynamicExamGenerator(
   companion object {
     private const val TAG = "DynamicExamGenerator"
     private val NORMALIZE_REGEX = Regex("[^a-z0-9àáảãạăắằẳẵặâấầnẩẫậnèéẻẽẹêếềểễệìíỉĩịòóỏõọôốồổỗộơớờởỡợùúủũụưứừửữựỳýỷỹỵđ]")
+    private val DIGIT_REGEX = Regex("\\d+")
+    private val ID_PREFIX_REGEX = Regex("^k(\\d+)_c(\\d+)", RegexOption.IGNORE_CASE)
 
     // Cơ cấu số lượng chuẩn cho bộ 30 câu hỏi
     val TARGET_QUOTAS = mapOf(
@@ -215,6 +217,9 @@ class DynamicExamGenerator(
     }
   }
 
+  // In-Memory RAM Cache tránh parse lại JSON lớn nhiều lần trong phiên làm việc
+  private val questionPoolCache = java.util.concurrent.ConcurrentHashMap<String, List<QuestionModel>>()
+
   private fun normalizeQuestionKey(q: QuestionModel): String {
     if (q.id.isNotBlank()) return q.id.lowercase(Locale.ROOT).trim()
     val rawText = q.question.ifBlank { q.title }
@@ -229,7 +234,7 @@ class DynamicExamGenerator(
   fun matchesGradeAndRound(q: QuestionModel, targetGrade: Int, targetRound: Int): Boolean {
     // 1. Kiểm tra grade nếu câu hỏi có trường grade
     if (q.grade.isNotBlank()) {
-      val gradeDigits = Regex("\\d+").find(q.grade)?.value?.toIntOrNull()
+      val gradeDigits = DIGIT_REGEX.find(q.grade)?.value?.toIntOrNull()
       if (gradeDigits != null && gradeDigits != targetGrade) return false
     }
 
@@ -251,7 +256,7 @@ class DynamicExamGenerator(
 
     // 4. Kiểm tra ID prefix như k1_c1, k2_c3
     if (q.id.isNotBlank()) {
-      val match = Regex("^k(\\d+)_c(\\d+)", RegexOption.IGNORE_CASE).find(q.id)
+      val match = ID_PREFIX_REGEX.find(q.id)
       if (match != null) {
         val (kStr, cStr) = match.destructured
         val kVal = kStr.toIntOrNull()
@@ -272,6 +277,16 @@ class DynamicExamGenerator(
    */
   fun loadQuestionPool(grade: Int, changOrRound: Int, localQuestionsJsonStr: String = ""): List<QuestionModel> {
     val round = mapChangToRound(changOrRound)
+    val cacheKey = "g${grade}_r${round}"
+
+    // Kiểm tra In-Memory RAM Cache trước
+    questionPoolCache[cacheKey]?.let { cached ->
+      if (cached.isNotEmpty()) {
+        Log.d(TAG, "[RAM Cache] Đã lấy nhanh ${cached.size} câu từ In-Memory Cache (Lớp $grade - Round $round)")
+        return cached
+      }
+    }
+
     val pool = mutableListOf<QuestionModel>()
 
     // --- ƯU TIÊN 1: ĐỀ TRÊN GITHUB ---
@@ -311,7 +326,11 @@ class DynamicExamGenerator(
       }
     }
 
-    return pool.distinctBy { normalizeQuestionKey(it) }
+    val distinctPool = pool.distinctBy { normalizeQuestionKey(it) }
+    if (distinctPool.isNotEmpty()) {
+      questionPoolCache[cacheKey] = distinctPool
+    }
+    return distinctPool
   }
 
   /**
