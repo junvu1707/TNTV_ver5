@@ -104,8 +104,19 @@ class AdManager(
   }
 
   // ========================================================
-  // 1. QUẢNG CÁO BANNER
+  // 1. QUẢNG CÁO BANNER (GOOGLE ANCHORED ADAPTIVE BANNER)
   // ========================================================
+
+  private fun getAdaptiveAdSize(container: FrameLayout): AdSize {
+    val displayMetrics = context.resources.displayMetrics
+    var adWidthPixels = container.width.toFloat()
+    if (adWidthPixels <= 0f) {
+      adWidthPixels = displayMetrics.widthPixels.toFloat()
+    }
+    val density = displayMetrics.density
+    val adWidth = (adWidthPixels / density).toInt()
+    return AdSize.getCurrentOrientationAnchoredAdaptiveBannerAdSize(context, adWidth)
+  }
 
   fun initBannerAd(container: FrameLayout) {
     if (!vipPrefs.shouldShowBannerAd()) {
@@ -115,18 +126,19 @@ class AdManager(
     }
 
     try {
+      val adaptiveAdSize = getAdaptiveAdSize(container)
       val adView = AdView(context).apply {
-        setAdSize(AdSize.BANNER)
+        setAdSize(adaptiveAdSize)
         adUnitId = this@AdManager.bannerAdUnitId
         adListener = object : AdListener() {
           override fun onAdLoaded() {
-            Log.d(TAG, "Banner Ad loaded successfully ($bannerAdUnitId)")
+            Log.d(TAG, "Adaptive Banner Ad loaded successfully ($bannerAdUnitId)")
             if (vipPrefs.shouldShowBannerAd()) {
               container.visibility = View.VISIBLE
             }
           }
           override fun onAdFailedToLoad(error: LoadAdError) {
-            Log.w(TAG, "Banner Ad failed to load: ${error.message}")
+            Log.w(TAG, "Adaptive Banner Ad failed to load: ${error.message}")
           }
         }
       }
@@ -135,14 +147,14 @@ class AdManager(
       container.addView(
         adView,
         FrameLayout.LayoutParams(
-          ViewGroup.LayoutParams.WRAP_CONTENT,
+          ViewGroup.LayoutParams.MATCH_PARENT,
           ViewGroup.LayoutParams.WRAP_CONTENT,
           Gravity.CENTER
         )
       )
       adView.loadAd(buildAdRequest())
     } catch (e: Exception) {
-      Log.e(TAG, "Lỗi nạp Banner Ad: ${e.message}")
+      Log.e(TAG, "Lỗi nạp Adaptive Banner Ad: ${e.message}")
     }
   }
 
