@@ -6590,12 +6590,11 @@
     root.innerHTML = `
       ${getExamHeaderMode1(subGame.title)}
       <div class="scroll-card p-3 sm:p-5">
-        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-3 text-xs sm:text-sm">
-          <p class="text-slate-700 font-semibold flex items-center gap-1.5">
-            <span>💡</span>
-            <span>Chọn 1 ô ở <b>Cột Bên Trái</b> rồi nối với 1 ô tương ứng ở <b>Cột Bên Phải</b> (Nối đủ cả 6 cặp = +10 ⭐).</span>
-          </p>
-          <div class="flex items-center gap-2 self-end sm:self-auto">
+        <div class="flex items-center justify-between mb-3 text-xs sm:text-sm">
+          <span class="text-xs font-bold text-amber-900 bg-amber-100 px-3 py-1 rounded-full border border-amber-300">
+            Nối cặp tương ứng (+10 ⭐)
+          </span>
+          <div class="flex items-center gap-2">
             <span class="text-xs font-bold text-emerald-800 bg-emerald-50 px-2.5 py-1 rounded-full border border-emerald-300">
               Đã nối: <b id="match-progress">${matchedCount}</b>/${totalPairs}
             </span>
@@ -6640,6 +6639,13 @@
               `;
             }).join('')}
           </div>
+        </div>
+
+        <div class="p-3 bg-amber-50/90 rounded-2xl border-2 border-amber-200 text-center mt-3">
+          <p class="text-slate-700 font-semibold text-xs sm:text-sm flex items-center justify-center gap-1.5">
+            <span>💡</span>
+            <span>Chọn 1 ô ở <b>Cột Bên Trái</b> rồi nối với 1 ô tương ứng ở <b>Cột Bên Phải</b> (Nối đủ cả 6 cặp = +10 ⭐).</span>
+          </p>
         </div>
 
         <!-- Nút Câu trước (trái) & Nút Câu sau (phải) -->
@@ -7255,14 +7261,12 @@
               <div class="p-4 bg-amber-50 rounded-2xl border-2 border-amber-300 mb-4">
                 <div class="text-xs font-extrabold text-amber-900 mb-2 flex items-center gap-1">
                   <span>🧩</span>
-                  <span>Hãy bấm chọn các thẻ từ bên dưới để ghép thành câu hoàn chỉnh:</span>
+                  <span>Sắp xếp thành câu</span>
                 </div>
 
                 <!-- KHUNG CHỨA CÂU GHÉP -->
                 <div class="min-h-[60px] p-3 bg-white rounded-xl border-2 border-dashed border-amber-400 flex flex-wrap gap-2 items-center justify-center shadow-inner">
-                  ${constructedWords.length === 0 ? `
-                    <span class="text-xs text-slate-400 font-semibold italic">Bấm các từ phía dưới để xếp câu tại đây...</span>
-                  ` : constructedWords.map((w) => `
+                  ${constructedWords.length === 0 ? '' : constructedWords.map((w) => `
                     <button data-constructed-id="${w.id}" class="btn-constructed-word btn-3d bg-emerald-500 hover:bg-red-500 text-white font-bold text-xs sm:text-sm px-3 py-1.5 rounded-xl transition-all flex items-center gap-1">
                       <span>${w.text}</span>
                       <span class="text-[10px] text-emerald-100">✕</span>
@@ -7535,19 +7539,12 @@
             <p class="text-base sm:text-lg font-black text-slate-800 leading-snug">
               Sắp xếp thành câu
             </p>
-            <p class="text-xs text-slate-500 mt-1 font-medium">
-              Chạm vào các ô từ bên dưới để đưa vào câu. Chạm vào từ trong câu để gỡ bỏ.
-            </p>
           </div>
 
           <!-- Khung câu đang ghép -->
           <div class="p-4 bg-white rounded-2xl border-2 border-dashed border-amber-400 min-h-[96px] mb-4 flex flex-col justify-between shadow-inner">
             <div class="flex flex-wrap items-center gap-2" id="arrange-target-area">
-              ${selectedIndices.length === 0 ? `
-                <span class="text-xs sm:text-sm text-slate-400 font-bold italic py-2.5 select-none">
-                  Chạm vào các ô từ bên dưới để ghép thành câu hoàn chỉnh...
-                </span>
-              ` : selectedIndices.map((elemIdx, slotIdx) => `
+              ${selectedIndices.length === 0 ? '' : selectedIndices.map((elemIdx, slotIdx) => `
                 <button onclick="removeArrangeWord(${slotIdx})" class="btn-3d px-3.5 py-2 rounded-xl bg-amber-100 hover:bg-red-100 border-2 border-amber-400 hover:border-red-400 text-amber-950 hover:text-red-900 font-black text-xs sm:text-sm flex items-center gap-1.5 shadow-sm transform active:scale-95 transition-all" title="Chạm để gỡ từ này ra khỏi câu">
                   <span>${elements[elemIdx]}</span>
                   <span class="text-[10px] text-red-500 font-extrabold ml-0.5">✕</span>
@@ -7643,12 +7640,6 @@
                 Đã nối: ${pairedCount}/${totalPairs}
               </span>
             </div>
-            <div class="p-3 bg-amber-50/90 rounded-2xl border-2 border-amber-200 text-center">
-              <p class="text-xs sm:text-sm font-bold text-slate-800 leading-snug">
-                💡 Chọn 1 ô ở <span class="text-rose-700 font-black">Cột Bên Trái</span> rồi nối với 1 ô tương ứng ở <span class="text-amber-800 font-black">Cột Bên Phải</span>
-              </p>
-              <p class="text-[11px] text-slate-500 mt-0.5">Bấm lại vào ô đã nối để hủy nối và chọn lại.</p>
-            </div>
           </div>
 
           <div class="grid grid-cols-2 gap-3 sm:gap-4 my-3" id="mini-match-area">
@@ -7717,6 +7708,12 @@
               }).join('')}
             </div>
           </div>
+          <div class="p-3 bg-amber-50/90 rounded-2xl border-2 border-amber-200 text-center mt-3">
+            <p class="text-xs sm:text-sm font-bold text-slate-800 leading-snug">
+              💡 Chọn 1 ô ở <span class="text-rose-700 font-black">Cột Bên Trái</span> rồi nối với 1 ô tương ứng ở <span class="text-amber-800 font-black">Cột Bên Phải</span>
+            </p>
+            <p class="text-[11px] text-slate-500 mt-0.5">Bấm lại vào ô đã nối để hủy nối và chọn lại.</p>
+          </div>
           <div id="mini-match-status" class="text-xs font-bold text-emerald-700 text-center mt-1"></div>
         `;
         break;
@@ -7782,11 +7779,7 @@
                     </span>
                   </div>
                   <div class="grp-items flex flex-wrap gap-1.5 mt-2 min-h-[38px] items-center">
-                    ${wordsInGroup.length === 0 ? `
-                      <span class="text-[11px] text-amber-800/40 italic py-0.5 select-none">
-                        Chạm giỏ để xếp từ vào đây...
-                      </span>
-                    ` : wordsInGroup.map(item => `
+                    ${wordsInGroup.length === 0 ? '' : wordsInGroup.map(item => `
                       <span onclick="event.stopPropagation(); removeWordFromMiniGroup(${item.wIdx})" class="bg-emerald-100 hover:bg-red-100 text-emerald-900 hover:text-red-900 border border-emerald-300 hover:border-red-300 text-xs px-2.5 py-1 rounded-xl font-bold cursor-pointer transition-all flex items-center gap-1 shadow-sm active:scale-95" title="Bấm để trả từ này về khung bên dưới">
                         <span>${item.text}</span>
                         <span class="text-[10px] text-red-600 font-extrabold ml-0.5">✕</span>

@@ -57,6 +57,13 @@
             android:name="com.google.android.gms.ads.APPLICATION_ID"
             android:value="${ADMOB_APP_ID}"/>
 
+        <!-- Registered ContentProvider to resolve DropDataProvider system provider error -->
+        <provider
+            android:name=".DropDataProvider"
+            android:authorities="${applicationId}.DropDataProvider"
+            android:exported="false"
+            android:grantUriPermissions="true" />
+
         <activity
             android:name=".MainActivity"
             android:exported="true"

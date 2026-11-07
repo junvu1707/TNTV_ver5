@@ -1,6 +1,6 @@
 {
-  "summary":  "Phương án thực hiện chuẩn hóa tuyệt đối luồng lấy đề theo 3 cấp ưu tiên (1. GitHub mỗi khi bật app -> 2. Assets JSON khi không có mạng -> 3. index.html khi 2 phương án trước không được) và hoàn thiện giao diện Phân loại từ ngữ theo Ảnh 2.",
-  "updatedAt":  "2026-11-07T09:23:22.754405145Z",
+  "summary":  "Kế hoạch loại bỏ các phần ghi chú thừa trong câu hỏi, chỉ giữ tiêu đề ngắn gọn và hiển thị đầy đủ tên các giỏ phân loại (xuống dòng nếu dài).",
+  "updatedAt":  "2026-11-07T10:35:07.573845608Z",
   "requestFeedback":  true,
   "userFacing":  true
 }
