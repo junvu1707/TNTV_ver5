@@ -97,6 +97,8 @@ data class QuestionModel(
       }
 
       val exp = json.optString("explanation").ifBlank { json.optString("explain") }
+      val finalTitle = if (rawType.equals("SX", ignoreCase = true)) "Sắp xếp câu" else json.optString("title")
+      val finalQuestion = if (rawType.equals("SX", ignoreCase = true)) "Sắp xếp thành câu" else json.optString("question")
 
       return QuestionModel(
         id = rawId,
@@ -104,8 +106,8 @@ data class QuestionModel(
         grade = gradeStr,
         level = levelStr,
         round = roundVal,
-        title = json.optString("title"),
-        question = json.optString("question"),
+        title = finalTitle,
+        question = finalQuestion,
         options = optsList,
         correctIndex = correctIdx,
         answer = ans,
