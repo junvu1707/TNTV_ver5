@@ -1,6 +1,6 @@
 {
-  "summary":  "Kế hoạch giải quyết thắc mắc về nguồn dữ liệu thống kê câu hỏi, đồng bộ dữ liệu GitHub và sửa triệt để giao diện dạng bài Phân loại từ ngữ vào các giỏ theo đúng Ảnh 2 tham khảo.",
-  "updatedAt":  "2026-11-07T09:14:18.111565037Z",
+  "summary":  "Phương án thực hiện chuẩn hóa tuyệt đối luồng lấy đề theo 3 cấp ưu tiên (1. GitHub mỗi khi bật app -> 2. Assets JSON khi không có mạng -> 3. index.html khi 2 phương án trước không được) và hoàn thiện giao diện Phân loại từ ngữ theo Ảnh 2.",
+  "updatedAt":  "2026-11-07T09:23:22.754405145Z",
   "requestFeedback":  true,
   "userFacing":  true
 }

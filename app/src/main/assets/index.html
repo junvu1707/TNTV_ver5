@@ -5843,24 +5843,48 @@
     if (type === 'CHON' || type === 'CLASSIFY_MINI') {
       finalType = 'CLASSIFY_MINI';
       let formattedGroups = [];
+
       if (Array.isArray(q.groups)) {
-        formattedGroups = q.groups;
-      } else if (q.groups && typeof q.groups === 'object' && q.answer && typeof q.answer === 'object') {
+        formattedGroups = q.groups.map(g => {
+          if (typeof g === 'string') return { name: g, words: [] };
+          return { name: g.name || g.title || 'Nhóm từ', words: Array.isArray(g.words) ? g.words : [] };
+        });
+      } else if (q.groups && typeof q.groups === 'object') {
+        const ansObj = (q.answer && typeof q.answer === 'object') ? q.answer : {};
         Object.keys(q.groups).forEach(gKey => {
           const gName = q.groups[gKey];
-          const gWords = Array.isArray(q.answer[gKey]) ? q.answer[gKey] : [];
-          formattedGroups.push({ name: gName, words: gWords });
+          const gWords = Array.isArray(ansObj[gKey]) ? ansObj[gKey] : [];
+          formattedGroups.push({ key: gKey, name: gName, words: gWords });
         });
       }
+
+      let wordsList = [];
+      formattedGroups.forEach((g, gIdx) => {
+        (g.words || []).forEach(w => {
+          wordsList.push({ text: w, groupIdx: gIdx });
+        });
+      });
+
+      if (wordsList.length === 0 && Array.isArray(q.words) && q.words.length > 0) {
+        q.words.forEach((w, wIdx) => {
+          wordsList.push({ text: w, groupIdx: formattedGroups.length > 0 ? (wIdx % formattedGroups.length) : 0 });
+        });
+      }
+
+      const qSeed = (typeof idx === 'number' ? (idx + 1) * 31 : 127);
+      const shuffledWords = seededShuffle([...wordsList], qSeed);
+
       return {
         id: q.questionId || q.id || `q_${idx + 1}`,
         type: 'CLASSIFY_MINI',
         title: q.title || 'Phân loại từ ngữ',
-        question: qText,
+        question: qText || 'Xếp các từ sau vào nhóm tương ứng:',
         groups: formattedGroups,
+        allWords: shuffledWords,
+        words: (Array.isArray(q.words) && q.words.length > 0) ? q.words : shuffledWords.map(w => w.text),
         options: options,
         correctIndex: 0,
-        answer: answerText,
+        answer: q.answer || answerText,
         explain: q.explanation || q.explain || 'Kiến thức chuẩn GDPT Tiếng Việt Tiểu học.'
       };
     } else if (type === 'SX' || type === 'ARRANGE') {
@@ -7618,24 +7642,37 @@
       }
       case 'CLASSIFY_MINI': {
         const groups = curQ.groups || [];
-        const allWords = [];
-        groups.forEach((g, gIdx) => {
-          (g.words || []).forEach(w => allWords.push({ text: w, groupIdx: gIdx }));
-        });
+        let allWords = curQ.allWords || [];
+        if (!allWords || allWords.length === 0) {
+          allWords = [];
+          groups.forEach((g, gIdx) => {
+            (g.words || []).forEach(w => allWords.push({ text: w, groupIdx: gIdx }));
+          });
+          curQ.allWords = allWords;
+        }
 
         let savedAns = AppState.userAnswers30[AppState.currentQuestionIndex];
         if (typeof savedAns !== 'object' || savedAns === null) {
           savedAns = {};
         }
 
+        const totalWords = allWords.length;
+        const totalGroups = groups.length;
+        const remainingWordsCount = allWords.filter((w, wIdx) => savedAns[wIdx] === undefined).length;
+
         questionBodyHtml = `
-          <div class="mb-3">
-            <span class="text-xs font-bold bg-amber-100 text-amber-900 px-3 py-1 rounded-full border border-amber-300">
-              Câu ${curIdx + 1}: ${formatQuestionTitle(curQ.title) || 'Phân loại từ ngữ'} (10 điểm)
-            </span>
-            <p class="text-xs text-slate-600 mt-1">Bấm chọn từ bên dưới rồi bấm giỏ để xếp. Bấm vào từ trong giỏ để quay về vị trí ban đầu:</p>
+          <!-- Header hướng dẫn dạng thông báo theo Ảnh 2 -->
+          <div class="mb-3.5">
+            <div class="p-3 sm:p-4 bg-amber-50 rounded-2xl border-2 border-amber-200 text-center sm:text-left shadow-sm">
+              <p class="text-xs sm:text-sm font-black text-amber-950 leading-relaxed flex items-center gap-1.5">
+                <span class="text-base">💡</span>
+                <span>Bấm chọn 1 từ bên dưới rồi bấm vào <b>Chiếc Giỏ</b> tương ứng để xếp (${totalWords} từ chia vào ${totalGroups} giỏ):</span>
+              </p>
+            </div>
           </div>
-          <div class="grid grid-cols-2 gap-3 mb-4" id="classify-mini-groups">
+
+          <!-- Danh sách các Chiếc Giỏ dạng viền nét đứt màu vàng hổ phách -->
+          <div class="flex flex-col gap-3.5 mb-4" id="classify-mini-groups">
             ${groups.map((g, gIdx) => {
               const wordsInGroup = [];
               Object.keys(savedAns).forEach(wIdxStr => {
@@ -7646,16 +7683,25 @@
               });
 
               return `
-                <div onclick="dropToMiniGroup(${gIdx})" data-grp="${gIdx}" class="p-3 rounded-xl border-2 border-dashed border-amber-400 bg-amber-50/50 min-h-[100px] cursor-pointer hover:border-emerald-500 transition-all">
-                  <div class="font-extrabold text-xs text-red-950 pb-1 border-b border-amber-200 flex items-center justify-between">
-                    <span>🧺 ${g.name}</span>
-                    <span class="text-[10px] text-emerald-800 bg-emerald-100 px-1.5 py-0.2 rounded font-bold">${wordsInGroup.length} từ</span>
+                <div onclick="dropToMiniGroup(${gIdx})" data-grp="${gIdx}" class="p-3.5 sm:p-4 rounded-2xl border-2 border-dashed border-[#e6a23c] bg-[#fffbf0] cursor-pointer hover:border-emerald-500 hover:shadow-md transition-all">
+                  <div class="flex items-center justify-between pb-2 border-b border-[#fde68a]">
+                    <div class="flex items-center gap-2">
+                      <span class="text-xl">🧺</span>
+                      <span class="font-black text-sm sm:text-base text-amber-950">${g.name}</span>
+                    </div>
+                    <span class="text-xs font-bold bg-[#d1fae5] text-[#065f46] border border-emerald-300 px-2.5 py-0.5 rounded-full shadow-sm">
+                      ${wordsInGroup.length} từ
+                    </span>
                   </div>
-                  <div class="grp-items flex flex-wrap gap-1.5 mt-2">
-                    ${wordsInGroup.map(item => `
-                      <span onclick="event.stopPropagation(); removeWordFromMiniGroup(${item.wIdx})" class="bg-emerald-100 hover:bg-red-100 text-emerald-800 hover:text-red-800 border border-emerald-300 hover:border-red-300 text-xs px-2 py-1 rounded-lg font-bold cursor-pointer transition-all flex items-center gap-1 shadow-sm" title="Bấm để trả từ này về khung ban đầu">
+                  <div class="grp-items flex flex-wrap gap-2 mt-2.5 min-h-[48px] items-center">
+                    ${wordsInGroup.length === 0 ? `
+                      <span class="text-xs text-amber-800/40 italic py-1 select-none">
+                        Chạm chọn 1 từ ở khung bên dưới rồi chạm vào đây để xếp vào giỏ...
+                      </span>
+                    ` : wordsInGroup.map(item => `
+                      <span onclick="event.stopPropagation(); removeWordFromMiniGroup(${item.wIdx})" class="bg-emerald-100 hover:bg-red-100 text-emerald-900 hover:text-red-900 border border-emerald-300 hover:border-red-300 text-xs sm:text-sm px-3 py-1.5 rounded-xl font-bold cursor-pointer transition-all flex items-center gap-1.5 shadow-sm active:scale-95" title="Bấm để trả từ này về khung bên dưới">
                         <span>${item.text}</span>
-                        <span class="text-[10px] text-red-600 font-extrabold">✕</span>
+                        <span class="text-[10px] text-red-600 font-extrabold ml-0.5">✕</span>
                       </span>
                     `).join('')}
                   </div>
@@ -7663,18 +7709,27 @@
               `;
             }).join('')}
           </div>
-          <div class="p-3 bg-amber-100/70 rounded-xl border border-amber-300">
-            <div class="text-xs font-bold text-slate-700 mb-2">Bấm chọn từ bên dưới:</div>
-            <div class="flex flex-wrap gap-2" id="mini-words-pool">
+
+          <!-- Khung từ cần xếp vào giỏ ở phía dưới theo Ảnh 2 -->
+          <div class="p-4 bg-[#fff7ed] rounded-2xl border border-[#fed7aa] shadow-sm">
+            <div class="text-xs sm:text-sm font-extrabold text-amber-950 mb-3 flex items-center justify-between">
+              <span>Từ cần xếp vào giỏ (${remainingWordsCount} từ còn lại):</span>
+              ${remainingWordsCount < totalWords ? `
+                <button onclick="resetMiniClassifyWords()" class="text-xs text-red-600 hover:text-red-800 font-bold flex items-center gap-1 px-2.5 py-1 rounded-lg hover:bg-red-50 transition-colors">
+                  <span>↺ Làm lại</span>
+                </button>
+              ` : ''}
+            </div>
+            <div class="flex flex-wrap gap-2.5 justify-center" id="mini-words-pool">
               ${allWords.map((w, wIdx) => {
                 if (savedAns[wIdx] !== undefined) return '';
 
                 const isSelected = (selectedMiniWordIndex === wIdx);
-                let btnClass = "btn-3d text-xs font-bold px-3 py-2 rounded-xl border transition-all ";
+                let btnClass = "btn-3d text-xs sm:text-sm font-bold px-3.5 sm:px-4 py-2 rounded-2xl border-2 transition-all shadow-sm ";
                 if (isSelected) {
-                  btnClass += "bg-amber-300 border-amber-500 text-amber-950 ring-2 ring-amber-400 scale-105";
+                  btnClass += "bg-amber-400 border-amber-600 text-amber-950 ring-4 ring-amber-200 scale-105 shadow-md";
                 } else {
-                  btnClass += "bg-white border-amber-300 text-slate-800 hover:bg-amber-50";
+                  btnClass += "bg-white border-amber-300 text-slate-800 hover:bg-amber-50 active:scale-95";
                 }
 
                 return `
@@ -8140,10 +8195,9 @@
     renderExamMode2Question();
 
     const curQ = AppState.exam30Questions[AppState.currentQuestionIndex];
-    if (curQ && curQ.groups) {
-      let totalWords = 0;
-      curQ.groups.forEach(g => totalWords += (g.words || []).length);
-      if (Object.keys(savedAns).length >= totalWords) {
+    if (curQ) {
+      const allWords = (Array.isArray(curQ.allWords) && curQ.allWords.length > 0) ? curQ.allWords : (curQ.words || []);
+      if (allWords.length > 0 && Object.keys(savedAns).length >= allWords.length) {
         checkIfAll30QuestionsAnswered();
       }
     }
@@ -8158,6 +8212,13 @@
         delete AppState.userAnswers30[AppState.currentQuestionIndex];
       }
     }
+    selectedMiniWordIndex = null;
+    renderExamMode2Question();
+  }
+
+  function resetMiniClassifyWords() {
+    SoundEngine.playDrum();
+    delete AppState.userAnswers30[AppState.currentQuestionIndex];
     selectedMiniWordIndex = null;
     renderExamMode2Question();
   }
@@ -8216,11 +8277,15 @@
           }
         } else if (q.type === 'CLASSIFY_MINI') {
           if (userAns && typeof userAns === 'object') {
-            const groups = q.groups || [];
-            const allWords = [];
-            groups.forEach((g, gIdx) => {
-              (g.words || []).forEach(w => allWords.push({ text: w, groupIdx: gIdx }));
-            });
+            const allWords = (Array.isArray(q.allWords) && q.allWords.length > 0)
+              ? q.allWords
+              : (() => {
+                  const arr = [];
+                  (q.groups || []).forEach((g, gIdx) => {
+                    (g.words || []).forEach(w => arr.push({ text: w, groupIdx: gIdx }));
+                  });
+                  return arr;
+                })();
             let allClassifyCorrect = (allWords.length > 0 && Object.keys(userAns).length >= allWords.length);
             for (let wIdx = 0; wIdx < allWords.length; wIdx++) {
               if (userAns[wIdx] !== allWords[wIdx].groupIdx) {

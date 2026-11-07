@@ -118,9 +118,7 @@ class GitHubQuestionRepository(private val context: Context) {
   }
 
   /**
-   * Lấy câu hỏi theo cơ chế ưu tiên:
-   * 1. Cache GitHub (đã tải về hợp lệ)
-   * 2. Local Assets (file đóng gói sẵn trong app)
+   * Lấy câu hỏi từ Cache GitHub đã tải về (Ưu tiên 1)
    */
   fun getCachedQuestionsJson(grade: Int, changOrRound: Int): String? {
     val cacheFile = getCacheFile(grade, changOrRound)
@@ -128,20 +126,13 @@ class GitHubQuestionRepository(private val context: Context) {
       try {
         val text = cacheFile.readText()
         if (isValidJson(text)) {
-          Log.d(TAG, "[GitHub] Sử dụng đề đã tải từ GitHub (cache): ${cacheFile.name}")
+          Log.d(TAG, "[Ưu tiên 1 - GitHub] Sử dụng đề đã tải từ GitHub (cache): ${cacheFile.name}")
           return text
         }
       } catch (e: Exception) {
-        Log.e(TAG, "[GitHub] Lỗi đọc cache ${cacheFile.name}: ${e.message}")
+        Log.e(TAG, "[Ưu tiên 1 - GitHub] Lỗi đọc cache ${cacheFile.name}: ${e.message}")
       }
     }
-
-    // Nếu chưa có cache GitHub, fallback sang Local Asset
-    val assetJson = getLocalAssetQuestionsJson(grade, changOrRound)
-    if (!assetJson.isNullOrBlank() && isValidJson(assetJson)) {
-      return assetJson
-    }
-
     return null
   }
 

@@ -208,4 +208,30 @@ class DynamicExamGeneratorTest {
     }
     assertTrue("Cần có ít nhất 1 câu CHON", foundChon)
   }
+
+  @Test
+  fun testThreeTierPriorityLogic() {
+    val context = ApplicationProvider.getApplicationContext<Context>()
+    val repo = GitHubQuestionRepository(context)
+    val generator = DynamicExamGenerator(repo)
+
+    // Khi chưa có cache GitHub (offline), hệ thống nạp từ Ưu tiên 2 (Local Asset)
+    // File grade 1_round 1.json đã đồng bộ đủ 1.784 câu (gồm 357 câu DT)
+    val pool = generator.loadQuestionPool(grade = 1, changOrRound = 1)
+    assertTrue("Pool câu hỏi từ asset phải có trên 1000 câu", pool.size >= 1000)
+
+    val examJsonStr = generator.generateDynamicMode2Exam(
+      grade = 1,
+      changOrRound = 1,
+      seed = 42,
+      targetCount = 30
+    )
+    val examJson = JSONObject(examJsonStr)
+    val dist = examJson.getJSONObject("typeDistribution")
+    assertEquals(17, dist.getInt("TN"))
+    assertEquals(7, dist.getInt("DT"))
+    assertEquals(2, dist.getInt("NOI"))
+    assertEquals(2, dist.getInt("CHON"))
+    assertEquals(2, dist.getInt("SX"))
+  }
 }

@@ -86,6 +86,21 @@ data class QuestionModel(
         for (i in 0 until wordsArray.length()) {
           wordsList.add(wordsArray.optString(i, ""))
         }
+      } else {
+        val ansObj = json.optJSONObject("answer")
+        if (ansObj != null) {
+          val keys = ansObj.keys()
+          while (keys.hasNext()) {
+            val k = keys.next()
+            val arr = ansObj.optJSONArray(k)
+            if (arr != null) {
+              for (i in 0 until arr.length()) {
+                val w = arr.optString(i, "")
+                if (w.isNotBlank()) wordsList.add(w)
+              }
+            }
+          }
+        }
       }
 
       val elemList = mutableListOf<String>()
@@ -250,48 +265,49 @@ class DynamicExamGenerator(
   }
 
   /**
-   * Tải pool câu hỏi theo đúng thứ tự ưu tiên:
-   * 1. GitHub JSON Cache
-   * 2. Local Assets JSON
-   * 3. localQuestionsJsonStr (index.html testmode)
+   * Tải pool câu hỏi tuân thủ tuyệt đối 3 cấp ưu tiên:
+   * Ưu tiên 1: Đề trên GitHub (lấy luôn mỗi khi bật app)
+   * Ưu tiên 2: Nếu không có mạng, không load được đề từ GitHub thì lấy đề ở file JSON trong assets
+   * Ưu tiên 3: Nếu 2 phương án trên không được mới lấy đề ở index.html
    */
   fun loadQuestionPool(grade: Int, changOrRound: Int, localQuestionsJsonStr: String = ""): List<QuestionModel> {
     val round = mapChangToRound(changOrRound)
     val pool = mutableListOf<QuestionModel>()
 
-    // Tầng 1: GitHub JSON Cache (Ưu tiên 1)
+    // --- ƯU TIÊN 1: ĐỀ TRÊN GITHUB ---
     val cachedGithubJson = githubRepo.getCachedQuestionsJson(grade, round)
     if (!cachedGithubJson.isNullOrBlank()) {
       val githubQuestions = parseQuestionsFromJsonString(cachedGithubJson)
         .filter { matchesGradeAndRound(it, grade, round) }
-      pool.addAll(githubQuestions)
-      Log.d(TAG, "[Ưu tiên 1] Nạp ${githubQuestions.size} câu từ GitHub JSON Cache (Lớp $grade - Round $round)")
+      if (githubQuestions.isNotEmpty()) {
+        pool.addAll(githubQuestions)
+        Log.d(TAG, "[Ưu tiên 1] Đã nạp thành công ${githubQuestions.size} câu từ GitHub (Lớp $grade - Round $round)")
+      }
     }
 
-    // Luôn kích hoạt fetch GitHub ngầm để đảm bảo dữ liệu mới
+    // Luôn kích hoạt fetch ngầm để cập nhật bản mới nhất từ GitHub
     githubRepo.fetchAndCacheQuestions(grade, round)
 
-    // Tầng 2: Local Assets JSON (Ưu tiên 2) nếu GitHub chưa đủ 30 câu
-    if (pool.size < 30) {
+    // --- ƯU TIÊN 2: FILE JSON TRONG ASSETS (Khi không có mạng / chưa load được từ GitHub) ---
+    if (pool.isEmpty()) {
       val assetJson = githubRepo.getLocalAssetQuestionsJson(grade, round)
       if (!assetJson.isNullOrBlank()) {
         val assetQuestions = parseQuestionsFromJsonString(assetJson)
           .filter { matchesGradeAndRound(it, grade, round) }
-        pool.addAll(assetQuestions)
-        Log.d(TAG, "[Ưu tiên 2] Nạp ${assetQuestions.size} câu từ Local Assets JSON")
+        if (assetQuestions.isNotEmpty()) {
+          pool.addAll(assetQuestions)
+          Log.d(TAG, "[Ưu tiên 2] Đã nạp thành công ${assetQuestions.size} câu từ Local Assets JSON")
+        }
       }
     }
 
-    // Tầng 3: index.html testmode (Ưu tiên 3) nếu cả 2 tầng trên chưa đủ 30 câu hoặc thiếu dạng câu hỏi
-    if (localQuestionsJsonStr.isNotBlank()) {
-      val hasMissingType = TARGET_QUOTAS.keys.any { typeKey ->
-        pool.none { standardizeType(it.type) == typeKey }
-      }
-      if (pool.size < 30 || hasMissingType) {
-        val localQuestions = parseQuestionsFromJsonString(localQuestionsJsonStr)
-          .filter { matchesGradeAndRound(it, grade, round) }
+    // --- ƯU TIÊN 3: DỰ PHÒNG TỪ index.html (Nếu 2 phương án trên đều không được) ---
+    if (pool.isEmpty() && localQuestionsJsonStr.isNotBlank()) {
+      val localQuestions = parseQuestionsFromJsonString(localQuestionsJsonStr)
+        .filter { matchesGradeAndRound(it, grade, round) }
+      if (localQuestions.isNotEmpty()) {
         pool.addAll(localQuestions)
-        Log.d(TAG, "[Ưu tiên 3] Nạp ${localQuestions.size} câu từ index.html testmode")
+        Log.d(TAG, "[Ưu tiên 3] Đã nạp ${localQuestions.size} câu dự phòng từ index.html testmode")
       }
     }
 
