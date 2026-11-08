@@ -73,7 +73,7 @@ class GitHubQuestionRepository(private val context: Context) {
     fun getLocalAssetFileName(grade: Int, changOrRound: Int): String {
       val safeGrade = if (grade in 1..5) grade else 1
       val round = mapChangToRound(changOrRound)
-      return "grade ${safeGrade}_round ${round}.json"
+      return "grade_${safeGrade}_round_${round}.json"
     }
   }
 
