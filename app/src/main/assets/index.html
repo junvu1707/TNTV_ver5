@@ -8268,23 +8268,15 @@
     if (typeof lucide !== 'undefined' && lucide.createIcons) safeCreateIcons();
   }
 
-  // Ghi nhận đáp án Trắc nghiệm: Tự động lưu đáp án và sang câu tiếp theo
+  // Ghi nhận đáp án Trắc nghiệm: Lưu đáp án và giữ nguyên màn hình để học sinh ấn "Câu tiếp theo"
   function answerMCQ30(optIdx) {
     SoundEngine.playDrum();
     AppState.userAnswers30[AppState.currentQuestionIndex] = optIdx;
     renderExamMode2Question();
 
-    const cur = AppState.currentQuestionIndex;
     const totalAnswered = Object.keys(AppState.userAnswers30).length;
-
     if (totalAnswered >= 30) {
       checkIfAll30QuestionsAnswered();
-    } else if (cur < 29) {
-      setTimeout(() => {
-        if (AppState.currentQuestionIndex === cur) {
-          jumpToQuestion30(cur + 1);
-        }
-      }, 200);
     }
   }
 
