@@ -994,7 +994,7 @@ class AndroidBridge(
   }
 
   /**
-   * Lấy Unique Device ID (Settings.Secure.ANDROID_ID)
+   * Lấy Mã ID cài đặt ứng dụng ngẫu nhiên (Installation UUID tuân thủ chính sách trẻ em)
    */
   @JavascriptInterface
   fun getDeviceId(): String {

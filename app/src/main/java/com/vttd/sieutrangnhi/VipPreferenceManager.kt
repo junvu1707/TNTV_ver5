@@ -2,7 +2,6 @@ package com.vttd.sieutrangnhi
 
 import android.content.Context
 import android.content.SharedPreferences
-import android.provider.Settings
 import java.util.UUID
 
 class VipPreferenceManager(private val context: Context) {
@@ -83,18 +82,16 @@ class VipPreferenceManager(private val context: Context) {
   @Volatile
   private var cachedDeviceId: String? = null
 
+  /**
+   * Tạo và lưu trữ Mã ID cài đặt ngẫu nhiên (Installation UUID).
+   * TUÂN THỦ TỰ ĐỘNG CHÍNH SÁCH TRẺ EM (Families Policy / COPPA):
+   * Không truy cập phần cứng hay Settings.Secure.ANDROID_ID của thiết bị.
+   */
   fun getDeviceId(): String {
     cachedDeviceId?.let { return it }
     var id = prefs.getString(KEY_DEVICE_ID, null)
     if (id.isNullOrEmpty()) {
-      id = try {
-        Settings.Secure.getString(context.contentResolver, Settings.Secure.ANDROID_ID)
-      } catch (e: Exception) {
-        null
-      }
-      if (id.isNullOrEmpty()) {
-        id = UUID.randomUUID().toString().replace("-", "").take(16)
-      }
+      id = UUID.randomUUID().toString().replace("-", "").take(16)
       prefs.edit().putString(KEY_DEVICE_ID, id).apply()
     }
     cachedDeviceId = id
