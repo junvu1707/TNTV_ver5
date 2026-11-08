@@ -7103,8 +7103,8 @@
         ${getExamHeaderMode1(subGame.title)}
         <div class="scroll-card p-4 sm:p-5">
           <div class="flex items-center justify-between gap-2 mb-3">
-            <p class="text-[15px] sm:text-[17px] text-amber-950 font-black flex items-center gap-1.5">
-              <span class="text-lg">💡</span>
+            <p class="text-[24px] sm:text-[28px] text-amber-950 font-black flex items-center gap-2">
+              <span class="text-2xl">💡</span>
               <span>Sắp xếp từ vào giỏ tương ứng</span>
             </p>
           </div>
@@ -7114,18 +7114,18 @@
             ${baskets.map((b, bIdx) => {
               const wordsInBasket = poolWords.filter(w => placements[w.id] === bIdx);
               return `
-                <div data-basket-idx="${bIdx}" class="basket-zone scroll-card p-3.5 sm:p-4 min-h-[110px] border-2 border-dashed border-amber-400 rounded-2xl flex flex-col cursor-pointer hover:border-emerald-500 transition-all bg-amber-50/40">
+                <div data-basket-idx="${bIdx}" class="basket-zone scroll-card p-3.5 sm:p-4 min-h-[120px] border-2 border-dashed border-amber-400 rounded-2xl flex flex-col cursor-pointer hover:border-emerald-500 transition-all bg-amber-50/40">
                   <div class="flex items-center pb-2 border-b border-amber-200">
-                    <div class="flex items-center gap-1.5 font-extrabold text-[15px] sm:text-[17px] text-red-900 leading-snug break-words">
-                      <span class="text-xl shrink-0">🧺</span>
+                    <div class="flex items-center gap-2 font-black text-[22px] sm:text-[25px] text-red-900 leading-snug break-words">
+                      <span class="text-2xl shrink-0">🧺</span>
                       <span>${b.name}</span>
                     </div>
                   </div>
-                  <div class="placed-words flex flex-wrap gap-2 mt-2.5 flex-1 items-start min-h-[54px]">
+                  <div class="placed-words flex flex-wrap gap-2.5 mt-3 flex-1 items-start min-h-[58px]">
                     ${wordsInBasket.map(w => `
-                      <div class="bg-emerald-100 text-emerald-900 border border-emerald-300 text-[14px] px-3 py-1.5 rounded-xl font-extrabold flex items-center gap-1.5 shadow-sm">
+                      <div class="bg-emerald-100 text-emerald-900 border border-emerald-300 text-[20px] sm:text-[22px] px-4 py-2 rounded-2xl font-black flex items-center gap-2 shadow-sm">
                         <span class="select-none">${w.text}</span>
-                        <button data-remove-word-id="${w.id}" class="btn-remove-x bg-red-100 hover:bg-red-200 text-red-700 font-black text-[14px] px-2 py-0.5 rounded-lg transition-all cursor-pointer active:scale-90" title="Bấm dấu X để bỏ từ ra khỏi giỏ">✕</button>
+                        <button data-remove-word-id="${w.id}" class="btn-remove-x bg-red-100 hover:bg-red-200 text-red-700 font-black text-[16px] px-2 py-0.5 rounded-lg transition-all cursor-pointer active:scale-90" title="Bấm dấu X để bỏ từ ra khỏi giỏ">✕</button>
                       </div>
                     `).join('')}
                   </div>
@@ -7135,11 +7135,11 @@
           </div>
 
           <!-- KHUNG TỪ CẦN XẾP -->
-          <div class="p-3.5 bg-amber-100/70 rounded-2xl border border-amber-300">
-            <div class="text-[15px] font-bold text-amber-950 mb-2">Từ cần xếp vào giỏ (${remainingWords.length} từ còn lại):</div>
-            <div class="flex flex-wrap gap-2.5" id="words-pool">
+          <div class="p-4 bg-amber-100/70 rounded-2xl border border-amber-300">
+            <div class="text-[22px] sm:text-[25px] font-black text-amber-950 mb-3">Từ cần xếp vào giỏ (${remainingWords.length} từ còn lại):</div>
+            <div class="flex flex-wrap gap-3 justify-center" id="words-pool">
               ${remainingWords.map(w => `
-                <button data-word-id="${w.id}" class="pool-word btn-3d text-[15px] sm:text-[17px] font-bold px-4 py-2.5 sm:py-3 rounded-xl border transition-all ${selectedWordId === w.id ? 'bg-amber-300 border-amber-500 text-amber-950 ring-2 ring-amber-400 scale-105' : 'bg-white border-amber-300 text-slate-800 hover:bg-amber-50'}">
+                <button data-word-id="${w.id}" class="pool-word btn-3d text-[24px] sm:text-[28px] font-black px-5 py-3 rounded-2xl border-2 transition-all ${selectedWordId === w.id ? 'bg-amber-300 border-amber-500 text-amber-950 ring-4 ring-amber-400 scale-105' : 'bg-white border-amber-300 text-slate-800 hover:bg-amber-50'}">
                   ${w.text}
                 </button>
               `).join('')}
@@ -7536,27 +7536,27 @@
           root.innerHTML = `
             ${getExamHeaderMode1(subGame.title)}
             <div class="scroll-card p-5 max-w-xl mx-auto">
-              <div class="text-xs font-bold text-amber-800 mb-2">Câu ${25 + qIdx + 1} / 30 • Bé nhanh tay: Sắp xếp câu (+10 ⭐)</div>
+              <div class="text-[18px] sm:text-[21px] font-black text-amber-800 mb-2">Câu ${25 + qIdx + 1} / 30 • Bé nhanh tay: Sắp xếp câu (+10 ⭐)</div>
 
-              <div class="p-4 bg-amber-50 rounded-2xl border-2 border-amber-300 mb-4">
-                <div class="text-xs font-extrabold text-amber-900 mb-2 flex items-center gap-1">
-                  <span>🧩</span>
+              <div class="p-4 sm:p-5 bg-amber-50 rounded-2xl border-2 border-amber-300 mb-4">
+                <div class="text-[24px] sm:text-[28px] font-black text-amber-900 mb-3 flex items-center gap-2">
+                  <span class="text-2xl">🧩</span>
                   <span>Sắp xếp thành câu</span>
                 </div>
 
                 <!-- KHUNG CHỨA CÂU GHÉP -->
-                <div class="min-h-[60px] p-3 bg-white rounded-xl border-2 border-dashed border-amber-400 flex flex-wrap gap-2 items-center justify-center shadow-inner">
+                <div class="min-h-[70px] p-3.5 sm:p-4 bg-white rounded-2xl border-2 border-dashed border-amber-400 flex flex-wrap gap-2.5 items-center justify-center shadow-inner">
                   ${constructedWords.length === 0 ? '' : constructedWords.map((w) => `
-                    <button data-constructed-id="${w.id}" class="btn-constructed-word btn-3d bg-emerald-500 hover:bg-red-500 text-white font-bold text-xs sm:text-sm px-3 py-1.5 rounded-xl transition-all flex items-center gap-1">
+                    <button data-constructed-id="${w.id}" class="btn-constructed-word btn-3d bg-emerald-500 hover:bg-red-500 text-white font-black text-[24px] sm:text-[28px] px-5 py-2.5 rounded-2xl transition-all flex items-center gap-1.5">
                       <span>${w.text}</span>
-                      <span class="text-[10px] text-emerald-100">✕</span>
+                      <span class="text-[14px] text-emerald-100">✕</span>
                     </button>
                   `).join('')}
                 </div>
 
                 ${constructedWords.length > 0 ? `
-                  <div class="mt-2 text-right">
-                    <button id="btn-reset-ordering" class="text-[11px] font-bold text-red-600 hover:text-red-800 underline">
+                  <div class="mt-2.5 text-right">
+                    <button id="btn-reset-ordering" class="text-[16px] font-bold text-red-600 hover:text-red-800 underline">
                       🔄 Làm lại (Xóa hết)
                     </button>
                   </div>
@@ -7564,11 +7564,11 @@
               </div>
 
               <!-- KHUNG THẺ TỪ CẦN CHỌN -->
-              <div class="p-3 bg-amber-100/70 rounded-2xl border border-amber-300 mb-4">
-                <div class="text-xs font-bold text-amber-950 mb-2">Thẻ từ (${remainingWords.length} từ còn lại):</div>
-                <div class="flex flex-wrap gap-2 justify-center">
+              <div class="p-4 bg-amber-100/70 rounded-2xl border border-amber-300 mb-4">
+                <div class="text-[22px] sm:text-[25px] font-black text-amber-950 mb-3">Thẻ từ (${remainingWords.length} từ còn lại):</div>
+                <div class="flex flex-wrap gap-3 justify-center">
                   ${remainingWords.map(w => `
-                    <button data-chip-id="${w.id}" class="btn-pool-chip btn-3d bg-white hover:bg-amber-100 text-slate-800 border border-amber-300 font-bold text-xs sm:text-sm px-3.5 py-2 rounded-xl transition-all active:scale-95">
+                    <button data-chip-id="${w.id}" class="btn-pool-chip btn-3d bg-white hover:bg-amber-100 text-slate-800 border border-amber-300 font-black text-[24px] sm:text-[28px] px-5 py-3 sm:px-6 sm:py-3.5 rounded-2xl transition-all active:scale-95">
                       ${w.text}
                     </button>
                   `).join('')}
@@ -7809,32 +7809,32 @@
 
         questionBodyHtml = `
           <div class="mb-4">
-            <span class="text-xs font-bold bg-amber-100 text-amber-900 px-3 py-1 rounded-full border border-amber-300">
+            <span class="text-[18px] sm:text-[21px] font-black bg-amber-100 text-amber-900 px-3.5 py-1.5 rounded-full border border-amber-300">
               Câu ${curIdx + 1}: Sắp xếp câu (10 điểm)
             </span>
           </div>
           ${!isGenericPrompt ? `
-            <div class="p-3.5 sm:p-4 bg-amber-50 rounded-2xl border-2 border-amber-200 mb-4 text-center">
-              <p class="text-base sm:text-lg font-black text-slate-800 leading-snug whitespace-pre-line">
+            <div class="p-4 sm:p-5 bg-amber-50 rounded-2xl border-2 border-amber-200 mb-4 text-center">
+              <p class="text-[28px] sm:text-[32px] font-black text-slate-800 leading-snug whitespace-pre-line">
                 ${qText}
               </p>
             </div>
           ` : ''}
 
           <!-- Khung câu đang ghép -->
-          <div class="p-4 bg-white rounded-2xl border-2 border-dashed border-amber-400 min-h-[96px] mb-4 flex flex-col justify-between shadow-inner">
-            <div class="flex flex-wrap items-center gap-2" id="arrange-target-area">
+          <div class="p-4 sm:p-5 bg-white rounded-2xl border-2 border-dashed border-amber-400 min-h-[100px] mb-4 flex flex-col justify-between shadow-inner">
+            <div class="flex flex-wrap items-center gap-2.5" id="arrange-target-area">
               ${selectedIndices.length === 0 ? '' : selectedIndices.map((elemIdx, slotIdx) => `
-                <button onclick="removeArrangeWord(${slotIdx})" class="btn-3d px-3.5 py-2 rounded-xl bg-amber-100 hover:bg-red-100 border-2 border-amber-400 hover:border-red-400 text-amber-950 hover:text-red-900 font-black text-xs sm:text-sm flex items-center gap-1.5 shadow-sm transform active:scale-95 transition-all" title="Chạm để gỡ từ này ra khỏi câu">
+                <button onclick="removeArrangeWord(${slotIdx})" class="btn-3d px-5 py-3 rounded-2xl bg-amber-100 hover:bg-red-100 border-2 border-amber-400 hover:border-red-400 text-amber-950 hover:text-red-900 font-black text-[24px] sm:text-[28px] flex items-center gap-2 shadow-sm transform active:scale-95 transition-all" title="Chạm để gỡ từ này ra khỏi câu">
                   <span>${elements[elemIdx]}</span>
-                  <span class="text-[10px] text-red-500 font-extrabold ml-0.5">✕</span>
+                  <span class="text-[14px] text-red-500 font-extrabold ml-0.5">✕</span>
                 </button>
               `).join('')}
             </div>
             ${selectedIndices.length > 0 ? `
-              <div class="flex items-center justify-between mt-2 pt-2 border-t border-amber-100">
-                <span class="text-[11px] text-emerald-700 font-bold">Đã ghép: ${selectedIndices.length}/${elements.length} từ</span>
-                <button onclick="resetArrangeWords()" class="text-xs text-red-600 hover:text-red-800 font-bold flex items-center gap-1 px-2 py-0.5 rounded-lg hover:bg-red-50 transition-colors">
+              <div class="flex items-center justify-between mt-3 pt-2.5 border-t border-amber-100">
+                <span class="text-[18px] text-emerald-700 font-extrabold">Đã ghép: ${selectedIndices.length}/${elements.length} từ</span>
+                <button onclick="resetArrangeWords()" class="text-[16px] text-red-600 hover:text-red-800 font-bold flex items-center gap-1 px-2.5 py-1 rounded-lg hover:bg-red-50 transition-colors">
                   <span>↺ Làm lại</span>
                 </button>
               </div>
@@ -7842,25 +7842,25 @@
           </div>
 
           <!-- Các ô từ cần sắp xếp -->
-          <div class="p-3.5 bg-amber-50/80 rounded-2xl border border-amber-300">
-            <div class="text-xs font-black text-amber-950 uppercase tracking-wide mb-2.5 flex items-center justify-between">
+          <div class="p-4 bg-amber-50/80 rounded-2xl border border-amber-300">
+            <div class="text-[22px] sm:text-[25px] font-black text-amber-950 uppercase tracking-wide mb-3 flex items-center justify-between">
               <span>Các ô từ cần sắp xếp:</span>
-              <span class="text-[11px] text-amber-800 font-bold bg-amber-200/60 px-2 py-0.5 rounded-full">
+              <span class="text-[18px] text-amber-800 font-extrabold bg-amber-200/60 px-3 py-1 rounded-full">
                 ${selectedIndices.length}/${elements.length} từ
               </span>
             </div>
-            <div class="flex flex-wrap gap-2.5 justify-center" id="arrange-source-area">
+            <div class="flex flex-wrap gap-3 justify-center" id="arrange-source-area">
               ${elements.map((elem, idx) => {
                 const isUsed = selectedIndices.includes(idx);
                 if (isUsed) {
                   return `
-                    <div class="px-3.5 py-2 rounded-xl border-2 border-dashed border-slate-200 bg-slate-100/60 text-slate-300 font-bold text-xs sm:text-sm select-none opacity-40">
+                    <div class="px-5 py-3.5 rounded-2xl border-2 border-dashed border-slate-200 bg-slate-100/60 text-slate-300 font-black text-[24px] sm:text-[28px] select-none opacity-40">
                       ${elem}
                     </div>
                   `;
                 }
                 return `
-                  <button onclick="pickArrangeWord(${idx})" class="btn-3d px-4 py-2.5 rounded-xl bg-gradient-to-b from-white to-amber-50 hover:from-amber-100 hover:to-amber-200 border-2 border-amber-400 text-slate-800 font-black text-xs sm:text-sm shadow-md transform hover:scale-105 active:scale-95 transition-all">
+                  <button onclick="pickArrangeWord(${idx})" class="btn-3d px-5 py-3.5 rounded-2xl bg-gradient-to-b from-white to-amber-50 hover:from-amber-100 hover:to-amber-200 border-2 border-amber-400 text-slate-800 font-black text-[24px] sm:text-[28px] shadow-md transform hover:scale-105 active:scale-95 transition-all">
                     ${elem}
                   </button>
                 `;
@@ -8018,17 +8018,17 @@
 
         questionBodyHtml = `
           <!-- Header hướng dẫn gọn gàng -->
-          <div class="mb-2.5">
-            <div class="p-2.5 sm:p-3 bg-amber-50 rounded-xl border border-amber-200 text-center sm:text-left shadow-sm">
-              <p class="text-xs sm:text-sm font-black text-amber-950 leading-relaxed flex items-center justify-center sm:justify-start gap-1.5">
-                <span class="text-base">💡</span>
+          <div class="mb-3">
+            <div class="p-3 sm:p-4 bg-amber-50 rounded-2xl border-2 border-amber-200 text-center sm:text-left shadow-sm">
+              <p class="text-[24px] sm:text-[28px] font-black text-amber-950 leading-relaxed flex items-center justify-center sm:justify-start gap-2">
+                <span class="text-2xl">💡</span>
                 <span>Sắp xếp từ vào giỏ tương ứng</span>
               </p>
             </div>
           </div>
 
           <!-- Danh sách các Chiếc Giỏ: 2 giỏ trên ngang hàng, giỏ thứ 3 ở dưới kéo dài bằng cả 2 giỏ trên -->
-          <div class="grid grid-cols-2 gap-2.5 sm:gap-3 mb-3" id="classify-mini-groups">
+          <div class="grid grid-cols-2 gap-3 sm:gap-3.5 mb-4" id="classify-mini-groups">
             ${groups.map((g, gIdx) => {
               const wordsInGroup = [];
               Object.keys(savedAns).forEach(wIdxStr => {
@@ -8046,18 +8046,18 @@
               const colSpanClass = isFullWidth ? 'col-span-2' : 'col-span-1';
 
               return `
-                <div onclick="dropToMiniGroup(${gIdx})" data-grp="${gIdx}" class="${colSpanClass} p-2.5 sm:p-3 rounded-2xl border-2 border-dashed border-[#e6a23c] bg-[#fffbf0] cursor-pointer hover:border-emerald-500 hover:shadow-md transition-all flex flex-col justify-between">
-                  <div class="flex items-center pb-1.5 border-b border-[#fde68a]">
-                    <div class="flex items-center gap-1.5 w-full">
-                      <span class="text-base shrink-0">🧺</span>
-                      <span class="font-black text-xs sm:text-sm text-amber-950 leading-snug break-words" title="${cleanName}">${cleanName}</span>
+                <div onclick="dropToMiniGroup(${gIdx})" data-grp="${gIdx}" class="${colSpanClass} p-3.5 sm:p-4 rounded-2xl border-2 border-dashed border-[#e6a23c] bg-[#fffbf0] cursor-pointer hover:border-emerald-500 hover:shadow-md transition-all flex flex-col justify-between">
+                  <div class="flex items-center pb-2 border-b border-[#fde68a]">
+                    <div class="flex items-center gap-2 w-full">
+                      <span class="text-2xl shrink-0">🧺</span>
+                      <span class="font-black text-[22px] sm:text-[25px] text-amber-950 leading-snug break-words" title="${cleanName}">${cleanName}</span>
                     </div>
                   </div>
-                  <div class="grp-items flex flex-wrap gap-1.5 mt-2 min-h-[38px] items-center">
+                  <div class="grp-items flex flex-wrap gap-2 mt-2.5 min-h-[44px] items-center">
                     ${wordsInGroup.length === 0 ? '' : wordsInGroup.map(item => `
-                      <span onclick="event.stopPropagation(); removeWordFromMiniGroup(${item.wIdx})" class="bg-emerald-100 hover:bg-red-100 text-emerald-900 hover:text-red-900 border border-emerald-300 hover:border-red-300 text-xs px-2.5 py-1 rounded-xl font-bold cursor-pointer transition-all flex items-center gap-1 shadow-sm active:scale-95" title="Bấm để trả từ này về khung bên dưới">
+                      <span onclick="event.stopPropagation(); removeWordFromMiniGroup(${item.wIdx})" class="bg-emerald-100 hover:bg-red-100 text-emerald-900 hover:text-red-900 border border-emerald-300 hover:border-red-300 text-[20px] sm:text-[22px] px-3.5 py-1.5 rounded-xl font-black cursor-pointer transition-all flex items-center gap-1.5 shadow-sm active:scale-95" title="Bấm để trả từ này về khung bên dưới">
                         <span>${item.text}</span>
-                        <span class="text-[10px] text-red-600 font-extrabold ml-0.5">✕</span>
+                        <span class="text-[14px] text-red-600 font-extrabold ml-0.5">✕</span>
                       </span>
                     `).join('')}
                   </div>
@@ -8067,21 +8067,21 @@
           </div>
 
           <!-- Khung từ cần xếp vào giỏ ở phía dưới gọn gàng -->
-          <div class="p-3 sm:p-3.5 bg-[#fff7ed] rounded-2xl border border-[#fed7aa] shadow-sm">
-            <div class="text-xs sm:text-sm font-extrabold text-amber-950 mb-2 flex items-center justify-between">
+          <div class="p-4 sm:p-4.5 bg-[#fff7ed] rounded-2xl border-2 border-[#fed7aa] shadow-sm">
+            <div class="text-[22px] sm:text-[25px] font-black text-amber-950 mb-3 flex items-center justify-between">
               <span>Từ cần xếp vào giỏ (${remainingWordsCount} từ còn lại):</span>
               ${remainingWordsCount < totalWords ? `
-                <button onclick="resetMiniClassifyWords()" class="text-xs text-red-600 hover:text-red-800 font-bold flex items-center gap-1 px-2 py-0.5 rounded-lg hover:bg-red-50 transition-colors">
+                <button onclick="resetMiniClassifyWords()" class="text-[16px] text-red-600 hover:text-red-800 font-bold flex items-center gap-1 px-2.5 py-1 rounded-lg hover:bg-red-50 transition-colors">
                   <span>↺ Làm lại</span>
                 </button>
               ` : ''}
             </div>
-            <div class="flex flex-wrap gap-2 justify-center" id="mini-words-pool">
+            <div class="flex flex-wrap gap-3 justify-center" id="mini-words-pool">
               ${allWords.map((w, wIdx) => {
                 if (savedAns[wIdx] !== undefined) return '';
 
                 const isSelected = (selectedMiniWordIndex === wIdx);
-                let btnClass = "btn-3d text-xs sm:text-sm font-bold px-3 py-1.5 sm:px-3.5 sm:py-2 rounded-xl border-2 transition-all shadow-sm ";
+                let btnClass = "btn-3d text-[24px] sm:text-[28px] font-black px-5 py-3 sm:px-6 sm:py-3.5 rounded-2xl border-2 transition-all shadow-sm ";
                 if (isSelected) {
                   btnClass += "bg-amber-400 border-amber-600 text-amber-950 ring-4 ring-amber-200 scale-105 shadow-md";
                 } else {
