@@ -20,18 +20,16 @@ class EmailJSManager {
   companion object {
     private const val TAG = "EmailJSManager"
     const val ADMIN_EMAIL = "junvu.dev@gmail.com"
-    private const val DEFAULT_SERVICE_ID = "service_trang_nhi"
-    private const val DEFAULT_TEMPLATE_ID = "template_vip_confirm"
     private const val ENDPOINT = "https://api.emailjs.com/api/v1.0/email/send"
 
     val serviceId: String
-      get() = BuildConfig.EMAILJS_SERVICE_ID.ifBlank { DEFAULT_SERVICE_ID }
+      get() = BuildConfig.EMAILJS_SERVICE_ID
 
     val templateId: String
-      get() = BuildConfig.EMAILJS_TEMPLATE_ID.ifBlank { DEFAULT_TEMPLATE_ID }
+      get() = BuildConfig.EMAILJS_TEMPLATE_ID
 
     val publicKey: String
-      get() = BuildConfig.EMAILJS_PUBLIC_KEY.ifBlank { "" }
+      get() = BuildConfig.EMAILJS_PUBLIC_KEY
   }
 
   private val client = OkHttpClient()
@@ -50,8 +48,11 @@ class EmailJSManager {
     callback: ((Boolean) -> Unit)? = null
   ) {
     val activePublicKey = publicKey
-    if (activePublicKey.isBlank() || activePublicKey == "user_trangnhi_placeholder") {
-      Log.w(TAG, "EmailJS Public Key chưa được cấu hình hợp lệ trong .env (EMAILJS_PUBLIC_KEY). Bỏ qua gửi email.")
+    val activeServiceId = serviceId
+    val activeTemplateId = templateId
+
+    if (activePublicKey.isBlank() || activeServiceId.isBlank() || activeTemplateId.isBlank() || activePublicKey == "user_trangnhi_placeholder") {
+      Log.w(TAG, "Cấu hình EmailJS (Service ID / Template ID / Public Key) chưa được nạp từ .env. Bỏ qua gửi email.")
       callback?.invoke(false)
       return
     }
@@ -73,8 +74,8 @@ class EmailJSManager {
     }
 
     val jsonBody = JSONObject().apply {
-      put("service_id", serviceId)
-      put("template_id", templateId)
+      put("service_id", activeServiceId)
+      put("template_id", activeTemplateId)
       put("user_id", activePublicKey)
       put("template_params", templateParams)
     }

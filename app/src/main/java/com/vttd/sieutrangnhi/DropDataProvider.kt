@@ -3,6 +3,7 @@ package com.vttd.sieutrangnhi
 import android.content.ContentProvider
 import android.content.ContentValues
 import android.database.Cursor
+import android.database.MatrixCursor
 import android.net.Uri
 
 /**
@@ -19,7 +20,7 @@ class DropDataProvider : ContentProvider() {
         selection: String?,
         selectionArgs: Array<out String>?,
         sortOrder: String?
-    ): Cursor? = null
+    ): Cursor = MatrixCursor(projection ?: arrayOf())
 
     override fun getType(uri: Uri): String? = null
 

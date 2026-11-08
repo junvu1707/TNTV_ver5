@@ -51,8 +51,8 @@ val interstitialId = if (isValidAdMobUnitId(rawInterstitialId)) rawInterstitialI
 val rawRewardedId = envProps.getProperty("REWARDED_ID")
 val rewardedId = if (isValidAdMobUnitId(rawRewardedId)) rawRewardedId!! else "ca-app-pub-3940256099942544/5224354917"
 
-val emailjsServiceId = envProps.getProperty("EMAILJS_SERVICE_ID") ?: "service_trang_nhi"
-val emailjsTemplateId = envProps.getProperty("EMAILJS_TEMPLATE_ID") ?: "template_vip_confirm"
+val emailjsServiceId = envProps.getProperty("EMAILJS_SERVICE_ID") ?: ""
+val emailjsTemplateId = envProps.getProperty("EMAILJS_TEMPLATE_ID") ?: ""
 val emailjsPublicKey = envProps.getProperty("EMAILJS_PUBLIC_KEY") ?: ""
 
 android {
