@@ -7592,13 +7592,12 @@
 
               <!-- NÚT ĐIỀU HƯỚNG -->
               <div class="mt-5 pt-3 border-t border-amber-200 flex items-center justify-between gap-2">
-                <button onclick="prevImgQMode1()" class="btn-3d bg-slate-200 hover:bg-slate-300 text-slate-800 px-3.5 py-2 rounded-xl font-bold text-xs sm:text-sm shadow flex items-center gap-1 active:scale-95">
+                <button onclick="prevImgQMode1()" class="btn-3d bg-slate-200 hover:bg-slate-300 text-slate-800 px-4 py-2 rounded-xl font-black text-[17.5px] shadow flex items-center justify-center active:scale-95" title="Câu trước">
                   <span>◄</span>
-                  <span>Câu trước</span>
                 </button>
 
-                <button id="btn-submit-ordering" class="btn-3d ${constructedWords.length === wordPool.length ? 'btn-3d-blue' : 'bg-slate-300 text-slate-500 cursor-not-allowed'} px-4 py-2 rounded-xl font-black text-xs sm:text-sm shadow flex items-center gap-1 active:scale-95">
-                  <span>${qIdx === items.length - 1 ? 'Hoàn Thành Vòng ✓' : 'Câu sau ►'}</span>
+                <button id="btn-submit-ordering" class="btn-3d ${constructedWords.length === wordPool.length ? 'btn-3d-blue' : 'bg-slate-300 text-slate-500 cursor-not-allowed'} px-4 py-2 rounded-xl font-black text-[17.5px] shadow flex items-center justify-center active:scale-95" title="${qIdx === items.length - 1 ? 'Hoàn thành' : 'Câu sau'}">
+                  <span>${qIdx === items.length - 1 ? '✓' : '►'}</span>
                 </button>
               </div>
             </div>
@@ -7699,13 +7698,11 @@
 
             <!-- Nút Bài trước (trái) & Nút Hoàn Thành Vòng (phải) -->
             <div class="mt-5 pt-3 border-t border-amber-200 flex items-center justify-between gap-2">
-              <button onclick="prevSubGameMode1()" class="btn-3d bg-slate-200 hover:bg-slate-300 text-slate-800 px-3.5 py-2 rounded-xl font-bold text-xs sm:text-sm shadow flex items-center gap-1 active:scale-95">
+              <button onclick="prevSubGameMode1()" class="btn-3d bg-slate-200 hover:bg-slate-300 text-slate-800 px-4 py-2 rounded-xl font-black text-[17.5px] shadow flex items-center justify-center active:scale-95" title="Bài trước">
                 <span>◄</span>
-                <span>Bài trước</span>
               </button>
 
-              <button onclick="finishRoundExam()" class="btn-3d btn-3d-green px-4 py-2 rounded-xl font-black text-white text-xs sm:text-sm shadow flex items-center gap-1 active:scale-95">
-                <span>Hoàn Thành Vòng</span>
+              <button onclick="finishRoundExam()" class="btn-3d btn-3d-green px-4 py-2 rounded-xl font-black text-white text-[17.5px] shadow flex items-center justify-center active:scale-95" title="Hoàn thành vòng">
                 <span>✓</span>
               </button>
             </div>
@@ -8265,16 +8262,16 @@
 
       <!-- Nút Chuyển Câu: Trước / Nộp Bài / Tiếp Theo -->
       <div class="flex items-center justify-between gap-2">
-        <button onclick="prevQuestion30()" ${curIdx === 0 ? 'disabled class="opacity-40 cursor-not-allowed"' : ''} class="px-3.5 sm:px-4 py-2 rounded-xl border border-slate-300 font-bold text-xs sm:text-sm text-slate-700 bg-white hover:bg-slate-50">
-          ◄ Câu Trước
+        <button onclick="prevQuestion30()" ${curIdx === 0 ? 'disabled class="opacity-40 cursor-not-allowed"' : ''} class="px-4 py-2.5 rounded-xl border-2 border-amber-300 font-black text-[18px] text-slate-700 bg-white hover:bg-slate-50 flex items-center justify-center active:scale-95" title="Câu trước">
+          ◄
         </button>
 
         <button onclick="handleMode2SubmitClick()" class="btn-3d btn-3d-gold px-4 py-2 rounded-xl font-black text-amber-950 text-xs sm:text-sm shadow" style="visibility: hidden;">
           📝 Nộp Bài Tính Điểm
         </button>
 
-        <button onclick="nextQuestion30()" ${curIdx === 29 ? 'disabled class="opacity-40 cursor-not-allowed"' : ''} class="btn-3d btn-3d-red px-4 sm:px-5 py-2 rounded-xl font-black text-xs sm:text-sm text-white">
-          Câu Tiếp Theo ►
+        <button onclick="nextQuestion30()" ${curIdx === 29 ? 'disabled class="opacity-40 cursor-not-allowed"' : ''} class="btn-3d btn-3d-red px-5 py-2.5 rounded-xl font-black text-[18px] text-white flex items-center justify-center active:scale-95" title="Câu tiếp theo">
+          ►
         </button>
       </div>
     `;
