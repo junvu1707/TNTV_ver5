@@ -196,7 +196,7 @@ class DynamicExamGenerator(
         in 7..10 -> 2
         in 11..14 -> 3
         in 15..18 -> 4
-        else -> if (chang in 1..4) chang else 1
+        else -> 1
       }
     }
 

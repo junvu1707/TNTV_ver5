@@ -72,7 +72,7 @@ class MainActivity : ComponentActivity() {
     billingManager.onPurchaseSuccessCallback = { productId, level ->
       runOnUiThread {
         updateAdMobForVipStatus()
-        val userName = vipPrefs.getUserName().ifBlank { "Tài khoản VIP" }
+        val userName = vipPrefs.getUserName().ifBlank { "Tài khoản VIP" }.replace("'", "\\'")
         webView?.evaluateJavascript(
           "if (window.onVipStatusChanged) { window.onVipStatusChanged($level, '$userName'); }",
           null
