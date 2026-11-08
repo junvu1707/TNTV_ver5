@@ -6894,65 +6894,48 @@
 
     root.innerHTML = `
       ${getExamHeaderMode1(subGame.title)}
-      <div class="scroll-card p-3 sm:p-5">
-        <div class="p-3.5 sm:p-4 bg-amber-50 rounded-2xl border-2 border-amber-200 shadow-sm mb-3 flex items-start justify-between gap-3">
-          <div class="text-[13.5px] sm:text-[15.5px] font-extrabold text-amber-950 leading-relaxed">
+      <div class="scroll-card p-3.5 sm:p-5">
+        <div class="p-3.5 sm:p-4 bg-amber-50 rounded-2xl border-2 border-amber-200 shadow-sm mb-4 text-center">
+          <p class="text-[17.5px] sm:text-[19.5px] font-extrabold text-slate-800 leading-relaxed whitespace-pre-line">
             ${promptTitle} (+10 ⭐)
-          </div>
-          <div class="flex items-center gap-2 shrink-0">
-            <span class="text-[13.5px] font-bold text-emerald-800 bg-emerald-50 px-2.5 py-1 rounded-full border border-emerald-300">
-              Đã nối: <b id="match-progress">${matchedCount}</b>/${totalPairs}
-            </span>
-            <span class="text-[13.5px] font-bold text-red-600 bg-red-50 px-2.5 py-1 rounded-full border border-red-200">
-              Sai: <b id="mistake-count">0</b>/3
-            </span>
-          </div>
+          </p>
         </div>
 
         <!-- BỐ TRÍ 2 CỘT RÕ RÀNG: TRÁI VÀ PHẢI -->
         <div class="grid grid-cols-2 gap-2.5 sm:gap-4 my-2" id="meo-con-grid">
           <!-- CỘT BÊN TRÁI -->
-          <div class="flex flex-col gap-2" id="col-left">
-            <div class="text-center font-black text-[13.5px] sm:text-[15.5px] text-red-900 bg-red-100/90 py-1.5 px-2 rounded-xl border border-red-300 shadow-sm flex items-center justify-center gap-1.5">
-              <span>🐾</span>
-              <span>CỘT BÊN TRÁI</span>
+          <div class="flex flex-col gap-2.5" id="col-left">
+            <div class="text-center font-black text-[15px] sm:text-[17px] text-red-900 bg-red-100/90 py-2 px-2.5 rounded-xl border border-red-300 shadow-sm flex items-center justify-center gap-1.5 select-none">
+              <span>🐾 CỘT BÊN TRÁI</span>
             </div>
             ${colA.map(item => {
               const isMatched = AppState.game1MatchedPairs.includes(item.pairId);
               const pairStyle = MATCH_PAIR_STYLES[item.pairId % MATCH_PAIR_STYLES.length];
               return `
-                <button data-id="${item.id}" data-col="A" data-pair="${item.pairId}" class="cat-tile scroll-card p-2.5 sm:p-3 text-center text-[13.5px] sm:text-[15.5px] font-bold border-2 rounded-xl transition-all shadow-sm flex items-center justify-between gap-1 ${isMatched ? `matched ${pairStyle.card}` : 'border-amber-300 bg-amber-50/70 hover:bg-amber-100 text-slate-800'}" title="${isMatched ? 'Bấm để tháo nối cặp này' : ''}">
+                <button data-id="${item.id}" data-col="A" data-pair="${item.pairId}" class="cat-tile scroll-card min-h-[58px] sm:min-h-[62px] p-3.5 sm:p-4 text-center text-[15px] sm:text-[17px] font-bold border-2 rounded-xl transition-all shadow-sm flex items-center justify-between gap-1 ${isMatched ? `matched ${pairStyle.card}` : 'border-amber-300 bg-amber-50/70 hover:bg-amber-100 text-slate-800'}" title="${isMatched ? 'Bấm để tháo nối cặp này' : ''}">
                   <span class="flex-1 text-center">${item.text}</span>
-                  <span class="status-icon text-[13.5px] ${isMatched ? 'font-black' : 'hidden'}">✓</span>
+                  <span class="status-icon text-[15px] ${isMatched ? 'font-black' : 'hidden'}">✓</span>
                 </button>
               `;
             }).join('')}
           </div>
 
           <!-- CỘT BÊN PHẢI -->
-          <div class="flex flex-col gap-2" id="col-right">
-            <div class="text-center font-black text-[13.5px] sm:text-[15.5px] text-amber-950 bg-amber-200/90 py-1.5 px-2 rounded-xl border border-amber-300 shadow-sm flex items-center justify-center gap-1.5">
-              <span>🐱</span>
-              <span>CỘT BÊN PHẢI</span>
+          <div class="flex flex-col gap-2.5" id="col-right">
+            <div class="text-center font-black text-[15px] sm:text-[17px] text-amber-950 bg-amber-200/90 py-2 px-2.5 rounded-xl border border-amber-300 shadow-sm flex items-center justify-center gap-1.5 select-none">
+              <span>🐱 CỘT BÊN PHẢI</span>
             </div>
             ${colB.map(item => {
               const isMatched = AppState.game1MatchedPairs.includes(item.pairId);
               const pairStyle = MATCH_PAIR_STYLES[item.pairId % MATCH_PAIR_STYLES.length];
               return `
-                <button data-id="${item.id}" data-col="B" data-pair="${item.pairId}" class="cat-tile scroll-card p-2.5 sm:p-3 text-center text-[13.5px] sm:text-[15.5px] font-bold border-2 rounded-xl transition-all shadow-sm flex items-center justify-between gap-1 ${isMatched ? `matched ${pairStyle.card}` : 'border-amber-300 bg-amber-50/70 hover:bg-amber-100 text-slate-800'}" title="${isMatched ? 'Bấm để tháo nối cặp này' : ''}">
+                <button data-id="${item.id}" data-col="B" data-pair="${item.pairId}" class="cat-tile scroll-card min-h-[58px] sm:min-h-[62px] p-3.5 sm:p-4 text-center text-[15px] sm:text-[17px] font-bold border-2 rounded-xl transition-all shadow-sm flex items-center justify-between gap-1 ${isMatched ? `matched ${pairStyle.card}` : 'border-amber-300 bg-amber-50/70 hover:bg-amber-100 text-slate-800'}" title="${isMatched ? 'Bấm để tháo nối cặp này' : ''}">
                   <span class="flex-1 text-center">${item.text}</span>
-                  <span class="status-icon text-[13.5px] ${isMatched ? 'font-black' : 'hidden'}">✓</span>
+                  <span class="status-icon text-[15px] ${isMatched ? 'font-black' : 'hidden'}">✓</span>
                 </button>
               `;
             }).join('')}
           </div>
-        </div>
-
-        <div class="p-3 bg-amber-50/90 rounded-2xl border-2 border-amber-200 text-center mt-3">
-          <p class="text-slate-700 font-semibold text-[13.5px] sm:text-[15.5px] flex items-center justify-center gap-1.5">
-            <span>💡</span>
-            <span>Chọn 1 ô ở <b>Cột Bên Trái</b> rồi nối với 1 ô tương ứng ở <b>Cột Bên Phải</b> (Nối đủ cả 6 cặp = +10 ⭐).</span>
-          </p>
         </div>
 
         <!-- Nút Câu trước (trái) & Nút Câu sau (phải) -->
@@ -7120,29 +7103,29 @@
         ${getExamHeaderMode1(subGame.title)}
         <div class="scroll-card p-4 sm:p-5">
           <div class="flex items-center justify-between gap-2 mb-3">
-            <p class="text-[13.5px] sm:text-[15.5px] text-amber-950 font-black flex items-center gap-1.5">
-              <span class="text-base">💡</span>
+            <p class="text-[15px] sm:text-[17px] text-amber-950 font-black flex items-center gap-1.5">
+              <span class="text-lg">💡</span>
               <span>Sắp xếp từ vào giỏ tương ứng</span>
             </p>
           </div>
 
           <!-- DẠNG GIỎ XẾP -->
-          <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-5">
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-3.5 mb-5">
             ${baskets.map((b, bIdx) => {
               const wordsInBasket = poolWords.filter(w => placements[w.id] === bIdx);
               return `
-                <div data-basket-idx="${bIdx}" class="basket-zone scroll-card p-3 border-2 border-dashed border-amber-400 rounded-2xl flex flex-col cursor-pointer hover:border-emerald-500 transition-all bg-amber-50/40">
+                <div data-basket-idx="${bIdx}" class="basket-zone scroll-card p-3.5 sm:p-4 min-h-[110px] border-2 border-dashed border-amber-400 rounded-2xl flex flex-col cursor-pointer hover:border-emerald-500 transition-all bg-amber-50/40">
                   <div class="flex items-center pb-2 border-b border-amber-200">
-                    <div class="flex items-center gap-1.5 font-extrabold text-[13.5px] sm:text-[15.5px] text-red-900 leading-snug break-words">
+                    <div class="flex items-center gap-1.5 font-extrabold text-[15px] sm:text-[17px] text-red-900 leading-snug break-words">
                       <span class="text-xl shrink-0">🧺</span>
                       <span>${b.name}</span>
                     </div>
                   </div>
-                  <div class="placed-words flex flex-wrap gap-1.5 mt-2.5 flex-1 items-start min-h-[50px]">
+                  <div class="placed-words flex flex-wrap gap-2 mt-2.5 flex-1 items-start min-h-[54px]">
                     ${wordsInBasket.map(w => `
-                      <div class="bg-emerald-100 text-emerald-900 border border-emerald-300 text-[13.5px] px-2.5 py-1 rounded-xl font-extrabold flex items-center gap-1.5 shadow-sm">
+                      <div class="bg-emerald-100 text-emerald-900 border border-emerald-300 text-[14px] px-3 py-1.5 rounded-xl font-extrabold flex items-center gap-1.5 shadow-sm">
                         <span class="select-none">${w.text}</span>
-                        <button data-remove-word-id="${w.id}" class="btn-remove-x bg-red-100 hover:bg-red-200 text-red-700 font-black text-[13.5px] px-1.5 py-0.5 rounded-lg transition-all cursor-pointer active:scale-90" title="Bấm dấu X để bỏ từ ra khỏi giỏ">✕</button>
+                        <button data-remove-word-id="${w.id}" class="btn-remove-x bg-red-100 hover:bg-red-200 text-red-700 font-black text-[14px] px-2 py-0.5 rounded-lg transition-all cursor-pointer active:scale-90" title="Bấm dấu X để bỏ từ ra khỏi giỏ">✕</button>
                       </div>
                     `).join('')}
                   </div>
@@ -7152,11 +7135,11 @@
           </div>
 
           <!-- KHUNG TỪ CẦN XẾP -->
-          <div class="p-3 bg-amber-100/70 rounded-2xl border border-amber-300">
-            <div class="text-[13.5px] font-bold text-amber-950 mb-2">Từ cần xếp vào giỏ (${remainingWords.length} từ còn lại):</div>
-            <div class="flex flex-wrap gap-2" id="words-pool">
+          <div class="p-3.5 bg-amber-100/70 rounded-2xl border border-amber-300">
+            <div class="text-[15px] font-bold text-amber-950 mb-2">Từ cần xếp vào giỏ (${remainingWords.length} từ còn lại):</div>
+            <div class="flex flex-wrap gap-2.5" id="words-pool">
               ${remainingWords.map(w => `
-                <button data-word-id="${w.id}" class="pool-word btn-3d text-[13.5px] sm:text-[15.5px] font-bold px-3 py-1.5 rounded-xl border transition-all ${selectedWordId === w.id ? 'bg-amber-300 border-amber-500 text-amber-950 ring-2 ring-amber-400 scale-105' : 'bg-white border-amber-300 text-slate-800 hover:bg-amber-50'}">
+                <button data-word-id="${w.id}" class="pool-word btn-3d text-[15px] sm:text-[17px] font-bold px-4 py-2.5 sm:py-3 rounded-xl border transition-all ${selectedWordId === w.id ? 'bg-amber-300 border-amber-500 text-amber-950 ring-2 ring-amber-400 scale-105' : 'bg-white border-amber-300 text-slate-800 hover:bg-amber-50'}">
                   ${w.text}
                 </button>
               `).join('')}
