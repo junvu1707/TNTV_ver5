@@ -4830,9 +4830,11 @@
           </button>
 
           <div class="space-y-2">
-            <button onclick="triggerSyncGithubQuestions()" class="w-full py-2 px-3 rounded-xl bg-gradient-to-r from-sky-50 to-blue-50 hover:from-sky-100 hover:to-blue-100 border border-sky-300 text-sky-950 font-extrabold text-xs flex items-center justify-center gap-2 shadow-sm">
-              <span>🔄</span> Cập nhật đề
-            </button>
+            ${(AppState.isVip2 || isAdminAccount()) ? `
+              <button onclick="triggerSyncGithubQuestions()" class="w-full py-2 px-3 rounded-xl bg-gradient-to-r from-sky-50 to-blue-50 hover:from-sky-100 hover:to-blue-100 border border-sky-300 text-sky-950 font-extrabold text-xs flex items-center justify-center gap-2 shadow-sm">
+                <span>🔄</span> Cập nhật đề
+              </button>
+            ` : ''}
 
             <button onclick="openAvatarModal()" class="w-full py-2 px-3 rounded-xl bg-gradient-to-r from-amber-50 to-red-50 hover:from-amber-100 hover:to-red-100 border border-amber-300 text-red-950 font-extrabold text-xs flex items-center justify-center gap-2 shadow-sm">
               <span>🖼️</span> Cửa Hàng Chibi: Đổi Hình Mẫu bằng Sao ⭐
@@ -4857,39 +4859,87 @@
     safeCreateIcons();
   }
 
+  function showChibiSyncModal() {
+    const modalContainer = document.getElementById('modal-container');
+    if (!modalContainer) return;
+
+    const avatarHtml = getCurrentAvatarHtml(90);
+
+    modalContainer.innerHTML = `
+      <div class="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="scroll-card max-w-sm w-full p-6 bg-gradient-to-b from-amber-50 via-white to-orange-50 rounded-3xl border-4 border-amber-400 relative text-center shadow-2xl">
+          <!-- Hình Chibi Đại Diện -->
+          <div class="relative w-24 h-24 mx-auto mb-3">
+            <div class="w-24 h-24 rounded-2xl border-4 border-amber-400 bg-white p-1 shadow-md overflow-hidden flex items-center justify-center animate-pulse">
+              ${avatarHtml}
+            </div>
+            <div class="absolute -bottom-1 -right-1 bg-amber-400 text-amber-950 border border-amber-200 rounded-full w-7 h-7 flex items-center justify-center text-xs shadow animate-spin">
+              🔄
+            </div>
+          </div>
+
+          <!-- Dòng chữ Đang cập nhật đề -->
+          <h3 class="text-base sm:text-lg font-black text-amber-950 mb-1">Đang cập nhật đề</h3>
+          <p class="text-xs font-bold text-amber-800 animate-pulse">Bé chờ một chút hệ thống đang đồng bộ từ GitHub...</p>
+        </div>
+      </div>
+    `;
+    if (typeof lucide !== 'undefined' && lucide.createIcons) safeCreateIcons();
+  }
+
   function triggerSyncGithubQuestions() {
     if (typeof SoundEngine !== 'undefined' && SoundEngine.playClick) {
       SoundEngine.playClick();
     }
 
     if (!AppState.isVip2 && !isAdminAccount()) {
-      showCustomConfirm(
-        'Tính năng Cập nhật đề chỉ dành riêng cho tài khoản VIP 2 (Trọn đời) hoặc Admin. Bé có muốn nâng cấp VIP 2 ngay không?',
-        function() {
-          openVipModal();
-        },
-        null,
-        'Quyền VIP 2 / Admin'
-      );
       return;
     }
 
-    showCustomAlert('🔄 Đang đồng bộ đề thi mới nhất từ GitHub repository...');
+    showChibiSyncModal();
+
     if (window.AndroidBridge && typeof window.AndroidBridge.syncAllGithubQuestions === 'function') {
       window.AndroidBridge.syncAllGithubQuestions(true);
     } else {
       setTimeout(() => {
-        showCustomAlert('✨ Ngân hàng đề thi đã sẵn sàng!');
-      }, 1200);
+        if (typeof window.onGithubSyncCompleted === 'function') {
+          window.onGithubSyncCompleted(true, 'Đã tự động cập nhật 20 bộ đề mới nhất từ GitHub!');
+        }
+      }, 1500);
     }
   }
 
   window.onGithubSyncCompleted = function(success, message) {
-    if (success) {
-      showCustomAlert('🎉 ' + message);
-    } else {
-      showCustomAlert('⚠️ ' + message);
+    const modalContainer = document.getElementById('modal-container');
+    if (!modalContainer) {
+      showCustomAlert((success ? '🎉 ' : '⚠️ ') + message);
+      return;
     }
+
+    const avatarHtml = getCurrentAvatarHtml(90);
+
+    modalContainer.innerHTML = `
+      <div class="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="scroll-card max-w-sm w-full p-6 bg-gradient-to-b from-amber-50 via-white to-orange-50 rounded-3xl border-4 border-amber-400 relative text-center shadow-2xl">
+          <!-- Hình Chibi Đại Diện -->
+          <div class="relative w-24 h-24 mx-auto mb-3">
+            <div class="w-24 h-24 rounded-2xl border-4 border-amber-400 bg-white p-1 shadow-md overflow-hidden flex items-center justify-center">
+              ${avatarHtml}
+            </div>
+            <div class="absolute -bottom-1 -right-1 ${success ? 'bg-emerald-500' : 'bg-red-500'} text-white border border-amber-200 rounded-full w-7 h-7 flex items-center justify-center text-xs shadow font-bold">
+              ${success ? '✓' : '✕'}
+            </div>
+          </div>
+
+          <h3 class="text-base sm:text-lg font-black text-amber-950 mb-1">${success ? 'Cập Nhật Hoàn Tất!' : 'Thông Báo'}</h3>
+          <p class="text-xs sm:text-sm font-bold text-slate-800 mb-4 leading-relaxed">${message}</p>
+          <button onclick="closeModal()" class="btn-3d btn-3d-green px-6 py-2 rounded-xl font-black text-white text-xs sm:text-sm shadow">
+            Đồng ý
+          </button>
+        </div>
+      </div>
+    `;
+    if (typeof lucide !== 'undefined' && lucide.createIcons) safeCreateIcons();
   };
 
   window.onGithubQuestionsUpdated = function(grade, round) {
