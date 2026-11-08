@@ -539,29 +539,165 @@ class MainActivity : ComponentActivity() {
   }
 
   fun showVipSuccessDialog(productId: String, vipLevel: Int) {
-    if (isFinishing() || isDestroyed()) return
+    if (isFinishing || isDestroyed) return
     runOnUiThread {
-      if (isFinishing() || isDestroyed()) return@runOnUiThread
+      if (isFinishing || isDestroyed) return@runOnUiThread
       val vipName = if (vipLevel >= 2) "VIP 2 (Trọn Đời)" else "VIP 1 (Mùa Thi)"
-      val email = vipPrefs.getUserEmail()
-      val name = vipPrefs.getUserName()
+      val email = vipPrefs.getUserEmail().ifBlank { "Đã ghi nhận" }
+      val name = vipPrefs.getUserName().ifBlank { "Học sinh" }
       val deviceId = vipPrefs.getDeviceId()
 
-      AlertDialog.Builder(this)
-        .setTitle("Kích Hoạt VIP Thành Công 🎉")
-        .setMessage(
-          "Chúc mừng ${if (name.isNotBlank()) name else "bé"} đã nâng cấp thành công gói $vipName!\n\n" +
-          "• Tài khoản: ${if (name.isNotBlank()) name else "Học sinh"}\n" +
-          "• Email xác nhận: ${if (email.isNotBlank()) email else "Đã ghi nhận"}\n" +
-          "• Mã thiết bị: $deviceId\n" +
-          "• Trạng thái: Toàn bộ 18 vòng thi và tính năng VIP đã sẵn sàng.\n\n" +
-          "Thông tin kích hoạt đã được gửi tự động về email quản trị (junvu.dev@gmail.com)."
-        )
-        .setPositiveButton("Bắt đầu học ngay") { dialog, _ ->
-          dialog.dismiss()
+      var dialogRef: AlertDialog? = null
+
+      val container = LinearLayout(this).apply {
+        orientation = LinearLayout.VERTICAL
+        setPadding(48, 44, 48, 44)
+        val bgDrawable = GradientDrawable().apply {
+          setColor(Color.parseColor("#FFFDF7"))
+          cornerRadius = 48f
+          setStroke(6, Color.parseColor("#F59E0B"))
         }
+        background = bgDrawable
+        elevation = 20f
+      }
+
+      // Icon Header
+      val headerIcon = TextView(this).apply {
+        text = "👑"
+        textSize = 40f
+        gravity = Gravity.CENTER
+        layoutParams = LinearLayout.LayoutParams(
+          LinearLayout.LayoutParams.MATCH_PARENT,
+          LinearLayout.LayoutParams.WRAP_CONTENT
+        ).apply { setMargins(0, 0, 0, 8) }
+      }
+      container.addView(headerIcon)
+
+      // Title
+      val txtTitle = TextView(this).apply {
+        text = "KÍCH HOẠT VIP THÀNH CÔNG 🎉"
+        setTextColor(Color.parseColor("#92400E"))
+        textSize = 17f
+        setTypeface(null, Typeface.BOLD)
+        gravity = Gravity.CENTER
+        layoutParams = LinearLayout.LayoutParams(
+          LinearLayout.LayoutParams.MATCH_PARENT,
+          LinearLayout.LayoutParams.WRAP_CONTENT
+        ).apply { setMargins(0, 0, 0, 10) }
+      }
+      container.addView(txtTitle)
+
+      // Subtitle Greeting
+      val txtGreeting = TextView(this).apply {
+        text = "Chúc mừng $name đã nâng cấp thành công gói $vipName!"
+        setTextColor(Color.parseColor("#1E293B"))
+        textSize = 14f
+        setTypeface(null, Typeface.BOLD)
+        gravity = Gravity.CENTER
+        setLineSpacing(6f, 1f)
+        layoutParams = LinearLayout.LayoutParams(
+          LinearLayout.LayoutParams.MATCH_PARENT,
+          LinearLayout.LayoutParams.WRAP_CONTENT
+        ).apply { setMargins(0, 0, 0, 18) }
+      }
+      container.addView(txtGreeting)
+
+      // Khung thông tin chi tiết
+      val infoBox = LinearLayout(this).apply {
+        orientation = LinearLayout.VERTICAL
+        setPadding(32, 24, 32, 24)
+        val boxBg = GradientDrawable().apply {
+          setColor(Color.parseColor("#FFFBEB"))
+          cornerRadius = 28f
+          setStroke(3, Color.parseColor("#FDE68A"))
+        }
+        background = boxBg
+        layoutParams = LinearLayout.LayoutParams(
+          LinearLayout.LayoutParams.MATCH_PARENT,
+          LinearLayout.LayoutParams.WRAP_CONTENT
+        ).apply { setMargins(0, 0, 0, 16) }
+      }
+
+      val rows = listOf(
+        "👤 Tài khoản:" to name,
+        "✉️ Email xác nhận:" to email,
+        "📱 Mã thiết bị:" to deviceId,
+        "⭐ Trạng thái:" to "Mở khóa toàn bộ 18 vòng & VIP"
+      )
+
+      rows.forEach { (label, value) ->
+        val row = LinearLayout(this).apply {
+          orientation = LinearLayout.HORIZONTAL
+          layoutParams = LinearLayout.LayoutParams(
+            LinearLayout.LayoutParams.MATCH_PARENT,
+            LinearLayout.LayoutParams.WRAP_CONTENT
+          ).apply { setMargins(0, 4, 0, 4) }
+        }
+        val lbl = TextView(this).apply {
+          text = label
+          setTextColor(Color.parseColor("#78350F"))
+          textSize = 12f
+          setTypeface(null, Typeface.BOLD)
+          setPadding(0, 0, 8, 0)
+        }
+        val valTxt = TextView(this).apply {
+          text = value
+          setTextColor(if (label.contains("Mã thiết bị")) Color.parseColor("#B91C1C") else Color.parseColor("#0F172A"))
+          textSize = 12f
+          setTypeface(null, Typeface.BOLD)
+          layoutParams = LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 1f)
+        }
+        row.addView(lbl)
+        row.addView(valTxt)
+        infoBox.addView(row)
+      }
+      container.addView(infoBox)
+
+      // Notice
+      val txtNotice = TextView(this).apply {
+        text = "Thông tin kích hoạt đã được đồng bộ tự động."
+        setTextColor(Color.parseColor("#B45309"))
+        textSize = 11f
+        gravity = Gravity.CENTER
+        layoutParams = LinearLayout.LayoutParams(
+          LinearLayout.LayoutParams.MATCH_PARENT,
+          LinearLayout.LayoutParams.WRAP_CONTENT
+        ).apply { setMargins(0, 0, 0, 18) }
+      }
+      container.addView(txtNotice)
+
+      // Button Bắt đầu học ngay
+      val btnSubmit = Button(this).apply {
+        text = "Bắt đầu học ngay 🚀"
+        setTextColor(Color.WHITE)
+        textSize = 14f
+        setTypeface(null, Typeface.BOLD)
+        val btnBg = GradientDrawable().apply {
+          orientation = GradientDrawable.Orientation.TOP_BOTTOM
+          colors = intArrayOf(Color.parseColor("#10B981"), Color.parseColor("#059669"))
+          cornerRadius = 28f
+        }
+        background = btnBg
+        setPadding(0, 22, 0, 22)
+        layoutParams = LinearLayout.LayoutParams(
+          LinearLayout.LayoutParams.MATCH_PARENT,
+          LinearLayout.LayoutParams.WRAP_CONTENT
+        )
+        setOnClickListener {
+          dialogRef?.dismiss()
+        }
+      }
+      container.addView(btnSubmit)
+
+      dialogRef = AlertDialog.Builder(this)
+        .setView(container)
         .setCancelable(false)
-        .show()
+        .create()
+
+      dialogRef?.window?.apply {
+        setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+      }
+      dialogRef?.show()
     }
   }
 
