@@ -7747,17 +7747,6 @@
     const s = AppState.timerSeconds % 60;
     const timerStr = `${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`;
 
-    // Thanh điều hướng 30 câu hỏi
-    const navPillsHtml = qList.map((q, i) => {
-      const isAnswered = AppState.userAnswers30[i] !== undefined;
-      const isActive = i === curIdx;
-      return `
-        <button onclick="jumpToQuestion30(${i})" class="q-nav-pill ${isActive ? 'active' : (isAnswered ? 'answered' : '')}">
-          ${i + 1}
-        </button>
-      `;
-    }).join('');
-
     // Render vùng nội dung tương tác của câu hỏi hiện tại
     let questionBodyHtml = '';
     const savedAns = AppState.userAnswers30[curIdx];
@@ -8198,7 +8187,7 @@
           </div>
         </div>
 
-        <!-- DÒNG 2: ⏱️ ĐỒNG HỒ --- 📝 SỐ CÂU ĐÃ HOÀN THÀNH/30 CÂU --- NỘP BÀI (MÀU VÀNG 3D) --- THOÁT -->
+        <!-- DÒNG 2: ⏱️ ĐỒNG HỒ --- 📝 SỐ CÂU ĐÃ HOÀN THÀNH/30 CÂU (NÚT BẤM BẬT POPUP 30 CÂU) --- NỘP BÀI (MÀU VÀNG 3D) --- THOÁT -->
         <div class="flex items-center justify-between gap-1.5 sm:gap-2 text-xs sm:text-sm font-bold">
           <div class="flex items-center gap-1.5 sm:gap-2">
             <!-- ⏱️ Đồng hồ đếm giờ -->
@@ -8207,11 +8196,11 @@
               <span id="exam-timer">${timerStr}</span>
             </div>
 
-            <!-- 📝 Số câu đã hoàn thành trên tổng 30 câu -->
-            <div class="flex items-center gap-1 bg-amber-900/60 text-yellow-300 px-2.5 py-1 rounded-xl font-black text-xs sm:text-sm border border-yellow-400/30">
+            <!-- 📝 Nút Bấm Hiển Thị Tiến Trình Làm Bài -> Bật Pop-up Danh Sách 30 Câu -->
+            <button onclick="openQuestionGridModal30()" class="flex items-center gap-1 bg-amber-900/60 hover:bg-amber-900/80 active:scale-95 text-yellow-300 px-2.5 py-1 rounded-xl font-black text-xs sm:text-sm border border-yellow-400/30 transition-all shadow cursor-pointer" title="Bấm để mở danh sách 30 câu hỏi">
               <span>📝</span>
               <span>${Object.keys(AppState.userAnswers30).length}/30 câu</span>
-            </div>
+            </button>
           </div>
 
           <div class="flex items-center gap-1.5">
@@ -8225,16 +8214,6 @@
               Thoát
             </button>
           </div>
-        </div>
-      </div>
-
-      <!-- Bảng 30 Ô Số Câu Hỏi Điều Hướng Tùy Ý -->
-      <div class="scroll-card p-3 sm:p-4 mb-4 bg-white border-2 border-amber-300">
-        <div class="flex items-center justify-between text-xs font-bold text-slate-600 mb-2">
-          <span>DANH SÁCH 30 CÂU HỎI (Bấm số để nhảy câu):</span>
-        </div>
-        <div class="grid grid-cols-10 gap-1.5 sm:gap-2 justify-items-center">
-          ${navPillsHtml}
         </div>
       </div>
 
@@ -8260,6 +8239,74 @@
     `;
 
     safeCreateIcons();
+  }
+
+  // Pop-up danh sách 30 câu hỏi
+  function openQuestionGridModal30() {
+    if (typeof SoundEngine !== 'undefined' && SoundEngine.playClick) SoundEngine.playClick();
+    saveFillAnswer30();
+    const qList = AppState.exam30Questions || [];
+    const curIdx = AppState.currentQuestionIndex;
+
+    const navPillsHtml = qList.map((q, i) => {
+      const isAnswered = AppState.userAnswers30[i] !== undefined;
+      const isActive = i === curIdx;
+      return `
+        <button onclick="closeModal(); jumpToQuestion30(${i});" class="q-nav-pill ${isActive ? 'active' : (isAnswered ? 'answered' : '')}">
+          ${i + 1}
+        </button>
+      `;
+    }).join('');
+
+    const modalContainer = document.getElementById('modal-container');
+    if (!modalContainer) return;
+    modalContainer.innerHTML = `
+      <div class="fixed inset-0 z-50 bg-black/75 backdrop-blur-sm flex items-center justify-center p-4" onclick="if(event.target === this) closeModal();">
+        <div class="scroll-card max-w-md w-full p-4 sm:p-5 bg-gradient-to-b from-amber-50 via-white to-amber-100/70 rounded-3xl text-center shadow-2xl border-4 border-amber-400 relative overflow-hidden">
+          <!-- Nút đóng góc trên bên phải -->
+          <button onclick="closeModal()" class="absolute top-3 right-3 text-slate-400 hover:text-slate-700 bg-amber-100 hover:bg-amber-200 rounded-full w-8 h-8 flex items-center justify-center font-bold text-base transition-all">
+            ✕
+          </button>
+
+          <div class="flex items-center justify-center gap-2 mb-3">
+            <span class="text-xl sm:text-2xl">📝</span>
+            <h3 class="text-base sm:text-lg font-black text-amber-950">
+              DANH SÁCH 30 CÂU HỎI
+            </h3>
+          </div>
+
+          <!-- Chú thích trạng thái -->
+          <div class="flex items-center justify-center gap-3 text-xs font-bold text-slate-600 mb-3 bg-amber-100/60 py-1.5 px-3 rounded-xl border border-amber-200">
+            <div class="flex items-center gap-1">
+              <span class="w-3.5 h-3.5 rounded bg-amber-500 border border-amber-700 inline-block"></span>
+              <span>Đang làm</span>
+            </div>
+            <div class="flex items-center gap-1">
+              <span class="w-3.5 h-3.5 rounded bg-emerald-500 border border-emerald-700 inline-block"></span>
+              <span>Đã làm</span>
+            </div>
+            <div class="flex items-center gap-1">
+              <span class="w-3.5 h-3.5 rounded bg-slate-100 border border-slate-300 inline-block"></span>
+              <span>Chưa làm</span>
+            </div>
+          </div>
+
+          <p class="text-xs font-bold text-slate-500 mb-2">Bấm số câu để di chuyển nhanh:</p>
+
+          <!-- Lưới 30 nút chuyển câu -->
+          <div class="grid grid-cols-6 sm:grid-cols-10 gap-1.5 sm:gap-2 justify-items-center my-3 max-h-[60vh] overflow-y-auto p-1">
+            ${navPillsHtml}
+          </div>
+
+          <div class="mt-4">
+            <button onclick="closeModal()" class="btn-3d px-6 py-2 rounded-xl border-2 border-slate-300 font-extrabold text-slate-700 bg-slate-100 hover:bg-slate-200 text-xs sm:text-sm">
+              Đóng
+            </button>
+          </div>
+        </div>
+      </div>
+    `;
+    if (typeof lucide !== 'undefined' && lucide.createIcons) safeCreateIcons();
   }
 
   // Chuyển câu hỏi
