@@ -1102,6 +1102,17 @@
     return AppState.currentAvatarImage || 'app_logo.png';
   }
 
+  const MATCH_PAIR_STYLES = [
+    { card: "border-sky-500 bg-sky-100 text-sky-950 ring-2 ring-sky-300", badge: "bg-sky-600 text-white" },
+    { card: "border-rose-500 bg-rose-100 text-rose-950 ring-2 ring-rose-300", badge: "bg-rose-600 text-white" },
+    { card: "border-purple-500 bg-purple-100 text-purple-950 ring-2 ring-purple-300", badge: "bg-purple-600 text-white" },
+    { card: "border-amber-500 bg-amber-100 text-amber-950 ring-2 ring-amber-300", badge: "bg-amber-600 text-white" },
+    { card: "border-emerald-500 bg-emerald-100 text-emerald-950 ring-2 ring-emerald-300", badge: "bg-emerald-600 text-white" },
+    { card: "border-teal-500 bg-teal-100 text-teal-950 ring-2 ring-teal-300", badge: "bg-teal-600 text-white" },
+    { card: "border-indigo-500 bg-indigo-100 text-indigo-950 ring-2 ring-indigo-300", badge: "bg-indigo-600 text-white" },
+    { card: "border-red-500 bg-red-100 text-red-950 ring-2 ring-red-300", badge: "bg-red-600 text-white" }
+  ];
+
   const AppState = {
     selectedGrade: 4,      // Lớp 1 - 5
     studentName: 'Siêu Trạng Nhí', // Tên học sinh mặc định
@@ -6743,6 +6754,14 @@
           </div>
         </div>
 
+        <!-- Khung hiển thị đề bài chi tiết -->
+        <div class="p-3 sm:p-3.5 bg-amber-50 rounded-2xl border-2 border-amber-200 text-center mb-3 shadow-sm">
+          <p class="text-xs sm:text-sm font-extrabold text-amber-950 leading-relaxed flex items-center justify-center gap-1.5">
+            <span class="text-base shrink-0">💡</span>
+            <span>${subGame.question || subGame.title || 'Hãy nối các cặp từ tương ứng ở hai cột.'}</span>
+          </p>
+        </div>
+
         <!-- BỐ TRÍ 2 CỘT RÕ RÀNG: TRÁI VÀ PHẢI -->
         <div class="grid grid-cols-2 gap-2.5 sm:gap-4 my-2" id="meo-con-grid">
           <!-- CỘT BÊN TRÁI -->
@@ -6753,10 +6772,11 @@
             </div>
             ${colA.map(item => {
               const isMatched = AppState.game1MatchedPairs.includes(item.pairId);
+              const pairStyle = MATCH_PAIR_STYLES[item.pairId % MATCH_PAIR_STYLES.length];
               return `
-                <button data-id="${item.id}" data-col="A" data-pair="${item.pairId}" class="cat-tile scroll-card p-2.5 sm:p-3 text-center text-xs sm:text-sm font-bold border-2 rounded-xl transition-all shadow-sm flex items-center justify-between gap-1 ${isMatched ? 'matched bg-emerald-100 border-emerald-500 text-emerald-900 opacity-90' : 'border-amber-300 bg-amber-50/70 hover:bg-amber-100 text-slate-800'}" title="${isMatched ? 'Bấm để tháo nối cặp này' : ''}">
+                <button data-id="${item.id}" data-col="A" data-pair="${item.pairId}" class="cat-tile scroll-card p-2.5 sm:p-3 text-center text-xs sm:text-sm font-bold border-2 rounded-xl transition-all shadow-sm flex items-center justify-between gap-1 ${isMatched ? `matched ${pairStyle.card}` : 'border-amber-300 bg-amber-50/70 hover:bg-amber-100 text-slate-800'}" title="${isMatched ? 'Bấm để tháo nối cặp này' : ''}">
                   <span class="flex-1 text-center">${item.text}</span>
-                  <span class="status-icon text-xs ${isMatched ? 'font-black text-emerald-700' : 'hidden'}">✓</span>
+                  <span class="status-icon text-xs ${isMatched ? 'font-black' : 'hidden'}">✓</span>
                 </button>
               `;
             }).join('')}
@@ -6770,10 +6790,11 @@
             </div>
             ${colB.map(item => {
               const isMatched = AppState.game1MatchedPairs.includes(item.pairId);
+              const pairStyle = MATCH_PAIR_STYLES[item.pairId % MATCH_PAIR_STYLES.length];
               return `
-                <button data-id="${item.id}" data-col="B" data-pair="${item.pairId}" class="cat-tile scroll-card p-2.5 sm:p-3 text-center text-xs sm:text-sm font-bold border-2 rounded-xl transition-all shadow-sm flex items-center justify-between gap-1 ${isMatched ? 'matched bg-emerald-100 border-emerald-500 text-emerald-900 opacity-90' : 'border-amber-300 bg-amber-50/70 hover:bg-amber-100 text-slate-800'}" title="${isMatched ? 'Bấm để tháo nối cặp này' : ''}">
+                <button data-id="${item.id}" data-col="B" data-pair="${item.pairId}" class="cat-tile scroll-card p-2.5 sm:p-3 text-center text-xs sm:text-sm font-bold border-2 rounded-xl transition-all shadow-sm flex items-center justify-between gap-1 ${isMatched ? `matched ${pairStyle.card}` : 'border-amber-300 bg-amber-50/70 hover:bg-amber-100 text-slate-800'}" title="${isMatched ? 'Bấm để tháo nối cặp này' : ''}">
                   <span class="flex-1 text-center">${item.text}</span>
-                  <span class="status-icon text-xs ${isMatched ? 'font-black text-emerald-700' : 'hidden'}">✓</span>
+                  <span class="status-icon text-xs ${isMatched ? 'font-black' : 'hidden'}">✓</span>
                 </button>
               `;
             }).join('')}
@@ -7785,6 +7806,12 @@
                 Đã nối: ${pairedCount}/${totalPairs}
               </span>
             </div>
+            <div class="p-3.5 sm:p-4 bg-amber-50 rounded-2xl border-2 border-amber-200 text-center shadow-sm">
+              <p class="text-sm sm:text-base font-extrabold text-amber-950 leading-relaxed flex items-center justify-center gap-1.5">
+                <span class="text-base shrink-0">💡</span>
+                <span>${curQ.question || curQ.title || 'Hãy nối các ô ở Cột Bên Trái với ô tương ứng ở Cột Bên Phải.'}</span>
+              </p>
+            </div>
           </div>
 
           <div class="grid grid-cols-2 gap-3 sm:gap-4 my-3" id="mini-match-area">
@@ -7797,12 +7824,13 @@
                 const isSelected = (selectedColA === i);
                 const pairedB = savedAns[i];
                 const isPaired = (pairedB !== undefined);
+                const pairStyle = MATCH_PAIR_STYLES[i % MATCH_PAIR_STYLES.length];
 
                 let cardStyle = "min-h-[50px] sm:min-h-[54px] p-2.5 sm:p-3 rounded-2xl border-2 text-xs sm:text-sm font-bold text-center transition-all flex items-center justify-center cursor-pointer shadow-sm select-none relative ";
                 if (isSelected) {
-                  cardStyle += "border-amber-500 bg-amber-100 ring-4 ring-amber-300 text-amber-950 scale-[1.02] shadow-md z-10";
+                  cardStyle += "border-amber-500 bg-amber-200 ring-4 ring-amber-400 text-amber-950 scale-[1.02] shadow-md z-10";
                 } else if (isPaired) {
-                  cardStyle += "border-emerald-500 bg-emerald-50 text-emerald-950 ring-1 ring-emerald-300";
+                  cardStyle += pairStyle.card;
                 } else {
                   cardStyle += "border-amber-300 bg-amber-50/50 hover:bg-amber-100/70 text-slate-800";
                 }
@@ -7813,7 +7841,7 @@
                   <button type="button" onclick="selectMiniMatchColA(${i})" id="btn-colA-${i}" class="${cardStyle}">
                     <span class="leading-snug break-words px-1">${item.text}</span>
                     ${isPaired ? `
-                      <span class="absolute right-1.5 top-1.5 text-[9px] font-black bg-emerald-600 text-white px-1.5 py-0.5 rounded-full shadow-sm">
+                      <span class="absolute right-1.5 top-1.5 text-[9px] font-black ${pairStyle.badge} px-1.5 py-0.5 rounded-full shadow-sm">
                         ➔ ${targetLabel}
                       </span>
                     ` : ''}
@@ -7830,24 +7858,30 @@
               ${colB.map((item, j) => {
                 const pairedAKey = Object.keys(savedAns).find(k => Number(savedAns[k]) === j);
                 const isPaired = (pairedAKey !== undefined);
+                const pairedAIdx = isPaired ? Number(pairedAKey) : 0;
+                const pairStyle = MATCH_PAIR_STYLES[pairedAIdx % MATCH_PAIR_STYLES.length];
 
                 let cardStyle = "min-h-[50px] sm:min-h-[54px] p-2.5 sm:p-3 rounded-2xl border-2 text-xs sm:text-sm font-bold text-center transition-all flex items-center justify-center cursor-pointer shadow-sm select-none relative ";
                 if (isPaired) {
-                  cardStyle += "border-emerald-500 bg-emerald-50 text-emerald-950 ring-1 ring-emerald-300";
+                  cardStyle += pairStyle.card;
                 } else {
                   cardStyle += "border-amber-300 bg-amber-50/50 hover:bg-amber-100/70 text-slate-800";
                 }
 
-                const sourceLabel = isPaired && colA[pairedAKey] ? (colA[pairedAKey].key || (Number(pairedAKey) + 1)) : '';
+                const sourceLabel = isPaired && colA[pairedAIdx] ? (colA[pairedAIdx].key || (pairedAIdx + 1)) : '';
 
                 return `
                   <button type="button" onclick="selectMiniMatchColB(${j})" id="btn-colB-${j}" class="${cardStyle}">
                     <span class="leading-snug break-words px-1">${item.text}</span>
                     ${isPaired ? `
-                      <span class="absolute left-1.5 top-1.5 text-[9px] font-black bg-emerald-600 text-white px-1.5 py-0.5 rounded-full shadow-sm">
+                      <span class="absolute left-1.5 top-1.5 text-[9px] font-black ${pairStyle.badge} px-1.5 py-0.5 rounded-full shadow-sm">
                         ⬅ ${sourceLabel}
                       </span>
                     ` : ''}
+                  </button>
+                `;
+              }).join('')}
+            </div>
                   </button>
                 `;
               }).join('')}
