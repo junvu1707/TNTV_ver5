@@ -6806,11 +6806,11 @@
     root.innerHTML = `
       ${getExamHeaderMode1(subGame.title)}
       <div class="scroll-card p-3 sm:p-5">
-        <div class="flex items-center justify-between mb-3 text-xs sm:text-sm">
-          <span class="text-xs font-bold text-amber-900 bg-amber-100 px-3 py-1 rounded-full border border-amber-300">
+        <div class="p-3.5 sm:p-4 bg-amber-50 rounded-2xl border-2 border-amber-200 shadow-sm mb-3 flex items-start justify-between gap-3">
+          <div class="text-xs sm:text-sm font-extrabold text-amber-950 leading-relaxed">
             ${promptTitle} (+10 ⭐)
-          </span>
-          <div class="flex items-center gap-2">
+          </div>
+          <div class="flex items-center gap-2 shrink-0">
             <span class="text-xs font-bold text-emerald-800 bg-emerald-50 px-2.5 py-1 rounded-full border border-emerald-300">
               Đã nối: <b id="match-progress">${matchedCount}</b>/${totalPairs}
             </span>
@@ -6818,14 +6818,6 @@
               Sai: <b id="mistake-count">0</b>/3
             </span>
           </div>
-        </div>
-
-        <!-- Khung hiển thị đề bài chi tiết -->
-        <div class="p-3 sm:p-3.5 bg-amber-50 rounded-2xl border-2 border-amber-200 text-center mb-3 shadow-sm">
-          <p class="text-xs sm:text-sm font-extrabold text-amber-950 leading-relaxed flex items-center justify-center gap-1.5">
-            <span class="text-base shrink-0">💡</span>
-            <span>${promptTitle}</span>
-          </p>
         </div>
 
         <!-- BỐ TRÍ 2 CỘT RÕ RÀNG: TRÁI VÀ PHẢI -->
@@ -7870,19 +7862,13 @@
 
         questionBodyHtml = `
           <div class="mb-3">
-            <div class="flex items-center justify-between mb-2">
-              <span class="text-xs font-bold bg-amber-100 text-amber-900 px-3 py-1 rounded-full border border-amber-300">
+            <div class="p-3.5 sm:p-4 bg-amber-50 rounded-2xl border-2 border-amber-200 shadow-sm flex items-start justify-between gap-3">
+              <div class="text-xs sm:text-sm font-extrabold text-amber-950 leading-relaxed">
                 Câu ${curIdx + 1}: ${promptTitle} (10 điểm)
-              </span>
-              <span class="text-xs font-bold bg-emerald-100 text-emerald-800 border border-emerald-300 px-2.5 py-1 rounded-full">
+              </div>
+              <span class="text-xs font-bold bg-emerald-100 text-emerald-800 border border-emerald-300 px-2.5 py-1 rounded-full shrink-0">
                 Đã nối: ${pairedCount}/${totalPairs}
               </span>
-            </div>
-            <div class="p-3.5 sm:p-4 bg-amber-50 rounded-2xl border-2 border-amber-200 text-center shadow-sm">
-              <p class="text-sm sm:text-base font-extrabold text-amber-950 leading-relaxed flex items-center justify-center gap-1.5">
-                <span class="text-base shrink-0">💡</span>
-                <span>${promptTitle}</span>
-              </p>
             </div>
           </div>
 
