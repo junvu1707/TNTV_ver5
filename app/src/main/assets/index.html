@@ -8189,22 +8189,16 @@
     root.innerHTML = `
       <!-- Thanh Tiêu Đề Phòng Thi Chặng 7 - 18 -->
       <div class="scroll-card p-2.5 sm:p-3.5 mb-3 bg-gradient-to-r from-red-800 via-amber-700 to-red-900 text-white shadow-lg border-2 border-amber-400 rounded-2xl flex flex-col gap-2">
-        <!-- DÒNG 1: BÊN TRÁI: LỚP X - CHẶNG Y ---------- BÊN PHẢI: BUTTON DANH SÁCH CÂU HỎI -->
+        <!-- DÒNG 1: BÊN TRÁI: ICON + LỚP + CHẶNG ... -->
         <div class="flex items-center justify-between gap-2 border-b border-amber-400/30 pb-2">
           <div class="flex items-center gap-1.5 shrink-0">
             <span class="text-base sm:text-lg">🏛️</span>
             <span class="text-sm sm:text-base font-black text-yellow-300">Lớp ${AppState.selectedGrade}</span>
             <span class="text-xs sm:text-sm font-bold text-yellow-200">Chặng ${AppState.currentRoundNum}</span>
           </div>
-
-          <!-- Button "Danh sách câu hỏi" phía trên bên phải cùng dòng với chữ Lớp... Chặng... -->
-          <button onclick="openQuestionListModal30()" class="btn-3d btn-3d-blue px-3 sm:px-3.5 py-1 rounded-xl font-extrabold text-white text-xs sm:text-sm shadow flex items-center gap-1 active:scale-95 shrink-0" title="Xem danh sách 30 câu hỏi">
-            <span>📋</span>
-            <span>Danh sách câu hỏi</span>
-          </button>
         </div>
 
-        <!-- DÒNG 2: ⏱️ ĐỒNG HỒ --- 📝 SỐ CÂU ĐÃ HOÀN THÀNH/30 CÂU ---------- BÊN PHẢI: NỘP BÀI & THOÁT -->
+        <!-- DÒNG 2: ⏱️ ĐỒNG HỒ --- 📝 SỐ CÂU ĐÃ HOÀN THÀNH/30 CÂU --- NỘP BÀI (MÀU VÀNG 3D) --- THOÁT -->
         <div class="flex items-center justify-between gap-1.5 sm:gap-2 text-xs sm:text-sm font-bold">
           <div class="flex items-center gap-1.5 sm:gap-2">
             <!-- ⏱️ Đồng hồ đếm giờ -->
@@ -8234,6 +8228,16 @@
         </div>
       </div>
 
+      <!-- Bảng 30 Ô Số Câu Hỏi Điều Hướng Tùy Ý -->
+      <div class="scroll-card p-3 sm:p-4 mb-4 bg-white border-2 border-amber-300">
+        <div class="flex items-center justify-between text-xs font-bold text-slate-600 mb-2">
+          <span>DANH SÁCH 30 CÂU HỎI (Bấm số để nhảy câu):</span>
+        </div>
+        <div class="grid grid-cols-10 gap-1.5 sm:gap-2 justify-items-center">
+          ${navPillsHtml}
+        </div>
+      </div>
+
       <!-- Khung Nội Dung Câu Hỏi Đang Chọn -->
       <div class="scroll-card p-4 sm:p-6 mb-4">
         ${questionBodyHtml}
@@ -8254,68 +8258,6 @@
         </button>
       </div>
     `;
-
-    safeCreateIcons();
-  }
-
-  // Mở Popup Danh sách 30 câu hỏi
-  function openQuestionListModal30() {
-    saveFillAnswer30();
-    SoundEngine.playClick();
-    const qList = AppState.exam30Questions || [];
-    const curIdx = AppState.currentQuestionIndex;
-
-    const navPillsHtml = qList.map((q, i) => {
-      const isAnswered = AppState.userAnswers30[i] !== undefined;
-      const isActive = i === curIdx;
-      return `
-        <button onclick="jumpToQuestion30(${i}); closeModal();" class="q-nav-pill ${isActive ? 'active' : (isAnswered ? 'answered' : '')}">
-          ${i + 1}
-        </button>
-      `;
-    }).join('');
-
-    const answeredCount = Object.keys(AppState.userAnswers30).length;
-
-    const modalContainer = document.getElementById('modal-container');
-    if (!modalContainer) return;
-    modalContainer.innerHTML = `
-      <div class="fixed inset-0 z-50 bg-black/75 backdrop-blur-sm flex items-center justify-center p-4" onclick="closeModal()">
-        <div class="scroll-card max-w-sm sm:max-w-md w-full p-5 sm:p-6 bg-gradient-to-b from-amber-50 via-white to-amber-100/70 rounded-3xl text-center shadow-2xl border-4 border-amber-400 relative overflow-hidden" onclick="event.stopPropagation()">
-
-          <button onclick="closeModal()" class="absolute top-3 right-3 text-slate-400 hover:text-slate-600 p-1.5 rounded-full hover:bg-slate-100 transition-colors">
-            ✕
-          </button>
-
-          <div class="flex items-center justify-center gap-2 mb-1.5">
-            <span class="text-2xl">📋</span>
-            <h3 class="text-base sm:text-lg font-black text-amber-950">Danh Sách 30 Câu Hỏi</h3>
-          </div>
-
-          <div class="text-xs sm:text-sm font-bold text-slate-600 mb-3">
-            Tiến độ: <b class="text-emerald-700 font-black">${answeredCount}/30 câu</b> (Chạm câu bất kỳ để chọn)
-          </div>
-
-          <!-- Chú thích trạng thái -->
-          <div class="flex items-center justify-center gap-3 text-[11px] font-bold text-slate-700 mb-4 bg-amber-100/80 py-1.5 px-3 rounded-xl border border-amber-200">
-            <span class="flex items-center gap-1"><span class="w-3 h-3 rounded bg-amber-500 inline-block border border-amber-700 shadow-sm"></span> Đang làm</span>
-            <span class="flex items-center gap-1"><span class="w-3 h-3 rounded bg-emerald-500 inline-block border border-emerald-700 shadow-sm"></span> Đã làm</span>
-            <span class="flex items-center gap-1"><span class="w-3 h-3 rounded bg-slate-100 inline-block border border-slate-300 shadow-sm"></span> Chưa làm</span>
-          </div>
-
-          <!-- Bảng 30 Ô Số Câu Hỏi -->
-          <div class="grid grid-cols-10 gap-1.5 sm:gap-2 justify-items-center mb-5">
-            ${navPillsHtml}
-          </div>
-
-          <button onclick="closeModal()" class="w-full btn-3d btn-3d-gold py-2.5 rounded-2xl font-black text-amber-950 text-xs sm:text-sm shadow">
-            Đóng
-          </button>
-        </div>
-      </div>
-    `;
-    if (typeof lucide !== 'undefined' && lucide.createIcons) safeCreateIcons();
-  }
 
     safeCreateIcons();
   }
