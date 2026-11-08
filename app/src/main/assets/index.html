@@ -1434,6 +1434,55 @@
       .trim();
   }
 
+  // Chuẩn hóa và làm sạch tiêu đề đề bài dạng câu hỏi Nối Cột (MATCH_MINI / NOI)
+  function formatMatchingQuestionPrompt(rawQuestion, rawTitle) {
+    const text = String(rawQuestion || rawTitle || '').trim();
+    if (!text) return 'Nối các cặp từ tương ứng ở hai cột';
+
+    const lower = text.toLowerCase();
+
+    if (lower.includes('đồng nghĩa')) {
+      return 'Nối cặp từ đồng nghĩa';
+    }
+    if (lower.includes('trái nghĩa')) {
+      return 'Nối cặp từ trái nghĩa';
+    }
+    if (lower.includes('thành ngữ') || lower.includes('tục ngữ')) {
+      return 'Nối thành ngữ, tục ngữ hoàn chỉnh';
+    }
+    if (lower.includes('thành câu') || lower.includes('tạo thành câu')) {
+      return 'Nối tạo thành câu hoàn chỉnh';
+    }
+    if (lower.includes('giải nghĩa') || lower.includes('nghĩa của từ') || lower.includes('ý nghĩa')) {
+      return 'Nối từ với giải nghĩa tương ứng';
+    }
+    if (lower.includes('âm đầu') || lower.includes('vần')) {
+      return 'Nối tiếng với âm đầu hoặc vần tương ứng';
+    }
+    if (lower.includes('từ loại') || lower.includes('danh từ') || lower.includes('động từ') || lower.includes('tính từ')) {
+      return 'Nối từ vựng với nhóm từ loại tương ứng';
+    }
+
+    let clean = text
+      .replace(/Nối các mục ở Cột A với nội dung tương ứng ở Cột B/gi, '')
+      .replace(/Nối mỗi vế ở Cột A với vế tương ứng ở Cột B/gi, '')
+      .replace(/Nối vế ở Cột A với vế ở Cột B/gi, '')
+      .replace(/Hãy nối các ô ở Cột A với Cột B/gi, '')
+      .replace(/Hãy nối/gi, '')
+      .replace(/Nối/gi, '')
+      .replace(/\s*\([^)]*nhóm[^)]*\)/gi, '')
+      .replace(/\s*\([^)]*số\s*\d+[^)]*\)/gi, '')
+      .replace(/[:.,]+$/g, '')
+      .trim();
+
+    if (clean.length > 0) {
+      clean = clean.charAt(0).toUpperCase() + clean.slice(1);
+      return `Nối ${clean}`;
+    }
+
+    return 'Nối các cặp từ tương ứng ở hai cột';
+  }
+
   // Tối ưu hóa định dạng nội dung câu hỏi: tách phần hướng dẫn ngắn gọn và phần câu văn/nội dung xuống dòng
   function parseAndFormatQuestionText(qText, type) {
     if (!qText) return { header: '', body: '' };
@@ -6725,13 +6774,14 @@
     let selectedLeft = null;
     let selectedRight = null;
     let matchedCount = AppState.game1MatchedPairs.length;
+    const promptTitle = formatMatchingQuestionPrompt(subGame.question, subGame.title);
 
     root.innerHTML = `
       ${getExamHeaderMode1(subGame.title)}
       <div class="scroll-card p-3 sm:p-5">
         <div class="flex items-center justify-between mb-3 text-xs sm:text-sm">
           <span class="text-xs font-bold text-amber-900 bg-amber-100 px-3 py-1 rounded-full border border-amber-300">
-            Nối cặp tương ứng (+10 ⭐)
+            ${promptTitle} (+10 ⭐)
           </span>
           <div class="flex items-center gap-2">
             <span class="text-xs font-bold text-emerald-800 bg-emerald-50 px-2.5 py-1 rounded-full border border-emerald-300">
@@ -6741,6 +6791,14 @@
               Sai: <b id="mistake-count">0</b>/3
             </span>
           </div>
+        </div>
+
+        <!-- Khung hiển thị đề bài chi tiết -->
+        <div class="p-3 sm:p-3.5 bg-amber-50 rounded-2xl border-2 border-amber-200 text-center mb-3 shadow-sm">
+          <p class="text-xs sm:text-sm font-extrabold text-amber-950 leading-relaxed flex items-center justify-center gap-1.5">
+            <span class="text-base shrink-0">💡</span>
+            <span>${promptTitle}</span>
+          </p>
         </div>
 
         <!-- BỐ TRÍ 2 CỘT RÕ RÀNG: TRÁI VÀ PHẢI -->
@@ -7774,16 +7832,23 @@
 
         const totalPairs = colA.length;
         const pairedCount = Object.keys(savedAns).length;
+        const promptTitle = formatMatchingQuestionPrompt(curQ.question, curQ.title);
 
         questionBodyHtml = `
           <div class="mb-3">
             <div class="flex items-center justify-between mb-2">
               <span class="text-xs font-bold bg-amber-100 text-amber-900 px-3 py-1 rounded-full border border-amber-300">
-                Câu ${curIdx + 1}: ${formatQuestionTitle(curQ.title) || 'Nối cặp tương ứng'} (10 điểm)
+                Câu ${curIdx + 1}: ${promptTitle} (10 điểm)
               </span>
               <span class="text-xs font-bold bg-emerald-100 text-emerald-800 border border-emerald-300 px-2.5 py-1 rounded-full">
                 Đã nối: ${pairedCount}/${totalPairs}
               </span>
+            </div>
+            <div class="p-3.5 sm:p-4 bg-amber-50 rounded-2xl border-2 border-amber-200 text-center shadow-sm">
+              <p class="text-sm sm:text-base font-extrabold text-amber-950 leading-relaxed flex items-center justify-center gap-1.5">
+                <span class="text-base shrink-0">💡</span>
+                <span>${promptTitle}</span>
+              </p>
             </div>
           </div>
 
