@@ -78,6 +78,18 @@ class AndroidBridge(
   }
 
   @JavascriptInterface
+  fun getChibiGithubUrl(fileName: String): String {
+    val act = activity ?: return "https://raw.githubusercontent.com/junvu1707/app_chibi/main/app_logo.png"
+    return act.chibiManager.getChibiGithubUrl(fileName)
+  }
+
+  @JavascriptInterface
+  fun getChibiFallbackAsset(fileName: String): String {
+    val act = activity ?: return "app_logo.png"
+    return act.chibiManager.getChibiFallbackAsset(fileName)
+  }
+
+  @JavascriptInterface
   fun getVipLevel(): Int {
     return activity?.vipPrefs?.getVipLevel() ?: VipPreferenceManager.VIP_LEVEL_0
   }
