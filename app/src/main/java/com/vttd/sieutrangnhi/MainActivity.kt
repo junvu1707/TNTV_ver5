@@ -278,11 +278,148 @@ class MainActivity : ComponentActivity() {
     }
   }
 
+  fun showParentalGateDialog(onPassed: () -> Unit) {
+    if (isFinishing || isDestroyed) return
+    runOnUiThread {
+      if (isFinishing || isDestroyed) return@runOnUiThread
+
+      val num1 = (5..9).random()
+      val num2 = (6..9).random()
+      val expectedAnswer = num1 * num2
+
+      var dialogRef: AlertDialog? = null
+
+      val container = LinearLayout(this).apply {
+        orientation = LinearLayout.VERTICAL
+        setPadding(52, 40, 52, 36)
+        val bgDrawable = GradientDrawable().apply {
+          setColor(Color.parseColor("#FFFBEB"))
+          setStroke(8, Color.parseColor("#F59E0B"))
+          cornerRadius = 40f
+        }
+        background = bgDrawable
+      }
+
+      val titleHeader = TextView(this).apply {
+        text = "👨‍👩‍👧‍👦 XÁC NHẬN PHỤ HUYNH"
+        setTextColor(Color.parseColor("#991B1B"))
+        textSize = 16f
+        setTypeface(null, Typeface.BOLD)
+        gravity = Gravity.CENTER
+        setPadding(0, 0, 0, 8)
+      }
+      container.addView(titleHeader)
+
+      val subTitle = TextView(this).apply {
+        text = "Để bảo vệ trẻ em và tuân thủ quy định Google Play, vui lòng nhờ phụ huynh giải bài toán bên dưới để tiếp tục:"
+        setTextColor(Color.parseColor("#78350F"))
+        textSize = 12f
+        gravity = Gravity.CENTER
+        setLineSpacing(4f, 1f)
+        setPadding(0, 0, 0, 16)
+      }
+      container.addView(subTitle)
+
+      val mathBox = LinearLayout(this).apply {
+        orientation = LinearLayout.HORIZONTAL
+        gravity = Gravity.CENTER
+        setPadding(24, 16, 24, 16)
+        val boxBg = GradientDrawable().apply {
+          setColor(Color.WHITE)
+          setStroke(4, Color.parseColor("#F59E0B"))
+          cornerRadius = 24f
+        }
+        background = boxBg
+        layoutParams = LinearLayout.LayoutParams(
+          LinearLayout.LayoutParams.MATCH_PARENT,
+          LinearLayout.LayoutParams.WRAP_CONTENT
+        ).apply { setMargins(0, 0, 0, 16) }
+      }
+
+      val mathQuestionText = TextView(this).apply {
+        text = "$num1 × $num2 = "
+        setTextColor(Color.parseColor("#B91C1C"))
+        textSize = 22f
+        setTypeface(null, Typeface.BOLD)
+      }
+
+      val inputAnswer = EditText(this).apply {
+        hint = "?"
+        inputType = InputType.TYPE_CLASS_NUMBER
+        setSingleLine(true)
+        setTextColor(Color.parseColor("#1E293B"))
+        textSize = 22f
+        setTypeface(null, Typeface.BOLD)
+        gravity = Gravity.CENTER
+        background = null
+        layoutParams = LinearLayout.LayoutParams(140, LinearLayout.LayoutParams.WRAP_CONTENT)
+      }
+
+      mathBox.addView(mathQuestionText)
+      mathBox.addView(inputAnswer)
+      container.addView(mathBox)
+
+      val btnSubmit = Button(this).apply {
+        text = "Xác nhận"
+        setTextColor(Color.WHITE)
+        textSize = 14f
+        setTypeface(null, Typeface.BOLD)
+        val btnBg = GradientDrawable().apply {
+          setColor(Color.parseColor("#059669"))
+          cornerRadius = 24f
+        }
+        background = btnBg
+        setPadding(0, 18, 0, 18)
+        layoutParams = LinearLayout.LayoutParams(
+          LinearLayout.LayoutParams.MATCH_PARENT,
+          LinearLayout.LayoutParams.WRAP_CONTENT
+        ).apply { setMargins(0, 8, 0, 8) }
+
+        setOnClickListener {
+          val userAns = inputAnswer.text.toString().trim().toIntOrNull()
+          if (userAns == expectedAnswer) {
+            dialogRef?.dismiss()
+            onPassed()
+          } else {
+            Toast.makeText(this@MainActivity, "Kết quả chưa đúng, vui lòng thử lại!", Toast.LENGTH_SHORT).show()
+          }
+        }
+      }
+      container.addView(btnSubmit)
+
+      val btnCancel = TextView(this).apply {
+        text = "Hủy"
+        setTextColor(Color.parseColor("#DC2626"))
+        textSize = 13f
+        setTypeface(null, Typeface.BOLD)
+        gravity = Gravity.CENTER
+        setPadding(0, 12, 0, 4)
+        isClickable = true
+        isFocusable = true
+        setOnClickListener {
+          dialogRef?.dismiss()
+        }
+      }
+      container.addView(btnCancel)
+
+      dialogRef = AlertDialog.Builder(this)
+        .setView(container)
+        .create()
+
+      dialogRef?.window?.apply {
+        setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        clearFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND)
+      }
+      dialogRef?.show()
+    }
+  }
+
   fun showVipRegistrationDialog(productId: String, defaultName: String = "") {
     if (isFinishing() || isDestroyed()) return
-    runOnUiThread {
-      if (isFinishing() || isDestroyed()) return@runOnUiThread
-      val isVip2Target = productId == BillingManager.PRODUCT_VIP_2
+    showParentalGateDialog {
+      runOnUiThread {
+        if (isFinishing() || isDestroyed()) return@runOnUiThread
+        val isVip2Target = productId == BillingManager.PRODUCT_VIP_2
       val vipTitleName = if (isVip2Target) "Gói VIP 2 (Trọn Đời - 99.000đ)" else "Gói VIP 1 (Mùa Thi - 49.000đ)"
       val deviceId = vipPrefs.getDeviceId()
       val savedEmail = vipPrefs.getUserEmail()
@@ -539,6 +676,7 @@ class MainActivity : ComponentActivity() {
       dialogRef.show()
     }
   }
+}
 
   fun showVipSuccessDialog(productId: String, vipLevel: Int) {
     if (isFinishing || isDestroyed) return
@@ -778,7 +916,9 @@ class AndroidBridge(
   fun launchBillingFlowWithInfo(productId: String, userEmail: String, userName: String) {
     val act = activity ?: return
     act.runOnUiThread {
-      act.billingManager.launchBillingFlow(act, productId, userEmail, userName)
+      act.showParentalGateDialog {
+        act.billingManager.launchBillingFlow(act, productId, userEmail, userName)
+      }
     }
   }
 
@@ -1032,21 +1172,23 @@ class AndroidBridge(
   fun openBrowserUrl(url: String) {
     val act = activity ?: return
     act.runOnUiThread {
-      try {
-        val targetUri = if (url == "privacy.html" || url.endsWith("/privacy.html")) {
-          Uri.parse("https://sites.google.com/view/sieutrangnhi-tiengviet/trang-ch%E1%BB%A7")
-        } else if (url.startsWith("http://") || url.startsWith("https://")) {
-          Uri.parse(url)
-        } else {
-          Uri.parse(url)
+      act.showParentalGateDialog {
+        try {
+          val targetUri = if (url == "privacy.html" || url.endsWith("/privacy.html")) {
+            Uri.parse("https://sites.google.com/view/sieutrangnhi-tiengviet/trang-ch%E1%BB%A7")
+          } else if (url.startsWith("http://") || url.startsWith("https://")) {
+            Uri.parse(url)
+          } else {
+            Uri.parse(url)
+          }
+          val intent = Intent(Intent.ACTION_VIEW, targetUri).apply {
+            addCategory(Intent.CATEGORY_BROWSABLE)
+            flags = Intent.FLAG_ACTIVITY_NEW_TASK
+          }
+          act.startActivity(intent)
+        } catch (e: Exception) {
+          act.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://sites.google.com/view/sieutrangnhi-tiengviet/trang-ch%E1%BB%A7")))
         }
-        val intent = Intent(Intent.ACTION_VIEW, targetUri).apply {
-          addCategory(Intent.CATEGORY_BROWSABLE)
-          flags = Intent.FLAG_ACTIVITY_NEW_TASK
-        }
-        act.startActivity(intent)
-      } catch (e: Exception) {
-        act.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://sites.google.com/view/sieutrangnhi-tiengviet/trang-ch%E1%BB%A7")))
       }
     }
   }
