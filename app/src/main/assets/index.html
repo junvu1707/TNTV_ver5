@@ -1497,8 +1497,20 @@
   // Tối ưu hóa định dạng nội dung câu hỏi: tách phần hướng dẫn ngắn gọn và phần câu văn/nội dung xuống dòng
   function parseAndFormatQuestionText(qText, type) {
     if (!qText) return { header: '', body: '' };
-    
+
     let text = String(qText).trim();
+
+    // 1. Đối với dạng Điền từ (FILL / DT), luôn giữ và hiển thị trọn vẹn toàn bộ câu hỏi
+    if (type === 'FILL' || type === 'DT') {
+      const formatted = text
+        .replace(/_{2,}/g, '<span class="text-red-600 font-black px-2 py-0.5 rounded bg-amber-100 border border-amber-300 underline font-mono">( ... )</span>')
+        .replace(/\([\.\s]*\)/g, '<span class="text-red-600 font-black px-2 py-0.5 rounded bg-amber-100 border border-amber-300 underline font-mono">( ... )</span>')
+        .replace(/\[\.\.\.\]/g, '<span class="text-red-600 font-black px-2 py-0.5 rounded bg-amber-100 border border-amber-300 underline font-mono">[ ... ]</span>');
+
+      return { header: 'Điền từ thích hợp vào chỗ trống:', body: formatted };
+    }
+
+    // 2. Đối với trắc nghiệm và các dạng khác
     let header = '';
     let body = text;
 
@@ -1507,28 +1519,31 @@
       const rawInst = text.substring(0, colonIdx).trim();
       const rawBody = text.substring(colonIdx + 1).trim();
 
-      if (rawInst.includes('Điền quan hệ từ')) {
-        header = 'Điền quan hệ từ thích hợp:';
-      } else if (rawInst.includes('Điền từ')) {
-        header = 'Điền từ thích hợp vào chỗ trống:';
-      } else if (rawInst.includes('Sắp xếp')) {
-        header = 'Sắp xếp thành câu:';
-      } else if (rawInst.includes('Xếp') || rawInst.includes('Phân loại')) {
-        header = 'Xếp các từ vào nhóm tương ứng:';
-      } else if (rawInst.length <= 65) {
-        header = rawInst.endsWith(':') ? rawInst : (rawInst + ':');
-      } else {
-        header = (type === 'FILL' || type === 'DT') ? 'Điền từ thích hợp:' : 'Câu hỏi:';
-      }
+      const cleanRawBody = rawBody.replace(/[_"“'\s]+/g, '').trim();
+      if (cleanRawBody.length > 2) {
+        if (rawInst.includes('Điền quan hệ từ')) {
+          header = 'Điền quan hệ từ thích hợp:';
+        } else if (rawInst.includes('Điền từ')) {
+          header = 'Điền từ thích hợp vào chỗ trống:';
+        } else if (rawInst.includes('Sắp xếp')) {
+          header = 'Sắp xếp thành câu:';
+        } else if (rawInst.includes('Xếp') || rawInst.includes('Phân loại')) {
+          header = 'Xếp các từ vào nhóm tương ứng:';
+        } else if (rawInst.length <= 65) {
+          header = rawInst.endsWith(':') ? rawInst : (rawInst + ':');
+        } else {
+          header = 'Câu hỏi:';
+        }
 
-      body = rawBody.replace(/^["“'\s]+|["”'\s]+$/g, '').trim();
-      if (body && !body.startsWith('“') && !body.startsWith('"')) {
-        body = `“${body}”`;
+        body = rawBody.replace(/^["“'\s]+|["”'\s]+$/g, '').trim();
+        if (body && !body.startsWith('“') && !body.startsWith('"')) {
+          body = `“${body}”`;
+        }
+      } else {
+        body = text;
       }
     } else {
-      if (type === 'FILL' || type === 'DT') {
-        header = 'Điền từ thích hợp vào chỗ trống:';
-      } else if (type === 'ARRANGE' || type === 'SX') {
+      if (type === 'ARRANGE' || type === 'SX') {
         header = 'Sắp xếp thành câu:';
       } else if (type === 'CLASSIFY_MINI' || type === 'CHON') {
         header = 'Bấm chọn từ bên dưới rồi xếp vào giỏ:';
@@ -1537,8 +1552,9 @@
     }
 
     const formattedBody = body
-      .replace(/\([\.\s]*\)/g, '<span class="text-red-600 font-black px-1.5 py-0.5 rounded bg-amber-100 border border-amber-300 underline">( ... )</span>')
-      .replace(/\[\.\.\.\]/g, '<span class="text-red-600 font-black px-1.5 py-0.5 rounded bg-amber-100 border border-amber-300 underline">[ ... ]</span>');
+      .replace(/_{2,}/g, '<span class="text-red-600 font-black px-2 py-0.5 rounded bg-amber-100 border border-amber-300 underline font-mono">( ... )</span>')
+      .replace(/\([\.\s]*\)/g, '<span class="text-red-600 font-black px-2 py-0.5 rounded bg-amber-100 border border-amber-300 underline font-mono">( ... )</span>')
+      .replace(/\[\.\.\.\]/g, '<span class="text-red-600 font-black px-2 py-0.5 rounded bg-amber-100 border border-amber-300 underline font-mono">[ ... ]</span>');
 
     return { header, body: formattedBody };
   }
@@ -7812,7 +7828,12 @@
         break;
       }
       case 'FILL': {
-        const parsed = parseAndFormatQuestionText(curQ.question, 'FILL');
+        const fillText = curQ.question || curQ.title || 'Điền từ thích hợp vào chỗ trống.';
+        const parsed = parseAndFormatQuestionText(fillText, 'FILL');
+        const displayBody = (parsed.body && parsed.body.replace(/<[^>]*>/g, '').trim().length > 0)
+          ? parsed.body
+          : fillText;
+
         questionBodyHtml = `
           <div class="mb-3">
             <span class="text-xs font-bold bg-amber-100 text-amber-900 px-3 py-1 rounded-full border border-amber-300">
@@ -7820,8 +7841,8 @@
             </span>
           </div>
           <div class="p-3.5 sm:p-4 bg-amber-50 rounded-2xl border-2 border-amber-200 mb-4 text-center">
-            <p class="text-base sm:text-lg font-extrabold text-slate-800 leading-relaxed mt-1">
-              ${parsed.body}
+            <p class="text-base sm:text-lg font-extrabold text-slate-800 leading-relaxed">
+              ${displayBody}
             </p>
           </div>
           <div class="max-w-md mx-auto">

@@ -788,36 +788,7 @@ class AndroidBridge(
     act.showVipRegistrationDialog(productId, defaultName)
   }
 
-  /**
-   * Gửi yêu cầu kích hoạt VIP qua chuyển khoản VietQR & EmailJS
-   */
-  @JavascriptInterface
-  fun sendVipTransferRequest(productId: String, userEmail: String) {
-    val act = activity ?: return
-    act.runOnUiThread {
-      val cleanEmail = userEmail.trim()
-      if (cleanEmail.isNotBlank()) {
-        act.vipPrefs.setUserEmail(cleanEmail)
-      }
-      val level = if (productId == BillingManager.PRODUCT_VIP_2) VipPreferenceManager.VIP_LEVEL_2 else VipPreferenceManager.VIP_LEVEL_1
-      val deviceId = act.vipPrefs.getDeviceId()
-      val orderId = "VIETQR_" + System.currentTimeMillis()
 
-      act.vipPrefs.saveVipPurchaseRecord(cleanEmail, deviceId, level)
-      act.vipPrefs.setLastOrderId(orderId)
-
-      // Gửi xác nhận qua EmailJS
-      act.emailJSManager.sendOrderConfirmation(cleanEmail, orderId, level) { success ->
-        Log.d("AndroidBridge", "VietQR & EmailJS request sent: $success")
-      }
-
-      act.updateAdMobForVipStatus()
-      webViewProvider()?.evaluateJavascript(
-        "if (window.onVipStatusChanged) { window.onVipStatusChanged($level); }",
-        null
-      )
-    }
-  }
 
   @JavascriptInterface
   fun restorePurchases() {
