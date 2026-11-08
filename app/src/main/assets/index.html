@@ -4292,7 +4292,7 @@
             <div class="flex items-center justify-between gap-1 mb-1">
               <h4 class="font-black text-xs sm:text-sm text-slate-800 truncate">${lb.name}</h4>
               ${isOwned ? `
-                <span class="shrink-0 text-[10px] font-extrabold text-emerald-800 bg-emerald-100 border border-emerald-300 px-2 py-0.5 rounded-full">Mở sẵn ✓</span>
+                <span class="shrink-0 text-[10px] font-extrabold text-emerald-800 bg-emerald-100 border border-emerald-300 px-2 py-0.5 rounded-full">Đã mở ✓</span>
               ` : `
                 <button onclick="openUnlockChibiModal('${lb.id}')" class="shrink-0 text-[10px] font-extrabold text-amber-950 bg-amber-200 hover:bg-amber-300 border border-amber-400 px-2 py-0.5 rounded-full flex items-center gap-0.5 shadow-xs cursor-pointer active:scale-95 transition-all" title="Bấm để xem các lựa chọn dùng thử / đổi vĩnh viễn">
                   <span>🔒 Khóa</span>
@@ -8234,23 +8234,15 @@
     if (typeof lucide !== 'undefined' && lucide.createIcons) safeCreateIcons();
   }
 
-  // Ghi nhận đáp án Trắc nghiệm: Tự động lưu đáp án và sang câu tiếp theo
+  // Ghi nhận đáp án Trắc nghiệm: Lưu đáp án và giữ nguyên màn hình để học sinh ấn "Câu tiếp theo"
   function answerMCQ30(optIdx) {
     SoundEngine.playDrum();
     AppState.userAnswers30[AppState.currentQuestionIndex] = optIdx;
     renderExamMode2Question();
 
-    const cur = AppState.currentQuestionIndex;
     const totalAnswered = Object.keys(AppState.userAnswers30).length;
-
     if (totalAnswered >= 30) {
       checkIfAll30QuestionsAnswered();
-    } else if (cur < 29) {
-      setTimeout(() => {
-        if (AppState.currentQuestionIndex === cur) {
-          jumpToQuestion30(cur + 1);
-        }
-      }, 200);
     }
   }
 
