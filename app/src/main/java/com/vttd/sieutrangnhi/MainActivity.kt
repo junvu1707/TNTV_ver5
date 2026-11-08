@@ -55,6 +55,7 @@ class MainActivity : ComponentActivity() {
   lateinit var githubRepo: GitHubQuestionRepository
   lateinit var examGenerator: DynamicExamGenerator
   lateinit var adManager: AdManager
+  lateinit var chibiManager: ChibiManager
 
   @SuppressLint("SetJavaScriptEnabled")
   override fun onCreate(savedInstanceState: Bundle?) {
@@ -70,7 +71,8 @@ class MainActivity : ComponentActivity() {
       if (seedNewFile.exists()) seedNewFile.delete()
     } catch (_: Exception) {}
 
-    // 1. Khởi tạo VIP Manager, GitHub Repo, Exam Generator, AdManager & Billing
+    // 1. Khởi tạo VIP Manager, Chibi Manager, GitHub Repo, Exam Generator, AdManager & Billing
+    chibiManager = ChibiManager(this)
     githubRepo = GitHubQuestionRepository(this)
     githubRepo.syncAllGradesInBackground()
     examGenerator = DynamicExamGenerator(githubRepo)
@@ -848,6 +850,17 @@ class AndroidBridge(
           }
         }
       }
+    }
+  }
+
+  /**
+   * Lấy đường dẫn cục bộ (Local URI file://) của ảnh Chibi từ GitHub/Cache (Offline-First kèm Fallback)
+   */
+  @JavascriptInterface
+  fun getChibiLocalPath(fileName: String): String {
+    val act = activity ?: return "file:///android_asset/app_logo.png"
+    return kotlinx.coroutines.runBlocking {
+      act.chibiManager.getChibiUriForWebView(fileName)
     }
   }
 
