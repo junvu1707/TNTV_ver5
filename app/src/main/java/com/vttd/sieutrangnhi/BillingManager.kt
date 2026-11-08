@@ -293,23 +293,12 @@ class BillingManager(
   }
 
   fun scanAndRestoreVip(
-    userName: String,
-    userEmail: String,
+    userName: String = "",
+    userEmail: String = "",
     callback: (success: Boolean, vipLevel: Int, message: String) -> Unit
   ) {
     val inputEmail = userEmail.trim()
     val inputName = userName.trim()
-
-    if (inputEmail.isBlank()) {
-      activity.runOnUiThread {
-        callback(
-          false,
-          VipPreferenceManager.VIP_LEVEL_0,
-          "Vui lòng nhập Email đã dùng khi đăng ký mua VIP để khôi phục!"
-        )
-      }
-      return
-    }
 
     if (!billingClient.isReady) {
       startBillingConnection {
@@ -326,7 +315,7 @@ class BillingManager(
     inputEmail: String,
     callback: (Boolean, Int, String) -> Unit
   ) {
-    // Quét cả hai loại INAPP và SUBS từ tài khoản Google Play trên thiết bị
+    // 1. Quét sản phẩm mua một lần (INAPP - VIP 2) từ tài khoản Google Play trên thiết bị
     val inAppParams = QueryPurchasesParams.newBuilder()
       .setProductType(BillingClient.ProductType.INAPP)
       .build()
@@ -334,6 +323,7 @@ class BillingManager(
     billingClient.queryPurchasesAsync(inAppParams) { billingResultInApp, purchasesInApp ->
       var highestLevel = VipPreferenceManager.VIP_LEVEL_0
       var activeToken = ""
+      var activePurchase: Purchase? = null
 
       if (billingResultInApp.responseCode == BillingClient.BillingResponseCode.OK && !purchasesInApp.isNullOrEmpty()) {
         for (purchase in purchasesInApp) {
@@ -343,11 +333,13 @@ class BillingManager(
             if (level > highestLevel) {
               highestLevel = level
               activeToken = purchase.purchaseToken
+              activePurchase = purchase
             }
           }
         }
       }
 
+      // 2. Quét sản phẩm gói thuê bao (SUBS - VIP 1) từ tài khoản Google Play trên thiết bị
       val subsParams = QueryPurchasesParams.newBuilder()
         .setProductType(BillingClient.ProductType.SUBS)
         .build()
@@ -361,6 +353,7 @@ class BillingManager(
               if (level > highestLevel) {
                 highestLevel = level
                 activeToken = purchase.purchaseToken
+                activePurchase = purchase
               }
             }
           }
@@ -368,53 +361,40 @@ class BillingManager(
 
         if (highestLevel > VipPreferenceManager.VIP_LEVEL_0) {
           val currentDeviceId = vipPrefs.getDeviceId()
-          vipPrefs.saveVipPurchaseRecord(inputEmail, currentDeviceId, highestLevel)
+          val saveEmail = inputEmail.ifBlank { vipPrefs.getUserEmail() }
+          vipPrefs.saveVipPurchaseRecord(saveEmail, currentDeviceId, highestLevel)
           if (inputName.isNotEmpty()) vipPrefs.setUserName(inputName)
           if (activeToken.isNotBlank()) vipPrefs.setPurchaseToken(activeToken)
+
+          // Xác nhận mua hàng nếu chưa được acknowledge
+          activePurchase?.let { purchase ->
+            if (!purchase.isAcknowledged) {
+              val acknowledgeParams = AcknowledgePurchaseParams.newBuilder()
+                .setPurchaseToken(purchase.purchaseToken)
+                .build()
+              billingClient.acknowledgePurchase(acknowledgeParams) { result ->
+                Log.d(TAG, "Restored purchase acknowledged: ${result.responseCode}")
+              }
+            }
+          }
 
           val vipName = if (highestLevel >= 2) "VIP 2 (Trọn Đời)" else "VIP 1 (1 Năm)"
           activity.runOnUiThread {
             callback(
               true,
               highestLevel,
-              "Đã khôi phục thành công gói $vipName từ Google Play cho Email '$inputEmail' và ID thiết bị $currentDeviceId!"
+              "Đã khôi phục thành công gói $vipName từ tài khoản Google Play!"
             )
           }
         } else {
-          executeLocalFallbackScan(inputName, inputEmail, callback)
+          activity.runOnUiThread {
+            callback(
+              false,
+              VipPreferenceManager.VIP_LEVEL_0,
+              "Không tìm thấy thông tin mua VIP trên tài khoản Google Play này. Vui lòng kiểm tra lại tài khoản Google đăng nhập trên thiết bị."
+            )
+          }
         }
-      }
-    }
-  }
-
-  private fun executeLocalFallbackScan(
-    inputName: String,
-    inputEmail: String,
-    callback: (Boolean, Int, String) -> Unit
-  ) {
-    val currentDeviceId = vipPrefs.getDeviceId().trim()
-    val savedLevel = vipPrefs.getSavedVipLevel().takeIf { it > VipPreferenceManager.VIP_LEVEL_0 } ?: vipPrefs.getVipLevel()
-
-    if (savedLevel > VipPreferenceManager.VIP_LEVEL_0) {
-      // Khi đã ghi nhận thông tin mua VIP hợp lệ, mở khóa VIP ngay lập tức và tự động cập nhật Email mới
-      vipPrefs.saveVipPurchaseRecord(inputEmail, currentDeviceId, savedLevel)
-      if (inputName.isNotEmpty()) vipPrefs.setUserName(inputName)
-
-      val vipName = if (savedLevel >= 2) "VIP 2 (Trọn Đời)" else "VIP 1 (1 Năm)"
-      activity.runOnUiThread {
-        callback(
-          true,
-          savedLevel,
-          "Xác thực và khôi phục thành công gói $vipName! Email '$inputEmail' đã được tự động cập nhật."
-        )
-      }
-    } else {
-      activity.runOnUiThread {
-        callback(
-          false,
-          VipPreferenceManager.VIP_LEVEL_0,
-          "Khôi phục thất bại! Không tìm thấy thông tin mua VIP trên Google Play cho tài khoản này."
-        )
       }
     }
   }
