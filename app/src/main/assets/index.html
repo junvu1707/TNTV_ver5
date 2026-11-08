@@ -143,13 +143,13 @@
 
     /* Nút điều hướng 30 câu hỏi của Đề thi Tổng hợp */
     .q-nav-pill {
-      width: 32px;
-      height: 32px;
+      width: 34px;
+      height: 34px;
       display: flex;
       align-items: center;
       justify-content: center;
       border-radius: 0.5rem;
-      font-size: 0.75rem;
+      font-size: 0.875rem;
       font-weight: 800;
       cursor: pointer;
       transition: all 0.15s ease;
@@ -6749,45 +6749,45 @@
 
     return `
       <div class="scroll-card p-2.5 sm:p-3.5 mb-3 bg-gradient-to-r from-red-800 via-amber-700 to-red-900 text-white shadow-lg border-2 border-amber-400 rounded-2xl flex flex-col gap-2">
-        <!-- DÒNG 1: ICON + LỚP X CHẶNG Y (BÊN TRÁI) ---------- TÊN MINI GAME (BÊN PHẢI) -->
+        <!-- DÒNG 1: LỚP X CHẶNG Y (BÊN TRÁI) ---------- NỘP BÀI & THOÁT (BÊN PHẢI) -->
         <div class="flex items-center justify-between gap-2 border-b border-amber-400/30 pb-2">
           <div class="flex items-center gap-1.5 shrink-0">
             <span class="text-base sm:text-lg">🏛️</span>
-            <span class="text-sm sm:text-base font-black text-yellow-300">Lớp ${AppState.selectedGrade}</span>
-            <span class="text-xs sm:text-sm font-bold text-yellow-200">Chặng ${AppState.currentRoundNum}</span>
+            <span class="text-base sm:text-lg font-black text-yellow-300">Lớp ${AppState.selectedGrade}</span>
+            <span class="text-sm sm:text-base font-bold text-yellow-200">Chặng ${AppState.currentRoundNum}</span>
           </div>
 
-          <div class="text-xs sm:text-sm font-extrabold text-white bg-red-950/60 px-2.5 py-1 rounded-xl border border-yellow-400/30 truncate max-w-[160px] sm:max-w-[240px]">
-            ${formatQuestionTitle(subTitle)}
+          <div class="flex items-center gap-1.5 shrink-0">
+            <!-- Nút Nộp Bài -->
+            <button onclick="finishRoundExam()" class="btn-3d btn-3d-gold px-3 sm:px-3.5 py-1 rounded-xl font-black text-amber-950 text-xs sm:text-sm shadow active:scale-95" title="Nộp bài và tính điểm ngay">
+              Nộp Bài
+            </button>
+
+            <!-- Nút Thoát -->
+            <button onclick="confirmExitExam()" class="text-xs sm:text-sm bg-white/20 hover:bg-white/30 text-white px-2.5 py-1 rounded-lg font-bold transition-all">
+              Thoát
+            </button>
           </div>
         </div>
 
-        <!-- DÒNG 2: ĐỒNG HỒ ĐẾM GIỜ --- SỐ CÂU ĐÃ LÀM/30 CÂU --- NỘP BÀI --- THOÁT -->
-        <div class="flex items-center justify-between gap-1.5 sm:gap-2 text-xs sm:text-sm font-bold">
+        <!-- DÒNG 2: ĐỒNG HỒ ĐẾM GIỜ --- SỐ CÂU ĐÃ LÀM/30 CÂU ---------- TÊN MINI GAME -->
+        <div class="flex items-center justify-between gap-1.5 sm:gap-2 text-sm sm:text-base font-bold">
           <div class="flex items-center gap-1.5 sm:gap-2">
             <!-- Đồng hồ đếm giờ -->
-            <div class="flex items-center gap-1 bg-red-950/80 px-2.5 py-1 rounded-xl font-black text-xs sm:text-sm border border-yellow-400/40">
+            <div class="flex items-center gap-1 bg-red-950/80 px-2.5 py-1 rounded-xl font-black text-sm sm:text-base border border-yellow-400/40">
               <span>⏱️</span>
               <span id="exam-timer">${timerStr}</span>
             </div>
 
             <!-- Số câu đã làm / 30 câu -->
-            <div class="flex items-center gap-1 bg-amber-900/60 text-yellow-300 px-2.5 py-1 rounded-xl font-black text-xs sm:text-sm border border-yellow-400/30">
+            <div class="flex items-center gap-1 bg-amber-900/60 text-yellow-300 px-2.5 py-1 rounded-xl font-black text-sm sm:text-base border border-yellow-400/30">
               <span>📝</span>
               <span id="exam-progress-mode1">${answeredCount}/30 câu</span>
             </div>
           </div>
 
-          <div class="flex items-center gap-1.5">
-            <!-- Nút Nộp Bài -->
-            <button onclick="finishRoundExam()" class="btn-3d btn-3d-gold px-3 sm:px-4 py-1 rounded-xl font-black text-amber-950 text-xs sm:text-sm shadow active:scale-95" title="Nộp bài và tính điểm ngay">
-              Nộp Bài
-            </button>
-
-            <!-- Nút Thoát -->
-            <button onclick="confirmExitExam()" class="text-xs bg-white/20 hover:bg-white/30 text-white px-2.5 py-1 rounded-lg font-bold transition-all">
-              Thoát
-            </button>
+          <div class="text-xs sm:text-sm font-extrabold text-white bg-red-950/60 px-2.5 py-1 rounded-xl border border-yellow-400/30 truncate max-w-[160px] sm:max-w-[240px]">
+            ${formatQuestionTitle(subTitle)}
           </div>
         </div>
       </div>
@@ -6901,14 +6901,14 @@
       ${getExamHeaderMode1(subGame.title)}
       <div class="scroll-card p-3 sm:p-5">
         <div class="p-3.5 sm:p-4 bg-amber-50 rounded-2xl border-2 border-amber-200 shadow-sm mb-3 flex items-start justify-between gap-3">
-          <div class="text-xs sm:text-sm font-extrabold text-amber-950 leading-relaxed">
+          <div class="text-sm sm:text-base font-extrabold text-amber-950 leading-relaxed">
             ${promptTitle} (+10 ⭐)
           </div>
           <div class="flex items-center gap-2 shrink-0">
-            <span class="text-xs font-bold text-emerald-800 bg-emerald-50 px-2.5 py-1 rounded-full border border-emerald-300">
+            <span class="text-sm font-bold text-emerald-800 bg-emerald-50 px-2.5 py-1 rounded-full border border-emerald-300">
               Đã nối: <b id="match-progress">${matchedCount}</b>/${totalPairs}
             </span>
-            <span class="text-xs font-bold text-red-600 bg-red-50 px-2.5 py-1 rounded-full border border-red-200">
+            <span class="text-sm font-bold text-red-600 bg-red-50 px-2.5 py-1 rounded-full border border-red-200">
               Sai: <b id="mistake-count">0</b>/3
             </span>
           </div>
@@ -6918,7 +6918,7 @@
         <div class="grid grid-cols-2 gap-2.5 sm:gap-4 my-2" id="meo-con-grid">
           <!-- CỘT BÊN TRÁI -->
           <div class="flex flex-col gap-2" id="col-left">
-            <div class="text-center font-black text-xs sm:text-sm text-red-900 bg-red-100/90 py-1.5 px-2 rounded-xl border border-red-300 shadow-sm flex items-center justify-center gap-1.5">
+            <div class="text-center font-black text-sm sm:text-base text-red-900 bg-red-100/90 py-1.5 px-2 rounded-xl border border-red-300 shadow-sm flex items-center justify-center gap-1.5">
               <span>🐾</span>
               <span>CỘT BÊN TRÁI</span>
             </div>
@@ -6926,9 +6926,9 @@
               const isMatched = AppState.game1MatchedPairs.includes(item.pairId);
               const pairStyle = MATCH_PAIR_STYLES[item.pairId % MATCH_PAIR_STYLES.length];
               return `
-                <button data-id="${item.id}" data-col="A" data-pair="${item.pairId}" class="cat-tile scroll-card p-2.5 sm:p-3 text-center text-xs sm:text-sm font-bold border-2 rounded-xl transition-all shadow-sm flex items-center justify-between gap-1 ${isMatched ? `matched ${pairStyle.card}` : 'border-amber-300 bg-amber-50/70 hover:bg-amber-100 text-slate-800'}" title="${isMatched ? 'Bấm để tháo nối cặp này' : ''}">
+                <button data-id="${item.id}" data-col="A" data-pair="${item.pairId}" class="cat-tile scroll-card p-2.5 sm:p-3 text-center text-sm sm:text-base font-bold border-2 rounded-xl transition-all shadow-sm flex items-center justify-between gap-1 ${isMatched ? `matched ${pairStyle.card}` : 'border-amber-300 bg-amber-50/70 hover:bg-amber-100 text-slate-800'}" title="${isMatched ? 'Bấm để tháo nối cặp này' : ''}">
                   <span class="flex-1 text-center">${item.text}</span>
-                  <span class="status-icon text-xs ${isMatched ? 'font-black' : 'hidden'}">✓</span>
+                  <span class="status-icon text-sm ${isMatched ? 'font-black' : 'hidden'}">✓</span>
                 </button>
               `;
             }).join('')}
@@ -6936,7 +6936,7 @@
 
           <!-- CỘT BÊN PHẢI -->
           <div class="flex flex-col gap-2" id="col-right">
-            <div class="text-center font-black text-xs sm:text-sm text-amber-950 bg-amber-200/90 py-1.5 px-2 rounded-xl border border-amber-300 shadow-sm flex items-center justify-center gap-1.5">
+            <div class="text-center font-black text-sm sm:text-base text-amber-950 bg-amber-200/90 py-1.5 px-2 rounded-xl border border-amber-300 shadow-sm flex items-center justify-center gap-1.5">
               <span>🐱</span>
               <span>CỘT BÊN PHẢI</span>
             </div>
@@ -6944,9 +6944,9 @@
               const isMatched = AppState.game1MatchedPairs.includes(item.pairId);
               const pairStyle = MATCH_PAIR_STYLES[item.pairId % MATCH_PAIR_STYLES.length];
               return `
-                <button data-id="${item.id}" data-col="B" data-pair="${item.pairId}" class="cat-tile scroll-card p-2.5 sm:p-3 text-center text-xs sm:text-sm font-bold border-2 rounded-xl transition-all shadow-sm flex items-center justify-between gap-1 ${isMatched ? `matched ${pairStyle.card}` : 'border-amber-300 bg-amber-50/70 hover:bg-amber-100 text-slate-800'}" title="${isMatched ? 'Bấm để tháo nối cặp này' : ''}">
+                <button data-id="${item.id}" data-col="B" data-pair="${item.pairId}" class="cat-tile scroll-card p-2.5 sm:p-3 text-center text-sm sm:text-base font-bold border-2 rounded-xl transition-all shadow-sm flex items-center justify-between gap-1 ${isMatched ? `matched ${pairStyle.card}` : 'border-amber-300 bg-amber-50/70 hover:bg-amber-100 text-slate-800'}" title="${isMatched ? 'Bấm để tháo nối cặp này' : ''}">
                   <span class="flex-1 text-center">${item.text}</span>
-                  <span class="status-icon text-xs ${isMatched ? 'font-black' : 'hidden'}">✓</span>
+                  <span class="status-icon text-sm ${isMatched ? 'font-black' : 'hidden'}">✓</span>
                 </button>
               `;
             }).join('')}
@@ -6954,7 +6954,7 @@
         </div>
 
         <div class="p-3 bg-amber-50/90 rounded-2xl border-2 border-amber-200 text-center mt-3">
-          <p class="text-slate-700 font-semibold text-xs sm:text-sm flex items-center justify-center gap-1.5">
+          <p class="text-slate-700 font-semibold text-sm sm:text-base flex items-center justify-center gap-1.5">
             <span>💡</span>
             <span>Chọn 1 ô ở <b>Cột Bên Trái</b> rồi nối với 1 ô tương ứng ở <b>Cột Bên Phải</b> (Nối đủ cả 6 cặp = +10 ⭐).</span>
           </p>
@@ -6962,13 +6962,11 @@
 
         <!-- Nút Câu trước (trái) & Nút Câu sau (phải) -->
         <div class="mt-4 pt-3 border-t border-amber-200 flex items-center justify-between gap-2">
-          <button onclick="prevSubGameMode1()" ${AppState.currentSubGameIndex === 0 ? 'disabled class="opacity-40 cursor-not-allowed px-3.5 py-2 rounded-xl border border-slate-300 font-bold text-slate-500 text-xs sm:text-sm bg-slate-100"' : 'class="btn-3d bg-slate-200 hover:bg-slate-300 text-slate-800 px-3.5 py-2 rounded-xl font-bold text-xs sm:text-sm shadow flex items-center gap-1 active:scale-95"'}>
+          <button onclick="prevSubGameMode1()" ${AppState.currentSubGameIndex === 0 ? 'disabled class="opacity-40 cursor-not-allowed px-4 py-2 rounded-xl border border-slate-300 font-bold text-slate-500 text-lg bg-slate-100"' : 'class="btn-3d bg-slate-200 hover:bg-slate-300 text-slate-800 px-4 py-2 rounded-xl font-black text-lg shadow flex items-center justify-center active:scale-95"'} title="Câu trước">
             <span>◄</span>
-            <span>Câu trước</span>
           </button>
 
-          <button onclick="skipToNextSubGameMode1()" class="btn-3d btn-3d-blue px-4 py-2 rounded-xl font-black text-white text-xs sm:text-sm shadow flex items-center gap-1 active:scale-95">
-            <span>Câu sau</span>
+          <button onclick="skipToNextSubGameMode1()" class="btn-3d btn-3d-blue px-4 py-2 rounded-xl font-black text-white text-lg shadow flex items-center justify-center active:scale-95" title="Câu sau">
             <span>►</span>
           </button>
         </div>
@@ -7127,8 +7125,8 @@
         ${getExamHeaderMode1(subGame.title)}
         <div class="scroll-card p-4 sm:p-5">
           <div class="flex items-center justify-between gap-2 mb-3">
-            <p class="text-xs sm:text-sm text-amber-950 font-black flex items-center gap-1.5">
-              <span class="text-base">💡</span>
+            <p class="text-sm sm:text-base text-amber-950 font-black flex items-center gap-1.5">
+              <span class="text-lg">💡</span>
               <span>Sắp xếp từ vào giỏ tương ứng</span>
             </p>
           </div>
@@ -7140,16 +7138,16 @@
               return `
                 <div data-basket-idx="${bIdx}" class="basket-zone scroll-card p-3 border-2 border-dashed border-amber-400 rounded-2xl flex flex-col cursor-pointer hover:border-emerald-500 transition-all bg-amber-50/40">
                   <div class="flex items-center pb-2 border-b border-amber-200">
-                    <div class="flex items-center gap-1.5 font-extrabold text-xs sm:text-sm text-red-900 leading-snug break-words">
+                    <div class="flex items-center gap-1.5 font-extrabold text-sm sm:text-base text-red-900 leading-snug break-words">
                       <span class="text-xl shrink-0">🧺</span>
                       <span>${b.name}</span>
                     </div>
                   </div>
                   <div class="placed-words flex flex-wrap gap-1.5 mt-2.5 flex-1 items-start min-h-[50px]">
                     ${wordsInBasket.map(w => `
-                      <div class="bg-emerald-100 text-emerald-900 border border-emerald-300 text-xs px-2.5 py-1 rounded-xl font-extrabold flex items-center gap-1.5 shadow-sm">
+                      <div class="bg-emerald-100 text-emerald-900 border border-emerald-300 text-sm px-2.5 py-1 rounded-xl font-extrabold flex items-center gap-1.5 shadow-sm">
                         <span class="select-none">${w.text}</span>
-                        <button data-remove-word-id="${w.id}" class="btn-remove-x bg-red-100 hover:bg-red-200 text-red-700 font-black text-xs px-1.5 py-0.5 rounded-lg transition-all cursor-pointer active:scale-90" title="Bấm dấu X để bỏ từ ra khỏi giỏ">✕</button>
+                        <button data-remove-word-id="${w.id}" class="btn-remove-x bg-red-100 hover:bg-red-200 text-red-700 font-black text-sm px-1.5 py-0.5 rounded-lg transition-all cursor-pointer active:scale-90" title="Bấm dấu X để bỏ từ ra khỏi giỏ">✕</button>
                       </div>
                     `).join('')}
                   </div>
@@ -7160,10 +7158,10 @@
 
           <!-- KHUNG TỪ CẦN XẾP -->
           <div class="p-3 bg-amber-100/70 rounded-2xl border border-amber-300">
-            <div class="text-xs font-bold text-amber-950 mb-2">Từ cần xếp vào giỏ (${remainingWords.length} từ còn lại):</div>
+            <div class="text-sm font-bold text-amber-950 mb-2">Từ cần xếp vào giỏ (${remainingWords.length} từ còn lại):</div>
             <div class="flex flex-wrap gap-2" id="words-pool">
               ${remainingWords.map(w => `
-                <button data-word-id="${w.id}" class="pool-word btn-3d text-xs sm:text-sm font-bold px-3 py-1.5 rounded-xl border transition-all ${selectedWordId === w.id ? 'bg-amber-300 border-amber-500 text-amber-950 ring-2 ring-amber-400 scale-105' : 'bg-white border-amber-300 text-slate-800 hover:bg-amber-50'}">
+                <button data-word-id="${w.id}" class="pool-word btn-3d text-sm sm:text-base font-bold px-3 py-1.5 rounded-xl border transition-all ${selectedWordId === w.id ? 'bg-amber-300 border-amber-500 text-amber-950 ring-2 ring-amber-400 scale-105' : 'bg-white border-amber-300 text-slate-800 hover:bg-amber-50'}">
                   ${w.text}
                 </button>
               `).join('')}
@@ -7172,13 +7170,11 @@
 
           <!-- Nút Bài trước (trái) & Nút Bài sau (phải) -->
           <div class="mt-4 pt-3 border-t border-amber-200 flex items-center justify-between gap-2">
-            <button onclick="prevSubGameMode1()" class="btn-3d bg-slate-200 hover:bg-slate-300 text-slate-800 px-3.5 py-2 rounded-xl font-bold text-xs sm:text-sm shadow flex items-center gap-1 active:scale-95">
+            <button onclick="prevSubGameMode1()" class="btn-3d bg-slate-200 hover:bg-slate-300 text-slate-800 px-4 py-2 rounded-xl font-black text-lg shadow flex items-center justify-center active:scale-95" title="Bài trước">
               <span>◄</span>
-              <span>Bài trước</span>
             </button>
 
-            <button onclick="skipToNextSubGameMode1()" class="btn-3d btn-3d-blue px-4 py-2 rounded-xl font-black text-white text-xs sm:text-sm shadow flex items-center gap-1 active:scale-95">
-              <span>Bài sau</span>
+            <button onclick="skipToNextSubGameMode1()" class="btn-3d btn-3d-blue px-4 py-2 rounded-xl font-black text-white text-lg shadow flex items-center justify-center active:scale-95" title="Bài sau">
               <span>►</span>
             </button>
           </div>
@@ -7309,23 +7305,21 @@
         root.innerHTML = `
           ${getExamHeaderMode1(subGame.title)}
           <div class="scroll-card p-5 max-w-xl mx-auto">
-            <div class="text-xs font-bold text-amber-800 mb-2">Câu ${2 + qIdx + 1} / 30 • Điền từ còn thiếu (+10 ⭐)</div>
-            <div class="p-4 bg-amber-50 rounded-xl border border-amber-200 mb-4 text-center font-bold text-base text-slate-800">
+            <div class="text-sm font-bold text-amber-800 mb-2">Câu ${2 + qIdx + 1} / 30 • Điền từ còn thiếu (+10 ⭐)</div>
+            <div class="p-4 bg-amber-50 rounded-xl border border-amber-200 mb-4 text-center font-bold text-lg text-slate-800">
               ${q.question.replace('[...]', '<span class="text-red-600 underline font-black">[ ... ]</span>')}
             </div>
             <div class="max-w-md mx-auto">
-              <input type="text" id="mode1-input" onfocus="this.scrollIntoView({ behavior: 'smooth', block: 'center' });" onkeydown="if(event.key==='Enter'){event.preventDefault(); submitFillQMode1();}" class="w-full px-4 py-3 rounded-2xl border-2 border-amber-400 text-center font-bold text-base focus:outline-none focus:border-red-600 focus:ring-4 focus:ring-amber-200 shadow-sm transition-all" placeholder="Nhập từ còn thiếu..." autofocus autocomplete="off">
+              <input type="text" id="mode1-input" onfocus="this.scrollIntoView({ behavior: 'smooth', block: 'center' });" onkeydown="if(event.key==='Enter'){event.preventDefault(); submitFillQMode1();}" class="w-full px-4 py-3 rounded-2xl border-2 border-amber-400 text-center font-bold text-lg focus:outline-none focus:border-red-600 focus:ring-4 focus:ring-amber-200 shadow-sm transition-all" placeholder="Nhập từ còn thiếu..." autofocus autocomplete="off">
             </div>
 
             <!-- Nút Câu trước (trái) & Nút Câu sau (phải) -->
             <div class="mt-5 pt-3 border-t border-amber-200 flex items-center justify-between gap-2">
-              <button onclick="prevQuestionMode1Quiz()" class="btn-3d bg-slate-200 hover:bg-slate-300 text-slate-800 px-3.5 py-2 rounded-xl font-bold text-xs sm:text-sm shadow flex items-center gap-1 active:scale-95">
+              <button onclick="prevQuestionMode1Quiz()" class="btn-3d bg-slate-200 hover:bg-slate-300 text-slate-800 px-4 py-2 rounded-xl font-black text-lg shadow flex items-center justify-center active:scale-95" title="Câu trước">
                 <span>◄</span>
-                <span>Câu trước</span>
               </button>
 
-              <button onclick="submitFillQMode1()" class="btn-3d btn-3d-blue px-4 py-2 rounded-xl font-black text-white text-xs sm:text-sm shadow flex items-center gap-1 active:scale-95">
-                <span>Câu sau</span>
+              <button onclick="submitFillQMode1()" class="btn-3d btn-3d-blue px-4 py-2 rounded-xl font-black text-white text-lg shadow flex items-center justify-center active:scale-95" title="Câu sau">
                 <span>►</span>
               </button>
             </div>
@@ -7361,11 +7355,11 @@
         root.innerHTML = `
           ${getExamHeaderMode1(subGame.title)}
           <div class="scroll-card p-5 max-w-xl mx-auto">
-            <div class="text-xs font-bold text-amber-800 mb-2">Câu ${2 + qIdx + 1} / 30 • Trắc nghiệm (+10 ⭐)</div>
-            <h3 class="font-extrabold text-base text-slate-800 mb-4">${q.question}</h3>
+            <div class="text-sm font-bold text-amber-800 mb-2">Câu ${2 + qIdx + 1} / 30 • Trắc nghiệm (+10 ⭐)</div>
+            <h3 class="font-extrabold text-lg text-slate-800 mb-4">${q.question}</h3>
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5" id="mode1-opts">
               ${q.options.map((opt, i) => `
-                <button data-opt-idx="${i}" class="scroll-card p-3 text-left border-2 border-amber-200 hover:border-red-500 rounded-xl font-bold text-xs sm:text-sm">
+                <button data-opt-idx="${i}" class="scroll-card p-3 text-left border-2 border-amber-200 hover:border-red-500 rounded-xl font-bold text-sm sm:text-base">
                   ${String.fromCharCode(65 + i)}. ${opt}
                 </button>
               `).join('')}
@@ -7373,13 +7367,11 @@
 
             <!-- Nút Câu trước (trái) & Nút Câu sau (phải) -->
             <div class="mt-5 pt-3 border-t border-amber-200 flex items-center justify-between gap-2">
-              <button onclick="prevQuestionMode1Quiz()" class="btn-3d bg-slate-200 hover:bg-slate-300 text-slate-800 px-3.5 py-2 rounded-xl font-bold text-xs sm:text-sm shadow flex items-center gap-1 active:scale-95">
+              <button onclick="prevQuestionMode1Quiz()" class="btn-3d bg-slate-200 hover:bg-slate-300 text-slate-800 px-4 py-2 rounded-xl font-black text-lg shadow flex items-center justify-center active:scale-95" title="Câu trước">
                 <span>◄</span>
-                <span>Câu trước</span>
               </button>
 
-              <button onclick="nextQuestionMode1Quiz()" class="btn-3d btn-3d-blue px-4 py-2 rounded-xl font-black text-white text-xs sm:text-sm shadow flex items-center gap-1 active:scale-95">
-                <span>Câu sau</span>
+              <button onclick="nextQuestionMode1Quiz()" class="btn-3d btn-3d-blue px-4 py-2 rounded-xl font-black text-white text-lg shadow flex items-center justify-center active:scale-95" title="Câu sau">
                 <span>►</span>
               </button>
             </div>
@@ -7455,13 +7447,13 @@
       root.innerHTML = `
         ${getExamHeaderMode1(subGame.title)}
         <div class="scroll-card p-5 max-w-xl mx-auto">
-          <div class="text-xs font-bold text-amber-800 mb-2">Câu ${20 + qIdx + 1} / 30 • Bé sáng tạo (+10 ⭐)</div>
-          <div class="p-4 bg-amber-50 rounded-2xl border-2 border-amber-300 mb-4 text-center font-bold text-base text-slate-800 leading-relaxed whitespace-pre-line">
+          <div class="text-sm font-bold text-amber-800 mb-2">Câu ${20 + qIdx + 1} / 30 • Bé sáng tạo (+10 ⭐)</div>
+          <div class="p-4 bg-amber-50 rounded-2xl border-2 border-amber-300 mb-4 text-center font-bold text-lg text-slate-800 leading-relaxed whitespace-pre-line">
             🧩 ${r.poem || r.question}
           </div>
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5" id="riddle-opts">
             ${r.options.map((opt, i) => `
-              <button data-opt-idx="${i}" class="scroll-card p-3 text-left border-2 border-amber-200 hover:border-red-500 rounded-xl font-bold text-xs sm:text-sm">
+              <button data-opt-idx="${i}" class="scroll-card p-3 text-left border-2 border-amber-200 hover:border-red-500 rounded-xl font-bold text-sm sm:text-base">
                 ${String.fromCharCode(65 + i)}. ${opt}
               </button>
             `).join('')}
@@ -7469,13 +7461,11 @@
 
           <!-- Nút Câu trước (trái) & Nút Câu sau (phải) -->
           <div class="mt-5 pt-3 border-t border-amber-200 flex items-center justify-between gap-2">
-            <button onclick="prevRiddleMode1()" class="btn-3d bg-slate-200 hover:bg-slate-300 text-slate-800 px-3.5 py-2 rounded-xl font-bold text-xs sm:text-sm shadow flex items-center gap-1 active:scale-95">
+            <button onclick="prevRiddleMode1()" class="btn-3d bg-slate-200 hover:bg-slate-300 text-slate-800 px-4 py-2 rounded-xl font-black text-lg shadow flex items-center justify-center active:scale-95" title="Câu trước">
               <span>◄</span>
-              <span>Câu trước</span>
             </button>
 
-            <button onclick="nextRiddleMode1()" class="btn-3d btn-3d-blue px-4 py-2 rounded-xl font-black text-white text-xs sm:text-sm shadow flex items-center gap-1 active:scale-95">
-              <span>Câu sau</span>
+            <button onclick="nextRiddleMode1()" class="btn-3d btn-3d-blue px-4 py-2 rounded-xl font-black text-white text-lg shadow flex items-center justify-center active:scale-95" title="Câu sau">
               <span>►</span>
             </button>
           </div>
@@ -7566,10 +7556,10 @@
           root.innerHTML = `
             ${getExamHeaderMode1(subGame.title)}
             <div class="scroll-card p-5 max-w-xl mx-auto">
-              <div class="text-xs font-bold text-amber-800 mb-2">Câu ${25 + qIdx + 1} / 30 • Bé nhanh tay: Sắp xếp câu (+10 ⭐)</div>
+              <div class="text-sm font-bold text-amber-800 mb-2">Câu ${25 + qIdx + 1} / 30 • Bé nhanh tay: Sắp xếp câu (+10 ⭐)</div>
 
               <div class="p-4 bg-amber-50 rounded-2xl border-2 border-amber-300 mb-4">
-                <div class="text-xs font-extrabold text-amber-900 mb-2 flex items-center gap-1">
+                <div class="text-sm font-extrabold text-amber-900 mb-2 flex items-center gap-1">
                   <span>🧩</span>
                   <span>Sắp xếp thành câu</span>
                 </div>
@@ -7577,16 +7567,16 @@
                 <!-- KHUNG CHỨA CÂU GHÉP -->
                 <div class="min-h-[60px] p-3 bg-white rounded-xl border-2 border-dashed border-amber-400 flex flex-wrap gap-2 items-center justify-center shadow-inner">
                   ${constructedWords.length === 0 ? '' : constructedWords.map((w) => `
-                    <button data-constructed-id="${w.id}" class="btn-constructed-word btn-3d bg-emerald-500 hover:bg-red-500 text-white font-bold text-xs sm:text-sm px-3 py-1.5 rounded-xl transition-all flex items-center gap-1">
+                    <button data-constructed-id="${w.id}" class="btn-constructed-word btn-3d bg-emerald-500 hover:bg-red-500 text-white font-bold text-sm sm:text-base px-3 py-1.5 rounded-xl transition-all flex items-center gap-1">
                       <span>${w.text}</span>
-                      <span class="text-[10px] text-emerald-100">✕</span>
+                      <span class="text-[12px] text-emerald-100">✕</span>
                     </button>
                   `).join('')}
                 </div>
 
                 ${constructedWords.length > 0 ? `
                   <div class="mt-2 text-right">
-                    <button id="btn-reset-ordering" class="text-[11px] font-bold text-red-600 hover:text-red-800 underline">
+                    <button id="btn-reset-ordering" class="text-[13px] font-bold text-red-600 hover:text-red-800 underline">
                       🔄 Làm lại (Xóa hết)
                     </button>
                   </div>
@@ -7595,10 +7585,10 @@
 
               <!-- KHUNG THẺ TỪ CẦN CHỌN -->
               <div class="p-3 bg-amber-100/70 rounded-2xl border border-amber-300 mb-4">
-                <div class="text-xs font-bold text-amber-950 mb-2">Thẻ từ (${remainingWords.length} từ còn lại):</div>
+                <div class="text-sm font-bold text-amber-950 mb-2">Thẻ từ (${remainingWords.length} từ còn lại):</div>
                 <div class="flex flex-wrap gap-2 justify-center">
                   ${remainingWords.map(w => `
-                    <button data-chip-id="${w.id}" class="btn-pool-chip btn-3d bg-white hover:bg-amber-100 text-slate-800 border border-amber-300 font-bold text-xs sm:text-sm px-3.5 py-2 rounded-xl transition-all active:scale-95">
+                    <button data-chip-id="${w.id}" class="btn-pool-chip btn-3d bg-white hover:bg-amber-100 text-slate-800 border border-amber-300 font-bold text-sm sm:text-base px-3.5 py-2 rounded-xl transition-all active:scale-95">
                       ${w.text}
                     </button>
                   `).join('')}
@@ -7607,13 +7597,12 @@
 
               <!-- NÚT ĐIỀU HƯỚNG -->
               <div class="mt-5 pt-3 border-t border-amber-200 flex items-center justify-between gap-2">
-                <button onclick="prevImgQMode1()" class="btn-3d bg-slate-200 hover:bg-slate-300 text-slate-800 px-3.5 py-2 rounded-xl font-bold text-xs sm:text-sm shadow flex items-center gap-1 active:scale-95">
+                <button onclick="prevImgQMode1()" class="btn-3d bg-slate-200 hover:bg-slate-300 text-slate-800 px-4 py-2 rounded-xl font-black text-lg shadow flex items-center justify-center active:scale-95" title="Câu trước">
                   <span>◄</span>
-                  <span>Câu trước</span>
                 </button>
 
-                <button id="btn-submit-ordering" class="btn-3d ${constructedWords.length === wordPool.length ? 'btn-3d-blue' : 'bg-slate-300 text-slate-500 cursor-not-allowed'} px-4 py-2 rounded-xl font-black text-xs sm:text-sm shadow flex items-center gap-1 active:scale-95">
-                  <span>${qIdx === items.length - 1 ? 'Hoàn Thành Vòng ✓' : 'Câu sau ►'}</span>
+                <button id="btn-submit-ordering" class="btn-3d ${constructedWords.length === wordPool.length ? 'btn-3d-blue' : 'bg-slate-300 text-slate-500 cursor-not-allowed'} px-4 py-2 rounded-xl font-black text-lg shadow flex items-center justify-center active:scale-95" title="${qIdx === items.length - 1 ? 'Hoàn thành' : 'Câu sau'}">
+                  <span>${qIdx === items.length - 1 ? '✓' : '►'}</span>
                 </button>
               </div>
             </div>
@@ -7714,13 +7703,11 @@
 
             <!-- Nút Bài trước (trái) & Nút Hoàn Thành Vòng (phải) -->
             <div class="mt-5 pt-3 border-t border-amber-200 flex items-center justify-between gap-2">
-              <button onclick="prevSubGameMode1()" class="btn-3d bg-slate-200 hover:bg-slate-300 text-slate-800 px-3.5 py-2 rounded-xl font-bold text-xs sm:text-sm shadow flex items-center gap-1 active:scale-95">
+              <button onclick="prevSubGameMode1()" class="btn-3d bg-slate-200 hover:bg-slate-300 text-slate-800 px-4 py-2 rounded-xl font-black text-lg shadow flex items-center justify-center active:scale-95" title="Bài trước">
                 <span>◄</span>
-                <span>Bài trước</span>
               </button>
 
-              <button onclick="finishRoundExam()" class="btn-3d btn-3d-green px-4 py-2 rounded-xl font-black text-white text-xs sm:text-sm shadow flex items-center gap-1 active:scale-95">
-                <span>Hoàn Thành Vòng</span>
+              <button onclick="finishRoundExam()" class="btn-3d btn-3d-green px-4 py-2 rounded-xl font-black text-white text-lg shadow flex items-center justify-center active:scale-95" title="Hoàn Thành Vòng">
                 <span>✓</span>
               </button>
             </div>
@@ -7814,29 +7801,29 @@
 
         questionBodyHtml = `
           <div class="mb-3">
-            <span class="text-xs font-bold bg-amber-100 text-amber-900 px-3 py-1 rounded-full border border-amber-300">
+            <span class="text-sm font-bold bg-amber-100 text-amber-900 px-3 py-1 rounded-full border border-amber-300">
               Câu ${curIdx + 1}: ${formatQuestionTitle(curQ.title) || 'Trắc nghiệm kiến thức'} (10 điểm)
             </span>
           </div>
           <div class="p-3.5 sm:p-4 bg-amber-50 rounded-2xl border-2 border-amber-200 mb-4 text-center">
             ${hasHeader ? `
               <div class="mb-1.5">
-                <span class="text-xs sm:text-sm font-black text-amber-900 bg-amber-200/80 px-3 py-1 rounded-lg inline-block border border-amber-300 shadow-sm">
+                <span class="text-sm sm:text-base font-black text-amber-900 bg-amber-200/80 px-3 py-1 rounded-lg inline-block border border-amber-300 shadow-sm">
                   💡 ${parsed.header}
                 </span>
               </div>
             ` : ''}
-            <p class="text-base sm:text-lg font-extrabold text-slate-800 leading-relaxed whitespace-pre-line">
+            <p class="text-lg sm:text-xl font-extrabold text-slate-800 leading-relaxed whitespace-pre-line">
               ${parsed.body}
             </p>
           </div>
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-3" id="mcq-grid">
             ${curQ.options.map((opt, i) => `
               <button onclick="answerMCQ30(${i})" class="scroll-card p-3.5 text-left rounded-xl border-2 transition-all flex items-center gap-3 ${savedAns === i ? 'border-red-600 bg-red-50 text-red-950 font-black ring-2 ring-red-400' : 'border-amber-200 hover:border-amber-400 font-bold text-slate-800'}">
-                <span class="w-7 h-7 rounded-full ${savedAns === i ? 'bg-red-600 text-white' : 'bg-amber-400 text-amber-950'} flex items-center justify-center font-extrabold text-xs shrink-0">
+                <span class="w-8 h-8 rounded-full ${savedAns === i ? 'bg-red-600 text-white' : 'bg-amber-400 text-amber-950'} flex items-center justify-center font-extrabold text-sm shrink-0">
                   ${String.fromCharCode(65 + i)}
                 </span>
-                <span class="text-xs sm:text-sm">${opt}</span>
+                <span class="text-sm sm:text-base">${opt}</span>
               </button>
             `).join('')}
           </div>
@@ -7852,13 +7839,13 @@
 
         questionBodyHtml = `
           <div class="mb-4">
-            <span class="text-xs font-bold bg-amber-100 text-amber-900 px-3 py-1 rounded-full border border-amber-300">
+            <span class="text-sm font-bold bg-amber-100 text-amber-900 px-3 py-1 rounded-full border border-amber-300">
               Câu ${curIdx + 1}: Sắp xếp câu (10 điểm)
             </span>
           </div>
           ${!isGenericPrompt ? `
             <div class="p-3.5 sm:p-4 bg-amber-50 rounded-2xl border-2 border-amber-200 mb-4 text-center">
-              <p class="text-base sm:text-lg font-black text-slate-800 leading-snug whitespace-pre-line">
+              <p class="text-lg sm:text-xl font-black text-slate-800 leading-snug whitespace-pre-line">
                 ${qText}
               </p>
             </div>
@@ -7868,16 +7855,16 @@
           <div class="p-4 bg-white rounded-2xl border-2 border-dashed border-amber-400 min-h-[96px] mb-4 flex flex-col justify-between shadow-inner">
             <div class="flex flex-wrap items-center gap-2" id="arrange-target-area">
               ${selectedIndices.length === 0 ? '' : selectedIndices.map((elemIdx, slotIdx) => `
-                <button onclick="removeArrangeWord(${slotIdx})" class="btn-3d px-3.5 py-2 rounded-xl bg-amber-100 hover:bg-red-100 border-2 border-amber-400 hover:border-red-400 text-amber-950 hover:text-red-900 font-black text-xs sm:text-sm flex items-center gap-1.5 shadow-sm transform active:scale-95 transition-all" title="Chạm để gỡ từ này ra khỏi câu">
+                <button onclick="removeArrangeWord(${slotIdx})" class="btn-3d px-3.5 py-2 rounded-xl bg-amber-100 hover:bg-red-100 border-2 border-amber-400 hover:border-red-400 text-amber-950 hover:text-red-900 font-black text-sm sm:text-base flex items-center gap-1.5 shadow-sm transform active:scale-95 transition-all" title="Chạm để gỡ từ này ra khỏi câu">
                   <span>${elements[elemIdx]}</span>
-                  <span class="text-[10px] text-red-500 font-extrabold ml-0.5">✕</span>
+                  <span class="text-xs text-red-500 font-extrabold ml-0.5">✕</span>
                 </button>
               `).join('')}
             </div>
             ${selectedIndices.length > 0 ? `
               <div class="flex items-center justify-between mt-2 pt-2 border-t border-amber-100">
-                <span class="text-[11px] text-emerald-700 font-bold">Đã ghép: ${selectedIndices.length}/${elements.length} từ</span>
-                <button onclick="resetArrangeWords()" class="text-xs text-red-600 hover:text-red-800 font-bold flex items-center gap-1 px-2 py-0.5 rounded-lg hover:bg-red-50 transition-colors">
+                <span class="text-[13px] text-emerald-700 font-bold">Đã ghép: ${selectedIndices.length}/${elements.length} từ</span>
+                <button onclick="resetArrangeWords()" class="text-sm text-red-600 hover:text-red-800 font-bold flex items-center gap-1 px-2 py-0.5 rounded-lg hover:bg-red-50 transition-colors">
                   <span>↺ Làm lại</span>
                 </button>
               </div>
@@ -7886,9 +7873,9 @@
 
           <!-- Các ô từ cần sắp xếp -->
           <div class="p-3.5 bg-amber-50/80 rounded-2xl border border-amber-300">
-            <div class="text-xs font-black text-amber-950 uppercase tracking-wide mb-2.5 flex items-center justify-between">
+            <div class="text-sm font-black text-amber-950 uppercase tracking-wide mb-2.5 flex items-center justify-between">
               <span>Các ô từ cần sắp xếp:</span>
-              <span class="text-[11px] text-amber-800 font-bold bg-amber-200/60 px-2 py-0.5 rounded-full">
+              <span class="text-[13px] text-amber-800 font-bold bg-amber-200/60 px-2 py-0.5 rounded-full">
                 ${selectedIndices.length}/${elements.length} từ
               </span>
             </div>
@@ -7897,13 +7884,13 @@
                 const isUsed = selectedIndices.includes(idx);
                 if (isUsed) {
                   return `
-                    <div class="px-3.5 py-2 rounded-xl border-2 border-dashed border-slate-200 bg-slate-100/60 text-slate-300 font-bold text-xs sm:text-sm select-none opacity-40">
+                    <div class="px-3.5 py-2 rounded-xl border-2 border-dashed border-slate-200 bg-slate-100/60 text-slate-300 font-bold text-sm sm:text-base select-none opacity-40">
                       ${elem}
                     </div>
                   `;
                 }
                 return `
-                  <button onclick="pickArrangeWord(${idx})" class="btn-3d px-4 py-2.5 rounded-xl bg-gradient-to-b from-white to-amber-50 hover:from-amber-100 hover:to-amber-200 border-2 border-amber-400 text-slate-800 font-black text-xs sm:text-sm shadow-md transform hover:scale-105 active:scale-95 transition-all">
+                  <button onclick="pickArrangeWord(${idx})" class="btn-3d px-4 py-2.5 rounded-xl bg-gradient-to-b from-white to-amber-50 hover:from-amber-100 hover:to-amber-200 border-2 border-amber-400 text-slate-800 font-black text-sm sm:text-base shadow-md transform hover:scale-105 active:scale-95 transition-all">
                     ${elem}
                   </button>
                 `;
@@ -7922,17 +7909,17 @@
 
         questionBodyHtml = `
           <div class="mb-3">
-            <span class="text-xs font-bold bg-amber-100 text-amber-900 px-3 py-1 rounded-full border border-amber-300">
+            <span class="text-sm font-bold bg-amber-100 text-amber-900 px-3 py-1 rounded-full border border-amber-300">
               Câu ${curIdx + 1}: ${formatQuestionTitle(curQ.title) || 'Điền từ còn thiếu'} (10 điểm)
             </span>
           </div>
           <div class="p-3.5 sm:p-4 bg-amber-50 rounded-2xl border-2 border-amber-200 mb-4 text-center">
-            <p class="text-base sm:text-lg font-extrabold text-slate-800 leading-relaxed whitespace-pre-line">
+            <p class="text-lg sm:text-xl font-extrabold text-slate-800 leading-relaxed whitespace-pre-line">
               ${displayBody}
             </p>
           </div>
           <div class="max-w-md mx-auto">
-            <input type="text" id="fill-input-30" value="${savedAns || ''}" onfocus="this.scrollIntoView({ behavior: 'smooth', block: 'center' });" oninput="saveFillAnswer30()" onkeyup="saveFillAnswer30()" onchange="saveFillAnswer30()" onkeydown="if(event.key==='Enter'){event.preventDefault(); saveFillAnswer30(); nextQuestion30();}" placeholder="Nhập từ hoặc chữ cái còn thiếu..." class="w-full px-4 py-3 rounded-2xl border-2 border-amber-400 text-center font-bold text-base sm:text-lg focus:outline-none focus:border-red-600 focus:ring-4 focus:ring-amber-200 shadow-sm transition-all" autofocus autocomplete="off">
+            <input type="text" id="fill-input-30" value="${savedAns || ''}" onfocus="this.scrollIntoView({ behavior: 'smooth', block: 'center' });" oninput="saveFillAnswer30()" onkeyup="saveFillAnswer30()" onchange="saveFillAnswer30()" onkeydown="if(event.key==='Enter'){event.preventDefault(); saveFillAnswer30(); nextQuestion30();}" placeholder="Nhập từ hoặc chữ cái còn thiếu..." class="w-full px-4 py-3 rounded-2xl border-2 border-amber-400 text-center font-bold text-lg sm:text-xl focus:outline-none focus:border-red-600 focus:ring-4 focus:ring-amber-200 shadow-sm transition-all" autofocus autocomplete="off">
           </div>
         `;
         break;
@@ -7957,10 +7944,10 @@
         questionBodyHtml = `
           <div class="mb-3">
             <div class="p-3.5 sm:p-4 bg-amber-50 rounded-2xl border-2 border-amber-200 shadow-sm flex items-start justify-between gap-3">
-              <div class="text-xs sm:text-sm font-extrabold text-amber-950 leading-relaxed">
+              <div class="text-sm sm:text-base font-extrabold text-amber-950 leading-relaxed">
                 Câu ${curIdx + 1}: ${promptTitle} (10 điểm)
               </div>
-              <span class="text-xs font-bold bg-emerald-100 text-emerald-800 border border-emerald-300 px-2.5 py-1 rounded-full shrink-0">
+              <span class="text-sm font-bold bg-emerald-100 text-emerald-800 border border-emerald-300 px-2.5 py-1 rounded-full shrink-0">
                 Đã nối: ${pairedCount}/${totalPairs}
               </span>
             </div>
@@ -7969,7 +7956,7 @@
           <div class="grid grid-cols-2 gap-3 sm:gap-4 my-3" id="mini-match-area">
             <!-- CỘT BÊN TRÁI -->
             <div class="flex flex-col gap-2.5">
-              <div class="py-2 px-3 rounded-2xl bg-rose-100 border border-rose-300 text-rose-900 font-black text-xs sm:text-sm text-center shadow-sm flex items-center justify-center gap-1.5 select-none">
+              <div class="py-2 px-3 rounded-2xl bg-rose-100 border border-rose-300 text-rose-900 font-black text-sm sm:text-base text-center shadow-sm flex items-center justify-center gap-1.5 select-none">
                 <span>🐾 CỘT BÊN TRÁI</span>
               </div>
               ${colA.map((item, i) => {
@@ -7978,7 +7965,7 @@
                 const isPaired = (pairedB !== undefined);
                 const pairStyle = MATCH_PAIR_STYLES[i % MATCH_PAIR_STYLES.length];
 
-                let cardStyle = "min-h-[50px] sm:min-h-[54px] p-2.5 sm:p-3 rounded-2xl border-2 text-xs sm:text-sm font-bold text-center transition-all flex items-center justify-center cursor-pointer shadow-sm select-none relative ";
+                let cardStyle = "min-h-[54px] sm:min-h-[58px] p-2.5 sm:p-3 rounded-2xl border-2 text-sm sm:text-base font-bold text-center transition-all flex items-center justify-center cursor-pointer shadow-sm select-none relative ";
                 if (isSelected) {
                   cardStyle += "border-amber-500 bg-amber-200 ring-4 ring-amber-400 text-amber-950 scale-[1.02] shadow-md z-10";
                 } else if (isPaired) {
@@ -7993,7 +7980,7 @@
                   <button type="button" onclick="selectMiniMatchColA(${i})" id="btn-colA-${i}" class="${cardStyle}">
                     <span class="leading-snug break-words px-1">${item.text}</span>
                     ${isPaired ? `
-                      <span class="absolute right-1.5 top-1.5 text-[9px] font-black ${pairStyle.badge} px-1.5 py-0.5 rounded-full shadow-sm">
+                      <span class="absolute right-1.5 top-1.5 text-[11px] font-black ${pairStyle.badge} px-1.5 py-0.5 rounded-full shadow-sm">
                         ➔ ${targetLabel}
                       </span>
                     ` : ''}
@@ -8004,7 +7991,7 @@
 
             <!-- CỘT BÊN PHẢI -->
             <div class="flex flex-col gap-2.5">
-              <div class="py-2 px-3 rounded-2xl bg-amber-100 border border-amber-300 text-amber-950 font-black text-xs sm:text-sm text-center shadow-sm flex items-center justify-center gap-1.5 select-none">
+              <div class="py-2 px-3 rounded-2xl bg-amber-100 border border-amber-300 text-amber-950 font-black text-sm sm:text-base text-center shadow-sm flex items-center justify-center gap-1.5 select-none">
                 <span>🐱 CỘT BÊN PHẢI</span>
               </div>
               ${colB.map((item, j) => {
@@ -8013,7 +8000,7 @@
                 const pairedAIdx = isPaired ? Number(pairedAKey) : 0;
                 const pairStyle = MATCH_PAIR_STYLES[pairedAIdx % MATCH_PAIR_STYLES.length];
 
-                let cardStyle = "min-h-[50px] sm:min-h-[54px] p-2.5 sm:p-3 rounded-2xl border-2 text-xs sm:text-sm font-bold text-center transition-all flex items-center justify-center cursor-pointer shadow-sm select-none relative ";
+                let cardStyle = "min-h-[54px] sm:min-h-[58px] p-2.5 sm:p-3 rounded-2xl border-2 text-sm sm:text-base font-bold text-center transition-all flex items-center justify-center cursor-pointer shadow-sm select-none relative ";
                 if (isPaired) {
                   cardStyle += pairStyle.card;
                 } else {
@@ -8026,7 +8013,7 @@
                   <button type="button" onclick="selectMiniMatchColB(${j})" id="btn-colB-${j}" class="${cardStyle}">
                     <span class="leading-snug break-words px-1">${item.text}</span>
                     ${isPaired ? `
-                      <span class="absolute left-1.5 top-1.5 text-[9px] font-black ${pairStyle.badge} px-1.5 py-0.5 rounded-full shadow-sm">
+                      <span class="absolute left-1.5 top-1.5 text-[11px] font-black ${pairStyle.badge} px-1.5 py-0.5 rounded-full shadow-sm">
                         ⬅ ${sourceLabel}
                       </span>
                     ` : ''}
@@ -8035,7 +8022,7 @@
               }).join('')}
             </div>
           </div>
-          <div id="mini-match-status" class="text-xs font-bold text-emerald-700 text-center mt-1"></div>
+          <div id="mini-match-status" class="text-sm font-bold text-emerald-700 text-center mt-1"></div>
         `;
         break;
       }
@@ -8063,8 +8050,8 @@
           <!-- Header hướng dẫn gọn gàng -->
           <div class="mb-2.5">
             <div class="p-2.5 sm:p-3 bg-amber-50 rounded-xl border border-amber-200 text-center sm:text-left shadow-sm">
-              <p class="text-xs sm:text-sm font-black text-amber-950 leading-relaxed flex items-center justify-center sm:justify-start gap-1.5">
-                <span class="text-base">💡</span>
+              <p class="text-sm sm:text-base font-black text-amber-950 leading-relaxed flex items-center justify-center sm:justify-start gap-1.5">
+                <span class="text-lg">💡</span>
                 <span>Sắp xếp từ vào giỏ tương ứng</span>
               </p>
             </div>
@@ -8092,15 +8079,15 @@
                 <div onclick="dropToMiniGroup(${gIdx})" data-grp="${gIdx}" class="${colSpanClass} p-2.5 sm:p-3 rounded-2xl border-2 border-dashed border-[#e6a23c] bg-[#fffbf0] cursor-pointer hover:border-emerald-500 hover:shadow-md transition-all flex flex-col justify-between">
                   <div class="flex items-center pb-1.5 border-b border-[#fde68a]">
                     <div class="flex items-center gap-1.5 w-full">
-                      <span class="text-base shrink-0">🧺</span>
-                      <span class="font-black text-xs sm:text-sm text-amber-950 leading-snug break-words" title="${cleanName}">${cleanName}</span>
+                      <span class="text-lg shrink-0">🧺</span>
+                      <span class="font-black text-sm sm:text-base text-amber-950 leading-snug break-words" title="${cleanName}">${cleanName}</span>
                     </div>
                   </div>
                   <div class="grp-items flex flex-wrap gap-1.5 mt-2 min-h-[38px] items-center">
                     ${wordsInGroup.length === 0 ? '' : wordsInGroup.map(item => `
-                      <span onclick="event.stopPropagation(); removeWordFromMiniGroup(${item.wIdx})" class="bg-emerald-100 hover:bg-red-100 text-emerald-900 hover:text-red-900 border border-emerald-300 hover:border-red-300 text-xs px-2.5 py-1 rounded-xl font-bold cursor-pointer transition-all flex items-center gap-1 shadow-sm active:scale-95" title="Bấm để trả từ này về khung bên dưới">
+                      <span onclick="event.stopPropagation(); removeWordFromMiniGroup(${item.wIdx})" class="bg-emerald-100 hover:bg-red-100 text-emerald-900 hover:text-red-900 border border-emerald-300 hover:border-red-300 text-sm px-2.5 py-1 rounded-xl font-bold cursor-pointer transition-all flex items-center gap-1 shadow-sm active:scale-95" title="Bấm để trả từ này về khung bên dưới">
                         <span>${item.text}</span>
-                        <span class="text-[10px] text-red-600 font-extrabold ml-0.5">✕</span>
+                        <span class="text-[12px] text-red-600 font-extrabold ml-0.5">✕</span>
                       </span>
                     `).join('')}
                   </div>
@@ -8111,10 +8098,10 @@
 
           <!-- Khung từ cần xếp vào giỏ ở phía dưới gọn gàng -->
           <div class="p-3 sm:p-3.5 bg-[#fff7ed] rounded-2xl border border-[#fed7aa] shadow-sm">
-            <div class="text-xs sm:text-sm font-extrabold text-amber-950 mb-2 flex items-center justify-between">
+            <div class="text-sm sm:text-base font-extrabold text-amber-950 mb-2 flex items-center justify-between">
               <span>Từ cần xếp vào giỏ (${remainingWordsCount} từ còn lại):</span>
               ${remainingWordsCount < totalWords ? `
-                <button onclick="resetMiniClassifyWords()" class="text-xs text-red-600 hover:text-red-800 font-bold flex items-center gap-1 px-2 py-0.5 rounded-lg hover:bg-red-50 transition-colors">
+                <button onclick="resetMiniClassifyWords()" class="text-sm text-red-600 hover:text-red-800 font-bold flex items-center gap-1 px-2 py-0.5 rounded-lg hover:bg-red-50 transition-colors">
                   <span>↺ Làm lại</span>
                 </button>
               ` : ''}
@@ -8124,7 +8111,7 @@
                 if (savedAns[wIdx] !== undefined) return '';
 
                 const isSelected = (selectedMiniWordIndex === wIdx);
-                let btnClass = "btn-3d text-xs sm:text-sm font-bold px-3 py-1.5 sm:px-3.5 sm:py-2 rounded-xl border-2 transition-all shadow-sm ";
+                let btnClass = "btn-3d text-sm sm:text-base font-bold px-3 py-1.5 sm:px-3.5 sm:py-2 rounded-xl border-2 transition-all shadow-sm ";
                 if (isSelected) {
                   btnClass += "bg-amber-400 border-amber-600 text-amber-950 ring-4 ring-amber-200 scale-105 shadow-md";
                 } else {
@@ -8145,24 +8132,24 @@
       case 'READING': {
         questionBodyHtml = `
           <div class="mb-3">
-            <span class="text-xs font-bold bg-amber-100 text-amber-900 px-3 py-1 rounded-full border border-amber-300">
+            <span class="text-sm font-bold bg-amber-100 text-amber-900 px-3 py-1 rounded-full border border-amber-300">
               Câu ${curIdx + 1}: ${formatQuestionTitle(curQ.title) || 'Đọc hiểu văn bản'} (10 điểm)
             </span>
           </div>
           <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div class="p-4 bg-amber-50 rounded-2xl border-2 border-amber-300">
-              <div class="text-xs font-bold text-amber-900 mb-1">ĐỌC ĐOẠN VĂN / KHỔ THƠ:</div>
-              <div class="text-sm font-serif italic text-slate-800 leading-relaxed whitespace-pre-line">${curQ.passage}</div>
+              <div class="text-sm font-bold text-amber-900 mb-1">ĐỌC ĐOẠN VĂN / KHỔ THƠ:</div>
+              <div class="text-base font-serif italic text-slate-800 leading-relaxed whitespace-pre-line">${curQ.passage}</div>
             </div>
             <div>
-              <h4 class="font-extrabold text-sm sm:text-base text-slate-800 mb-3 whitespace-pre-line">${curQ.question}</h4>
+              <h4 class="font-extrabold text-base sm:text-lg text-slate-800 mb-3 whitespace-pre-line">${curQ.question}</h4>
               <div class="flex flex-col gap-2">
                 ${curQ.options.map((opt, i) => `
                   <button onclick="answerMCQ30(${i})" class="scroll-card p-2.5 text-left rounded-xl border-2 flex items-center gap-2.5 transition-all ${savedAns === i ? 'border-red-600 bg-red-50 text-red-950 font-black ring-2 ring-red-400' : 'border-amber-200 hover:border-amber-400 font-semibold text-slate-800'}">
-                    <span class="w-6 h-6 rounded-full ${savedAns === i ? 'bg-red-600 text-white' : 'bg-amber-400 text-amber-950'} flex items-center justify-center font-bold text-xs shrink-0">
+                    <span class="w-7 h-7 rounded-full ${savedAns === i ? 'bg-red-600 text-white' : 'bg-amber-400 text-amber-950'} flex items-center justify-center font-bold text-sm shrink-0">
                       ${String.fromCharCode(65 + i)}
                     </span>
-                    <span class="text-xs sm:text-sm">${opt}</span>
+                    <span class="text-sm sm:text-base">${opt}</span>
                   </button>
                 `).join('')}
               </div>
@@ -8174,7 +8161,7 @@
       case 'IMAGE_MCQ': {
         questionBodyHtml = `
           <div class="mb-3">
-            <span class="text-xs font-bold bg-amber-100 text-amber-900 px-3 py-1 rounded-full border border-amber-300">
+            <span class="text-sm font-bold bg-amber-100 text-amber-900 px-3 py-1 rounded-full border border-amber-300">
               Câu ${curIdx + 1}: ${formatQuestionTitle(curQ.title) || 'Nhìn hình chọn đáp án'} (10 điểm)
             </span>
           </div>
@@ -8182,15 +8169,15 @@
             <div class="w-32 h-32 sm:w-36 sm:h-36 flex items-center justify-center bg-white rounded-2xl p-2 border-2 border-amber-200 shadow-md mb-3">
               ${getIllustrationSvg(curQ.imageKey)}
             </div>
-            <h3 class="font-extrabold text-base sm:text-lg text-slate-800 text-center whitespace-pre-line">${curQ.question}</h3>
+            <h3 class="font-extrabold text-lg sm:text-xl text-slate-800 text-center whitespace-pre-line">${curQ.question}</h3>
           </div>
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-3" id="mcq-grid">
             ${curQ.options.map((opt, i) => `
               <button onclick="answerMCQ30(${i})" class="scroll-card p-3.5 text-left rounded-xl border-2 transition-all flex items-center gap-3 ${savedAns === i ? 'border-red-600 bg-red-50 text-red-950 font-black ring-2 ring-red-400' : 'border-amber-200 hover:border-amber-400 font-bold text-slate-800'}">
-                <span class="w-7 h-7 rounded-full ${savedAns === i ? 'bg-red-600 text-white' : 'bg-amber-400 text-amber-950'} flex items-center justify-center font-extrabold text-xs shrink-0">
+                <span class="w-8 h-8 rounded-full ${savedAns === i ? 'bg-red-600 text-white' : 'bg-amber-400 text-amber-950'} flex items-center justify-center font-extrabold text-sm shrink-0">
                   ${String.fromCharCode(65 + i)}
                 </span>
-                <span class="text-xs sm:text-sm">${opt}</span>
+                <span class="text-sm sm:text-base">${opt}</span>
               </button>
             `).join('')}
           </div>
@@ -8201,18 +8188,18 @@
         const opts = curQ.options || [];
         questionBodyHtml = `
           <div class="mb-4">
-            <span class="text-xs font-bold bg-amber-100 text-amber-900 px-3 py-1 rounded-full border border-amber-300">
+            <span class="text-sm font-bold bg-amber-100 text-amber-900 px-3 py-1 rounded-full border border-amber-300">
               Câu ${curIdx + 1}: ${formatQuestionTitle(curQ.title) || 'Câu hỏi kiến thức'} (10 điểm)
             </span>
           </div>
-          <h3 class="text-base sm:text-lg font-black text-slate-800 mb-4 leading-snug whitespace-pre-line">${curQ.question || curQ.title || 'Hãy chọn đáp án đúng:'}</h3>
+          <h3 class="text-lg sm:text-xl font-black text-slate-800 mb-4 leading-snug whitespace-pre-line">${curQ.question || curQ.title || 'Hãy chọn đáp án đúng:'}</h3>
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-3" id="mcq-grid">
             ${opts.map((opt, i) => `
               <button onclick="answerMCQ30(${i})" class="scroll-card p-3.5 text-left rounded-xl border-2 transition-all flex items-center gap-3 ${savedAns === i ? 'border-red-600 bg-red-50 text-red-950 font-black ring-2 ring-red-400' : 'border-amber-200 hover:border-amber-400 font-bold text-slate-800'}">
-                <span class="w-7 h-7 rounded-full ${savedAns === i ? 'bg-red-600 text-white' : 'bg-amber-400 text-amber-950'} flex items-center justify-center font-extrabold text-xs shrink-0">
+                <span class="w-8 h-8 rounded-full ${savedAns === i ? 'bg-red-600 text-white' : 'bg-amber-400 text-amber-950'} flex items-center justify-center font-extrabold text-sm shrink-0">
                   ${String.fromCharCode(65 + i)}
                 </span>
-                <span class="text-xs sm:text-sm">${opt}</span>
+                <span class="text-sm sm:text-base">${opt}</span>
               </button>
             `).join('')}
           </div>
@@ -8224,52 +8211,48 @@
     root.innerHTML = `
       <!-- Thanh Tiêu Đề Phòng Thi Chặng 7 - 18 -->
       <div class="scroll-card p-2.5 sm:p-3.5 mb-3 bg-gradient-to-r from-red-800 via-amber-700 to-red-900 text-white shadow-lg border-2 border-amber-400 rounded-2xl flex flex-col gap-2">
-        <!-- DÒNG 1: BÊN TRÁI: ICON + LỚP + CHẶNG ... -->
+        <!-- DÒNG 1: BÊN TRÁI: LỚP X - CHẶNG Y ---------- BÊN PHẢI: NỘP BÀI & THOÁT -->
         <div class="flex items-center justify-between gap-2 border-b border-amber-400/30 pb-2">
           <div class="flex items-center gap-1.5 shrink-0">
             <span class="text-base sm:text-lg">🏛️</span>
-            <span class="text-sm sm:text-base font-black text-yellow-300">Lớp ${AppState.selectedGrade}</span>
-            <span class="text-xs sm:text-sm font-bold text-yellow-200">Chặng ${AppState.currentRoundNum}</span>
+            <span class="text-base sm:text-lg font-black text-yellow-300">Lớp ${AppState.selectedGrade}</span>
+            <span class="text-sm sm:text-base font-bold text-yellow-200">Chặng ${AppState.currentRoundNum}</span>
+          </div>
+
+          <div class="flex items-center gap-1.5 shrink-0">
+            <!-- Nút "Nộp Bài" (màu vàng 3D) -->
+            <button onclick="handleMode2SubmitClick()" class="btn-3d btn-3d-gold px-3 sm:px-3.5 py-1 rounded-xl font-black text-amber-950 text-xs sm:text-sm shadow active:scale-95">
+              Nộp Bài
+            </button>
+
+            <!-- Nút "Thoát" -->
+            <button onclick="confirmExitExam()" class="text-xs sm:text-sm bg-white/20 hover:bg-white/30 text-white px-2.5 py-1 rounded-lg font-bold transition-all">
+              Thoát
+            </button>
           </div>
         </div>
 
-        <!-- DÒNG 2: ⏱️ ĐỒNG HỒ --- 📝 SỐ CÂU ĐÃ HOÀN THÀNH/30 CÂU --- NỘP BÀI (MÀU VÀNG 3D) --- THOÁT -->
-        <div class="flex items-center justify-between gap-1.5 sm:gap-2 text-xs sm:text-sm font-bold">
+        <!-- DÒNG 2: ⏱️ ĐỒNG HỒ --- 📝 SỐ CÂU ĐÃ HOÀN THÀNH/30 CÂU ---------- BÊN PHẢI: DANH SÁCH CÂU HỎI -->
+        <div class="flex items-center justify-between gap-1.5 sm:gap-2 text-sm sm:text-base font-bold">
           <div class="flex items-center gap-1.5 sm:gap-2">
             <!-- ⏱️ Đồng hồ đếm giờ -->
-            <div class="flex items-center gap-1 bg-red-950/80 px-2.5 py-1 rounded-xl font-black text-xs sm:text-sm border border-yellow-400/40">
+            <div class="flex items-center gap-1 bg-red-950/80 px-2.5 py-1 rounded-xl font-black text-sm sm:text-base border border-yellow-400/40">
               <span>⏱️</span>
               <span id="exam-timer">${timerStr}</span>
             </div>
 
             <!-- 📝 Số câu đã hoàn thành trên tổng 30 câu -->
-            <div class="flex items-center gap-1 bg-amber-900/60 text-yellow-300 px-2.5 py-1 rounded-xl font-black text-xs sm:text-sm border border-yellow-400/30">
+            <div class="flex items-center gap-1 bg-amber-900/60 text-yellow-300 px-2.5 py-1 rounded-xl font-black text-sm sm:text-base border border-yellow-400/30">
               <span>📝</span>
               <span>${Object.keys(AppState.userAnswers30).length}/30 câu</span>
             </div>
           </div>
 
-          <div class="flex items-center gap-1.5">
-            <!-- Nút "Nộp Bài" (màu vàng 3D) -->
-            <button onclick="handleMode2SubmitClick()" class="btn-3d btn-3d-gold px-3 sm:px-4 py-1 rounded-xl font-black text-amber-950 text-xs sm:text-sm shadow active:scale-95">
-              Nộp Bài
-            </button>
-
-            <!-- Nút "Thoát" -->
-            <button onclick="confirmExitExam()" class="text-xs bg-white/20 hover:bg-white/30 text-white px-2.5 py-1 rounded-lg font-bold transition-all">
-              Thoát
-            </button>
-          </div>
-        </div>
-      </div>
-
-      <!-- Bảng 30 Ô Số Câu Hỏi Điều Hướng Tùy Ý -->
-      <div class="scroll-card p-3 sm:p-4 mb-4 bg-white border-2 border-amber-300">
-        <div class="flex items-center justify-between text-xs font-bold text-slate-600 mb-2">
-          <span>DANH SÁCH 30 CÂU HỎI (Bấm số để nhảy câu):</span>
-        </div>
-        <div class="grid grid-cols-10 gap-1.5 sm:gap-2 justify-items-center">
-          ${navPillsHtml}
+          <!-- Nút "Danh sách câu hỏi" mở Modal Popup -->
+          <button onclick="openQuestionListModal30()" class="btn-3d btn-3d-blue px-3 sm:px-3.5 py-1 rounded-xl font-extrabold text-white text-xs sm:text-sm shadow flex items-center gap-1 active:scale-95">
+            <span>📋</span>
+            <span>Danh sách câu hỏi</span>
+          </button>
         </div>
       </div>
 
@@ -8280,19 +8263,81 @@
 
       <!-- Nút Chuyển Câu: Trước / Nộp Bài / Tiếp Theo -->
       <div class="flex items-center justify-between gap-2">
-        <button onclick="prevQuestion30()" ${curIdx === 0 ? 'disabled class="opacity-40 cursor-not-allowed"' : ''} class="px-3.5 sm:px-4 py-2 rounded-xl border border-slate-300 font-bold text-xs sm:text-sm text-slate-700 bg-white hover:bg-slate-50">
-          ◄ Câu Trước
+        <button onclick="prevQuestion30()" ${curIdx === 0 ? 'disabled class="opacity-40 cursor-not-allowed"' : ''} class="px-4 py-2.5 rounded-xl border-2 border-amber-300 font-black text-lg text-slate-700 bg-white hover:bg-slate-50 flex items-center justify-center active:scale-95" title="Câu trước">
+          ◄
         </button>
 
-        <button onclick="handleMode2SubmitClick()" class="btn-3d btn-3d-gold px-4 py-2 rounded-xl font-black text-amber-950 text-xs sm:text-sm shadow" style="visibility: hidden;">
+        <button onclick="handleMode2SubmitClick()" class="btn-3d btn-3d-gold px-4 py-2 rounded-xl font-black text-amber-950 text-sm sm:text-base shadow" style="visibility: hidden;">
           📝 Nộp Bài Tính Điểm
         </button>
 
-        <button onclick="nextQuestion30()" ${curIdx === 29 ? 'disabled class="opacity-40 cursor-not-allowed"' : ''} class="btn-3d btn-3d-red px-4 sm:px-5 py-2 rounded-xl font-black text-xs sm:text-sm text-white">
-          Câu Tiếp Theo ►
+        <button onclick="nextQuestion30()" ${curIdx === 29 ? 'disabled class="opacity-40 cursor-not-allowed"' : ''} class="btn-3d btn-3d-red px-5 py-2.5 rounded-xl font-black text-lg text-white flex items-center justify-center active:scale-95" title="Câu tiếp theo">
+          ►
         </button>
       </div>
     `;
+
+    safeCreateIcons();
+  }
+
+  // Mở Popup Danh sách 30 câu hỏi
+  function openQuestionListModal30() {
+    saveFillAnswer30();
+    SoundEngine.playClick();
+    const qList = AppState.exam30Questions || [];
+    const curIdx = AppState.currentQuestionIndex;
+
+    const navPillsHtml = qList.map((q, i) => {
+      const isAnswered = AppState.userAnswers30[i] !== undefined;
+      const isActive = i === curIdx;
+      return `
+        <button onclick="jumpToQuestion30(${i}); closeModal();" class="q-nav-pill ${isActive ? 'active' : (isAnswered ? 'answered' : '')}">
+          ${i + 1}
+        </button>
+      `;
+    }).join('');
+
+    const answeredCount = Object.keys(AppState.userAnswers30).length;
+
+    const modalContainer = document.getElementById('modal-container');
+    if (!modalContainer) return;
+    modalContainer.innerHTML = `
+      <div class="fixed inset-0 z-50 bg-black/75 backdrop-blur-sm flex items-center justify-center p-4" onclick="closeModal()">
+        <div class="scroll-card max-w-sm sm:max-w-md w-full p-5 sm:p-6 bg-gradient-to-b from-amber-50 via-white to-amber-100/70 rounded-3xl text-center shadow-2xl border-4 border-amber-400 relative overflow-hidden" onclick="event.stopPropagation()">
+
+          <button onclick="closeModal()" class="absolute top-3 right-3 text-slate-400 hover:text-slate-600 p-1.5 rounded-full hover:bg-slate-100 transition-colors">
+            ✕
+          </button>
+
+          <div class="flex items-center justify-center gap-2 mb-1.5">
+            <span class="text-2xl">📋</span>
+            <h3 class="text-base sm:text-lg font-black text-amber-950">Danh Sách 30 Câu Hỏi</h3>
+          </div>
+
+          <div class="text-xs sm:text-sm font-bold text-slate-600 mb-3">
+            Tiến độ: <b class="text-emerald-700 font-black">${answeredCount}/30 câu</b> (Chạm câu bất kỳ để chọn)
+          </div>
+
+          <!-- Chú thích trạng thái -->
+          <div class="flex items-center justify-center gap-3 text-[11px] font-bold text-slate-700 mb-4 bg-amber-100/80 py-1.5 px-3 rounded-xl border border-amber-200">
+            <span class="flex items-center gap-1"><span class="w-3 h-3 rounded bg-amber-500 inline-block border border-amber-700 shadow-sm"></span> Đang làm</span>
+            <span class="flex items-center gap-1"><span class="w-3 h-3 rounded bg-emerald-500 inline-block border border-emerald-700 shadow-sm"></span> Đã làm</span>
+            <span class="flex items-center gap-1"><span class="w-3 h-3 rounded bg-slate-100 inline-block border border-slate-300 shadow-sm"></span> Chưa làm</span>
+          </div>
+
+          <!-- Bảng 30 Ô Số Câu Hỏi -->
+          <div class="grid grid-cols-10 gap-1.5 sm:gap-2 justify-items-center mb-5">
+            ${navPillsHtml}
+          </div>
+
+          <button onclick="closeModal()" class="w-full btn-3d btn-3d-gold py-2.5 rounded-2xl font-black text-amber-950 text-xs sm:text-sm shadow">
+            Đóng
+          </button>
+        </div>
+      </div>
+    `;
+    if (typeof lucide !== 'undefined' && lucide.createIcons) safeCreateIcons();
+  }
 
     safeCreateIcons();
   }
