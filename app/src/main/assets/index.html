@@ -4736,16 +4736,18 @@
   function watchRewardedAdForChibi(chibiId) {
     if (window.AndroidBridge && typeof window.AndroidBridge.requestRewardedAd === 'function') {
       window.AndroidBridge.requestRewardedAd('chibi', chibiId);
+    } else {
+      runWebFallbackRewarded('chibi', chibiId);
     }
-    runWebFallbackRewarded('chibi', chibiId);
   }
 
   function watchRewardedAdForItem(category, itemId) {
     const key = `${category}:${itemId}`;
     if (window.AndroidBridge && typeof window.AndroidBridge.requestRewardedAd === 'function') {
       window.AndroidBridge.requestRewardedAd('item', key);
+    } else {
+      runWebFallbackRewarded('item', key);
     }
-    runWebFallbackRewarded('item', key);
   }
 
   function triggerScanAndRestoreVip() {
@@ -9658,22 +9660,59 @@
   function startRewardedAdForRound(roundNum) {
     if (window.AndroidBridge && typeof window.AndroidBridge.requestRewardedAd === 'function') {
       window.AndroidBridge.requestRewardedAd('round', roundNum);
+    } else {
+      runWebFallbackRewarded('round', roundNum);
     }
-    runWebFallbackRewarded('round', roundNum);
   }
 
   function watchRewardedAdForStars(amount = 30) {
     if (window.AndroidBridge && typeof window.AndroidBridge.requestRewardedAd === 'function') {
       window.AndroidBridge.requestRewardedAd('stars', amount);
+    } else {
+      runWebFallbackRewarded('stars', amount);
     }
-    runWebFallbackRewarded('stars', amount);
   }
 
   function watchRewardedAdForExplanation() {
     if (window.AndroidBridge && typeof window.AndroidBridge.requestRewardedAd === 'function') {
       window.AndroidBridge.requestRewardedAd('explanation', 1);
+    } else {
+      runWebFallbackRewarded('explanation', 1);
     }
-    runWebFallbackRewarded('explanation', 1);
+  }
+
+  function showChibiUnlockAlert(lb) {
+    const modalContainer = document.getElementById('modal-container');
+    if (!modalContainer) return;
+
+    const chibiImg = lb ? lb.image : 'app_logo.png';
+    const chibiName = lb ? lb.name : 'nhân vật mới';
+
+    modalContainer.innerHTML = `
+      <div class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4" onclick="closeModal()">
+        <div class="scroll-card max-w-sm w-full p-5 sm:p-6 bg-gradient-to-b from-amber-50 via-white to-amber-100/70 rounded-3xl relative text-center shadow-2xl border-4 border-amber-400 overflow-hidden" onclick="event.stopPropagation()">
+
+          <!-- Hình Đại Diện Nhân Vật Chibi Vừa Mở Khóa Dùng Thử -->
+          <div class="relative w-20 h-20 mx-auto mb-3">
+            <div class="w-20 h-20 rounded-full border-4 border-amber-400 bg-gradient-to-tr from-amber-200 to-yellow-100 shadow-md p-1 overflow-hidden flex items-center justify-center">
+              <img src="${chibiImg}" class="w-full h-full object-cover rounded-full" alt="${chibiName}">
+            </div>
+            <span class="absolute -bottom-1 -right-1 bg-amber-400 text-amber-950 border border-amber-200 rounded-full w-7 h-7 flex items-center justify-center text-sm shadow animate-bounce">✨</span>
+          </div>
+
+          <h3 class="text-base sm:text-lg font-black text-amber-950 uppercase mb-2">THÔNG BÁO</h3>
+
+          <p class="text-slate-800 text-xs sm:text-sm font-extrabold mb-5 leading-relaxed">
+            🎉 Chúc mừng bạn đã xem video và mở khóa thành công nhân vật <b>${chibiName}</b>!
+          </p>
+
+          <button onclick="closeModal()" class="w-full btn-3d btn-3d-gold py-2.5 rounded-xl font-black text-amber-950 text-xs sm:text-sm shadow">
+            Đồng ý
+          </button>
+        </div>
+      </div>
+    `;
+    if (typeof lucide !== 'undefined' && lucide.createIcons) safeCreateIcons();
   }
 
   // Hook nhận callback thưởng từ Android Native AdMob SDK
@@ -9711,7 +9750,7 @@
       SoundEngine.playFanfare();
       updateHeaderUI();
       openAvatarModal('lookbook');
-      showCustomAlert(`🎉 Chúc mừng bạn đã xem video và mở khóa thành công nhân vật ${lb ? lb.name : ''}!`);
+      showChibiUnlockAlert(lb);
     } else if (rewardType === 'item') {
       const parts = String(targetId).split(':');
       const cat = parts[0];
