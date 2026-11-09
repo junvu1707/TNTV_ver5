@@ -444,8 +444,9 @@ class VipDialogManager(private val activity: MainActivity) {
       }
       container.addView(headerIcon)
 
+      val vipTag = if (vipLevel >= 2) "VIP 2" else "VIP 1"
       val txtTitle = TextView(activity).apply {
-        text = "KÍCH HOẠT VIP THÀNH CÔNG 🎉"
+        text = "KÍCH HOẠT $vipTag THÀNH CÔNG 🎉"
         setTextColor(Color.parseColor("#92400E"))
         textSize = 17f
         setTypeface(null, Typeface.BOLD)

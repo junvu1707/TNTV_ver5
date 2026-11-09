@@ -119,7 +119,7 @@ class BillingManager(
       return
     }
 
-    // 1. Truy vấn sản phẩm mua 1 lần (INAPP)
+    // 1. Truy vấn sản phẩm mua 1 lần (INAPP) - Đồng bộ ngầm không hiện dialog
     val inAppParams = QueryPurchasesParams.newBuilder()
       .setProductType(BillingClient.ProductType.INAPP)
       .build()
@@ -127,12 +127,12 @@ class BillingManager(
     billingClient.queryPurchasesAsync(inAppParams) { billingResult, purchasesList ->
       if (billingResult.responseCode == BillingClient.BillingResponseCode.OK) {
         for (purchase in purchasesList) {
-          handlePurchase(purchase)
+          handlePurchase(purchase, isNewPurchase = false)
         }
       }
     }
 
-    // 2. Truy vấn sản phẩm gói thuê bao (SUBS)
+    // 2. Truy vấn sản phẩm gói thuê bao (SUBS) - Đồng bộ ngầm không hiện dialog
     val subsParams = QueryPurchasesParams.newBuilder()
       .setProductType(BillingClient.ProductType.SUBS)
       .build()
@@ -140,7 +140,7 @@ class BillingManager(
     billingClient.queryPurchasesAsync(subsParams) { billingResult, purchasesList ->
       if (billingResult.responseCode == BillingClient.BillingResponseCode.OK) {
         for (purchase in purchasesList) {
-          handlePurchase(purchase)
+          handlePurchase(purchase, isNewPurchase = false)
         }
       }
     }
@@ -218,7 +218,7 @@ class BillingManager(
       BillingClient.BillingResponseCode.OK -> {
         if (!purchases.isNullOrEmpty()) {
           for (purchase in purchases) {
-            handlePurchase(purchase)
+            handlePurchase(purchase, isNewPurchase = true)
           }
         }
       }
@@ -238,13 +238,13 @@ class BillingManager(
     }
   }
 
-  private fun handlePurchase(purchase: Purchase) {
+  private fun handlePurchase(purchase: Purchase, isNewPurchase: Boolean = false) {
     if (purchase.purchaseState == Purchase.PurchaseState.PURCHASED) {
       val isVip2 = purchase.products.any { isVip2Product(it) }
       val level = if (isVip2) VipPreferenceManager.VIP_LEVEL_2 else VipPreferenceManager.VIP_LEVEL_1
       val productId = if (isVip2) PRODUCT_VIP_2 else PRODUCT_VIP_1
 
-      processSuccessfulVIPActivation(productId, level, purchase.orderId ?: purchase.purchaseToken, purchase.purchaseToken)
+      processSuccessfulVIPActivation(productId, level, purchase.orderId ?: purchase.purchaseToken, purchase.purchaseToken, isNewPurchase)
 
       if (!purchase.isAcknowledged) {
         val acknowledgeParams = AcknowledgePurchaseParams.newBuilder()
@@ -263,7 +263,8 @@ class BillingManager(
     productId: String,
     vipLevel: Int,
     orderId: String,
-    purchaseToken: String
+    purchaseToken: String,
+    isNewPurchase: Boolean = false
   ) {
     val userEmail = vipPrefs.getUserEmail()
     val userName = vipPrefs.getUserName()
@@ -275,20 +276,22 @@ class BillingManager(
 
     val vipTypeName = if (vipLevel >= 2) "Gói VIP 2 (Trọn Đời)" else "Gói VIP 1 (1 Năm)"
 
-    // Gửi email tự động qua EmailJS
-    emailJSManager.sendVipActivationNotification(
-      userEmail = userEmail,
-      userName = userName,
-      vipType = vipTypeName,
-      deviceId = deviceId,
-      purchaseToken = purchaseToken,
-      orderId = orderId
-    ) { success ->
-      Log.d(TAG, "Automated EmailJS activation sent: $success")
-    }
+    // Chỉ gửi Email và hiển thị Dialog kích hoạt khi đây là giao dịch vừa thanh toán mới
+    if (isNewPurchase) {
+      emailJSManager.sendVipActivationNotification(
+        userEmail = userEmail,
+        userName = userName,
+        vipType = vipTypeName,
+        deviceId = deviceId,
+        purchaseToken = purchaseToken,
+        orderId = orderId
+      ) { success ->
+        Log.d(TAG, "Automated EmailJS activation sent: $success")
+      }
 
-    activity.runOnUiThread {
-      onPurchaseSuccessCallback?.invoke(productId, vipLevel)
+      activity.runOnUiThread {
+        onPurchaseSuccessCallback?.invoke(productId, vipLevel)
+      }
     }
   }
 
