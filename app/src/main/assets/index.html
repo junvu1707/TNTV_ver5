@@ -6897,7 +6897,7 @@
       <div class="scroll-card p-3.5 sm:p-5">
         <div class="p-3.5 sm:p-4 bg-amber-50 rounded-2xl border-2 border-amber-200 shadow-sm mb-4 text-center">
           <p class="text-[17.5px] sm:text-[19.5px] font-extrabold text-slate-800 leading-relaxed whitespace-pre-line">
-            ${promptTitle} (+10 ⭐)
+            ${promptTitle}
           </p>
         </div>
 
@@ -7287,7 +7287,7 @@
         root.innerHTML = `
           ${getExamHeaderMode1(subGame.title)}
           <div class="scroll-card p-5 max-w-xl mx-auto">
-            <div class="text-[13.5px] font-bold text-amber-800 mb-2">Câu ${2 + qIdx + 1} / 30 • Điền từ còn thiếu (+10 ⭐)</div>
+            <div class="text-[13.5px] font-bold text-amber-800 mb-2">Câu ${2 + qIdx + 1} / 30 • Điền từ còn thiếu</div>
             <div class="p-4 bg-amber-50 rounded-xl border border-amber-200 mb-4 text-center font-bold text-[17.5px] text-slate-800">
               ${q.question.replace('[...]', '<span class="text-red-600 underline font-black">[ ... ]</span>')}
             </div>
@@ -7337,7 +7337,7 @@
         root.innerHTML = `
           ${getExamHeaderMode1(subGame.title)}
           <div class="scroll-card p-5 max-w-xl mx-auto">
-            <div class="text-[13.5px] font-bold text-amber-800 mb-2">Câu ${2 + qIdx + 1} / 30 • Trắc nghiệm (+10 ⭐)</div>
+            <div class="text-[13.5px] font-bold text-amber-800 mb-2">Câu ${2 + qIdx + 1} / 30 • Trắc nghiệm</div>
             <h3 class="font-extrabold text-[17.5px] text-slate-800 mb-4">${q.question}</h3>
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-3" id="mode1-opts">
               ${q.options.map((opt, i) => `
@@ -7430,7 +7430,7 @@
       root.innerHTML = `
         ${getExamHeaderMode1(subGame.title)}
         <div class="scroll-card p-5 max-w-xl mx-auto">
-          <div class="text-[13.5px] font-bold text-amber-800 mb-2">Câu ${20 + qIdx + 1} / 30 • Bé sáng tạo (+10 ⭐)</div>
+          <div class="text-[13.5px] font-bold text-amber-800 mb-2">Câu ${20 + qIdx + 1} / 30 • Bé sáng tạo</div>
           <div class="p-4 bg-amber-50 rounded-2xl border-2 border-amber-300 mb-4 text-center font-bold text-[17.5px] text-slate-800 leading-relaxed whitespace-pre-line">
             🧩 ${r.poem || r.question}
           </div>
@@ -7540,7 +7540,7 @@
           root.innerHTML = `
             ${getExamHeaderMode1(subGame.title)}
             <div class="scroll-card p-5 max-w-xl mx-auto">
-              <div class="text-[15px] sm:text-[17px] font-black text-amber-800 mb-2">Câu ${25 + qIdx + 1} / 30 • Bé nhanh tay: Sắp xếp câu (+10 ⭐)</div>
+              <div class="text-[15px] sm:text-[17px] font-black text-amber-800 mb-2">Câu ${25 + qIdx + 1} / 30 • Bé nhanh tay: Sắp xếp câu</div>
 
               <div class="p-3 sm:p-3.5 bg-amber-50 rounded-2xl border-2 border-amber-300 mb-4">
                 <div class="text-[16px] font-black text-amber-900 mb-2 flex items-center gap-1.5">
@@ -7670,7 +7670,7 @@
         root.innerHTML = `
           ${getExamHeaderMode1(subGame.title)}
           <div class="scroll-card p-5 max-w-xl mx-auto">
-            <div class="text-xs font-bold text-amber-800 mb-2">Câu ${25 + qIdx + 1} / 30 • Bé nhanh tay (+10 ⭐)</div>
+            <div class="text-xs font-bold text-amber-800 mb-2">Câu ${25 + qIdx + 1} / 30 • Bé nhanh tay</div>
             <div class="p-4 bg-amber-50 rounded-2xl border-2 border-amber-300 mb-4 flex flex-col items-center justify-center">
               <div class="w-32 h-32 sm:w-36 sm:h-36 flex items-center justify-center bg-white rounded-2xl p-2 border-2 border-amber-200 shadow-md mb-3">
                 ${getIllustrationSvg(item.imageKey)}
@@ -7761,32 +7761,14 @@
     switch (curQ.type) {
       case 'MCQ': {
         const parsed = parseAndFormatQuestionText(curQ.question, 'MCQ');
-        const isGenericInstructionHeader = (hdr) => {
-          if (!hdr) return true;
-          const lower = String(hdr).toLowerCase().trim();
-          return lower.includes('điền từ') ||
-                 lower.includes('điền quan hệ từ') ||
-                 lower.includes('sắp xếp') ||
-                 lower.includes('xếp các từ') ||
-                 lower.includes('phân loại') ||
-                 lower.includes('câu hỏi');
-        };
-        const hasHeader = (parsed.header && parsed.body && parsed.body !== curQ.question && !isGenericInstructionHeader(parsed.header));
 
         questionBodyHtml = `
           <div class="mb-3">
             <span class="text-[16px] font-black bg-amber-100 text-amber-900 px-3.5 py-1.5 rounded-full border border-amber-300">
-              Câu ${curIdx + 1}: ${formatQuestionTitle(curQ.title) || 'Trắc nghiệm kiến thức'} (10 điểm)
+              Câu ${curIdx + 1}: ${formatQuestionTitle(curQ.title) || 'Trắc nghiệm kiến thức'}
             </span>
           </div>
           <div class="p-3.5 sm:p-4 bg-amber-50 rounded-2xl border-2 border-amber-200 mb-4 text-center">
-            ${hasHeader ? `
-              <div class="mb-1.5">
-                <span class="text-[18px] font-black text-amber-900 bg-amber-200/80 px-3 py-1 rounded-lg inline-block border border-amber-300 shadow-sm">
-                  💡 ${parsed.header}
-                </span>
-              </div>
-            ` : ''}
             <p class="text-[18px] font-black text-slate-800 leading-relaxed whitespace-pre-line">
               ${parsed.body}
             </p>
@@ -7814,7 +7796,7 @@
         questionBodyHtml = `
           <div class="mb-3">
             <span class="text-[16px] font-black bg-amber-100 text-amber-900 px-3.5 py-1.5 rounded-full border border-amber-300">
-              Câu ${curIdx + 1}: Sắp xếp câu (10 điểm)
+              Câu ${curIdx + 1}: Sắp xếp câu
             </span>
           </div>
           ${!isGenericPrompt ? `
@@ -7884,7 +7866,7 @@
         questionBodyHtml = `
           <div class="mb-3">
             <span class="text-[16px] font-black bg-amber-100 text-amber-900 px-3.5 py-1.5 rounded-full border border-amber-300">
-              Câu ${curIdx + 1}: ${formatQuestionTitle(curQ.title) || 'Điền từ còn thiếu'} (10 điểm)
+              Câu ${curIdx + 1}: ${formatQuestionTitle(curQ.title) || 'Điền từ còn thiếu'}
             </span>
           </div>
           <div class="p-3.5 sm:p-4 bg-amber-50 rounded-2xl border-2 border-amber-200 mb-4 text-center">
@@ -7919,7 +7901,7 @@
           <div class="mb-3">
             <div class="p-3.5 sm:p-4 bg-amber-50 rounded-2xl border-2 border-amber-200 shadow-sm flex items-start justify-between gap-3">
               <div class="text-[16px] font-black text-amber-950 leading-relaxed">
-                Câu ${curIdx + 1}: ${promptTitle} (10 điểm)
+                Câu ${curIdx + 1}: ${promptTitle}
               </div>
               <span class="text-[13.5px] font-bold bg-emerald-100 text-emerald-800 border border-emerald-300 px-2.5 py-1 rounded-full shrink-0">
                 Đã nối: ${pairedCount}/${totalPairs}
@@ -8107,7 +8089,7 @@
         questionBodyHtml = `
           <div class="mb-3">
             <span class="text-[16px] font-black bg-amber-100 text-amber-900 px-3.5 py-1.5 rounded-full border border-amber-300">
-              Câu ${curIdx + 1}: ${formatQuestionTitle(curQ.title) || 'Đọc hiểu văn bản'} (10 điểm)
+              Câu ${curIdx + 1}: ${formatQuestionTitle(curQ.title) || 'Đọc hiểu văn bản'}
             </span>
           </div>
           <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -8120,10 +8102,10 @@
               <div class="flex flex-col gap-3">
                 ${curQ.options.map((opt, i) => `
                   <button onclick="answerMCQ30(${i})" class="scroll-card p-3.5 sm:p-4 text-left rounded-2xl border-2 flex items-center gap-3.5 transition-all ${savedAns === i ? 'border-red-600 bg-red-50 text-red-950 font-black ring-2 ring-red-400' : 'border-amber-200 hover:border-amber-400 font-semibold text-slate-800'}">
-                    <span class="w-9 h-9 sm:w-10 sm:h-10 rounded-full ${savedAns === i ? 'bg-red-600 text-white' : 'bg-amber-400 text-amber-950'} flex items-center justify-center font-black text-[18px] sm:text-[20px] shrink-0 shadow-sm">
+                    <span class="w-8 h-8 sm:w-9 sm:h-9 rounded-full ${savedAns === i ? 'bg-red-600 text-white' : 'bg-amber-400 text-amber-950'} flex items-center justify-center font-black text-[16px] shrink-0 shadow-sm">
                       ${String.fromCharCode(65 + i)}
                     </span>
-                    <span class="text-[24px] sm:text-[28px] font-black leading-snug">${opt}</span>
+                    <span class="text-[18px] font-black leading-snug">${opt}</span>
                   </button>
                 `).join('')}
               </div>
@@ -8136,7 +8118,7 @@
         questionBodyHtml = `
           <div class="mb-3">
             <span class="text-[16px] font-black bg-amber-100 text-amber-900 px-3.5 py-1.5 rounded-full border border-amber-300">
-              Câu ${curIdx + 1}: ${formatQuestionTitle(curQ.title) || 'Nhìn hình chọn đáp án'} (10 điểm)
+              Câu ${curIdx + 1}: ${formatQuestionTitle(curQ.title) || 'Nhìn hình chọn đáp án'}
             </span>
           </div>
           <div class="p-4 bg-amber-50 rounded-2xl border-2 border-amber-300 mb-4 flex flex-col items-center justify-center">
@@ -8147,11 +8129,11 @@
           </div>
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5" id="mcq-grid">
             ${curQ.options.map((opt, i) => `
-              <button onclick="answerMCQ30(${i})" class="scroll-card p-4 sm:p-5 text-left rounded-2xl border-2 transition-all flex items-center gap-4 ${savedAns === i ? 'border-red-600 bg-red-50 text-red-950 font-black ring-2 ring-red-400' : 'border-amber-200 hover:border-amber-400 font-bold text-slate-800'}">
-                <span class="w-10 h-10 sm:w-11 sm:h-11 rounded-full ${savedAns === i ? 'bg-red-600 text-white' : 'bg-amber-400 text-amber-950'} flex items-center justify-center font-black text-[20px] sm:text-[22px] shrink-0 shadow-sm">
+              <button onclick="answerMCQ30(${i})" class="scroll-card p-3.5 sm:p-4 text-left rounded-2xl border-2 transition-all flex items-center gap-3 ${savedAns === i ? 'border-red-600 bg-red-50 text-red-950 font-black ring-2 ring-red-400' : 'border-amber-200 hover:border-amber-400 font-bold text-slate-800'}">
+                <span class="w-8 h-8 sm:w-9 sm:h-9 rounded-full ${savedAns === i ? 'bg-red-600 text-white' : 'bg-amber-400 text-amber-950'} flex items-center justify-center font-black text-[16px] shrink-0 shadow-sm">
                   ${String.fromCharCode(65 + i)}
                 </span>
-                <span class="text-[24px] sm:text-[28px] font-black leading-snug">${opt}</span>
+                <span class="text-[18px] font-black leading-snug">${opt}</span>
               </button>
             `).join('')}
           </div>
@@ -8163,17 +8145,17 @@
         questionBodyHtml = `
           <div class="mb-4">
             <span class="text-[16px] font-black bg-amber-100 text-amber-900 px-3.5 py-1.5 rounded-full border border-amber-300">
-              Câu ${curIdx + 1}: ${formatQuestionTitle(curQ.title) || 'Câu hỏi kiến thức'} (10 điểm)
+              Câu ${curIdx + 1}: ${formatQuestionTitle(curQ.title) || 'Câu hỏi kiến thức'}
             </span>
           </div>
           <h3 class="text-base sm:text-lg font-black text-slate-800 mb-4 leading-snug whitespace-pre-line">${curQ.question || curQ.title || 'Hãy chọn đáp án đúng:'}</h3>
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5" id="mcq-grid">
             ${opts.map((opt, i) => `
-              <button onclick="answerMCQ30(${i})" class="scroll-card p-4 sm:p-5 text-left rounded-2xl border-2 transition-all flex items-center gap-4 ${savedAns === i ? 'border-red-600 bg-red-50 text-red-950 font-black ring-2 ring-red-400' : 'border-amber-200 hover:border-amber-400 font-bold text-slate-800'}">
-                <span class="w-10 h-10 sm:w-11 sm:h-11 rounded-full ${savedAns === i ? 'bg-red-600 text-white' : 'bg-amber-400 text-amber-950'} flex items-center justify-center font-black text-[20px] sm:text-[22px] shrink-0 shadow-sm">
+              <button onclick="answerMCQ30(${i})" class="scroll-card p-3.5 sm:p-4 text-left rounded-2xl border-2 transition-all flex items-center gap-3 ${savedAns === i ? 'border-red-600 bg-red-50 text-red-950 font-black ring-2 ring-red-400' : 'border-amber-200 hover:border-amber-400 font-bold text-slate-800'}">
+                <span class="w-8 h-8 sm:w-9 sm:h-9 rounded-full ${savedAns === i ? 'bg-red-600 text-white' : 'bg-amber-400 text-amber-950'} flex items-center justify-center font-black text-[16px] shrink-0 shadow-sm">
                   ${String.fromCharCode(65 + i)}
                 </span>
-                <span class="text-[24px] sm:text-[28px] font-black leading-snug">${opt}</span>
+                <span class="text-[18px] font-black leading-snug">${opt}</span>
               </button>
             `).join('')}
           </div>
@@ -8619,12 +8601,12 @@
   }
 
   function handleMiniGroupItemClick(event, wIdx, grpIdx) {
+    event.stopPropagation();
     if (selectedMiniWordIndex !== null) {
-      // Đang có từ được chọn ở pool -> Ưu tiên cho từ mới vào giỏ
+      // Đang có từ được chọn ở pool -> Cho ngay từ vừa chọn vào giỏ và chặn event nổi bọt
       dropToMiniGroup(grpIdx);
     } else {
       // Không chọn từ nào -> Thực hiện tháo từ này khỏi giỏ
-      event.stopPropagation();
       removeWordFromMiniGroup(wIdx);
     }
   }
