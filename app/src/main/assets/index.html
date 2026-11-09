@@ -6328,6 +6328,14 @@
       if (options.length === 0) options = [answerText || 'Đáp án đúng'];
     }
 
+    if (qText.includes("luôn củ lạc") || qText.includes("củ lạc các bạn")) {
+      qText = "Trong vốn từ tiếng Việt, từ/cụm từ nào đồng nghĩa hoặc gần nghĩa với “củ lạc”?";
+    } else if (qText.includes("luôn củ sắn") || qText.includes("củ sắn các bạn")) {
+      qText = "Trong vốn từ tiếng Việt, từ/cụm từ nào đồng nghĩa hoặc gần nghĩa với “củ sắn”?";
+    } else if (qText.includes("luôn khoai mì") || qText.includes("khoai mì các bạn")) {
+      qText = "Trong vốn từ tiếng Việt, từ/cụm từ nào đồng nghĩa hoặc gần nghĩa với “khoai mì”?";
+    }
+
     return {
       id: q.questionId || q.id || `q_${idx + 1}`,
       type: finalType,

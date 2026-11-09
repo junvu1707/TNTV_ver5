@@ -428,7 +428,7 @@ class DynamicExamGenerator(
         val arr = JSONArray(trimmed)
         for (i in 0 until arr.length()) {
           val obj = arr.optJSONObject(i)
-          if (obj != null) list.add(QuestionModel.fromJson(obj))
+          if (obj != null) list.add(sanitizeQuestion(QuestionModel.fromJson(obj)))
         }
       } else if (trimmed.startsWith("{")) {
         val root = JSONObject(trimmed)
@@ -436,7 +436,7 @@ class DynamicExamGenerator(
         if (arr != null) {
           for (i in 0 until arr.length()) {
             val obj = arr.optJSONObject(i)
-            if (obj != null) list.add(QuestionModel.fromJson(obj))
+            if (obj != null) list.add(sanitizeQuestion(QuestionModel.fromJson(obj)))
           }
         }
       }
@@ -444,6 +444,26 @@ class DynamicExamGenerator(
       Log.e(TAG, "Lỗi parse JSON câu hỏi: ${e.message}")
     }
     return list
+  }
+
+  /**
+   * Bộ lọc làm sạch dữ liệu ngầm (Data Sanitizer):
+   * Tự động sửa chữa các mẫu câu bị lỗi ghép từ vô lý từ dữ liệu cũ (ví dụ ghép danh từ vào vị trí động từ)
+   */
+  fun sanitizeQuestion(q: QuestionModel): QuestionModel {
+    val rawQ = q.question
+    if (rawQ.isBlank()) return q
+
+    var newQ = rawQ
+    if (newQ.contains("luôn củ lạc", ignoreCase = true) || newQ.contains("củ lạc các bạn", ignoreCase = true)) {
+      newQ = "Trong vốn từ tiếng Việt, từ/cụm từ nào đồng nghĩa hoặc gần nghĩa với “củ lạc”?"
+    } else if (newQ.contains("luôn củ sắn", ignoreCase = true) || newQ.contains("củ sắn các bạn", ignoreCase = true)) {
+      newQ = "Trong vốn từ tiếng Việt, từ/cụm từ nào đồng nghĩa hoặc gần nghĩa với “củ sắn”?"
+    } else if (newQ.contains("luôn khoai mì", ignoreCase = true) || newQ.contains("khoai mì các bạn", ignoreCase = true)) {
+      newQ = "Trong vốn từ tiếng Việt, từ/cụm từ nào đồng nghĩa hoặc gần nghĩa với “khoai mì”?"
+    }
+
+    return if (newQ != rawQ) q.copy(question = newQ) else q
   }
 
   private fun shuffleQuestionOptions(q: QuestionModel, rng: Random, qIndex: Int): QuestionModel {
