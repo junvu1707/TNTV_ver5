@@ -5865,12 +5865,12 @@
       "question": "Trong các cách viết sau, cách viết nào đúng chính tả?",
       "options": {
         "A": "ngĩ ngơi",
-        "B": "chiếc lá",
-        "C": "đọc sách",
+        "B": "ngỉ ngơi",
+        "C": "nghĩ ngơi",
         "D": "nghỉ ngơi"
       },
       "answer": "D",
-      "explanation": "“nghỉ ngơi” là cách viết đúng theo chính tả tiếng Việt."
+      "explanation": "'nghỉ ngơi' là từ viết đúng chính tả (viết 'ngh' trước 'i' và mang thanh hỏi)."
     },
     {
       "contest": "Trạng Nguyên Tiếng Việt",
@@ -6069,11 +6069,11 @@
       "options": {
         "A": "mên mong",
         "B": "mênh mong",
-        "C": "mênh mang",
+        "C": "mên mang",
         "D": "mênh mông"
       },
       "answer": "D",
-      "explanation": "“mênh mông” là cách viết đúng theo chính tả tiếng Việt."
+      "explanation": "'mênh mông' là từ láy viết đúng chính tả."
     },
     {
       "contest": "Trạng Nguyên Tiếng Việt",
@@ -6101,11 +6101,11 @@
       "options": {
         "A": "ngọn nửa",
         "B": "ngọn lửa",
-        "C": "ngọn lửa nhỏ",
+        "C": "ngọn nựa",
         "D": "ngọn lữa"
       },
       "answer": "B",
-      "explanation": "“ngọn lửa” là cách viết đúng theo chính tả tiếng Việt."
+      "explanation": "'ngọn lửa' là từ viết đúng chính tả (âm đầu 'l' và thanh hỏi)."
     },
     {
       "contest": "Trạng Nguyên Tiếng Việt",
@@ -10976,13 +10976,13 @@
       "questionId": "k3_c4_tn_2681",
       "question": "Trong câu “Bầy chim én bay về phương nam”, từ nào là động từ?",
       "options": {
-        "A": "bầu trời",
+        "A": "chim én",
         "B": "bay",
-        "C": "màu xanh",
-        "D": "rất đẹp"
+        "C": "phương nam",
+        "D": "bầy"
       },
       "answer": "B",
-      "explanation": "“bay” là từ chỉ hoạt động hoặc trạng thái."
+      "explanation": "Trong câu trên, 'bay' là động từ chỉ hoạt động của bầy chim én."
     },
     {
       "type": "TN",
@@ -11024,13 +11024,13 @@
       "questionId": "k3_c4_tn_2684",
       "question": "Trong câu “Chiếc thuyền nan trôi nhẹ trên mặt hồ”, từ nào là động từ?",
       "options": {
-        "A": "màu xanh",
-        "B": "rất đẹp",
-        "C": "bầu trời",
+        "A": "thuyền nan",
+        "B": "mặt hồ",
+        "C": "nhẹ",
         "D": "trôi"
       },
       "answer": "D",
-      "explanation": "“trôi” là từ chỉ hoạt động hoặc trạng thái."
+      "explanation": "Trong câu trên, 'trôi' là động từ chỉ hoạt động chuyển động của chiếc thuyền."
     },
     {
       "contest": "Trạng Nguyên Tiếng Việt",
@@ -11054,15 +11054,15 @@
       "level": "CAP_4_VONG_TINH",
       "type": "TN",
       "questionId": "k3_c4_tn_2686",
-      "question": "Trong câu “Những đám mây lững lờ qua đỉnh núi”, từ nào là động từ?",
+      "question": "Trong câu “Những đám mây trôi lững lờ qua đỉnh núi”, từ nào là động từ?",
       "options": {
-        "A": "bầu trời",
-        "B": "lững",
-        "C": "màu xanh",
-        "D": "rất đẹp"
+        "A": "đám mây",
+        "B": "trôi",
+        "C": "đỉnh núi",
+        "D": "lững lờ"
       },
       "answer": "B",
-      "explanation": "“lững” là từ chỉ hoạt động hoặc trạng thái."
+      "explanation": "Trong câu trên, 'trôi' là động từ chỉ hoạt động chuyển động của những đám mây."
     },
     {
       "contest": "Trạng Nguyên Tiếng Việt",
@@ -11088,13 +11088,13 @@
       "questionId": "k3_c4_tn_2688",
       "question": "Trong câu “Bác nông dân cày ruộng từ sáng sớm”, từ nào là động từ?",
       "options": {
-        "A": "màu xanh",
-        "B": "rất đẹp",
-        "C": "bầu trời",
+        "A": "nông dân",
+        "B": "ruộng",
+        "C": "sáng sớm",
         "D": "cày"
       },
       "answer": "D",
-      "explanation": "“cày” là từ chỉ hoạt động hoặc trạng thái."
+      "explanation": "Trong câu trên, 'cày' là động từ chỉ hoạt động của bác nông dân."
     },
     {
       "contest": "Trạng Nguyên Tiếng Việt",
@@ -11120,13 +11120,13 @@
       "questionId": "k3_c4_tn_2690",
       "question": "Trong câu “Tiếng chuông trường vang lên giữa sân”, từ nào là động từ?",
       "options": {
-        "A": "bầu trời",
+        "A": "chuông trường",
         "B": "vang",
-        "C": "màu xanh",
-        "D": "rất đẹp"
+        "C": "giữa sân",
+        "D": "tiếng"
       },
       "answer": "B",
-      "explanation": "“vang” là từ chỉ hoạt động hoặc trạng thái."
+      "explanation": "Trong câu trên, 'vang' là động từ chỉ hoạt động phát ra âm thanh của tiếng chuông."
     },
     {
       "contest": "Trạng Nguyên Tiếng Việt",
@@ -11150,15 +11150,15 @@
       "level": "CAP_4_VONG_TINH",
       "type": "TN",
       "questionId": "k3_c4_tn_2692",
-      "question": "Trong câu “Dòng suối nhỏ róc rách sau vườn”, từ nào là động từ?",
+      "question": "Trong câu “Dòng suối nhỏ chảy róc rách sau vườn”, từ nào là động từ?",
       "options": {
-        "A": "màu xanh",
-        "B": "rất đẹp",
-        "C": "bầu trời",
-        "D": "róc"
+        "A": "dòng suối",
+        "B": "sau vườn",
+        "C": "nhỏ",
+        "D": "chảy"
       },
       "answer": "D",
-      "explanation": "“róc” là từ chỉ hoạt động hoặc trạng thái."
+      "explanation": "Trong câu trên, 'chảy' là động từ chỉ hoạt động của dòng suối."
     },
     {
       "contest": "Trạng Nguyên Tiếng Việt",
@@ -11184,13 +11184,13 @@
       "questionId": "k3_c4_tn_2694",
       "question": "Trong câu “Đàn cá vàng bơi quanh khóm rong”, từ nào là động từ?",
       "options": {
-        "A": "bầu trời",
+        "A": "cá vàng",
         "B": "bơi",
-        "C": "màu xanh",
-        "D": "rất đẹp"
+        "C": "khóm rong",
+        "D": "quanh"
       },
       "answer": "B",
-      "explanation": "“bơi” là từ chỉ hoạt động hoặc trạng thái."
+      "explanation": "Trong câu trên, 'bơi' là động từ chỉ hoạt động của đàn cá."
     },
     {
       "type": "TN",
@@ -11232,13 +11232,13 @@
       "questionId": "k3_c4_tn_2697",
       "question": "Trong câu “Cô thủ thư sắp xếp sách mới”, từ nào là động từ?",
       "options": {
-        "A": "màu xanh",
-        "B": "rất đẹp",
-        "C": "bầu trời",
-        "D": "sắp"
+        "A": "thủ thư",
+        "B": "sách mới",
+        "C": "cô",
+        "D": "sắp xếp"
       },
       "answer": "D",
-      "explanation": "“sắp” là từ chỉ hoạt động hoặc trạng thái."
+      "explanation": "Trong câu trên, 'sắp xếp' là động từ chỉ hoạt động của cô thủ thư."
     },
     {
       "contest": "Trạng Nguyên Tiếng Việt",
@@ -11264,13 +11264,13 @@
       "questionId": "k3_c4_tn_2699",
       "question": "Trong câu “Cánh đồng lúa trải rộng đến chân đê”, từ nào là động từ?",
       "options": {
-        "A": "bầu trời",
+        "A": "cánh đồng",
         "B": "trải",
-        "C": "màu xanh",
-        "D": "rất đẹp"
+        "C": "chân đê",
+        "D": "rộng"
       },
       "answer": "B",
-      "explanation": "“trải” là từ chỉ hoạt động hoặc trạng thái."
+      "explanation": "Trong câu trên, 'trải' là động từ chỉ trạng thái mở rộng ra của cánh đồng lúa."
     },
     {
       "contest": "Trạng Nguyên Tiếng Việt",
@@ -11294,15 +11294,15 @@
       "level": "CAP_4_VONG_TINH",
       "type": "TN",
       "questionId": "k3_c4_tn_2701",
-      "question": "Trong câu “Mùi hoa bưởi thoang thoảng trong gió”, từ nào là động từ?",
+      "question": "Trong câu “Mùi hoa bưởi thoang thoảng trong gió”, từ nào là từ chỉ đặc điểm?",
       "options": {
-        "A": "màu xanh",
-        "B": "rất đẹp",
-        "C": "bầu trời",
-        "D": "thoang"
+        "A": "hoa bưởi",
+        "B": "gió",
+        "C": "mùi",
+        "D": "thoang thoảng"
       },
       "answer": "D",
-      "explanation": "“thoang” là từ chỉ hoạt động hoặc trạng thái."
+      "explanation": "Trong câu trên, 'thoang thoảng' là từ chỉ đặc điểm mùi hương nhẹ nhàng của hoa bưởi."
     },
     {
       "contest": "Trạng Nguyên Tiếng Việt",
@@ -11328,13 +11328,13 @@
       "questionId": "k3_c4_tn_2703",
       "question": "Trong câu “Ngọn đèn dầu tỏa ánh sáng dịu”, từ nào là động từ?",
       "options": {
-        "A": "bầu trời",
+        "A": "đèn dầu",
         "B": "tỏa",
-        "C": "màu xanh",
-        "D": "rất đẹp"
+        "C": "ánh sáng",
+        "D": "dịu"
       },
       "answer": "B",
-      "explanation": "“tỏa” là từ chỉ hoạt động hoặc trạng thái."
+      "explanation": "Trong câu trên, 'tỏa' là động từ chỉ hoạt động phát ra ánh sáng của ngọn đèn."
     },
     {
       "contest": "Trạng Nguyên Tiếng Việt",
@@ -11360,13 +11360,13 @@
       "questionId": "k3_c4_tn_2705",
       "question": "Trong câu “Chú mèo mướp nằm cuộn tròn trên ghế”, từ nào là động từ?",
       "options": {
-        "A": "màu xanh",
-        "B": "rất đẹp",
-        "C": "bầu trời",
+        "A": "mèo mướp",
+        "B": "trên ghế",
+        "C": "cuộn tròn",
         "D": "nằm"
       },
       "answer": "D",
-      "explanation": "“nằm” là từ chỉ hoạt động hoặc trạng thái."
+      "explanation": "Trong câu trên, 'nằm' là động từ chỉ tư thế/hoạt động của chú mèo."
     },
     {
       "contest": "Trạng Nguyên Tiếng Việt",
@@ -11390,15 +11390,15 @@
       "level": "CAP_4_VONG_TINH",
       "type": "TN",
       "questionId": "k3_c4_tn_2707",
-      "question": "Trong câu “Mặt hồ phẳng lặng như gương”, từ nào là động từ?",
+      "question": "Trong câu “Mặt hồ phẳng lặng như gương”, từ nào là từ chỉ đặc điểm?",
       "options": {
-        "A": "bầu trời",
-        "B": "phẳng",
-        "C": "màu xanh",
-        "D": "rất đẹp"
+        "A": "mặt hồ",
+        "B": "phẳng lặng",
+        "C": "gương",
+        "D": "như"
       },
       "answer": "B",
-      "explanation": "“phẳng” là từ chỉ hoạt động hoặc trạng thái."
+      "explanation": "Trong câu trên, 'phẳng lặng' là từ chỉ đặc điểm trạng thái êm ả của mặt hồ."
     },
     {
       "contest": "Trạng Nguyên Tiếng Việt",
@@ -11440,13 +11440,13 @@
       "questionId": "k3_c4_tn_2710",
       "question": "Trong câu “Những hạt mưa rơi tí tách trên mái”, từ nào là động từ?",
       "options": {
-        "A": "màu xanh",
-        "B": "rất đẹp",
-        "C": "bầu trời",
+        "A": "hạt mưa",
+        "B": "trên mái",
+        "C": "tí tách",
         "D": "rơi"
       },
       "answer": "D",
-      "explanation": "“rơi” là từ chỉ hoạt động hoặc trạng thái."
+      "explanation": "Trong câu trên, 'rơi' là động từ chỉ hoạt động chuyển động của những hạt mưa."
     },
     {
       "contest": "Trạng Nguyên Tiếng Việt",
@@ -11472,13 +11472,13 @@
       "questionId": "k3_c4_tn_2712",
       "question": "Trong câu “Bà ngoại kể chuyện cho cháu”, từ nào là động từ?",
       "options": {
-        "A": "bầu trời",
+        "A": "bà ngoại",
         "B": "kể",
-        "C": "màu xanh",
-        "D": "rất đẹp"
+        "C": "chuyện",
+        "D": "cháu"
       },
       "answer": "B",
-      "explanation": "“kể” là từ chỉ hoạt động hoặc trạng thái."
+      "explanation": "Trong câu trên, 'kể' là động từ chỉ hoạt động của bà ngoại."
     },
     {
       "contest": "Trạng Nguyên Tiếng Việt",
@@ -11504,13 +11504,13 @@
       "questionId": "k3_c4_tn_2714",
       "question": "Trong câu “Chiếc khăn đỏ bay phấp phới trên vai”, từ nào là động từ?",
       "options": {
-        "A": "màu xanh",
-        "B": "rất đẹp",
-        "C": "bầu trời",
+        "A": "khăn đỏ",
+        "B": "trên vai",
+        "C": "phấp phới",
         "D": "bay"
       },
       "answer": "D",
-      "explanation": "“bay” là từ chỉ hoạt động hoặc trạng thái."
+      "explanation": "Trong câu trên, 'bay' là động từ chỉ hoạt động của chiếc khăn đỏ."
     },
     {
       "contest": "Trạng Nguyên Tiếng Việt",
@@ -11534,15 +11534,15 @@
       "level": "CAP_4_VONG_TINH",
       "type": "TN",
       "questionId": "k3_c4_tn_2716",
-      "question": "Trong câu “Tiếng ve râm ran trong vòm lá”, từ nào là động từ?",
+      "question": "Trong câu “Tiếng ve kêu râm ran trong vòm lá”, từ nào là động từ?",
       "options": {
-        "A": "bầu trời",
-        "B": "râm",
-        "C": "màu xanh",
-        "D": "rất đẹp"
+        "A": "tiếng ve",
+        "B": "kêu",
+        "C": "vòm lá",
+        "D": "râm ran"
       },
       "answer": "B",
-      "explanation": "“râm” là từ chỉ hoạt động hoặc trạng thái."
+      "explanation": "Trong câu trên, 'kêu' là động từ chỉ hoạt động phát ra âm thanh của con ve."
     },
     {
       "contest": "Trạng Nguyên Tiếng Việt",
@@ -11566,15 +11566,15 @@
       "level": "CAP_4_VONG_TINH",
       "type": "TN",
       "questionId": "k3_c4_tn_2718",
-      "question": "Trong câu “Vườn rau xanh mướt sau cơn mưa”, từ nào là động từ?",
+      "question": "Trong câu “Vườn rau xanh mướt sau cơn mưa”, từ nào là từ chỉ đặc điểm?",
       "options": {
-        "A": "màu xanh",
-        "B": "rất đẹp",
-        "C": "bầu trời",
-        "D": "xanh"
+        "A": "vườn rau",
+        "B": "cơn mưa",
+        "C": "sau",
+        "D": "xanh mướt"
       },
       "answer": "D",
-      "explanation": "“xanh” là từ chỉ hoạt động hoặc trạng thái."
+      "explanation": "Trong câu trên, 'xanh mướt' là từ chỉ đặc điểm tươi tốt của vườn rau."
     },
     {
       "contest": "Trạng Nguyên Tiếng Việt",
@@ -11600,13 +11600,13 @@
       "questionId": "k3_c4_tn_2720",
       "question": "Trong câu “Đoàn tàu rời ga đúng giờ”, từ nào là động từ?",
       "options": {
-        "A": "bầu trời",
+        "A": "đoàn tàu",
         "B": "rời",
-        "C": "màu xanh",
-        "D": "rất đẹp"
+        "C": "nhà ga",
+        "D": "đúng giờ"
       },
       "answer": "B",
-      "explanation": "“rời” là từ chỉ hoạt động hoặc trạng thái."
+      "explanation": "Trong câu trên, 'rời' là động từ chỉ hoạt động xuất phát, chuyển động của đoàn tàu."
     },
     {
       "contest": "Trạng Nguyên Tiếng Việt",
@@ -11648,13 +11648,13 @@
       "questionId": "k3_c4_tn_2723",
       "question": "Trong câu “Người thợ mộc đóng chiếc bàn nhỏ”, từ nào là động từ?",
       "options": {
-        "A": "màu xanh",
-        "B": "rất đẹp",
-        "C": "bầu trời",
+        "A": "thợ mộc",
+        "B": "chiếc bàn",
+        "C": "nhỏ",
         "D": "đóng"
       },
       "answer": "D",
-      "explanation": "“đóng” là từ chỉ hoạt động hoặc trạng thái."
+      "explanation": "Trong câu trên, 'đóng' là động từ chỉ hoạt động chế tác của người thợ mộc."
     },
     {
       "contest": "Trạng Nguyên Tiếng Việt",
@@ -11797,8 +11797,8 @@
         "C": "xum xuê",
         "D": "sum suê"
       },
-      "answer": "C",
-      "explanation": "“xum xuê” là cách viết đúng."
+      "answer": "D",
+      "explanation": "Theo Từ điển Tiếng Việt chuẩn (Viện Ngôn ngữ học / GS. Hoàng Phê), từ đúng chính tả là 'sum suê' (hoặc 'sum sê')."
     },
     {
       "contest": "Trạng Nguyên Tiếng Việt",
@@ -13857,8 +13857,8 @@
         "Uống nước",
         "nhớ người"
       ],
-      "answer": "Uống nước nhớ nguồn",
-      "explanation": "Câu thành ngữ/tục ngữ đúng là: 'Uống nước nhớ nguồn'. Hưởng trái ngọt nhớ công người trồng cây, uống nước mát nhớ ơn nguồn."
+      "answer": "Uống nước nhớ người đào giếng",
+      "explanation": "Câu tục ngữ hoàn chỉnh là: 'Uống nước nhớ người đào giếng', khuyên chúng ta phải biết ơn người đã mang lại thành quả cho mình."
     },
     {
       "contest": "Trạng Nguyên Tiếng Việt",

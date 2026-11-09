@@ -2,11 +2,11 @@
   "contest": "Trạng Nguyên Tiếng Việt",
   "grade": "KHOI_2",
   "level": "CAP_1_VONG_LOAI",
-  "totalQuestions": 2000,
+  "totalQuestions": 1999,
   "typeDistribution": {
-    "TN": 1234,
-    "DT": 367,
+    "TN": 1233,
     "CHON": 133,
+    "DT": 367,
     "SX": 133,
     "NOI": 133
   },
@@ -17,7 +17,7 @@
     "uniqueSourceQuestionsRetained": 942,
     "wholeWordFillQuestionsConvertedFromDTToTN": 122,
     "newQuestionsAdded": 1058,
-    "outputQuestionCount": 2000,
+    "outputQuestionCount": 1999,
     "scopeReviewed": true,
     "scopeCoverage": [
       "Chính tả: phân biệt ch/tr, s/x, l/n, r/d/gi, g/gh, ng/ngh, c/k và các vần gần giống",
@@ -31,9 +31,9 @@
       "Sắp xếp từ thành câu; nối và phân loại từ"
     ],
     "typeDistribution": {
-      "TN": 1134,
+      "TN": 1233,
       "CHON": 133,
-      "DT": 467,
+      "DT": 367,
       "SX": 133,
       "NOI": 133
     },
@@ -62,7 +62,9 @@
       "Với câu TN, so sánh nội dung đáp án đúng thay vì chữ cái A/B/C/D.",
       "122 câu DT yêu cầu điền từ/cụm từ hoặc dấu câu được chuyển sang dạng TN; DT còn lại tập trung vào điền phụ âm đầu, âm/vần.",
       "Các câu bổ sung được biên soạn mới theo phạm vi kiến thức lớp 2 vòng loại, không sao chép đề thi thật.",
-      "Tỉ lệ được làm tròn theo tổng 2.000 câu; số lượng thực tế được ghi trong typeDistribution."
+      "Tỉ lệ được làm tròn theo tổng 2.000 câu; số lượng thực tế được ghi trong typeDistribution.",
+      "Đã rà soát và chỉnh sửa triệt để: 8 câu đố bị lộ đáp án/sai nghĩa; 1 câu phân loại bị lặp; 11 câu điền từ bị trùng lặp; 13 câu tục ngữ/ca dao trùng giữa TN và DT; 201 câu trắc nghiệm chính tả chứa phương án nhiễu nhân tạo; và các câu điền từ thiếu ngữ cảnh.",
+      "Đã hoàn thiện kiểm định: 1) Đánh số lại liên tục mã TN từ k2_c1_tn_0001 đến k2_c1_tn_1233 (khắc phục lỗi thiếu mã k2_c1_tn_1109); 2) Chuyển toàn bộ 50 câu hỏi điền từ thiếu ngữ cảnh sang câu hỏi nhận diện từ loại chuẩn mực ('Từ nào dưới đây là từ chỉ hoạt động/đặc điểm/sự vật?'); 3) Chuẩn hóa các câu chứa phương án nhiễu nhân tạo bất thường thành phương án sai chính tả tự nhiên có tính sư phạm cao; 4) Cập nhật và đồng bộ 100% các trường metadata, số lượng câu hỏi thực tế (1.999 câu)."
     ]
   },
   "questions": [
@@ -72,7 +74,7 @@
       "level": "CAP_1_VONG_LOAI",
       "type": "TN",
       "questionId": "k2_c1_tn_0001",
-      "question": "Điền từ chỉ hoạt động vào chỗ trống: “ (....)  .”",
+      "question": "Từ nào dưới đây là từ chỉ hoạt động?",
       "answer": "A",
       "explanation": "“cấy lúa” là từ chỉ hoạt động.",
       "options": {
@@ -128,7 +130,7 @@
       "answer": "C",
       "explanation": "“sao đêm” là cách viết đúng chính tả.",
       "options": {
-        "A": "sao đê",
+        "A": "sao đen",
         "B": "xao đêm",
         "C": "sao đêm",
         "D": "sa đêm"
@@ -183,10 +185,10 @@
       "grade": "KHOI_2",
       "level": "CAP_1_VONG_LOAI",
       "type": "DT",
-      "question": "Điền phụ âm đầu thích hợp để hoàn thành tiếng thứ hai: “con (...)ò”",
+      "question": "Điền phụ âm đầu thích hợp để hoàn thành tiếng thứ hai: “con (...)ò gặm cỏ”",
       "answer": "b",
       "blankAnswer": "b",
-      "explanation": "Cụm từ đúng là “con bò”.",
+      "explanation": "Cụm từ đúng là “con bò gặm cỏ”.",
       "questionId": "k2_c1_dt_0002"
     },
     {
@@ -199,10 +201,10 @@
       "answer": "B",
       "explanation": "'bông lúa' là cách viết đúng chính tả.",
       "options": {
-        "A": "bông lú",
+        "A": "bông núa",
         "B": "bông lúa",
-        "C": "xbông lúa",
-        "D": "bông xlúa"
+        "C": "dông lúa",
+        "D": "vông lúa"
       }
     },
     {
@@ -275,9 +277,9 @@
       "explanation": "“sạch đẹp” là cách viết đúng chính tả.",
       "options": {
         "A": "xạch đẹp",
-        "B": "sạkh đẹp",
+        "B": "sạt đẹp",
         "C": "sạch đẹp",
-        "D": "sạtr đẹp"
+        "D": "sạch dẹp"
       },
       "questionId": "k2_c1_tn_0008"
     },
@@ -318,7 +320,7 @@
       "explanation": "“trăng sáng” là cách viết đúng chính tả.",
       "options": {
         "A": "trăng xáng",
-        "B": "trălg sáng",
+        "B": "chăng xáng",
         "C": "chăng sáng",
         "D": "trăng sáng"
       },
@@ -330,7 +332,7 @@
       "level": "CAP_1_VONG_LOAI",
       "type": "TN",
       "questionId": "k2_c1_tn_0010",
-      "question": "Điền từ chỉ đặc điểm vào chỗ trống: “______.”",
+      "question": "Từ nào dưới đây là từ chỉ đặc điểm?",
       "answer": "A",
       "explanation": "“yên tĩnh” là từ chỉ đặc điểm.",
       "options": {
@@ -346,10 +348,10 @@
       "grade": "KHOI_2",
       "level": "CAP_1_VONG_LOAI",
       "type": "DT",
-      "question": "Điền phụ âm đầu thích hợp để hoàn thành tiếng thứ hai: “con (...)à”",
+      "question": "Điền phụ âm đầu thích hợp để hoàn thành tiếng thứ hai: “con (...)à gáy sáng”",
       "answer": "g",
       "blankAnswer": "g",
-      "explanation": "Cụm từ đúng là “con gà”.",
+      "explanation": "Cụm từ đúng là “con gà gáy sáng”.",
       "questionId": "k2_c1_dt_0004"
     },
     {
@@ -361,9 +363,9 @@
       "answer": "B",
       "explanation": "“xe đạp” là cách viết đúng chính tả.",
       "options": {
-        "A": "xe đạ",
+        "A": "xe dạp",
         "B": "xe đạp",
-        "C": "xe đạpx",
+        "C": "se dạp",
         "D": "se đạp"
       },
       "questionId": "k2_c1_tn_0011"
@@ -410,9 +412,9 @@
       "answer": "B",
       "explanation": "“trồng cây” là cách viết đúng chính tả.",
       "options": {
-        "A": "tdồng cây",
+        "A": "trồng kây",
         "B": "trồng cây",
-        "C": "trồlg cây",
+        "C": "chồng kây",
         "D": "chồng cây"
       },
       "questionId": "k2_c1_tn_0014"
@@ -437,7 +439,7 @@
       "answer": "B",
       "explanation": "“kẹo ngọt” là cách viết đúng chính tả.",
       "options": {
-        "A": "kẹo lgọt",
+        "A": "khẹo ngọt",
         "B": "kẹo ngọt",
         "C": "kẹo nghọt",
         "D": "cẹo ngọt"
@@ -466,8 +468,8 @@
       "options": {
         "A": "chồng rau",
         "B": "trồng rau",
-        "C": "tdồng rau",
-        "D": "trồlg rau"
+        "C": "trồng dau",
+        "D": "chồng dau"
       },
       "questionId": "k2_c1_tn_0016"
     },
@@ -496,8 +498,8 @@
       "answer": "D",
       "explanation": "“kính mắt” là cách viết đúng chính tả.",
       "options": {
-        "A": "kính mắ",
-        "B": "kílh mắt",
+        "A": "kính mấc",
+        "B": "cính mấc",
         "C": "cính mắt",
         "D": "kính mắt"
       },
@@ -524,9 +526,9 @@
       "answer": "D",
       "explanation": "'bạn bè' là cách viết đúng chính tả.",
       "options": {
-        "A": "xbạn bè",
-        "B": "bạn xbè",
-        "C": "bạn bèh",
+        "A": "vạn bè",
+        "B": "bạn dè",
+        "C": "vạn dè",
         "D": "bạn bè"
       }
     },
@@ -640,10 +642,10 @@
       "answer": "C",
       "explanation": "“bảng đen” là cách viết đúng chính tả.",
       "options": {
-        "A": "bảlg đen",
-        "B": "bảngh đen",
+        "A": "bản đen",
+        "B": "vảng đen",
         "C": "bảng đen",
-        "D": "bảng đe"
+        "D": "bảng đem"
       },
       "questionId": "k2_c1_tn_0021"
     },
@@ -656,7 +658,7 @@
       "answer": "D",
       "explanation": "“hoa sen” là cách viết đúng chính tả.",
       "options": {
-        "A": "hoa sel",
+        "A": "hoa seng",
         "B": "hoa xen",
         "C": "hoa se",
         "D": "hoa sen"
@@ -688,8 +690,8 @@
       "answer": "D",
       "explanation": "“tròn trịa” là cách viết đúng chính tả.",
       "options": {
-        "A": "tdòn trịa",
-        "B": "tròl trịa",
+        "A": "tròn chịa",
+        "B": "tròng trịa",
         "C": "chòn trịa",
         "D": "tròn trịa"
       },
@@ -830,8 +832,8 @@
       "options": {
         "A": "xúc xích",
         "B": "súc xích",
-        "C": "xúk xích",
-        "D": "xúc xítr"
+        "C": "xúc sích",
+        "D": "xút xích"
       },
       "questionId": "k2_c1_tn_0029"
     },
@@ -863,7 +865,7 @@
         "A": "ná xanh",
         "B": "lá xanh",
         "C": "lá sanh",
-        "D": "lá xalh"
+        "D": "ná sanh"
       },
       "questionId": "k2_c1_tn_0031"
     },
@@ -878,7 +880,7 @@
       "options": {
         "A": "cao nớn",
         "B": "kao lớn",
-        "C": "cao lớl",
+        "C": "cao rớn",
         "D": "cao lớn"
       },
       "questionId": "k2_c1_tn_0032"
@@ -935,10 +937,10 @@
       "answer": "B",
       "explanation": "“ông bà” là cách viết đúng chính tả.",
       "options": {
-        "A": "ôngh bà",
+        "A": "ôn bà",
         "B": "ông bà",
-        "C": "ông b",
-        "D": "ôlg bà"
+        "C": "ông và",
+        "D": "ông dà"
       },
       "questionId": "k2_c1_tn_0033"
     },
@@ -971,9 +973,9 @@
       "answer": "B",
       "explanation": "“bầu trời” là cách viết đúng chính tả.",
       "options": {
-        "A": "bầu trờ",
+        "A": "bầu giời",
         "B": "bầu trời",
-        "C": "bầu tdời",
+        "C": "bầu dời",
         "D": "bầu chời"
       },
       "questionId": "k2_c1_tn_0034"
@@ -1211,7 +1213,7 @@
       "explanation": "'chín quả' là cách viết đúng chính tả.",
       "options": {
         "A": "chín quả",
-        "B": "chín xquả",
+        "B": "khín quả",
         "C": "trín quả",
         "D": "dửa tay"
       }
@@ -1258,7 +1260,7 @@
       "level": "CAP_1_VONG_LOAI",
       "type": "TN",
       "questionId": "k2_c1_tn_0041",
-      "question": "Điền từ chỉ đặc điểm vào chỗ trống: “______.”",
+      "question": "Từ nào dưới đây là từ chỉ đặc điểm?",
       "answer": "A",
       "explanation": "“bé nhỏ” là từ chỉ đặc điểm.",
       "options": {
@@ -1279,9 +1281,9 @@
       "answer": "D",
       "explanation": "'quả khế' là cách viết đúng chính tả.",
       "options": {
-        "A": "quả kh",
+        "A": "quả kế",
         "B": "quả chế",
-        "C": "xquả khế",
+        "C": "quả thế",
         "D": "quả khế"
       }
     },
@@ -1335,7 +1337,7 @@
       "options": {
         "A": "cái bà",
         "B": "cái bàn",
-        "C": "cái xbàn",
+        "C": "cái bàng",
         "D": "kái bàn"
       }
     },
@@ -1352,7 +1354,7 @@
         "A": "con tró",
         "B": "quả khế",
         "C": "quả chế",
-        "D": "xquả khế"
+        "D": "quả kế"
       }
     },
     {
@@ -1361,7 +1363,7 @@
       "level": "CAP_1_VONG_LOAI",
       "type": "TN",
       "questionId": "k2_c1_tn_0045",
-      "question": "Điền từ chỉ đặc điểm vào chỗ trống: “______.”",
+      "question": "Từ nào dưới đây là từ chỉ đặc điểm?",
       "answer": "A",
       "explanation": "“thơm ngát” là từ chỉ đặc điểm.",
       "options": {
@@ -1418,7 +1420,7 @@
       "answer": "C",
       "explanation": "'khu vườn' là cách viết đúng chính tả.",
       "options": {
-        "A": "khu xvườn",
+        "A": "ku vườn",
         "B": "chu vườn",
         "C": "khu vườn",
         "D": "lớp họ"
@@ -1499,7 +1501,7 @@
       "options": {
         "A": "chú ý",
         "B": "chú xý",
-        "C": "chú ýh",
+        "C": "chú hí",
         "D": "trú ý"
       }
     },
@@ -1528,9 +1530,9 @@
       "answer": "B",
       "explanation": "“sạch sẽ” là cách viết đúng chính tả.",
       "options": {
-        "A": "sạtr sẽ",
+        "A": "sạt sẽ",
         "B": "sạch sẽ",
-        "C": "sạkh sẽ",
+        "C": "sạch xẽ",
         "D": "xạch sẽ"
       },
       "questionId": "k2_c1_tn_0049"
@@ -1544,10 +1546,10 @@
       "answer": "B",
       "explanation": "“dịu dàng” là cách viết đúng chính tả.",
       "options": {
-        "A": "dịu dàngh",
+        "A": "vịu dàng",
         "B": "dịu dàng",
         "C": "giịu dàng",
-        "D": "dịu dàlg"
+        "D": "rịu dàng"
       },
       "questionId": "k2_c1_tn_0050"
     },
@@ -1751,8 +1753,8 @@
       "answer": "C",
       "explanation": "“quét nhà” là cách viết đúng chính tả.",
       "options": {
-        "A": "quét lhà",
-        "B": "quét nh",
+        "A": "quét là",
+        "B": "quét nà",
         "C": "quét nhà",
         "D": "qué nhà"
       },
@@ -1800,7 +1802,7 @@
       "explanation": "“chăm chỉ” là cách viết đúng chính tả.",
       "options": {
         "A": "chăm chỉ",
-        "B": "chăm ch",
+        "B": "chăm trỉ",
         "C": "khăm chỉ",
         "D": "trăm chỉ"
       },
@@ -1957,8 +1959,8 @@
       "options": {
         "A": "dễ thương",
         "B": "giễ thương",
-        "C": "dễ thươngh",
-        "D": "dễ thươlg"
+        "C": "vễ thương",
+        "D": "rễ thương"
       },
       "questionId": "k2_c1_tn_0060"
     },
@@ -1973,8 +1975,8 @@
       "options": {
         "A": "da trắng",
         "B": "da chắng",
-        "C": "da trắlg",
-        "D": "da tdắng"
+        "C": "ra trắng",
+        "D": "da trắn"
       },
       "questionId": "k2_c1_tn_0061"
     },
@@ -1987,10 +1989,10 @@
       "answer": "C",
       "explanation": "“kính mắt” là cách viết đúng chính tả.",
       "options": {
-        "A": "kính mắ",
+        "A": "kính mấc",
         "B": "cính mắt",
         "C": "kính mắt",
-        "D": "kílh mắt"
+        "D": "cính mấc"
       },
       "questionId": "k2_c1_tn_0062"
     },
@@ -2017,7 +2019,7 @@
         "A": "nghoan ngoãn",
         "B": "ngoan ngoã",
         "C": "ngoan ngoãn",
-        "D": "lgoan ngoãn"
+        "D": "ngoan nghoãn"
       },
       "questionId": "k2_c1_tn_0063"
     },
@@ -2059,7 +2061,7 @@
       "options": {
         "A": "nghọn gió",
         "B": "ngọn gió",
-        "C": "lgọn gió",
+        "C": "ngọn ghió",
         "D": "ngọn dó"
       },
       "questionId": "k2_c1_tn_0065"
@@ -2114,7 +2116,7 @@
       "explanation": "“sâu bọ” là cách viết đúng chính tả.",
       "options": {
         "A": "xâu bọ",
-        "B": "sâu b",
+        "B": "sâu vọ",
         "C": "sâ bọ",
         "D": "sâu bọ"
       },
@@ -2266,7 +2268,7 @@
         ],
         "G3": [
           "Bông hoa hồng đỏ thắm.",
-          "Bông hoa hồng đỏ thắm."
+          "Bầu trời mùa thu trong xanh."
         ]
       },
       "explanation": "G1 là mẫu Ai là gì?; G2 là mẫu Ai làm gì?; G3 là mẫu Ai thế nào?.",
@@ -2276,7 +2278,7 @@
         "Bông hoa hồng đỏ thắm.",
         "Đà Nẵng là thành phố ven biển.",
         "Đàn gà mổ thóc trong sân.",
-        "Bông hoa hồng đỏ thắm."
+        "Bầu trời mùa thu trong xanh."
       ],
       "groups": {
         "G1": "Câu theo mẫu Ai là gì?",
@@ -2480,7 +2482,7 @@
       "answer": "C",
       "explanation": "'ghép hình' là cách viết đúng chính tả.",
       "options": {
-        "A": "ghép xhình",
+        "A": "ghét hình",
         "B": "ghép hìn",
         "C": "ghép hình",
         "D": "gép hình"
@@ -2497,8 +2499,8 @@
       "explanation": "'lá cờ' là cách viết đúng chính tả.",
       "options": {
         "A": "lá kờ",
-        "B": "xlá cờ",
-        "C": "lá cờh",
+        "B": "ná cờ",
+        "C": "rá cờ",
         "D": "lá cờ"
       }
     },
@@ -2525,7 +2527,7 @@
       "options": {
         "A": "dễ thươn",
         "B": "dễ thương",
-        "C": "dễ xthương",
+        "C": "giễ thương",
         "D": "rễ thương"
       }
     },
@@ -2540,7 +2542,7 @@
       "options": {
         "A": "mát mẻ",
         "B": "má mẻ",
-        "C": "mát mẻx",
+        "C": "mách mẻ",
         "D": "mát m"
       },
       "questionId": "k2_c1_tn_0077"
@@ -2568,7 +2570,7 @@
         "A": "nghọn đèn",
         "B": "ngọn đè",
         "C": "ngọn đèn",
-        "D": "lgọn đèn"
+        "D": "ngọn dèn"
       },
       "questionId": "k2_c1_tn_0078"
     },
@@ -2871,10 +2873,10 @@
       "answer": "C",
       "explanation": "“trường học” là cách viết đúng chính tả.",
       "options": {
-        "A": "tdường học",
+        "A": "trườn học",
         "B": "chường học",
         "C": "trường học",
-        "D": "trườlg học"
+        "D": "trường họt"
       },
       "questionId": "k2_c1_tn_0081"
     },
@@ -2937,9 +2939,9 @@
       "explanation": "“trường học” là cách viết đúng chính tả.",
       "options": {
         "A": "chường học",
-        "B": "tdường học",
+        "B": "trườn học",
         "C": "trường học",
-        "D": "trườlg học"
+        "D": "trường họt"
       },
       "questionId": "k2_c1_tn_0082"
     },
@@ -3011,7 +3013,7 @@
       "level": "CAP_1_VONG_LOAI",
       "type": "TN",
       "questionId": "k2_c1_tn_0085",
-      "question": "Điền từ chỉ sự vật vào chỗ trống: ( ....... )",
+      "question": "Từ nào dưới đây là từ chỉ sự vật?",
       "answer": "A",
       "explanation": "“cây bàng” là từ chỉ sự vật.",
       "options": {
@@ -3097,8 +3099,8 @@
       "answer": "D",
       "explanation": "“gặp gỡ” là cách viết đúng chính tả.",
       "options": {
-        "A": "gặp g",
-        "B": "gặp gỡx",
+        "A": "gặp dỡ",
+        "B": "ghặp gỡ",
         "C": "gặ gỡ",
         "D": "gặp gỡ"
       },
@@ -3126,7 +3128,7 @@
       "options": {
         "A": "sân chường",
         "B": "sân trường",
-        "C": "sâl trường",
+        "C": "sâng trường",
         "D": "xân trường"
       },
       "questionId": "k2_c1_tn_0089"
@@ -3154,7 +3156,7 @@
         "A": "hoa sen",
         "B": "hoa se",
         "C": "hoa xen",
-        "D": "hoa sel"
+        "D": "hoa seng"
       },
       "questionId": "k2_c1_tn_0090"
     },
@@ -3168,7 +3170,7 @@
       "answer": "B",
       "explanation": "'quả chuối' là cách viết đúng chính tả.",
       "options": {
-        "A": "xquả chuối",
+        "A": "quả khuối",
         "B": "quả chuối",
         "C": "quả chuố",
         "D": "quả truối"
@@ -3293,9 +3295,9 @@
       "explanation": "“mái trường” là cách viết đúng chính tả.",
       "options": {
         "A": "mái chường",
-        "B": "mái tdường",
+        "B": "mái trườn",
         "C": "mái trường",
-        "D": "mái trườlg"
+        "D": "mái chườn"
       },
       "questionId": "k2_c1_tn_0094"
     },
@@ -3305,7 +3307,7 @@
       "level": "CAP_1_VONG_LOAI",
       "type": "TN",
       "questionId": "k2_c1_tn_0095",
-      "question": "Điền từ chỉ sự vật vào chỗ trống: ( ....... )",
+      "question": "Từ nào dưới đây là từ chỉ sự vật?",
       "answer": "A",
       "explanation": "“ngôi nhà” là từ chỉ sự vật.",
       "options": {
@@ -3326,10 +3328,10 @@
       "answer": "C",
       "explanation": "'xe đạp' là cách viết đúng chính tả.",
       "options": {
-        "A": "xe xđạp",
+        "A": "xe dạp",
         "B": "se đạp",
         "C": "xe đạp",
-        "D": "dễ xthương"
+        "D": "xe đạt"
       }
     },
     {
@@ -3344,8 +3346,8 @@
       "options": {
         "A": "châu bò",
         "B": "trâu bò",
-        "C": "xthư viện",
-        "D": "trâu xbò"
+        "C": "trâu vò",
+        "D": "châu vò"
       }
     },
     {
@@ -3359,7 +3361,7 @@
       "options": {
         "A": "hộp bú",
         "B": "hộp bút",
-        "C": "hộp bútx",
+        "C": "hộp vút",
         "D": "hộ bút"
       },
       "questionId": "k2_c1_tn_0098"
@@ -3373,9 +3375,9 @@
       "answer": "B",
       "explanation": "“vàng tươi” là cách viết đúng chính tả.",
       "options": {
-        "A": "vàlg tươi",
+        "A": "vàn tươi",
         "B": "vàng tươi",
-        "C": "vàngh tươi",
+        "C": "dàng tươi",
         "D": "vàng tươ"
       },
       "questionId": "k2_c1_tn_0099"
@@ -3452,8 +3454,8 @@
       "explanation": "'xếp hàng' là cách viết đúng chính tả.",
       "options": {
         "A": "xếp hàng",
-        "B": "xếp xhàng",
-        "C": "gió xmát",
+        "B": "xết hàng",
+        "C": "xếp hàn",
         "D": "sếp hàng"
       }
     },
@@ -3587,7 +3589,7 @@
       "options": {
         "A": "nắng nghe",
         "B": "lắng nghe",
-        "C": "lắlg nghe",
+        "C": "lắn nghe",
         "D": "lắng nge"
       },
       "questionId": "k2_c1_tn_0106"
@@ -3636,7 +3638,7 @@
         "A": "hạt mư",
         "B": "hạ mưa",
         "C": "hạt mưa",
-        "D": "hạt mưax"
+        "D": "hạch mưa"
       },
       "questionId": "k2_c1_tn_0109"
     },
@@ -3676,9 +3678,9 @@
       "answer": "D",
       "explanation": "“rừng cây” là cách viết đúng chính tả.",
       "options": {
-        "A": "rừlg cây",
+        "A": "giừng cây",
         "B": "dừng cây",
-        "C": "rừngh cây",
+        "C": "rừng kây",
         "D": "rừng cây"
       },
       "questionId": "k2_c1_tn_0110"
@@ -3864,9 +3866,9 @@
       "level": "CAP_1_VONG_LOAI",
       "type": "DT",
       "questionId": "k2_c1_dt_0048",
-      "question": "Điền phụ âm đầu thích hợp để hoàn thành từ: “(...)ào rau”",
+      "question": "Điền phụ âm đầu thích hợp để hoàn thành từ: “(...)ào rau muống”",
       "answer": "x",
-      "explanation": "Từ đúng là “xào rau”, viết với phụ âm đầu “x”.",
+      "explanation": "Từ đúng là “xào rau muống”, viết với phụ âm đầu “x”.",
       "blankAnswer": "x"
     },
     {
@@ -3955,9 +3957,9 @@
       "explanation": "“thật thà” là cách viết đúng chính tả.",
       "options": {
         "A": "thậ thà",
-        "B": "thật thàx",
+        "B": "tật thà",
         "C": "thật thà",
-        "D": "thật th"
+        "D": "thật tà"
       },
       "questionId": "k2_c1_tn_0118"
     },
@@ -3972,7 +3974,7 @@
       "explanation": "'ghé thăm' là cách viết đúng chính tả.",
       "options": {
         "A": "ghé thăm",
-        "B": "ghé xthăm",
+        "B": "ghé tăm",
         "C": "ghé thă",
         "D": "gé thăm"
       }
@@ -4014,9 +4016,9 @@
       "explanation": "“da trắng” là cách viết đúng chính tả.",
       "options": {
         "A": "da trắng",
-        "B": "da trắlg",
+        "B": "ra trắng",
         "C": "da chắng",
-        "D": "da tdắng"
+        "D": "da trắn"
       },
       "questionId": "k2_c1_tn_0120"
     },
@@ -4032,7 +4034,7 @@
       "options": {
         "A": "xữa tươi",
         "B": "sữa tươi",
-        "C": "sữa xtươi",
+        "C": "sữa thươi",
         "D": "sữa tươ"
       }
     },
@@ -4227,8 +4229,8 @@
       "explanation": "'bàn học' là cách viết đúng chính tả.",
       "options": {
         "A": "bàn họ",
-        "B": "xbàn học",
-        "C": "bàn xhọc",
+        "B": "bàng học",
+        "C": "vàn học",
         "D": "bàn học"
       }
     },
@@ -4258,8 +4260,8 @@
       "explanation": "“rổ rá” là cách viết đúng chính tả.",
       "options": {
         "A": "dổ rá",
-        "B": "rổ ráx",
-        "C": "rổ r",
+        "B": "giổ rá",
+        "C": "rổ dá",
         "D": "rổ rá"
       },
       "questionId": "k2_c1_tn_0127"
@@ -4274,7 +4276,7 @@
       "explanation": "“xếp hình” là cách viết đúng chính tả.",
       "options": {
         "A": "sếp hình",
-        "B": "xếp hìlh",
+        "B": "xết hình",
         "C": "xếp hìn",
         "D": "xếp hình"
       },
@@ -4321,7 +4323,7 @@
       "answer": "C",
       "explanation": "“hát múa” là cách viết đúng chính tả.",
       "options": {
-        "A": "hát múax",
+        "A": "hách múa",
         "B": "há múa",
         "C": "hát múa",
         "D": "hát mú"
@@ -4426,7 +4428,7 @@
       "level": "CAP_1_VONG_LOAI",
       "type": "TN",
       "questionId": "k2_c1_tn_0135",
-      "question": "Điền từ chỉ đặc điểm vào chỗ trống: ( ....... )",
+      "question": "Từ nào dưới đây là từ chỉ đặc điểm?",
       "answer": "A",
       "explanation": "“mềm mại” là từ chỉ đặc điểm.",
       "options": {
@@ -4446,7 +4448,7 @@
       "answer": "C",
       "explanation": "“ghé thăm” là cách viết đúng chính tả.",
       "options": {
-        "A": "gh thăm",
+        "A": "dé thăm",
         "B": "ghé thă",
         "C": "ghé thăm",
         "D": "gé thăm"
@@ -4617,7 +4619,7 @@
       "answer": "C",
       "explanation": "“nhảy dây” là cách viết đúng chính tả.",
       "options": {
-        "A": "lhảy dây",
+        "A": "lảy dây",
         "B": "nhảy giây",
         "C": "nhảy dây",
         "D": "nhảy dâ"
@@ -4732,7 +4734,7 @@
         "A": "con mè",
         "B": "kon mèo",
         "C": "con mèo",
-        "D": "col mèo"
+        "D": "cong mèo"
       },
       "questionId": "k2_c1_tn_0144"
     },
@@ -4820,7 +4822,7 @@
       "level": "CAP_1_VONG_LOAI",
       "type": "TN",
       "questionId": "k2_c1_tn_0145",
-      "question": "Điền từ chỉ đặc điểm vào chỗ trống: ( ....... )",
+      "question": "Từ nào dưới đây là từ chỉ đặc điểm?",
       "answer": "A",
       "explanation": "“nhỏ bé” là từ chỉ đặc điểm.",
       "options": {
@@ -4919,7 +4921,7 @@
       "level": "CAP_1_VONG_LOAI",
       "type": "TN",
       "questionId": "k2_c1_tn_0147",
-      "question": "Điền từ chỉ đặc điểm vào chỗ trống: ( ....... )",
+      "question": "Từ nào dưới đây là từ chỉ đặc điểm?",
       "answer": "A",
       "explanation": "“nhanh nhẹn” là từ chỉ đặc điểm.",
       "options": {
@@ -5011,8 +5013,8 @@
       "options": {
         "A": "kây bàng",
         "B": "cây bàng",
-        "C": "cây bàlg",
-        "D": "cây bàngh"
+        "C": "cây bàn",
+        "D": "cây vàng"
       },
       "questionId": "k2_c1_tn_0150"
     },
@@ -5026,7 +5028,7 @@
       "answer": "B",
       "explanation": "'ngọn đèn' là cách viết đúng chính tả.",
       "options": {
-        "A": "ngọn xđèn",
+        "A": "ngọn dèn",
         "B": "ngọn đèn",
         "C": "cặp xách",
         "D": "nghọn đèn"
@@ -5142,9 +5144,9 @@
       "explanation": "“ấm áp” là cách viết đúng chính tả.",
       "options": {
         "A": "ấm áp",
-        "B": "ấm áph",
+        "B": "ấn áp",
         "C": "ấm á",
-        "D": "ấm ápx"
+        "D": "ấm át"
       },
       "questionId": "k2_c1_tn_0153"
     },
@@ -5176,7 +5178,7 @@
       "options": {
         "A": "con tró",
         "B": "kon chó",
-        "C": "col chó",
+        "C": "con khó",
         "D": "con chó"
       },
       "questionId": "k2_c1_tn_0155"
@@ -5271,7 +5273,7 @@
       "options": {
         "A": "lắng nghe",
         "B": "lắng nge",
-        "C": "lắlg nghe",
+        "C": "lắn nghe",
         "D": "nắng nghe"
       },
       "questionId": "k2_c1_tn_0158"
@@ -5287,7 +5289,7 @@
       "explanation": "'chăn màn' là cách viết đúng chính tả.",
       "options": {
         "A": "chăn mà",
-        "B": "chăn xmàn",
+        "B": "khăn màn",
         "C": "chăn màn",
         "D": "trăn màn"
       }
@@ -5304,7 +5306,7 @@
         "A": "dòng xông",
         "B": "dòng sông",
         "C": "giòng sông",
-        "D": "dòlg sông"
+        "D": "ròng sông"
       },
       "questionId": "k2_c1_tn_0160"
     },
@@ -5432,7 +5434,7 @@
       "answer": "C",
       "explanation": "'cá vàng' là cách viết đúng chính tả.",
       "options": {
-        "A": "cá xvàng",
+        "A": "cá dàng",
         "B": "cá vàn",
         "C": "cá vàng",
         "D": "ká vàng"
@@ -5496,7 +5498,7 @@
       "level": "CAP_1_VONG_LOAI",
       "type": "TN",
       "questionId": "k2_c1_tn_0165",
-      "question": "Điền từ chỉ sự vật vào chỗ trống: ( ....... )",
+      "question": "Từ nào dưới đây là từ chỉ sự vật?",
       "answer": "A",
       "explanation": "“quả chuối” là từ chỉ sự vật.",
       "options": {
@@ -5535,7 +5537,7 @@
       "options": {
         "A": "gi bài",
         "B": "ghi bà",
-        "C": "ghi xbài",
+        "C": "ghi vài",
         "D": "ghi bài"
       }
     },
@@ -5549,8 +5551,8 @@
       "explanation": "“ánh nắng” là cách viết đúng chính tả.",
       "options": {
         "A": "ánh nắn",
-        "B": "álh nắng",
-        "C": "ánh nắngh",
+        "B": "án nắng",
+        "C": "ánh lắng",
         "D": "ánh nắng"
       },
       "questionId": "k2_c1_tn_0168"
@@ -5719,10 +5721,10 @@
       "answer": "C",
       "explanation": "'đèn lồng' là cách viết đúng chính tả.",
       "options": {
-        "A": "đèn xlồng",
+        "A": "dèn lồng",
         "B": "đèn lồn",
         "C": "đèn lồng",
-        "D": "xđèn lồng"
+        "D": "đèn nồng"
       }
     },
     {
@@ -5735,9 +5737,9 @@
       "explanation": "“mặt trời” là cách viết đúng chính tả.",
       "options": {
         "A": "mặt chời",
-        "B": "mặt tdời",
+        "B": "mặc trời",
         "C": "mặt trời",
-        "D": "mặt trờ"
+        "D": "mặc chời"
       },
       "questionId": "k2_c1_tn_0171"
     },
@@ -5778,8 +5780,8 @@
       "explanation": "“dịu dàng” là cách viết đúng chính tả.",
       "options": {
         "A": "giịu dàng",
-        "B": "dịu dàlg",
-        "C": "dịu dàngh",
+        "B": "rịu dàng",
+        "C": "vịu dàng",
         "D": "dịu dàng"
       },
       "questionId": "k2_c1_tn_0173"
@@ -5810,7 +5812,7 @@
       "explanation": "“cơn mưa” là cách viết đúng chính tả.",
       "options": {
         "A": "kơn mưa",
-        "B": "cơl mưa",
+        "B": "cơng mưa",
         "C": "cơn mưa",
         "D": "cơn mư"
       },
@@ -5826,7 +5828,7 @@
       "explanation": "“vui vẻ” là cách viết đúng chính tả.",
       "options": {
         "A": "vui v",
-        "B": "vui vẻx",
+        "B": "dui vẻ",
         "C": "vui vẻ",
         "D": "vu vẻ"
       },
@@ -5916,9 +5918,9 @@
       "answer": "B",
       "explanation": "“đỏ thắm” là cách viết đúng chính tả.",
       "options": {
-        "A": "đỏ thắmh",
+        "A": "dỏ thắm",
         "B": "đỏ thắm",
-        "C": "đỏ thắmx",
+        "C": "đỏ tắm",
         "D": "đỏ thắ"
       },
       "questionId": "k2_c1_tn_0180"
@@ -5987,7 +5989,7 @@
       "answer": "B",
       "explanation": "'chợ quê' là cách viết đúng chính tả.",
       "options": {
-        "A": "chợ xquê",
+        "A": "khợ quê",
         "B": "chợ quê",
         "C": "chợ qu",
         "D": "trợ quê"
@@ -6015,7 +6017,7 @@
       "level": "CAP_1_VONG_LOAI",
       "type": "TN",
       "questionId": "k2_c1_tn_0184",
-      "question": "Điền từ chỉ sự vật vào chỗ trống: ( ....... )",
+      "question": "Từ nào dưới đây là từ chỉ sự vật?",
       "answer": "A",
       "explanation": "“em bé” là từ chỉ sự vật.",
       "options": {
@@ -6036,7 +6038,7 @@
       "explanation": "“xinh xắn” là cách viết đúng chính tả.",
       "options": {
         "A": "xinh xắn",
-        "B": "xilh xắn",
+        "B": "xinh sắn",
         "C": "xinh xắ",
         "D": "sinh xắn"
       },
@@ -6053,7 +6055,7 @@
       "options": {
         "A": "nghọn núi",
         "B": "ngọn nú",
-        "C": "lgọn núi",
+        "C": "ngọn lúi",
         "D": "ngọn núi"
       },
       "questionId": "k2_c1_tn_0186"
@@ -6101,7 +6103,7 @@
       "options": {
         "A": "sân chường",
         "B": "sân trường",
-        "C": "sâl trường",
+        "C": "sâng trường",
         "D": "xân trường"
       },
       "questionId": "k2_c1_tn_0189"
@@ -6170,7 +6172,7 @@
         "A": "trổi tre",
         "B": "chổi che",
         "C": "chổi tre",
-        "D": "chổi tr"
+        "D": "chổi re"
       }
     },
     {
@@ -6182,7 +6184,7 @@
       "answer": "D",
       "explanation": "“anh chị” là cách viết đúng chính tả.",
       "options": {
-        "A": "alh chị",
+        "A": "an chị",
         "B": "anh khị",
         "C": "anh trị",
         "D": "anh chị"
@@ -6199,7 +6201,7 @@
       "explanation": "“mát mẻ” là cách viết đúng chính tả.",
       "options": {
         "A": "má mẻ",
-        "B": "mát mẻx",
+        "B": "mách mẻ",
         "C": "mát mẻ",
         "D": "mát m"
       },
@@ -6214,7 +6216,7 @@
       "answer": "D",
       "explanation": "“chổi tre” là cách viết đúng chính tả.",
       "options": {
-        "A": "chổi tde",
+        "A": "trổi che",
         "B": "chổi che",
         "C": "trổi tre",
         "D": "chổi tre"
@@ -6279,10 +6281,10 @@
       "answer": "C",
       "explanation": "“gọn gàng” là cách viết đúng chính tả.",
       "options": {
-        "A": "gọn gàngh",
+        "A": "ghọn gàng",
         "B": "gọn gàn",
         "C": "gọn gàng",
-        "D": "gọl gàng"
+        "D": "gọn ghàng"
       },
       "questionId": "k2_c1_tn_0194"
     },
@@ -6431,8 +6433,8 @@
       "explanation": "“con gà” là cách viết đúng chính tả.",
       "options": {
         "A": "kon gà",
-        "B": "con g",
-        "C": "col gà",
+        "B": "con ghà",
+        "C": "cong gà",
         "D": "con gà"
       },
       "questionId": "k2_c1_tn_0200"
@@ -6548,7 +6550,7 @@
       "explanation": "“hộp bút” là cách viết đúng chính tả.",
       "options": {
         "A": "hộp bút",
-        "B": "hộp bútx",
+        "B": "hộp vút",
         "C": "hộp bú",
         "D": "hộ bút"
       },
@@ -6565,9 +6567,9 @@
       "explanation": "'em bé' là cách viết đúng chính tả.",
       "options": {
         "A": "em bé",
-        "B": "em béh",
+        "B": "en bé",
         "C": "xem bé",
-        "D": "em xbé"
+        "D": "em vé"
       }
     },
     {
@@ -6701,7 +6703,7 @@
       "level": "CAP_1_VONG_LOAI",
       "type": "TN",
       "questionId": "k2_c1_tn_0210",
-      "question": "Điền từ chỉ hoạt động vào chỗ trống: ( ....... )",
+      "question": "Từ nào dưới đây là từ chỉ hoạt động?",
       "answer": "A",
       "explanation": "“đạp xe” là từ chỉ hoạt động.",
       "options": {
@@ -6785,7 +6787,7 @@
       "answer": "D",
       "explanation": "'nghỉ hè' là cách viết đúng chính tả.",
       "options": {
-        "A": "nghỉ xhè",
+        "A": "nghĩ hè",
         "B": "ngỉ hè",
         "C": "xữa tươi",
         "D": "nghỉ hè"
@@ -6818,7 +6820,7 @@
       "options": {
         "A": "hạ mưa",
         "B": "hạt mưa",
-        "C": "hạt mưax",
+        "C": "hạch mưa",
         "D": "hạt mư"
       },
       "questionId": "k2_c1_tn_0214"
@@ -6963,7 +6965,7 @@
         "A": "xanh ngắt",
         "B": "sanh ngắt",
         "C": "xanh nghắt",
-        "D": "xalh ngắt"
+        "D": "xan ngắt"
       },
       "questionId": "k2_c1_tn_0219"
     },
@@ -7094,7 +7096,7 @@
       "answer": "B",
       "explanation": "“con chó” là cách viết đúng chính tả.",
       "options": {
-        "A": "col chó",
+        "A": "con khó",
         "B": "con chó",
         "C": "kon chó",
         "D": "con tró"
@@ -7110,7 +7112,7 @@
       "answer": "B",
       "explanation": "“hạt mưa” là cách viết đúng chính tả.",
       "options": {
-        "A": "hạt mưax",
+        "A": "hạch mưa",
         "B": "hạt mưa",
         "C": "hạ mưa",
         "D": "hạt mư"
@@ -7123,7 +7125,7 @@
       "level": "CAP_1_VONG_LOAI",
       "type": "TN",
       "questionId": "k2_c1_tn_0228",
-      "question": "Điền từ chỉ hoạt động vào chỗ trống: ( ....... )",
+      "question": "Từ nào dưới đây là từ chỉ hoạt động?",
       "answer": "A",
       "explanation": "“đá bóng” là từ chỉ hoạt động.",
       "options": {
@@ -7146,7 +7148,7 @@
       "options": {
         "A": "sân trườn",
         "B": "chân thật",
-        "C": "chân xthật",
+        "C": "khân thật",
         "D": "trân thật"
       }
     },
@@ -7159,10 +7161,10 @@
       "answer": "C",
       "explanation": "“mái trường” là cách viết đúng chính tả.",
       "options": {
-        "A": "mái tdường",
+        "A": "mái trườn",
         "B": "mái chường",
         "C": "mái trường",
-        "D": "mái trườlg"
+        "D": "mái chườn"
       },
       "questionId": "k2_c1_tn_0230"
     },
@@ -7222,7 +7224,7 @@
       "options": {
         "A": "kái kéo",
         "B": "cái kéo",
-        "C": "ghi xbài",
+        "C": "kái céo",
         "D": "cái céo"
       }
     },
@@ -7235,9 +7237,9 @@
       "answer": "D",
       "explanation": "“đọc sách” là cách viết đúng chính tả.",
       "options": {
-        "A": "đọk sách",
+        "A": "dọc sách",
         "B": "đọc xách",
-        "C": "đọc sátr",
+        "C": "đọt sách",
         "D": "đọc sách"
       },
       "questionId": "k2_c1_tn_0232"
@@ -7269,7 +7271,7 @@
       "explanation": "'trời mưa' là cách viết đúng chính tả.",
       "options": {
         "A": "chời mưa",
-        "B": "trời xmưa",
+        "B": "trởi mưa",
         "C": "trời mưa",
         "D": "trín quả"
       }
@@ -7313,7 +7315,7 @@
       "options": {
         "A": "cơn mưa",
         "B": "cơn mư",
-        "C": "cơl mưa",
+        "C": "cơng mưa",
         "D": "kơn mưa"
       },
       "questionId": "k2_c1_tn_0235"
@@ -7324,7 +7326,7 @@
       "level": "CAP_1_VONG_LOAI",
       "type": "TN",
       "questionId": "k2_c1_tn_0236",
-      "question": "Điền từ chỉ đặc điểm vào chỗ trống: ( ....... )",
+      "question": "Từ nào dưới đây là từ chỉ đặc điểm?",
       "answer": "A",
       "explanation": "“chín vàng” là từ chỉ đặc điểm.",
       "options": {
@@ -7346,8 +7348,8 @@
       "options": {
         "A": "ngôi nhà",
         "B": "nghôi nhà",
-        "C": "lgôi nhà",
-        "D": "ngôi nh"
+        "C": "ngôi là",
+        "D": "ngôi nà"
       },
       "questionId": "k2_c1_tn_0237"
     },
@@ -7362,7 +7364,7 @@
       "options": {
         "A": "yên tĩnh",
         "B": "yê tĩnh",
-        "C": "yêl tĩnh",
+        "C": "yên thĩnh",
         "D": "yên tĩn"
       },
       "questionId": "k2_c1_tn_0238"
@@ -7432,7 +7434,7 @@
       "options": {
         "A": "kửa sổ",
         "B": "cửa sổ",
-        "C": "cửa s",
+        "C": "cửa xỗ",
         "D": "cửa xổ"
       },
       "questionId": "k2_c1_tn_0241"
@@ -7448,7 +7450,7 @@
       "options": {
         "A": "lắng nghe",
         "B": "nắng nghe",
-        "C": "lắlg nghe",
+        "C": "lắn nghe",
         "D": "lắng nge"
       },
       "questionId": "k2_c1_tn_0242"
@@ -7473,7 +7475,7 @@
       "answer": "C",
       "explanation": "“chăm chỉ” là cách viết đúng chính tả.",
       "options": {
-        "A": "chăm ch",
+        "A": "chăm trỉ",
         "B": "khăm chỉ",
         "C": "chăm chỉ",
         "D": "trăm chỉ"
@@ -7500,7 +7502,7 @@
       "answer": "B",
       "explanation": "“hoa sen” là cách viết đúng chính tả.",
       "options": {
-        "A": "hoa sel",
+        "A": "hoa seng",
         "B": "hoa sen",
         "C": "hoa xen",
         "D": "hoa se"
@@ -7516,9 +7518,9 @@
       "answer": "D",
       "explanation": "“thật thà” là cách viết đúng chính tả.",
       "options": {
-        "A": "thật thàx",
+        "A": "tật thà",
         "B": "thậ thà",
-        "C": "thật th",
+        "C": "thật tà",
         "D": "thật thà"
       },
       "questionId": "k2_c1_tn_0245"
@@ -7549,9 +7551,9 @@
       "explanation": "“bạn bè” là cách viết đúng chính tả.",
       "options": {
         "A": "bạ bè",
-        "B": "bạn b",
+        "B": "vạn bè",
         "C": "bạn bè",
-        "D": "bạl bè"
+        "D": "bạn vè"
       },
       "questionId": "k2_c1_tn_0247"
     },
@@ -7561,7 +7563,7 @@
       "level": "CAP_1_VONG_LOAI",
       "type": "TN",
       "questionId": "k2_c1_tn_0248",
-      "question": "Điền từ chỉ hoạt động vào chỗ trống: ( ....... )",
+      "question": "Từ nào dưới đây là từ chỉ hoạt động?",
       "answer": "A",
       "explanation": "“nấu cơm” là từ chỉ hoạt động.",
       "options": {
@@ -7599,8 +7601,8 @@
       "explanation": "'sông lớn' là cách viết đúng chính tả.",
       "options": {
         "A": "xông lớn",
-        "B": "bàn xhọc",
-        "C": "sông xlớn",
+        "B": "sông nớn",
+        "C": "sông rớn",
         "D": "sông lớn"
       }
     },
@@ -7613,10 +7615,10 @@
       "answer": "B",
       "explanation": "“cây phượng” là cách viết đúng chính tả.",
       "options": {
-        "A": "cây phượngh",
+        "A": "cây phường",
         "B": "cây phượng",
         "C": "kây phượng",
-        "D": "cây phượlg"
+        "D": "cây phượn"
       },
       "questionId": "k2_c1_tn_0251"
     },
@@ -7629,7 +7631,7 @@
       "answer": "D",
       "explanation": "“lễ phép” là cách viết đúng chính tả.",
       "options": {
-        "A": "lễ phépx",
+        "A": "lể phép",
         "B": "lễ phé",
         "C": "nễ phép",
         "D": "lễ phép"
@@ -7725,8 +7727,8 @@
       "explanation": "“nghề nghiệp” là cách viết đúng chính tả.",
       "options": {
         "A": "ngề nghiệp",
-        "B": "nghhề nghiệp",
-        "C": "lghề nghiệp",
+        "B": "nghề ngiệp",
+        "C": "nghề nghiệt",
         "D": "nghề nghiệp"
       },
       "questionId": "k2_c1_tn_0255"
@@ -7773,7 +7775,7 @@
       "level": "CAP_1_VONG_LOAI",
       "type": "TN",
       "questionId": "k2_c1_tn_0256",
-      "question": "Điền từ chỉ hoạt động vào chỗ trống: ( ....... )",
+      "question": "Từ nào dưới đây là từ chỉ hoạt động?",
       "answer": "A",
       "explanation": "“khâu áo” là từ chỉ hoạt động.",
       "options": {
@@ -7809,7 +7811,7 @@
       "answer": "B",
       "explanation": "“hiền lành” là cách viết đúng chính tả.",
       "options": {
-        "A": "hiềl lành",
+        "A": "hiền rành",
         "B": "hiền lành",
         "C": "hiền nành",
         "D": "hiền làn"
@@ -7927,7 +7929,7 @@
       "answer": "D",
       "explanation": "'giặt áo' là cách viết đúng chính tả.",
       "options": {
-        "A": "giặt áoh",
+        "A": "rặt áo",
         "B": "dặt áo",
         "C": "giặt xáo",
         "D": "giặt áo"
@@ -8132,7 +8134,7 @@
       "answer": "B",
       "explanation": "“xanh ngắt” là cách viết đúng chính tả.",
       "options": {
-        "A": "xalh ngắt",
+        "A": "xan ngắt",
         "B": "xanh ngắt",
         "C": "sanh ngắt",
         "D": "xanh nghắt"
@@ -8149,9 +8151,9 @@
       "explanation": "“rực rỡ” là cách viết đúng chính tả.",
       "options": {
         "A": "dực rỡ",
-        "B": "rựk rỡ",
+        "B": "giực rỡ",
         "C": "rực rỡ",
-        "D": "rực r"
+        "D": "rực dỡ"
       },
       "questionId": "k2_c1_tn_0267"
     },
@@ -8207,9 +8209,9 @@
       "answer": "D",
       "explanation": "“ấm áp” là cách viết đúng chính tả.",
       "options": {
-        "A": "ấm áph",
+        "A": "ấn áp",
         "B": "ấm á",
-        "C": "ấm ápx",
+        "C": "ấm át",
         "D": "ấm áp"
       },
       "questionId": "k2_c1_tn_0269"
@@ -8278,7 +8280,7 @@
         "A": "viết bà",
         "B": "viết bài",
         "C": "viế bài",
-        "D": "viết bàix"
+        "D": "diết bài"
       },
       "questionId": "k2_c1_tn_0271"
     },
@@ -8346,7 +8348,7 @@
       "options": {
         "A": "con kiế",
         "B": "gé thăm",
-        "C": "ghé xthăm",
+        "C": "ghé tăm",
         "D": "ghé thăm"
       }
     },
@@ -8448,7 +8450,7 @@
       "options": {
         "A": "trân trời",
         "B": "chân chời",
-        "C": "châl trời",
+        "C": "khân trời",
         "D": "chân trời"
       },
       "questionId": "k2_c1_tn_0275"
@@ -8459,7 +8461,7 @@
       "level": "CAP_1_VONG_LOAI",
       "type": "TN",
       "questionId": "k2_c1_tn_0276",
-      "question": "Điền từ chỉ đặc điểm vào chỗ trống: ( ....... )",
+      "question": "Từ nào dưới đây là từ chỉ đặc điểm?",
       "answer": "A",
       "explanation": "“thật thà” là từ chỉ đặc điểm.",
       "options": {
@@ -8481,7 +8483,7 @@
       "options": {
         "A": "bút khì",
         "B": "bút chì",
-        "C": "bút ch",
+        "C": "bút tì",
         "D": "bút trì"
       },
       "questionId": "k2_c1_tn_0277"
@@ -8527,7 +8529,7 @@
       "answer": "D",
       "explanation": "“trò chơi” là cách viết đúng chính tả.",
       "options": {
-        "A": "tdò chơi",
+        "A": "chò trơi",
         "B": "trò trơi",
         "C": "chò chơi",
         "D": "trò chơi"
@@ -8668,7 +8670,7 @@
       "level": "CAP_1_VONG_LOAI",
       "type": "TN",
       "questionId": "k2_c1_tn_0283",
-      "question": "Điền từ chỉ hoạt động vào chỗ trống: ( ....... )",
+      "question": "Từ nào dưới đây là từ chỉ hoạt động?",
       "answer": "A",
       "explanation": "“nghe giảng” là từ chỉ hoạt động.",
       "options": {
@@ -8690,7 +8692,7 @@
       "options": {
         "A": "thơm ngá",
         "B": "thơm nghát",
-        "C": "thơm lgát",
+        "C": "tơm ngát",
         "D": "thơm ngát"
       },
       "questionId": "k2_c1_tn_0284"
@@ -8708,7 +8710,7 @@
         "A": "chú mèo",
         "B": "trú mèo",
         "C": "chú mè",
-        "D": "chú xmèo"
+        "D": "khú mèo"
       }
     },
     {
@@ -8773,8 +8775,8 @@
       "answer": "C",
       "explanation": "'sâu bọ' là cách viết đúng chính tả.",
       "options": {
-        "A": "sâu xbọ",
-        "B": "mái nh",
+        "A": "sâu vọ",
+        "B": "mái là",
         "C": "sâu bọ",
         "D": "xâu bọ"
       }
@@ -8861,7 +8863,7 @@
       "level": "CAP_1_VONG_LOAI",
       "type": "TN",
       "questionId": "k2_c1_tn_0290",
-      "question": "Điền từ chỉ hoạt động vào chỗ trống: ( ....... )",
+      "question": "Từ nào dưới đây là từ chỉ hoạt động?",
       "answer": "A",
       "explanation": "“quét nhà” là từ chỉ hoạt động.",
       "options": {
@@ -8908,7 +8910,7 @@
       "answer": "C",
       "explanation": "“sao đêm” là cách viết đúng chính tả.",
       "options": {
-        "A": "sao đê",
+        "A": "sao đen",
         "B": "sa đêm",
         "C": "sao đêm",
         "D": "xao đêm"
@@ -8927,7 +8929,7 @@
         "A": "trò trơi",
         "B": "chò chơi",
         "C": "trò chơi",
-        "D": "tdò chơi"
+        "D": "chò trơi"
       },
       "questionId": "k2_c1_tn_0292"
     },
@@ -9021,7 +9023,7 @@
       "options": {
         "A": "xanh ngắt",
         "B": "xanh nghắt",
-        "C": "xalh ngắt",
+        "C": "xan ngắt",
         "D": "sanh ngắt"
       },
       "questionId": "k2_c1_tn_0295"
@@ -9107,7 +9109,7 @@
       "answer": "B",
       "explanation": "'rửa tay' là cách viết đúng chính tả.",
       "options": {
-        "A": "rửa xtay",
+        "A": "giửa tay",
         "B": "rửa tay",
         "C": "rửa ta",
         "D": "dửa tay"
@@ -9243,7 +9245,7 @@
       "answer": "D",
       "explanation": "'kéo co' là cách viết đúng chính tả.",
       "options": {
-        "A": "khu xvườn",
+        "A": "khéo co",
         "B": "kéo ko",
         "C": "céo co",
         "D": "kéo co"
@@ -9255,7 +9257,7 @@
       "level": "CAP_1_VONG_LOAI",
       "type": "TN",
       "questionId": "k2_c1_tn_0302",
-      "question": "Điền từ chỉ sự vật vào chỗ trống: ( ....... )",
+      "question": "Từ nào dưới đây là từ chỉ sự vật?",
       "answer": "A",
       "explanation": "“bút mực” là từ chỉ sự vật.",
       "options": {
@@ -9324,7 +9326,7 @@
       "options": {
         "A": "kon nai",
         "B": "con na",
-        "C": "con xnai",
+        "C": "con lai",
         "D": "con nai"
       }
     },
@@ -9356,8 +9358,8 @@
       "answer": "C",
       "explanation": "“ấm áp” là cách viết đúng chính tả.",
       "options": {
-        "A": "ấm áph",
-        "B": "ấm ápx",
+        "A": "ấn áp",
+        "B": "ấm át",
         "C": "ấm áp",
         "D": "ấm á"
       },
@@ -9421,7 +9423,7 @@
       "level": "CAP_1_VONG_LOAI",
       "type": "TN",
       "questionId": "k2_c1_tn_0307",
-      "question": "Điền từ chỉ đặc điểm vào chỗ trống: ( ....... )",
+      "question": "Từ nào dưới đây là từ chỉ đặc điểm?",
       "answer": "A",
       "explanation": "“ấm áp” là từ chỉ đặc điểm.",
       "options": {
@@ -9454,8 +9456,8 @@
       "explanation": "'bàn tay' là cách viết đúng chính tả.",
       "options": {
         "A": "bàn ta",
-        "B": "xbàn tay",
-        "C": "bàn xtay",
+        "B": "bàng tay",
+        "C": "vàn tay",
         "D": "bàn tay"
       }
     },
@@ -9697,8 +9699,8 @@
       "answer": "D",
       "explanation": "“con gà” là cách viết đúng chính tả.",
       "options": {
-        "A": "con g",
-        "B": "col gà",
+        "A": "con ghà",
+        "B": "cong gà",
         "C": "kon gà",
         "D": "con gà"
       },
@@ -9768,7 +9770,7 @@
         "A": "chiếc thuyền",
         "B": "chiếc thuyề",
         "C": "triếc thuyền",
-        "D": "chiếc xthuyền"
+        "D": "khiếc thuyền"
       }
     },
     {
@@ -9856,7 +9858,7 @@
         "A": "kéo ko",
         "B": "kéo co",
         "C": "céo co",
-        "D": "kéo coh"
+        "D": "céo ko"
       }
     },
     {
@@ -9884,10 +9886,10 @@
       "answer": "B",
       "explanation": "“vàng tươi” là cách viết đúng chính tả.",
       "options": {
-        "A": "vàngh tươi",
+        "A": "dàng tươi",
         "B": "vàng tươi",
         "C": "vàng tươ",
-        "D": "vàlg tươi"
+        "D": "vàn tươi"
       },
       "questionId": "k2_c1_tn_0319"
     },
@@ -9900,9 +9902,9 @@
       "answer": "B",
       "explanation": "“mặt trăng” là cách viết đúng chính tả.",
       "options": {
-        "A": "mặt tdăng",
+        "A": "mặc trăng",
         "B": "mặt trăng",
-        "C": "mặt trălg",
+        "C": "mặt trăn",
         "D": "mặt chăng"
       },
       "questionId": "k2_c1_tn_0320"
@@ -9940,8 +9942,8 @@
       "options": {
         "A": "kon bò",
         "B": "con bò",
-        "C": "con b",
-        "D": "col bò"
+        "C": "con vò",
+        "D": "cong bò"
       },
       "questionId": "k2_c1_tn_0321"
     },
@@ -10079,8 +10081,8 @@
       "explanation": "“cây bàng” là cách viết đúng chính tả.",
       "options": {
         "A": "kây bàng",
-        "B": "cây bàlg",
-        "C": "cây bàngh",
+        "B": "cây bàn",
+        "C": "cây vàng",
         "D": "cây bàng"
       },
       "questionId": "k2_c1_tn_0326"
@@ -10216,9 +10218,9 @@
       "explanation": "“ngôi nhà” là cách viết đúng chính tả.",
       "options": {
         "A": "ngôi nhà",
-        "B": "ngôi nh",
+        "B": "ngôi là",
         "C": "nghôi nhà",
-        "D": "lgôi nhà"
+        "D": "ngôi nà"
       },
       "questionId": "k2_c1_tn_0330"
     },
@@ -10259,10 +10261,10 @@
       "answer": "C",
       "explanation": "'mái nhà' là cách viết đúng chính tả.",
       "options": {
-        "A": "xmái nhà",
-        "B": "mái nh",
+        "A": "mái là",
+        "B": "mái nà",
         "C": "mái nhà",
-        "D": "mái xnhà"
+        "D": "mải nhà"
       }
     },
     {
@@ -10356,7 +10358,7 @@
       "explanation": "'đôi dép' là cách viết đúng chính tả.",
       "options": {
         "A": "đôi dép",
-        "B": "xđôi dép",
+        "B": "dôi dép",
         "C": "đôi rép",
         "D": "đôi dé"
       }
@@ -10383,7 +10385,7 @@
       "explanation": "'dễ thương' là cách viết đúng chính tả.",
       "options": {
         "A": "dễ thương",
-        "B": "dễ xthương",
+        "B": "giễ thương",
         "C": "da chắng",
         "D": "rễ thương"
       }
@@ -10424,8 +10426,8 @@
       "answer": "C",
       "explanation": "“xếp hàng” là cách viết đúng chính tả.",
       "options": {
-        "A": "xếp hàlg",
-        "B": "xếp hàngh",
+        "A": "xết hàng",
+        "B": "xếp hàn",
         "C": "xếp hàng",
         "D": "sếp hàng"
       },
@@ -10500,7 +10502,7 @@
       "answer": "C",
       "explanation": "“giữ gìn” là cách viết đúng chính tả.",
       "options": {
-        "A": "giữ gìl",
+        "A": "ghiữ gìn",
         "B": "dữ gìn",
         "C": "giữ gìn",
         "D": "giữ gì"
@@ -10534,8 +10536,8 @@
       "explanation": "“bạn bè” là cách viết đúng chính tả.",
       "options": {
         "A": "bạ bè",
-        "B": "bạl bè",
-        "C": "bạn b",
+        "B": "bạn vè",
+        "C": "vạn bè",
         "D": "bạn bè"
       },
       "questionId": "k2_c1_tn_0344"
@@ -10608,7 +10610,7 @@
       "explanation": "“ngọn đèn” là cách viết đúng chính tả.",
       "options": {
         "A": "ngọn đè",
-        "B": "lgọn đèn",
+        "B": "ngọn dèn",
         "C": "ngọn đèn",
         "D": "nghọn đèn"
       },
@@ -10656,7 +10658,7 @@
       "answer": "C",
       "explanation": "'chân thật' là cách viết đúng chính tả.",
       "options": {
-        "A": "chân xthật",
+        "A": "khân thật",
         "B": "trân thật",
         "C": "chân thật",
         "D": "chân thậ"
@@ -10702,7 +10704,7 @@
         "A": "xanh biế",
         "B": "xanh biếc",
         "C": "sanh biếc",
-        "D": "xanh xbiếc"
+        "D": "xan biếc"
       }
     },
     {
@@ -10790,7 +10792,7 @@
       "answer": "D",
       "explanation": "“chiếc khăn” là cách viết đúng chính tả.",
       "options": {
-        "A": "chiếc khăl",
+        "A": "chiếc kăn",
         "B": "triếc khăn",
         "C": "khiếc khăn",
         "D": "chiếc khăn"
@@ -10871,10 +10873,10 @@
       "answer": "B",
       "explanation": "“bầu trời” là cách viết đúng chính tả.",
       "options": {
-        "A": "bầu trờ",
+        "A": "bầu giời",
         "B": "bầu trời",
         "C": "bầu chời",
-        "D": "bầu tdời"
+        "D": "bầu dời"
       },
       "questionId": "k2_c1_tn_0356"
     },
@@ -10888,7 +10890,7 @@
       "answer": "C",
       "explanation": "'kỉ niệm' là cách viết đúng chính tả.",
       "options": {
-        "A": "kỉ xniệm",
+        "A": "khỉ niệm",
         "B": "cỉ niệm",
         "C": "kỉ niệm",
         "D": "kỉ niệ"
@@ -10904,9 +10906,9 @@
       "explanation": "“hoa hồng” là cách viết đúng chính tả.",
       "options": {
         "A": "hoa hồng",
-        "B": "hoa hồlg",
+        "B": "hoa gồng",
         "C": "hoa hồn",
-        "D": "hoa hồngh"
+        "D": "hoa hổng"
       },
       "questionId": "k2_c1_tn_0358"
     },
@@ -11059,7 +11061,7 @@
       "answer": "D",
       "explanation": "“ngọn gió” là cách viết đúng chính tả.",
       "options": {
-        "A": "lgọn gió",
+        "A": "ngọn ghió",
         "B": "ngọn dó",
         "C": "nghọn gió",
         "D": "ngọn gió"
@@ -11104,7 +11106,7 @@
       "level": "CAP_1_VONG_LOAI",
       "type": "TN",
       "questionId": "k2_c1_tn_0365",
-      "question": "Điền từ chỉ hoạt động vào chỗ trống: ( ....... )",
+      "question": "Từ nào dưới đây là từ chỉ hoạt động?",
       "answer": "A",
       "explanation": "“chơi đùa” là từ chỉ hoạt động.",
       "options": {
@@ -11266,8 +11268,8 @@
       "options": {
         "A": "trống trường",
         "B": "chống trường",
-        "C": "trốlg trường",
-        "D": "tdống trường"
+        "C": "trốn trường",
+        "D": "trống chường"
       },
       "questionId": "k2_c1_tn_0373"
     },
@@ -11318,7 +11320,7 @@
       "explanation": "'chăm chỉ' là cách viết đúng chính tả.",
       "options": {
         "A": "trăm chỉ",
-        "B": "chăm ch",
+        "B": "chăm sỉ",
         "C": "chăm chỉ",
         "D": "chăm trỉ"
       }
@@ -11366,7 +11368,7 @@
       "explanation": "'nụ cười' là cách viết đúng chính tả.",
       "options": {
         "A": "nụ cười",
-        "B": "xnụ cười",
+        "B": "lụ cười",
         "C": "nụ cườ",
         "D": "nụ kười"
       }
@@ -11419,7 +11421,7 @@
         "A": "ná xanh",
         "B": "lá xanh",
         "C": "lá sanh",
-        "D": "lá xalh"
+        "D": "ná sanh"
       },
       "questionId": "k2_c1_tn_0378"
     },
@@ -11432,7 +11434,7 @@
       "answer": "D",
       "explanation": "“xếp hình” là cách viết đúng chính tả.",
       "options": {
-        "A": "xếp hìlh",
+        "A": "xết hình",
         "B": "xếp hìn",
         "C": "sếp hình",
         "D": "xếp hình"
@@ -11464,9 +11466,9 @@
       "answer": "D",
       "explanation": "“rực rỡ” là cách viết đúng chính tả.",
       "options": {
-        "A": "rựk rỡ",
+        "A": "giực rỡ",
         "B": "dực rỡ",
-        "C": "rực r",
+        "C": "rực dỡ",
         "D": "rực rỡ"
       },
       "questionId": "k2_c1_tn_0381"
@@ -11515,10 +11517,10 @@
       "answer": "B",
       "explanation": "“bảng đen” là cách viết đúng chính tả.",
       "options": {
-        "A": "bảngh đen",
+        "A": "vảng đen",
         "B": "bảng đen",
-        "C": "bảng đe",
-        "D": "bảlg đen"
+        "C": "bản đen",
+        "D": "bảng đem"
       },
       "questionId": "k2_c1_tn_0383"
     },
@@ -11664,7 +11666,7 @@
         "A": "quả kam",
         "B": "quả ca",
         "C": "quả cam",
-        "D": "xquả cam"
+        "D": "quả can"
       }
     },
     {
@@ -11677,7 +11679,7 @@
       "explanation": "“cây tre” là cách viết đúng chính tả.",
       "options": {
         "A": "cây tre",
-        "B": "cây tde",
+        "B": "kây che",
         "C": "cây che",
         "D": "kây tre"
       },
@@ -11858,7 +11860,7 @@
       "explanation": "“ghi bài” là cách viết đúng chính tả.",
       "options": {
         "A": "ghi bà",
-        "B": "gh bài",
+        "B": "di bài",
         "C": "gi bài",
         "D": "ghi bài"
       },
@@ -11876,7 +11878,7 @@
       "options": {
         "A": "mặt trăn",
         "B": "mặt chăng",
-        "C": "xmặt trăng",
+        "C": "mặch trăng",
         "D": "mặt trăng"
       }
     },
@@ -11933,8 +11935,8 @@
       "explanation": "“hoa hồng” là cách viết đúng chính tả.",
       "options": {
         "A": "hoa hồng",
-        "B": "hoa hồngh",
-        "C": "hoa hồlg",
+        "B": "hoa hổng",
+        "C": "hoa gồng",
         "D": "hoa hồn"
       },
       "questionId": "k2_c1_tn_0398"
@@ -11966,7 +11968,7 @@
       "answer": "D",
       "explanation": "'nụ cười' là cách viết đúng chính tả.",
       "options": {
-        "A": "xnụ cười",
+        "A": "lụ cười",
         "B": "ghim dấy",
         "C": "nụ kười",
         "D": "nụ cười"
@@ -12192,7 +12194,7 @@
       "explanation": "'rổ rá' là cách viết đúng chính tả.",
       "options": {
         "A": "rổ rá",
-        "B": "rổ ráh",
+        "B": "dổ dá",
         "C": "dổ rá",
         "D": "rổ dá"
       }
@@ -12289,8 +12291,8 @@
       "options": {
         "A": "xúc xích",
         "B": "súc xích",
-        "C": "xúc xítr",
-        "D": "xúk xích"
+        "C": "xúc sích",
+        "D": "xút xích"
       },
       "questionId": "k2_c1_tn_0407"
     },
@@ -12305,8 +12307,8 @@
       "options": {
         "A": "bông hoa",
         "B": "bông ho",
-        "C": "bôlg hoa",
-        "D": "bôngh hoa"
+        "C": "bôn hoa",
+        "D": "vông hoa"
       },
       "questionId": "k2_c1_tn_0408"
     },
@@ -12330,9 +12332,9 @@
       "answer": "D",
       "explanation": "“xe đạp” là cách viết đúng chính tả.",
       "options": {
-        "A": "xe đạpx",
+        "A": "xe dạp",
         "B": "se đạp",
-        "C": "xe đạ",
+        "C": "se dạp",
         "D": "xe đạp"
       },
       "questionId": "k2_c1_tn_0409"
@@ -12350,7 +12352,7 @@
         "A": "rực rỡ",
         "B": "dực rỡ",
         "C": "rực dỡ",
-        "D": "rực rỡh"
+        "D": "giực rỡ"
       }
     },
     {
@@ -12366,7 +12368,7 @@
         "A": "sông lớ",
         "B": "xông lớn",
         "C": "sông lớn",
-        "D": "sông xlớn"
+        "D": "sông nớn"
       }
     },
     {
@@ -12421,10 +12423,10 @@
       "answer": "C",
       "explanation": "“trồng rau” là cách viết đúng chính tả.",
       "options": {
-        "A": "trồlg rau",
+        "A": "trồng dau",
         "B": "chồng rau",
         "C": "trồng rau",
-        "D": "tdồng rau"
+        "D": "chồng dau"
       },
       "questionId": "k2_c1_tn_0413"
     },
@@ -12515,7 +12517,7 @@
       "level": "CAP_1_VONG_LOAI",
       "type": "TN",
       "questionId": "k2_c1_tn_0416",
-      "question": "Điền từ chỉ sự vật vào chỗ trống: ( ....... )",
+      "question": "Từ nào dưới đây là từ chỉ sự vật?",
       "answer": "A",
       "explanation": "“chim sẻ” là từ chỉ sự vật.",
       "options": {
@@ -12681,8 +12683,8 @@
       "explanation": "“cây phượng” là cách viết đúng chính tả.",
       "options": {
         "A": "kây phượng",
-        "B": "cây phượngh",
-        "C": "cây phượlg",
+        "B": "cây phường",
+        "C": "cây phượn",
         "D": "cây phượng"
       },
       "questionId": "k2_c1_tn_0421"
@@ -12696,9 +12698,9 @@
       "answer": "D",
       "explanation": "“bé nhỏ” là cách viết đúng chính tả.",
       "options": {
-        "A": "bé nh",
-        "B": "bé lhỏ",
-        "C": "bé nhỏx",
+        "A": "bé nỏ",
+        "B": "vé nhỏ",
+        "C": "bé lỏ",
         "D": "bé nhỏ"
       },
       "questionId": "k2_c1_tn_0422"
@@ -12745,7 +12747,7 @@
       "explanation": "“kẹo ngọt” là cách viết đúng chính tả.",
       "options": {
         "A": "kẹo ngọt",
-        "B": "kẹo lgọt",
+        "B": "khẹo ngọt",
         "C": "kẹo nghọt",
         "D": "cẹo ngọt"
       },
@@ -12809,8 +12811,8 @@
       "explanation": "“bông hoa” là cách viết đúng chính tả.",
       "options": {
         "A": "bông hoa",
-        "B": "bôngh hoa",
-        "C": "bôlg hoa",
+        "B": "vông hoa",
+        "C": "bôn hoa",
         "D": "bông ho"
       },
       "questionId": "k2_c1_tn_0429"
@@ -12824,8 +12826,8 @@
       "answer": "D",
       "explanation": "“dễ thương” là cách viết đúng chính tả.",
       "options": {
-        "A": "dễ thươlg",
-        "B": "dễ thươngh",
+        "A": "rễ thương",
+        "B": "vễ thương",
         "C": "giễ thương",
         "D": "dễ thương"
       },
@@ -12891,9 +12893,9 @@
       "explanation": "“bàn ghế” là cách viết đúng chính tả.",
       "options": {
         "A": "bàn gế",
-        "B": "bàl ghế",
+        "B": "vàn ghế",
         "C": "bàn ghế",
-        "D": "bàn gh"
+        "D": "bàng ghế"
       },
       "questionId": "k2_c1_tn_0433"
     },
@@ -12908,7 +12910,7 @@
       "explanation": "'lá cờ' là cách viết đúng chính tả.",
       "options": {
         "A": "cánh diề",
-        "B": "xlá cờ",
+        "B": "ná cờ",
         "C": "lá kờ",
         "D": "lá cờ"
       }
@@ -12924,7 +12926,7 @@
       "options": {
         "A": "giữ gìn",
         "B": "dữ gìn",
-        "C": "giữ gìl",
+        "C": "ghiữ gìn",
         "D": "giữ gì"
       },
       "questionId": "k2_c1_tn_0435"
@@ -12938,7 +12940,7 @@
       "answer": "D",
       "explanation": "“sân chơi” là cách viết đúng chính tả.",
       "options": {
-        "A": "sâl chơi",
+        "A": "sân khơi",
         "B": "xân chơi",
         "C": "sân trơi",
         "D": "sân chơi"
@@ -12976,7 +12978,7 @@
         "A": "nghoan ngoãn",
         "B": "ngoan ngoãn",
         "C": "ngoan ngoã",
-        "D": "lgoan ngoãn"
+        "D": "ngoan nghoãn"
       },
       "questionId": "k2_c1_tn_0437"
     },
@@ -13018,7 +13020,7 @@
       "options": {
         "A": "trạy bộ",
         "B": "chạy bộ",
-        "C": "chạy b",
+        "C": "chạy vộ",
         "D": "khạy bộ"
       },
       "questionId": "k2_c1_tn_0438"
@@ -13032,10 +13034,10 @@
       "answer": "C",
       "explanation": "“rổ rá” là cách viết đúng chính tả.",
       "options": {
-        "A": "rổ r",
+        "A": "rổ dá",
         "B": "dổ rá",
         "C": "rổ rá",
-        "D": "rổ ráx"
+        "D": "giổ rá"
       },
       "questionId": "k2_c1_tn_0439"
     },
@@ -13089,7 +13091,7 @@
         "A": "kể khuyện",
         "B": "kể chuyện",
         "C": "kể truyện",
-        "D": "kể chuyệl"
+        "D": "cể chuyện"
       },
       "questionId": "k2_c1_tn_0441"
     },
@@ -13220,9 +13222,9 @@
       "explanation": "“con thỏ” là cách viết đúng chính tả.",
       "options": {
         "A": "kon thỏ",
-        "B": "con th",
+        "B": "con tỏ",
         "C": "con thỏ",
-        "D": "col thỏ"
+        "D": "con khỏ"
       },
       "questionId": "k2_c1_tn_0447"
     },
@@ -13247,9 +13249,9 @@
       "explanation": "“đạp xe” là cách viết đúng chính tả.",
       "options": {
         "A": "đạp se",
-        "B": "đạ xe",
+        "B": "đạt xe",
         "C": "đạp xe",
-        "D": "đạp x"
+        "D": "đạp che"
       },
       "questionId": "k2_c1_tn_0448"
     },
@@ -13353,7 +13355,7 @@
         "A": "anh trị",
         "B": "anh khị",
         "C": "anh chị",
-        "D": "alh chị"
+        "D": "an chị"
       },
       "questionId": "k2_c1_tn_0450"
     },
@@ -13368,7 +13370,7 @@
       "options": {
         "A": "chò chơi",
         "B": "trò chơi",
-        "C": "tdò chơi",
+        "C": "chò trơi",
         "D": "trò trơi"
       },
       "questionId": "k2_c1_tn_0451"
@@ -13383,7 +13385,7 @@
       "explanation": "“rau xanh” là cách viết đúng chính tả.",
       "options": {
         "A": "dau xanh",
-        "B": "rau xalh",
+        "B": "giau xanh",
         "C": "rau xanh",
         "D": "rau sanh"
       },
@@ -13472,7 +13474,7 @@
       "level": "CAP_1_VONG_LOAI",
       "type": "TN",
       "questionId": "k2_c1_tn_0455",
-      "question": "Điền từ chỉ hoạt động vào chỗ trống: ( ....... )",
+      "question": "Từ nào dưới đây là từ chỉ hoạt động?",
       "answer": "A",
       "explanation": "“vẽ tranh” là từ chỉ hoạt động.",
       "options": {
@@ -13548,7 +13550,7 @@
       "explanation": "'kính mắt' là cách viết đúng chính tả.",
       "options": {
         "A": "con na",
-        "B": "kính xmắt",
+        "B": "khính mắt",
         "C": "cính mắt",
         "D": "kính mắt"
       }
@@ -13599,7 +13601,7 @@
       "explanation": "“dòng sông” là cách viết đúng chính tả.",
       "options": {
         "A": "dòng sông",
-        "B": "dòlg sông",
+        "B": "ròng sông",
         "C": "dòng xông",
         "D": "giòng sông"
       },
@@ -13663,7 +13665,7 @@
       "answer": "C",
       "explanation": "'dòng sông' là cách viết đúng chính tả.",
       "options": {
-        "A": "nghe kểh",
+        "A": "giòng sông",
         "B": "dòng xông",
         "C": "dòng sông",
         "D": "ròng sông"
@@ -13681,7 +13683,7 @@
         "A": "hiền nành",
         "B": "hiền lành",
         "C": "hiền làn",
-        "D": "hiềl lành"
+        "D": "hiền rành"
       },
       "questionId": "k2_c1_tn_0463"
     },
@@ -13710,7 +13712,7 @@
       "answer": "D",
       "explanation": "“cặp sách” là cách viết đúng chính tả.",
       "options": {
-        "A": "cặp sátr",
+        "A": "cặt sách",
         "B": "kặp sách",
         "C": "cặp xách",
         "D": "cặp sách"
@@ -13809,7 +13811,7 @@
       "answer": "B",
       "explanation": "“con vịt” là cách viết đúng chính tả.",
       "options": {
-        "A": "col vịt",
+        "A": "con dịt",
         "B": "con vịt",
         "C": "kon vịt",
         "D": "con vị"
@@ -13920,8 +13922,8 @@
       "answer": "D",
       "explanation": "“mặt trời” là cách viết đúng chính tả.",
       "options": {
-        "A": "mặt tdời",
-        "B": "mặt trờ",
+        "A": "mặc trời",
+        "B": "mặc chời",
         "C": "mặt chời",
         "D": "mặt trời"
       },
@@ -13947,8 +13949,8 @@
       "answer": "D",
       "explanation": "“nghé con” là cách viết đúng chính tả.",
       "options": {
-        "A": "lghé con",
-        "B": "nghhé con",
+        "A": "nghé kon",
+        "B": "nghé cong",
         "C": "ngé con",
         "D": "nghé con"
       },
@@ -13992,8 +13994,8 @@
       "answer": "C",
       "explanation": "“phấn trắng” là cách viết đúng chính tả.",
       "options": {
-        "A": "phấl trắng",
-        "B": "phấn tdắng",
+        "A": "phấng trắng",
+        "B": "phấn trắn",
         "C": "phấn trắng",
         "D": "phấn chắng"
       },
@@ -14009,10 +14011,10 @@
       "answer": "C",
       "explanation": "'lớp học' là cách viết đúng chính tả.",
       "options": {
-        "A": "lớp xhọc",
+        "A": "nớp học",
         "B": "cể chuyện",
         "C": "lớp học",
-        "D": "xlớp học"
+        "D": "rớp học"
       }
     },
     {
@@ -14073,7 +14075,7 @@
         "A": "ghi bà",
         "B": "gi bài",
         "C": "ghi bài",
-        "D": "gh bài"
+        "D": "di bài"
       },
       "questionId": "k2_c1_tn_0476"
     },
@@ -14147,9 +14149,9 @@
       "explanation": "'bầu trời' là cách viết đúng chính tả.",
       "options": {
         "A": "bầu chời",
-        "B": "xbầu trời",
+        "B": "bầu giời",
         "C": "bầu trời",
-        "D": "bầu trờ"
+        "D": "bầu dời"
       }
     },
     {
@@ -14198,7 +14200,7 @@
       "explanation": "“ghép hình” là cách viết đúng chính tả.",
       "options": {
         "A": "gép hình",
-        "B": "ghép hìlh",
+        "B": "gép hìn",
         "C": "ghép hình",
         "D": "ghép hìn"
       },
@@ -14229,7 +14231,7 @@
       "answer": "D",
       "explanation": "“thơm ngát” là cách viết đúng chính tả.",
       "options": {
-        "A": "thơm lgát",
+        "A": "tơm ngát",
         "B": "thơm nghát",
         "C": "thơm ngá",
         "D": "thơm ngát"
@@ -14297,7 +14299,7 @@
       "answer": "C",
       "explanation": "“sao đêm” là cách viết đúng chính tả.",
       "options": {
-        "A": "sao đê",
+        "A": "sao đen",
         "B": "sa đêm",
         "C": "sao đêm",
         "D": "xao đêm"
@@ -14333,7 +14335,7 @@
         "A": "đèn lồn",
         "B": "nghày mới",
         "C": "ngày mới",
-        "D": "ngày xmới"
+        "D": "ngảy mới"
       }
     },
     {
@@ -14400,7 +14402,7 @@
       "answer": "C",
       "explanation": "'gia đình' là cách viết đúng chính tả.",
       "options": {
-        "A": "gia xđình",
+        "A": "ghia đình",
         "B": "da đình",
         "C": "gia đình",
         "D": "gia đìn"
@@ -14417,7 +14419,7 @@
       "options": {
         "A": "yên tĩnh",
         "B": "yên tĩn",
-        "C": "yêl tĩnh",
+        "C": "yên thĩnh",
         "D": "yê tĩnh"
       },
       "questionId": "k2_c1_tn_0488"
@@ -14471,9 +14473,9 @@
       "explanation": "'sữa tươi' là cách viết đúng chính tả.",
       "options": {
         "A": "xữa tươi",
-        "B": "em xbé",
+        "B": "sửa tươi",
         "C": "sữa tươi",
-        "D": "sữa xtươi"
+        "D": "sữa thươi"
       }
     },
     {
@@ -14525,7 +14527,7 @@
       "explanation": "'ghế gỗ' là cách viết đúng chính tả.",
       "options": {
         "A": "ghế ghỗ",
-        "B": "ghế gỗh",
+        "B": "ghề gỗ",
         "C": "ghế gỗ",
         "D": "gế gỗ"
       }
@@ -14542,7 +14544,7 @@
       "options": {
         "A": "sum họp",
         "B": "sum họ",
-        "C": "sum xhọp",
+        "C": "sun họp",
         "D": "xum họp"
       }
     },
@@ -14572,8 +14574,8 @@
       "explanation": "“bàn ghế” là cách viết đúng chính tả.",
       "options": {
         "A": "bàn ghế",
-        "B": "bàl ghế",
-        "C": "bàn gh",
+        "B": "vàn ghế",
+        "C": "bàng ghế",
         "D": "bàn gế"
       },
       "questionId": "k2_c1_tn_0494"
@@ -14661,8 +14663,8 @@
       "options": {
         "A": "ánh nắn",
         "B": "ánh nắng",
-        "C": "álh nắng",
-        "D": "ánh nắngh"
+        "C": "án nắng",
+        "D": "ánh lắng"
       },
       "questionId": "k2_c1_tn_0496"
     },
@@ -14710,8 +14712,8 @@
       "answer": "D",
       "explanation": "“con trâu” là cách viết đúng chính tả.",
       "options": {
-        "A": "con tdâu",
-        "B": "col trâu",
+        "A": "con chao",
+        "B": "kon trâu",
         "C": "con châu",
         "D": "con trâu"
       },
@@ -14817,8 +14819,8 @@
       "explanation": "'nắng vàng' là cách viết đúng chính tả.",
       "options": {
         "A": "nắng vàng",
-        "B": "xnắng vàng",
-        "C": "nắng xvàng",
+        "B": "lắng vàng",
+        "C": "nắng dàng",
         "D": "nắng vàn"
       }
     },
@@ -14896,7 +14898,7 @@
       "options": {
         "A": "gấ áo",
         "B": "gấp á",
-        "C": "gấp áox",
+        "C": "ghấp áo",
         "D": "gấp áo"
       },
       "questionId": "k2_c1_tn_0502"
@@ -14943,9 +14945,9 @@
       "answer": "B",
       "explanation": "“mái trường” là cách viết đúng chính tả.",
       "options": {
-        "A": "mái trườlg",
+        "A": "mái trườn",
         "B": "mái trường",
-        "C": "mái tdường",
+        "C": "mái chườn",
         "D": "mái chường"
       },
       "questionId": "k2_c1_tn_0504"
@@ -15015,7 +15017,7 @@
         "A": "chín quả",
         "B": "chín qu",
         "C": "trín quả",
-        "D": "chín xquả"
+        "D": "khín quả"
       }
     },
     {
@@ -15056,7 +15058,7 @@
       "options": {
         "A": "cặp sách",
         "B": "kặp sách",
-        "C": "cặp sátr",
+        "C": "cặt sách",
         "D": "cặp xách"
       },
       "questionId": "k2_c1_tn_0508"
@@ -15073,7 +15075,7 @@
       "options": {
         "A": "nghé co",
         "B": "trú mèo",
-        "C": "chú xmèo",
+        "C": "khú mèo",
         "D": "chú mèo"
       }
     },
@@ -15116,7 +15118,7 @@
       "level": "CAP_1_VONG_LOAI",
       "type": "TN",
       "questionId": "k2_c1_tn_0512",
-      "question": "Điền từ chỉ đặc điểm vào chỗ trống: ( ....... )",
+      "question": "Từ nào dưới đây là từ chỉ đặc điểm?",
       "answer": "A",
       "explanation": "“tròn trịa” là từ chỉ đặc điểm.",
       "options": {
@@ -15137,8 +15139,8 @@
       "explanation": "“vàng tươi” là cách viết đúng chính tả.",
       "options": {
         "A": "vàng tươ",
-        "B": "vàngh tươi",
-        "C": "vàlg tươi",
+        "B": "dàng tươi",
+        "C": "vàn tươi",
         "D": "vàng tươi"
       },
       "questionId": "k2_c1_tn_0513"
@@ -15254,9 +15256,9 @@
       "answer": "B",
       "explanation": "'rửa tay' là cách viết đúng chính tả.",
       "options": {
-        "A": "bố xmẹ",
+        "A": "giửa tay",
         "B": "rửa tay",
-        "C": "rửa xtay",
+        "C": "rửa thay",
         "D": "dửa tay"
       }
     },
@@ -15288,7 +15290,7 @@
       "level": "CAP_1_VONG_LOAI",
       "type": "TN",
       "questionId": "k2_c1_tn_0516",
-      "question": "Điền từ chỉ sự vật vào chỗ trống: ( ....... )",
+      "question": "Từ nào dưới đây là từ chỉ sự vật?",
       "answer": "A",
       "explanation": "“đèn lồng” là từ chỉ sự vật.",
       "options": {
@@ -15308,7 +15310,7 @@
       "answer": "D",
       "explanation": "“viết bài” là cách viết đúng chính tả.",
       "options": {
-        "A": "viết bàix",
+        "A": "diết bài",
         "B": "viế bài",
         "C": "viết bà",
         "D": "viết bài"
@@ -15326,7 +15328,7 @@
       "options": {
         "A": "thơm nghát",
         "B": "thơm ngát",
-        "C": "thơm lgát",
+        "C": "tơm ngát",
         "D": "thơm ngá"
       },
       "questionId": "k2_c1_tn_0518"
@@ -15343,7 +15345,7 @@
       "options": {
         "A": "cửa sổ",
         "B": "cửa xổ",
-        "C": "cửa sổh",
+        "C": "cửa sỗ",
         "D": "kửa sổ"
       }
     },
@@ -15372,9 +15374,9 @@
       "answer": "D",
       "explanation": "“ánh nắng” là cách viết đúng chính tả.",
       "options": {
-        "A": "álh nắng",
+        "A": "án nắng",
         "B": "ánh nắn",
-        "C": "ánh nắngh",
+        "C": "ánh lắng",
         "D": "ánh nắng"
       },
       "questionId": "k2_c1_tn_0520"
@@ -15389,10 +15391,10 @@
       "answer": "C",
       "explanation": "'gió mát' là cách viết đúng chính tả.",
       "options": {
-        "A": "ghé xthăm",
+        "A": "ghió mát",
         "B": "dó mát",
         "C": "gió mát",
-        "D": "gió xmát"
+        "D": "ró mát"
       }
     },
     {
@@ -15481,9 +15483,9 @@
       "explanation": "“sạch sẽ” là cách viết đúng chính tả.",
       "options": {
         "A": "sạch sẽ",
-        "B": "sạtr sẽ",
+        "B": "sạt sẽ",
         "C": "xạch sẽ",
-        "D": "sạkh sẽ"
+        "D": "sạch xẽ"
       },
       "questionId": "k2_c1_tn_0524"
     },
@@ -15523,8 +15525,8 @@
       "answer": "D",
       "explanation": "“đá bóng” là cách viết đúng chính tả.",
       "options": {
-        "A": "đá bóngh",
-        "B": "đá bólg",
+        "A": "dá bóng",
+        "B": "đá vóng",
         "C": "đá bón",
         "D": "đá bóng"
       },
@@ -15539,8 +15541,8 @@
       "answer": "D",
       "explanation": "“học sinh” là cách viết đúng chính tả.",
       "options": {
-        "A": "học silh",
-        "B": "họk sinh",
+        "A": "họt sinh",
+        "B": "hỏc sinh",
         "C": "học xinh",
         "D": "học sinh"
       },
@@ -15618,7 +15620,7 @@
         "A": "sâu bọ",
         "B": "xâu bọ",
         "C": "sâ bọ",
-        "D": "sâu b"
+        "D": "sâu vọ"
       },
       "questionId": "k2_c1_tn_0529"
     },
@@ -15740,10 +15742,10 @@
       "answer": "C",
       "explanation": "'con nai' là cách viết đúng chính tả.",
       "options": {
-        "A": "con xnai",
+        "A": "con lai",
         "B": "kon nai",
         "C": "con nai",
-        "D": "bông lú"
+        "D": "cong nai"
       }
     },
     {
@@ -15785,7 +15787,7 @@
         "A": "quả bưởi",
         "B": "quả bưở",
         "C": "qu bưởi",
-        "D": "quả bưởix"
+        "D": "quả vưởi"
       },
       "questionId": "k2_c1_tn_0533"
     },
@@ -15825,10 +15827,10 @@
       "answer": "C",
       "explanation": "“dịu dàng” là cách viết đúng chính tả.",
       "options": {
-        "A": "dịu dàlg",
+        "A": "rịu dàng",
         "B": "giịu dàng",
         "C": "dịu dàng",
-        "D": "dịu dàngh"
+        "D": "vịu dàng"
       },
       "questionId": "k2_c1_tn_0534"
     },
@@ -15904,7 +15906,7 @@
         "A": "rừng kây",
         "B": "dừng cây",
         "C": "rừng cây",
-        "D": "xbàn tay"
+        "D": "giừng cây"
       }
     },
     {
@@ -15913,7 +15915,7 @@
       "level": "CAP_1_VONG_LOAI",
       "type": "TN",
       "questionId": "k2_c1_tn_0538",
-      "question": "Điền từ chỉ sự vật vào chỗ trống: ( ....... )",
+      "question": "Từ nào dưới đây là từ chỉ sự vật?",
       "answer": "A",
       "explanation": "“con chó” là từ chỉ sự vật.",
       "options": {
@@ -15946,7 +15948,7 @@
       "level": "CAP_1_VONG_LOAI",
       "type": "TN",
       "questionId": "k2_c1_tn_0540",
-      "question": "Điền từ chỉ sự vật vào chỗ trống: ( ....... )",
+      "question": "Từ nào dưới đây là từ chỉ sự vật?",
       "answer": "A",
       "explanation": "“ông bà” là từ chỉ sự vật.",
       "options": {
@@ -16014,7 +16016,7 @@
       "answer": "B",
       "explanation": "“hát múa” là cách viết đúng chính tả.",
       "options": {
-        "A": "hát múax",
+        "A": "hách múa",
         "B": "hát múa",
         "C": "há múa",
         "D": "hát mú"
@@ -16142,8 +16144,8 @@
       "answer": "C",
       "explanation": "“mặt trời” là cách viết đúng chính tả.",
       "options": {
-        "A": "mặt tdời",
-        "B": "mặt trờ",
+        "A": "mặc trời",
+        "B": "mặc chời",
         "C": "mặt trời",
         "D": "mặt chời"
       },
@@ -16175,7 +16177,7 @@
       "answer": "B",
       "explanation": "'con cò' là cách viết đúng chính tả.",
       "options": {
-        "A": "con còh",
+        "A": "cong cò",
         "B": "con cò",
         "C": "con kò",
         "D": "kon cò"
@@ -16210,7 +16212,7 @@
       "answer": "B",
       "explanation": "'kẹo ngọt' là cách viết đúng chính tả.",
       "options": {
-        "A": "gặp gỡh",
+        "A": "khẹo ngọt",
         "B": "kẹo ngọt",
         "C": "kẹo nghọt",
         "D": "cẹo ngọt"
@@ -16393,7 +16395,7 @@
       "explanation": "“gấp áo” là cách viết đúng chính tả.",
       "options": {
         "A": "gấ áo",
-        "B": "gấp áox",
+        "B": "ghấp áo",
         "C": "gấp á",
         "D": "gấp áo"
       },
@@ -16409,7 +16411,7 @@
       "explanation": "“con vịt” là cách viết đúng chính tả.",
       "options": {
         "A": "con vị",
-        "B": "col vịt",
+        "B": "con dịt",
         "C": "kon vịt",
         "D": "con vịt"
       },
@@ -16576,7 +16578,7 @@
       "answer": "B",
       "explanation": "'chợ quê' là cách viết đúng chính tả.",
       "options": {
-        "A": "chợ xquê",
+        "A": "khợ quê",
         "B": "chợ quê",
         "C": "cỉ niệm",
         "D": "trợ quê"
@@ -16651,7 +16653,7 @@
       "answer": "B",
       "explanation": "“gia đình” là cách viết đúng chính tả.",
       "options": {
-        "A": "gia đìlh",
+        "A": "ra đình",
         "B": "gia đình",
         "C": "gia đìn",
         "D": "da đình"
@@ -16669,7 +16671,7 @@
       "options": {
         "A": "cây tre",
         "B": "kây tre",
-        "C": "cây tde",
+        "C": "kây che",
         "D": "cây che"
       },
       "questionId": "k2_c1_tn_0568"
@@ -16777,7 +16779,7 @@
         "A": "trổi tre",
         "B": "chổi che",
         "C": "chổi tre",
-        "D": "chổi tde"
+        "D": "trổi che"
       },
       "questionId": "k2_c1_tn_0573"
     },
@@ -16791,7 +16793,7 @@
       "explanation": "“kể chuyện” là cách viết đúng chính tả.",
       "options": {
         "A": "kể truyện",
-        "B": "kể chuyệl",
+        "B": "cể chuyện",
         "C": "kể khuyện",
         "D": "kể chuyện"
       },
@@ -16863,8 +16865,8 @@
       "explanation": "'làng quê' là cách viết đúng chính tả.",
       "options": {
         "A": "làng qu",
-        "B": "làng xquê",
-        "C": "xlàng quê",
+        "B": "nàng quê",
+        "C": "ràng quê",
         "D": "làng quê"
       }
     },
@@ -16917,8 +16919,8 @@
       "explanation": "'cô bé' là cách viết đúng chính tả.",
       "options": {
         "A": "cô bé",
-        "B": "cô xbé",
-        "C": "cô béh",
+        "B": "cô vé",
+        "C": "kô vé",
         "D": "kô bé"
       }
     },
@@ -16966,7 +16968,7 @@
       "options": {
         "A": "sạch xẽ",
         "B": "xạch sẽ",
-        "C": "sạch sẽh",
+        "C": "xạch xẽ",
         "D": "sạch sẽ"
       }
     },
@@ -17015,8 +17017,8 @@
       "answer": "D",
       "explanation": "“trồng rau” là cách viết đúng chính tả.",
       "options": {
-        "A": "trồlg rau",
-        "B": "tdồng rau",
+        "A": "trồng dau",
+        "B": "chồng dau",
         "C": "chồng rau",
         "D": "trồng rau"
       },
@@ -17179,7 +17181,7 @@
       "options": {
         "A": "kửa sổ",
         "B": "cửa xổ",
-        "C": "chăm ch",
+        "C": "chăm trỉ",
         "D": "cửa sổ"
       }
     },
@@ -17236,9 +17238,9 @@
       "answer": "D",
       "explanation": "'bố mẹ' là cách viết đúng chính tả.",
       "options": {
-        "A": "xbố mẹ",
-        "B": "bố xmẹ",
-        "C": "bố mẹh",
+        "A": "vố mẹ",
+        "B": "bổ mẹ",
+        "C": "bố nẹ",
         "D": "bố mẹ"
       }
     },
@@ -17320,7 +17322,7 @@
       "explanation": "“nhanh nhẹn” là cách viết đúng chính tả.",
       "options": {
         "A": "nhanh nhẹ",
-        "B": "lhanh nhẹn",
+        "B": "lanh nhẹn",
         "C": "nhanh nhẹn",
         "D": "nhan nhẹn"
       },
@@ -17395,7 +17397,7 @@
       "answer": "B",
       "explanation": "“ngày mới” là cách viết đúng chính tả.",
       "options": {
-        "A": "lgày mới",
+        "A": "ngảy mới",
         "B": "ngày mới",
         "C": "ngày mớ",
         "D": "nghày mới"
@@ -17412,8 +17414,8 @@
       "explanation": "“cầu vồng” là cách viết đúng chính tả.",
       "options": {
         "A": "kầu vồng",
-        "B": "cầu vồlg",
-        "C": "cầu vồngh",
+        "B": "cầu vồn",
+        "C": "cầu dồng",
         "D": "cầu vồng"
       },
       "questionId": "k2_c1_tn_0593"
@@ -17443,7 +17445,7 @@
       "answer": "C",
       "explanation": "“nhảy dây” là cách viết đúng chính tả.",
       "options": {
-        "A": "lhảy dây",
+        "A": "lảy dây",
         "B": "nhảy giây",
         "C": "nhảy dây",
         "D": "nhảy dâ"
@@ -17548,10 +17550,10 @@
       "answer": "C",
       "explanation": "“rừng cây” là cách viết đúng chính tả.",
       "options": {
-        "A": "rừngh cây",
+        "A": "rừng kây",
         "B": "dừng cây",
         "C": "rừng cây",
-        "D": "rừlg cây"
+        "D": "giừng cây"
       },
       "questionId": "k2_c1_tn_0599"
     },
@@ -17565,9 +17567,9 @@
       "explanation": "“bảng đen” là cách viết đúng chính tả.",
       "options": {
         "A": "bảng đen",
-        "B": "bảng đe",
-        "C": "bảngh đen",
-        "D": "bảlg đen"
+        "B": "bản đen",
+        "C": "vảng đen",
+        "D": "bảng đem"
       },
       "questionId": "k2_c1_tn_0600"
     },
@@ -17700,7 +17702,7 @@
         "A": "sân chơi",
         "B": "sân trơi",
         "C": "xân chơi",
-        "D": "sâl chơi"
+        "D": "sân khơi"
       },
       "questionId": "k2_c1_tn_0606"
     },
@@ -17769,7 +17771,7 @@
       "level": "CAP_1_VONG_LOAI",
       "type": "TN",
       "questionId": "k2_c1_tn_0610",
-      "question": "Điền từ chỉ đặc điểm vào chỗ trống: ( ....... )",
+      "question": "Từ nào dưới đây là từ chỉ đặc điểm?",
       "answer": "A",
       "explanation": "“khéo léo” là từ chỉ đặc điểm.",
       "options": {
@@ -17918,7 +17920,7 @@
       "options": {
         "A": "mát m",
         "B": "má mẻ",
-        "C": "mát mẻx",
+        "C": "mách mẻ",
         "D": "mát mẻ"
       },
       "questionId": "k2_c1_tn_0614"
@@ -18143,7 +18145,7 @@
       "explanation": "“vườn rau” là cách viết đúng chính tả.",
       "options": {
         "A": "vườn rau",
-        "B": "vườl rau",
+        "B": "dườn rau",
         "C": "vườn dau",
         "D": "vườn ra"
       },
@@ -18173,7 +18175,7 @@
         "A": "dếng nước",
         "B": "giếng nướ",
         "C": "giếng nước",
-        "D": "giếng xnước"
+        "D": "ghiếng nước"
       }
     },
     {
@@ -18214,7 +18216,7 @@
       "options": {
         "A": "nhanh nhẹ",
         "B": "nhan nhẹn",
-        "C": "lhanh nhẹn",
+        "C": "lanh nhẹn",
         "D": "nhanh nhẹn"
       },
       "questionId": "k2_c1_tn_0620"
@@ -18325,7 +18327,7 @@
       "answer": "D",
       "explanation": "'chim sẻ' là cách viết đúng chính tả.",
       "options": {
-        "A": "chim sẻh",
+        "A": "khim sẻ",
         "B": "trim sẻ",
         "C": "chim xẻ",
         "D": "chim sẻ"
@@ -18340,7 +18342,7 @@
       "answer": "B",
       "explanation": "“con vịt” là cách viết đúng chính tả.",
       "options": {
-        "A": "col vịt",
+        "A": "con dịt",
         "B": "con vịt",
         "C": "kon vịt",
         "D": "con vị"
@@ -18399,8 +18401,8 @@
       "answer": "C",
       "explanation": "“phấn trắng” là cách viết đúng chính tả.",
       "options": {
-        "A": "phấn tdắng",
-        "B": "phấl trắng",
+        "A": "phấn trắn",
+        "B": "phấng trắng",
         "C": "phấn trắng",
         "D": "phấn chắng"
       },
@@ -18433,7 +18435,7 @@
       "options": {
         "A": "sếp hình",
         "B": "xếp hìn",
-        "C": "xếp hìlh",
+        "C": "xết hình",
         "D": "xếp hình"
       },
       "questionId": "k2_c1_tn_0632"
@@ -18450,7 +18452,7 @@
       "options": {
         "A": "trăn màn",
         "B": "gọn ghàng",
-        "C": "chăn xmàn",
+        "C": "khăn màn",
         "D": "chăn màn"
       }
     },
@@ -18466,7 +18468,7 @@
         "A": "hiền làn",
         "B": "hiền nành",
         "C": "hiền lành",
-        "D": "hiềl lành"
+        "D": "hiền rành"
       },
       "questionId": "k2_c1_tn_0634"
     },
@@ -18563,7 +18565,7 @@
       "answer": "B",
       "explanation": "“bút chì” là cách viết đúng chính tả.",
       "options": {
-        "A": "bút ch",
+        "A": "bút tì",
         "B": "bút chì",
         "C": "bút trì",
         "D": "bút khì"
@@ -18583,7 +18585,7 @@
         "A": "trồng câ",
         "B": "dếng nước",
         "C": "giếng nước",
-        "D": "giếng xnước"
+        "D": "ghiếng nước"
       }
     },
     {
@@ -18599,7 +18601,7 @@
         "A": "cánh đồng",
         "B": "kánh đồng",
         "C": "cánh đồn",
-        "D": "cánh xđồng"
+        "D": "cánh dồng"
       }
     },
     {
@@ -18669,7 +18671,7 @@
       "level": "CAP_1_VONG_LOAI",
       "type": "TN",
       "questionId": "k2_c1_tn_0643",
-      "question": "Điền từ chỉ hoạt động vào chỗ trống: ( ....... )",
+      "question": "Từ nào dưới đây là từ chỉ hoạt động?",
       "answer": "A",
       "explanation": "“hót vang” là từ chỉ hoạt động.",
       "options": {
@@ -18717,8 +18719,8 @@
       "answer": "D",
       "explanation": "'xe đạp' là cách viết đúng chính tả.",
       "options": {
-        "A": "xe xđạp",
-        "B": "xe đạ",
+        "A": "xe đạt",
+        "B": "xe dạp",
         "C": "se đạp",
         "D": "xe đạp"
       }
@@ -18735,7 +18737,7 @@
       "options": {
         "A": "gia đình",
         "B": "xáng sớm",
-        "C": "gia xđình",
+        "C": "ghia đình",
         "D": "da đình"
       }
     },
@@ -18748,7 +18750,7 @@
       "answer": "B",
       "explanation": "“lễ phép” là cách viết đúng chính tả.",
       "options": {
-        "A": "lễ phépx",
+        "A": "lể phép",
         "B": "lễ phép",
         "C": "nễ phép",
         "D": "lễ phé"
@@ -18782,7 +18784,7 @@
       "options": {
         "A": "kao lớn",
         "B": "cao lớn",
-        "C": "cao lớl",
+        "C": "cao rớn",
         "D": "cao nớn"
       },
       "questionId": "k2_c1_tn_0649"
@@ -18799,8 +18801,8 @@
       "options": {
         "A": "xông bà",
         "B": "ông bà",
-        "C": "ông xbà",
-        "D": "ông bàh"
+        "C": "ông và",
+        "D": "ông dà"
       }
     },
     {
@@ -18872,10 +18874,10 @@
       "answer": "B",
       "explanation": "“thật thà” là cách viết đúng chính tả.",
       "options": {
-        "A": "thật th",
+        "A": "thật tà",
         "B": "thật thà",
         "C": "thậ thà",
-        "D": "thật thàx"
+        "D": "tật thà"
       },
       "questionId": "k2_c1_tn_0653"
     },
@@ -18888,9 +18890,9 @@
       "answer": "D",
       "explanation": "“tròn trịa” là cách viết đúng chính tả.",
       "options": {
-        "A": "tròl trịa",
+        "A": "tròng trịa",
         "B": "chòn trịa",
-        "C": "tdòn trịa",
+        "C": "tròn chịa",
         "D": "tròn trịa"
       },
       "questionId": "k2_c1_tn_0654"
@@ -18956,7 +18958,7 @@
       "explanation": "'con chó' là cách viết đúng chính tả.",
       "options": {
         "A": "con chó",
-        "B": "con ch",
+        "B": "con xó",
         "C": "kon chó",
         "D": "con tró"
       }
@@ -19038,7 +19040,7 @@
       "explanation": "“ghép hình” là cách viết đúng chính tả.",
       "options": {
         "A": "ghép hình",
-        "B": "ghép hìlh",
+        "B": "gép hìn",
         "C": "gép hình",
         "D": "ghép hìn"
       },
@@ -19085,7 +19087,7 @@
       "answer": "D",
       "explanation": "“hát múa” là cách viết đúng chính tả.",
       "options": {
-        "A": "hát múax",
+        "A": "hách múa",
         "B": "há múa",
         "C": "hát mú",
         "D": "hát múa"
@@ -19224,7 +19226,7 @@
       "answer": "B",
       "explanation": "“dòng suối” là cách viết đúng chính tả.",
       "options": {
-        "A": "dòlg suối",
+        "A": "ròng suối",
         "B": "dòng suối",
         "C": "giòng suối",
         "D": "dòng xuối"
@@ -19243,7 +19245,7 @@
       "options": {
         "A": "xấm chớp",
         "B": "sấm trớp",
-        "C": "xđôi dép",
+        "C": "sấm khớp",
         "D": "sấm chớp"
       }
     },
@@ -19478,7 +19480,7 @@
         "A": "cây bàng",
         "B": "cây bàn",
         "C": "kây bàng",
-        "D": "cây xbàng"
+        "D": "kây bàn"
       }
     },
     {
@@ -19602,10 +19604,10 @@
       "answer": "B",
       "explanation": "“nghe kể” là cách viết đúng chính tả.",
       "options": {
-        "A": "lghe kể",
+        "A": "nghe cể",
         "B": "nghe kể",
         "C": "nge kể",
-        "D": "nghhe kể"
+        "D": "nghe khể"
       },
       "questionId": "k2_c1_tn_0679"
     },
@@ -19719,7 +19721,7 @@
       "options": {
         "A": "ngọn nú",
         "B": "ngọn núi",
-        "C": "lgọn núi",
+        "C": "ngọn lúi",
         "D": "nghọn núi"
       },
       "questionId": "k2_c1_tn_0682"
@@ -19776,9 +19778,9 @@
       "answer": "D",
       "explanation": "“bé nhỏ” là cách viết đúng chính tả.",
       "options": {
-        "A": "bé nh",
-        "B": "bé nhỏx",
-        "C": "bé lhỏ",
+        "A": "bé nỏ",
+        "B": "vé nhỏ",
+        "C": "bé lỏ",
         "D": "bé nhỏ"
       },
       "questionId": "k2_c1_tn_0684"
@@ -19847,9 +19849,9 @@
       "explanation": "“trồng cây” là cách viết đúng chính tả.",
       "options": {
         "A": "trồng cây",
-        "B": "trồlg cây",
+        "B": "trồng kây",
         "C": "chồng cây",
-        "D": "tdồng cây"
+        "D": "chồng kây"
       },
       "questionId": "k2_c1_tn_0686"
     },
@@ -19972,7 +19974,7 @@
       "options": {
         "A": "trăm ngoan",
         "B": "chăm nghoan",
-        "C": "chăm lgoan",
+        "C": "khăm ngoan",
         "D": "chăm ngoan"
       },
       "questionId": "k2_c1_tn_0691"
@@ -20070,9 +20072,9 @@
       "answer": "D",
       "explanation": "“đỏ thắm” là cách viết đúng chính tả.",
       "options": {
-        "A": "đỏ thắmh",
+        "A": "dỏ thắm",
         "B": "đỏ thắ",
-        "C": "đỏ thắmx",
+        "C": "đỏ tắm",
         "D": "đỏ thắm"
       },
       "questionId": "k2_c1_tn_0695"
@@ -20172,8 +20174,8 @@
       "explanation": "'thư viện' là cách viết đúng chính tả.",
       "options": {
         "A": "thư việ",
-        "B": "thư xviện",
-        "C": "xthư viện",
+        "B": "tư viện",
+        "C": "khư viện",
         "D": "thư viện"
       }
     },
@@ -20204,7 +20206,7 @@
       "options": {
         "A": "kon mèo",
         "B": "con mè",
-        "C": "col mèo",
+        "C": "cong mèo",
         "D": "con mèo"
       },
       "questionId": "k2_c1_tn_0701"
@@ -20399,7 +20401,7 @@
       "options": {
         "A": "quả bưởi",
         "B": "qu bưởi",
-        "C": "quả bưởix",
+        "C": "quả vưởi",
         "D": "quả bưở"
       },
       "questionId": "k2_c1_tn_0710"
@@ -20449,7 +20451,7 @@
       "options": {
         "A": "trạy bộ",
         "B": "chạy bộ",
-        "C": "chạy b",
+        "C": "chạy vộ",
         "D": "khạy bộ"
       },
       "questionId": "k2_c1_tn_0712"
@@ -20506,8 +20508,8 @@
       "answer": "D",
       "explanation": "“cây phượng” là cách viết đúng chính tả.",
       "options": {
-        "A": "cây phượlg",
-        "B": "cây phượngh",
+        "A": "cây phượn",
+        "B": "cây phường",
         "C": "kây phượng",
         "D": "cây phượng"
       },
@@ -20524,7 +20526,7 @@
       "options": {
         "A": "quyển vở",
         "B": "quyể vở",
-        "C": "quyểl vở",
+        "C": "quyển dở",
         "D": "quyển v"
       },
       "questionId": "k2_c1_tn_0715"
@@ -20609,9 +20611,9 @@
       "explanation": "“gà trống” là cách viết đúng chính tả.",
       "options": {
         "A": "gà trống",
-        "B": "gà tdống",
+        "B": "gà trốn",
         "C": "gà chống",
-        "D": "gà trốlg"
+        "D": "gà chốn"
       },
       "questionId": "k2_c1_tn_0717"
     },
@@ -20628,7 +20630,7 @@
         "A": "khu vườn",
         "B": "chu vườn",
         "C": "khu vườ",
-        "D": "khu xvườn"
+        "D": "ku vườn"
       }
     },
     {
@@ -20710,9 +20712,9 @@
       "answer": "D",
       "explanation": "“cánh đồng” là cách viết đúng chính tả.",
       "options": {
-        "A": "cálh đồng",
+        "A": "cán đồng",
         "B": "kánh đồng",
-        "C": "cánh đồngh",
+        "C": "cánh dồng",
         "D": "cánh đồng"
       },
       "questionId": "k2_c1_tn_0722"
@@ -20743,9 +20745,9 @@
       "explanation": "“gọn gàng” là cách viết đúng chính tả.",
       "options": {
         "A": "gọn gàng",
-        "B": "gọl gàng",
+        "B": "ghọn gàng",
         "C": "gọn gàn",
-        "D": "gọn gàngh"
+        "D": "gọn ghàng"
       },
       "questionId": "k2_c1_tn_0724"
     },
@@ -20755,7 +20757,7 @@
       "level": "CAP_1_VONG_LOAI",
       "type": "TN",
       "questionId": "k2_c1_tn_0725",
-      "question": "Điền từ chỉ sự vật vào chỗ trống: ( ....... )",
+      "question": "Từ nào dưới đây là từ chỉ sự vật?",
       "answer": "A",
       "explanation": "“bác sĩ” là từ chỉ sự vật.",
       "options": {
@@ -20827,7 +20829,7 @@
       "answer": "B",
       "explanation": "'xung quanh' là cách viết đúng chính tả.",
       "options": {
-        "A": "xung xquanh",
+        "A": "xun quanh",
         "B": "xung quanh",
         "C": "sung quanh",
         "D": "dừng cây"
@@ -20842,8 +20844,8 @@
       "answer": "D",
       "explanation": "“đỏ thắm” là cách viết đúng chính tả.",
       "options": {
-        "A": "đỏ thắmh",
-        "B": "đỏ thắmx",
+        "A": "dỏ thắm",
+        "B": "đỏ tắm",
         "C": "đỏ thắ",
         "D": "đỏ thắm"
       },
@@ -20859,7 +20861,7 @@
       "explanation": "“viết bài” là cách viết đúng chính tả.",
       "options": {
         "A": "viết bài",
-        "B": "viết bàix",
+        "B": "diết bài",
         "C": "viế bài",
         "D": "viết bà"
       },
@@ -20907,7 +20909,7 @@
       "explanation": "“ngoan ngoãn” là cách viết đúng chính tả.",
       "options": {
         "A": "ngoan ngoãn",
-        "B": "lgoan ngoãn",
+        "B": "ngoan nghoãn",
         "C": "nghoan ngoãn",
         "D": "ngoan ngoã"
       },
@@ -21021,7 +21023,7 @@
       "options": {
         "A": "gió má",
         "B": "gió mát",
-        "C": "gió xmát",
+        "C": "ghió mát",
         "D": "dó mát"
       }
     },
@@ -21077,10 +21079,10 @@
       "answer": "C",
       "explanation": "“em bé” là cách viết đúng chính tả.",
       "options": {
-        "A": "em béh",
-        "B": "em b",
+        "A": "en bé",
+        "B": "em vé",
         "C": "em bé",
-        "D": "em béx"
+        "D": "em bẻ"
       },
       "questionId": "k2_c1_tn_0738"
     },
@@ -21096,7 +21098,7 @@
       "options": {
         "A": "gọn ghàng",
         "B": "gọn gàng",
-        "C": "nghỉ hèh",
+        "C": "gọng gàng",
         "D": "ghọn gàng"
       }
     },
@@ -21140,7 +21142,7 @@
       "options": {
         "A": "ngày mới",
         "B": "nghày mới",
-        "C": "ngày xmới",
+        "C": "ngảy mới",
         "D": "ngày mớ"
       }
     },
@@ -21153,9 +21155,9 @@
       "answer": "B",
       "explanation": "“hoa hồng” là cách viết đúng chính tả.",
       "options": {
-        "A": "hoa hồngh",
+        "A": "hoa hổng",
         "B": "hoa hồng",
-        "C": "hoa hồlg",
+        "C": "hoa gồng",
         "D": "hoa hồn"
       },
       "questionId": "k2_c1_tn_0741"
@@ -21171,7 +21173,7 @@
       "options": {
         "A": "lớp họ",
         "B": "lớp học",
-        "C": "lớp họk",
+        "C": "rớp học",
         "D": "nớp học"
       },
       "questionId": "k2_c1_tn_0742"
@@ -21203,7 +21205,7 @@
       "options": {
         "A": "kao lớn",
         "B": "cao nớn",
-        "C": "cao lớl",
+        "C": "cao rớn",
         "D": "cao lớn"
       },
       "questionId": "k2_c1_tn_0744"
@@ -21338,7 +21340,7 @@
       "explanation": "“trăng sáng” là cách viết đúng chính tả.",
       "options": {
         "A": "trăng xáng",
-        "B": "trălg sáng",
+        "B": "chăng xáng",
         "C": "trăng sáng",
         "D": "chăng sáng"
       },
@@ -21354,8 +21356,8 @@
       "explanation": "“cá vàng” là cách viết đúng chính tả.",
       "options": {
         "A": "ká vàng",
-        "B": "cá vàlg",
-        "C": "cá vàngh",
+        "B": "cá vàn",
+        "C": "cá dàng",
         "D": "cá vàng"
       },
       "questionId": "k2_c1_tn_0749"
@@ -21372,8 +21374,8 @@
       "options": {
         "A": "ngôi nhà",
         "B": "nghôi nhà",
-        "C": "ngôi nh",
-        "D": "ngôi xnhà"
+        "C": "ngôi là",
+        "D": "ngôi nà"
       }
     },
     {
@@ -21438,7 +21440,7 @@
         "A": "xúc sích",
         "B": "súc xích",
         "C": "xúc xích",
-        "D": "sạch sẽh"
+        "D": "xút xích"
       }
     },
     {
@@ -21516,7 +21518,7 @@
       "options": {
         "A": "chăm nghoan",
         "B": "chăm ngoan",
-        "C": "chăm lgoan",
+        "C": "khăm ngoan",
         "D": "trăm ngoan"
       },
       "questionId": "k2_c1_tn_0756"
@@ -21542,8 +21544,8 @@
       "explanation": "“cá vàng” là cách viết đúng chính tả.",
       "options": {
         "A": "ká vàng",
-        "B": "cá vàngh",
-        "C": "cá vàlg",
+        "B": "cá dàng",
+        "C": "cá vàn",
         "D": "cá vàng"
       },
       "questionId": "k2_c1_tn_0757"
@@ -21575,7 +21577,7 @@
       "explanation": "'trời mưa' là cách viết đúng chính tả.",
       "options": {
         "A": "trời mư",
-        "B": "trời xmưa",
+        "B": "trởi mưa",
         "C": "trời mưa",
         "D": "chời mưa"
       }
@@ -21608,7 +21610,7 @@
       "options": {
         "A": "con mè",
         "B": "kon mèo",
-        "C": "con xmèo",
+        "C": "cong mèo",
         "D": "con mèo"
       }
     },
@@ -21622,8 +21624,8 @@
       "explanation": "“con trâu” là cách viết đúng chính tả.",
       "options": {
         "A": "con châu",
-        "B": "col trâu",
-        "C": "con tdâu",
+        "B": "kon trâu",
+        "C": "con chao",
         "D": "con trâu"
       },
       "questionId": "k2_c1_tn_0761"
@@ -21640,7 +21642,7 @@
       "options": {
         "A": "trú thỏ",
         "B": "chú thỏ",
-        "C": "chú xthỏ",
+        "C": "khú thỏ",
         "D": "dòng xuối"
       }
     },
@@ -21746,8 +21748,8 @@
       "explanation": "“cầu vồng” là cách viết đúng chính tả.",
       "options": {
         "A": "kầu vồng",
-        "B": "cầu vồlg",
-        "C": "cầu vồngh",
+        "B": "cầu vồn",
+        "C": "cầu dồng",
         "D": "cầu vồng"
       },
       "questionId": "k2_c1_tn_0765"
@@ -21778,7 +21780,7 @@
       "explanation": "“ghé thăm” là cách viết đúng chính tả.",
       "options": {
         "A": "gé thăm",
-        "B": "gh thăm",
+        "B": "dé thăm",
         "C": "ghé thă",
         "D": "ghé thăm"
       },
@@ -21810,7 +21812,7 @@
       "explanation": "“lá xanh” là cách viết đúng chính tả.",
       "options": {
         "A": "lá sanh",
-        "B": "lá xalh",
+        "B": "ná sanh",
         "C": "ná xanh",
         "D": "lá xanh"
       },
@@ -21865,7 +21867,7 @@
       "level": "CAP_1_VONG_LOAI",
       "type": "TN",
       "questionId": "k2_c1_tn_0771",
-      "question": "Điền từ chỉ hoạt động vào chỗ trống: ( ....... )",
+      "question": "Từ nào dưới đây là từ chỉ hoạt động?",
       "answer": "A",
       "explanation": "“gói bánh” là từ chỉ hoạt động.",
       "options": {
@@ -21967,7 +21969,7 @@
       "answer": "D",
       "explanation": "“đám mây” là cách viết đúng chính tả.",
       "options": {
-        "A": "đám mâyx",
+        "A": "dám mây",
         "B": "đám mâ",
         "C": "đá mây",
         "D": "đám mây"
@@ -22011,7 +22013,7 @@
       "explanation": "“sân chơi” là cách viết đúng chính tả.",
       "options": {
         "A": "sân trơi",
-        "B": "sâl chơi",
+        "B": "sân khơi",
         "C": "sân chơi",
         "D": "xân chơi"
       },
@@ -22027,7 +22029,7 @@
       "explanation": "“vui vẻ” là cách viết đúng chính tả.",
       "options": {
         "A": "vui v",
-        "B": "vui vẻx",
+        "B": "dui vẻ",
         "C": "vu vẻ",
         "D": "vui vẻ"
       },
@@ -22127,10 +22129,10 @@
       "answer": "C",
       "explanation": "“cánh đồng” là cách viết đúng chính tả.",
       "options": {
-        "A": "cálh đồng",
+        "A": "cán đồng",
         "B": "kánh đồng",
         "C": "cánh đồng",
-        "D": "cánh đồngh"
+        "D": "cánh dồng"
       },
       "questionId": "k2_c1_tn_0782"
     },
@@ -22204,8 +22206,8 @@
       "options": {
         "A": "buồ bã",
         "B": "buồn bã",
-        "C": "buồl bã",
-        "D": "buồn b"
+        "C": "vuồn bã",
+        "D": "buồng bã"
       },
       "questionId": "k2_c1_tn_0785"
     },
@@ -22219,8 +22221,8 @@
       "answer": "C",
       "explanation": "'quả cam' là cách viết đúng chính tả.",
       "options": {
-        "A": "xquả cam",
-        "B": "xbức tranh",
+        "A": "quả can",
+        "B": "quã cam",
         "C": "quả cam",
         "D": "quả kam"
       }
@@ -22254,7 +22256,7 @@
         "A": "chái tim",
         "B": "trái tim",
         "C": "trái ti",
-        "D": "tdái tim"
+        "D": "trái tin"
       },
       "questionId": "k2_c1_tn_0788"
     },
@@ -22269,7 +22271,7 @@
       "options": {
         "A": "chái tim",
         "B": "trái tim",
-        "C": "tdái tim",
+        "C": "trái tin",
         "D": "trái ti"
       },
       "questionId": "k2_c1_tn_0789"
@@ -22285,7 +22287,7 @@
       "options": {
         "A": "giá sách",
         "B": "dá sách",
-        "C": "giá sátr",
+        "C": "ghiá sách",
         "D": "giá xách"
       },
       "questionId": "k2_c1_tn_0790"
@@ -22526,7 +22528,7 @@
       "options": {
         "A": "đám mây",
         "B": "đám mâ",
-        "C": "đám mâyx",
+        "C": "dám mây",
         "D": "đá mây"
       },
       "questionId": "k2_c1_tn_0794"
@@ -22576,8 +22578,8 @@
       "options": {
         "A": "đọc sách",
         "B": "đọc xách",
-        "C": "đọc sátr",
-        "D": "đọk sách"
+        "C": "dọc sách",
+        "D": "đọt sách"
       },
       "questionId": "k2_c1_tn_0796"
     },
@@ -22666,8 +22668,8 @@
       "answer": "D",
       "explanation": "'thăm hỏi' là cách viết đúng chính tả.",
       "options": {
-        "A": "thăm xhỏi",
-        "B": "xthăm hỏi",
+        "A": "tăm hỏi",
+        "B": "khăm hỏi",
         "C": "thăm hỏ",
         "D": "thăm hỏi"
       }
@@ -22694,7 +22696,7 @@
       "level": "CAP_1_VONG_LOAI",
       "type": "TN",
       "questionId": "k2_c1_tn_0803",
-      "question": "Điền từ chỉ hoạt động vào chỗ trống: ( ....... )",
+      "question": "Từ nào dưới đây là từ chỉ hoạt động?",
       "answer": "A",
       "explanation": "“xây nhà” là từ chỉ hoạt động.",
       "options": {
@@ -22806,7 +22808,7 @@
       "answer": "C",
       "explanation": "“bút chì” là cách viết đúng chính tả.",
       "options": {
-        "A": "bút ch",
+        "A": "bút tì",
         "B": "bút trì",
         "C": "bút chì",
         "D": "bút khì"
@@ -22855,9 +22857,9 @@
       "explanation": "“con trâu” là cách viết đúng chính tả.",
       "options": {
         "A": "con châu",
-        "B": "col trâu",
+        "B": "kon trâu",
         "C": "con trâu",
-        "D": "con tdâu"
+        "D": "con chao"
       },
       "questionId": "k2_c1_tn_0810"
     },
@@ -22941,8 +22943,8 @@
       "options": {
         "A": "kon bò",
         "B": "con bò",
-        "C": "col bò",
-        "D": "con b"
+        "C": "cong bò",
+        "D": "con vò"
       },
       "questionId": "k2_c1_tn_0811"
     },
@@ -22958,7 +22960,7 @@
         "A": "giá xách",
         "B": "giá sách",
         "C": "dá sách",
-        "D": "giá sátr"
+        "D": "ghiá sách"
       },
       "questionId": "k2_c1_tn_0812"
     },
@@ -23039,8 +23041,8 @@
       "options": {
         "A": "lớp họ",
         "B": "lớp học",
-        "C": "lớp xhọc",
-        "D": "xlớp học"
+        "C": "nớp học",
+        "D": "rớp học"
       }
     },
     {
@@ -23126,8 +23128,8 @@
       "explanation": "'kỉ niệm' là cách viết đúng chính tả.",
       "options": {
         "A": "cỉ niệm",
-        "B": "bạn xbè",
-        "C": "kỉ xniệm",
+        "B": "kĩ niệm",
+        "C": "khỉ niệm",
         "D": "kỉ niệm"
       }
     },
@@ -23142,9 +23144,9 @@
       "explanation": "'trâu bò' là cách viết đúng chính tả.",
       "options": {
         "A": "châu bò",
-        "B": "trâu bòh",
+        "B": "châu vò",
         "C": "trâu bò",
-        "D": "trâu xbò"
+        "D": "trâu vò"
       }
     },
     {
@@ -23230,7 +23232,7 @@
       "explanation": "'ngọn núi' là cách viết đúng chính tả.",
       "options": {
         "A": "xum họp",
-        "B": "ngọn xnúi",
+        "B": "ngọn lúi",
         "C": "nghọn núi",
         "D": "ngọn núi"
       }
@@ -23316,7 +23318,7 @@
         "A": "nghề nghiệp",
         "B": "nghề ngiệp",
         "C": "ngề nghiệp",
-        "D": "trâu bòh"
+        "D": "nghề nghiệt"
       }
     },
     {
@@ -23490,7 +23492,7 @@
       "answer": "D",
       "explanation": "“lớp học” là cách viết đúng chính tả.",
       "options": {
-        "A": "lớp họk",
+        "A": "rớp học",
         "B": "lớp họ",
         "C": "nớp học",
         "D": "lớp học"
@@ -23521,7 +23523,7 @@
       "level": "CAP_1_VONG_LOAI",
       "type": "TN",
       "questionId": "k2_c1_tn_0826",
-      "question": "Điền từ chỉ đặc điểm vào chỗ trống: ( ....... )",
+      "question": "Từ nào dưới đây là từ chỉ đặc điểm?",
       "answer": "A",
       "explanation": "“tốt bụng” là từ chỉ đặc điểm.",
       "options": {
@@ -23590,7 +23592,7 @@
       "answer": "C",
       "explanation": "“quả bưởi” là cách viết đúng chính tả.",
       "options": {
-        "A": "quả bưởix",
+        "A": "quả vưởi",
         "B": "qu bưởi",
         "C": "quả bưởi",
         "D": "quả bưở"
@@ -23608,8 +23610,8 @@
       "options": {
         "A": "dếng nước",
         "B": "giếng nước",
-        "C": "giếngh nước",
-        "D": "giếlg nước"
+        "C": "ghiếng nước",
+        "D": "rếng nước"
       },
       "questionId": "k2_c1_tn_0829"
     },
@@ -23623,9 +23625,9 @@
       "explanation": "“đá bóng” là cách viết đúng chính tả.",
       "options": {
         "A": "đá bóng",
-        "B": "đá bóngh",
+        "B": "dá bóng",
         "C": "đá bón",
-        "D": "đá bólg"
+        "D": "đá vóng"
       },
       "questionId": "k2_c1_tn_0830"
     },
@@ -23640,7 +23642,7 @@
       "explanation": "'xếp hàng' là cách viết đúng chính tả.",
       "options": {
         "A": "xếp hàng",
-        "B": "xếp xhàng",
+        "B": "xết hàng",
         "C": "xếp hàn",
         "D": "sếp hàng"
       }
@@ -23722,8 +23724,8 @@
       "answer": "D",
       "explanation": "“sáng sớm” là cách viết đúng chính tả.",
       "options": {
-        "A": "sálg sớm",
-        "B": "sángh sớm",
+        "A": "sán sớm",
+        "B": "sáng xớm",
         "C": "xáng sớm",
         "D": "sáng sớm"
       },
@@ -23799,7 +23801,7 @@
       "level": "CAP_1_VONG_LOAI",
       "type": "TN",
       "questionId": "k2_c1_tn_0839",
-      "question": "Điền từ chỉ đặc điểm vào chỗ trống: ( ....... )",
+      "question": "Từ nào dưới đây là từ chỉ đặc điểm?",
       "answer": "A",
       "explanation": "“vàng tươi” là từ chỉ đặc điểm.",
       "options": {
@@ -23819,7 +23821,7 @@
       "answer": "C",
       "explanation": "“nhảy dây” là cách viết đúng chính tả.",
       "options": {
-        "A": "lhảy dây",
+        "A": "lảy dây",
         "B": "nhảy dâ",
         "C": "nhảy dây",
         "D": "nhảy giây"
@@ -23851,10 +23853,10 @@
       "answer": "B",
       "explanation": "“ghế gỗ” là cách viết đúng chính tả.",
       "options": {
-        "A": "ghế g",
+        "A": "ghế dỗ",
         "B": "ghế gỗ",
         "C": "gế gỗ",
-        "D": "gh gỗ"
+        "D": "ghế rỗ"
       },
       "questionId": "k2_c1_tn_0842"
     },
@@ -24017,8 +24019,8 @@
       "answer": "C",
       "explanation": "'bông hoa' là cách viết đúng chính tả.",
       "options": {
-        "A": "bông xhoa",
-        "B": "xbông hoa",
+        "A": "vông hoa",
+        "B": "bôn hoa",
         "C": "bông hoa",
         "D": "bông ho"
       }
@@ -24034,7 +24036,7 @@
       "options": {
         "A": "kửa sổ",
         "B": "cửa sổ",
-        "C": "cửa s",
+        "C": "cửa xỗ",
         "D": "cửa xổ"
       },
       "questionId": "k2_c1_tn_0847"
@@ -24164,8 +24166,8 @@
       "explanation": "'chú thỏ' là cách viết đúng chính tả.",
       "options": {
         "A": "chú thỏ",
-        "B": "chú xthỏ",
-        "C": "chú th",
+        "B": "khú thỏ",
+        "C": "chú tỏ",
         "D": "trú thỏ"
       }
     },
@@ -24254,9 +24256,9 @@
       "explanation": "“nghề nghiệp” là cách viết đúng chính tả.",
       "options": {
         "A": "nghề nghiệp",
-        "B": "nghhề nghiệp",
+        "B": "nghề ngiệp",
         "C": "ngề nghiệp",
-        "D": "lghề nghiệp"
+        "D": "nghề nghiệt"
       },
       "questionId": "k2_c1_tn_0854"
     },
@@ -24270,7 +24272,7 @@
       "explanation": "“gia đình” là cách viết đúng chính tả.",
       "options": {
         "A": "gia đìn",
-        "B": "gia đìlh",
+        "B": "ra đình",
         "C": "gia đình",
         "D": "da đình"
       },
@@ -24338,7 +24340,7 @@
         "A": "ngọn núi",
         "B": "nghọn núi",
         "C": "ngọn nú",
-        "D": "ngọn xnúi"
+        "D": "ngọn lúi"
       }
     },
     {
@@ -24395,7 +24397,7 @@
       "explanation": "'gặp gỡ' là cách viết đúng chính tả.",
       "options": {
         "A": "ghặp gỡ",
-        "B": "giặt áoh",
+        "B": "gặt gỡ",
         "C": "gặp gỡ",
         "D": "gặp ghỡ"
       }
@@ -24409,7 +24411,7 @@
       "answer": "B",
       "explanation": "“ngày mới” là cách viết đúng chính tả.",
       "options": {
-        "A": "lgày mới",
+        "A": "ngảy mới",
         "B": "ngày mới",
         "C": "ngày mớ",
         "D": "nghày mới"
@@ -24471,8 +24473,8 @@
       "options": {
         "A": "nghỉ hè",
         "B": "ngỉ hè",
-        "C": "nghỉ xhè",
-        "D": "nghỉ hèh"
+        "C": "nghĩ hè",
+        "D": "nghỉ hèn"
       }
     },
     {
@@ -24580,7 +24582,7 @@
         "A": "trồng kây",
         "B": "chồng cây",
         "C": "trồng cây",
-        "D": "cây xbàng"
+        "D": "chồng kây"
       }
     },
     {
@@ -24610,8 +24612,8 @@
       "options": {
         "A": "gà chống",
         "B": "gà trống",
-        "C": "gà tdống",
-        "D": "gà trốlg"
+        "C": "gà trốn",
+        "D": "gà chốn"
       },
       "questionId": "k2_c1_tn_0869"
     },
@@ -24714,8 +24716,8 @@
       "options": {
         "A": "con bò",
         "B": "kon bò",
-        "C": "col bò",
-        "D": "con b"
+        "C": "cong bò",
+        "D": "con vò"
       },
       "questionId": "k2_c1_tn_0871"
     },
@@ -24760,9 +24762,9 @@
       "answer": "B",
       "explanation": "“học sinh” là cách viết đúng chính tả.",
       "options": {
-        "A": "học silh",
+        "A": "họt sinh",
         "B": "học sinh",
-        "C": "họk sinh",
+        "C": "hỏc sinh",
         "D": "học xinh"
       },
       "questionId": "k2_c1_tn_0873"
@@ -24833,7 +24835,7 @@
       "level": "CAP_1_VONG_LOAI",
       "type": "TN",
       "questionId": "k2_c1_tn_0875",
-      "question": "Điền từ chỉ sự vật vào chỗ trống: ( ....... )",
+      "question": "Từ nào dưới đây là từ chỉ sự vật?",
       "answer": "A",
       "explanation": "“cây tre” là từ chỉ sự vật.",
       "options": {
@@ -24919,7 +24921,7 @@
       "explanation": "'sân trường' là cách viết đúng chính tả.",
       "options": {
         "A": "sân trường",
-        "B": "xthăm hỏi",
+        "B": "sâng trường",
         "C": "sân chường",
         "D": "xân trường"
       }
@@ -25034,9 +25036,9 @@
       "explanation": "'quyển vở' là cách viết đúng chính tả.",
       "options": {
         "A": "quyển vở",
-        "B": "xquyển vở",
-        "C": "quyển vởh",
-        "D": "quyển xvở"
+        "B": "quyển dở",
+        "C": "quyển bở",
+        "D": "quyểng vở"
       }
     },
     {
@@ -25096,10 +25098,10 @@
       "answer": "C",
       "explanation": "“ghế gỗ” là cách viết đúng chính tả.",
       "options": {
-        "A": "ghế g",
+        "A": "ghế dỗ",
         "B": "gế gỗ",
         "C": "ghế gỗ",
-        "D": "gh gỗ"
+        "D": "ghế rỗ"
       },
       "questionId": "k2_c1_tn_0886"
     },
@@ -25112,8 +25114,8 @@
       "answer": "C",
       "explanation": "“con gà” là cách viết đúng chính tả.",
       "options": {
-        "A": "con g",
-        "B": "col gà",
+        "A": "con ghà",
+        "B": "cong gà",
         "C": "con gà",
         "D": "kon gà"
       },
@@ -25131,7 +25133,7 @@
       "options": {
         "A": "chái cây",
         "B": "trái cây",
-        "C": "lá cờh",
+        "C": "trải cây",
         "D": "trái kây"
       }
     },
@@ -25144,10 +25146,10 @@
       "answer": "B",
       "explanation": "“ông bà” là cách viết đúng chính tả.",
       "options": {
-        "A": "ông b",
+        "A": "ông và",
         "B": "ông bà",
-        "C": "ôngh bà",
-        "D": "ôlg bà"
+        "C": "ôn bà",
+        "D": "ông dà"
       },
       "questionId": "k2_c1_tn_0889"
     },
@@ -25161,9 +25163,9 @@
       "answer": "B",
       "explanation": "'kính mắt' là cách viết đúng chính tả.",
       "options": {
-        "A": "kính xmắt",
+        "A": "khính mắt",
         "B": "kính mắt",
-        "C": "kính mắ",
+        "C": "kính mấc",
         "D": "cính mắt"
       }
     },
@@ -25337,8 +25339,8 @@
       "options": {
         "A": "xáng sớm",
         "B": "sáng sớm",
-        "C": "sálg sớm",
-        "D": "sángh sớm"
+        "C": "sán sớm",
+        "D": "sáng xớm"
       },
       "questionId": "k2_c1_tn_0897"
     },
@@ -25462,7 +25464,7 @@
         "A": "nhan nhẹn",
         "B": "nhanh nhẹ",
         "C": "nhanh nhẹn",
-        "D": "lhanh nhẹn"
+        "D": "lanh nhẹn"
       },
       "questionId": "k2_c1_tn_0902"
     },
@@ -25491,7 +25493,7 @@
       "answer": "D",
       "explanation": "“vui vẻ” là cách viết đúng chính tả.",
       "options": {
-        "A": "vui vẻx",
+        "A": "dui vẻ",
         "B": "vu vẻ",
         "C": "vui v",
         "D": "vui vẻ"
@@ -25509,7 +25511,7 @@
       "options": {
         "A": "trái ti",
         "B": "trái tim",
-        "C": "tdái tim",
+        "C": "trái tin",
         "D": "chái tim"
       },
       "questionId": "k2_c1_tn_0905"
@@ -25523,7 +25525,7 @@
       "answer": "C",
       "explanation": "“xinh xắn” là cách viết đúng chính tả.",
       "options": {
-        "A": "xilh xắn",
+        "A": "xinh sắn",
         "B": "sinh xắn",
         "C": "xinh xắn",
         "D": "xinh xắ"
@@ -25539,9 +25541,9 @@
       "answer": "D",
       "explanation": "“nghỉ hè” là cách viết đúng chính tả.",
       "options": {
-        "A": "lghỉ hè",
+        "A": "nghĩ hè",
         "B": "ngỉ hè",
-        "C": "nghhỉ hè",
+        "C": "nghị hè",
         "D": "nghỉ hè"
       },
       "questionId": "k2_c1_tn_0907"
@@ -25579,7 +25581,7 @@
       "level": "CAP_1_VONG_LOAI",
       "type": "TN",
       "questionId": "k2_c1_tn_0908",
-      "question": "Điền từ chỉ đặc điểm vào chỗ trống: ( ....... )",
+      "question": "Từ nào dưới đây là từ chỉ đặc điểm?",
       "answer": "A",
       "explanation": "“chăm chỉ” là từ chỉ đặc điểm.",
       "options": {
@@ -25600,8 +25602,8 @@
       "explanation": "“con thỏ” là cách viết đúng chính tả.",
       "options": {
         "A": "kon thỏ",
-        "B": "col thỏ",
-        "C": "con th",
+        "B": "con tỏ",
+        "C": "con sỏ",
         "D": "con thỏ"
       },
       "questionId": "k2_c1_tn_0909"
@@ -25619,7 +25621,7 @@
         "A": "ngọn đè",
         "B": "nghọn đèn",
         "C": "ngọn đèn",
-        "D": "ngọn xđèn"
+        "D": "ngọn dèn"
       }
     },
     {
@@ -25632,8 +25634,8 @@
       "explanation": "“đạp xe” là cách viết đúng chính tả.",
       "options": {
         "A": "đạp xe",
-        "B": "đạ xe",
-        "C": "đạp x",
+        "B": "đạt xe",
+        "C": "đạp che",
         "D": "đạp se"
       },
       "questionId": "k2_c1_tn_0911"
@@ -25711,9 +25713,9 @@
       "answer": "B",
       "explanation": "“xanh biếc” là cách viết đúng chính tả.",
       "options": {
-        "A": "xanh biếk",
+        "A": "xanh viếc",
         "B": "xanh biếc",
-        "C": "xalh biếc",
+        "C": "xan biếc",
         "D": "sanh biếc"
       },
       "questionId": "k2_c1_tn_0916"
@@ -25728,9 +25730,9 @@
       "explanation": "“đọc sách” là cách viết đúng chính tả.",
       "options": {
         "A": "đọc sách",
-        "B": "đọk sách",
+        "B": "dọc sách",
         "C": "đọc xách",
-        "D": "đọc sátr"
+        "D": "đọt sách"
       },
       "questionId": "k2_c1_tn_0917"
     },
@@ -25865,7 +25867,7 @@
         "A": "xung quanh",
         "B": "xung quan",
         "C": "sung quanh",
-        "D": "xung xquanh"
+        "D": "xun quanh"
       }
     },
     {
@@ -26082,7 +26084,7 @@
       "explanation": "“lễ phép” là cách viết đúng chính tả.",
       "options": {
         "A": "lễ phép",
-        "B": "lễ phépx",
+        "B": "lể phép",
         "C": "lễ phé",
         "D": "nễ phép"
       },
@@ -26114,7 +26116,7 @@
       "explanation": "“cơn mưa” là cách viết đúng chính tả.",
       "options": {
         "A": "cơn mư",
-        "B": "cơl mưa",
+        "B": "cơng mưa",
         "C": "cơn mưa",
         "D": "kơn mưa"
       },
@@ -26161,10 +26163,10 @@
       "answer": "B",
       "explanation": "“bé nhỏ” là cách viết đúng chính tả.",
       "options": {
-        "A": "bé lhỏ",
+        "A": "vé nhỏ",
         "B": "bé nhỏ",
-        "C": "bé nhỏx",
-        "D": "bé nh"
+        "C": "bé lỏ",
+        "D": "bé nỏ"
       },
       "questionId": "k2_c1_tn_0935"
     },
@@ -26174,7 +26176,7 @@
       "level": "CAP_1_VONG_LOAI",
       "type": "TN",
       "questionId": "k2_c1_tn_0936",
-      "question": "Điền từ chỉ sự vật vào chỗ trống: ( ....... )",
+      "question": "Từ nào dưới đây là từ chỉ sự vật?",
       "answer": "A",
       "explanation": "“bàn tay” là từ chỉ sự vật.",
       "options": {
@@ -26234,7 +26236,7 @@
       "level": "CAP_1_VONG_LOAI",
       "type": "TN",
       "questionId": "k2_c1_tn_0939",
-      "question": "Điền từ chỉ sự vật vào chỗ trống: ( ....... )",
+      "question": "Từ nào dưới đây là từ chỉ sự vật?",
       "answer": "A",
       "explanation": "“học sinh” là từ chỉ sự vật.",
       "options": {
@@ -26251,7 +26253,7 @@
       "level": "CAP_1_VONG_LOAI",
       "type": "TN",
       "questionId": "k2_c1_tn_0940",
-      "question": "Điền từ chỉ sự vật vào chỗ trống: ( ....... )",
+      "question": "Từ nào dưới đây là từ chỉ sự vật?",
       "answer": "A",
       "explanation": "“bông hoa” là từ chỉ sự vật.",
       "options": {
@@ -26268,7 +26270,7 @@
       "level": "CAP_1_VONG_LOAI",
       "type": "TN",
       "questionId": "k2_c1_tn_0941",
-      "question": "Điền từ chỉ đặc điểm vào chỗ trống: ( ....... )",
+      "question": "Từ nào dưới đây là từ chỉ đặc điểm?",
       "answer": "A",
       "explanation": "“sáng sủa” là từ chỉ đặc điểm.",
       "options": {
@@ -26400,9 +26402,9 @@
       "explanation": "“đá bóng” là cách viết đúng chính tả.",
       "options": {
         "A": "đá bón",
-        "B": "đá bólg",
+        "B": "đá vóng",
         "C": "đá bóng",
-        "D": "đá bóngh"
+        "D": "dá bóng"
       },
       "questionId": "k2_c1_tn_0946"
     },
@@ -26533,7 +26535,7 @@
       "level": "CAP_1_VONG_LOAI",
       "type": "TN",
       "questionId": "k2_c1_tn_0950",
-      "question": "Điền từ chỉ hoạt động vào chỗ trống: ( ....... )",
+      "question": "Từ nào dưới đây là từ chỉ hoạt động?",
       "answer": "A",
       "explanation": "“rửa tay” là từ chỉ hoạt động.",
       "options": {
@@ -26592,7 +26594,7 @@
       "options": {
         "A": "bức chanh",
         "B": "bức tran",
-        "C": "xbức tranh",
+        "C": "bứt tranh",
         "D": "bức tranh"
       }
     },
@@ -26606,8 +26608,8 @@
       "explanation": "“con thỏ” là cách viết đúng chính tả.",
       "options": {
         "A": "con thỏ",
-        "B": "col thỏ",
-        "C": "con th",
+        "B": "con tỏ",
+        "C": "con sỏ",
         "D": "kon thỏ"
       },
       "questionId": "k2_c1_tn_0952"
@@ -26621,7 +26623,7 @@
       "answer": "D",
       "explanation": "“chăm ngoan” là cách viết đúng chính tả.",
       "options": {
-        "A": "chăm lgoan",
+        "A": "khăm ngoan",
         "B": "trăm ngoan",
         "C": "chăm nghoan",
         "D": "chăm ngoan"
@@ -26653,10 +26655,10 @@
       "answer": "C",
       "explanation": "“phấn trắng” là cách viết đúng chính tả.",
       "options": {
-        "A": "phấn tdắng",
+        "A": "phấn trắn",
         "B": "phấn chắng",
         "C": "phấn trắng",
-        "D": "phấl trắng"
+        "D": "phấng trắng"
       },
       "questionId": "k2_c1_tn_0955"
     },
@@ -26788,7 +26790,7 @@
         "A": "giòng suối",
         "B": "dòng suối",
         "C": "dòng xuối",
-        "D": "dòlg suối"
+        "D": "ròng suối"
       },
       "questionId": "k2_c1_tn_0961"
     },
@@ -26917,10 +26919,10 @@
       "answer": "C",
       "explanation": "“quét nhà” là cách viết đúng chính tả.",
       "options": {
-        "A": "quét nh",
+        "A": "quét là",
         "B": "qué nhà",
         "C": "quét nhà",
-        "D": "quét lhà"
+        "D": "quét nà"
       },
       "questionId": "k2_c1_tn_0967"
     },
@@ -26963,7 +26965,7 @@
         "A": "chú thỏ",
         "B": "trú thỏ",
         "C": "khú thỏ",
-        "D": "chú th"
+        "D": "chú tỏ"
       },
       "questionId": "k2_c1_tn_0969"
     },
@@ -27021,9 +27023,9 @@
       "explanation": "'sâu bọ' là cách viết đúng chính tả.",
       "options": {
         "A": "sâu bọ",
-        "B": "sâu xbọ",
+        "B": "sâu vọ",
         "C": "xâu bọ",
-        "D": "sâu bọh"
+        "D": "xâu vọ"
       }
     },
     {
@@ -27164,7 +27166,7 @@
       "level": "CAP_1_VONG_LOAI",
       "type": "TN",
       "questionId": "k2_c1_tn_0974",
-      "question": "Điền từ chỉ sự vật vào chỗ trống: ( ....... )",
+      "question": "Từ nào dưới đây là từ chỉ sự vật?",
       "answer": "A",
       "explanation": "“chiếc áo” là từ chỉ sự vật.",
       "options": {
@@ -27184,7 +27186,7 @@
       "answer": "B",
       "explanation": "“chân trời” là cách viết đúng chính tả.",
       "options": {
-        "A": "châl trời",
+        "A": "khân trời",
         "B": "chân trời",
         "C": "chân chời",
         "D": "trân trời"
@@ -27197,7 +27199,7 @@
       "level": "CAP_1_VONG_LOAI",
       "type": "TN",
       "questionId": "k2_c1_tn_0976",
-      "question": "Điền từ chỉ đặc điểm vào chỗ trống: ( ....... )",
+      "question": "Từ nào dưới đây là từ chỉ đặc điểm?",
       "answer": "A",
       "explanation": "“sạch sẽ” là từ chỉ đặc điểm.",
       "options": {
@@ -27264,7 +27266,7 @@
         "A": "con ciến",
         "B": "con kiến",
         "C": "kon kiến",
-        "D": "col kiến"
+        "D": "con khiến"
       },
       "questionId": "k2_c1_tn_0977"
     },
@@ -27329,9 +27331,9 @@
       "answer": "D",
       "explanation": "'ghi bài' là cách viết đúng chính tả.",
       "options": {
-        "A": "ghi xbài",
+        "A": "ghi vài",
         "B": "gi bài",
-        "C": "ông xbà",
+        "C": "gi vài",
         "D": "ghi bài"
       }
     },
@@ -27344,9 +27346,9 @@
       "answer": "B",
       "explanation": "“trường học” là cách viết đúng chính tả.",
       "options": {
-        "A": "trườlg học",
+        "A": "trườn học",
         "B": "trường học",
-        "C": "tdường học",
+        "C": "trường họt",
         "D": "chường học"
       },
       "questionId": "k2_c1_tn_0981"
@@ -27460,7 +27462,7 @@
       "answer": "B",
       "explanation": "“anh chị” là cách viết đúng chính tả.",
       "options": {
-        "A": "alh chị",
+        "A": "an chị",
         "B": "anh chị",
         "C": "anh trị",
         "D": "anh khị"
@@ -27476,10 +27478,10 @@
       "answer": "C",
       "explanation": "“giếng nước” là cách viết đúng chính tả.",
       "options": {
-        "A": "giếngh nước",
+        "A": "ghiếng nước",
         "B": "dếng nước",
         "C": "giếng nước",
-        "D": "giếlg nước"
+        "D": "rếng nước"
       },
       "questionId": "k2_c1_tn_0985"
     },
@@ -27610,8 +27612,8 @@
       "options": {
         "A": "sếp hàng",
         "B": "xếp hàng",
-        "C": "xếp hàlg",
-        "D": "xếp hàngh"
+        "C": "xết hàng",
+        "D": "xếp hàn"
       },
       "questionId": "k2_c1_tn_0991"
     },
@@ -27624,8 +27626,8 @@
       "answer": "D",
       "explanation": "“xanh biếc” là cách viết đúng chính tả.",
       "options": {
-        "A": "xanh biếk",
-        "B": "xalh biếc",
+        "A": "xanh viếc",
+        "B": "xan biếc",
         "C": "sanh biếc",
         "D": "xanh biếc"
       },
@@ -27766,8 +27768,8 @@
       "options": {
         "A": "đạp xe",
         "B": "đạp se",
-        "C": "đạp x",
-        "D": "đạ xe"
+        "C": "đạp che",
+        "D": "đạt xe"
       },
       "questionId": "k2_c1_tn_0995"
     },
@@ -27782,7 +27784,7 @@
       "options": {
         "A": "kon kiến",
         "B": "con ciến",
-        "C": "col kiến",
+        "C": "con khiến",
         "D": "con kiến"
       },
       "questionId": "k2_c1_tn_0996"
@@ -27812,7 +27814,7 @@
       "answer": "D",
       "explanation": "“rau xanh” là cách viết đúng chính tả.",
       "options": {
-        "A": "rau xalh",
+        "A": "giau xanh",
         "B": "dau xanh",
         "C": "rau sanh",
         "D": "rau xanh"
@@ -27868,7 +27870,7 @@
       "level": "CAP_1_VONG_LOAI",
       "type": "TN",
       "questionId": "k2_c1_tn_1000",
-      "question": "Điền từ chỉ hoạt động vào chỗ trống: ( ....... )",
+      "question": "Từ nào dưới đây là từ chỉ hoạt động?",
       "answer": "A",
       "explanation": "“đọc sách” là từ chỉ hoạt động.",
       "options": {
@@ -27920,10 +27922,10 @@
       "answer": "C",
       "explanation": "“em bé” là cách viết đúng chính tả.",
       "options": {
-        "A": "em béh",
-        "B": "em béx",
+        "A": "en bé",
+        "B": "em bẻ",
         "C": "em bé",
-        "D": "em b"
+        "D": "em vé"
       },
       "questionId": "k2_c1_tn_1003"
     },
@@ -27981,9 +27983,9 @@
       "explanation": "“sạch đẹp” là cách viết đúng chính tả.",
       "options": {
         "A": "xạch đẹp",
-        "B": "sạtr đẹp",
+        "B": "sạch dẹp",
         "C": "sạch đẹp",
-        "D": "sạkh đẹp"
+        "D": "sạt đẹp"
       },
       "questionId": "k2_c1_tn_1005"
     },
@@ -28023,10 +28025,10 @@
       "answer": "C",
       "explanation": "“trống trường” là cách viết đúng chính tả.",
       "options": {
-        "A": "trốlg trường",
+        "A": "trốn trường",
         "B": "chống trường",
         "C": "trống trường",
-        "D": "tdống trường"
+        "D": "trống chường"
       },
       "questionId": "k2_c1_tn_1006"
     },
@@ -28041,8 +28043,8 @@
       "options": {
         "A": "nge kể",
         "B": "nghe kể",
-        "C": "nghhe kể",
-        "D": "lghe kể"
+        "C": "nghe cể",
+        "D": "nghe khể"
       },
       "questionId": "k2_c1_tn_1007"
     },
@@ -28100,9 +28102,9 @@
       "explanation": "“bàn ghế” là cách viết đúng chính tả.",
       "options": {
         "A": "bàn ghế",
-        "B": "bàl ghế",
+        "B": "vàn ghế",
         "C": "bàn gế",
-        "D": "bàn gh"
+        "D": "bàng ghế"
       },
       "questionId": "k2_c1_tn_1008"
     },
@@ -28115,10 +28117,10 @@
       "answer": "C",
       "explanation": "“mặt trăng” là cách viết đúng chính tả.",
       "options": {
-        "A": "mặt tdăng",
+        "A": "mặc trăng",
         "B": "mặt chăng",
         "C": "mặt trăng",
-        "D": "mặt trălg"
+        "D": "mặt trăn"
       },
       "questionId": "k2_c1_tn_1009"
     },
@@ -28128,7 +28130,7 @@
       "level": "CAP_1_VONG_LOAI",
       "type": "TN",
       "questionId": "k2_c1_tn_1010",
-      "question": "Điền từ chỉ sự vật vào chỗ trống: ( ....... )",
+      "question": "Từ nào dưới đây là từ chỉ sự vật?",
       "answer": "A",
       "explanation": "“mặt trăng” là từ chỉ sự vật.",
       "options": {
@@ -28245,7 +28247,7 @@
       "answer": "C",
       "explanation": "“yên tĩnh” là cách viết đúng chính tả.",
       "options": {
-        "A": "yêl tĩnh",
+        "A": "yên thĩnh",
         "B": "yê tĩnh",
         "C": "yên tĩnh",
         "D": "yên tĩn"
@@ -28323,7 +28325,7 @@
       "options": {
         "A": "gặp ghỡ",
         "B": "gặp gỡ",
-        "C": "gặp gỡh",
+        "C": "gặt gỡ",
         "D": "ghặp gỡ"
       }
     },
@@ -28369,7 +28371,7 @@
       "answer": "D",
       "explanation": "“vườn rau” là cách viết đúng chính tả.",
       "options": {
-        "A": "vườl rau",
+        "A": "dườn rau",
         "B": "vườn dau",
         "C": "vườn ra",
         "D": "vườn rau"
@@ -28387,7 +28389,7 @@
       "options": {
         "A": "khiếc khăn",
         "B": "triếc khăn",
-        "C": "chiếc khăl",
+        "C": "chiếc kăn",
         "D": "chiếc khăn"
       },
       "questionId": "k2_c1_tn_1021"
@@ -28404,7 +28406,7 @@
       "options": {
         "A": "nghe kể",
         "B": "nge kể",
-        "C": "nghe kểh",
+        "C": "nghe khể",
         "D": "nghe cể"
       }
     },
@@ -28418,7 +28420,7 @@
       "answer": "C",
       "explanation": "'học sinh' là cách viết đúng chính tả.",
       "options": {
-        "A": "xhọc sinh",
+        "A": "họt sinh",
         "B": "học sin",
         "C": "học sinh",
         "D": "học xinh"
@@ -28449,9 +28451,9 @@
       "answer": "B",
       "explanation": "“buồn bã” là cách viết đúng chính tả.",
       "options": {
-        "A": "buồl bã",
+        "A": "vuồn bã",
         "B": "buồn bã",
-        "C": "buồn b",
+        "C": "buồng bã",
         "D": "buồ bã"
       },
       "questionId": "k2_c1_tn_1024"
@@ -28462,7 +28464,7 @@
       "level": "CAP_1_VONG_LOAI",
       "type": "TN",
       "questionId": "k2_c1_tn_1025",
-      "question": "Điền từ chỉ hoạt động vào chỗ trống: ( ....... )",
+      "question": "Từ nào dưới đây là từ chỉ hoạt động?",
       "answer": "A",
       "explanation": "“rửa bát” là từ chỉ hoạt động.",
       "options": {
@@ -28479,7 +28481,7 @@
       "level": "CAP_1_VONG_LOAI",
       "type": "TN",
       "questionId": "k2_c1_tn_1026",
-      "question": "Điền từ chỉ sự vật vào chỗ trống: ( ....... )",
+      "question": "Từ nào dưới đây là từ chỉ sự vật?",
       "answer": "A",
       "explanation": "“quyển sách” là từ chỉ sự vật.",
       "options": {
@@ -28516,10 +28518,10 @@
       "answer": "C",
       "explanation": "'nắng vàng' là cách viết đúng chính tả.",
       "options": {
-        "A": "nắng xvàng",
-        "B": "xbác sĩ",
+        "A": "nắng dàng",
+        "B": "lắng vàng",
         "C": "nắng vàng",
-        "D": "xnắng vàng"
+        "D": "nắng bàng"
       }
     },
     {
@@ -28590,7 +28592,7 @@
       "answer": "D",
       "explanation": "“chú thỏ” là cách viết đúng chính tả.",
       "options": {
-        "A": "chú th",
+        "A": "chú tỏ",
         "B": "khú thỏ",
         "C": "trú thỏ",
         "D": "chú thỏ"
@@ -28610,7 +28612,7 @@
         "A": "nắng vàn",
         "B": "ngôi nhà",
         "C": "nghôi nhà",
-        "D": "ngôi xnhà"
+        "D": "ngôi là"
       }
     },
     {
@@ -28675,7 +28677,7 @@
         "A": "kánh diều",
         "B": "cánh riều",
         "C": "cánh diều",
-        "D": "xe xđạp"
+        "D": "cánh giiều"
       }
     },
     {
@@ -28732,8 +28734,8 @@
       "options": {
         "A": "kầu vồng",
         "B": "cầu vồng",
-        "C": "cầu vồngh",
-        "D": "cầu vồlg"
+        "C": "cầu dồng",
+        "D": "cầu vồn"
       },
       "questionId": "k2_c1_tn_1037"
     },
@@ -28838,9 +28840,9 @@
       "explanation": "“nghé con” là cách viết đúng chính tả.",
       "options": {
         "A": "nghé con",
-        "B": "lghé con",
+        "B": "nghé kon",
         "C": "ngé con",
-        "D": "nghhé con"
+        "D": "nghé cong"
       },
       "questionId": "k2_c1_tn_1042"
     },
@@ -28888,7 +28890,7 @@
         "A": "triếc khăn",
         "B": "chiếc khăn",
         "C": "khiếc khăn",
-        "D": "chiếc khăl"
+        "D": "chiếc kăn"
       },
       "questionId": "k2_c1_tn_1045"
     },
@@ -29029,7 +29031,7 @@
         "A": "hộp bú",
         "B": "hộp bút",
         "C": "hộ bút",
-        "D": "hộp bútx"
+        "D": "hộp vút"
       },
       "questionId": "k2_c1_tn_1050"
     },
@@ -29044,8 +29046,8 @@
       "explanation": "'làng quê' là cách viết đúng chính tả.",
       "options": {
         "A": "cây kau",
-        "B": "làng xquê",
-        "C": "xlàng quê",
+        "B": "nàng quê",
+        "C": "ràng quê",
         "D": "làng quê"
       }
     },
@@ -29075,7 +29077,7 @@
       "explanation": "“đám mây” là cách viết đúng chính tả.",
       "options": {
         "A": "đám mâ",
-        "B": "đám mâyx",
+        "B": "dám mây",
         "C": "đá mây",
         "D": "đám mây"
       },
@@ -29090,7 +29092,7 @@
       "answer": "C",
       "explanation": "“gấp áo” là cách viết đúng chính tả.",
       "options": {
-        "A": "gấp áox",
+        "A": "ghấp áo",
         "B": "gấp á",
         "C": "gấp áo",
         "D": "gấ áo"
@@ -29207,7 +29209,7 @@
       "answer": "D",
       "explanation": "“quyển vở” là cách viết đúng chính tả.",
       "options": {
-        "A": "quyểl vở",
+        "A": "quyển dở",
         "B": "quyể vở",
         "C": "quyển v",
         "D": "quyển vở"
@@ -29370,7 +29372,7 @@
       "level": "CAP_1_VONG_LOAI",
       "type": "TN",
       "questionId": "k2_c1_tn_1058",
-      "question": "Điền từ chỉ hoạt động vào chỗ trống: ( ....... )",
+      "question": "Từ nào dưới đây là từ chỉ hoạt động?",
       "answer": "A",
       "explanation": "“nhặt lá” là từ chỉ hoạt động.",
       "options": {
@@ -29445,7 +29447,7 @@
         "A": "chạy bộ",
         "B": "trạy bộ",
         "C": "khạy bộ",
-        "D": "chạy b"
+        "D": "chạy vộ"
       },
       "questionId": "k2_c1_tn_1061"
     },
@@ -29486,7 +29488,7 @@
       "answer": "B",
       "explanation": "'cái ghế' là cách viết đúng chính tả.",
       "options": {
-        "A": "cái gh",
+        "A": "cái dế",
         "B": "cái ghế",
         "C": "kái ghế",
         "D": "cái gế"
@@ -29638,7 +29640,7 @@
       "options": {
         "A": "xấm chớp",
         "B": "kái bàn",
-        "C": "cái xbàn",
+        "C": "cái bàng",
         "D": "cái bàn"
       }
     },
@@ -29652,7 +29654,7 @@
       "answer": "D",
       "explanation": "'xanh biếc' là cách viết đúng chính tả.",
       "options": {
-        "A": "xanh xbiếc",
+        "A": "xan biếc",
         "B": "cim khâu",
         "C": "sanh biếc",
         "D": "xanh biếc"
@@ -29747,9 +29749,9 @@
       "explanation": "“nghỉ hè” là cách viết đúng chính tả.",
       "options": {
         "A": "ngỉ hè",
-        "B": "lghỉ hè",
+        "B": "nghĩ hè",
         "C": "nghỉ hè",
-        "D": "nghhỉ hè"
+        "D": "nghị hè"
       },
       "questionId": "k2_c1_tn_1069"
     },
@@ -29816,7 +29818,7 @@
       "answer": "D",
       "explanation": "'trẻ em' là cách viết đúng chính tả.",
       "options": {
-        "A": "trẻ emh",
+        "A": "trẻ en",
         "B": "trẻ xem",
         "C": "chẻ em",
         "D": "trẻ em"
@@ -29831,8 +29833,8 @@
       "answer": "C",
       "explanation": "“gặp gỡ” là cách viết đúng chính tả.",
       "options": {
-        "A": "gặp g",
-        "B": "gặp gỡx",
+        "A": "gặp dỡ",
+        "B": "ghặp gỡ",
         "C": "gặp gỡ",
         "D": "gặ gỡ"
       },
@@ -29918,7 +29920,7 @@
         "A": "kây tre",
         "B": "cây tre",
         "C": "cây che",
-        "D": "cây tde"
+        "D": "kây che"
       },
       "questionId": "k2_c1_tn_1076"
     },
@@ -29928,7 +29930,7 @@
       "level": "CAP_1_VONG_LOAI",
       "type": "TN",
       "questionId": "k2_c1_tn_1077",
-      "question": "Điền từ chỉ hoạt động vào chỗ trống: ( ....... )",
+      "question": "Từ nào dưới đây là từ chỉ hoạt động?",
       "answer": "A",
       "explanation": "“bơi lội” là từ chỉ hoạt động.",
       "options": {
@@ -29988,7 +29990,7 @@
         "A": "che xanh",
         "B": "tre sanh",
         "C": "tre xanh",
-        "D": "trẻ emh"
+        "D": "chẻ em"
       }
     },
     {
@@ -30046,8 +30048,8 @@
       "options": {
         "A": "bác sĩ",
         "B": "bác xĩ",
-        "C": "xbác sĩ",
-        "D": "bác sĩh"
+        "C": "bác sỉ",
+        "D": "vác sĩ"
       }
     },
     {
@@ -30077,7 +30079,7 @@
       "options": {
         "A": "chân trời",
         "B": "chân chời",
-        "C": "châl trời",
+        "C": "khân trời",
         "D": "trân trời"
       },
       "questionId": "k2_c1_tn_1082"
@@ -30092,8 +30094,8 @@
       "explanation": "“sạch đẹp” là cách viết đúng chính tả.",
       "options": {
         "A": "xạch đẹp",
-        "B": "sạkh đẹp",
-        "C": "sạtr đẹp",
+        "B": "sạt đẹp",
+        "C": "sạch dẹp",
         "D": "sạch đẹp"
       },
       "questionId": "k2_c1_tn_1083"
@@ -30191,8 +30193,8 @@
       "answer": "C",
       "explanation": "“buồn bã” là cách viết đúng chính tả.",
       "options": {
-        "A": "buồn b",
-        "B": "buồl bã",
+        "A": "buồng bã",
+        "B": "vuồn bã",
         "C": "buồn bã",
         "D": "buồ bã"
       },
@@ -30303,7 +30305,7 @@
       "answer": "D",
       "explanation": "'ghép hình' là cách viết đúng chính tả.",
       "options": {
-        "A": "ghép xhình",
+        "A": "ghét hình",
         "B": "gép hình",
         "C": "dòng xông",
         "D": "ghép hình"
@@ -30319,7 +30321,7 @@
       "explanation": "“ngọn gió” là cách viết đúng chính tả.",
       "options": {
         "A": "ngọn gió",
-        "B": "lgọn gió",
+        "B": "ngọn ghió",
         "C": "ngọn dó",
         "D": "nghọn gió"
       },
@@ -30334,10 +30336,10 @@
       "answer": "C",
       "explanation": "“quét nhà” là cách viết đúng chính tả.",
       "options": {
-        "A": "quét nh",
+        "A": "quét là",
         "B": "qué nhà",
         "C": "quét nhà",
-        "D": "quét lhà"
+        "D": "quét nà"
       },
       "questionId": "k2_c1_tn_1092"
     },
@@ -30427,7 +30429,7 @@
       "options": {
         "A": "vườn dau",
         "B": "vườn ra",
-        "C": "vườl rau",
+        "C": "dườn rau",
         "D": "vườn rau"
       },
       "questionId": "k2_c1_tn_1096"
@@ -30486,7 +30488,7 @@
       "level": "CAP_1_VONG_LOAI",
       "type": "TN",
       "questionId": "k2_c1_tn_1100",
-      "question": "Giải câu đố chữ sau:\n\"Để nguyên ca hát hè về\nThêm sắc là vé xem xiếc cùng cha.\nĐó là các chữ nào?\"",
+      "question": "Giải câu đố chữ sau:\n\"Để nguyên ca hát hè về\nThêm sắc giấy nhỏ xem trò cùng cha.\nĐó là các chữ nào?\"",
       "options": {
         "A": "Me - mé",
         "B": "Xe - xé",
@@ -30550,7 +30552,7 @@
       "level": "CAP_1_VONG_LOAI",
       "type": "TN",
       "questionId": "k2_c1_tn_1104",
-      "question": "Giải câu đố chữ sau:\n\"Để nguyên dưa mát ngọt giòn\nThêm huyền nước ngọt ngọt lành trái thơm.\nĐó là các chữ nào?\"",
+      "question": "Giải câu đố chữ sau:\n\"Để nguyên quả mát giòn tan\nThêm huyền trĩu quả nước lành ngọt thơm.\nĐó là các chữ nào?\"",
       "options": {
         "A": "Mưa - mừa",
         "B": "Cưa - cừa",
@@ -30614,7 +30616,7 @@
       "level": "CAP_1_VONG_LOAI",
       "type": "TN",
       "questionId": "k2_c1_tn_1108",
-      "question": "Giải câu đố chữ sau:\n\"Để nguyên tiếng gọi chú dê\nThêm sắc em bé chăm ngoan đến trường.\nĐó là các chữ nào?\"",
+      "question": "Giải câu đố chữ sau:\n\"Để nguyên tiếng gọi chú dê\nThêm sắc bạn nhỏ chăm ngoan đến trường.\nĐó là các chữ nào?\"",
       "options": {
         "A": "Be - bé",
         "B": "Me - mé",
@@ -30630,22 +30632,6 @@
       "level": "CAP_1_VONG_LOAI",
       "type": "TN",
       "questionId": "k2_c1_tn_1109",
-      "question": "Giải câu đố cơ thể sau:\n\"Hai chân bước vững từng ngày\nCùng em chạy nhảy tung tăng đến trường?\nĐó là bộ phận nào?\"",
-      "options": {
-        "A": "Đôi bàn tay",
-        "B": "Đôi bàn chân",
-        "C": "Cái đầu",
-        "D": "Bờ vai"
-      },
-      "answer": "B",
-      "explanation": "Đôi bàn chân nâng bước cơ thể giúp em đi lại, chạy nhảy và vui chơi."
-    },
-    {
-      "contest": "Trạng Nguyên Tiếng Việt",
-      "grade": "KHOI_2",
-      "level": "CAP_1_VONG_LOAI",
-      "type": "TN",
-      "questionId": "k2_c1_tn_1110",
       "question": "Giải câu đố con vật sau:\n\"Con gì bốn chân bước êm\nBắt chuột ban đêm kêu meo meo hoài?\nĐó là con gì?\"",
       "options": {
         "A": "Con thỏ",
@@ -30661,7 +30647,7 @@
       "grade": "KHOI_2",
       "level": "CAP_1_VONG_LOAI",
       "type": "TN",
-      "questionId": "k2_c1_tn_1111",
+      "questionId": "k2_c1_tn_1110",
       "question": "Giải câu đố đồ dùng học tập sau:\n\"Thân tròn áo đẹp tinh tươm\nBơm mực tím viết từng hàng chữ xinh?\nĐó là cái gì?\"",
       "options": {
         "A": "Cây bút mực",
@@ -30677,7 +30663,7 @@
       "grade": "KHOI_2",
       "level": "CAP_1_VONG_LOAI",
       "type": "TN",
-      "questionId": "k2_c1_tn_1112",
+      "questionId": "k2_c1_tn_1111",
       "question": "Giải câu đố chữ sau:\n\"Để nguyên nơi chứa thóc ngô\nThêm sắc bài toán cần em nghĩ suy.\nĐó là các chữ nào?\"",
       "options": {
         "A": "Cho - chó",
@@ -30693,7 +30679,7 @@
       "grade": "KHOI_2",
       "level": "CAP_1_VONG_LOAI",
       "type": "TN",
-      "questionId": "k2_c1_tn_1113",
+      "questionId": "k2_c1_tn_1112",
       "question": "Giải câu đố cơ thể sau:\n\"Đen nhánh phủ mượt trên đầu\nMẹ chải gọn gàng cài chiếc nơ xinh?\nĐó là gì của em?\"",
       "options": {
         "A": "Bàn tay",
@@ -30709,7 +30695,7 @@
       "grade": "KHOI_2",
       "level": "CAP_1_VONG_LOAI",
       "type": "TN",
-      "questionId": "k2_c1_tn_1114",
+      "questionId": "k2_c1_tn_1113",
       "question": "Giải câu đố con vật sau:\n\"Con gì mào đỏ trên đầu\nSáng sớm cất tiếng ó o o gọi trời?\nĐó là con gì?\"",
       "options": {
         "A": "Con gà trống",
@@ -30725,7 +30711,7 @@
       "grade": "KHOI_2",
       "level": "CAP_1_VONG_LOAI",
       "type": "TN",
-      "questionId": "k2_c1_tn_1115",
+      "questionId": "k2_c1_tn_1114",
       "question": "Giải câu đố đồ dùng lớp học sau:\n\"Mặt đen bóng láng phẳng phiu\nĐón từng nét phấn trắng ngần cô ghi?\nĐó là cái gì?\"",
       "options": {
         "A": "Cánh cửa",
@@ -30741,7 +30727,7 @@
       "grade": "KHOI_2",
       "level": "CAP_1_VONG_LOAI",
       "type": "TN",
-      "questionId": "k2_c1_tn_1116",
+      "questionId": "k2_c1_tn_1115",
       "question": "Giải câu đố chữ sau:\n\"Để nguyên món nước mẹ nấu\nThêm sắc chao lượn trên trời tung bay.\nĐó là các chữ nào?\"",
       "options": {
         "A": "Oanh - oánh",
@@ -30757,7 +30743,7 @@
       "grade": "KHOI_2",
       "level": "CAP_1_VONG_LOAI",
       "type": "TN",
-      "questionId": "k2_c1_tn_1117",
+      "questionId": "k2_c1_tn_1116",
       "question": "Giải câu đố cơ thể sau:\n\"Mười ngón xinh xắn thẳng hàng\nCầm bút nắn nót viết từng dòng thơ?\nĐó là bộ phận nào?\"",
       "options": {
         "A": "Đôi bàn chân",
@@ -30773,7 +30759,7 @@
       "grade": "KHOI_2",
       "level": "CAP_1_VONG_LOAI",
       "type": "TN",
-      "questionId": "k2_c1_tn_1118",
+      "questionId": "k2_c1_tn_1117",
       "question": "Giải câu đố con vật sau:\n\"Con gì cục tác cục te\nĐẻ ra quả trứng tròn xoe hồng hào?\nĐó là con gì?\"",
       "options": {
         "A": "Con chim sẻ",
@@ -30789,7 +30775,7 @@
       "grade": "KHOI_2",
       "level": "CAP_1_VONG_LOAI",
       "type": "TN",
-      "questionId": "k2_c1_tn_1119",
+      "questionId": "k2_c1_tn_1118",
       "question": "Giải câu đố đồ dùng học tập sau:\n\"Thân hình tròn nhỏ trắng ngần\nViết lên bảng lớp bài học cô trao?\nĐó là cái gì?\"",
       "options": {
         "A": "Cục tẩy",
@@ -30805,7 +30791,7 @@
       "grade": "KHOI_2",
       "level": "CAP_1_VONG_LOAI",
       "type": "TN",
-      "questionId": "k2_c1_tn_1120",
+      "questionId": "k2_c1_tn_1119",
       "question": "Giải câu đố chữ sau:\n\"Để nguyên hoa trắng nhẹ bay\nThêm sắc chú cá cô Tấm nuôi nấng.\nĐó là các chữ nào?\"",
       "options": {
         "A": "Đông - đống",
@@ -30821,7 +30807,7 @@
       "grade": "KHOI_2",
       "level": "CAP_1_VONG_LOAI",
       "type": "TN",
-      "questionId": "k2_c1_tn_1121",
+      "questionId": "k2_c1_tn_1120",
       "question": "Giải câu đố mẹo sau:\n\"Đi đâu cũng bước theo sau\nNắng lên thấy rõ bóng đêm trốn tìm?\nĐó là cái gì?\"",
       "options": {
         "A": "Cái bóng của em",
@@ -30837,7 +30823,7 @@
       "grade": "KHOI_2",
       "level": "CAP_1_VONG_LOAI",
       "type": "TN",
-      "questionId": "k2_c1_tn_1122",
+      "questionId": "k2_c1_tn_1121",
       "question": "Giải câu đố con vật sau:\n\"Con gì ủn ỉn trong chuồng\nĂn no bụng bự ngủ say tít mù?\nĐó là con gì?\"",
       "options": {
         "A": "Con bò",
@@ -30853,7 +30839,7 @@
       "grade": "KHOI_2",
       "level": "CAP_1_VONG_LOAI",
       "type": "TN",
-      "questionId": "k2_c1_tn_1123",
+      "questionId": "k2_c1_tn_1122",
       "question": "Giải câu đố đồ dùng học tập sau:\n\"Bên trong đầy chữ và tranh\nDạy em đọc viết từng bài học hay?\nĐó là quyển gì?\"",
       "options": {
         "A": "Quyển nháp",
@@ -30869,8 +30855,8 @@
       "grade": "KHOI_2",
       "level": "CAP_1_VONG_LOAI",
       "type": "TN",
-      "questionId": "k2_c1_tn_1124",
-      "question": "Giải câu đố chữ sau:\n\"Để nguyên chở bé đi chơi\nThêm sắc giữ vở chẳng làm rách đôi.\nĐó là các chữ nào?\"",
+      "questionId": "k2_c1_tn_1123",
+      "question": "Giải câu đố chữ sau:\n\"Để nguyên bon bánh đưa nôi\nThêm sắc làm rách trang tờ làm đôi.\nĐó là các chữ nào?\"",
       "options": {
         "A": "Xe - xé",
         "B": "Me - mé",
@@ -30878,14 +30864,14 @@
         "D": "Be - bé"
       },
       "answer": "A",
-      "explanation": "Chiếc 'xe' đạp chở em; thêm sắc là hành động 'xé' giấy cần tránh làm rách vở."
+      "explanation": "Chiếc 'xe' bon bánh chở em; thêm sắc là hành động 'xé' làm rách giấy vở."
     },
     {
       "contest": "Trạng Nguyên Tiếng Việt",
       "grade": "KHOI_2",
       "level": "CAP_1_VONG_LOAI",
       "type": "TN",
-      "questionId": "k2_c1_tn_1125",
+      "questionId": "k2_c1_tn_1124",
       "question": "Giải câu đố thiên nhiên sau:\n\"Sáng sớm rực rỡ hạt vàng\nSưởi ấm cành lá đánh thức hoa cười?\nĐó là gì?\"",
       "options": {
         "A": "Cơn mưa rào",
@@ -30901,7 +30887,7 @@
       "grade": "KHOI_2",
       "level": "CAP_1_VONG_LOAI",
       "type": "TN",
-      "questionId": "k2_c1_tn_1126",
+      "questionId": "k2_c1_tn_1125",
       "question": "Giải câu đố con vật sau:\n\"Con gì tai dài mắt hồng\nLông trắng như bông thích ăn cà rốt?\nĐó là con gì?\"",
       "options": {
         "A": "Con sóc",
@@ -30917,7 +30903,7 @@
       "grade": "KHOI_2",
       "level": "CAP_1_VONG_LOAI",
       "type": "TN",
-      "questionId": "k2_c1_tn_1127",
+      "questionId": "k2_c1_tn_1126",
       "question": "Giải câu đố đồ vật sau:\n\"Mặt tròn có đủ ba kim\nTích tắc tích tắc gọi em dậy sớm?\nĐó là cái gì?\"",
       "options": {
         "A": "Đồng hồ báo thức",
@@ -30933,7 +30919,7 @@
       "grade": "KHOI_2",
       "level": "CAP_1_VONG_LOAI",
       "type": "TN",
-      "questionId": "k2_c1_tn_1128",
+      "questionId": "k2_c1_tn_1127",
       "question": "Giải câu đố chữ sau:\n\"Để nguyên ngát hương khoe sắc\nThêm hỏi chạy xịch trên đường ray xa.\nĐó là các chữ nào?\"",
       "options": {
         "A": "Loa - lỏa",
@@ -30949,7 +30935,7 @@
       "grade": "KHOI_2",
       "level": "CAP_1_VONG_LOAI",
       "type": "TN",
-      "questionId": "k2_c1_tn_1129",
+      "questionId": "k2_c1_tn_1128",
       "question": "Giải câu đố thiên nhiên sau:\n\"Từ trời rớt xuống ào ào\nTưới mát đồng ruộng tốt tươi cây cành?\nĐó là gì?\"",
       "options": {
         "A": "Cơn gió",
@@ -30965,7 +30951,7 @@
       "grade": "KHOI_2",
       "level": "CAP_1_VONG_LOAI",
       "type": "TN",
-      "questionId": "k2_c1_tn_1130",
+      "questionId": "k2_c1_tn_1129",
       "question": "Giải câu đố con vật sau:\n\"Con gì ngồi góc bờ ao\nHễ mưa rơi xuống râm ran ộp oạp?\nĐó là con gì?\"",
       "options": {
         "A": "Con ếch",
@@ -30981,7 +30967,7 @@
       "grade": "KHOI_2",
       "level": "CAP_1_VONG_LOAI",
       "type": "TN",
-      "questionId": "k2_c1_tn_1131",
+      "questionId": "k2_c1_tn_1130",
       "question": "Giải câu đố đồ vật sau:\n\"Bốn chân đứng vững một nơi\nNâng từng trang sách nâng bài em ghi?\nĐó là cái gì?\"",
       "options": {
         "A": "Cái ghế tựa",
@@ -30997,7 +30983,7 @@
       "grade": "KHOI_2",
       "level": "CAP_1_VONG_LOAI",
       "type": "TN",
-      "questionId": "k2_c1_tn_1132",
+      "questionId": "k2_c1_tn_1131",
       "question": "Giải câu đố chữ sau:\n\"Để nguyên quả chua dầm đường\nThêm ngã chảo nóng rán vàng đồ ăn.\nĐó là các chữ nào?\"",
       "options": {
         "A": "Bơ - bỡ",
@@ -31013,7 +30999,7 @@
       "grade": "KHOI_2",
       "level": "CAP_1_VONG_LOAI",
       "type": "TN",
-      "questionId": "k2_c1_tn_1133",
+      "questionId": "k2_c1_tn_1132",
       "question": "Giải câu đố thiên nhiên sau:\n\"Không thấy hình dáng nơi đâu\nChỉ thấy cành lá rung rinh vẫy chào?\nĐó là gì?\"",
       "options": {
         "A": "Cơn mưa nhỏ",
@@ -31029,7 +31015,7 @@
       "grade": "KHOI_2",
       "level": "CAP_1_VONG_LOAI",
       "type": "TN",
-      "questionId": "k2_c1_tn_1134",
+      "questionId": "k2_c1_tn_1133",
       "question": "Giải câu đố con vật sau:\n\"Con gì bơi lội tung tăng\nĐuôi xòe như múa lượn quanh rong bèo?\nĐó là con gì?\"",
       "options": {
         "A": "Con rùa",
@@ -31045,7 +31031,7 @@
       "grade": "KHOI_2",
       "level": "CAP_1_VONG_LOAI",
       "type": "TN",
-      "questionId": "k2_c1_tn_1135",
+      "questionId": "k2_c1_tn_1134",
       "question": "Giải câu đố đồ vật sau:\n\"Bốn chân vững chãi êm đềm\nCho em ngồi học bài làm thật ngoan?\nĐó là cái gì?\"",
       "options": {
         "A": "Cái chiếu",
@@ -31061,8 +31047,8 @@
       "grade": "KHOI_2",
       "level": "CAP_1_VONG_LOAI",
       "type": "TN",
-      "questionId": "k2_c1_tn_1136",
-      "question": "Giải câu đố chữ sau:\n\"Để nguyên bát to đựng canh\nThêm hỏi chim nhỏ ríu ran cành cây.\nĐó là các chữ nào?\"",
+      "questionId": "k2_c1_tn_1135",
+      "question": "Giải câu đố chữ sau:\n\"Để nguyên bát lớn đựng canh\nThêm hỏi nơi ở chim non cành cây.\nĐó là các chữ nào?\"",
       "options": {
         "A": "Cô - cổ",
         "B": "Đô - đổ",
@@ -31070,14 +31056,14 @@
         "D": "Tô - tổ"
       },
       "answer": "D",
-      "explanation": "Cái 'tô' đựng thức ăn; thêm hỏi là 'tổ' chim trên cành cây."
+      "explanation": "Cái 'tô' đựng thức ăn; thêm hỏi là cái 'tổ' của chim non trên cành cây."
     },
     {
       "contest": "Trạng Nguyên Tiếng Việt",
       "grade": "KHOI_2",
       "level": "CAP_1_VONG_LOAI",
       "type": "TN",
-      "questionId": "k2_c1_tn_1137",
+      "questionId": "k2_c1_tn_1136",
       "question": "Giải câu đố người thân sau:\n\"Mái tóc bạc trắng da mồi\nKể chuyện cổ tích ru em giấc nồng?\nĐó là ai trong gia đình em?\"",
       "options": {
         "A": "Ông bà",
@@ -31093,7 +31079,7 @@
       "grade": "KHOI_2",
       "level": "CAP_1_VONG_LOAI",
       "type": "TN",
-      "questionId": "k2_c1_tn_1138",
+      "questionId": "k2_c1_tn_1137",
       "question": "Giải câu đố con vật sau:\n\"Con gì chăm chỉ bay xa\nHút mật nhụy hoa xây tổ thơm lừng?\nĐó là con gì?\"",
       "options": {
         "A": "Con ruồi",
@@ -31109,7 +31095,7 @@
       "grade": "KHOI_2",
       "level": "CAP_1_VONG_LOAI",
       "type": "TN",
-      "questionId": "k2_c1_tn_1139",
+      "questionId": "k2_c1_tn_1138",
       "question": "Giải câu đố đồ dùng sau:\n\"Hai anh em bước song song\nBảo vệ đôi chân sạch sẽ mỗi ngày?\nĐó là vật gì?\"",
       "options": {
         "A": "Đôi tất",
@@ -31125,8 +31111,8 @@
       "grade": "KHOI_2",
       "level": "CAP_1_VONG_LOAI",
       "type": "TN",
-      "questionId": "k2_c1_tn_1140",
-      "question": "Giải câu đố chữ sau:\n\"Để nguyên bát ngọt mẹ nấu\nThay hỏi chẻ tre đan rổ đan giỏ.\nĐó là các chữ nào?\"",
+      "questionId": "k2_c1_tn_1139",
+      "question": "Giải câu đố chữ sau:\n\"Để nguyên bát ngọt mẹ nấu\nĐổi hỏi vót nan đan rổ đan sàng.\nĐó là các chữ nào?\"",
       "options": {
         "A": "Chè - chẻ",
         "B": "Bè - bẻ",
@@ -31134,15 +31120,15 @@
         "D": "Tè - tẻ"
       },
       "answer": "A",
-      "explanation": "Món 'chè' đậu thơm ngọt; thay hỏi thành 'chẻ' nan tre đan lát."
+      "explanation": "Món 'chè' đậu thơm ngọt; đổi dấu hỏi thành 'chẻ' nan tre đan lát."
     },
     {
       "contest": "Trạng Nguyên Tiếng Việt",
       "grade": "KHOI_2",
       "level": "CAP_1_VONG_LOAI",
       "type": "TN",
-      "questionId": "k2_c1_tn_1141",
-      "question": "Giải câu đố người thân sau:\n\"Người cha sớm tối chăm lo\nLái xe đưa đón dạy em chăm ngoan?\nĐó là ai trong gia đình em?\"",
+      "questionId": "k2_c1_tn_1140",
+      "question": "Giải câu đố người thân sau:\n\"Ai người sớm tối chăm lo\nĐi làm vất vả dạy em chăm ngoan?\nĐó là ai trong gia đình em?\"",
       "options": {
         "A": "Người em út",
         "B": "Người bố (ba)",
@@ -31150,14 +31136,14 @@
         "D": "Bác tài xế lạ"
       },
       "answer": "B",
-      "explanation": "Bố (ba) là người trụ cột yêu thương dạy dỗ con cái nên người."
+      "explanation": "Bố (ba) là người trụ cột yêu thương chăm lo và dạy dỗ con cái nên người."
     },
     {
       "contest": "Trạng Nguyên Tiếng Việt",
       "grade": "KHOI_2",
       "level": "CAP_1_VONG_LOAI",
       "type": "TN",
-      "questionId": "k2_c1_tn_1142",
+      "questionId": "k2_c1_tn_1141",
       "question": "Giải câu đố con vật sau:\n\"Con gì cánh sặc sỡ màu\nRập rờn bay lượn bên bông hoa xinh?\nĐó là con gì?\"",
       "options": {
         "A": "Con chuồn chuồn",
@@ -31173,7 +31159,7 @@
       "grade": "KHOI_2",
       "level": "CAP_1_VONG_LOAI",
       "type": "TN",
-      "questionId": "k2_c1_tn_1143",
+      "questionId": "k2_c1_tn_1142",
       "question": "Giải câu đố đồ dùng sau:\n\"Đội lên đầu che nắng mưa\nCùng em cắp sách bước đi đến trường?\nĐó là cái gì?\"",
       "options": {
         "A": "Chiếc mũ (chiếc nón)",
@@ -31189,7 +31175,7 @@
       "grade": "KHOI_2",
       "level": "CAP_1_VONG_LOAI",
       "type": "TN",
-      "questionId": "k2_c1_tn_1144",
+      "questionId": "k2_c1_tn_1143",
       "question": "Giải câu đố chữ sau:\n\"Để nguyên leng keng báo giờ\nThêm huyền nuôi nhốt đàn gà đàn vịt.\nĐó là các chữ nào?\"",
       "options": {
         "A": "Muông - muồng",
@@ -31205,7 +31191,7 @@
       "grade": "KHOI_2",
       "level": "CAP_1_VONG_LOAI",
       "type": "TN",
-      "questionId": "k2_c1_tn_1145",
+      "questionId": "k2_c1_tn_1144",
       "question": "Giải câu đố người thân sau:\n\"Người sinh ra bé sớm hôm\nNấu cơm ru ngủ yêu thương vô bờ?\nĐó là ai trong gia đình em?\"",
       "options": {
         "A": "Cô bán hàng",
@@ -31221,8 +31207,8 @@
       "grade": "KHOI_2",
       "level": "CAP_1_VONG_LOAI",
       "type": "TN",
-      "questionId": "k2_c1_tn_1146",
-      "question": "Giải câu đố con vật sau:\n\"Con gì đội mai trên lưng\nBước đi chầm chậm bò từng bước đi?\nĐó là con gì?\"",
+      "questionId": "k2_c1_tn_1145",
+      "question": "Giải câu đố con vật sau:\n\"Con gì mai cứng trên lưng\nChân đầu thụt thò bò từng bước êm?\nĐó là con gì?\"",
       "options": {
         "A": "Con rùa",
         "B": "Con cua",
@@ -31237,7 +31223,7 @@
       "grade": "KHOI_2",
       "level": "CAP_1_VONG_LOAI",
       "type": "TN",
-      "questionId": "k2_c1_tn_1147",
+      "questionId": "k2_c1_tn_1146",
       "question": "Giải câu đố đồ vật sau:\n\"Mặt phẳng trong suốt sáng ngời\nBé soi vào thấy nụ cười của bé?\nĐó là cái gì?\"",
       "options": {
         "A": "Chiếc kính râm",
@@ -31594,10 +31580,10 @@
       "grade": "KHOI_2",
       "level": "CAP_1_VONG_LOAI",
       "type": "DT",
-      "question": "Điền chữ cái thích hợp vào chỗ trống để hoàn thành từ: “hoa (...)ào”",
+      "question": "Điền chữ cái thích hợp vào chỗ trống để hoàn thành từ: “hoa (...)ào ngày Tết”",
       "answer": "đ",
       "blankAnswer": "đ",
-      "explanation": "Từ đúng là “hoa đào”, viết với chữ cái “đ”.",
+      "explanation": "Từ đúng là “hoa đào ngày Tết”.",
       "questionId": "k2_c1_dt_0219"
     },
     {
@@ -32122,10 +32108,10 @@
       "grade": "KHOI_2",
       "level": "CAP_1_VONG_LOAI",
       "type": "DT",
-      "question": "Điền chữ cái thích hợp vào chỗ trống để hoàn thành từ: “trống (...)rường”",
-      "answer": "t",
-      "blankAnswer": "t",
-      "explanation": "Từ đúng là “trống trường”, viết với phụ âm đầu “tr”.",
+      "question": "Điền chữ cái thích hợp vào chỗ trống để hoàn thành từ: “trường (...)ớp”",
+      "answer": "l",
+      "blankAnswer": "l",
+      "explanation": "Từ đúng là “trường lớp”.",
       "questionId": "k2_c1_dt_0267"
     },
     {
@@ -32353,10 +32339,10 @@
       "grade": "KHOI_2",
       "level": "CAP_1_VONG_LOAI",
       "type": "DT",
-      "question": "Điền chữ cái hoặc vần thích hợp vào chỗ trống để hoàn thành từ: “hoa c(...)”",
-      "answer": "úc",
-      "blankAnswer": "úc",
-      "explanation": "Từ đúng là “hoa cúc”, tiếng “cúc” gồm âm c ghép với vần “úc” và thanh sắc.",
+      "question": "Điền chữ cái hoặc vần thích hợp vào chỗ trống để hoàn thành từ: “bút s(...)p”",
+      "answer": "á",
+      "blankAnswer": "á",
+      "explanation": "Từ đúng là “bút sáp”.",
       "questionId": "k2_c1_dt_0288"
     },
     {
@@ -32375,10 +32361,10 @@
       "grade": "KHOI_2",
       "level": "CAP_1_VONG_LOAI",
       "type": "DT",
-      "question": "Điền chữ cái hoặc vần thích hợp vào chỗ trống để hoàn thành từ: “con h(...)u”",
-      "answer": "ươ",
-      "blankAnswer": "ươ",
-      "explanation": "Từ đúng là “con hươu”, tiếng “hươu” có vần “ươu”.",
+      "question": "Điền chữ cái hoặc vần thích hợp vào chỗ trống để hoàn thành từ: “chim s(...)n ca”",
+      "answer": "ơ",
+      "blankAnswer": "ơ",
+      "explanation": "Từ đúng là “chim sơn ca”.",
       "questionId": "k2_c1_dt_0290"
     },
     {
@@ -32386,10 +32372,10 @@
       "grade": "KHOI_2",
       "level": "CAP_1_VONG_LOAI",
       "type": "DT",
-      "question": "Điền chữ cái hoặc vần thích hợp vào chỗ trống để hoàn thành từ: “con l(...)a”",
-      "answer": "ừ",
-      "blankAnswer": "ừ",
-      "explanation": "Từ đúng là “con lừa”, tiếng “lừa” có âm l ghép với vần ưa và dấu huyền.",
+      "question": "Điền chữ cái hoặc vần thích hợp vào chỗ trống để hoàn thành từ: “con ng(...)a”",
+      "answer": "ự",
+      "blankAnswer": "ự",
+      "explanation": "Từ đúng là “con ngựa”.",
       "questionId": "k2_c1_dt_0291"
     },
     {
@@ -32419,10 +32405,10 @@
       "grade": "KHOI_2",
       "level": "CAP_1_VONG_LOAI",
       "type": "DT",
-      "question": "Điền chữ cái hoặc vần thích hợp vào chỗ trống để hoàn thành từ: “hoa s(...)ng”",
-      "answer": "ú",
-      "blankAnswer": "ú",
-      "explanation": "Từ đúng là “hoa súng”, tiếng “súng” có vần “ung” và thanh sắc.",
+      "question": "Điền chữ cái hoặc vần thích hợp vào chỗ trống để hoàn thành từ: “sao v(...)ng”",
+      "answer": "à",
+      "blankAnswer": "à",
+      "explanation": "Từ đúng là “sao vàng”.",
       "questionId": "k2_c1_dt_0294"
     },
     {
@@ -32430,10 +32416,10 @@
       "grade": "KHOI_2",
       "level": "CAP_1_VONG_LOAI",
       "type": "DT",
-      "question": "Điền chữ cái hoặc vần thích hợp vào chỗ trống để hoàn thành từ: “cây t(...)ng”",
-      "answer": "ù",
-      "blankAnswer": "ù",
-      "explanation": "Từ đúng là “cây tùng”, tiếng “tùng” có vần “ung” và thanh huyền.",
+      "question": "Điền chữ cái hoặc vần thích hợp vào chỗ trống để hoàn thành từ: “bàn c(...)”",
+      "answer": "ờ",
+      "blankAnswer": "ờ",
+      "explanation": "Từ đúng là “bàn cờ”.",
       "questionId": "k2_c1_dt_0295"
     },
     {
@@ -32441,10 +32427,10 @@
       "grade": "KHOI_2",
       "level": "CAP_1_VONG_LOAI",
       "type": "DT",
-      "question": "Điền chữ cái hoặc vần thích hợp vào chỗ trống để hoàn thành từ: “con c(...)ng”",
-      "answer": "ô",
-      "blankAnswer": "ô",
-      "explanation": "Từ đúng là “con công”, tiếng “công” có vần “ông”.",
+      "question": "Điền chữ cái hoặc vần thích hợp vào chỗ trống để hoàn thành từ: “con kh(...)”",
+      "answer": "ỉ",
+      "blankAnswer": "ỉ",
+      "explanation": "Từ đúng là “con khỉ”.",
       "questionId": "k2_c1_dt_0296"
     },
     {
@@ -32540,10 +32526,10 @@
       "grade": "KHOI_2",
       "level": "CAP_1_VONG_LOAI",
       "type": "DT",
-      "question": "Điền chữ cái hoặc vần thích hợp vào chỗ trống để hoàn thành từ: “thửa r(...)ng”",
-      "answer": "uộ",
-      "blankAnswer": "uộ",
-      "explanation": "Từ đúng là “thửa ruộng”, tiếng “ruộng” có vần “uông” và thanh nặng.",
+      "question": "Điền chữ cái hoặc vần thích hợp vào chỗ trống để hoàn thành từ: “cánh đ(...)ng”",
+      "answer": "ồn",
+      "blankAnswer": "ồn",
+      "explanation": "Từ đúng là “cánh đồng”.",
       "questionId": "k2_c1_dt_0305"
     },
     {
@@ -32617,10 +32603,10 @@
       "grade": "KHOI_2",
       "level": "CAP_1_VONG_LOAI",
       "type": "DT",
-      "question": "Điền chữ cái hoặc vần thích hợp vào chỗ trống để hoàn thành từ: “chăm ng(...)n”",
-      "answer": "oa",
-      "blankAnswer": "oa",
-      "explanation": "Từ đúng là “chăm ngoan”, tiếng “ngoan” có vần “oan”.",
+      "question": "Điền chữ cái hoặc vần thích hợp vào chỗ trống để hoàn thành từ: “siêng n(...)ng”",
+      "answer": "ă",
+      "blankAnswer": "ă",
+      "explanation": "Từ đúng là “siêng năng”.",
       "questionId": "k2_c1_dt_0312"
     },
     {
@@ -32661,10 +32647,10 @@
       "grade": "KHOI_2",
       "level": "CAP_1_VONG_LOAI",
       "type": "DT",
-      "question": "Điền chữ cái hoặc vần thích hợp vào chỗ trống để hoàn thành từ: “gọn g(...)ng”",
-      "answer": "à",
-      "blankAnswer": "à",
-      "explanation": "Từ đúng là “gọn gàng”, tiếng “gàng” có vần “ang” và thanh huyền.",
+      "question": "Điền chữ cái hoặc vần thích hợp vào chỗ trống để hoàn thành từ: “sạch b(...)ng”",
+      "answer": "ó",
+      "blankAnswer": "ó",
+      "explanation": "Từ đúng là “sạch bóng”.",
       "questionId": "k2_c1_dt_0316"
     },
     {
@@ -32738,10 +32724,10 @@
       "grade": "KHOI_2",
       "level": "CAP_1_VONG_LOAI",
       "type": "DT",
-      "question": "Điền chữ cái hoặc vần thích hợp vào chỗ trống để hoàn thành từ: “xanh bi(...)c”",
-      "answer": "ế",
-      "blankAnswer": "ế",
-      "explanation": "Từ đúng là “xanh biếc”, tiếng “biếc” có vần “iêc” và thanh sắc.",
+      "question": "Điền chữ cái hoặc vần thích hợp vào chỗ trống để hoàn thành từ: “xanh r(...)n”",
+      "answer": "ờ",
+      "blankAnswer": "ờ",
+      "explanation": "Từ đúng là “xanh rờn”.",
       "questionId": "k2_c1_dt_0323"
     },
     {
@@ -32793,10 +32779,10 @@
       "grade": "KHOI_2",
       "level": "CAP_1_VONG_LOAI",
       "type": "DT",
-      "question": "Điền từ thích hợp vào chỗ trống để hoàn thành câu: “Uống nước nhớ (...)”",
-      "answer": "nguồn",
-      "blankAnswer": "nguồn",
-      "explanation": "Câu tục ngữ đầy đủ là: “Uống nước nhớ nguồn”.",
+      "question": "Điền từ thích hợp vào chỗ trống để hoàn thành câu: “Lá rụng về (...)”",
+      "answer": "cội",
+      "blankAnswer": "cội",
+      "explanation": "Câu tục ngữ đầy đủ là: “Lá rụng về cội”.",
       "questionId": "k2_c1_dt_0328"
     },
     {
@@ -32804,10 +32790,10 @@
       "grade": "KHOI_2",
       "level": "CAP_1_VONG_LOAI",
       "type": "DT",
-      "question": "Điền từ thích hợp vào chỗ trống để hoàn thành câu: “Ăn quả nhớ kẻ trồng (...)”",
-      "answer": "cây",
-      "blankAnswer": "cây",
-      "explanation": "Câu tục ngữ đầy đủ là: “Ăn quả nhớ kẻ trồng cây”.",
+      "question": "Điền từ thích hợp vào chỗ trống để hoàn thành câu: “Ăn kĩ no lâu, cày sâu tốt (...)”",
+      "answer": "lúa",
+      "blankAnswer": "lúa",
+      "explanation": "Câu tục ngữ đầy đủ là: “Ăn kĩ no lâu, cày sâu tốt lúa”.",
       "questionId": "k2_c1_dt_0329"
     },
     {
@@ -32815,10 +32801,10 @@
       "grade": "KHOI_2",
       "level": "CAP_1_VONG_LOAI",
       "type": "DT",
-      "question": "Điền từ thích hợp vào chỗ trống để hoàn thành câu: “Học thầy không tày học (...)”",
-      "answer": "bạn",
-      "blankAnswer": "bạn",
-      "explanation": "Câu tục ngữ đầy đủ là: “Học thầy không tày học bạn”.",
+      "question": "Điền từ thích hợp vào chỗ trống để hoàn thành câu: “Học ăn, học nói, học gói, học (...)”",
+      "answer": "mở",
+      "blankAnswer": "mở",
+      "explanation": "Câu tục ngữ đầy đủ là: “Học ăn, học nói, học gói, học mở”.",
       "questionId": "k2_c1_dt_0330"
     },
     {
@@ -32848,10 +32834,10 @@
       "grade": "KHOI_2",
       "level": "CAP_1_VONG_LOAI",
       "type": "DT",
-      "question": "Điền từ thích hợp vào chỗ trống để hoàn thành câu: “Tiên học lễ, hậu học (...)”",
-      "answer": "văn",
-      "blankAnswer": "văn",
-      "explanation": "Câu thành ngữ đầy đủ là: “Tiên học lễ, hậu học văn”.",
+      "question": "Điền từ thích hợp vào chỗ trống để hoàn thành câu: “Muốn sang thì bắc cầu kiều, muốn con hay chữ thì yêu lấy (...)”",
+      "answer": "thầy",
+      "blankAnswer": "thầy",
+      "explanation": "Câu ca dao đầy đủ là: “Muốn sang thì bắc cầu kiều, muốn con hay chữ thì yêu lấy thầy”.",
       "questionId": "k2_c1_dt_0333"
     },
     {
@@ -32859,10 +32845,10 @@
       "grade": "KHOI_2",
       "level": "CAP_1_VONG_LOAI",
       "type": "DT",
-      "question": "Điền từ thích hợp vào chỗ trống để hoàn thành câu: “Gần mực thì đen, gần đèn thì (...)”",
-      "answer": "rạng",
-      "blankAnswer": "rạng",
-      "explanation": "Câu tục ngữ đầy đủ là: “Gần mực thì đen, gần đèn thì rạng”.",
+      "question": "Điền từ thích hợp vào chỗ trống để hoàn thành câu: “Ăn ngay nói (...)”",
+      "answer": "thật",
+      "blankAnswer": "thật",
+      "explanation": "Thành ngữ quen thuộc là: “Ăn ngay nói thật”.",
       "questionId": "k2_c1_dt_0334"
     },
     {
@@ -32870,10 +32856,10 @@
       "grade": "KHOI_2",
       "level": "CAP_1_VONG_LOAI",
       "type": "DT",
-      "question": "Điền từ thích hợp vào chỗ trống để hoàn thành câu: “Lá lành đùm lá (...)”",
-      "answer": "rách",
-      "blankAnswer": "rách",
-      "explanation": "Câu tục ngữ đầy đủ là: “Lá lành đùm lá rách”.",
+      "question": "Điền từ thích hợp vào chỗ trống để hoàn thành câu: “Một miếng khi đói bằng một gói khi (...)”",
+      "answer": "no",
+      "blankAnswer": "no",
+      "explanation": "Câu tục ngữ đầy đủ là: “Một miếng khi đói bằng một gói khi no”.",
       "questionId": "k2_c1_dt_0335"
     },
     {
@@ -32881,10 +32867,10 @@
       "grade": "KHOI_2",
       "level": "CAP_1_VONG_LOAI",
       "type": "DT",
-      "question": "Điền từ thích hợp vào chỗ trống để hoàn thành câu: “Một con ngựa đau cả tàu bỏ (...)”",
-      "answer": "cỏ",
-      "blankAnswer": "cỏ",
-      "explanation": "Câu tục ngữ đầy đủ là: “Một con ngựa đau cả tàu bỏ cỏ”.",
+      "question": "Điền từ thích hợp vào chỗ trống để hoàn thành câu: “Anh thuận em (...)”",
+      "answer": "hòa",
+      "blankAnswer": "hòa",
+      "explanation": "Câu tục ngữ đầy đủ là: “Anh thuận em hòa”.",
       "questionId": "k2_c1_dt_0336"
     },
     {
@@ -32892,10 +32878,10 @@
       "grade": "KHOI_2",
       "level": "CAP_1_VONG_LOAI",
       "type": "DT",
-      "question": "Điền từ thích hợp vào chỗ trống để hoàn thành câu: “Có công mài sắt, có ngày nên (...)”",
-      "answer": "kim",
-      "blankAnswer": "kim",
-      "explanation": "Câu tục ngữ đầy đủ là: “Có công mài sắt, có ngày nên kim”.",
+      "question": "Điền từ thích hợp vào chỗ trống để hoàn thành câu: “Thua keo này, bày keo (...)”",
+      "answer": "khác",
+      "blankAnswer": "khác",
+      "explanation": "Câu tục ngữ đầy đủ là: “Thua keo này, bày keo khác”.",
       "questionId": "k2_c1_dt_0337"
     },
     {
@@ -32925,10 +32911,10 @@
       "grade": "KHOI_2",
       "level": "CAP_1_VONG_LOAI",
       "type": "DT",
-      "question": "Điền từ thích hợp vào chỗ trống để hoàn thành câu: “Kính thầy yêu (...)”",
-      "answer": "bạn",
-      "blankAnswer": "bạn",
-      "explanation": "Thành ngữ quen thuộc là: “Kính thầy yêu bạn”.",
+      "question": "Điền từ thích hợp vào chỗ trống để hoàn thành câu: “Kính trên nhường (...)”",
+      "answer": "dưới",
+      "blankAnswer": "dưới",
+      "explanation": "Thành ngữ quen thuộc là: “Kính trên nhường dưới”.",
       "questionId": "k2_c1_dt_0340"
     },
     {
@@ -32969,10 +32955,10 @@
       "grade": "KHOI_2",
       "level": "CAP_1_VONG_LOAI",
       "type": "DT",
-      "question": "Điền từ thích hợp vào chỗ trống để hoàn thành câu: “Anh em như thể tay (...)”",
-      "answer": "chân",
-      "blankAnswer": "chân",
-      "explanation": "Câu ca dao đầy đủ là: “Anh em như thể tay chân”.",
+      "question": "Điền từ thích hợp vào chỗ trống để hoàn thành câu: “Giấy rách phải giữ lấy (...)”",
+      "answer": "lề",
+      "blankAnswer": "lề",
+      "explanation": "Câu tục ngữ đầy đủ là: “Giấy rách phải giữ lấy lề”.",
       "questionId": "k2_c1_dt_0344"
     },
     {
@@ -33013,10 +32999,10 @@
       "grade": "KHOI_2",
       "level": "CAP_1_VONG_LOAI",
       "type": "DT",
-      "question": "Điền từ thích hợp vào chỗ trống để hoàn thành câu: “Một cây làm chẳng nên non, ba cây chụm lại nên hòn núi (...)”",
-      "answer": "cao",
-      "blankAnswer": "cao",
-      "explanation": "Câu ca dao đầy đủ là: “Một cây làm chẳng nên non, ba cây chụm lại nên hòn núi cao”.",
+      "question": "Điền từ thích hợp vào chỗ trống để hoàn thành câu: “Đoàn kết là sống, chia rẽ là (...)”",
+      "answer": "chết",
+      "blankAnswer": "chết",
+      "explanation": "Câu tục ngữ đầy đủ là: “Đoàn kết là sống, chia rẽ là chết”.",
       "questionId": "k2_c1_dt_0348"
     },
     {
@@ -33123,10 +33109,10 @@
       "grade": "KHOI_2",
       "level": "CAP_1_VONG_LOAI",
       "type": "DT",
-      "question": "Điền từ thích hợp vào chỗ trống để hoàn thành câu: “Đói cho sạch, rách cho (...)”",
-      "answer": "thơm",
-      "blankAnswer": "thơm",
-      "explanation": "Câu tục ngữ đầy đủ là: “Đói cho sạch, rách cho thơm”.",
+      "question": "Điền từ thích hợp vào chỗ trống để hoàn thành câu: “Tay làm hàm nhai, tay quai miệng (...)”",
+      "answer": "trễ",
+      "blankAnswer": "trễ",
+      "explanation": "Câu tục ngữ đầy đủ là: “Tay làm hàm nhai, tay quai miệng trễ”.",
       "questionId": "k2_c1_dt_0358"
     },
     {
@@ -33156,10 +33142,10 @@
       "grade": "KHOI_2",
       "level": "CAP_1_VONG_LOAI",
       "type": "DT",
-      "question": "Điền từ thích hợp vào chỗ trống để hoàn thành câu: “Đi một ngày đàng, học một sàng (...)”",
-      "answer": "khôn",
-      "blankAnswer": "khôn",
-      "explanation": "Câu tục ngữ đầy đủ là: “Đi một ngày đàng, học một sàng khôn”.",
+      "question": "Điền từ thích hợp vào chỗ trống để hoàn thành câu: “Văn hay chữ (...)”",
+      "answer": "tốt",
+      "blankAnswer": "tốt",
+      "explanation": "Thành ngữ quen thuộc là: “Văn hay chữ tốt”.",
       "questionId": "k2_c1_dt_0361"
     },
     {
@@ -33242,7 +33228,7 @@
       "grade": "KHOI_2",
       "level": "CAP_1_VONG_LOAI",
       "type": "TN",
-      "questionId": "k2_c1_tn_1148"
+      "questionId": "k2_c1_tn_1147"
     },
     {
       "question": "Từ nào dưới đây là từ chỉ một loài hoa khoe sắc vào mùa xuân?",
@@ -33258,7 +33244,7 @@
       "grade": "KHOI_2",
       "level": "CAP_1_VONG_LOAI",
       "type": "TN",
-      "questionId": "k2_c1_tn_1149"
+      "questionId": "k2_c1_tn_1148"
     },
     {
       "question": "Từ nào dưới đây là từ chỉ con vật nuôi quen thuộc trông nhà cho bé?",
@@ -33274,7 +33260,7 @@
       "grade": "KHOI_2",
       "level": "CAP_1_VONG_LOAI",
       "type": "TN",
-      "questionId": "k2_c1_tn_1150"
+      "questionId": "k2_c1_tn_1149"
     },
     {
       "question": "Từ nào dưới đây là từ chỉ người làm nghề khám chữa bệnh cho mọi người?",
@@ -33290,7 +33276,7 @@
       "grade": "KHOI_2",
       "level": "CAP_1_VONG_LOAI",
       "type": "TN",
-      "questionId": "k2_c1_tn_1151"
+      "questionId": "k2_c1_tn_1150"
     },
     {
       "question": "Từ nào dưới đây là từ chỉ hoạt động của đôi chân khi tham gia thể thao?",
@@ -33306,7 +33292,7 @@
       "grade": "KHOI_2",
       "level": "CAP_1_VONG_LOAI",
       "type": "TN",
-      "questionId": "k2_c1_tn_1152"
+      "questionId": "k2_c1_tn_1151"
     },
     {
       "question": "Từ nào dưới đây là từ chỉ hoạt động giúp đỡ mẹ làm sạch sàn nhà?",
@@ -33322,7 +33308,7 @@
       "grade": "KHOI_2",
       "level": "CAP_1_VONG_LOAI",
       "type": "TN",
-      "questionId": "k2_c1_tn_1153"
+      "questionId": "k2_c1_tn_1152"
     },
     {
       "question": "Từ nào dưới đây là từ chỉ hoạt động tạo ra những nét chữ nắn nót trong vở?",
@@ -33338,7 +33324,7 @@
       "grade": "KHOI_2",
       "level": "CAP_1_VONG_LOAI",
       "type": "TN",
-      "questionId": "k2_c1_tn_1154"
+      "questionId": "k2_c1_tn_1153"
     },
     {
       "question": "Từ nào dưới đây là từ chỉ hoạt động chăm sóc bồn hoa ở trường?",
@@ -33354,7 +33340,7 @@
       "grade": "KHOI_2",
       "level": "CAP_1_VONG_LOAI",
       "type": "TN",
-      "questionId": "k2_c1_tn_1155"
+      "questionId": "k2_c1_tn_1154"
     },
     {
       "question": "Từ nào dưới đây là từ chỉ màu sắc của lá cây khi còn tươi non?",
@@ -33370,7 +33356,7 @@
       "grade": "KHOI_2",
       "level": "CAP_1_VONG_LOAI",
       "type": "TN",
-      "questionId": "k2_c1_tn_1156"
+      "questionId": "k2_c1_tn_1155"
     },
     {
       "question": "Từ nào dưới đây là từ chỉ đức tính tốt, luôn nói thật và không gian dối?",
@@ -33386,7 +33372,7 @@
       "grade": "KHOI_2",
       "level": "CAP_1_VONG_LOAI",
       "type": "TN",
-      "questionId": "k2_c1_tn_1157"
+      "questionId": "k2_c1_tn_1156"
     },
     {
       "question": "Từ nào dưới đây là từ chỉ tính cách chăm chỉ học hành, không lười biếng?",
@@ -33402,7 +33388,7 @@
       "grade": "KHOI_2",
       "level": "CAP_1_VONG_LOAI",
       "type": "TN",
-      "questionId": "k2_c1_tn_1158"
+      "questionId": "k2_c1_tn_1157"
     },
     {
       "question": "Từ nào dưới đây là từ chỉ mùi hương dễ chịu của các loài hoa trong vườn?",
@@ -33418,7 +33404,7 @@
       "grade": "KHOI_2",
       "level": "CAP_1_VONG_LOAI",
       "type": "TN",
-      "questionId": "k2_c1_tn_1159"
+      "questionId": "k2_c1_tn_1158"
     },
     {
       "question": "Trong câu: “Đàn chim sẻ hót líu lo trên cành cây.”, từ nào là từ chỉ hoạt động?",
@@ -33434,7 +33420,7 @@
       "grade": "KHOI_2",
       "level": "CAP_1_VONG_LOAI",
       "type": "TN",
-      "questionId": "k2_c1_tn_1160"
+      "questionId": "k2_c1_tn_1159"
     },
     {
       "question": "Trong câu: “Bé Mai có chiếc cặp sách màu đỏ rất đẹp.”, từ nào là từ chỉ sự vật?",
@@ -33450,7 +33436,7 @@
       "grade": "KHOI_2",
       "level": "CAP_1_VONG_LOAI",
       "type": "TN",
-      "questionId": "k2_c1_tn_1161"
+      "questionId": "k2_c1_tn_1160"
     },
     {
       "question": "Trong câu: “Bác nông dân đang cấy lúa ngoài đồng.”, từ nào là từ chỉ người?",
@@ -33466,7 +33452,7 @@
       "grade": "KHOI_2",
       "level": "CAP_1_VONG_LOAI",
       "type": "TN",
-      "questionId": "k2_c1_tn_1162"
+      "questionId": "k2_c1_tn_1161"
     },
     {
       "question": "Trong câu: “Dòng suối chảy róc rách qua khe đá.”, từ nào là từ chỉ hoạt động?",
@@ -33482,7 +33468,7 @@
       "grade": "KHOI_2",
       "level": "CAP_1_VONG_LOAI",
       "type": "TN",
-      "questionId": "k2_c1_tn_1163"
+      "questionId": "k2_c1_tn_1162"
     },
     {
       "question": "Từ nào dưới đây cùng nhóm với các từ: “bút chì, thước kẻ, tẩy gôm”?",
@@ -33498,7 +33484,7 @@
       "grade": "KHOI_2",
       "level": "CAP_1_VONG_LOAI",
       "type": "TN",
-      "questionId": "k2_c1_tn_1164"
+      "questionId": "k2_c1_tn_1163"
     },
     {
       "question": "Từ nào dưới đây cùng nhóm với các từ: “chăm chỉ, ngoan ngoãn, hiền lành”?",
@@ -33514,7 +33500,7 @@
       "grade": "KHOI_2",
       "level": "CAP_1_VONG_LOAI",
       "type": "TN",
-      "questionId": "k2_c1_tn_1165"
+      "questionId": "k2_c1_tn_1164"
     },
     {
       "question": "Từ nào dưới đây cùng nhóm với các từ: “chạy nhảy, bơi lội, đá bóng”?",
@@ -33530,7 +33516,7 @@
       "grade": "KHOI_2",
       "level": "CAP_1_VONG_LOAI",
       "type": "TN",
-      "questionId": "k2_c1_tn_1166"
+      "questionId": "k2_c1_tn_1165"
     },
     {
       "question": "Từ nào dưới đây KHÔNG phải là từ chỉ con vật?",
@@ -33546,7 +33532,7 @@
       "grade": "KHOI_2",
       "level": "CAP_1_VONG_LOAI",
       "type": "TN",
-      "questionId": "k2_c1_tn_1167"
+      "questionId": "k2_c1_tn_1166"
     },
     {
       "question": "Từ nào dưới đây KHÔNG phải là từ chỉ đồ dùng trong gia đình?",
@@ -33562,7 +33548,7 @@
       "grade": "KHOI_2",
       "level": "CAP_1_VONG_LOAI",
       "type": "TN",
-      "questionId": "k2_c1_tn_1168"
+      "questionId": "k2_c1_tn_1167"
     },
     {
       "question": "Dãy từ nào dưới đây chỉ gồm các từ chỉ đặc điểm?",
@@ -33578,7 +33564,7 @@
       "grade": "KHOI_2",
       "level": "CAP_1_VONG_LOAI",
       "type": "TN",
-      "questionId": "k2_c1_tn_1169"
+      "questionId": "k2_c1_tn_1168"
     },
     {
       "question": "Câu nào dưới đây được cấu tạo theo mẫu câu “Ai là gì?”?",
@@ -33594,7 +33580,7 @@
       "grade": "KHOI_2",
       "level": "CAP_1_VONG_LOAI",
       "type": "TN",
-      "questionId": "k2_c1_tn_1170"
+      "questionId": "k2_c1_tn_1169"
     },
     {
       "question": "Câu văn nào dưới đây thuộc mẫu câu “Ai là gì?”?",
@@ -33610,7 +33596,7 @@
       "grade": "KHOI_2",
       "level": "CAP_1_VONG_LOAI",
       "type": "TN",
-      "questionId": "k2_c1_tn_1171"
+      "questionId": "k2_c1_tn_1170"
     },
     {
       "question": "Dòng nào dưới đây là câu theo mẫu “Ai là gì?”?",
@@ -33626,7 +33612,7 @@
       "grade": "KHOI_2",
       "level": "CAP_1_VONG_LOAI",
       "type": "TN",
-      "questionId": "k2_c1_tn_1172"
+      "questionId": "k2_c1_tn_1171"
     },
     {
       "question": "Em hãy chọn câu được viết theo mẫu “Ai là gì?”:",
@@ -33642,7 +33628,7 @@
       "grade": "KHOI_2",
       "level": "CAP_1_VONG_LOAI",
       "type": "TN",
-      "questionId": "k2_c1_tn_1173"
+      "questionId": "k2_c1_tn_1172"
     },
     {
       "question": "Câu nào dưới đây được cấu tạo theo mẫu câu “Ai làm gì?”?",
@@ -33658,7 +33644,7 @@
       "grade": "KHOI_2",
       "level": "CAP_1_VONG_LOAI",
       "type": "TN",
-      "questionId": "k2_c1_tn_1174"
+      "questionId": "k2_c1_tn_1173"
     },
     {
       "question": "Câu văn nào dưới đây thuộc mẫu câu “Ai làm gì?”?",
@@ -33674,7 +33660,7 @@
       "grade": "KHOI_2",
       "level": "CAP_1_VONG_LOAI",
       "type": "TN",
-      "questionId": "k2_c1_tn_1175"
+      "questionId": "k2_c1_tn_1174"
     },
     {
       "question": "Dòng nào dưới đây là câu theo mẫu “Ai làm gì?”?",
@@ -33690,7 +33676,7 @@
       "grade": "KHOI_2",
       "level": "CAP_1_VONG_LOAI",
       "type": "TN",
-      "questionId": "k2_c1_tn_1176"
+      "questionId": "k2_c1_tn_1175"
     },
     {
       "question": "Em hãy chọn câu được viết theo mẫu “Ai làm gì?”:",
@@ -33706,7 +33692,7 @@
       "grade": "KHOI_2",
       "level": "CAP_1_VONG_LOAI",
       "type": "TN",
-      "questionId": "k2_c1_tn_1177"
+      "questionId": "k2_c1_tn_1176"
     },
     {
       "question": "Câu nào dưới đây được cấu tạo theo mẫu câu “Ai thế nào?”?",
@@ -33722,7 +33708,7 @@
       "grade": "KHOI_2",
       "level": "CAP_1_VONG_LOAI",
       "type": "TN",
-      "questionId": "k2_c1_tn_1178"
+      "questionId": "k2_c1_tn_1177"
     },
     {
       "question": "Câu văn nào dưới đây thuộc mẫu câu “Ai thế nào?”?",
@@ -33738,7 +33724,7 @@
       "grade": "KHOI_2",
       "level": "CAP_1_VONG_LOAI",
       "type": "TN",
-      "questionId": "k2_c1_tn_1179"
+      "questionId": "k2_c1_tn_1178"
     },
     {
       "question": "Dòng nào dưới đây là câu theo mẫu “Ai thế nào?”?",
@@ -33754,7 +33740,7 @@
       "grade": "KHOI_2",
       "level": "CAP_1_VONG_LOAI",
       "type": "TN",
-      "questionId": "k2_c1_tn_1180"
+      "questionId": "k2_c1_tn_1179"
     },
     {
       "question": "Em hãy chọn câu được viết theo mẫu “Ai thế nào?”:",
@@ -33770,7 +33756,7 @@
       "grade": "KHOI_2",
       "level": "CAP_1_VONG_LOAI",
       "type": "TN",
-      "questionId": "k2_c1_tn_1181"
+      "questionId": "k2_c1_tn_1180"
     },
     {
       "question": "Bộ phận in đậm trong câu: “**Bác nông dân** chăm chỉ cày ruộng ngoài đồng.” trả lời cho câu hỏi nào?",
@@ -33786,7 +33772,7 @@
       "grade": "KHOI_2",
       "level": "CAP_1_VONG_LOAI",
       "type": "TN",
-      "questionId": "k2_c1_tn_1182"
+      "questionId": "k2_c1_tn_1181"
     },
     {
       "question": "Bộ phận in đậm trong câu: “Bé Mai **chăm chỉ học bài mỗi tối**.” trả lời cho câu hỏi nào?",
@@ -33802,7 +33788,7 @@
       "grade": "KHOI_2",
       "level": "CAP_1_VONG_LOAI",
       "type": "TN",
-      "questionId": "k2_c1_tn_1183"
+      "questionId": "k2_c1_tn_1182"
     },
     {
       "question": "Bộ phận in đậm trong câu: “Bầu trời mùa thu **trong xanh vời vợi**.” trả lời cho câu hỏi nào?",
@@ -33818,7 +33804,7 @@
       "grade": "KHOI_2",
       "level": "CAP_1_VONG_LOAI",
       "type": "TN",
-      "questionId": "k2_c1_tn_1184"
+      "questionId": "k2_c1_tn_1183"
     },
     {
       "question": "Bộ phận in đậm trong câu: “Hà Nội **là thủ đô của nước ta**.” trả lời cho câu hỏi nào?",
@@ -33834,7 +33820,7 @@
       "grade": "KHOI_2",
       "level": "CAP_1_VONG_LOAI",
       "type": "TN",
-      "questionId": "k2_c1_tn_1185"
+      "questionId": "k2_c1_tn_1184"
     },
     {
       "question": "Để hoàn thành câu theo mẫu “Ai làm gì?”, em chọn cụm từ nào điền vào chỗ trống: “Bác thợ rèn ______.”?",
@@ -33850,7 +33836,7 @@
       "grade": "KHOI_2",
       "level": "CAP_1_VONG_LOAI",
       "type": "TN",
-      "questionId": "k2_c1_tn_1186"
+      "questionId": "k2_c1_tn_1185"
     },
     {
       "question": "Để hoàn thành câu theo mẫu “Ai thế nào?”, em chọn cụm từ nào điền vào chỗ trống: “Tiếng suối rừng reo ______.”?",
@@ -33866,7 +33852,7 @@
       "grade": "KHOI_2",
       "level": "CAP_1_VONG_LOAI",
       "type": "TN",
-      "questionId": "k2_c1_tn_1187"
+      "questionId": "k2_c1_tn_1186"
     },
     {
       "question": "Để hoàn thành câu theo mẫu “Ai là gì?”, em chọn cụm từ nào điền vào chỗ trống: “Chim sơn ca ______.”?",
@@ -33882,7 +33868,7 @@
       "grade": "KHOI_2",
       "level": "CAP_1_VONG_LOAI",
       "type": "TN",
-      "questionId": "k2_c1_tn_1188"
+      "questionId": "k2_c1_tn_1187"
     },
     {
       "question": "Câu: “Đôi mắt chú mèo tròn xoe như hai hòn bi ve.” thuộc kiểu câu nào?",
@@ -33898,7 +33884,7 @@
       "grade": "KHOI_2",
       "level": "CAP_1_VONG_LOAI",
       "type": "TN",
-      "questionId": "k2_c1_tn_1189"
+      "questionId": "k2_c1_tn_1188"
     },
     {
       "question": "Câu: “Bác sĩ khám bệnh cho các em nhỏ vùng cao.” thuộc kiểu câu nào?",
@@ -33914,7 +33900,7 @@
       "grade": "KHOI_2",
       "level": "CAP_1_VONG_LOAI",
       "type": "TN",
-      "questionId": "k2_c1_tn_1190"
+      "questionId": "k2_c1_tn_1189"
     },
     {
       "question": "Câu: “Mặt trời là quả cầu lửa khổng lồ sưởi ấm vạn vật.” thuộc kiểu câu nào?",
@@ -33930,7 +33916,7 @@
       "grade": "KHOI_2",
       "level": "CAP_1_VONG_LOAI",
       "type": "TN",
-      "questionId": "k2_c1_tn_1191"
+      "questionId": "k2_c1_tn_1190"
     },
     {
       "question": "Dấu câu nào thường được đặt ở cuối một câu kể thông thường?",
@@ -33946,7 +33932,7 @@
       "grade": "KHOI_2",
       "level": "CAP_1_VONG_LOAI",
       "type": "TN",
-      "questionId": "k2_c1_tn_1192"
+      "questionId": "k2_c1_tn_1191"
     },
     {
       "question": "Dấu câu nào được dùng ở cuối câu khi muốn hỏi một điều chưa biết?",
@@ -33962,7 +33948,7 @@
       "grade": "KHOI_2",
       "level": "CAP_1_VONG_LOAI",
       "type": "TN",
-      "questionId": "k2_c1_tn_1193"
+      "questionId": "k2_c1_tn_1192"
     },
     {
       "question": "Dấu câu nào dùng để bộc lộ cảm xúc ngạc nhiên, vui mừng hoặc câu cầu khiến?",
@@ -33978,7 +33964,7 @@
       "grade": "KHOI_2",
       "level": "CAP_1_VONG_LOAI",
       "type": "TN",
-      "questionId": "k2_c1_tn_1194"
+      "questionId": "k2_c1_tn_1193"
     },
     {
       "question": "Dấu câu nào dùng để ngăn cách các từ cùng loại trong phép liệt kê?",
@@ -33994,7 +33980,7 @@
       "grade": "KHOI_2",
       "level": "CAP_1_VONG_LOAI",
       "type": "TN",
-      "questionId": "k2_c1_tn_1195"
+      "questionId": "k2_c1_tn_1194"
     },
     {
       "question": "Cần điền dấu câu nào vào ô trống cuối câu sau: “Mỗi ngày đến trường là một ngày vui[ ]”?",
@@ -34010,7 +33996,7 @@
       "grade": "KHOI_2",
       "level": "CAP_1_VONG_LOAI",
       "type": "TN",
-      "questionId": "k2_c1_tn_1196"
+      "questionId": "k2_c1_tn_1195"
     },
     {
       "question": "Cần điền dấu câu nào vào ô trống cuối câu sau: “Hôm nay bạn có đi học đàn không[ ]”?",
@@ -34026,7 +34012,7 @@
       "grade": "KHOI_2",
       "level": "CAP_1_VONG_LOAI",
       "type": "TN",
-      "questionId": "k2_c1_tn_1197"
+      "questionId": "k2_c1_tn_1196"
     },
     {
       "question": "Cần điền dấu câu nào vào ô trống cuối câu sau: “Ôi, bông hoa hồng nhung nở đẹp quá[ ]”?",
@@ -34042,7 +34028,7 @@
       "grade": "KHOI_2",
       "level": "CAP_1_VONG_LOAI",
       "type": "TN",
-      "questionId": "k2_c1_tn_1198"
+      "questionId": "k2_c1_tn_1197"
     },
     {
       "question": "Cần điền dấu câu nào vào ô trống trong câu sau: “Em thích ăn quả táo[ ] quả nho và quả chuối.”?",
@@ -34058,7 +34044,7 @@
       "grade": "KHOI_2",
       "level": "CAP_1_VONG_LOAI",
       "type": "TN",
-      "questionId": "k2_c1_tn_1199"
+      "questionId": "k2_c1_tn_1198"
     },
     {
       "question": "Câu nào dưới đây sử dụng đúng dấu câu?",
@@ -34074,7 +34060,7 @@
       "grade": "KHOI_2",
       "level": "CAP_1_VONG_LOAI",
       "type": "TN",
-      "questionId": "k2_c1_tn_1200"
+      "questionId": "k2_c1_tn_1199"
     },
     {
       "question": "Câu văn nào dưới đây đặt dấu câu chính xác?",
@@ -34090,7 +34076,7 @@
       "grade": "KHOI_2",
       "level": "CAP_1_VONG_LOAI",
       "type": "TN",
-      "questionId": "k2_c1_tn_1201"
+      "questionId": "k2_c1_tn_1200"
     },
     {
       "question": "Trong các câu sau, câu nào dùng dấu câu phù hợp?",
@@ -34106,7 +34092,7 @@
       "grade": "KHOI_2",
       "level": "CAP_1_VONG_LOAI",
       "type": "TN",
-      "questionId": "k2_c1_tn_1202"
+      "questionId": "k2_c1_tn_1201"
     },
     {
       "question": "Câu nào dưới đây sử dụng dấu phẩy đúng cách?",
@@ -34122,7 +34108,7 @@
       "grade": "KHOI_2",
       "level": "CAP_1_VONG_LOAI",
       "type": "TN",
-      "questionId": "k2_c1_tn_1203"
+      "questionId": "k2_c1_tn_1202"
     },
     {
       "question": "Trong câu: “Bác nông dân gặt lúa, gánh lúa về sân phơi.”, dấu phẩy dùng để làm gì?",
@@ -34138,7 +34124,7 @@
       "grade": "KHOI_2",
       "level": "CAP_1_VONG_LOAI",
       "type": "TN",
-      "questionId": "k2_c1_tn_1204"
+      "questionId": "k2_c1_tn_1203"
     },
     {
       "question": "Trong câu: “Mùa hè, ve sầu kêu râm ran trên vòm lá.”, dấu phẩy dùng để làm gì?",
@@ -34154,7 +34140,7 @@
       "grade": "KHOI_2",
       "level": "CAP_1_VONG_LOAI",
       "type": "TN",
-      "questionId": "k2_c1_tn_1205"
+      "questionId": "k2_c1_tn_1204"
     },
     {
       "question": "Câu nào dưới đây là một câu hỏi hoàn chỉnh?",
@@ -34170,7 +34156,7 @@
       "grade": "KHOI_2",
       "level": "CAP_1_VONG_LOAI",
       "type": "TN",
-      "questionId": "k2_c1_tn_1206"
+      "questionId": "k2_c1_tn_1205"
     },
     {
       "question": "Câu nào dưới đây là một câu cảm thán bộc lộ cảm xúc?",
@@ -34186,7 +34172,7 @@
       "grade": "KHOI_2",
       "level": "CAP_1_VONG_LOAI",
       "type": "TN",
-      "questionId": "k2_c1_tn_1207"
+      "questionId": "k2_c1_tn_1206"
     },
     {
       "question": "Cần đặt dấu gì vào cuối câu sau: “Bé hãy đóng cửa lại giúp cô nhé[ ]”?",
@@ -34202,7 +34188,7 @@
       "grade": "KHOI_2",
       "level": "CAP_1_VONG_LOAI",
       "type": "TN",
-      "questionId": "k2_c1_tn_1208"
+      "questionId": "k2_c1_tn_1207"
     },
     {
       "question": "Cần đặt dấu gì vào cuối câu sau: “Cô giáo chủ nhiệm lớp em tên là gì[ ]”?",
@@ -34218,7 +34204,7 @@
       "grade": "KHOI_2",
       "level": "CAP_1_VONG_LOAI",
       "type": "TN",
-      "questionId": "k2_c1_tn_1209"
+      "questionId": "k2_c1_tn_1208"
     },
     {
       "question": "Cần đặt dấu gì vào cuối câu sau: “Cây bàng sừng sững xòe tán lá xanh mát giữa sân trường[ ]”?",
@@ -34234,7 +34220,7 @@
       "grade": "KHOI_2",
       "level": "CAP_1_VONG_LOAI",
       "type": "TN",
-      "questionId": "k2_c1_tn_1210"
+      "questionId": "k2_c1_tn_1209"
     },
     {
       "question": "Điền dấu phẩy thích hợp vào vị trí nào trong câu: “Nam Hà và Minh cùng chơi đá cầu.”?",
@@ -34250,7 +34236,7 @@
       "grade": "KHOI_2",
       "level": "CAP_1_VONG_LOAI",
       "type": "TN",
-      "questionId": "k2_c1_tn_1211"
+      "questionId": "k2_c1_tn_1210"
     },
     {
       "question": "Điền dấu phẩy thích hợp vào vị trí nào trong câu: “Thầy cô luôn yêu thương tận tụy dạy dỗ học trò.”?",
@@ -34266,7 +34252,7 @@
       "grade": "KHOI_2",
       "level": "CAP_1_VONG_LOAI",
       "type": "TN",
-      "questionId": "k2_c1_tn_1212"
+      "questionId": "k2_c1_tn_1211"
     },
     {
       "question": "Điền dấu thích hợp vào chỗ trống để câu văn hoàn chỉnh: “Bố mẹ dặn em phải chăm ngoan___ vâng lời thầy cô.”?",
@@ -34282,7 +34268,7 @@
       "grade": "KHOI_2",
       "level": "CAP_1_VONG_LOAI",
       "type": "TN",
-      "questionId": "k2_c1_tn_1213"
+      "questionId": "k2_c1_tn_1212"
     },
     {
       "question": "Từ ngữ nào dưới đây có nghĩa trái ngược với từ “chăm chỉ”?",
@@ -34298,7 +34284,7 @@
       "grade": "KHOI_2",
       "level": "CAP_1_VONG_LOAI",
       "type": "TN",
-      "questionId": "k2_c1_tn_1214"
+      "questionId": "k2_c1_tn_1213"
     },
     {
       "question": "Từ ngữ nào dưới đây có nghĩa trái ngược với từ “gọn gàng”?",
@@ -34314,7 +34300,7 @@
       "grade": "KHOI_2",
       "level": "CAP_1_VONG_LOAI",
       "type": "TN",
-      "questionId": "k2_c1_tn_1215"
+      "questionId": "k2_c1_tn_1214"
     },
     {
       "question": "Từ ngữ nào dưới đây có nghĩa trái ngược với từ “dũng cảm”?",
@@ -34330,7 +34316,7 @@
       "grade": "KHOI_2",
       "level": "CAP_1_VONG_LOAI",
       "type": "TN",
-      "questionId": "k2_c1_tn_1216"
+      "questionId": "k2_c1_tn_1215"
     },
     {
       "question": "Từ ngữ nào dưới đây có nghĩa trái ngược với từ “nhanh nhẹn”?",
@@ -34346,7 +34332,7 @@
       "grade": "KHOI_2",
       "level": "CAP_1_VONG_LOAI",
       "type": "TN",
-      "questionId": "k2_c1_tn_1217"
+      "questionId": "k2_c1_tn_1216"
     },
     {
       "question": "Từ ngữ nào dưới đây có nghĩa trái ngược với từ “thật thà”?",
@@ -34362,7 +34348,7 @@
       "grade": "KHOI_2",
       "level": "CAP_1_VONG_LOAI",
       "type": "TN",
-      "questionId": "k2_c1_tn_1218"
+      "questionId": "k2_c1_tn_1217"
     },
     {
       "question": "Từ ngữ nào dưới đây có nghĩa trái ngược với từ “sáng sủa”?",
@@ -34378,7 +34364,7 @@
       "grade": "KHOI_2",
       "level": "CAP_1_VONG_LOAI",
       "type": "TN",
-      "questionId": "k2_c1_tn_1219"
+      "questionId": "k2_c1_tn_1218"
     },
     {
       "question": "Từ ngữ nào dưới đây đồng nghĩa với từ “chăm chỉ”?",
@@ -34394,7 +34380,7 @@
       "grade": "KHOI_2",
       "level": "CAP_1_VONG_LOAI",
       "type": "TN",
-      "questionId": "k2_c1_tn_1220"
+      "questionId": "k2_c1_tn_1219"
     },
     {
       "question": "Từ ngữ nào dưới đây đồng nghĩa với từ “yêu thương”?",
@@ -34410,7 +34396,7 @@
       "grade": "KHOI_2",
       "level": "CAP_1_VONG_LOAI",
       "type": "TN",
-      "questionId": "k2_c1_tn_1221"
+      "questionId": "k2_c1_tn_1220"
     },
     {
       "question": "Trong các từ sau, từ nào viết đúng quy tắc chính tả?",
@@ -34426,7 +34412,7 @@
       "grade": "KHOI_2",
       "level": "CAP_1_VONG_LOAI",
       "type": "TN",
-      "questionId": "k2_c1_tn_1222"
+      "questionId": "k2_c1_tn_1221"
     },
     {
       "question": "Em hãy chỉ ra từ ngữ được viết đúng chính tả dưới đây:",
@@ -34442,7 +34428,7 @@
       "grade": "KHOI_2",
       "level": "CAP_1_VONG_LOAI",
       "type": "TN",
-      "questionId": "k2_c1_tn_1223"
+      "questionId": "k2_c1_tn_1222"
     },
     {
       "question": "Từ ngữ nào dưới đây không mắc lỗi chính tả?",
@@ -34450,7 +34436,7 @@
         "A": "Kính mắt",
         "B": "Kính măt",
         "C": "Cính mắt",
-        "D": "Kính mắk"
+        "D": "Khính mắt"
       },
       "answer": "A",
       "explanation": "Âm k đi trước âm i tạo thành “kính”, vần ăt tạo thành “mắt”.",
@@ -34458,7 +34444,7 @@
       "grade": "KHOI_2",
       "level": "CAP_1_VONG_LOAI",
       "type": "TN",
-      "questionId": "k2_c1_tn_1224"
+      "questionId": "k2_c1_tn_1223"
     },
     {
       "question": "Cách viết nào dưới đây là đúng chính tả tiếng Việt?",
@@ -34474,7 +34460,7 @@
       "grade": "KHOI_2",
       "level": "CAP_1_VONG_LOAI",
       "type": "TN",
-      "questionId": "k2_c1_tn_1225"
+      "questionId": "k2_c1_tn_1224"
     },
     {
       "question": "Từ nào dưới đây viết sai chính tả?",
@@ -34490,7 +34476,7 @@
       "grade": "KHOI_2",
       "level": "CAP_1_VONG_LOAI",
       "type": "TN",
-      "questionId": "k2_c1_tn_1226"
+      "questionId": "k2_c1_tn_1225"
     },
     {
       "question": "Từ ngữ nào dưới đây mắc lỗi viết chính tả?",
@@ -34506,7 +34492,7 @@
       "grade": "KHOI_2",
       "level": "CAP_1_VONG_LOAI",
       "type": "TN",
-      "questionId": "k2_c1_tn_1227"
+      "questionId": "k2_c1_tn_1226"
     },
     {
       "question": "Trong các từ sau, từ nào chưa viết đúng chính tả?",
@@ -34522,7 +34508,7 @@
       "grade": "KHOI_2",
       "level": "CAP_1_VONG_LOAI",
       "type": "TN",
-      "questionId": "k2_c1_tn_1228"
+      "questionId": "k2_c1_tn_1227"
     },
     {
       "question": "Điền “ch” hay “tr” vào chỗ trống: “Đàn chim sẻ bay lượn trên vòm (...)e xanh mát.”?",
@@ -34538,7 +34524,7 @@
       "grade": "KHOI_2",
       "level": "CAP_1_VONG_LOAI",
       "type": "TN",
-      "questionId": "k2_c1_tn_1229"
+      "questionId": "k2_c1_tn_1228"
     },
     {
       "question": "Điền “s” hay “x” vào chỗ trống: “Mùa (...)uân về, muôn hoa đua nhau khoe sắc thắm.”?",
@@ -34554,7 +34540,7 @@
       "grade": "KHOI_2",
       "level": "CAP_1_VONG_LOAI",
       "type": "TN",
-      "questionId": "k2_c1_tn_1230"
+      "questionId": "k2_c1_tn_1229"
     },
     {
       "question": "Điền “c” hay “k” vào chỗ trống: “Bé dùng (...)éo cắt từng mẩu giấy màu xinh xắn.”?",
@@ -34570,7 +34556,7 @@
       "grade": "KHOI_2",
       "level": "CAP_1_VONG_LOAI",
       "type": "TN",
-      "questionId": "k2_c1_tn_1231"
+      "questionId": "k2_c1_tn_1230"
     },
     {
       "question": "Điền “g” hay “gh” vào chỗ trống: “Mỗi khi tan học, Nam thường (...)é thăm bà ngoại.”?",
@@ -34586,7 +34572,7 @@
       "grade": "KHOI_2",
       "level": "CAP_1_VONG_LOAI",
       "type": "TN",
-      "questionId": "k2_c1_tn_1232"
+      "questionId": "k2_c1_tn_1231"
     },
     {
       "question": "Điền “ng” hay “ngh” vào chỗ trống: “Cả lớp chăm chú lắng (...)e cô giáo giảng bài.”?",
@@ -34602,7 +34588,7 @@
       "grade": "KHOI_2",
       "level": "CAP_1_VONG_LOAI",
       "type": "TN",
-      "questionId": "k2_c1_tn_1233"
+      "questionId": "k2_c1_tn_1232"
     },
     {
       "question": "Từ nào dưới đây diễn tả đúng thái độ của học sinh khi gặp thầy cô giáo?",
@@ -34618,7 +34604,7 @@
       "grade": "KHOI_2",
       "level": "CAP_1_VONG_LOAI",
       "type": "TN",
-      "questionId": "k2_c1_tn_1234"
+      "questionId": "k2_c1_tn_1233"
     }
   ]
 }

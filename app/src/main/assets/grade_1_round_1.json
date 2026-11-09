@@ -2,11 +2,11 @@
   "contest": "Trạng Nguyên Tiếng Việt",
   "grade": "KHOI_1",
   "level": "CAP_1_VONG_LOAI",
-  "totalQuestions": 1604,
+  "totalQuestions": 1603,
   "typeDistribution": {
     "TN": 1011,
     "SX": 178,
-    "NOI": 119,
+    "NOI": 118,
     "CHON": 119,
     "DT": 177
   },
@@ -28,86 +28,7 @@
       "explanation": "Tiếng 'ba' bắt đầu bằng âm 'b'.",
       "questionId": "k1_c1_tn_0001"
     },
-    {
-      "contest": "Trạng Nguyên Tiếng Việt",
-      "grade": "KHOI_1",
-      "level": "CAP_1_VONG_LOAI",
-      "type": "TN",
-      "question": "Chọn tiếng bắt đầu bằng âm 'b'.",
-      "options": {
-        "A": "cò",
-        "B": "cô",
-        "C": "bé",
-        "D": "cá"
-      },
-      "answer": "C",
-      "explanation": "Tiếng 'bé' bắt đầu bằng âm 'b'.",
-      "questionId": "k1_c1_tn_0002"
-    },
-    {
-      "contest": "Trạng Nguyên Tiếng Việt",
-      "grade": "KHOI_1",
-      "level": "CAP_1_VONG_LOAI",
-      "type": "TN",
-      "question": "Trong các tiếng sau, tiếng nào bắt đầu bằng 'b'?",
-      "options": {
-        "A": "cò",
-        "B": "bà",
-        "C": "cá",
-        "D": "cô"
-      },
-      "answer": "B",
-      "explanation": "Tiếng 'bà' bắt đầu bằng âm 'b'.",
-      "questionId": "k1_c1_tn_0003"
-    },
-    {
-      "contest": "Trạng Nguyên Tiếng Việt",
-      "grade": "KHOI_1",
-      "level": "CAP_1_VONG_LOAI",
-      "type": "TN",
-      "question": "Tiếng nào dưới đây có âm đầu là 'b'?",
-      "options": {
-        "A": "cá",
-        "B": "cò",
-        "C": "cô",
-        "D": "bò"
-      },
-      "answer": "D",
-      "explanation": "Tiếng 'bò' bắt đầu bằng âm 'b'.",
-      "questionId": "k1_c1_tn_0004"
-    },
-    {
-      "contest": "Trạng Nguyên Tiếng Việt",
-      "grade": "KHOI_1",
-      "level": "CAP_1_VONG_LOAI",
-      "type": "TN",
-      "question": "Chọn tiếng bắt đầu bằng âm 'b'.",
-      "options": {
-        "A": "cá",
-        "B": "cô",
-        "C": "bút",
-        "D": "cò"
-      },
-      "answer": "C",
-      "explanation": "Tiếng 'bút' bắt đầu bằng âm 'b'.",
-      "questionId": "k1_c1_tn_0005"
-    },
-    {
-      "contest": "Trạng Nguyên Tiếng Việt",
-      "grade": "KHOI_1",
-      "level": "CAP_1_VONG_LOAI",
-      "type": "TN",
-      "question": "Trong các tiếng sau, tiếng nào bắt đầu bằng 'b'?",
-      "options": {
-        "A": "cá",
-        "B": "bàn",
-        "C": "cô",
-        "D": "cò"
-      },
-      "answer": "B",
-      "explanation": "Tiếng 'bàn' bắt đầu bằng âm 'b'.",
-      "questionId": "k1_c1_tn_0006"
-    },
+    
     {
       "contest": "Trạng Nguyên Tiếng Việt",
       "grade": "KHOI_1",
@@ -3846,10 +3767,10 @@
         "A": "nan",
         "B": "lan",
         "C": "bàn",
-        "D": "nốt"
+        "D": "sọt"
       },
       "answer": "D",
-      "explanation": "Tiếng 'nốt' có vần 'ot'.",
+      "explanation": "Tiếng 'sọt' có chứa vần 'ot'.",
       "questionId": "k1_c1_tn_0240"
     },
     {
@@ -3860,12 +3781,12 @@
       "question": "Tiếng nào có vần 'ot'?",
       "options": {
         "A": "nan",
-        "B": "tốt",
+        "B": "ngọt",
         "C": "bàn",
         "D": "lan"
       },
       "answer": "B",
-      "explanation": "Tiếng 'tốt' có vần 'ot'.",
+      "explanation": "Tiếng 'ngọt' có chứa vần 'ot'.",
       "questionId": "k1_c1_tn_0241"
     },
     {
@@ -4389,11 +4310,11 @@
       "options": {
         "A": "be",
         "B": "ba",
-        "C": "kẹo",
+        "C": "bóng",
         "D": "bo"
       },
       "answer": "C",
-      "explanation": "Tiếng 'kẹo' mang thanh sắc.",
+      "explanation": "Tiếng 'bóng' mang thanh sắc.",
       "questionId": "k1_c1_tn_0274"
     },
     {
@@ -5188,12 +5109,12 @@
       "question": "Từ nào dưới đây viết đúng chính tả?",
       "options": {
         "A": "cái cốc",
-        "B": "cái cốcx",
+        "B": "cái cấc",
         "C": "cái kốc",
         "D": "cái cóc"
       },
       "answer": "A",
-      "explanation": "'cái cốc' là cách viết đúng chính tả.",
+      "explanation": "'cái cốc' là từ viết đúng chính tả.",
       "questionId": "k1_c1_tn_0324"
     },
     {
@@ -5235,13 +5156,13 @@
       "type": "TN",
       "question": "Từ nào dưới đây viết đúng chính tả?",
       "options": {
-        "A": "cái kéox",
+        "A": "cái céo",
         "B": "cái kẻo",
-        "C": "cái cé o",
+        "C": "cái kéu",
         "D": "cái kéo"
       },
       "answer": "D",
-      "explanation": "'cái kéo' là cách viết đúng chính tả.",
+      "explanation": "'cái kéo' là từ viết đúng chính tả.",
       "questionId": "k1_c1_tn_0327"
     },
     {
@@ -5252,12 +5173,12 @@
       "question": "Từ nào dưới đây viết đúng chính tả?",
       "options": {
         "A": "con kiếng",
-        "B": "con kiếnx",
+        "B": "con kiền",
         "C": "con ciến",
         "D": "con kiến"
       },
       "answer": "D",
-      "explanation": "'con kiến' là cách viết đúng chính tả.",
+      "explanation": "'con kiến' là từ viết đúng chính tả.",
       "questionId": "k1_c1_tn_0328"
     },
     {
@@ -5265,15 +5186,15 @@
       "grade": "KHOI_1",
       "level": "CAP_1_VONG_LOAI",
       "type": "TN",
-      "question": "Từ nào dưới đây viết đúng chính tả?",
+      "question": "Từ nào dưới đây viết sai chính tả?",
       "options": {
         "A": "kẻ",
         "B": "kê",
         "C": "cẻ",
         "D": "kẽ"
       },
-      "answer": "A",
-      "explanation": "'kẻ' là tiếng viết đúng chính tả.",
+      "answer": "C",
+      "explanation": "Theo quy tắc chính tả tiếng Việt, âm /k/ đứng trước e, ê, i phải viết bằng 'k'. Do đó 'cẻ' là cách viết sai chính tả.",
       "questionId": "k1_c1_tn_0329"
     },
     {
@@ -5284,12 +5205,12 @@
       "question": "Từ nào dưới đây viết đúng chính tả?",
       "options": {
         "A": "cẹo ngọt",
-        "B": "kẹo ngọtx",
+        "B": "kẹo ngọc",
         "C": "kẹo ngọt",
-        "D": "kẹo ngọta"
+        "D": "kẹo ngột"
       },
       "answer": "C",
-      "explanation": "'kẹo ngọt' là cách viết đúng chính tả.",
+      "explanation": "'kẹo ngọt' là từ viết đúng chính tả.",
       "questionId": "k1_c1_tn_0330"
     },
     {
@@ -5300,12 +5221,12 @@
       "question": "Từ nào dưới đây viết đúng chính tả?",
       "options": {
         "A": "cái kẽn",
-        "B": "cái kènx",
+        "B": "cái kèng",
         "C": "cái kèn",
         "D": "cái cèn"
       },
       "answer": "C",
-      "explanation": "'cái kèn' là cách viết đúng chính tả.",
+      "explanation": "'cái kèn' là từ viết đúng chính tả.",
       "questionId": "k1_c1_tn_0331"
     },
     {
@@ -5316,12 +5237,12 @@
       "question": "Từ nào dưới đây viết đúng chính tả?",
       "options": {
         "A": "gế gỗ",
-        "B": "ghế gỗx",
+        "B": "ghế gộ",
         "C": "ghế gổ",
         "D": "ghế gỗ"
       },
       "answer": "D",
-      "explanation": "'ghế gỗ' là cách viết đúng chính tả.",
+      "explanation": "'ghế gỗ' là từ viết đúng chính tả.",
       "questionId": "k1_c1_tn_0332"
     },
     {
@@ -5331,13 +5252,13 @@
       "type": "TN",
       "question": "Từ nào dưới đây viết đúng chính tả?",
       "options": {
-        "A": "ghi nhớx",
+        "A": "ghi nhở",
         "B": "ghi nhớ",
         "C": "gi nhớ",
         "D": "ghi nhỡ"
       },
       "answer": "B",
-      "explanation": "'ghi nhớ' là cách viết đúng chính tả.",
+      "explanation": "'ghi nhớ' là từ viết đúng chính tả.",
       "questionId": "k1_c1_tn_0333"
     },
     {
@@ -5347,13 +5268,13 @@
       "type": "TN",
       "question": "Từ nào dưới đây viết đúng chính tả?",
       "options": {
-        "A": "ghẹ luộcx",
+        "A": "gẹ luột",
         "B": "ghẹ luột",
         "C": "gẹ luộc",
         "D": "ghẹ luộc"
       },
       "answer": "D",
-      "explanation": "'ghẹ luộc' là cách viết đúng chính tả.",
+      "explanation": "'ghẹ luộc' là từ viết đúng chính tả.",
       "questionId": "k1_c1_tn_0334"
     },
     {
@@ -5363,13 +5284,13 @@
       "type": "TN",
       "question": "Từ nào dưới đây viết đúng chính tả?",
       "options": {
-        "A": "gà trốngx",
+        "A": "gà trổng",
         "B": "gà chống",
         "C": "ghà trống",
         "D": "gà trống"
       },
       "answer": "D",
-      "explanation": "'gà trống' là cách viết đúng chính tả.",
+      "explanation": "'gà trống' là từ viết đúng chính tả.",
       "questionId": "k1_c1_tn_0335"
     },
     {
@@ -5382,10 +5303,10 @@
         "A": "gỗ mụt",
         "B": "gỗ mục",
         "C": "ghỗ mục",
-        "D": "gỗ mụcx"
+        "D": "gỗ mụk"
       },
       "answer": "B",
-      "explanation": "'gỗ mục' là cách viết đúng chính tả.",
+      "explanation": "'gỗ mục' là từ viết đúng chính tả.",
       "questionId": "k1_c1_tn_0336"
     },
     {
@@ -5397,11 +5318,11 @@
       "options": {
         "A": "gõ cửa",
         "B": "ghõ cửa",
-        "C": "gõ cửax",
+        "C": "gõ cựa",
         "D": "gõ cữa"
       },
       "answer": "A",
-      "explanation": "'gõ cửa' là cách viết đúng chính tả.",
+      "explanation": "'gõ cửa' là từ viết đúng chính tả.",
       "questionId": "k1_c1_tn_0337"
     },
     {
@@ -5413,11 +5334,11 @@
       "options": {
         "A": "nghô non",
         "B": "ngô non",
-        "C": "ngô nonx",
+        "C": "ngô lon",
         "D": "ngô nôn"
       },
       "answer": "B",
-      "explanation": "'ngô non' là cách viết đúng chính tả.",
+      "explanation": "'ngô non' là từ viết đúng chính tả.",
       "questionId": "k1_c1_tn_0338"
     },
     {
@@ -5430,10 +5351,10 @@
         "A": "con ngổng",
         "B": "con ngỗng",
         "C": "con nghỗng",
-        "D": "con ngỗngx"
+        "D": "con nghổng"
       },
       "answer": "B",
-      "explanation": "'con ngỗng' là cách viết đúng chính tả.",
+      "explanation": "'con ngỗng' là từ viết đúng chính tả.",
       "questionId": "k1_c1_tn_0339"
     },
     {
@@ -5446,10 +5367,10 @@
         "A": "ngủ ngôn",
         "B": "ngủ ngon",
         "C": "nghủ ngon",
-        "D": "ngủ ngonx"
+        "D": "ngủ ngom"
       },
       "answer": "B",
-      "explanation": "'ngủ ngon' là cách viết đúng chính tả.",
+      "explanation": "'ngủ ngon' là từ viết đúng chính tả.",
       "questionId": "k1_c1_tn_0340"
     },
     {
@@ -5459,13 +5380,13 @@
       "type": "TN",
       "question": "Từ nào dưới đây viết đúng chính tả?",
       "options": {
-        "A": "nghe hátx",
+        "A": "nge hác",
         "B": "nghe hác",
         "C": "nghe hát",
         "D": "nge hát"
       },
       "answer": "C",
-      "explanation": "'nghe hát' là cách viết đúng chính tả.",
+      "explanation": "'nghe hát' là từ viết đúng chính tả.",
       "questionId": "k1_c1_tn_0341"
     },
     {
@@ -5475,13 +5396,13 @@
       "type": "TN",
       "question": "Từ nào dưới đây viết đúng chính tả?",
       "options": {
-        "A": "nghỉ hèx",
+        "A": "ngĩ hè",
         "B": "ngỉ hè",
         "C": "nghỉ hè",
         "D": "nghỉ hẻ"
       },
       "answer": "C",
-      "explanation": "'nghỉ hè' là cách viết đúng chính tả.",
+      "explanation": "'nghỉ hè' là từ viết đúng chính tả.",
       "questionId": "k1_c1_tn_0342"
     },
     {
@@ -5494,10 +5415,10 @@
         "A": "ngĩ bài",
         "B": "nghỉ bài",
         "C": "nghĩ bài",
-        "D": "nghĩ bàix"
+        "D": "ngỉ bài"
       },
       "answer": "C",
-      "explanation": "'nghĩ bài' là cách viết đúng chính tả.",
+      "explanation": "'nghĩ bài' là từ viết đúng chính tả.",
       "questionId": "k1_c1_tn_0343"
     },
     {
@@ -5507,13 +5428,13 @@
       "type": "TN",
       "question": "Từ nào dưới đây viết đúng chính tả?",
       "options": {
-        "A": "nghề mayx",
+        "A": "ngề mai",
         "B": "ngề may",
         "C": "nghề mai",
         "D": "nghề may"
       },
       "answer": "D",
-      "explanation": "'nghề may' là cách viết đúng chính tả.",
+      "explanation": "'nghề may' là từ viết đúng chính tả.",
       "questionId": "k1_c1_tn_0344"
     },
     {
@@ -5525,11 +5446,11 @@
       "options": {
         "A": "con châu",
         "B": "con trầu",
-        "C": "con trâux",
+        "C": "con trấu",
         "D": "con trâu"
       },
       "answer": "D",
-      "explanation": "'con trâu' là cách viết đúng chính tả.",
+      "explanation": "'con trâu' là từ viết đúng chính tả.",
       "questionId": "k1_c1_tn_0345"
     },
     {
@@ -5541,11 +5462,11 @@
       "options": {
         "A": "cây tre",
         "B": "cây che",
-        "C": "cây trex",
+        "C": "cây chê",
         "D": "cây trê"
       },
       "answer": "A",
-      "explanation": "'cây tre' là cách viết đúng chính tả.",
+      "explanation": "'cây tre' là từ viết đúng chính tả.",
       "questionId": "k1_c1_tn_0346"
     },
     {
@@ -5558,10 +5479,10 @@
         "A": "trái tảo",
         "B": "chái táo",
         "C": "trái táo",
-        "D": "trái táox"
+        "D": "chái tảo"
       },
       "answer": "C",
-      "explanation": "'trái táo' là cách viết đúng chính tả.",
+      "explanation": "'trái táo' là từ viết đúng chính tả.",
       "questionId": "k1_c1_tn_0347"
     },
     {
@@ -5571,13 +5492,13 @@
       "type": "TN",
       "question": "Từ nào dưới đây viết đúng chính tả?",
       "options": {
-        "A": "chú chóx",
+        "A": "trú chố",
         "B": "chú chố",
         "C": "chú chó",
         "D": "trú chó"
       },
       "answer": "C",
-      "explanation": "'chú chó' là cách viết đúng chính tả.",
+      "explanation": "'chú chó' là từ viết đúng chính tả.",
       "questionId": "k1_c1_tn_0348"
     },
     {
@@ -5587,13 +5508,13 @@
       "type": "TN",
       "question": "Từ nào dưới đây viết đúng chính tả?",
       "options": {
-        "A": "chú chimx",
+        "A": "trú chìm",
         "B": "chú chìm",
         "C": "trú chim",
         "D": "chú chim"
       },
       "answer": "D",
-      "explanation": "'chú chim' là cách viết đúng chính tả.",
+      "explanation": "'chú chim' là từ viết đúng chính tả.",
       "questionId": "k1_c1_tn_0349"
     },
     {
@@ -5604,12 +5525,12 @@
       "question": "Từ nào dưới đây viết đúng chính tả?",
       "options": {
         "A": "quả chúi",
-        "B": "quả chuốix",
+        "B": "quả trối",
         "C": "quả chuối",
         "D": "quả truối"
       },
       "answer": "C",
-      "explanation": "'quả chuối' là cách viết đúng chính tả.",
+      "explanation": "'quả chuối' là từ viết đúng chính tả.",
       "questionId": "k1_c1_tn_0350"
     },
     {
@@ -5622,10 +5543,10 @@
         "A": "sách vỡ",
         "B": "sách vở",
         "C": "xách vở",
-        "D": "sách vởx"
+        "D": "xách vỡ"
       },
       "answer": "B",
-      "explanation": "'sách vở' là cách viết đúng chính tả.",
+      "explanation": "'sách vở' là từ viết đúng chính tả.",
       "questionId": "k1_c1_tn_0351"
     },
     {
@@ -5637,11 +5558,11 @@
       "options": {
         "A": "sao xáng",
         "B": "xao sáng",
-        "C": "sao sángx",
+        "C": "xao xáng",
         "D": "sao sáng"
       },
       "answer": "D",
-      "explanation": "'sao sáng' là cách viết đúng chính tả.",
+      "explanation": "'sao sáng' là từ viết đúng chính tả.",
       "questionId": "k1_c1_tn_0352"
     },
     {
@@ -5652,12 +5573,12 @@
       "question": "Từ nào dưới đây viết đúng chính tả?",
       "options": {
         "A": "xe đạp",
-        "B": "xe đạpx",
+        "B": "se đặp",
         "C": "se đạp",
-        "D": "xe đạpa"
+        "D": "se đạc"
       },
       "answer": "A",
-      "explanation": "'xe đạp' là cách viết đúng chính tả.",
+      "explanation": "'xe đạp' là từ viết đúng chính tả.",
       "questionId": "k1_c1_tn_0353"
     },
     {
@@ -5668,12 +5589,12 @@
       "question": "Từ nào dưới đây viết đúng chính tả?",
       "options": {
         "A": "sanh tươi",
-        "B": "xanh tươix",
+        "B": "sanh tưới",
         "C": "xanh tươi",
         "D": "xanh tưới"
       },
       "answer": "C",
-      "explanation": "'xanh tươi' là cách viết đúng chính tả.",
+      "explanation": "'xanh tươi' là từ viết đúng chính tả.",
       "questionId": "k1_c1_tn_0354"
     },
     {
@@ -5683,13 +5604,13 @@
       "type": "TN",
       "question": "Từ nào dưới đây viết đúng chính tả?",
       "options": {
-        "A": "lá cờx",
+        "A": "ná kờ",
         "B": "lá cờ",
         "C": "ná cờ",
-        "D": "lá cờa"
+        "D": "lá kờ"
       },
       "answer": "B",
-      "explanation": "'lá cờ' là cách viết đúng chính tả.",
+      "explanation": "'lá cờ' là từ viết đúng chính tả.",
       "questionId": "k1_c1_tn_0355"
     },
     {
@@ -5700,12 +5621,12 @@
       "question": "Từ nào dưới đây viết đúng chính tả?",
       "options": {
         "A": "nón là",
-        "B": "nón láx",
+        "B": "lón nà",
         "C": "lón lá",
         "D": "nón lá"
       },
       "answer": "D",
-      "explanation": "'nón lá' là cách viết đúng chính tả.",
+      "explanation": "'nón lá' là từ viết đúng chính tả.",
       "questionId": "k1_c1_tn_0356"
     },
     {
@@ -5718,10 +5639,10 @@
         "A": "làng sóm",
         "B": "làng xóm",
         "C": "nàng xóm",
-        "D": "làng xómx"
+        "D": "nàng sóm"
       },
       "answer": "B",
-      "explanation": "'làng xóm' là cách viết đúng chính tả.",
+      "explanation": "'làng xóm' là từ viết đúng chính tả.",
       "questionId": "k1_c1_tn_0357"
     },
     {
@@ -5733,11 +5654,11 @@
       "options": {
         "A": "lước sạch",
         "B": "nước sạch",
-        "C": "nước sạchx",
+        "C": "lước sạc",
         "D": "nước sạc"
       },
       "answer": "B",
-      "explanation": "'nước sạch' là cách viết đúng chính tả.",
+      "explanation": "'nước sạch' là từ viết đúng chính tả.",
       "questionId": "k1_c1_tn_0358"
     },
     {
@@ -5750,10 +5671,10 @@
         "A": "bàn hộc",
         "B": "bàng học",
         "C": "bàn học",
-        "D": "bàn họcx"
+        "D": "bàng hộc"
       },
       "answer": "C",
-      "explanation": "'bàn học' là cách viết đúng chính tả.",
+      "explanation": "'bàn học' là từ viết đúng chính tả.",
       "questionId": "k1_c1_tn_0359"
     },
     {
@@ -5765,11 +5686,11 @@
       "options": {
         "A": "bút chì",
         "B": "bút chĩ",
-        "C": "bút chìx",
+        "C": "bút trì",
         "D": "bút trỉ"
       },
       "answer": "A",
-      "explanation": "'bút chì' là cách viết đúng chính tả.",
+      "explanation": "'bút chì' là từ viết đúng chính tả.",
       "questionId": "k1_c1_tn_0360"
     },
     {
@@ -5779,13 +5700,13 @@
       "type": "TN",
       "question": "Từ nào dưới đây viết đúng chính tả?",
       "options": {
-        "A": "cặp sáchx",
+        "A": "kặp xách",
         "B": "kặp sách",
         "C": "cặp sách",
         "D": "cặp xách"
       },
       "answer": "C",
-      "explanation": "'cặp sách' là cách viết đúng chính tả.",
+      "explanation": "'cặp sách' là từ viết đúng chính tả.",
       "questionId": "k1_c1_tn_0361"
     },
     {
@@ -5796,12 +5717,12 @@
       "question": "Từ nào dưới đây viết đúng chính tả?",
       "options": {
         "A": "quyển nở",
-        "B": "quyển vởx",
+        "B": "quyển lở",
         "C": "quyển vỡ",
         "D": "quyển vở"
       },
       "answer": "D",
-      "explanation": "'quyển vở' là cách viết đúng chính tả.",
+      "explanation": "'quyển vở' là từ viết đúng chính tả.",
       "questionId": "k1_c1_tn_0362"
     },
     {
@@ -8677,11 +8598,11 @@
       "options": {
         "A": "c",
         "B": "d",
-        "C": "q",
+        "C": "qu",
         "D": "b"
       },
       "answer": "C",
-      "explanation": "Tiếng 'quả' bắt đầu bằng âm 'qu'.",
+      "explanation": "Tiếng 'quả' bắt đầu bằng âm đầu 'qu'.",
       "questionId": "k1_c1_tn_0542"
     },
     {
@@ -8689,15 +8610,15 @@
       "grade": "KHOI_1",
       "level": "CAP_1_VONG_LOAI",
       "type": "TN",
-      "question": "Âm đầu của tiếng 'quà' là âm nào?",
+      "question": "Âm đầu của tiếng 'quuýt' là âm nào?",
       "options": {
         "A": "d",
         "B": "b",
         "C": "c",
-        "D": "q"
+        "D": "qu"
       },
       "answer": "D",
-      "explanation": "Tiếng 'quà' bắt đầu bằng âm 'qu'.",
+      "explanation": "Tiếng 'quýt' bắt đầu bằng âm đầu 'qu'.",
       "questionId": "k1_c1_tn_0543"
     },
     {
@@ -8707,13 +8628,13 @@
       "type": "TN",
       "question": "Âm đầu của tiếng 'quần' là âm nào?",
       "options": {
-        "A": "q",
+        "A": "qu",
         "B": "b",
         "C": "d",
         "D": "c"
       },
       "answer": "A",
-      "explanation": "Tiếng 'quần' bắt đầu bằng âm 'qu'.",
+      "explanation": "Tiếng 'quần' bắt đầu bằng âm đầu 'qu'.",
       "questionId": "k1_c1_tn_0544"
     },
     {
@@ -8725,11 +8646,11 @@
       "options": {
         "A": "d",
         "B": "b",
-        "C": "q",
+        "C": "qu",
         "D": "c"
       },
       "answer": "C",
-      "explanation": "Tiếng 'quê' bắt đầu bằng âm 'qu'.",
+      "explanation": "Tiếng 'quê' bắt đầu bằng âm đầu 'qu'.",
       "questionId": "k1_c1_tn_0545"
     },
     {
@@ -8740,12 +8661,12 @@
       "question": "Âm đầu của tiếng 'quạt' là âm nào?",
       "options": {
         "A": "c",
-        "B": "q",
+        "B": "qu",
         "C": "b",
         "D": "d"
       },
       "answer": "B",
-      "explanation": "Tiếng 'quạt' bắt đầu bằng âm 'qu'.",
+      "explanation": "Tiếng 'quạt' bắt đầu bằng âm đầu 'qu'.",
       "questionId": "k1_c1_tn_0546"
     },
     {
@@ -8757,11 +8678,11 @@
       "options": {
         "A": "b",
         "B": "d",
-        "C": "q",
+        "C": "qu",
         "D": "c"
       },
       "answer": "C",
-      "explanation": "Tiếng 'quýt' bắt đầu bằng âm 'qu'.",
+      "explanation": "Tiếng 'quýt' bắt đầu bằng âm đầu 'qu'.",
       "questionId": "k1_c1_tn_0547"
     },
     {
@@ -8961,7 +8882,7 @@
       "grade": "KHOI_1",
       "level": "CAP_1_VONG_LOAI",
       "type": "TN",
-      "question": "Âm đầu của tiếng 'sư tử' là âm nào?",
+      "question": "Âm đầu của tiếng 'sóc' là âm nào?",
       "options": {
         "A": "s",
         "B": "d",
@@ -8969,7 +8890,7 @@
         "D": "b"
       },
       "answer": "A",
-      "explanation": "Tiếng 'sư tử' bắt đầu bằng âm 's'.",
+      "explanation": "Tiếng 'sóc' có âm đầu là âm 's'.",
       "questionId": "k1_c1_tn_0560"
     },
     {
@@ -9094,10 +9015,10 @@
         "A": "d",
         "B": "b",
         "C": "c",
-        "D": "t"
+        "D": "tr"
       },
       "answer": "D",
-      "explanation": "Tiếng 'trăng' bắt đầu bằng âm 't'.",
+      "explanation": "Tiếng 'trăng' bắt đầu bằng âm đầu 'tr'.",
       "questionId": "k1_c1_tn_0568"
     },
     {
@@ -9297,7 +9218,7 @@
       "grade": "KHOI_1",
       "level": "CAP_1_VONG_LOAI",
       "type": "TN",
-      "question": "Âm đầu của tiếng 'trăng' là âm nào?",
+      "question": "Âm đầu của tiếng 'trắng' là âm nào?",
       "options": {
         "A": "d",
         "B": "tr",
@@ -9305,7 +9226,7 @@
         "D": "b"
       },
       "answer": "B",
-      "explanation": "Tiếng 'trăng' bắt đầu bằng âm 'tr'.",
+      "explanation": "Tiếng 'trắng' bắt đầu bằng âm 'tr'.",
       "questionId": "k1_c1_tn_0581"
     },
     {
@@ -9836,86 +9757,10 @@
       "explanation": "Tiếng 'nhện' bắt đầu bằng âm 'nh'.",
       "questionId": "k1_c1_tn_0614"
     },
-    {
-      "contest": "Trạng Nguyên Tiếng Việt",
-      "grade": "KHOI_1",
-      "level": "CAP_1_VONG_LOAI",
-      "type": "TN",
-      "question": "Âm đầu của tiếng 'quà' là âm nào?",
-      "options": {
-        "A": "b",
-        "B": "d",
-        "C": "c",
-        "D": "qu"
-      },
-      "answer": "D",
-      "explanation": "Tiếng 'quà' bắt đầu bằng âm 'qu'.",
-      "questionId": "k1_c1_tn_0615"
-    },
-    {
-      "contest": "Trạng Nguyên Tiếng Việt",
-      "grade": "KHOI_1",
-      "level": "CAP_1_VONG_LOAI",
-      "type": "TN",
-      "question": "Âm đầu của tiếng 'quả' là âm nào?",
-      "options": {
-        "A": "c",
-        "B": "b",
-        "C": "qu",
-        "D": "d"
-      },
-      "answer": "C",
-      "explanation": "Tiếng 'quả' bắt đầu bằng âm 'qu'.",
-      "questionId": "k1_c1_tn_0616"
-    },
-    {
-      "contest": "Trạng Nguyên Tiếng Việt",
-      "grade": "KHOI_1",
-      "level": "CAP_1_VONG_LOAI",
-      "type": "TN",
-      "question": "Âm đầu của tiếng 'quần' là âm nào?",
-      "options": {
-        "A": "qu",
-        "B": "c",
-        "C": "d",
-        "D": "b"
-      },
-      "answer": "A",
-      "explanation": "Tiếng 'quần' bắt đầu bằng âm 'qu'.",
-      "questionId": "k1_c1_tn_0617"
-    },
-    {
-      "contest": "Trạng Nguyên Tiếng Việt",
-      "grade": "KHOI_1",
-      "level": "CAP_1_VONG_LOAI",
-      "type": "TN",
-      "question": "Âm đầu của tiếng 'quạt' là âm nào?",
-      "options": {
-        "A": "b",
-        "B": "d",
-        "C": "c",
-        "D": "qu"
-      },
-      "answer": "D",
-      "explanation": "Tiếng 'quạt' bắt đầu bằng âm 'qu'.",
-      "questionId": "k1_c1_tn_0618"
-    },
-    {
-      "contest": "Trạng Nguyên Tiếng Việt",
-      "grade": "KHOI_1",
-      "level": "CAP_1_VONG_LOAI",
-      "type": "TN",
-      "question": "Âm đầu của tiếng 'quê' là âm nào?",
-      "options": {
-        "A": "c",
-        "B": "qu",
-        "C": "b",
-        "D": "d"
-      },
-      "answer": "B",
-      "explanation": "Tiếng 'quê' bắt đầu bằng âm 'qu'.",
-      "questionId": "k1_c1_tn_0619"
-    },
+   
+    
+    
+    
     {
       "contest": "Trạng Nguyên Tiếng Việt",
       "grade": "KHOI_1",
@@ -14004,12 +13849,12 @@
       "question": "Tiếng nào sau đây có phần vần 'ot' ở cuối?",
       "options": {
         "A": "bàn",
-        "B": "nốt",
+        "B": "sọt",
         "C": "nan",
         "D": "lan"
       },
       "answer": "B",
-      "explanation": "Tiếng 'nốt' có vần 'ot'.",
+      "explanation": "Tiếng 'sọt' có chứa vần 'ot'.",
       "questionId": "k1_c1_tn_0875"
     },
     {
@@ -14020,12 +13865,12 @@
       "question": "Tiếng nào sau đây có phần vần 'ot' ở cuối?",
       "options": {
         "A": "nan",
-        "B": "tốt",
+        "B": "ngọt",
         "C": "bàn",
         "D": "lan"
       },
       "answer": "B",
-      "explanation": "Tiếng 'tốt' có vần 'ot'.",
+      "explanation": "Tiếng 'ngọt' có chứa vần 'ot'.",
       "questionId": "k1_c1_tn_0876"
     },
     {
@@ -14292,12 +14137,12 @@
       "question": "Chọn tiếng có âm đầu 'b' trong các phương án.",
       "options": {
         "A": "cá",
-        "B": "bé",
+        "B": "bóng",
         "C": "cò",
         "D": "cô"
       },
       "answer": "B",
-      "explanation": "Tiếng 'bé' bắt đầu bằng âm 'b'.",
+      "explanation": "Tiếng 'bóng' bắt đầu bằng âm 'b'.",
       "questionId": "k1_c1_tn_0893"
     },
     {
@@ -21327,7 +21172,6 @@
       "explanation": "Mỗi tiếng được nối với đúng âm đầu của tiếng đó.",
       "questionId": "k1_c1_noi_0080"
     },
-
     {
       "contest": "Trạng Nguyên Tiếng Việt",
       "grade": "KHOI_1",
@@ -21353,7 +21197,7 @@
         "4": "A"
       },
       "explanation": "Mỗi tiếng được nối với đúng âm đầu của tiếng đó.",
-      "questionId": "k1_c1_noi_0082"
+      "questionId": "k1_c1_noi_0081"
     },
     {
       "contest": "Trạng Nguyên Tiếng Việt",
@@ -21380,7 +21224,7 @@
         "4": "C"
       },
       "explanation": "Mỗi tiếng được nối với đúng âm đầu của tiếng đó.",
-      "questionId": "k1_c1_noi_0083"
+      "questionId": "k1_c1_noi_0082"
     },
     {
       "contest": "Trạng Nguyên Tiếng Việt",
@@ -21407,7 +21251,7 @@
         "4": "A"
       },
       "explanation": "Mỗi tiếng được nối với đúng âm đầu của tiếng đó.",
-      "questionId": "k1_c1_noi_0084"
+      "questionId": "k1_c1_noi_0083"
     },
     {
       "contest": "Trạng Nguyên Tiếng Việt",
@@ -21434,7 +21278,7 @@
         "4": "D"
       },
       "explanation": "Mỗi tiếng được nối với đúng âm đầu của tiếng đó.",
-      "questionId": "k1_c1_noi_0085"
+      "questionId": "k1_c1_noi_0084"
     },
     {
       "contest": "Trạng Nguyên Tiếng Việt",
@@ -21461,7 +21305,7 @@
         "4": "B"
       },
       "explanation": "Mỗi tiếng được nối với đúng âm đầu của tiếng đó.",
-      "questionId": "k1_c1_noi_0086"
+      "questionId": "k1_c1_noi_0085"
     },
     {
       "contest": "Trạng Nguyên Tiếng Việt",
@@ -21488,7 +21332,7 @@
         "4": "B"
       },
       "explanation": "Mỗi tiếng được nối với đúng âm đầu của tiếng đó.",
-      "questionId": "k1_c1_noi_0087"
+      "questionId": "k1_c1_noi_0086"
     },
     {
       "contest": "Trạng Nguyên Tiếng Việt",
@@ -21515,7 +21359,7 @@
         "4": "D"
       },
       "explanation": "Mỗi tiếng được nối với đúng âm đầu của tiếng đó.",
-      "questionId": "k1_c1_noi_0088"
+      "questionId": "k1_c1_noi_0087"
     },
     {
       "contest": "Trạng Nguyên Tiếng Việt",
@@ -21542,7 +21386,7 @@
         "4": "B"
       },
       "explanation": "Mỗi tiếng được nối với đúng âm đầu của tiếng đó.",
-      "questionId": "k1_c1_noi_0089"
+      "questionId": "k1_c1_noi_0088"
     },
     {
       "contest": "Trạng Nguyên Tiếng Việt",
@@ -21569,7 +21413,7 @@
         "4": "A"
       },
       "explanation": "Mỗi tiếng được nối với đúng âm đầu của tiếng đó.",
-      "questionId": "k1_c1_noi_0090"
+      "questionId": "k1_c1_noi_0089"
     },
     {
       "contest": "Trạng Nguyên Tiếng Việt",
@@ -21596,7 +21440,7 @@
         "4": "B"
       },
       "explanation": "Mỗi tiếng được nối với đúng âm đầu của tiếng đó.",
-      "questionId": "k1_c1_noi_0091"
+      "questionId": "k1_c1_noi_0090"
     },
     {
       "contest": "Trạng Nguyên Tiếng Việt",
@@ -21623,7 +21467,7 @@
         "4": "B"
       },
       "explanation": "Mỗi tiếng được nối với đúng âm đầu của tiếng đó.",
-      "questionId": "k1_c1_noi_0092"
+      "questionId": "k1_c1_noi_0091"
     },
     {
       "contest": "Trạng Nguyên Tiếng Việt",
@@ -21650,7 +21494,7 @@
         "4": "C"
       },
       "explanation": "Mỗi tiếng được nối với đúng âm đầu của tiếng đó.",
-      "questionId": "k1_c1_noi_0093"
+      "questionId": "k1_c1_noi_0092"
     },
     {
       "contest": "Trạng Nguyên Tiếng Việt",
@@ -21677,7 +21521,7 @@
         "4": "B"
       },
       "explanation": "Mỗi tiếng được nối với đúng âm đầu của tiếng đó.",
-      "questionId": "k1_c1_noi_0094"
+      "questionId": "k1_c1_noi_0093"
     },
     {
       "contest": "Trạng Nguyên Tiếng Việt",
@@ -21704,7 +21548,7 @@
         "4": "C"
       },
       "explanation": "Mỗi tiếng được nối với đúng âm đầu của tiếng đó.",
-      "questionId": "k1_c1_noi_0095"
+      "questionId": "k1_c1_noi_0094"
     },
     {
       "contest": "Trạng Nguyên Tiếng Việt",
@@ -21731,7 +21575,7 @@
         "4": "D"
       },
       "explanation": "Mỗi tiếng được nối với đúng âm đầu của tiếng đó.",
-      "questionId": "k1_c1_noi_0096"
+      "questionId": "k1_c1_noi_0095"
     },
     {
       "contest": "Trạng Nguyên Tiếng Việt",
@@ -21758,7 +21602,7 @@
         "4": "C"
       },
       "explanation": "Mỗi tiếng được nối với đúng âm đầu của tiếng đó.",
-      "questionId": "k1_c1_noi_0097"
+      "questionId": "k1_c1_noi_0096"
     },
     {
       "contest": "Trạng Nguyên Tiếng Việt",
@@ -21785,7 +21629,7 @@
         "4": "B"
       },
       "explanation": "Mỗi tiếng được nối với đúng âm đầu của tiếng đó.",
-      "questionId": "k1_c1_noi_0098"
+      "questionId": "k1_c1_noi_0097"
     },
     {
       "contest": "Trạng Nguyên Tiếng Việt",
@@ -21812,7 +21656,7 @@
         "4": "B"
       },
       "explanation": "Mỗi tiếng được nối với đúng âm đầu của tiếng đó.",
-      "questionId": "k1_c1_noi_0099"
+      "questionId": "k1_c1_noi_0098"
     },
     {
       "contest": "Trạng Nguyên Tiếng Việt",
@@ -21839,7 +21683,7 @@
         "4": "A"
       },
       "explanation": "Mỗi tiếng được nối với đúng âm đầu của tiếng đó.",
-      "questionId": "k1_c1_noi_0100"
+      "questionId": "k1_c1_noi_0099"
     },
     {
       "contest": "Trạng Nguyên Tiếng Việt",
@@ -21866,7 +21710,7 @@
         "4": "B"
       },
       "explanation": "Mỗi tiếng được nối với đúng âm đầu của tiếng đó.",
-      "questionId": "k1_c1_noi_0101"
+      "questionId": "k1_c1_noi_0100"
     },
     {
       "contest": "Trạng Nguyên Tiếng Việt",
@@ -21893,7 +21737,7 @@
         "4": "B"
       },
       "explanation": "Mỗi tiếng được nối với đúng âm đầu của tiếng đó.",
-      "questionId": "k1_c1_noi_0102"
+      "questionId": "k1_c1_noi_0101"
     },
     {
       "contest": "Trạng Nguyên Tiếng Việt",
@@ -21920,7 +21764,7 @@
         "4": "B"
       },
       "explanation": "Mỗi tiếng được nối với đúng âm đầu của tiếng đó.",
-      "questionId": "k1_c1_noi_0103"
+      "questionId": "k1_c1_noi_0102"
     },
     {
       "contest": "Trạng Nguyên Tiếng Việt",
@@ -21947,7 +21791,7 @@
         "4": "B"
       },
       "explanation": "Mỗi tiếng được nối với đúng âm đầu của tiếng đó.",
-      "questionId": "k1_c1_noi_0104"
+      "questionId": "k1_c1_noi_0103"
     },
     {
       "contest": "Trạng Nguyên Tiếng Việt",
@@ -21974,7 +21818,7 @@
         "4": "A"
       },
       "explanation": "Mỗi tiếng được nối với đúng âm đầu của tiếng đó.",
-      "questionId": "k1_c1_noi_0105"
+      "questionId": "k1_c1_noi_0104"
     },
     {
       "contest": "Trạng Nguyên Tiếng Việt",
@@ -22001,7 +21845,7 @@
         "4": "A"
       },
       "explanation": "Mỗi tiếng được nối với đúng âm đầu của tiếng đó.",
-      "questionId": "k1_c1_noi_0106"
+      "questionId": "k1_c1_noi_0105"
     },
     {
       "contest": "Trạng Nguyên Tiếng Việt",
@@ -22028,7 +21872,7 @@
         "4": "C"
       },
       "explanation": "Mỗi tiếng được nối với đúng âm đầu của tiếng đó.",
-      "questionId": "k1_c1_noi_0107"
+      "questionId": "k1_c1_noi_0106"
     },
     {
       "contest": "Trạng Nguyên Tiếng Việt",
@@ -22055,7 +21899,7 @@
         "4": "A"
       },
       "explanation": "Mỗi tiếng được nối với đúng âm đầu của tiếng đó.",
-      "questionId": "k1_c1_noi_0108"
+      "questionId": "k1_c1_noi_0107"
     },
     {
       "contest": "Trạng Nguyên Tiếng Việt",
@@ -22082,7 +21926,7 @@
         "4": "C"
       },
       "explanation": "Mỗi tiếng được nối với đúng âm đầu của tiếng đó.",
-      "questionId": "k1_c1_noi_0109"
+      "questionId": "k1_c1_noi_0108"
     },
     {
       "contest": "Trạng Nguyên Tiếng Việt",
@@ -22109,7 +21953,7 @@
         "4": "D"
       },
       "explanation": "Mỗi tiếng được nối với đúng âm đầu của tiếng đó.",
-      "questionId": "k1_c1_noi_0110"
+      "questionId": "k1_c1_noi_0109"
     },
     {
       "contest": "Trạng Nguyên Tiếng Việt",
@@ -22136,7 +21980,7 @@
         "4": "A"
       },
       "explanation": "Mỗi tiếng được nối với đúng âm đầu của tiếng đó.",
-      "questionId": "k1_c1_noi_0111"
+      "questionId": "k1_c1_noi_0110"
     },
     {
       "contest": "Trạng Nguyên Tiếng Việt",
@@ -22163,7 +22007,7 @@
         "4": "B"
       },
       "explanation": "Mỗi tiếng được nối với đúng âm đầu của tiếng đó.",
-      "questionId": "k1_c1_noi_0112"
+      "questionId": "k1_c1_noi_0111"
     },
     {
       "contest": "Trạng Nguyên Tiếng Việt",
@@ -22190,7 +22034,7 @@
         "4": "D"
       },
       "explanation": "Mỗi tiếng được nối với đúng âm đầu của tiếng đó.",
-      "questionId": "k1_c1_noi_0113"
+      "questionId": "k1_c1_noi_0112"
     },
     {
       "contest": "Trạng Nguyên Tiếng Việt",
@@ -22217,7 +22061,7 @@
         "4": "A"
       },
       "explanation": "Mỗi tiếng được nối với đúng âm đầu của tiếng đó.",
-      "questionId": "k1_c1_noi_0114"
+      "questionId": "k1_c1_noi_0113"
     },
     {
       "contest": "Trạng Nguyên Tiếng Việt",
@@ -22244,7 +22088,7 @@
         "4": "D"
       },
       "explanation": "Mỗi tiếng được nối với đúng âm đầu của tiếng đó.",
-      "questionId": "k1_c1_noi_0115"
+      "questionId": "k1_c1_noi_0114"
     },
     {
       "contest": "Trạng Nguyên Tiếng Việt",
@@ -22271,7 +22115,7 @@
         "4": "D"
       },
       "explanation": "Mỗi tiếng được nối với đúng âm đầu của tiếng đó.",
-      "questionId": "k1_c1_noi_0116"
+      "questionId": "k1_c1_noi_0115"
     },
     {
       "contest": "Trạng Nguyên Tiếng Việt",
@@ -22298,7 +22142,7 @@
         "4": "B"
       },
       "explanation": "Mỗi tiếng được nối với đúng âm đầu của tiếng đó.",
-      "questionId": "k1_c1_noi_0117"
+      "questionId": "k1_c1_noi_0116"
     },
     {
       "contest": "Trạng Nguyên Tiếng Việt",
@@ -22325,7 +22169,7 @@
         "4": "D"
       },
       "explanation": "Mỗi tiếng được nối với đúng âm đầu của tiếng đó.",
-      "questionId": "k1_c1_noi_0118"
+      "questionId": "k1_c1_noi_0117"
     },
     {
       "contest": "Trạng Nguyên Tiếng Việt",
@@ -22352,7 +22196,7 @@
         "4": "C"
       },
       "explanation": "Mỗi tiếng được nối với đúng âm đầu của tiếng đó.",
-      "questionId": "k1_c1_noi_0119"
+      "questionId": "k1_c1_noi_0118"
     },
     {
       "contest": "Trạng Nguyên Tiếng Việt",
@@ -27573,10 +27417,10 @@
       "grade": "KHOI_1",
       "level": "CAP_1_VONG_LOAI",
       "type": "DT",
-      "question": "Tiếng 'sư tử' có âm đầu là: ____",
+      "question": "Tiếng 'sóc' có âm đầu là: ____",
       "blankAnswer": "s",
       "answer": "s",
-      "explanation": "Tiếng 'sư tử' bắt đầu bằng âm 's'.",
+      "explanation": "Tiếng 'sóc' bắt đầu bằng âm 's'.",
       "questionId": "k1_c1_dt_0118"
     },
     {

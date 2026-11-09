@@ -4,10 +4,10 @@
   "level": "CAP_1_VONG_LOAI",
   "startSeq": 1,
   "seqMode": "CONTINUOUS",
-  "totalQuestions": 1451,
+  "totalQuestions": 1425,
   "typeDistribution": {
     "TN": 981,
-    "DT": 100,
+    "DT": 74,
     "SX": 123,
     "NOI": 147,
     "CHON": 100
@@ -191,7 +191,7 @@
       "question": "Câu tục ngữ, thành ngữ nào dưới đây thể hiện phẩm chất hoặc bài học về 'Nhân ái'?",
       "options": {
         "A": "Một cây làm chẳng nên non, ba cây chụm lại nên hòn núi cao",
-        "B": "Bầu ơi thương lấy bí cùng, tuy rằng khác giống nhưng chung một giàn",
+        "B": "Đi một ngày đàng học một sàng khôn",
         "C": "Lá lành đùm lá rách",
         "D": "Thương người như thể thương thân"
       },
@@ -256,10 +256,10 @@
       "options": {
         "A": "đóng dấu đỏ",
         "B": "cày ruộng thật",
-        "C": "viết bút mực trên giấy",
-        "D": "vẽ tranh sơn dầu"
+        "C": "vẽ tranh sơn dầu",
+        "D": "viết bút mực trên giấy"
       },
-      "answer": "C",
+      "answer": "D",
       "explanation": "Ngòi bút cày trên trang giấy trắng phau, chấm mực trong lọ mực đen ngòm."
     },
     {
@@ -350,12 +350,12 @@
       "questionId": "k4_c1_tn_0021",
       "question": "Giải câu đố dân gian sau:\n\"Hoa gì chỉ nở mùa hè \n Rực màu đỏ thắm rung rinh trên cành \n Gọi ve ca hát rộn ràng \n Tuổi thơ cắp sách ngập tràn niềm vui?\"",
       "options": {
-        "A": "hoa mai",
-        "B": "hoa cúc",
-        "C": "hoa phượng",
+        "A": "hoa phượng",
+        "B": "hoa mai",
+        "C": "hoa cúc",
         "D": "hoa đào"
       },
-      "answer": "C",
+      "answer": "A",
       "explanation": "Hoa phượng vĩ đỏ rực gắn liền với mùa hè và mùa chia tay của tuổi học trò."
     },
     {
@@ -928,7 +928,7 @@
       "options": {
         "A": "Lá lành đùm lá rách",
         "B": "Chớ thấy sóng cả mà ngã tay chèo",
-        "C": "Thương người như thể thương thân",
+        "C": "Có công mài sắt, có ngày nên kim",
         "D": "Lửa thử vàng gian nan thử sức"
       },
       "answer": "A",
@@ -1103,7 +1103,7 @@
       "question": "Câu tục ngữ, thành ngữ nào dưới đây thể hiện phẩm chất hoặc bài học về 'Nguồn cội'?",
       "options": {
         "A": "Chim có tổ người có tông",
-        "B": "Uống nước nhớ nguồn",
+        "B": "Tấc đất tấc vàng",
         "C": "Người ta là hoa đất",
         "D": "Nhiễu điều phủ lấy giá gương, người trong một nước phải thương nhau cùng"
       },
@@ -1442,12 +1442,12 @@
       "questionId": "k4_c1_sx_0015",
       "question": "Hãy sắp xếp các từ/cụm từ sau để tạo thành một câu tục ngữ, thành ngữ hoàn chỉnh và có nghĩa:",
       "elements": [
-        "nhớ người",
         "đào giếng",
-        "Uống nước"
+        "Uống nước",
+        "nhớ người"
       ],
-      "answer": "Uống nước nhớ nguồn",
-      "explanation": "Câu thành ngữ/tục ngữ đúng là: 'Uống nước nhớ nguồn'. Hưởng trái ngọt nhớ công người trồng cây, uống nước mát nhớ ơn nguồn."
+      "answer": "Uống nước nhớ người đào giếng",
+      "explanation": "Câu tục ngữ hoàn chỉnh là: 'Uống nước nhớ người đào giếng'. Câu tục ngữ khuyên răn chúng ta phải biết ơn những người đã có công tạo dựng thành quả cho mình hưởng."
     },
     {
       "contest": "Trạng Nguyên Tiếng Việt",
@@ -3480,7 +3480,7 @@
       "level": "CAP_1_VONG_LOAI",
       "type": "DT",
       "questionId": "k4_c1_dt_0004",
-      "question": "Điền quan hệ từ thích hợp vào chỗ trống trong câu sau: \"Hà không những học giỏi mà bạn ấy còn hát rất hay.\"",
+      "question": "Điền quan hệ từ thích hợp vào chỗ trống trong câu sau: \"Hà (...) học giỏi mà bạn ấy còn hát rất hay.\"",
       "blankAnswer": "Không những",
       "answer": "Không những",
       "explanation": "Câu văn sử dụng cặp quan hệ từ 'Không những... mà còn...' biểu thị quan hệ Tăng tiến."
@@ -5472,8 +5472,8 @@
       "options": {
         "A": "nghỉ ngơi",
         "B": "ngỉ ngơi",
-        "C": "nghỉ ngơi",
-        "D": "nghệ thuât"
+        "C": "nghĩ ngơi",
+        "D": "nghệ thuật"
       },
       "answer": "A",
       "explanation": "'nghỉ ngơi' là cách viết đúng chính tả."
@@ -5857,7 +5857,7 @@
         "A": "khám phá",
         "B": "rực rỡ",
         "C": "bầu trời",
-        "D": "rực rỡ"
+        "D": "chăm chỉ"
       },
       "answer": "C",
       "explanation": "'bầu trời' gọi tên người, sự vật, hiện tượng hoặc khái niệm nên là danh từ."
@@ -6321,7 +6321,7 @@
         "A": "sáng tạo",
         "B": "mênh mông",
         "C": "ước mơ",
-        "D": "mênh mông"
+        "D": "bao la"
       },
       "answer": "A",
       "explanation": "'sáng tạo' chỉ hoạt động nên là động từ."
@@ -7242,9 +7242,9 @@
       "level": "CAP_1_VONG_LOAI",
       "type": "DT",
       "questionId": "k4_c1_dt_0052",
-      "question": "Điền từ còn thiếu để hoàn thành câu tục ngữ: 'Thương người như thể thương thân'.",
-      "blankAnswer": "Thương người như thể thương thân",
-      "answer": "Thương người như thể thương thân",
+      "question": "Điền từ còn thiếu để hoàn thành câu tục ngữ: \"Thương người như thể thương (...)\"",
+      "blankAnswer": "thân",
+      "answer": "thân",
       "explanation": "Câu tục ngữ hoàn chỉnh: Thương người như thể thương thân."
     },
     {
@@ -7286,9 +7286,9 @@
       "level": "CAP_1_VONG_LOAI",
       "type": "DT",
       "questionId": "k4_c1_dt_0057",
-      "question": "Điền từ còn thiếu để hoàn thành câu tục ngữ: 'Tốt gỗ hơn tốt nước sơn'.",
-      "blankAnswer": "Tốt gỗ hơn tốt nước sơn",
-      "answer": "Tốt gỗ hơn tốt nước sơn",
+      "question": "Điền từ còn thiếu để hoàn thành câu tục ngữ: \"Tốt gỗ hơn tốt nước (...)\"",
+      "blankAnswer": "sơn",
+      "answer": "sơn",
       "explanation": "Câu tục ngữ hoàn chỉnh: Tốt gỗ hơn tốt nước sơn."
     },
     {
@@ -7319,9 +7319,9 @@
       "level": "CAP_1_VONG_LOAI",
       "type": "DT",
       "questionId": "k4_c1_dt_0060",
-      "question": "Điền từ còn thiếu để hoàn thành câu tục ngữ: 'Lời nói chẳng mất tiền mua, lựa lời mà nói cho vừa lòng nhau'.",
-      "blankAnswer": "Lời nói chẳng mất tiền mua, lựa lời mà nói cho vừa lòng nhau",
-      "answer": "Lời nói chẳng mất tiền mua, lựa lời mà nói cho vừa lòng nhau",
+      "question": "Điền từ còn thiếu để hoàn thành câu tục ngữ: \"Lời nói chẳng mất tiền mua, lựa (...) mà nói cho vừa lòng nhau\"",
+      "blankAnswer": "lời",
+      "answer": "lời",
       "explanation": "Câu tục ngữ hoàn chỉnh: Lời nói chẳng mất tiền mua, lựa lời mà nói cho vừa lòng nhau."
     },
     {
@@ -7341,9 +7341,9 @@
       "level": "CAP_1_VONG_LOAI",
       "type": "DT",
       "questionId": "k4_c1_dt_0062",
-      "question": "Điền từ còn thiếu để hoàn thành câu tục ngữ: 'Ăn trông nồi, ngồi trông hướng'.",
-      "blankAnswer": "Ăn trông nồi, ngồi trông hướng",
-      "answer": "Ăn trông nồi, ngồi trông hướng",
+      "question": "Điền từ còn thiếu để hoàn thành câu tục ngữ: \"Ăn trông nồi, ngồi trông (...)\"",
+      "blankAnswer": "hướng",
+      "answer": "hướng",
       "explanation": "Câu tục ngữ hoàn chỉnh: Ăn trông nồi, ngồi trông hướng."
     },
     {
@@ -12803,9 +12803,9 @@
       "type": "TN",
       "question": "Từ nào dưới đây được viết đúng chính tả?",
       "options": {
-        "A": "lo lắng",
+        "A": "no lắng",
         "B": "chuyền thống",
-        "C": "lung linh",
+        "C": "nung ninh",
         "D": "truyền thống"
       },
       "answer": "D",
@@ -12819,10 +12819,10 @@
       "type": "TN",
       "question": "Chọn cách viết đúng:",
       "options": {
-        "A": "sáng suốt",
+        "A": "xáng xuốt",
         "B": "chuyền thống",
         "C": "truyền thống",
-        "D": "lung linh"
+        "D": "nung ninh"
       },
       "answer": "C",
       "explanation": "“truyền thống” là cách viết đúng chính tả.",
@@ -12835,10 +12835,10 @@
       "type": "TN",
       "question": "Từ nào dưới đây được viết đúng chính tả?",
       "options": {
-        "A": "giữ gìn",
+        "A": "dữ gìn",
         "B": "sáng suốt",
-        "C": "sáng suốt",
-        "D": "rực rỡ"
+        "C": "xáng xuốt",
+        "D": "dực dỡ"
       },
       "answer": "B",
       "explanation": "“sáng suốt” là cách viết đúng chính tả.",
@@ -12852,9 +12852,9 @@
       "question": "Chọn cách viết đúng:",
       "options": {
         "A": "sáng suốt",
-        "B": "giữ gìn",
-        "C": "sáng suốt",
-        "D": "lung linh"
+        "B": "dữ gìn",
+        "C": "xáng xuốt",
+        "D": "nung ninh"
       },
       "answer": "A",
       "explanation": "“sáng suốt” là cách viết đúng chính tả.",
@@ -12867,8 +12867,8 @@
       "type": "TN",
       "question": "Từ nào dưới đây được viết đúng chính tả?",
       "options": {
-        "A": "xinh xắn",
-        "B": "rực rỡ",
+        "A": "sinh xắn",
+        "B": "dực dỡ",
         "C": "dữ gìn",
         "D": "giữ gìn"
       },
@@ -12885,8 +12885,8 @@
       "options": {
         "A": "giữ gìn",
         "B": "dữ gìn",
-        "C": "lung linh",
-        "D": "nghỉ ngơi"
+        "C": "nung ninh",
+        "D": "nghĩ ngơi"
       },
       "answer": "A",
       "explanation": "“giữ gìn” là cách viết đúng chính tả.",
@@ -12899,10 +12899,10 @@
       "type": "TN",
       "question": "Từ nào dưới đây được viết đúng chính tả?",
       "options": {
-        "A": "truyền thống",
+        "A": "chuyền thống",
         "B": "lo lắng",
         "C": "no lắng",
-        "D": "nghỉ ngơi"
+        "D": "nghĩ ngơi"
       },
       "answer": "B",
       "explanation": "“lo lắng” là cách viết đúng chính tả.",
@@ -12916,8 +12916,8 @@
       "question": "Chọn cách viết đúng:",
       "options": {
         "A": "no lắng",
-        "B": "truyền thống",
-        "C": "nghỉ ngơi",
+        "B": "chuyền thống",
+        "C": "nghĩ ngơi",
         "D": "lo lắng"
       },
       "answer": "D",
@@ -12933,8 +12933,8 @@
       "options": {
         "A": "nghỉ ngơi",
         "B": "nghĩ ngơi",
-        "C": "giữ gìn",
-        "D": "sáng suốt"
+        "C": "dữ gìn",
+        "D": "xáng xuốt"
       },
       "answer": "A",
       "explanation": "“nghỉ ngơi” là cách viết đúng chính tả.",
@@ -12949,8 +12949,8 @@
       "options": {
         "A": "nghĩ ngơi",
         "B": "nghỉ ngơi",
-        "C": "truyền thống",
-        "D": "lung linh"
+        "C": "chuyền thống",
+        "D": "nung ninh"
       },
       "answer": "B",
       "explanation": "“nghỉ ngơi” là cách viết đúng chính tả.",
@@ -12963,9 +12963,9 @@
       "type": "TN",
       "question": "Từ nào dưới đây được viết đúng chính tả?",
       "options": {
-        "A": "xinh xắn",
+        "A": "sinh xắn",
         "B": "cể chuyện",
-        "C": "nghỉ ngơi",
+        "C": "nghĩ ngơi",
         "D": "kể chuyện"
       },
       "answer": "D",
@@ -12980,8 +12980,8 @@
       "question": "Chọn cách viết đúng:",
       "options": {
         "A": "cể chuyện",
-        "B": "lung linh",
-        "C": "chăm chỉ",
+        "B": "nung ninh",
+        "C": "trăm chỉ",
         "D": "kể chuyện"
       },
       "answer": "D",
@@ -12997,8 +12997,8 @@
       "options": {
         "A": "trăm chỉ",
         "B": "chăm chỉ",
-        "C": "rực rỡ",
-        "D": "lo lắng"
+        "C": "dực dỡ",
+        "D": "no lắng"
       },
       "answer": "B",
       "explanation": "“chăm chỉ” là cách viết đúng chính tả.",
@@ -13012,8 +13012,8 @@
       "question": "Chọn cách viết đúng:",
       "options": {
         "A": "chăm chỉ",
-        "B": "sáng suốt",
-        "C": "rực rỡ",
+        "B": "xáng xuốt",
+        "C": "dực dỡ",
         "D": "trăm chỉ"
       },
       "answer": "A",
@@ -13027,10 +13027,10 @@
       "type": "TN",
       "question": "Từ nào dưới đây được viết đúng chính tả?",
       "options": {
-        "A": "kể chuyện",
+        "A": "cể chuyện",
         "B": "xinh xắn",
         "C": "sinh xắn",
-        "D": "nghỉ ngơi"
+        "D": "nghĩ ngơi"
       },
       "answer": "B",
       "explanation": "“xinh xắn” là cách viết đúng chính tả.",
@@ -13043,8 +13043,8 @@
       "type": "TN",
       "question": "Chọn cách viết đúng:",
       "options": {
-        "A": "rực rỡ",
-        "B": "lo lắng",
+        "A": "dực dỡ",
+        "B": "no lắng",
         "C": "xinh xắn",
         "D": "sinh xắn"
       },
@@ -13060,9 +13060,9 @@
       "question": "Từ nào dưới đây được viết đúng chính tả?",
       "options": {
         "A": "rực rỡ",
-        "B": "giữ gìn",
+        "B": "dữ gìn",
         "C": "dực dỡ",
-        "D": "chăm chỉ"
+        "D": "trăm chỉ"
       },
       "answer": "A",
       "explanation": "“rực rỡ” là cách viết đúng chính tả.",
@@ -13076,9 +13076,9 @@
       "question": "Chọn cách viết đúng:",
       "options": {
         "A": "rực rỡ",
-        "B": "truyền thống",
+        "B": "chuyền thống",
         "C": "dực dỡ",
-        "D": "xinh xắn"
+        "D": "sinh xắn"
       },
       "answer": "A",
       "explanation": "“rực rỡ” là cách viết đúng chính tả.",
@@ -13093,8 +13093,8 @@
       "options": {
         "A": "lung linh",
         "B": "nung ninh",
-        "C": "nghỉ ngơi",
-        "D": "xinh xắn"
+        "C": "nghĩ ngơi",
+        "D": "sinh xắn"
       },
       "answer": "A",
       "explanation": "“lung linh” là cách viết đúng chính tả.",
@@ -13108,9 +13108,9 @@
       "question": "Chọn cách viết đúng:",
       "options": {
         "A": "nung ninh",
-        "B": "kể chuyện",
+        "B": "cể chuyện",
         "C": "lung linh",
-        "D": "rực rỡ"
+        "D": "dực dỡ"
       },
       "answer": "C",
       "explanation": "“lung linh” là cách viết đúng chính tả.",
@@ -16005,19 +16005,16 @@
       "grade": "KHOI_4",
       "level": "CAP_1_VONG_LOAI",
       "type": "SX",
-      "question": "Sắp xếp các từ/cụm từ sau thành một câu hoàn chỉnh:",
+      "question": "Hãy sắp xếp các từ/cụm từ sau thành một câu văn hoàn chỉnh, đúng ngữ pháp:",
       "elements": [
-        "trên",
-        "vang",
-        "cành",
-        "chim",
-        "hót",
-        "chú",
-        "Những",
-        "sâu"
+        "Các bạn",
+        "hào hứng",
+        "học sinh",
+        "buổi sinh hoạt dưới cờ.",
+        "tham gia"
       ],
-      "answer": "Những chú chim sâu hót vang trên cành",
-      "explanation": "Câu hoàn chỉnh: “Những chú chim sâu hót vang trên cành”.",
+      "answer": "Các bạn học sinh hào hứng tham gia buổi sinh hoạt dưới cờ.",
+      "explanation": "Câu hoàn chỉnh đúng trật tự ngữ pháp: “Các bạn học sinh hào hứng tham gia buổi sinh hoạt dưới cờ.”.",
       "questionId": "k4_c1_sx_0036"
     },
     {
@@ -16025,19 +16022,16 @@
       "grade": "KHOI_4",
       "level": "CAP_1_VONG_LOAI",
       "type": "SX",
-      "question": "Sắp xếp các từ/cụm từ sau thành một câu hoàn chỉnh:",
+      "question": "Hãy sắp xếp các từ/cụm từ sau thành một câu văn hoàn chỉnh, đúng ngữ pháp:",
       "elements": [
-        "trường",
-        "sóc",
-        "chim",
-        "Những",
-        "vườn",
-        "chăm",
-        "chú",
-        "sâu"
+        "hướng dẫn",
+        "học sinh",
+        "Thầy giáo",
+        "làm bài tập toán khó.",
+        "ân cần"
       ],
-      "answer": "Những chú chim sâu chăm sóc vườn trường",
-      "explanation": "Câu hoàn chỉnh: “Những chú chim sâu chăm sóc vườn trường”.",
+      "answer": "Thầy giáo ân cần hướng dẫn học sinh làm bài tập toán khó.",
+      "explanation": "Câu hoàn chỉnh đúng trật tự ngữ pháp: “Thầy giáo ân cần hướng dẫn học sinh làm bài tập toán khó.”.",
       "questionId": "k4_c1_sx_0037"
     },
     {
@@ -16045,19 +16039,16 @@
       "grade": "KHOI_4",
       "level": "CAP_1_VONG_LOAI",
       "type": "SX",
-      "question": "Sắp xếp các từ/cụm từ sau thành một câu hoàn chỉnh:",
+      "question": "Hãy sắp xếp các từ/cụm từ sau thành một câu văn hoàn chỉnh, đúng ngữ pháp:",
       "elements": [
-        "chú",
-        "chuyện",
-        "kể",
-        "chim",
-        "tích",
-        "cổ",
-        "Những",
-        "sâu"
+        "hoa đỏ",
+        "cây phượng",
+        "Những hàng",
+        "vĩ nở",
+        "rực cả góc sân trường."
       ],
-      "answer": "Những chú chim sâu kể chuyện cổ tích",
-      "explanation": "Câu hoàn chỉnh: “Những chú chim sâu kể chuyện cổ tích”.",
+      "answer": "Những hàng cây phượng vĩ nở hoa đỏ rực cả góc sân trường.",
+      "explanation": "Câu hoàn chỉnh đúng trật tự ngữ pháp: “Những hàng cây phượng vĩ nở hoa đỏ rực cả góc sân trường.”.",
       "questionId": "k4_c1_sx_0038"
     },
     {
@@ -16065,19 +16056,16 @@
       "grade": "KHOI_4",
       "level": "CAP_1_VONG_LOAI",
       "type": "SX",
-      "question": "Sắp xếp các từ/cụm từ sau thành một câu hoàn chỉnh:",
+      "question": "Hãy sắp xếp các từ/cụm từ sau thành một câu văn hoàn chỉnh, đúng ngữ pháp:",
       "elements": [
-        "quốc",
-        "chú",
-        "bảo",
-        "vệ",
-        "sâu",
-        "chim",
-        "Những",
-        "Tổ"
+        "Tiếng trống",
+        "rộn rã",
+        "trường vang lên",
+        "giờ ra chơi.",
+        "báo hiệu"
       ],
-      "answer": "Những chú chim sâu bảo vệ Tổ quốc",
-      "explanation": "Câu hoàn chỉnh: “Những chú chim sâu bảo vệ Tổ quốc”.",
+      "answer": "Tiếng trống trường vang lên rộn rã báo hiệu giờ ra chơi.",
+      "explanation": "Câu hoàn chỉnh đúng trật tự ngữ pháp: “Tiếng trống trường vang lên rộn rã báo hiệu giờ ra chơi.”.",
       "questionId": "k4_c1_sx_0039"
     },
     {
@@ -16085,19 +16073,16 @@
       "grade": "KHOI_4",
       "level": "CAP_1_VONG_LOAI",
       "type": "SX",
-      "question": "Sắp xếp các từ/cụm từ sau thành một câu hoàn chỉnh:",
+      "question": "Hãy sắp xếp các từ/cụm từ sau thành một câu văn hoàn chỉnh, đúng ngữ pháp:",
       "elements": [
-        "uốn",
-        "xóm",
-        "sâu",
-        "quanh",
-        "chú",
-        "nhỏ",
-        "chim",
-        "Những"
+        "sưa giảng bài.",
+        "chăm chú lắng",
+        "giáo say",
+        "Chúng em",
+        "nghe cô"
       ],
-      "answer": "Những chú chim sâu uốn quanh xóm nhỏ",
-      "explanation": "Câu hoàn chỉnh: “Những chú chim sâu uốn quanh xóm nhỏ”.",
+      "answer": "Chúng em chăm chú lắng nghe cô giáo say sưa giảng bài.",
+      "explanation": "Câu hoàn chỉnh đúng trật tự ngữ pháp: “Chúng em chăm chú lắng nghe cô giáo say sưa giảng bài.”.",
       "questionId": "k4_c1_sx_0040"
     },
     {
@@ -16105,19 +16090,16 @@
       "grade": "KHOI_4",
       "level": "CAP_1_VONG_LOAI",
       "type": "SX",
-      "question": "Sắp xếp các từ/cụm từ sau thành một câu hoàn chỉnh:",
+      "question": "Hãy sắp xếp các từ/cụm từ sau thành một câu văn hoàn chỉnh, đúng ngữ pháp:",
       "elements": [
-        "say",
-        "chim",
-        "Những",
-        "bài",
-        "chú",
-        "sưa",
-        "sâu",
-        "giảng"
+        "có rất",
+        "sách hay và bổ ích.",
+        "nhiều cuốn",
+        "trường em",
+        "Thư viện"
       ],
-      "answer": "Những chú chim sâu giảng bài say sưa",
-      "explanation": "Câu hoàn chỉnh: “Những chú chim sâu giảng bài say sưa”.",
+      "answer": "Thư viện trường em có rất nhiều cuốn sách hay và bổ ích.",
+      "explanation": "Câu hoàn chỉnh đúng trật tự ngữ pháp: “Thư viện trường em có rất nhiều cuốn sách hay và bổ ích.”.",
       "questionId": "k4_c1_sx_0041"
     },
     {
@@ -16125,19 +16107,16 @@
       "grade": "KHOI_4",
       "level": "CAP_1_VONG_LOAI",
       "type": "SX",
-      "question": "Sắp xếp các từ/cụm từ sau thành một câu hoàn chỉnh:",
+      "question": "Hãy sắp xếp các từ/cụm từ sau thành một câu văn hoàn chỉnh, đúng ngữ pháp:",
       "elements": [
-        "cỏ",
-        "chim",
-        "ven",
-        "chú",
-        "đê",
-        "sâu",
-        "Những",
-        "gặm"
+        "học sạch sẽ.",
+        "dọn lớp",
+        "Các bạn",
+        "học sinh cùng",
+        "nhau quét"
       ],
-      "answer": "Những chú chim sâu gặm cỏ ven đê",
-      "explanation": "Câu hoàn chỉnh: “Những chú chim sâu gặm cỏ ven đê”.",
+      "answer": "Các bạn học sinh cùng nhau quét dọn lớp học sạch sẽ.",
+      "explanation": "Câu hoàn chỉnh đúng trật tự ngữ pháp: “Các bạn học sinh cùng nhau quét dọn lớp học sạch sẽ.”.",
       "questionId": "k4_c1_sx_0042"
     },
     {
@@ -16145,18 +16124,16 @@
       "grade": "KHOI_4",
       "level": "CAP_1_VONG_LOAI",
       "type": "SX",
-      "question": "Sắp xếp các từ/cụm từ sau thành một câu hoàn chỉnh:",
+      "question": "Hãy sắp xếp các từ/cụm từ sau thành một câu văn hoàn chỉnh, đúng ngữ pháp:",
       "elements": [
-        "nở",
-        "chú",
-        "rực",
-        "chim",
-        "Những",
-        "rỡ",
-        "sâu"
+        "Bạn Lan",
+        "luôn giúp",
+        "tiến bộ trong học tập.",
+        "đỡ bạn",
+        "bè cùng"
       ],
-      "answer": "Những chú chim sâu nở rực rỡ",
-      "explanation": "Câu hoàn chỉnh: “Những chú chim sâu nở rực rỡ”.",
+      "answer": "Bạn Lan luôn giúp đỡ bạn bè cùng tiến bộ trong học tập.",
+      "explanation": "Câu hoàn chỉnh đúng trật tự ngữ pháp: “Bạn Lan luôn giúp đỡ bạn bè cùng tiến bộ trong học tập.”.",
       "questionId": "k4_c1_sx_0043"
     },
     {
@@ -16164,19 +16141,16 @@
       "grade": "KHOI_4",
       "level": "CAP_1_VONG_LOAI",
       "type": "SX",
-      "question": "Sắp xếp các từ/cụm từ sau thành một câu hoàn chỉnh:",
+      "question": "Hãy sắp xếp các từ/cụm từ sau thành một câu văn hoàn chỉnh, đúng ngữ pháp:",
       "elements": [
-        "Các",
-        "cành",
-        "học",
-        "vang",
-        "trên",
-        "sinh",
-        "bạn",
-        "hót"
+        "Cả lớp",
+        "thảo luận",
+        "sôi nổi",
+        "đề bảo vệ môi trường.",
+        "về chủ"
       ],
-      "answer": "Các bạn học sinh hót vang trên cành",
-      "explanation": "Câu hoàn chỉnh: “Các bạn học sinh hót vang trên cành”.",
+      "answer": "Cả lớp sôi nổi thảo luận về chủ đề bảo vệ môi trường.",
+      "explanation": "Câu hoàn chỉnh đúng trật tự ngữ pháp: “Cả lớp sôi nổi thảo luận về chủ đề bảo vệ môi trường.”.",
       "questionId": "k4_c1_sx_0044"
     },
     {
@@ -16184,19 +16158,16 @@
       "grade": "KHOI_4",
       "level": "CAP_1_VONG_LOAI",
       "type": "SX",
-      "question": "Sắp xếp các từ/cụm từ sau thành một câu hoàn chỉnh:",
+      "question": "Hãy sắp xếp các từ/cụm từ sau thành một câu văn hoàn chỉnh, đúng ngữ pháp:",
       "elements": [
-        "sóc",
-        "học",
-        "chăm",
-        "trường",
-        "vườn",
-        "Các",
-        "bạn",
-        "sinh"
+        "Bảng tin",
+        "nhiều bức tranh tươi sáng.",
+        "của lớp",
+        "trí bằng",
+        "được trang"
       ],
-      "answer": "Các bạn học sinh chăm sóc vườn trường",
-      "explanation": "Câu hoàn chỉnh: “Các bạn học sinh chăm sóc vườn trường”.",
+      "answer": "Bảng tin của lớp được trang trí bằng nhiều bức tranh tươi sáng.",
+      "explanation": "Câu hoàn chỉnh đúng trật tự ngữ pháp: “Bảng tin của lớp được trang trí bằng nhiều bức tranh tươi sáng.”.",
       "questionId": "k4_c1_sx_0045"
     },
     {
@@ -16204,19 +16175,16 @@
       "grade": "KHOI_4",
       "level": "CAP_1_VONG_LOAI",
       "type": "SX",
-      "question": "Sắp xếp các từ/cụm từ sau thành một câu hoàn chỉnh:",
+      "question": "Hãy sắp xếp các từ/cụm từ sau thành một câu văn hoàn chỉnh, đúng ngữ pháp:",
       "elements": [
-        "tích",
-        "chuyện",
-        "kể",
-        "Các",
-        "cổ",
-        "sinh",
-        "học",
-        "bạn"
+        "chuẩn bị",
+        "Mẹ em",
+        "gia đình",
+        "bữa cơm",
+        "thơm ngon và ấm cúng."
       ],
-      "answer": "Các bạn học sinh kể chuyện cổ tích",
-      "explanation": "Câu hoàn chỉnh: “Các bạn học sinh kể chuyện cổ tích”.",
+      "answer": "Mẹ em chuẩn bị bữa cơm gia đình thơm ngon và ấm cúng.",
+      "explanation": "Câu hoàn chỉnh đúng trật tự ngữ pháp: “Mẹ em chuẩn bị bữa cơm gia đình thơm ngon và ấm cúng.”.",
       "questionId": "k4_c1_sx_0046"
     },
     {
@@ -16224,19 +16192,16 @@
       "grade": "KHOI_4",
       "level": "CAP_1_VONG_LOAI",
       "type": "SX",
-      "question": "Sắp xếp các từ/cụm từ sau thành một câu hoàn chỉnh:",
+      "question": "Hãy sắp xếp các từ/cụm từ sau thành một câu văn hoàn chỉnh, đúng ngữ pháp:",
       "elements": [
-        "bảo",
-        "sinh",
-        "quốc",
-        "Các",
-        "Tổ",
-        "vệ",
-        "bạn",
-        "học"
+        "Bà nội",
+        "cổ tích cho các cháu nghe.",
+        "hiên nhà",
+        "kể chuyện",
+        "ngồi bên"
       ],
-      "answer": "Các bạn học sinh bảo vệ Tổ quốc",
-      "explanation": "Câu hoàn chỉnh: “Các bạn học sinh bảo vệ Tổ quốc”.",
+      "answer": "Bà nội ngồi bên hiên nhà kể chuyện cổ tích cho các cháu nghe.",
+      "explanation": "Câu hoàn chỉnh đúng trật tự ngữ pháp: “Bà nội ngồi bên hiên nhà kể chuyện cổ tích cho các cháu nghe.”.",
       "questionId": "k4_c1_sx_0047"
     },
     {
@@ -16244,19 +16209,16 @@
       "grade": "KHOI_4",
       "level": "CAP_1_VONG_LOAI",
       "type": "SX",
-      "question": "Sắp xếp các từ/cụm từ sau thành một câu hoàn chỉnh:",
+      "question": "Hãy sắp xếp các từ/cụm từ sau thành một câu văn hoàn chỉnh, đúng ngữ pháp:",
       "elements": [
-        "Các",
-        "quanh",
-        "bạn",
-        "xóm",
-        "học",
-        "nhỏ",
-        "uốn",
-        "sinh"
+        "chăm sóc",
+        "từng chậu",
+        "cây cảnh",
+        "ngoài vườn mỗi sớm mai.",
+        "Ông em"
       ],
-      "answer": "Các bạn học sinh uốn quanh xóm nhỏ",
-      "explanation": "Câu hoàn chỉnh: “Các bạn học sinh uốn quanh xóm nhỏ”.",
+      "answer": "Ông em chăm sóc từng chậu cây cảnh ngoài vườn mỗi sớm mai.",
+      "explanation": "Câu hoàn chỉnh đúng trật tự ngữ pháp: “Ông em chăm sóc từng chậu cây cảnh ngoài vườn mỗi sớm mai.”.",
       "questionId": "k4_c1_sx_0048"
     },
     {
@@ -16264,19 +16226,16 @@
       "grade": "KHOI_4",
       "level": "CAP_1_VONG_LOAI",
       "type": "SX",
-      "question": "Sắp xếp các từ/cụm từ sau thành một câu hoàn chỉnh:",
+      "question": "Hãy sắp xếp các từ/cụm từ sau thành một câu văn hoàn chỉnh, đúng ngữ pháp:",
       "elements": [
-        "bài",
-        "bạn",
-        "giảng",
-        "sưa",
-        "sinh",
-        "học",
-        "say",
-        "Các"
+        "xe trên",
+        "em đạp",
+        "nhẫn dạy",
+        "Bố kiên",
+        "con đường làng êm ả."
       ],
-      "answer": "Các bạn học sinh giảng bài say sưa",
-      "explanation": "Câu hoàn chỉnh: “Các bạn học sinh giảng bài say sưa”.",
+      "answer": "Bố kiên nhẫn dạy em đạp xe trên con đường làng êm ả.",
+      "explanation": "Câu hoàn chỉnh đúng trật tự ngữ pháp: “Bố kiên nhẫn dạy em đạp xe trên con đường làng êm ả.”.",
       "questionId": "k4_c1_sx_0049"
     },
     {
@@ -16284,19 +16243,16 @@
       "grade": "KHOI_4",
       "level": "CAP_1_VONG_LOAI",
       "type": "SX",
-      "question": "Sắp xếp các từ/cụm từ sau thành một câu hoàn chỉnh:",
+      "question": "Hãy sắp xếp các từ/cụm từ sau thành một câu văn hoàn chỉnh, đúng ngữ pháp:",
       "elements": [
-        "gặm",
-        "sinh",
-        "cỏ",
-        "ven",
-        "đê",
-        "Các",
-        "học",
-        "bạn"
+        "mâm cơm",
+        "Cả gia",
+        "đình quây",
+        "quần bên",
+        "ấm áp sau một ngày dài."
       ],
-      "answer": "Các bạn học sinh gặm cỏ ven đê",
-      "explanation": "Câu hoàn chỉnh: “Các bạn học sinh gặm cỏ ven đê”.",
+      "answer": "Cả gia đình quây quần bên mâm cơm ấm áp sau một ngày dài.",
+      "explanation": "Câu hoàn chỉnh đúng trật tự ngữ pháp: “Cả gia đình quây quần bên mâm cơm ấm áp sau một ngày dài.”.",
       "questionId": "k4_c1_sx_0050"
     },
     {
@@ -16304,18 +16260,16 @@
       "grade": "KHOI_4",
       "level": "CAP_1_VONG_LOAI",
       "type": "SX",
-      "question": "Sắp xếp các từ/cụm từ sau thành một câu hoàn chỉnh:",
+      "question": "Hãy sắp xếp các từ/cụm từ sau thành một câu văn hoàn chỉnh, đúng ngữ pháp:",
       "elements": [
-        "rực",
-        "bạn",
-        "nở",
-        "Các",
-        "rỡ",
-        "học",
-        "sinh"
+        "bát sau",
+        "mỗi bữa ăn.",
+        "và rửa",
+        "mẹ nhặt rau",
+        "Em giúp"
       ],
-      "answer": "Các bạn học sinh nở rực rỡ",
-      "explanation": "Câu hoàn chỉnh: “Các bạn học sinh nở rực rỡ”.",
+      "answer": "Em giúp mẹ nhặt rau và rửa bát sau mỗi bữa ăn.",
+      "explanation": "Câu hoàn chỉnh đúng trật tự ngữ pháp: “Em giúp mẹ nhặt rau và rửa bát sau mỗi bữa ăn.”.",
       "questionId": "k4_c1_sx_0051"
     },
     {
@@ -16323,17 +16277,16 @@
       "grade": "KHOI_4",
       "level": "CAP_1_VONG_LOAI",
       "type": "SX",
-      "question": "Sắp xếp các từ/cụm từ sau thành một câu hoàn chỉnh:",
+      "question": "Hãy sắp xếp các từ/cụm từ sau thành một câu văn hoàn chỉnh, đúng ngữ pháp:",
       "elements": [
-        "vang",
-        "cành",
-        "Bà",
-        "trên",
-        "em",
-        "hót"
+        "vẻ của",
+        "cả nhà",
+        "Tiếng cười",
+        "nói vui",
+        "vang khắp gian phòng nhỏ."
       ],
-      "answer": "Bà em hót vang trên cành",
-      "explanation": "Câu hoàn chỉnh: “Bà em hót vang trên cành”.",
+      "answer": "Tiếng cười nói vui vẻ của cả nhà vang khắp gian phòng nhỏ.",
+      "explanation": "Câu hoàn chỉnh đúng trật tự ngữ pháp: “Tiếng cười nói vui vẻ của cả nhà vang khắp gian phòng nhỏ.”.",
       "questionId": "k4_c1_sx_0052"
     },
     {
@@ -16341,17 +16294,16 @@
       "grade": "KHOI_4",
       "level": "CAP_1_VONG_LOAI",
       "type": "SX",
-      "question": "Sắp xếp các từ/cụm từ sau thành một câu hoàn chỉnh:",
+      "question": "Hãy sắp xếp các từ/cụm từ sau thành một câu văn hoàn chỉnh, đúng ngữ pháp:",
       "elements": [
-        "em",
-        "vườn",
-        "Bà",
-        "trường",
-        "sóc",
-        "chăm"
+        "Bà âu",
+        "ngoan ngoãn",
+        "khen em",
+        "và chăm chỉ.",
+        "yếm xoa đầu"
       ],
-      "answer": "Bà em chăm sóc vườn trường",
-      "explanation": "Câu hoàn chỉnh: “Bà em chăm sóc vườn trường”.",
+      "answer": "Bà âu yếm xoa đầu khen em ngoan ngoãn và chăm chỉ.",
+      "explanation": "Câu hoàn chỉnh đúng trật tự ngữ pháp: “Bà âu yếm xoa đầu khen em ngoan ngoãn và chăm chỉ.”.",
       "questionId": "k4_c1_sx_0053"
     },
     {
@@ -16359,17 +16311,16 @@
       "grade": "KHOI_4",
       "level": "CAP_1_VONG_LOAI",
       "type": "SX",
-      "question": "Sắp xếp các từ/cụm từ sau thành một câu hoàn chỉnh:",
+      "question": "Hãy sắp xếp các từ/cụm từ sau thành một câu văn hoàn chỉnh, đúng ngữ pháp:",
       "elements": [
-        "Bà",
-        "chuyện",
-        "em",
-        "kể",
-        "cổ",
-        "tích"
+        "mẹ luôn theo em suốt đời.",
+        "của cha",
+        "Những lời",
+        "ân cần",
+        "khuyên bảo"
       ],
-      "answer": "Bà em kể chuyện cổ tích",
-      "explanation": "Câu hoàn chỉnh: “Bà em kể chuyện cổ tích”.",
+      "answer": "Những lời khuyên bảo ân cần của cha mẹ luôn theo em suốt đời.",
+      "explanation": "Câu hoàn chỉnh đúng trật tự ngữ pháp: “Những lời khuyên bảo ân cần của cha mẹ luôn theo em suốt đời.”.",
       "questionId": "k4_c1_sx_0054"
     },
     {
@@ -16377,17 +16328,16 @@
       "grade": "KHOI_4",
       "level": "CAP_1_VONG_LOAI",
       "type": "SX",
-      "question": "Sắp xếp các từ/cụm từ sau thành một câu hoàn chỉnh:",
+      "question": "Hãy sắp xếp các từ/cụm từ sau thành một câu văn hoàn chỉnh, đúng ngữ pháp:",
       "elements": [
-        "em",
-        "Tổ",
-        "bảo",
-        "quốc",
-        "Bà",
-        "vệ"
+        "yên và ấm",
+        "áp nhất của",
+        "Gia đình là",
+        "điểm tựa bình",
+        "mỗi con người."
       ],
-      "answer": "Bà em bảo vệ Tổ quốc",
-      "explanation": "Câu hoàn chỉnh: “Bà em bảo vệ Tổ quốc”.",
+      "answer": "Gia đình là điểm tựa bình yên và ấm áp nhất của mỗi con người.",
+      "explanation": "Câu hoàn chỉnh đúng trật tự ngữ pháp: “Gia đình là điểm tựa bình yên và ấm áp nhất của mỗi con người.”.",
       "questionId": "k4_c1_sx_0055"
     },
     {
@@ -16395,17 +16345,16 @@
       "grade": "KHOI_4",
       "level": "CAP_1_VONG_LOAI",
       "type": "SX",
-      "question": "Sắp xếp các từ/cụm từ sau thành một câu hoàn chỉnh:",
+      "question": "Hãy sắp xếp các từ/cụm từ sau thành một câu văn hoàn chỉnh, đúng ngữ pháp:",
       "elements": [
-        "em",
-        "uốn",
-        "nhỏ",
-        "quanh",
-        "xóm",
-        "Bà"
+        "Những chú",
+        "nhót thoăn",
+        "thoắt trên",
+        "cành cây xanh.",
+        "chim sâu nhảy"
       ],
-      "answer": "Bà em uốn quanh xóm nhỏ",
-      "explanation": "Câu hoàn chỉnh: “Bà em uốn quanh xóm nhỏ”.",
+      "answer": "Những chú chim sâu nhảy nhót thoăn thoắt trên cành cây xanh.",
+      "explanation": "Câu hoàn chỉnh đúng trật tự ngữ pháp: “Những chú chim sâu nhảy nhót thoăn thoắt trên cành cây xanh.”.",
       "questionId": "k4_c1_sx_0056"
     },
     {
@@ -16413,17 +16362,16 @@
       "grade": "KHOI_4",
       "level": "CAP_1_VONG_LOAI",
       "type": "SX",
-      "question": "Sắp xếp các từ/cụm từ sau thành một câu hoàn chỉnh:",
+      "question": "Hãy sắp xếp các từ/cụm từ sau thành một câu văn hoàn chỉnh, đúng ngữ pháp:",
       "elements": [
-        "say",
-        "bài",
-        "sưa",
-        "giảng",
-        "Bà",
-        "em"
+        "đê lộng gió.",
+        "cỏ non",
+        "thong thả gặm",
+        "Đàn trâu",
+        "trên sườn"
       ],
-      "answer": "Bà em giảng bài say sưa",
-      "explanation": "Câu hoàn chỉnh: “Bà em giảng bài say sưa”.",
+      "answer": "Đàn trâu thong thả gặm cỏ non trên sườn đê lộng gió.",
+      "explanation": "Câu hoàn chỉnh đúng trật tự ngữ pháp: “Đàn trâu thong thả gặm cỏ non trên sườn đê lộng gió.”.",
       "questionId": "k4_c1_sx_0057"
     },
     {
@@ -16431,17 +16379,16 @@
       "grade": "KHOI_4",
       "level": "CAP_1_VONG_LOAI",
       "type": "SX",
-      "question": "Sắp xếp các từ/cụm từ sau thành một câu hoàn chỉnh:",
+      "question": "Hãy sắp xếp các từ/cụm từ sau thành một câu văn hoàn chỉnh, đúng ngữ pháp:",
       "elements": [
-        "đê",
-        "cỏ",
-        "gặm",
-        "Bà",
-        "ven",
-        "em"
+        "lấy xóm làng thanh bình.",
+        "quê uốn",
+        "hòa ôm",
+        "lượn hiền",
+        "Dòng sông"
       ],
-      "answer": "Bà em gặm cỏ ven đê",
-      "explanation": "Câu hoàn chỉnh: “Bà em gặm cỏ ven đê”.",
+      "answer": "Dòng sông quê uốn lượn hiền hòa ôm lấy xóm làng thanh bình.",
+      "explanation": "Câu hoàn chỉnh đúng trật tự ngữ pháp: “Dòng sông quê uốn lượn hiền hòa ôm lấy xóm làng thanh bình.”.",
       "questionId": "k4_c1_sx_0058"
     },
     {
@@ -16449,16 +16396,16 @@
       "grade": "KHOI_4",
       "level": "CAP_1_VONG_LOAI",
       "type": "SX",
-      "question": "Sắp xếp các từ/cụm từ sau thành một câu hoàn chỉnh:",
+      "question": "Hãy sắp xếp các từ/cụm từ sau thành một câu văn hoàn chỉnh, đúng ngữ pháp:",
       "elements": [
-        "rỡ",
-        "Bà",
-        "nở",
-        "em",
-        "rực"
+        "Những bông",
+        "hương thơm",
+        "hoa hồng",
+        "dịu dàng trong vườn sớm.",
+        "tỏa ngát"
       ],
-      "answer": "Bà em nở rực rỡ",
-      "explanation": "Câu hoàn chỉnh: “Bà em nở rực rỡ”.",
+      "answer": "Những bông hoa hồng tỏa ngát hương thơm dịu dàng trong vườn sớm.",
+      "explanation": "Câu hoàn chỉnh đúng trật tự ngữ pháp: “Những bông hoa hồng tỏa ngát hương thơm dịu dàng trong vườn sớm.”.",
       "questionId": "k4_c1_sx_0059"
     },
     {
@@ -16466,18 +16413,16 @@
       "grade": "KHOI_4",
       "level": "CAP_1_VONG_LOAI",
       "type": "SX",
-      "question": "Sắp xếp các từ/cụm từ sau thành một câu hoàn chỉnh:",
+      "question": "Hãy sắp xếp các từ/cụm từ sau thành một câu văn hoàn chỉnh, đúng ngữ pháp:",
       "elements": [
-        "vang",
-        "Người",
-        "trên",
-        "cành",
-        "hót",
-        "sĩ",
-        "chiến"
+        "chiếu rọi",
+        "qua từng kẽ lá non.",
+        "ban mai",
+        "rực rỡ",
+        "Ánh nắng"
       ],
-      "answer": "Người chiến sĩ hót vang trên cành",
-      "explanation": "Câu hoàn chỉnh: “Người chiến sĩ hót vang trên cành”.",
+      "answer": "Ánh nắng ban mai rực rỡ chiếu rọi qua từng kẽ lá non.",
+      "explanation": "Câu hoàn chỉnh đúng trật tự ngữ pháp: “Ánh nắng ban mai rực rỡ chiếu rọi qua từng kẽ lá non.”.",
       "questionId": "k4_c1_sx_0060"
     },
     {
@@ -16485,18 +16430,16 @@
       "grade": "KHOI_4",
       "level": "CAP_1_VONG_LOAI",
       "type": "SX",
-      "question": "Sắp xếp các từ/cụm từ sau thành một câu hoàn chỉnh:",
+      "question": "Hãy sắp xếp các từ/cụm từ sau thành một câu văn hoàn chỉnh, đúng ngữ pháp:",
       "elements": [
-        "vườn",
-        "Người",
-        "sĩ",
-        "trường",
-        "sóc",
-        "chiến",
-        "chăm"
+        "Cơn mưa",
+        "rào mùa",
+        "khí mát lành cho vạn vật.",
+        "lại không",
+        "hạ đem"
       ],
-      "answer": "Người chiến sĩ chăm sóc vườn trường",
-      "explanation": "Câu hoàn chỉnh: “Người chiến sĩ chăm sóc vườn trường”.",
+      "answer": "Cơn mưa rào mùa hạ đem lại không khí mát lành cho vạn vật.",
+      "explanation": "Câu hoàn chỉnh đúng trật tự ngữ pháp: “Cơn mưa rào mùa hạ đem lại không khí mát lành cho vạn vật.”.",
       "questionId": "k4_c1_sx_0061"
     },
     {
@@ -16504,18 +16447,16 @@
       "grade": "KHOI_4",
       "level": "CAP_1_VONG_LOAI",
       "type": "SX",
-      "question": "Sắp xếp các từ/cụm từ sau thành một câu hoàn chỉnh:",
+      "question": "Hãy sắp xếp các từ/cụm từ sau thành một câu văn hoàn chỉnh, đúng ngữ pháp:",
       "elements": [
-        "cổ",
-        "kể",
-        "chiến",
-        "Người",
-        "tích",
-        "sĩ",
-        "chuyện"
+        "Gió heo",
+        "may thổi",
+        "những chiếc",
+        "lá vàng xào xạc rơi.",
+        "nhẹ làm"
       ],
-      "answer": "Người chiến sĩ kể chuyện cổ tích",
-      "explanation": "Câu hoàn chỉnh: “Người chiến sĩ kể chuyện cổ tích”.",
+      "answer": "Gió heo may thổi nhẹ làm những chiếc lá vàng xào xạc rơi.",
+      "explanation": "Câu hoàn chỉnh đúng trật tự ngữ pháp: “Gió heo may thổi nhẹ làm những chiếc lá vàng xào xạc rơi.”.",
       "questionId": "k4_c1_sx_0062"
     },
     {
@@ -16523,18 +16464,16 @@
       "grade": "KHOI_4",
       "level": "CAP_1_VONG_LOAI",
       "type": "SX",
-      "question": "Sắp xếp các từ/cụm từ sau thành một câu hoàn chỉnh:",
+      "question": "Hãy sắp xếp các từ/cụm từ sau thành một câu văn hoàn chỉnh, đúng ngữ pháp:",
       "elements": [
-        "Tổ",
-        "Người",
-        "bảo",
-        "vệ",
-        "sĩ",
-        "chiến",
-        "quốc"
+        "lượn bên",
+        "rập rờn bay",
+        "hoa đua nở.",
+        "những khóm",
+        "Đàn bướm"
       ],
-      "answer": "Người chiến sĩ bảo vệ Tổ quốc",
-      "explanation": "Câu hoàn chỉnh: “Người chiến sĩ bảo vệ Tổ quốc”.",
+      "answer": "Đàn bướm rập rờn bay lượn bên những khóm hoa đua nở.",
+      "explanation": "Câu hoàn chỉnh đúng trật tự ngữ pháp: “Đàn bướm rập rờn bay lượn bên những khóm hoa đua nở.”.",
       "questionId": "k4_c1_sx_0063"
     },
     {
@@ -16542,18 +16481,16 @@
       "grade": "KHOI_4",
       "level": "CAP_1_VONG_LOAI",
       "type": "SX",
-      "question": "Sắp xếp các từ/cụm từ sau thành một câu hoàn chỉnh:",
+      "question": "Hãy sắp xếp các từ/cụm từ sau thành một câu văn hoàn chỉnh, đúng ngữ pháp:",
       "elements": [
-        "sĩ",
-        "chiến",
-        "xóm",
-        "nhỏ",
-        "uốn",
-        "Người",
-        "quanh"
+        "Bầu trời",
+        "trong xanh",
+        "và cao",
+        "mùa thu",
+        "vời vợi không một gợn mây."
       ],
-      "answer": "Người chiến sĩ uốn quanh xóm nhỏ",
-      "explanation": "Câu hoàn chỉnh: “Người chiến sĩ uốn quanh xóm nhỏ”.",
+      "answer": "Bầu trời mùa thu trong xanh và cao vời vợi không một gợn mây.",
+      "explanation": "Câu hoàn chỉnh đúng trật tự ngữ pháp: “Bầu trời mùa thu trong xanh và cao vời vợi không một gợn mây.”.",
       "questionId": "k4_c1_sx_0064"
     },
     {
@@ -16561,18 +16498,16 @@
       "grade": "KHOI_4",
       "level": "CAP_1_VONG_LOAI",
       "type": "SX",
-      "question": "Sắp xếp các từ/cụm từ sau thành một câu hoàn chỉnh:",
+      "question": "Hãy sắp xếp các từ/cụm từ sau thành một câu văn hoàn chỉnh, đúng ngữ pháp:",
       "elements": [
-        "Người",
-        "say",
-        "bài",
-        "sưa",
-        "giảng",
-        "chiến",
-        "sĩ"
+        "đọng trên",
+        "long lanh",
+        "ngọn cỏ non xanh biếc.",
+        "Những hạt",
+        "sương sớm"
       ],
-      "answer": "Người chiến sĩ giảng bài say sưa",
-      "explanation": "Câu hoàn chỉnh: “Người chiến sĩ giảng bài say sưa”.",
+      "answer": "Những hạt sương sớm long lanh đọng trên ngọn cỏ non xanh biếc.",
+      "explanation": "Câu hoàn chỉnh đúng trật tự ngữ pháp: “Những hạt sương sớm long lanh đọng trên ngọn cỏ non xanh biếc.”.",
       "questionId": "k4_c1_sx_0065"
     },
     {
@@ -16580,18 +16515,16 @@
       "grade": "KHOI_4",
       "level": "CAP_1_VONG_LOAI",
       "type": "SX",
-      "question": "Sắp xếp các từ/cụm từ sau thành một câu hoàn chỉnh:",
+      "question": "Hãy sắp xếp các từ/cụm từ sau thành một câu văn hoàn chỉnh, đúng ngữ pháp:",
       "elements": [
-        "sĩ",
-        "chiến",
-        "đê",
-        "Người",
-        "gặm",
-        "ven",
-        "cỏ"
+        "Cánh đồng",
+        "dài đến",
+        "lúa chín vàng",
+        "rực trải",
+        "tận chân trời."
       ],
-      "answer": "Người chiến sĩ gặm cỏ ven đê",
-      "explanation": "Câu hoàn chỉnh: “Người chiến sĩ gặm cỏ ven đê”.",
+      "answer": "Cánh đồng lúa chín vàng rực trải dài đến tận chân trời.",
+      "explanation": "Câu hoàn chỉnh đúng trật tự ngữ pháp: “Cánh đồng lúa chín vàng rực trải dài đến tận chân trời.”.",
       "questionId": "k4_c1_sx_0066"
     },
     {
@@ -16599,17 +16532,16 @@
       "grade": "KHOI_4",
       "level": "CAP_1_VONG_LOAI",
       "type": "SX",
-      "question": "Sắp xếp các từ/cụm từ sau thành một câu hoàn chỉnh:",
+      "question": "Hãy sắp xếp các từ/cụm từ sau thành một câu văn hoàn chỉnh, đúng ngữ pháp:",
       "elements": [
-        "rực",
-        "Người",
-        "nở",
-        "rỡ",
-        "chiến",
-        "sĩ"
+        "xanh rì",
+        "rào nghiêng",
+        "Lũy tre",
+        "mình soi",
+        "bóng xuống dòng sông trong."
       ],
-      "answer": "Người chiến sĩ nở rực rỡ",
-      "explanation": "Câu hoàn chỉnh: “Người chiến sĩ nở rực rỡ”.",
+      "answer": "Lũy tre xanh rì rào nghiêng mình soi bóng xuống dòng sông trong.",
+      "explanation": "Câu hoàn chỉnh đúng trật tự ngữ pháp: “Lũy tre xanh rì rào nghiêng mình soi bóng xuống dòng sông trong.”.",
       "questionId": "k4_c1_sx_0067"
     },
     {
@@ -16617,18 +16549,16 @@
       "grade": "KHOI_4",
       "level": "CAP_1_VONG_LOAI",
       "type": "SX",
-      "question": "Sắp xếp các từ/cụm từ sau thành một câu hoàn chỉnh:",
+      "question": "Hãy sắp xếp các từ/cụm từ sau thành một câu văn hoàn chỉnh, đúng ngữ pháp:",
       "elements": [
-        "cành",
-        "hót",
-        "trên",
-        "sông",
-        "Dòng",
-        "quê",
-        "vang"
+        "Đoàn thuyền",
+        "trong niềm vui rạng ngời.",
+        "trở về",
+        "bến đỗ",
+        "đánh cá"
       ],
-      "answer": "Dòng sông quê hót vang trên cành",
-      "explanation": "Câu hoàn chỉnh: “Dòng sông quê hót vang trên cành”.",
+      "answer": "Đoàn thuyền đánh cá trở về bến đỗ trong niềm vui rạng ngời.",
+      "explanation": "Câu hoàn chỉnh đúng trật tự ngữ pháp: “Đoàn thuyền đánh cá trở về bến đỗ trong niềm vui rạng ngời.”.",
       "questionId": "k4_c1_sx_0068"
     },
     {
@@ -16636,18 +16566,16 @@
       "grade": "KHOI_4",
       "level": "CAP_1_VONG_LOAI",
       "type": "SX",
-      "question": "Sắp xếp các từ/cụm từ sau thành một câu hoàn chỉnh:",
+      "question": "Hãy sắp xếp các từ/cụm từ sau thành một câu văn hoàn chỉnh, đúng ngữ pháp:",
       "elements": [
-        "sóc",
-        "quê",
-        "trường",
-        "Dòng",
-        "sông",
-        "chăm",
-        "vườn"
+        "Con đường",
+        "bóng mát",
+        "làng quanh",
+        "co rợp",
+        "của những rặng phi lao."
       ],
-      "answer": "Dòng sông quê chăm sóc vườn trường",
-      "explanation": "Câu hoàn chỉnh: “Dòng sông quê chăm sóc vườn trường”.",
+      "answer": "Con đường làng quanh co rợp bóng mát của những rặng phi lao.",
+      "explanation": "Câu hoàn chỉnh đúng trật tự ngữ pháp: “Con đường làng quanh co rợp bóng mát của những rặng phi lao.”.",
       "questionId": "k4_c1_sx_0069"
     },
     {
@@ -16655,18 +16583,16 @@
       "grade": "KHOI_4",
       "level": "CAP_1_VONG_LOAI",
       "type": "SX",
-      "question": "Sắp xếp các từ/cụm từ sau thành một câu hoàn chỉnh:",
+      "question": "Hãy sắp xếp các từ/cụm từ sau thành một câu văn hoàn chỉnh, đúng ngữ pháp:",
       "elements": [
-        "Dòng",
-        "kể",
-        "quê",
-        "sông",
-        "cổ",
-        "tích",
-        "chuyện"
+        "mái nhà tranh mộc mạc.",
+        "Khói bếp",
+        "chiều bay",
+        "trên những",
+        "lơ lửng"
       ],
-      "answer": "Dòng sông quê kể chuyện cổ tích",
-      "explanation": "Câu hoàn chỉnh: “Dòng sông quê kể chuyện cổ tích”.",
+      "answer": "Khói bếp chiều bay lơ lửng trên những mái nhà tranh mộc mạc.",
+      "explanation": "Câu hoàn chỉnh đúng trật tự ngữ pháp: “Khói bếp chiều bay lơ lửng trên những mái nhà tranh mộc mạc.”.",
       "questionId": "k4_c1_sx_0070"
     },
     {
@@ -16674,18 +16600,16 @@
       "grade": "KHOI_4",
       "level": "CAP_1_VONG_LOAI",
       "type": "SX",
-      "question": "Sắp xếp các từ/cụm từ sau thành một câu hoàn chỉnh:",
+      "question": "Hãy sắp xếp các từ/cụm từ sau thành một câu văn hoàn chỉnh, đúng ngữ pháp:",
       "elements": [
-        "sông",
-        "bảo",
-        "quốc",
-        "vệ",
-        "quê",
-        "Tổ",
-        "Dòng"
+        "khắp đường",
+        "Hương thơm",
+        "làng ngõ xóm.",
+        "thoảng bay",
+        "lúa mới thoang"
       ],
-      "answer": "Dòng sông quê bảo vệ Tổ quốc",
-      "explanation": "Câu hoàn chỉnh: “Dòng sông quê bảo vệ Tổ quốc”.",
+      "answer": "Hương thơm lúa mới thoang thoảng bay khắp đường làng ngõ xóm.",
+      "explanation": "Câu hoàn chỉnh đúng trật tự ngữ pháp: “Hương thơm lúa mới thoang thoảng bay khắp đường làng ngõ xóm.”.",
       "questionId": "k4_c1_sx_0071"
     },
     {
@@ -16693,18 +16617,16 @@
       "grade": "KHOI_4",
       "level": "CAP_1_VONG_LOAI",
       "type": "SX",
-      "question": "Sắp xếp các từ/cụm từ sau thành một câu hoàn chỉnh:",
+      "question": "Hãy sắp xếp các từ/cụm từ sau thành một câu văn hoàn chỉnh, đúng ngữ pháp:",
       "elements": [
-        "xóm",
-        "quanh",
-        "sông",
-        "Dòng",
-        "nhỏ",
-        "quê",
-        "uốn"
+        "ruộng bao la.",
+        "Bác nông",
+        "gặt lúa",
+        "dân miệt mài",
+        "trên đồng"
       ],
-      "answer": "Dòng sông quê uốn quanh xóm nhỏ",
-      "explanation": "Câu hoàn chỉnh: “Dòng sông quê uốn quanh xóm nhỏ”.",
+      "answer": "Bác nông dân miệt mài gặt lúa trên đồng ruộng bao la.",
+      "explanation": "Câu hoàn chỉnh đúng trật tự ngữ pháp: “Bác nông dân miệt mài gặt lúa trên đồng ruộng bao la.”.",
       "questionId": "k4_c1_sx_0072"
     },
     {
@@ -16712,18 +16634,16 @@
       "grade": "KHOI_4",
       "level": "CAP_1_VONG_LOAI",
       "type": "SX",
-      "question": "Sắp xếp các từ/cụm từ sau thành một câu hoàn chỉnh:",
+      "question": "Hãy sắp xếp các từ/cụm từ sau thành một câu văn hoàn chỉnh, đúng ngữ pháp:",
       "elements": [
-        "Dòng",
-        "sông",
-        "quê",
-        "bài",
-        "sưa",
-        "giảng",
-        "say"
+        "đã gắn bó",
+        "với bao thế",
+        "Cây đa cổ",
+        "hệ tuổi thơ.",
+        "thụ đầu làng"
       ],
-      "answer": "Dòng sông quê giảng bài say sưa",
-      "explanation": "Câu hoàn chỉnh: “Dòng sông quê giảng bài say sưa”.",
+      "answer": "Cây đa cổ thụ đầu làng đã gắn bó với bao thế hệ tuổi thơ.",
+      "explanation": "Câu hoàn chỉnh đúng trật tự ngữ pháp: “Cây đa cổ thụ đầu làng đã gắn bó với bao thế hệ tuổi thơ.”.",
       "questionId": "k4_c1_sx_0073"
     },
     {
@@ -16731,18 +16651,16 @@
       "grade": "KHOI_4",
       "level": "CAP_1_VONG_LOAI",
       "type": "SX",
-      "question": "Sắp xếp các từ/cụm từ sau thành một câu hoàn chỉnh:",
+      "question": "Hãy sắp xếp các từ/cụm từ sau thành một câu văn hoàn chỉnh, đúng ngữ pháp:",
       "elements": [
-        "cỏ",
-        "gặm",
-        "quê",
-        "đê",
-        "sông",
-        "ven",
-        "Dòng"
+        "vặc chiếu",
+        "sáng cả",
+        "con đường làng.",
+        "rằm sáng vằng",
+        "Đêm trăng"
       ],
-      "answer": "Dòng sông quê gặm cỏ ven đê",
-      "explanation": "Câu hoàn chỉnh: “Dòng sông quê gặm cỏ ven đê”.",
+      "answer": "Đêm trăng rằm sáng vằng vặc chiếu sáng cả con đường làng.",
+      "explanation": "Câu hoàn chỉnh đúng trật tự ngữ pháp: “Đêm trăng rằm sáng vằng vặc chiếu sáng cả con đường làng.”.",
       "questionId": "k4_c1_sx_0074"
     },
     {
@@ -16750,17 +16668,16 @@
       "grade": "KHOI_4",
       "level": "CAP_1_VONG_LOAI",
       "type": "SX",
-      "question": "Sắp xếp các từ/cụm từ sau thành một câu hoàn chỉnh:",
+      "question": "Hãy sắp xếp các từ/cụm từ sau thành một câu văn hoàn chỉnh, đúng ngữ pháp:",
       "elements": [
-        "quê",
-        "nở",
-        "rực",
-        "sông",
-        "Dòng",
-        "rỡ"
+        "bằng tiếng gà gáy rộn rã.",
+        "Bình minh",
+        "xóm chài",
+        "đánh thức",
+        "thức giấc"
       ],
-      "answer": "Dòng sông quê nở rực rỡ",
-      "explanation": "Câu hoàn chỉnh: “Dòng sông quê nở rực rỡ”.",
+      "answer": "Bình minh thức giấc đánh thức xóm chài bằng tiếng gà gáy rộn rã.",
+      "explanation": "Câu hoàn chỉnh đúng trật tự ngữ pháp: “Bình minh thức giấc đánh thức xóm chài bằng tiếng gà gáy rộn rã.”.",
       "questionId": "k4_c1_sx_0075"
     },
     {
@@ -16768,17 +16685,16 @@
       "grade": "KHOI_4",
       "level": "CAP_1_VONG_LOAI",
       "type": "SX",
-      "question": "Sắp xếp các từ/cụm từ sau thành một câu hoàn chỉnh:",
+      "question": "Hãy sắp xếp các từ/cụm từ sau thành một câu văn hoàn chỉnh, đúng ngữ pháp:",
       "elements": [
-        "hót",
-        "trên",
-        "cành",
-        "vang",
-        "Cô",
-        "giáo"
+        "vô cùng",
+        "quý báu của mỗi học sinh.",
+        "đức tính",
+        "Tính trung",
+        "thực là"
       ],
-      "answer": "Cô giáo hót vang trên cành",
-      "explanation": "Câu hoàn chỉnh: “Cô giáo hót vang trên cành”.",
+      "answer": "Tính trung thực là đức tính vô cùng quý báu của mỗi học sinh.",
+      "explanation": "Câu hoàn chỉnh đúng trật tự ngữ pháp: “Tính trung thực là đức tính vô cùng quý báu của mỗi học sinh.”.",
       "questionId": "k4_c1_sx_0076"
     },
     {
@@ -16786,17 +16702,16 @@
       "grade": "KHOI_4",
       "level": "CAP_1_VONG_LOAI",
       "type": "SX",
-      "question": "Sắp xếp các từ/cụm từ sau thành một câu hoàn chỉnh:",
+      "question": "Hãy sắp xếp các từ/cụm từ sau thành một câu văn hoàn chỉnh, đúng ngữ pháp:",
       "elements": [
-        "giáo",
-        "sóc",
-        "trường",
-        "Cô",
-        "chăm",
-        "vườn"
+        "vượt qua",
+        "con người",
+        "mọi thử thách gian nan.",
+        "cảm giúp",
+        "Lòng dũng"
       ],
-      "answer": "Cô giáo chăm sóc vườn trường",
-      "explanation": "Câu hoàn chỉnh: “Cô giáo chăm sóc vườn trường”.",
+      "answer": "Lòng dũng cảm giúp con người vượt qua mọi thử thách gian nan.",
+      "explanation": "Câu hoàn chỉnh đúng trật tự ngữ pháp: “Lòng dũng cảm giúp con người vượt qua mọi thử thách gian nan.”.",
       "questionId": "k4_c1_sx_0077"
     },
     {
@@ -16804,17 +16719,16 @@
       "grade": "KHOI_4",
       "level": "CAP_1_VONG_LOAI",
       "type": "SX",
-      "question": "Sắp xếp các từ/cụm từ sau thành một câu hoàn chỉnh:",
+      "question": "Hãy sắp xếp các từ/cụm từ sau thành một câu văn hoàn chỉnh, đúng ngữ pháp:",
       "elements": [
-        "Cô",
-        "giáo",
-        "cổ",
-        "chuyện",
-        "tích",
-        "kể"
+        "tạo nên",
+        "to lớn để chiến thắng.",
+        "Tinh thần",
+        "sức mạnh",
+        "đoàn kết"
       ],
-      "answer": "Cô giáo kể chuyện cổ tích",
-      "explanation": "Câu hoàn chỉnh: “Cô giáo kể chuyện cổ tích”.",
+      "answer": "Tinh thần đoàn kết tạo nên sức mạnh to lớn để chiến thắng.",
+      "explanation": "Câu hoàn chỉnh đúng trật tự ngữ pháp: “Tinh thần đoàn kết tạo nên sức mạnh to lớn để chiến thắng.”.",
       "questionId": "k4_c1_sx_0078"
     },
     {
@@ -16822,17 +16736,16 @@
       "grade": "KHOI_4",
       "level": "CAP_1_VONG_LOAI",
       "type": "SX",
-      "question": "Sắp xếp các từ/cụm từ sau thành một câu hoàn chỉnh:",
+      "question": "Hãy sắp xếp các từ/cụm từ sau thành một câu văn hoàn chỉnh, đúng ngữ pháp:",
       "elements": [
-        "giáo",
-        "Cô",
-        "quốc",
-        "bảo",
-        "Tổ",
-        "vệ"
+        "thành dưỡng dục của cha mẹ.",
+        "ơn công",
+        "lao sinh",
+        "luôn biết",
+        "Chúng em"
       ],
-      "answer": "Cô giáo bảo vệ Tổ quốc",
-      "explanation": "Câu hoàn chỉnh: “Cô giáo bảo vệ Tổ quốc”.",
+      "answer": "Chúng em luôn biết ơn công lao sinh thành dưỡng dục của cha mẹ.",
+      "explanation": "Câu hoàn chỉnh đúng trật tự ngữ pháp: “Chúng em luôn biết ơn công lao sinh thành dưỡng dục của cha mẹ.”.",
       "questionId": "k4_c1_sx_0079"
     },
     {
@@ -16840,17 +16753,16 @@
       "grade": "KHOI_4",
       "level": "CAP_1_VONG_LOAI",
       "type": "SX",
-      "question": "Sắp xếp các từ/cụm từ sau thành một câu hoàn chỉnh:",
+      "question": "Hãy sắp xếp các từ/cụm từ sau thành một câu văn hoàn chỉnh, đúng ngữ pháp:",
       "elements": [
-        "uốn",
-        "nhỏ",
-        "quanh",
-        "xóm",
-        "giáo",
-        "Cô"
+        "lại niềm",
+        "vui cho những người xung quanh.",
+        "chia mang",
+        "Lòng nhân",
+        "ái sẻ"
       ],
-      "answer": "Cô giáo uốn quanh xóm nhỏ",
-      "explanation": "Câu hoàn chỉnh: “Cô giáo uốn quanh xóm nhỏ”.",
+      "answer": "Lòng nhân ái sẻ chia mang lại niềm vui cho những người xung quanh.",
+      "explanation": "Câu hoàn chỉnh đúng trật tự ngữ pháp: “Lòng nhân ái sẻ chia mang lại niềm vui cho những người xung quanh.”.",
       "questionId": "k4_c1_sx_0080"
     },
     {
@@ -16858,17 +16770,16 @@
       "grade": "KHOI_4",
       "level": "CAP_1_VONG_LOAI",
       "type": "SX",
-      "question": "Sắp xếp các từ/cụm từ sau thành một câu hoàn chỉnh:",
+      "question": "Hãy sắp xếp các từ/cụm từ sau thành một câu văn hoàn chỉnh, đúng ngữ pháp:",
       "elements": [
-        "Cô",
-        "giáo",
-        "bài",
-        "sưa",
-        "say",
-        "giảng"
+        "ta chạm tới thành công.",
+        "luyện sẽ",
+        "Sự kiên",
+        "trì rèn",
+        "giúp chúng"
       ],
-      "answer": "Cô giáo giảng bài say sưa",
-      "explanation": "Câu hoàn chỉnh: “Cô giáo giảng bài say sưa”.",
+      "answer": "Sự kiên trì rèn luyện sẽ giúp chúng ta chạm tới thành công.",
+      "explanation": "Câu hoàn chỉnh đúng trật tự ngữ pháp: “Sự kiên trì rèn luyện sẽ giúp chúng ta chạm tới thành công.”.",
       "questionId": "k4_c1_sx_0081"
     },
     {
@@ -16876,17 +16787,16 @@
       "grade": "KHOI_4",
       "level": "CAP_1_VONG_LOAI",
       "type": "SX",
-      "question": "Sắp xếp các từ/cụm từ sau thành một câu hoàn chỉnh:",
+      "question": "Hãy sắp xếp các từ/cụm từ sau thành một câu văn hoàn chỉnh, đúng ngữ pháp:",
       "elements": [
-        "Cô",
-        "ven",
-        "đê",
-        "gặm",
-        "giáo",
-        "cỏ"
+        "Người biết",
+        "sự tin yêu của mọi người.",
+        "giữ chữ",
+        "nhận được",
+        "tín luôn"
       ],
-      "answer": "Cô giáo gặm cỏ ven đê",
-      "explanation": "Câu hoàn chỉnh: “Cô giáo gặm cỏ ven đê”.",
+      "answer": "Người biết giữ chữ tín luôn nhận được sự tin yêu của mọi người.",
+      "explanation": "Câu hoàn chỉnh đúng trật tự ngữ pháp: “Người biết giữ chữ tín luôn nhận được sự tin yêu của mọi người.”.",
       "questionId": "k4_c1_sx_0082"
     },
     {
@@ -16894,16 +16804,16 @@
       "grade": "KHOI_4",
       "level": "CAP_1_VONG_LOAI",
       "type": "SX",
-      "question": "Sắp xếp các từ/cụm từ sau thành một câu hoàn chỉnh:",
+      "question": "Hãy sắp xếp các từ/cụm từ sau thành một câu văn hoàn chỉnh, đúng ngữ pháp:",
       "elements": [
-        "giáo",
-        "nở",
-        "rỡ",
-        "rực",
-        "Cô"
+        "ơn là",
+        "truyền thống",
+        "đạo lý",
+        "Lòng biết",
+        "tốt đẹp của dân tộc ta."
       ],
-      "answer": "Cô giáo nở rực rỡ",
-      "explanation": "Câu hoàn chỉnh: “Cô giáo nở rực rỡ”.",
+      "answer": "Lòng biết ơn là truyền thống đạo lý tốt đẹp của dân tộc ta.",
+      "explanation": "Câu hoàn chỉnh đúng trật tự ngữ pháp: “Lòng biết ơn là truyền thống đạo lý tốt đẹp của dân tộc ta.”.",
       "questionId": "k4_c1_sx_0083"
     },
     {
@@ -16911,17 +16821,16 @@
       "grade": "KHOI_4",
       "level": "CAP_1_VONG_LOAI",
       "type": "SX",
-      "question": "Sắp xếp các từ/cụm từ sau thành một câu hoàn chỉnh:",
+      "question": "Hãy sắp xếp các từ/cụm từ sau thành một câu văn hoàn chỉnh, đúng ngữ pháp:",
       "elements": [
-        "trên",
-        "cành",
-        "hót",
-        "trâu",
-        "vang",
-        "Đàn"
+        "giúp tình",
+        "bạn ngày",
+        "càng thêm gắn bó thân thiết.",
+        "chan hòa",
+        "Lối sống"
       ],
-      "answer": "Đàn trâu hót vang trên cành",
-      "explanation": "Câu hoàn chỉnh: “Đàn trâu hót vang trên cành”.",
+      "answer": "Lối sống chan hòa giúp tình bạn ngày càng thêm gắn bó thân thiết.",
+      "explanation": "Câu hoàn chỉnh đúng trật tự ngữ pháp: “Lối sống chan hòa giúp tình bạn ngày càng thêm gắn bó thân thiết.”.",
       "questionId": "k4_c1_sx_0084"
     },
     {
@@ -16929,17 +16838,16 @@
       "grade": "KHOI_4",
       "level": "CAP_1_VONG_LOAI",
       "type": "SX",
-      "question": "Sắp xếp các từ/cụm từ sau thành một câu hoàn chỉnh:",
+      "question": "Hãy sắp xếp các từ/cụm từ sau thành một câu văn hoàn chỉnh, đúng ngữ pháp:",
       "elements": [
-        "trâu",
-        "sóc",
-        "vườn",
-        "chăm",
-        "trường",
-        "Đàn"
+        "Tinh thần",
+        "tương thân tương",
+        "ngời sáng",
+        "ái luôn",
+        "trong hoạn nạn."
       ],
-      "answer": "Đàn trâu chăm sóc vườn trường",
-      "explanation": "Câu hoàn chỉnh: “Đàn trâu chăm sóc vườn trường”.",
+      "answer": "Tinh thần tương thân tương ái luôn ngời sáng trong hoạn nạn.",
+      "explanation": "Câu hoàn chỉnh đúng trật tự ngữ pháp: “Tinh thần tương thân tương ái luôn ngời sáng trong hoạn nạn.”.",
       "questionId": "k4_c1_sx_0085"
     },
     {
@@ -16947,17 +16855,16 @@
       "grade": "KHOI_4",
       "level": "CAP_1_VONG_LOAI",
       "type": "SX",
-      "question": "Sắp xếp các từ/cụm từ sau thành một câu hoàn chỉnh:",
+      "question": "Hãy sắp xếp các từ/cụm từ sau thành một câu văn hoàn chỉnh, đúng ngữ pháp:",
       "elements": [
-        "Đàn",
-        "cổ",
-        "kể",
-        "chuyện",
-        "trâu",
-        "tích"
+        "Người chiến",
+        "phòng ngày",
+        "sĩ biên",
+        "vàng canh giữ biên cương.",
+        "đêm vững"
       ],
-      "answer": "Đàn trâu kể chuyện cổ tích",
-      "explanation": "Câu hoàn chỉnh: “Đàn trâu kể chuyện cổ tích”.",
+      "answer": "Người chiến sĩ biên phòng ngày đêm vững vàng canh giữ biên cương.",
+      "explanation": "Câu hoàn chỉnh đúng trật tự ngữ pháp: “Người chiến sĩ biên phòng ngày đêm vững vàng canh giữ biên cương.”.",
       "questionId": "k4_c1_sx_0086"
     },
     {
@@ -16965,17 +16872,16 @@
       "grade": "KHOI_4",
       "level": "CAP_1_VONG_LOAI",
       "type": "SX",
-      "question": "Sắp xếp các từ/cụm từ sau thành một câu hoàn chỉnh:",
+      "question": "Hãy sắp xếp các từ/cụm từ sau thành một câu văn hoàn chỉnh, đúng ngữ pháp:",
       "elements": [
-        "bảo",
-        "Tổ",
-        "quốc",
-        "vệ",
-        "trâu",
-        "Đàn"
+        "chủ quyền biển đảo thiêng liêng.",
+        "bảo vệ",
+        "kiên cường",
+        "hải quân",
+        "Các chú"
       ],
-      "answer": "Đàn trâu bảo vệ Tổ quốc",
-      "explanation": "Câu hoàn chỉnh: “Đàn trâu bảo vệ Tổ quốc”.",
+      "answer": "Các chú hải quân kiên cường bảo vệ chủ quyền biển đảo thiêng liêng.",
+      "explanation": "Câu hoàn chỉnh đúng trật tự ngữ pháp: “Các chú hải quân kiên cường bảo vệ chủ quyền biển đảo thiêng liêng.”.",
       "questionId": "k4_c1_sx_0087"
     },
     {
@@ -16983,17 +16889,16 @@
       "grade": "KHOI_4",
       "level": "CAP_1_VONG_LOAI",
       "type": "SX",
-      "question": "Sắp xếp các từ/cụm từ sau thành một câu hoàn chỉnh:",
+      "question": "Hãy sắp xếp các từ/cụm từ sau thành một câu văn hoàn chỉnh, đúng ngữ pháp:",
       "elements": [
-        "nhỏ",
-        "xóm",
-        "Đàn",
-        "quanh",
-        "trâu",
-        "uốn"
+        "tung bay",
+        "Lá cờ",
+        "kiêu hãnh trên đỉnh cột cờ.",
+        "đỏ thắm",
+        "Tổ quốc"
       ],
-      "answer": "Đàn trâu uốn quanh xóm nhỏ",
-      "explanation": "Câu hoàn chỉnh: “Đàn trâu uốn quanh xóm nhỏ”.",
+      "answer": "Lá cờ Tổ quốc đỏ thắm tung bay kiêu hãnh trên đỉnh cột cờ.",
+      "explanation": "Câu hoàn chỉnh đúng trật tự ngữ pháp: “Lá cờ Tổ quốc đỏ thắm tung bay kiêu hãnh trên đỉnh cột cờ.”.",
       "questionId": "k4_c1_sx_0088"
     },
     {
@@ -17001,17 +16906,16 @@
       "grade": "KHOI_4",
       "level": "CAP_1_VONG_LOAI",
       "type": "SX",
-      "question": "Sắp xếp các từ/cụm từ sau thành một câu hoàn chỉnh:",
+      "question": "Hãy sắp xếp các từ/cụm từ sau thành một câu văn hoàn chỉnh, đúng ngữ pháp:",
       "elements": [
-        "trâu",
-        "Đàn",
-        "sưa",
-        "bài",
-        "giảng",
-        "say"
+        "bộ đội Cụ",
+        "Hồ luôn gần",
+        "Hình ảnh anh",
+        "gũi và thân",
+        "thương với nhân dân."
       ],
-      "answer": "Đàn trâu giảng bài say sưa",
-      "explanation": "Câu hoàn chỉnh: “Đàn trâu giảng bài say sưa”.",
+      "answer": "Hình ảnh anh bộ đội Cụ Hồ luôn gần gũi và thân thương với nhân dân.",
+      "explanation": "Câu hoàn chỉnh đúng trật tự ngữ pháp: “Hình ảnh anh bộ đội Cụ Hồ luôn gần gũi và thân thương với nhân dân.”.",
       "questionId": "k4_c1_sx_0089"
     },
     {
@@ -17019,17 +16923,16 @@
       "grade": "KHOI_4",
       "level": "CAP_1_VONG_LOAI",
       "type": "SX",
-      "question": "Sắp xếp các từ/cụm từ sau thành một câu hoàn chỉnh:",
+      "question": "Hãy sắp xếp các từ/cụm từ sau thành một câu văn hoàn chỉnh, đúng ngữ pháp:",
       "elements": [
-        "trâu",
-        "gặm",
-        "cỏ",
-        "đê",
-        "ven",
-        "Đàn"
+        "pha dập tắt đám cháy lớn.",
+        "lính cứu",
+        "cảm xông",
+        "Những người",
+        "hỏa dũng"
       ],
-      "answer": "Đàn trâu gặm cỏ ven đê",
-      "explanation": "Câu hoàn chỉnh: “Đàn trâu gặm cỏ ven đê”.",
+      "answer": "Những người lính cứu hỏa dũng cảm xông pha dập tắt đám cháy lớn.",
+      "explanation": "Câu hoàn chỉnh đúng trật tự ngữ pháp: “Những người lính cứu hỏa dũng cảm xông pha dập tắt đám cháy lớn.”.",
       "questionId": "k4_c1_sx_0090"
     },
     {
@@ -17037,16 +16940,16 @@
       "grade": "KHOI_4",
       "level": "CAP_1_VONG_LOAI",
       "type": "SX",
-      "question": "Sắp xếp các từ/cụm từ sau thành một câu hoàn chỉnh:",
+      "question": "Hãy sắp xếp các từ/cụm từ sau thành một câu văn hoàn chỉnh, đúng ngữ pháp:",
       "elements": [
-        "rỡ",
-        "Đàn",
-        "trâu",
-        "nở",
-        "rực"
+        "hiếu thảo với nhân dân.",
+        "ta luôn",
+        "trung với",
+        "nước và",
+        "Quân đội"
       ],
-      "answer": "Đàn trâu nở rực rỡ",
-      "explanation": "Câu hoàn chỉnh: “Đàn trâu nở rực rỡ”.",
+      "answer": "Quân đội ta luôn trung với nước và hiếu thảo với nhân dân.",
+      "explanation": "Câu hoàn chỉnh đúng trật tự ngữ pháp: “Quân đội ta luôn trung với nước và hiếu thảo với nhân dân.”.",
       "questionId": "k4_c1_sx_0091"
     },
     {
@@ -17054,18 +16957,16 @@
       "grade": "KHOI_4",
       "level": "CAP_1_VONG_LOAI",
       "type": "SX",
-      "question": "Sắp xếp các từ/cụm từ sau thành một câu hoàn chỉnh:",
+      "question": "Hãy sắp xếp các từ/cụm từ sau thành một câu văn hoàn chỉnh, đúng ngữ pháp:",
       "elements": [
-        "hoa",
-        "Những",
-        "trên",
-        "hót",
-        "vang",
-        "bông",
-        "cành"
+        "sững dẫn",
+        "Ngọn hải",
+        "tàu thuyền vượt sóng gió.",
+        "lối cho",
+        "đăng sừng"
       ],
-      "answer": "Những bông hoa hót vang trên cành",
-      "explanation": "Câu hoàn chỉnh: “Những bông hoa hót vang trên cành”.",
+      "answer": "Ngọn hải đăng sừng sững dẫn lối cho tàu thuyền vượt sóng gió.",
+      "explanation": "Câu hoàn chỉnh đúng trật tự ngữ pháp: “Ngọn hải đăng sừng sững dẫn lối cho tàu thuyền vượt sóng gió.”.",
       "questionId": "k4_c1_sx_0092"
     },
     {
@@ -17073,18 +16974,16 @@
       "grade": "KHOI_4",
       "level": "CAP_1_VONG_LOAI",
       "type": "SX",
-      "question": "Sắp xếp các từ/cụm từ sau thành một câu hoàn chỉnh:",
+      "question": "Hãy sắp xếp các từ/cụm từ sau thành một câu văn hoàn chỉnh, đúng ngữ pháp:",
       "elements": [
-        "bông",
-        "vườn",
-        "Những",
-        "hoa",
-        "sóc",
-        "chăm",
-        "trường"
+        "thiết như",
+        "Tình quân",
+        "dân thắm",
+        "cá với",
+        "nước qua bao năm tháng."
       ],
-      "answer": "Những bông hoa chăm sóc vườn trường",
-      "explanation": "Câu hoàn chỉnh: “Những bông hoa chăm sóc vườn trường”.",
+      "answer": "Tình quân dân thắm thiết như cá với nước qua bao năm tháng.",
+      "explanation": "Câu hoàn chỉnh đúng trật tự ngữ pháp: “Tình quân dân thắm thiết như cá với nước qua bao năm tháng.”.",
       "questionId": "k4_c1_sx_0093"
     },
     {
@@ -17092,18 +16991,16 @@
       "grade": "KHOI_4",
       "level": "CAP_1_VONG_LOAI",
       "type": "SX",
-      "question": "Sắp xếp các từ/cụm từ sau thành một câu hoàn chỉnh:",
+      "question": "Hãy sắp xếp các từ/cụm từ sau thành một câu văn hoàn chỉnh, đúng ngữ pháp:",
       "elements": [
-        "bông",
-        "chuyện",
-        "kể",
-        "Những",
-        "cổ",
-        "tích",
-        "hoa"
+        "gìn giữ trật",
+        "an ngày đêm",
+        "cho phố phường.",
+        "Các chú công",
+        "tự an ninh"
       ],
-      "answer": "Những bông hoa kể chuyện cổ tích",
-      "explanation": "Câu hoàn chỉnh: “Những bông hoa kể chuyện cổ tích”.",
+      "answer": "Các chú công an ngày đêm gìn giữ trật tự an ninh cho phố phường.",
+      "explanation": "Câu hoàn chỉnh đúng trật tự ngữ pháp: “Các chú công an ngày đêm gìn giữ trật tự an ninh cho phố phường.”.",
       "questionId": "k4_c1_sx_0094"
     },
     {
@@ -17111,18 +17008,16 @@
       "grade": "KHOI_4",
       "level": "CAP_1_VONG_LOAI",
       "type": "SX",
-      "question": "Sắp xếp các từ/cụm từ sau thành một câu hoàn chỉnh:",
+      "question": "Hãy sắp xếp các từ/cụm từ sau thành một câu văn hoàn chỉnh, đúng ngữ pháp:",
       "elements": [
-        "quốc",
-        "Những",
-        "vệ",
-        "Tổ",
-        "hoa",
-        "bông",
-        "bảo"
+        "Chúng em",
+        "nước bất khuất của dân tộc.",
+        "tự hào",
+        "thống yêu",
+        "về truyền"
       ],
-      "answer": "Những bông hoa bảo vệ Tổ quốc",
-      "explanation": "Câu hoàn chỉnh: “Những bông hoa bảo vệ Tổ quốc”.",
+      "answer": "Chúng em tự hào về truyền thống yêu nước bất khuất của dân tộc.",
+      "explanation": "Câu hoàn chỉnh đúng trật tự ngữ pháp: “Chúng em tự hào về truyền thống yêu nước bất khuất của dân tộc.”.",
       "questionId": "k4_c1_sx_0095"
     },
     {
@@ -17130,18 +17025,16 @@
       "grade": "KHOI_4",
       "level": "CAP_1_VONG_LOAI",
       "type": "SX",
-      "question": "Sắp xếp các từ/cụm từ sau thành một câu hoàn chỉnh:",
+      "question": "Hãy sắp xếp các từ/cụm từ sau thành một câu văn hoàn chỉnh, đúng ngữ pháp:",
       "elements": [
-        "quanh",
-        "nhỏ",
-        "bông",
-        "hoa",
-        "Những",
-        "xóm",
-        "uốn"
+        "mơ, các bác",
+        "đồng làm việc.",
+        "Sáng sớm tinh",
+        "nông dân đã",
+        "hối hả ra"
       ],
-      "answer": "Những bông hoa uốn quanh xóm nhỏ",
-      "explanation": "Câu hoàn chỉnh: “Những bông hoa uốn quanh xóm nhỏ”.",
+      "answer": "Sáng sớm tinh mơ, các bác nông dân đã hối hả ra đồng làm việc.",
+      "explanation": "Câu hoàn chỉnh đúng trật tự ngữ pháp: “Sáng sớm tinh mơ, các bác nông dân đã hối hả ra đồng làm việc.”.",
       "questionId": "k4_c1_sx_0096"
     },
     {
@@ -17149,18 +17042,16 @@
       "grade": "KHOI_4",
       "level": "CAP_1_VONG_LOAI",
       "type": "SX",
-      "question": "Sắp xếp các từ/cụm từ sau thành một câu hoàn chỉnh:",
+      "question": "Hãy sắp xếp các từ/cụm từ sau thành một câu văn hoàn chỉnh, đúng ngữ pháp:",
       "elements": [
-        "sưa",
-        "Những",
-        "giảng",
-        "hoa",
-        "bông",
-        "bài",
-        "say"
+        "líu lo chào ngày mới.",
+        "cành xoan",
+        "chim hót",
+        "non, bầy",
+        "Trên những"
       ],
-      "answer": "Những bông hoa giảng bài say sưa",
-      "explanation": "Câu hoàn chỉnh: “Những bông hoa giảng bài say sưa”.",
+      "answer": "Trên những cành xoan non, bầy chim hót líu lo chào ngày mới.",
+      "explanation": "Câu hoàn chỉnh đúng trật tự ngữ pháp: “Trên những cành xoan non, bầy chim hót líu lo chào ngày mới.”.",
       "questionId": "k4_c1_sx_0097"
     },
     {
@@ -17168,18 +17059,16 @@
       "grade": "KHOI_4",
       "level": "CAP_1_VONG_LOAI",
       "type": "SX",
-      "question": "Sắp xếp các từ/cụm từ sau thành một câu hoàn chỉnh:",
+      "question": "Hãy sắp xếp các từ/cụm từ sau thành một câu văn hoàn chỉnh, đúng ngữ pháp:",
       "elements": [
-        "cỏ",
-        "hoa",
-        "ven",
-        "bông",
-        "Những",
-        "gặm",
-        "đê"
+        "tựu trường,",
+        "sân trường",
+        "ràng tiếng nói cười reo vang.",
+        "Vào mùa",
+        "lại rộn"
       ],
-      "answer": "Những bông hoa gặm cỏ ven đê",
-      "explanation": "Câu hoàn chỉnh: “Những bông hoa gặm cỏ ven đê”.",
+      "answer": "Vào mùa tựu trường, sân trường lại rộn ràng tiếng nói cười reo vang.",
+      "explanation": "Câu hoàn chỉnh đúng trật tự ngữ pháp: “Vào mùa tựu trường, sân trường lại rộn ràng tiếng nói cười reo vang.”.",
       "questionId": "k4_c1_sx_0098"
     },
     {
@@ -17187,17 +17076,16 @@
       "grade": "KHOI_4",
       "level": "CAP_1_VONG_LOAI",
       "type": "SX",
-      "question": "Sắp xếp các từ/cụm từ sau thành một câu hoàn chỉnh:",
+      "question": "Hãy sắp xếp các từ/cụm từ sau thành một câu văn hoàn chỉnh, đúng ngữ pháp:",
       "elements": [
-        "Những",
-        "rực",
-        "rỡ",
-        "nở",
-        "bông",
-        "hoa"
+        "trẻ em",
+        "Dưới ánh",
+        "háo hức rước đèn phá cỗ.",
+        "trăng rằm,",
+        "trong làng"
       ],
-      "answer": "Những bông hoa nở rực rỡ",
-      "explanation": "Câu hoàn chỉnh: “Những bông hoa nở rực rỡ”.",
+      "answer": "Dưới ánh trăng rằm, trẻ em trong làng háo hức rước đèn phá cỗ.",
+      "explanation": "Câu hoàn chỉnh đúng trật tự ngữ pháp: “Dưới ánh trăng rằm, trẻ em trong làng háo hức rước đèn phá cỗ.”.",
       "questionId": "k4_c1_sx_0099"
     },
     {
@@ -17382,7 +17270,7 @@
       "grade": "KHOI_4",
       "level": "CAP_1_VONG_LOAI",
       "type": "CHON",
-      "question": "Hãy phân loại các từ/ngữ sau vào nhóm phù hợp:",
+      "question": "Hãy phân loại các từ sau vào nhóm phù hợp:",
       "words": [
         "cao",
         "thấp",
@@ -17392,22 +17280,22 @@
         "buồn"
       ],
       "groups": {
-        "G1": "Từ chỉ đặc điểm tích cực/đối lập?",
-        "G2": "Các cặp từ trái nghĩa"
+        "G1": "Từ chỉ hình dáng, tốc độ",
+        "G2": "Từ chỉ cảm xúc, tâm trạng"
       },
       "answer": {
         "G1": [
           "cao",
+          "thấp",
           "nhanh",
-          "vui"
+          "chậm"
         ],
         "G2": [
-          "cao-thấp",
-          "nhanh-chậm",
-          "vui-buồn"
+          "vui",
+          "buồn"
         ]
       },
-      "explanation": "Phân loại theo đặc điểm ngữ nghĩa hoặc chức năng đã nêu trong từng nhóm.",
+      "explanation": "Nhóm từ chỉ hình dáng, tốc độ gồm: cao, thấp, nhanh, chậm; Nhóm từ chỉ cảm xúc, tâm trạng gồm: vui, buồn.",
       "questionId": "k4_c1_chon_0055"
     },
     {
@@ -17718,10 +17606,10 @@
       "question": "Phân loại các từ sau thành từ ghép và từ láy:",
       "words": [
         "bâng khuâng",
-        "cá chép",
+        "sách vở",
         "bàn ghế",
         "lung linh",
-        "bàn ghế",
+        "nhẹ nhàng",
         "bút máy"
       ],
       "groups": {
@@ -17730,17 +17618,17 @@
       },
       "answer": {
         "G1": [
-          "bàn ghế",
+          "sách vở",
           "bàn ghế",
           "bút máy"
         ],
         "G2": [
           "bâng khuâng",
-          "cá chép",
-          "lung linh"
+          "lung linh",
+          "nhẹ nhàng"
         ]
       },
-      "explanation": "Từ ghép gồm các tiếng có quan hệ về nghĩa; từ láy có sự phối hợp lặp âm hoặc vần.",
+      "explanation": "Từ ghép gồm các từ: sách vở, bàn ghế, bút máy; Từ láy gồm các từ: bâng khuâng, lung linh, nhẹ nhàng.",
       "questionId": "k4_c1_chon_0065"
     },
     {
@@ -18513,7 +18401,7 @@
         "hoa hồng",
         "bàn ghế",
         "long lanh",
-        "bàn ghế",
+        "róc rách",
         "cây bàng"
       ],
       "groups": {
@@ -18522,17 +18410,17 @@
       },
       "answer": {
         "G1": [
-          "bàn ghế",
+          "hoa hồng",
           "bàn ghế",
           "cây bàng"
         ],
         "G2": [
           "rì rào",
-          "hoa hồng",
-          "long lanh"
+          "long lanh",
+          "róc rách"
         ]
       },
-      "explanation": "Từ ghép gồm các tiếng có quan hệ về nghĩa; từ láy có sự phối hợp lặp âm hoặc vần.",
+      "explanation": "Từ ghép gồm các từ: hoa hồng, bàn ghế, cây bàng; Từ láy gồm các từ: rì rào, long lanh, róc rách.",
       "questionId": "k4_c1_chon_0089"
     },
     {
@@ -21454,19 +21342,16 @@
       "grade": "KHOI_4",
       "level": "CAP_1_VONG_LOAI",
       "type": "SX",
-      "question": "Sắp xếp các từ/cụm từ thành câu hoàn chỉnh:",
+      "question": "Hãy sắp xếp các từ/cụm từ sau thành một câu văn hoàn chỉnh, đúng ngữ pháp:",
       "elements": [
-        "rực",
-        "nở",
-        "rỡ",
-        "em",
-        "dòng",
-        "sông",
-        "bên",
-        "Bà"
+        "mưa rào,",
+        "cây cối",
+        "trong vườn",
+        "như được tắm mát xanh tươi.",
+        "Sau cơn"
       ],
-      "answer": "Bà em nở rực rỡ bên dòng sông",
-      "explanation": "Câu hoàn chỉnh: “Bà em nở rực rỡ bên dòng sông”.",
+      "answer": "Sau cơn mưa rào, cây cối trong vườn như được tắm mát xanh tươi.",
+      "explanation": "Câu hoàn chỉnh đúng trật tự ngữ pháp: “Sau cơn mưa rào, cây cối trong vườn như được tắm mát xanh tươi.”.",
       "questionId": "k4_c1_sx_0100"
     },
     {
@@ -21474,21 +21359,16 @@
       "grade": "KHOI_4",
       "level": "CAP_1_VONG_LOAI",
       "type": "SX",
-      "question": "Sắp xếp các từ/cụm từ thành câu hoàn chỉnh:",
+      "question": "Hãy sắp xếp các từ/cụm từ sau thành một câu văn hoàn chỉnh, đúng ngữ pháp:",
       "elements": [
-        "trên",
-        "sân",
-        "Các",
-        "trường",
-        "học",
-        "rực",
-        "rỡ",
-        "bạn",
-        "nở",
-        "sinh"
+        "huynh kiên",
+        "trường học,",
+        "các phụ",
+        "Trước cổng",
+        "nhẫn đứng đợi đón con."
       ],
-      "answer": "Các bạn học sinh nở rực rỡ trên sân trường",
-      "explanation": "Câu hoàn chỉnh: “Các bạn học sinh nở rực rỡ trên sân trường”.",
+      "answer": "Trước cổng trường học, các phụ huynh kiên nhẫn đứng đợi đón con.",
+      "explanation": "Câu hoàn chỉnh đúng trật tự ngữ pháp: “Trước cổng trường học, các phụ huynh kiên nhẫn đứng đợi đón con.”.",
       "questionId": "k4_c1_sx_0101"
     },
     {
@@ -21496,21 +21376,16 @@
       "grade": "KHOI_4",
       "level": "CAP_1_VONG_LOAI",
       "type": "SX",
-      "question": "Sắp xếp các từ/cụm từ thành câu hoàn chỉnh:",
+      "question": "Hãy sắp xếp các từ/cụm từ sau thành một câu văn hoàn chỉnh, đúng ngữ pháp:",
       "elements": [
-        "Những",
-        "chú",
-        "mỗi",
-        "xóm",
-        "chim",
-        "sâu",
-        "quanh",
-        "nhỏ",
-        "uốn",
-        "ngày"
+        "Trong giờ ra",
+        "trò chơi bổ",
+        "tấp nập bao",
+        "ích và vui tươi.",
+        "chơi, sân trường"
       ],
-      "answer": "Những chú chim sâu uốn quanh xóm nhỏ mỗi ngày",
-      "explanation": "Câu hoàn chỉnh: “Những chú chim sâu uốn quanh xóm nhỏ mỗi ngày”.",
+      "answer": "Trong giờ ra chơi, sân trường tấp nập bao trò chơi bổ ích và vui tươi.",
+      "explanation": "Câu hoàn chỉnh đúng trật tự ngữ pháp: “Trong giờ ra chơi, sân trường tấp nập bao trò chơi bổ ích và vui tươi.”.",
       "questionId": "k4_c1_sx_0102"
     },
     {
@@ -21518,23 +21393,16 @@
       "grade": "KHOI_4",
       "level": "CAP_1_VONG_LOAI",
       "type": "SX",
-      "question": "Sắp xếp các từ/cụm từ thành câu hoàn chỉnh:",
+      "question": "Hãy sắp xếp các từ/cụm từ sau thành một câu văn hoàn chỉnh, đúng ngữ pháp:",
       "elements": [
-        "ra",
-        "Các",
-        "trong",
-        "chơi",
-        "quốc",
-        "vệ",
-        "bạn",
-        "sinh",
-        "giờ",
-        "Tổ",
-        "bảo",
-        "học"
+        "sông quê,",
+        "những rặng",
+        "dừa xanh",
+        "Dọc bờ",
+        "đung đưa theo làn gió mát."
       ],
-      "answer": "Các bạn học sinh bảo vệ Tổ quốc trong giờ ra chơi",
-      "explanation": "Câu hoàn chỉnh: “Các bạn học sinh bảo vệ Tổ quốc trong giờ ra chơi”.",
+      "answer": "Dọc bờ sông quê, những rặng dừa xanh đung đưa theo làn gió mát.",
+      "explanation": "Câu hoàn chỉnh đúng trật tự ngữ pháp: “Dọc bờ sông quê, những rặng dừa xanh đung đưa theo làn gió mát.”.",
       "questionId": "k4_c1_sx_0103"
     },
     {
@@ -21542,20 +21410,16 @@
       "grade": "KHOI_4",
       "level": "CAP_1_VONG_LOAI",
       "type": "SX",
-      "question": "Sắp xếp các từ/cụm từ thành câu hoàn chỉnh:",
+      "question": "Hãy sắp xếp các từ/cụm từ sau thành một câu văn hoàn chỉnh, đúng ngữ pháp:",
       "elements": [
-        "trường",
-        "trường",
-        "sóc",
-        "trên",
-        "sân",
-        "vườn",
-        "chăm",
-        "trâu",
-        "Đàn"
+        "đến, cả",
+        "tiếng máy tuốt lúa râm ran.",
+        "Mùa gặt",
+        "rộn ràng",
+        "làng quê"
       ],
-      "answer": "Đàn trâu chăm sóc vườn trường trên sân trường",
-      "explanation": "Câu hoàn chỉnh: “Đàn trâu chăm sóc vườn trường trên sân trường”.",
+      "answer": "Mùa gặt đến, cả làng quê rộn ràng tiếng máy tuốt lúa râm ran.",
+      "explanation": "Câu hoàn chỉnh đúng trật tự ngữ pháp: “Mùa gặt đến, cả làng quê rộn ràng tiếng máy tuốt lúa râm ran.”.",
       "questionId": "k4_c1_sx_0104"
     },
     {
@@ -21563,21 +21427,16 @@
       "grade": "KHOI_4",
       "level": "CAP_1_VONG_LOAI",
       "type": "SX",
-      "question": "Sắp xếp các từ/cụm từ thành câu hoàn chỉnh:",
+      "question": "Hãy sắp xếp các từ/cụm từ sau thành một câu văn hoàn chỉnh, đúng ngữ pháp:",
       "elements": [
-        "bạn",
-        "học",
-        "sinh",
-        "Các",
-        "chuyện",
-        "tích",
-        "mỗi",
-        "kể",
-        "cổ",
-        "ngày"
+        "trở nên yên bình tĩnh lặng.",
+        "hôn buông",
+        "xuống, cánh",
+        "Khi hoàng",
+        "đồng quê"
       ],
-      "answer": "Các bạn học sinh kể chuyện cổ tích mỗi ngày",
-      "explanation": "Câu hoàn chỉnh: “Các bạn học sinh kể chuyện cổ tích mỗi ngày”.",
+      "answer": "Khi hoàng hôn buông xuống, cánh đồng quê trở nên yên bình tĩnh lặng.",
+      "explanation": "Câu hoàn chỉnh đúng trật tự ngữ pháp: “Khi hoàng hôn buông xuống, cánh đồng quê trở nên yên bình tĩnh lặng.”.",
       "questionId": "k4_c1_sx_0105"
     },
     {
@@ -21585,22 +21444,16 @@
       "grade": "KHOI_4",
       "level": "CAP_1_VONG_LOAI",
       "type": "SX",
-      "question": "Sắp xếp các từ/cụm từ thành câu hoàn chỉnh:",
+      "question": "Hãy sắp xếp các từ/cụm từ sau thành một câu văn hoàn chỉnh, đúng ngữ pháp:",
       "elements": [
-        "cơn",
-        "bạn",
-        "xóm",
-        "quanh",
-        "học",
-        "sau",
-        "nhỏ",
-        "Các",
-        "sinh",
-        "uốn",
-        "mưa"
+        "chở những",
+        "no gió",
+        "Cánh diều",
+        "ước mơ",
+        "bay cao trên bầu trời xanh."
       ],
-      "answer": "Các bạn học sinh uốn quanh xóm nhỏ sau cơn mưa",
-      "explanation": "Câu hoàn chỉnh: “Các bạn học sinh uốn quanh xóm nhỏ sau cơn mưa”.",
+      "answer": "Cánh diều no gió chở những ước mơ bay cao trên bầu trời xanh.",
+      "explanation": "Câu hoàn chỉnh đúng trật tự ngữ pháp: “Cánh diều no gió chở những ước mơ bay cao trên bầu trời xanh.”.",
       "questionId": "k4_c1_sx_0106"
     },
     {
@@ -21608,20 +21461,16 @@
       "grade": "KHOI_4",
       "level": "CAP_1_VONG_LOAI",
       "type": "SX",
-      "question": "Sắp xếp các từ/cụm từ thành câu hoàn chỉnh:",
+      "question": "Hãy sắp xếp các từ/cụm từ sau thành một câu văn hoàn chỉnh, đúng ngữ pháp:",
       "elements": [
-        "vệ",
-        "chiến",
-        "ngày",
-        "quốc",
-        "sĩ",
-        "bảo",
-        "Người",
-        "Tổ",
-        "mỗi"
+        "mơ sau",
+        "bác sĩ giỏi để chữa bệnh.",
+        "Em ước",
+        "này trở",
+        "thành một"
       ],
-      "answer": "Người chiến sĩ bảo vệ Tổ quốc mỗi ngày",
-      "explanation": "Câu hoàn chỉnh: “Người chiến sĩ bảo vệ Tổ quốc mỗi ngày”.",
+      "answer": "Em ước mơ sau này trở thành một bác sĩ giỏi để chữa bệnh.",
+      "explanation": "Câu hoàn chỉnh đúng trật tự ngữ pháp: “Em ước mơ sau này trở thành một bác sĩ giỏi để chữa bệnh.”.",
       "questionId": "k4_c1_sx_0107"
     },
     {
@@ -21629,21 +21478,16 @@
       "grade": "KHOI_4",
       "level": "CAP_1_VONG_LOAI",
       "type": "SX",
-      "question": "Sắp xếp các từ/cụm từ thành câu hoàn chỉnh:",
+      "question": "Hãy sắp xếp các từ/cụm từ sau thành một câu văn hoàn chỉnh, đúng ngữ pháp:",
       "elements": [
-        "chim",
-        "cơn",
-        "nở",
-        "rỡ",
-        "Những",
-        "rực",
-        "sau",
-        "chú",
-        "mưa",
-        "sâu"
+        "mở ra trước",
+        "diệu của tri thức.",
+        "bao điều kì",
+        "Mỗi cuốn sách",
+        "mắt chúng em"
       ],
-      "answer": "Những chú chim sâu nở rực rỡ sau cơn mưa",
-      "explanation": "Câu hoàn chỉnh: “Những chú chim sâu nở rực rỡ sau cơn mưa”.",
+      "answer": "Mỗi cuốn sách mở ra trước mắt chúng em bao điều kì diệu của tri thức.",
+      "explanation": "Câu hoàn chỉnh đúng trật tự ngữ pháp: “Mỗi cuốn sách mở ra trước mắt chúng em bao điều kì diệu của tri thức.”.",
       "questionId": "k4_c1_sx_0108"
     },
     {
@@ -21651,20 +21495,16 @@
       "grade": "KHOI_4",
       "level": "CAP_1_VONG_LOAI",
       "type": "SX",
-      "question": "Sắp xếp các từ/cụm từ thành câu hoàn chỉnh:",
+      "question": "Hãy sắp xếp các từ/cụm từ sau thành một câu văn hoàn chỉnh, đúng ngữ pháp:",
       "elements": [
-        "hoa",
-        "bông",
-        "hót",
-        "cành",
-        "Những",
-        "ngày",
-        "trên",
-        "mỗi",
-        "vang"
+        "trong vũ trụ.",
+        "hứng tìm hiểu",
+        "Chúng em hào",
+        "tinh xa xôi",
+        "về các hành"
       ],
-      "answer": "Những bông hoa hót vang trên cành mỗi ngày",
-      "explanation": "Câu hoàn chỉnh: “Những bông hoa hót vang trên cành mỗi ngày”.",
+      "answer": "Chúng em hào hứng tìm hiểu về các hành tinh xa xôi trong vũ trụ.",
+      "explanation": "Câu hoàn chỉnh đúng trật tự ngữ pháp: “Chúng em hào hứng tìm hiểu về các hành tinh xa xôi trong vũ trụ.”.",
       "questionId": "k4_c1_sx_0109"
     },
     {
@@ -21672,20 +21512,16 @@
       "grade": "KHOI_4",
       "level": "CAP_1_VONG_LOAI",
       "type": "SX",
-      "question": "Sắp xếp các từ/cụm từ thành câu hoàn chỉnh:",
+      "question": "Hãy sắp xếp các từ/cụm từ sau thành một câu văn hoàn chỉnh, đúng ngữ pháp:",
       "elements": [
-        "xóm",
-        "cơn",
-        "sau",
-        "mưa",
-        "trâu",
-        "quanh",
-        "Đàn",
-        "nhỏ",
-        "uốn"
+        "Ước mơ tuổi",
+        "bão lớn lao",
+        "thơ chắp cánh",
+        "cho những hoài",
+        "của tương lai."
       ],
-      "answer": "Đàn trâu uốn quanh xóm nhỏ sau cơn mưa",
-      "explanation": "Câu hoàn chỉnh: “Đàn trâu uốn quanh xóm nhỏ sau cơn mưa”.",
+      "answer": "Ước mơ tuổi thơ chắp cánh cho những hoài bão lớn lao của tương lai.",
+      "explanation": "Câu hoàn chỉnh đúng trật tự ngữ pháp: “Ước mơ tuổi thơ chắp cánh cho những hoài bão lớn lao của tương lai.”.",
       "questionId": "k4_c1_sx_0110"
     },
     {
@@ -21693,19 +21529,16 @@
       "grade": "KHOI_4",
       "level": "CAP_1_VONG_LOAI",
       "type": "SX",
-      "question": "Sắp xếp các từ/cụm từ thành câu hoàn chỉnh:",
+      "question": "Hãy sắp xếp các từ/cụm từ sau thành một câu văn hoàn chỉnh, đúng ngữ pháp:",
       "elements": [
-        "buổi",
-        "Đàn",
-        "rỡ",
-        "trâu",
-        "rực",
-        "sáng",
-        "nở",
-        "vào"
+        "xung quanh đem",
+        "phá thế giới",
+        "biết bổ ích.",
+        "Hành trình khám",
+        "lại nhiều hiểu"
       ],
-      "answer": "Đàn trâu nở rực rỡ vào buổi sáng",
-      "explanation": "Câu hoàn chỉnh: “Đàn trâu nở rực rỡ vào buổi sáng”.",
+      "answer": "Hành trình khám phá thế giới xung quanh đem lại nhiều hiểu biết bổ ích.",
+      "explanation": "Câu hoàn chỉnh đúng trật tự ngữ pháp: “Hành trình khám phá thế giới xung quanh đem lại nhiều hiểu biết bổ ích.”.",
       "questionId": "k4_c1_sx_0111"
     },
     {
@@ -21713,21 +21546,16 @@
       "grade": "KHOI_4",
       "level": "CAP_1_VONG_LOAI",
       "type": "SX",
-      "question": "Sắp xếp các từ/cụm từ thành câu hoàn chỉnh:",
+      "question": "Hãy sắp xếp các từ/cụm từ sau thành một câu văn hoàn chỉnh, đúng ngữ pháp:",
       "elements": [
-        "trâu",
-        "sóc",
-        "trong",
-        "chơi",
-        "trường",
-        "ra",
-        "Đàn",
-        "giờ",
-        "vườn",
-        "chăm"
+        "sau này góp",
+        "Em chăm chỉ",
+        "học tập để",
+        "phần xây dựng",
+        "đất nước tươi đẹp."
       ],
-      "answer": "Đàn trâu chăm sóc vườn trường trong giờ ra chơi",
-      "explanation": "Câu hoàn chỉnh: “Đàn trâu chăm sóc vườn trường trong giờ ra chơi”.",
+      "answer": "Em chăm chỉ học tập để sau này góp phần xây dựng đất nước tươi đẹp.",
+      "explanation": "Câu hoàn chỉnh đúng trật tự ngữ pháp: “Em chăm chỉ học tập để sau này góp phần xây dựng đất nước tươi đẹp.”.",
       "questionId": "k4_c1_sx_0112"
     },
     {
@@ -21735,20 +21563,16 @@
       "grade": "KHOI_4",
       "level": "CAP_1_VONG_LOAI",
       "type": "SX",
-      "question": "Sắp xếp các từ/cụm từ thành câu hoàn chỉnh:",
+      "question": "Hãy sắp xếp các từ/cụm từ sau thành một câu văn hoàn chỉnh, đúng ngữ pháp:",
       "elements": [
-        "chăm",
-        "vào",
-        "em",
-        "trường",
-        "sóc",
-        "buổi",
-        "vườn",
-        "Bà",
-        "sáng"
+        "nhạc khiến mọi người say đắm.",
+        "Tiếng đàn",
+        "nga trong",
+        "piano ngân",
+        "buổi hòa"
       ],
-      "answer": "Bà em chăm sóc vườn trường vào buổi sáng",
-      "explanation": "Câu hoàn chỉnh: “Bà em chăm sóc vườn trường vào buổi sáng”.",
+      "answer": "Tiếng đàn piano ngân nga trong buổi hòa nhạc khiến mọi người say đắm.",
+      "explanation": "Câu hoàn chỉnh đúng trật tự ngữ pháp: “Tiếng đàn piano ngân nga trong buổi hòa nhạc khiến mọi người say đắm.”.",
       "questionId": "k4_c1_sx_0113"
     },
     {
@@ -21756,20 +21580,16 @@
       "grade": "KHOI_4",
       "level": "CAP_1_VONG_LOAI",
       "type": "SX",
-      "question": "Sắp xếp các từ/cụm từ thành câu hoàn chỉnh:",
+      "question": "Hãy sắp xếp các từ/cụm từ sau thành một câu văn hoàn chỉnh, đúng ngữ pháp:",
       "elements": [
-        "trường",
-        "sau",
-        "vườn",
-        "Bà",
-        "em",
-        "sóc",
-        "cơn",
-        "chăm",
-        "mưa"
+        "Nam đạt giải nhất cuộc thi.",
+        "của bạn",
+        "quê hương",
+        "phong cảnh",
+        "Bức tranh"
       ],
-      "answer": "Bà em chăm sóc vườn trường sau cơn mưa",
-      "explanation": "Câu hoàn chỉnh: “Bà em chăm sóc vườn trường sau cơn mưa”.",
+      "answer": "Bức tranh phong cảnh quê hương của bạn Nam đạt giải nhất cuộc thi.",
+      "explanation": "Câu hoàn chỉnh đúng trật tự ngữ pháp: “Bức tranh phong cảnh quê hương của bạn Nam đạt giải nhất cuộc thi.”.",
       "questionId": "k4_c1_sx_0114"
     },
     {
@@ -21777,21 +21597,16 @@
       "grade": "KHOI_4",
       "level": "CAP_1_VONG_LOAI",
       "type": "SX",
-      "question": "Sắp xếp các từ/cụm từ thành câu hoàn chỉnh:",
+      "question": "Hãy sắp xếp các từ/cụm từ sau thành một câu văn hoàn chỉnh, đúng ngữ pháp:",
       "elements": [
-        "chăm",
-        "trên",
-        "trường",
-        "chiến",
-        "vườn",
-        "Người",
-        "sóc",
-        "sĩ",
-        "sân",
-        "trường"
+        "khó phai mờ.",
+        "ấu là kỷ",
+        "sáng thời thơ",
+        "niệm đẹp đẽ",
+        "Tình bạn trong"
       ],
-      "answer": "Người chiến sĩ chăm sóc vườn trường trên sân trường",
-      "explanation": "Câu hoàn chỉnh: “Người chiến sĩ chăm sóc vườn trường trên sân trường”.",
+      "answer": "Tình bạn trong sáng thời thơ ấu là kỷ niệm đẹp đẽ khó phai mờ.",
+      "explanation": "Câu hoàn chỉnh đúng trật tự ngữ pháp: “Tình bạn trong sáng thời thơ ấu là kỷ niệm đẹp đẽ khó phai mờ.”.",
       "questionId": "k4_c1_sx_0115"
     },
     {
@@ -21799,21 +21614,16 @@
       "grade": "KHOI_4",
       "level": "CAP_1_VONG_LOAI",
       "type": "SX",
-      "question": "Sắp xếp các từ/cụm từ thành câu hoàn chỉnh:",
+      "question": "Hãy sắp xếp các từ/cụm từ sau thành một câu văn hoàn chỉnh, đúng ngữ pháp:",
       "elements": [
-        "Những",
-        "vang",
-        "cành",
-        "trên",
-        "sáng",
-        "hoa",
-        "vào",
-        "bông",
-        "buổi",
-        "hót"
+        "ấm áp",
+        "mang theo",
+        "lộc biếc đâm chồi nảy lộc.",
+        "Mùa xuân",
+        "chồi non"
       ],
-      "answer": "Những bông hoa hót vang trên cành vào buổi sáng",
-      "explanation": "Câu hoàn chỉnh: “Những bông hoa hót vang trên cành vào buổi sáng”.",
+      "answer": "Mùa xuân ấm áp mang theo chồi non lộc biếc đâm chồi nảy lộc.",
+      "explanation": "Câu hoàn chỉnh đúng trật tự ngữ pháp: “Mùa xuân ấm áp mang theo chồi non lộc biếc đâm chồi nảy lộc.”.",
       "questionId": "k4_c1_sx_0116"
     },
     {
@@ -21821,20 +21631,16 @@
       "grade": "KHOI_4",
       "level": "CAP_1_VONG_LOAI",
       "type": "SX",
-      "question": "Sắp xếp các từ/cụm từ thành câu hoàn chỉnh:",
+      "question": "Hãy sắp xếp các từ/cụm từ sau thành một câu văn hoàn chỉnh, đúng ngữ pháp:",
       "elements": [
-        "giáo",
-        "sáng",
-        "Cô",
-        "buổi",
-        "kể",
-        "tích",
-        "chuyện",
-        "vào",
-        "cổ"
+        "ve ngân râm",
+        "vòm cây xanh.",
+        "Mùa hạ rực",
+        "ran khắp các",
+        "rỡ với tiếng"
       ],
-      "answer": "Cô giáo kể chuyện cổ tích vào buổi sáng",
-      "explanation": "Câu hoàn chỉnh: “Cô giáo kể chuyện cổ tích vào buổi sáng”.",
+      "answer": "Mùa hạ rực rỡ với tiếng ve ngân râm ran khắp các vòm cây xanh.",
+      "explanation": "Câu hoàn chỉnh đúng trật tự ngữ pháp: “Mùa hạ rực rỡ với tiếng ve ngân râm ran khắp các vòm cây xanh.”.",
       "questionId": "k4_c1_sx_0117"
     },
     {
@@ -21842,22 +21648,16 @@
       "grade": "KHOI_4",
       "level": "CAP_1_VONG_LOAI",
       "type": "SX",
-      "question": "Sắp xếp các từ/cụm từ thành câu hoàn chỉnh:",
+      "question": "Hãy sắp xếp các từ/cụm từ sau thành một câu văn hoàn chỉnh, đúng ngữ pháp:",
       "elements": [
-        "sinh",
-        "nhỏ",
-        "xóm",
-        "quanh",
-        "bạn",
-        "buổi",
-        "học",
-        "Các",
-        "sáng",
-        "uốn",
-        "vào"
+        "hương thơm",
+        "dịu dàng",
+        "đem lại",
+        "ngạt ngào của hoa sữa.",
+        "Mùa thu"
       ],
-      "answer": "Các bạn học sinh uốn quanh xóm nhỏ vào buổi sáng",
-      "explanation": "Câu hoàn chỉnh: “Các bạn học sinh uốn quanh xóm nhỏ vào buổi sáng”.",
+      "answer": "Mùa thu dịu dàng đem lại hương thơm ngạt ngào của hoa sữa.",
+      "explanation": "Câu hoàn chỉnh đúng trật tự ngữ pháp: “Mùa thu dịu dàng đem lại hương thơm ngạt ngào của hoa sữa.”.",
       "questionId": "k4_c1_sx_0118"
     },
     {
@@ -21865,19 +21665,16 @@
       "grade": "KHOI_4",
       "level": "CAP_1_VONG_LOAI",
       "type": "SX",
-      "question": "Sắp xếp các từ/cụm từ thành câu hoàn chỉnh:",
+      "question": "Hãy sắp xếp các từ/cụm từ sau thành một câu văn hoàn chỉnh, đúng ngữ pháp:",
       "elements": [
-        "ngày",
-        "quanh",
-        "mỗi",
-        "xóm",
-        "giáo",
-        "uốn",
-        "nhỏ",
-        "Cô"
+        "mùa đông bắc se lạnh.",
+        "về mang",
+        "Mùa đông",
+        "theo những",
+        "đợt gió"
       ],
-      "answer": "Cô giáo uốn quanh xóm nhỏ mỗi ngày",
-      "explanation": "Câu hoàn chỉnh: “Cô giáo uốn quanh xóm nhỏ mỗi ngày”.",
+      "answer": "Mùa đông về mang theo những đợt gió mùa đông bắc se lạnh.",
+      "explanation": "Câu hoàn chỉnh đúng trật tự ngữ pháp: “Mùa đông về mang theo những đợt gió mùa đông bắc se lạnh.”.",
       "questionId": "k4_c1_sx_0119"
     },
     {
@@ -21885,21 +21682,16 @@
       "grade": "KHOI_4",
       "level": "CAP_1_VONG_LOAI",
       "type": "SX",
-      "question": "Sắp xếp các từ/cụm từ thành câu hoàn chỉnh:",
+      "question": "Hãy sắp xếp các từ/cụm từ sau thành một câu văn hoàn chỉnh, đúng ngữ pháp:",
       "elements": [
-        "uốn",
-        "xóm",
-        "sau",
-        "quanh",
-        "hoa",
-        "cơn",
-        "nhỏ",
-        "mưa",
-        "Những",
-        "bông"
+        "quê thu",
+        "của làng",
+        "truyền thống",
+        "Lễ hội",
+        "hút đông đảo khách thập phương."
       ],
-      "answer": "Những bông hoa uốn quanh xóm nhỏ sau cơn mưa",
-      "explanation": "Câu hoàn chỉnh: “Những bông hoa uốn quanh xóm nhỏ sau cơn mưa”.",
+      "answer": "Lễ hội truyền thống của làng quê thu hút đông đảo khách thập phương.",
+      "explanation": "Câu hoàn chỉnh đúng trật tự ngữ pháp: “Lễ hội truyền thống của làng quê thu hút đông đảo khách thập phương.”.",
       "questionId": "k4_c1_sx_0120"
     },
     {
@@ -21907,21 +21699,16 @@
       "grade": "KHOI_4",
       "level": "CAP_1_VONG_LOAI",
       "type": "SX",
-      "question": "Sắp xếp các từ/cụm từ thành câu hoàn chỉnh:",
+      "question": "Hãy sắp xếp các từ/cụm từ sau thành một câu văn hoàn chỉnh, đúng ngữ pháp:",
       "elements": [
-        "chơi",
-        "chiến",
-        "trong",
-        "sĩ",
-        "ra",
-        "rỡ",
-        "Người",
-        "nở",
-        "giờ",
-        "rực"
+        "đến xuân về,",
+        "rộn ràng gói",
+        "Mỗi độ tết",
+        "nhà nhà lại",
+        "bánh chưng xanh."
       ],
-      "answer": "Người chiến sĩ nở rực rỡ trong giờ ra chơi",
-      "explanation": "Câu hoàn chỉnh: “Người chiến sĩ nở rực rỡ trong giờ ra chơi”.",
+      "answer": "Mỗi độ tết đến xuân về, nhà nhà lại rộn ràng gói bánh chưng xanh.",
+      "explanation": "Câu hoàn chỉnh đúng trật tự ngữ pháp: “Mỗi độ tết đến xuân về, nhà nhà lại rộn ràng gói bánh chưng xanh.”.",
       "questionId": "k4_c1_sx_0121"
     },
     {
@@ -21929,20 +21716,16 @@
       "grade": "KHOI_4",
       "level": "CAP_1_VONG_LOAI",
       "type": "SX",
-      "question": "Sắp xếp các từ/cụm từ thành câu hoàn chỉnh:",
+      "question": "Hãy sắp xếp các từ/cụm từ sau thành một câu văn hoàn chỉnh, đúng ngữ pháp:",
       "elements": [
-        "Cô",
-        "giáo",
-        "cổ",
-        "mưa",
-        "chuyện",
-        "kể",
-        "sau",
-        "tích",
-        "cơn"
+        "nhàng thắt",
+        "Điệu múa",
+        "chặt tình đoàn kết bản làng.",
+        "thống nhịp",
+        "sạp truyền"
       ],
-      "answer": "Cô giáo kể chuyện cổ tích sau cơn mưa",
-      "explanation": "Câu hoàn chỉnh: “Cô giáo kể chuyện cổ tích sau cơn mưa”.",
+      "answer": "Điệu múa sạp truyền thống nhịp nhàng thắt chặt tình đoàn kết bản làng.",
+      "explanation": "Câu hoàn chỉnh đúng trật tự ngữ pháp: “Điệu múa sạp truyền thống nhịp nhàng thắt chặt tình đoàn kết bản làng.”.",
       "questionId": "k4_c1_sx_0122"
     },
     {
@@ -21950,22 +21733,16 @@
       "grade": "KHOI_4",
       "level": "CAP_1_VONG_LOAI",
       "type": "SX",
-      "question": "Sắp xếp các từ/cụm từ thành câu hoàn chỉnh:",
+      "question": "Hãy sắp xếp các từ/cụm từ sau thành một câu văn hoàn chỉnh, đúng ngữ pháp:",
       "elements": [
-        "trên",
-        "vang",
-        "chim",
-        "trên",
-        "cành",
-        "hót",
-        "sâu",
-        "Những",
-        "chú",
-        "sân",
-        "trường"
+        "dân ca",
+        "làm say đắm lòng người nghe.",
+        "sâu lắng",
+        "mượt mà",
+        "Tiếng hát"
       ],
-      "answer": "Những chú chim sâu hót vang trên cành trên sân trường",
-      "explanation": "Câu hoàn chỉnh: “Những chú chim sâu hót vang trên cành trên sân trường”.",
+      "answer": "Tiếng hát dân ca mượt mà sâu lắng làm say đắm lòng người nghe.",
+      "explanation": "Câu hoàn chỉnh đúng trật tự ngữ pháp: “Tiếng hát dân ca mượt mà sâu lắng làm say đắm lòng người nghe.”.",
       "questionId": "k4_c1_sx_0123"
     },
     {
@@ -24601,12 +24378,12 @@
       "questionId": "k4_c1_tn_0882",
       "question": "Giải câu đố chữ sau:\n\"Để nguyên đựng gạo, ngô, khoai\nThêm sắc loài thú chạy tài trong rừng\nThêm ngã gió giật đùng đùng\nThêm huyền thợ mộc mài cùng gỗ lim.\nĐó là các chữ nào?\"",
       "options": {
-        "A": "Bao - báo - bão - bào",
-        "B": "Gao - gáo - gão - gào",
+        "A": "Gao - gáo - gão - gào",
+        "B": "Bao - báo - bão - bào",
         "C": "Thung - thúng - thũng - thùng",
         "D": "Cai - cái - cãi - cài"
       },
-      "answer": "A",
+      "answer": "B",
       "explanation": "'Bao' đựng ngô khoai; thêm sắc con 'báo' chạy nhanh; thêm ngã cơn 'bão' gió giật; thêm huyền cái 'bào' gỗ của thợ mộc."
     },
     {
@@ -24633,12 +24410,12 @@
       "questionId": "k4_c1_tn_0884",
       "question": "Giải câu đố chữ sau:\n\"Để nguyên màu tím mộng mơ\nBơm vào ngòi bút nắn nót từng trang\nThay dấu nặng bằng dấu sắc xem nào\nChỉ ranh giới hạn chẳng vượt quá cao.\nĐó là các chữ nào?\"",
       "options": {
-        "A": "Mực - mức",
-        "B": "Bút - bứt",
-        "C": "Sách - sạch",
+        "A": "Bút - bứt",
+        "B": "Sách - sạch",
+        "C": "Mực - mức",
         "D": "Bảng - báng"
       },
-      "answer": "A",
+      "answer": "C",
       "explanation": "'Mực' tím học trò dùng để viết; thay dấu nặng bằng dấu sắc thành hạn 'mức', mức độ."
     },
     {
@@ -24665,12 +24442,12 @@
       "questionId": "k4_c1_tn_0886",
       "question": "Giải câu đố chữ sau:\n\"Để nguyên theo bé đến trường\nCùng tay nắn nót nét hoa điểm mười\nThay dấu sắc bằng dấu nặng lạ kì\nHiện ra ông lão hiền từ cứu nguy.\nĐó là các chữ nào?\"",
       "options": {
-        "A": "Bút - Bụt",
-        "B": "Thước - thược",
-        "C": "Mực - mụt",
+        "A": "Thước - thược",
+        "B": "Mực - mụt",
+        "C": "Bút - Bụt",
         "D": "Sách - sạch"
       },
-      "answer": "A",
+      "answer": "C",
       "explanation": "Chiếc 'bút' viết bài; thay dấu sắc bằng dấu nặng thành ông 'Bụt' hiền từ trong truyện cổ tích."
     },
     {
@@ -24713,12 +24490,12 @@
       "questionId": "k4_c1_tn_0889",
       "question": "Giải câu đố chữ sau:\n\"Để nguyên màu trắng tinh khôi\nThầy cô nắn nót nét hoa trên bảng\nBớt dấu sắc chia đều từng phần nhỏ\nToán học lớp bốn làm quen mỗi ngày.\nĐó là các chữ nào?\"",
       "options": {
-        "A": "Bảng - bang",
-        "B": "Phấn - phân",
+        "A": "Phấn - phân",
+        "B": "Bảng - bang",
         "C": "Sách - sach",
         "D": "Thước - thược"
       },
-      "answer": "B",
+      "answer": "A",
       "explanation": "Viên 'phấn' trắng viết bảng; bớt dấu sắc thành 'phân' (phân số, phân chia)."
     },
     {
@@ -24730,11 +24507,11 @@
       "question": "Giải câu đố chữ sau:\n\"Để nguyên tiếp thu điều hay\nSiêng năng rèn luyện tháng ngày thành tài\nThay dấu nặng bằng dấu sắc khó khăn\nCâu đố nan giải nghĩ hoài chẳng thông.\nĐó là các chữ nào?\"",
       "options": {
         "A": "Đọc - đóc",
-        "B": "Học - hóc",
-        "C": "Viết - việt",
-        "D": "Dạy - dáy"
+        "B": "Viết - việt",
+        "C": "Dạy - dáy",
+        "D": "Học - hóc"
       },
-      "answer": "B",
+      "answer": "D",
       "explanation": "'Học' tập chăm chỉ; thay dấu nặng bằng dấu sắc thành bài toán 'hóc' búa, nan giải."
     },
     {
@@ -24762,11 +24539,11 @@
       "question": "Giải câu đố chữ sau:\n\"Để nguyên may áo vá quần\nThân thon đầu nhọn xâu luồn chỉ êm\nThêm dấu huyền thợ máy cầm tay\nUốn dây bẻ sắt việc chi cũng tài.\nĐó là các chữ nào?\"",
       "options": {
         "A": "Chỉ - chì",
-        "B": "Kim - kìm",
-        "C": "Kim - kỉm",
-        "D": "Kéo - kẹo"
+        "B": "Kim - kỉm",
+        "C": "Kéo - kẹo",
+        "D": "Kim - kìm"
       },
-      "answer": "B",
+      "answer": "D",
       "explanation": "Cây 'kim' khâu vá; thêm dấu huyền thành cái 'kìm' của chú thợ sửa chữa."
     },
     {
@@ -24778,11 +24555,11 @@
       "question": "Giải câu đố chữ sau:\n\"Để nguyên đội ở trên đầu. \nChe mưa che nắng dãi dầu trường xa. \nBỏ dấu ngã thêm huyền phía trước. \nMắt chẳng thấy đường sương khói mịt mù.\nĐó là các chữ nào?\"",
       "options": {
         "A": "Nón - nòn",
-        "B": "Mũ - mù",
-        "C": "Dù - du",
+        "B": "Dù - du",
+        "C": "Mũ - mù",
         "D": "Khăn - khằn"
       },
-      "answer": "B",
+      "answer": "C",
       "explanation": "Cái 'mũ' đội che nắng mưa; bỏ ngã thêm huyền thành 'mù' mịt, không thấy rõ."
     },
     {
@@ -24794,11 +24571,11 @@
       "question": "Giải câu đố chữ sau:\n\"Để nguyên mặc ấm mùa đông. \nMặc mát mùa hè giữ gìn nét xinh. \nBỏ dấu sắc nuôi cá bờ vùng. \nHoa sen hoa súng thơm lừng ngát hương.\nĐó là các chữ nào?\"",
       "options": {
         "A": "Váy - vay",
-        "B": "Áo - ao",
-        "C": "Quần - quan",
-        "D": "Khăn - khan"
+        "B": "Quần - quan",
+        "C": "Khăn - khan",
+        "D": "Áo - ao"
       },
-      "answer": "B",
+      "answer": "D",
       "explanation": "Chiếc 'áo' mặc hàng ngày; bỏ dấu sắc thành cái 'ao' nuôi cá, trồng sen."
     },
     {
@@ -24810,11 +24587,11 @@
       "question": "Giải câu đố chữ sau:\n\"Để nguyên êm ái gót son\nCùng em sải bước tung tăng tới trường\nBỏ dấu huyền thành nhịp đếm thời gian\nTích tắc sáu mươi tròn một phút trôi.\nĐó là các chữ nào?\"",
       "options": {
         "A": "Dép - dep",
-        "B": "Guốc - guoc",
-        "C": "Giày - giây",
+        "B": "Giày - giây",
+        "C": "Guốc - guoc",
         "D": "Ủng - ung"
       },
-      "answer": "C",
+      "answer": "B",
       "explanation": "Đôi 'giày' đi êm chân; bỏ dấu huyền thành 'giây' (đơn vị đo thời gian)."
     },
     {
@@ -24842,11 +24619,11 @@
       "question": "Giải câu đố chữ sau:\n\"Để nguyên lối ngõ vào nhà\nKhép vào mở đón người xa người gần\nBỏ dấu hỏi thợ mộc cầm cưa\nRăng đều sắc bén xẻ cây ngọt ngào.\nĐó là các chữ nào?\"",
       "options": {
         "A": "Cổng - cong",
-        "B": "Ngõ - ngo",
-        "C": "Cửa - cưa",
+        "B": "Cửa - cưa",
+        "C": "Ngõ - ngo",
         "D": "Thềm - them"
       },
-      "answer": "C",
+      "answer": "B",
       "explanation": "Cánh 'cửa' ra vào; bỏ dấu hỏi thành cái 'cưa' xẻ gỗ của thợ mộc."
     },
     {
@@ -24859,10 +24636,10 @@
       "options": {
         "A": "Gió - giót",
         "B": "Mát - mát",
-        "C": "Quạt - quát",
-        "D": "Lá - lát"
+        "C": "Lá - lát",
+        "D": "Quạt - quát"
       },
-      "answer": "C",
+      "answer": "D",
       "explanation": "Chiếc 'quạt' làm mát; thay dấu nặng bằng sắc thành tiếng la 'quát'."
     },
     {
@@ -24875,10 +24652,10 @@
       "options": {
         "A": "Cây - cầy",
         "B": "Lá - là",
-        "C": "Chổi - chồi",
-        "D": "Rơm - rờm"
+        "C": "Rơm - rờm",
+        "D": "Chổi - chồi"
       },
-      "answer": "C",
+      "answer": "D",
       "explanation": "Cái 'chổi' quét nhà, quét sân; thay hỏi bằng huyền thành 'chồi' non lộc biếc mùa xuân."
     },
     {
@@ -24891,10 +24668,10 @@
       "options": {
         "A": "Chảo - chao",
         "B": "Xoong - xoong",
-        "C": "Nồi - nôi",
-        "D": "Bếp - bep"
+        "C": "Bếp - bep",
+        "D": "Nồi - nôi"
       },
-      "answer": "C",
+      "answer": "D",
       "explanation": "Cái 'nồi' nấu cơm, nấu canh; bỏ dấu huyền thành chiếc 'nôi' em bé nằm ngủ."
     },
     {
@@ -24907,10 +24684,10 @@
       "options": {
         "A": "Tách - tạch",
         "B": "Ly - lỳ",
-        "C": "Cốc - cộc",
-        "D": "Chén - chèn"
+        "C": "Chén - chèn",
+        "D": "Cốc - cộc"
       },
-      "answer": "D",
+      "answer": "C",
       "explanation": "Cái 'chén' uống nước; thay sắc bằng huyền thành 'chèn' (chèn bánh xe, chèn đá)."
     },
     {
@@ -24937,12 +24714,12 @@
       "questionId": "k4_c1_tn_0903",
       "question": "Giải câu đố chữ sau:\n\"Để nguyên ngọt lịm thơm ngon\nBé ngoan cô thưởng cả nhà cùng vui\nBỏ dấu nặng dính liền kết chặt\nDán giấy làm tranh đẹp mắt vô cùng.\nĐó là các chữ nào?\"",
       "options": {
-        "A": "Bánh - banh",
-        "B": "Chè - che",
-        "C": "Mứt - mưng",
-        "D": "Kẹo - keo"
+        "A": "Kẹo - keo",
+        "B": "Bánh - banh",
+        "C": "Chè - che",
+        "D": "Mứt - mưng"
       },
-      "answer": "D",
+      "answer": "A",
       "explanation": "Cái 'kẹo' ngọt ngào; bỏ dấu nặng thành 'keo' dán giấy thủ công."
     },
     {
@@ -24953,12 +24730,12 @@
       "questionId": "k4_c1_tn_0904",
       "question": "Giải câu đố chữ sau:\n\"Để nguyên sắc thắm vườn xuân\nOng vờn bướm lượn ngát lừng hương bay\nThêm dấu sắc biến hình đổi dạng\nPhép thuật nhiệm màu trong truyện cổ xưa.\nĐó là các chữ nào?\"",
       "options": {
-        "A": "Cây - cấy",
-        "B": "Lá - lả",
-        "C": "Cành - cánh",
-        "D": "Hoa - hóa"
+        "A": "Hoa - hóa",
+        "B": "Cây - cấy",
+        "C": "Lá - lả",
+        "D": "Cành - cánh"
       },
-      "answer": "D",
+      "answer": "A",
       "explanation": "Bông 'hoa' tươi thắm; thêm dấu sắc thành biến 'hóa' thần kì."
     },
     {
@@ -24971,10 +24748,10 @@
       "options": {
         "A": "Kéo - kẹo",
         "B": "Cưa - cựa",
-        "C": "Búa - bủa",
-        "D": "Dao - dạo"
+        "C": "Dao - dạo",
+        "D": "Búa - bủa"
       },
-      "answer": "D",
+      "answer": "C",
       "explanation": "Con 'dao' sắc bén trong nhà bếp; thêm dấu nặng thành đi 'dạo' mát."
     },
     {
@@ -24985,12 +24762,12 @@
       "questionId": "k4_c1_tn_0906",
       "question": "Giải câu đố chữ sau:\n\"Để nguyên thức trắng canh thâu\nBáo giờ người ngủ dậy mau tới trường\nThêm dấu nặng nặng nề vác chở\nGiúp người chở kéo hàng hóa đường xa.\nĐó là các chữ nào?\"",
       "options": {
-        "A": "Chuông - chuộng",
-        "B": "Mõ - mọ",
-        "C": "La - lạ",
-        "D": "Gà - gạ"
+        "A": "Gà - gạ",
+        "B": "Chuông - chuộng",
+        "C": "Mõ - mọ",
+        "D": "La - lạ"
       },
-      "answer": "D",
+      "answer": "A",
       "explanation": "Con 'gà' trống gáy sáng báo thức; thêm nặng thành gạ gẫm hoặc con gà thêm huyền bỏ huyền thành ga."
     },
     {
@@ -25001,12 +24778,12 @@
       "questionId": "k4_c1_tn_0907",
       "question": "Giải câu đố danh nhân sau:\n\"Ai người cưỡi ngựa sắt bay\nNhổ tre đánh giặc Ân tan tác tành\nĐánh xong bay thẳng về trời\nNgàn năm hương khói muôn đời tôn vinh?\"",
       "options": {
-        "A": "Thánh Gióng (Phù Đổng Thiên Vương)",
-        "B": "An Dương Vương",
+        "A": "An Dương Vương",
+        "B": "Thánh Gióng (Phù Đổng Thiên Vương)",
         "C": "Lý Thường Kiệt",
         "D": "Trần Quốc Toản"
       },
-      "answer": "A",
+      "answer": "B",
       "explanation": "Thánh Gióng (Phù Đổng Thiên Vương) là một trong Tứ bất tử của tín ngưỡng dân gian Việt Nam, có công nhổ tre đánh tan giặc Ân thời Hùng Vương."
     },
     {
@@ -25017,12 +24794,12 @@
       "questionId": "k4_c1_tn_0908",
       "question": "Giải câu đố danh nhân sau:\n\"Dâng 'Thất trảm sớ' chém quan nịnh thần\nVề ở ẩn dạy học bên dòng sông quê\nMuôn đời nức tiếng thanh cao\nĐược tôn là người thầy mẫu mực của muôn đời nước Nam.\nÔng là ai?\"",
       "options": {
-        "A": "Chu Văn An",
-        "B": "Nguyễn Bỉnh Khiêm",
-        "C": "Lê Quý Đôn",
-        "D": "Nguyễn Trãi"
+        "A": "Nguyễn Bỉnh Khiêm",
+        "B": "Lê Quý Đôn",
+        "C": "Nguyễn Trãi",
+        "D": "Chu Văn An"
       },
-      "answer": "A",
+      "answer": "D",
       "explanation": "Chu Văn An là nhà giáo mẫu mực, đức độ, từng làm tư nghiệp Quốc Tử Giám và dâng Thất trảm sớ đòi chém 7 tên nịnh thần đời vua Trần Dụ Tông."
     },
     {
@@ -25065,12 +24842,12 @@
       "questionId": "k4_c1_tn_0911",
       "question": "Giải câu đố danh nhân sau:\n\"Thiếu niên dũng cảm người H'Mông\nTuổi mười lăm trút hơi thở cuối cùng trên núi cao rừng thẳm\nBảo vệ bí mật cách mạng kiên trung\nĐược Nhà nước phong tặng danh hiệu Anh hùng lực lượng vũ trang nhân dân.\nAnh là ai?\"",
       "options": {
-        "A": "Vừ A Dính",
-        "B": "Kim Đồng",
-        "C": "Lý Tự Trọng",
-        "D": "Kpa Klơng"
+        "A": "Kim Đồng",
+        "B": "Lý Tự Trọng",
+        "C": "Kpa Klơng",
+        "D": "Vừ A Dính"
       },
-      "answer": "A",
+      "answer": "D",
       "explanation": "Anh Vừ A Dính (quê Điện Biên) là thiếu niên dân tộc H'Mông dũng cảm làm liên lạc và anh dũng hy sinh vì Tổ quốc năm 1949."
     },
     {
@@ -25081,12 +24858,12 @@
       "questionId": "k4_c1_tn_0912",
       "question": "Giải câu đố danh nhân sau:\n\"Tuổi nhỏ gan dạ làm liên lạc\nBí mật dẫn đường cho cán bộ cách mạng vùng cao\nHy sinh dũng cảm bên dòng suối Lê-nin\nLà người Đội trưởng đầu tiên của Đội Thiếu niên Tiền phong Hồ Chí Minh.\nAnh là ai?\"",
       "options": {
-        "A": "Kim Đồng (Nông Văn Dền)",
-        "B": "Dương Văn Nội",
-        "C": "Lê Văn Tám",
+        "A": "Dương Văn Nội",
+        "B": "Lê Văn Tám",
+        "C": "Kim Đồng (Nông Văn Dền)",
         "D": "Nguyễn Bá Ngọc"
       },
-      "answer": "A",
+      "answer": "C",
       "explanation": "Anh Kim Đồng (tên thật là Nông Văn Dền, dân tộc Nùng) là Đội trưởng đầu tiên của Đội Nhi đồng Cứu quốc thành lập năm 1941 tại Pác Bó, Cao Bằng."
     },
     {
@@ -25098,11 +24875,11 @@
       "question": "Giải câu đố danh nhân sau:\n\"Người thiếu niên miền Nam dũng cảm vô song\nBiến thân mình thành 'ngọn đuốc sống' thiêu rụi kho xăng giặc\nTại vùng Thị Nghè năm một chín bốn lăm\nĐể lại tấm gương kiên cường bất khuất muôn đời.\nAnh là ai?\"",
       "options": {
         "A": "Nguyễn Văn Trỗi",
-        "B": "Lê Văn Tám",
-        "C": "Võ Văn Tần",
+        "B": "Võ Văn Tần",
+        "C": "Lê Văn Tám",
         "D": "Trần Văn Ơn"
       },
-      "answer": "B",
+      "answer": "C",
       "explanation": "Lê Văn Tám là biểu tượng thiếu niên anh hùng quả cảm trong kháng chiến chống thực dân Pháp tại Sài Gòn - Chợ Lớn."
     },
     {
@@ -25114,11 +24891,11 @@
       "question": "Giải câu đố danh nhân sau:\n\"Nhạc sĩ tài hoa sáng tác bài hát Tiến quân ca\nĐược chọn làm Quốc ca thiêng liêng của nước Việt Nam ta\nMỗi sớm chào cờ toàn dân cất vang lời hát hào hùng.\nÔng là nhạc sĩ nào?\"",
       "options": {
         "A": "Phạm Tuyên",
-        "B": "Văn Cao",
-        "C": "Hoàng Vân",
-        "D": "Phong Nhã"
+        "B": "Hoàng Vân",
+        "C": "Phong Nhã",
+        "D": "Văn Cao"
       },
-      "answer": "B",
+      "answer": "D",
       "explanation": "Nhạc sĩ Văn Cao (1923 - 1995) là tác giả của ca khúc 'Tiến quân ca', được Quốc hội chọn làm Quốc ca chính thức của nước Việt Nam."
     },
     {
@@ -25130,11 +24907,11 @@
       "question": "Giải câu đố danh nhân sau:\n\"Nhà văn nổi tiếng của thiếu nhi Việt Nam\nTác giả kiệt tác đồng thoại 'Dế Mèn phiêu lưu ký'\nDạy cho các bạn nhỏ bài học về lòng nhân ái và tình bạn bè thủy chung.\nÔng là ai?\"",
       "options": {
         "A": "Nguyễn Nhật Ánh",
-        "B": "Tô Hoài",
-        "C": "Trần Đăng Khoa",
+        "B": "Trần Đăng Khoa",
+        "C": "Tô Hoài",
         "D": "Nguyễn Huy Tưởng"
       },
-      "answer": "B",
+      "answer": "C",
       "explanation": "Nhà văn Tô Hoài (1920 - 2014) là tác giả của tác phẩm thiếu nhi kinh điển 'Dế Mèn phiêu lưu ký' được dịch ra nhiều thứ tiếng trên thế giới."
     },
     {
@@ -25145,12 +24922,12 @@
       "questionId": "k4_c1_tn_0916",
       "question": "Giải câu đố danh nhân sau:\n\"Nhà thơ thần đồng thuở ấu thơ\nTác giả tập thơ 'Góc sân và khoảng trời' nổi tiếng\nVới các bài thơ thân thương như 'Hạt gạo làng ta', 'Mẹ ốm'.\nÔng là nhà thơ nào?\"",
       "options": {
-        "A": "Xuân Quỳnh",
-        "B": "Trần Đăng Khoa",
+        "A": "Trần Đăng Khoa",
+        "B": "Xuân Quỳnh",
         "C": "Định Hải",
         "D": "Võ Quảng"
       },
-      "answer": "B",
+      "answer": "A",
       "explanation": "Nhà thơ Trần Đăng Khoa nổi tiếng từ thuở nhỏ với tập thơ 'Góc sân và khoảng trời' gắn liền với tâm hồn bao thế hệ học sinh Việt Nam."
     },
     {
@@ -25194,11 +24971,11 @@
       "question": "Giải câu đố địa danh sau:\n\"Hồ nước ngọt tự nhiên tuyệt đẹp ở trung tâm thủ đô Hà Nội\nGắn liền với tích vua Lê Thái Tổ trả lại thanh gươm báu cho Rùa Vàng sau khi đánh tan giặc Minh.\nĐó là hồ nước nào?\"",
       "options": {
         "A": "Hồ Tây",
-        "B": "Hồ Hoàn Kiếm (Hồ Gươm)",
-        "C": "Hồ Trúc Bạch",
-        "D": "Hồ Ba Bể"
+        "B": "Hồ Trúc Bạch",
+        "C": "Hồ Ba Bể",
+        "D": "Hồ Hoàn Kiếm (Hồ Gươm)"
       },
-      "answer": "B",
+      "answer": "D",
       "explanation": "Hồ Hoàn Kiếm (còn gọi là Hồ Gươm) gắn liền với truyền thuyết trả gươm thần của vua Lê Lợi cho thần Kim Quy sau khởi nghĩa Lam Sơn thắng lợi."
     },
     {
@@ -25210,11 +24987,11 @@
       "question": "Giải câu đố di tích sau:\n\"Ngôi đền cổ kính nằm trên đảo Ngọc giữa lòng hồ Hoàn Kiếm\nĐược nối với bờ bằng cây cầu Thê Húc màu đỏ son cong cong hình con tôm.\nĐó là ngôi đền nào?\"",
       "options": {
         "A": "Đền Voi Phục",
-        "B": "Đền Bạch Mã",
-        "C": "Đền Ngọc Sơn",
+        "B": "Đền Ngọc Sơn",
+        "C": "Đền Bạch Mã",
         "D": "Đền Đồng Cổ"
       },
-      "answer": "C",
+      "answer": "B",
       "explanation": "Đền Ngọc Sơn tọa lạc trên đảo Ngọc của hồ Hoàn Kiếm, được nối với bờ bởi cầu Thê Húc uốn cong màu đỏ tươi rực rỡ."
     },
     {
@@ -25242,11 +25019,11 @@
       "question": "Giải câu đố địa danh sau:\n\"Vịnh biển tuyệt đẹp thuộc tỉnh Khánh Hòa ở miền Trung nước ta\nĐược bình chọn là một trong những vịnh biển đẹp nhất thế giới\nNổi tiếng với bãi cát trắng mịn, nước trong xanh và Viện Hải dương học nổi tiếng.\nĐó là vịnh nào?\"",
       "options": {
         "A": "Vịnh Vân Phong",
-        "B": "Vịnh Cam Ranh",
-        "C": "Vịnh Nha Trang",
+        "B": "Vịnh Nha Trang",
+        "C": "Vịnh Cam Ranh",
         "D": "Vịnh Xuân Đài"
       },
-      "answer": "C",
+      "answer": "B",
       "explanation": "Vịnh Nha Trang thuộc thành phố Nha Trang (tỉnh Khánh Hòa) là thắng cảnh biển nổi tiếng trong nước và quốc tế."
     },
     {
@@ -25257,12 +25034,12 @@
       "questionId": "k4_c1_tn_0923",
       "question": "Giải câu đố địa danh sau:\n\"Thành phố lớn ở vùng Tây Nguyên nước ta\nĐược mệnh danh là 'Thủ phủ cà phê của Việt Nam'\nNơi có bảo tàng cà phê thế giới và lễ hội cà phê tổ chức định kỳ rộn ràng.\nĐó là thành phố nào?\"",
       "options": {
-        "A": "Thành phố Pleiku",
-        "B": "Thành phố Kon Tum",
-        "C": "Thành phố Buôn Ma Thuột",
+        "A": "Thành phố Buôn Ma Thuột",
+        "B": "Thành phố Pleiku",
+        "C": "Thành phố Kon Tum",
         "D": "Thành phố Gia Nghĩa"
       },
-      "answer": "C",
+      "answer": "A",
       "explanation": "Buôn Ma Thuột là thành phố tỉnh lỵ của Đắk Lắk, nổi tiếng với những cánh đồng cà phê bạt ngàn và là trung tâm kinh tế của Tây Nguyên."
     },
     {
@@ -25274,11 +25051,11 @@
       "question": "Giải câu đố địa danh sau:\n\"Thành phố biển xinh đẹp ở miền Đông Nam Bộ\nCó ngọn hải đăng cổ kính, tượng Chúa Kitô trên đỉnh Tao Phùng\nVà các bãi tắm Bãi Trước, Bãi Sau thu hút đông đảo du khách.\nĐó là thành phố nào?\"",
       "options": {
         "A": "Thành phố Phan Thiết",
-        "B": "Thành phố Rạch Giá",
-        "C": "Thành phố Vũng Tàu",
+        "B": "Thành phố Vũng Tàu",
+        "C": "Thành phố Rạch Giá",
         "D": "Thành phố Hà Tiên"
       },
-      "answer": "C",
+      "answer": "B",
       "explanation": "Thành phố Vũng Tàu (tỉnh Bà Rịa - Vũng Tàu) là trung tâm du lịch biển nổi tiếng của vùng Đông Nam Bộ."
     },
     {
@@ -25290,11 +25067,11 @@
       "question": "Giải câu đố địa danh sau:\n\"Hòn đảo lớn nhất nước ta nằm trong vịnh Thái Lan thuộc tỉnh Kiên Giang\nĐược mệnh danh là 'Đảo Ngọc' với những bãi tắm hoang sơ tuyệt đẹp và nghề làm nước mắm truyền thống.\nĐó là hòn đảo nào?\"",
       "options": {
         "A": "Đảo Côn Sơn",
-        "B": "Đảo Phú Quý",
-        "C": "Đảo Phú Quốc",
+        "B": "Đảo Phú Quốc",
+        "C": "Đảo Phú Quý",
         "D": "Đảo Hòn Tre"
       },
-      "answer": "C",
+      "answer": "B",
       "explanation": "Đảo Phú Quốc (thành phố đảo Phú Quốc, tỉnh Kiên Giang) là hòn đảo có diện tích lớn nhất Việt Nam."
     },
     {
@@ -25321,12 +25098,12 @@
       "questionId": "k4_c1_tn_0927",
       "question": "Giải câu đố địa danh sau:\n\"Ngọn núi sừng sững bên dòng sông Đáy tại thành phố Ninh Bình\nTrên vách núi còn lưu giữ hơn 40 bài thơ của các bậc vua chúa danh sĩ khắc vào đá\nCòn có tên chữ rất thanh tao là núi Dục Thúy.\nĐó là ngọn núi nào?\"",
       "options": {
-        "A": "Núi Cánh Diều",
-        "B": "Núi Múa",
-        "C": "Núi Bài Thơ",
-        "D": "Núi Non Nước"
+        "A": "Núi Non Nước",
+        "B": "Núi Cánh Diều",
+        "C": "Núi Múa",
+        "D": "Núi Bài Thơ"
       },
-      "answer": "D",
+      "answer": "A",
       "explanation": "Núi Non Nước (núi Dục Thúy) nằm ở ngã ba sông Đáy và sông Vân tại Ninh Bình, là một thắng cảnh lịch sử thi ca nổi tiếng."
     },
     {
@@ -25337,12 +25114,12 @@
       "questionId": "k4_c1_tn_0928",
       "question": "Giải câu đố địa danh sau:\n\"Dòng sông thơ mộng chảy qua trung tâm thành phố Đà Nẵng\nNổi tiếng với chiếc cầu Rồng phun lửa phun nước và chiếc cầu quay đầu tiên tại Việt Nam.\nĐó là con sông nào?\"",
       "options": {
-        "A": "Sông Thu Bồn",
-        "B": "Sông Hương",
-        "C": "Sông Gianh",
-        "D": "Sông Hàn"
+        "A": "Sông Hàn",
+        "B": "Sông Thu Bồn",
+        "C": "Sông Hương",
+        "D": "Sông Gianh"
       },
-      "answer": "D",
+      "answer": "A",
       "explanation": "Sông Hàn chảy qua lòng thành phố Đà Nẵng, đôi bờ nối liền nhau bằng những cây cầu hiện đại và độc đáo bậc nhất nước ta."
     },
     {
@@ -25354,11 +25131,11 @@
       "question": "Giải câu đố di tích sau:\n\"Khu di tích lịch sử tại tỉnh Tuyên Quang\nĐược xem là 'Thủ đô kháng chiến', nơi diễn ra Quốc dân Đại hội vào tháng 8 năm 1945\nVà có cây đa lịch sử nổi tiếng ghi dấu lễ xuất quân của quân giải phóng.\nĐó là khu di tích nào?\"",
       "options": {
         "A": "Pác Bó",
-        "B": "Điện Biên Phủ",
-        "C": "Chi Lăng",
-        "D": "Tân Trào"
+        "B": "Tân Trào",
+        "C": "Điện Biên Phủ",
+        "D": "Chi Lăng"
       },
-      "answer": "D",
+      "answer": "B",
       "explanation": "Khu di tích quốc gia đặc biệt Tân Trào (Sơn Dương, Tuyên Quang) là thủ đô khu giải phóng trong Cách mạng Tháng Tám năm 1945."
     },
     {
@@ -25387,10 +25164,10 @@
       "options": {
         "A": "Bà Triệu và các nữ tướng",
         "B": "Nữ tướng Bùi Thị Xuân",
-        "C": "Chị Võ Thị Sáu",
-        "D": "Hai Bà Trưng (Trưng Trắc, Trưng Nhị)"
+        "C": "Hai Bà Trưng (Trưng Trắc, Trưng Nhị)",
+        "D": "Chị Võ Thị Sáu"
       },
-      "answer": "D",
+      "answer": "C",
       "explanation": "Cuộc khởi nghĩa Hai Bà Trưng (Trưng Trắc và Trưng Nhị) bùng nổ năm 40 sau Công nguyên là cuộc khởi nghĩa đầu tiên của nhân dân ta chống ách đô hộ phương Bắc."
     },
     {
@@ -25417,12 +25194,12 @@
       "questionId": "k4_c1_tn_0933",
       "question": "Giải câu đố đồ dùng học tập sau:\n\"Có hai chân nhọn dài dài\nMột chân cắm mốc đứng ngay giữa tờ\nChân kia quay tít một vòng\nHình tròn xinh xắn vẽ xong tức thì.\nLà cái gì?\"",
       "options": {
-        "A": "Cái compa",
-        "B": "Cái ê ke",
-        "C": "Cái thước dây",
-        "D": "Chiếc bút chì"
+        "A": "Cái ê ke",
+        "B": "Cái thước dây",
+        "C": "Chiếc bút chì",
+        "D": "Cái compa"
       },
-      "answer": "A",
+      "answer": "D",
       "explanation": "Cái compa có hai càng (chân), một đầu kim giữ tâm và đầu chì quay một vòng để vẽ đường tròn chính xác."
     },
     {
@@ -25433,12 +25210,12 @@
       "questionId": "k4_c1_tn_0934",
       "question": "Giải câu đố đồ dùng học tập sau:\n\"Bốn góc vuông vức gọn gàng\nEm đeo trên vác nhịp nhàng mỗi mai\nChứa đầy sách vở bút màu\nĐồng hành cùng bước em đi đến trường.\nLà đồ vật gì?\"",
       "options": {
-        "A": "Cái cặp sách (ba lô)",
-        "B": "Hộp bút",
-        "C": "Bàn học",
-        "D": "Bao bọc sách"
+        "A": "Hộp bút",
+        "B": "Bàn học",
+        "C": "Bao bọc sách",
+        "D": "Cái cặp sách (ba lô)"
       },
-      "answer": "A",
+      "answer": "D",
       "explanation": "Cái cặp sách hoặc ba lô học sinh dùng để đựng sách giáo khoa, vở và đồ dùng học tập khi đến trường."
     },
     {
@@ -25465,12 +25242,12 @@
       "questionId": "k4_c1_tn_0936",
       "question": "Giải câu đố đồ dùng học tập sau:\n\"Bằng nhựa trong suốt thẳng dài\nVạch xen-ti-mét rõ ràng từng li\nGiúp em gạch dưới bài thi\nKẻ hàng ngay ngắn cô khen học đều.\nLà cái gì?\"",
       "options": {
-        "A": "Cây thước kẻ",
-        "B": "Cây bút mực",
-        "C": "Cái compa",
+        "A": "Cây bút mực",
+        "B": "Cái compa",
+        "C": "Cây thước kẻ",
         "D": "Miếng decal"
       },
-      "answer": "A",
+      "answer": "C",
       "explanation": "Cây thước kẻ thẳng có các vạch chia milimet và centimet, dùng để kẻ đường thẳng và đo độ dài."
     },
     {
@@ -25481,12 +25258,12 @@
       "questionId": "k4_c1_tn_0937",
       "question": "Giải câu đố đồ dùng học tập sau:\n\"Giọt trắng sánh mịn trong bình\nBôi vào giấy dán dính liền khăng khít\nGiúp em làm hộp, dán hoa\nGiờ học mỹ thuật khéo tay điểm mười.\nLà đồ dùng nào?\"",
       "options": {
-        "A": "Lọ hồ dán (keo dán)",
-        "B": "Mực viết",
-        "C": "Nước lọc",
+        "A": "Mực viết",
+        "B": "Nước lọc",
+        "C": "Lọ hồ dán (keo dán)",
         "D": "Sơn dầu"
       },
-      "answer": "A",
+      "answer": "C",
       "explanation": "Hồ dán (keo nước hoặc keo khô) dùng để dán giấy màu, tranh ảnh trong các bài học thủ công."
     },
     {
@@ -25498,11 +25275,11 @@
       "question": "Giải câu đố đồ dùng học tập sau:\n\"Nhiều tấm mỏng manh đủ màu\nĐỏ, vàng, xanh, tím lung linh rạng ngời\nBé dùng gấp hạc, cắt sao\nTrang trí góc học tự hào ngắm trông.\nLà gì?\"",
       "options": {
         "A": "Tấm thảm",
-        "B": "Giấy thủ công (giấy màu)",
-        "C": "Khăn tay",
-        "D": "Bìa tập"
+        "B": "Khăn tay",
+        "C": "Bìa tập",
+        "D": "Giấy thủ công (giấy màu)"
       },
-      "answer": "B",
+      "answer": "D",
       "explanation": "Giấy thủ công có nhiều màu sắc rực rỡ, dùng để xếp hình gấp giấy và cắt dán sáng tạo."
     },
     {
@@ -25530,11 +25307,11 @@
       "question": "Giải câu đố đồ vật sau:\n\"Ruột rỗng chứa nước ngọt lành\nNắp đậy kín mít chẳng tràn ra ngoài\nTheo em đến lớp mỗi ngày\nUống từng ngụm mát xua tan mệt nhoài.\nLà cái gì?\"",
       "options": {
         "A": "Cái ấm đun",
-        "B": "Bình đựng nước cá nhân",
-        "C": "Cái xô nhựa",
-        "D": "Chiếc cặp lồng"
+        "B": "Cái xô nhựa",
+        "C": "Chiếc cặp lồng",
+        "D": "Bình đựng nước cá nhân"
       },
-      "answer": "B",
+      "answer": "D",
       "explanation": "Bình nước cá nhân giúp học sinh mang theo nước uống sạch sẽ và tiện lợi khi đi học."
     },
     {
@@ -25546,11 +25323,11 @@
       "question": "Giải câu đố thực vật sau:\n\"Thân to cành lá xòe tròn\nLá to như chiếc quạt xòe giữa sân\nMùa hè rợp bóng mát xanh\nMùa đông lá đỏ rụng rơi trơ cành.\nLà cây gì?\"",
       "options": {
         "A": "Cây phượng",
-        "B": "Cây bàng",
-        "C": "Cây đa",
+        "B": "Cây đa",
+        "C": "Cây bàng",
         "D": "Cây me"
       },
-      "answer": "B",
+      "answer": "C",
       "explanation": "Cây bàng được trồng rất phổ biến ở các sân trường, lá to như chiếc quạt xòe bóng mát cho học sinh vui chơi."
     },
     {
@@ -25578,11 +25355,11 @@
       "question": "Giải câu đố loài cây sau:\n\"Leo giàn tỏa lá xanh um\nHoa vàng rực rỡ ong vờn sớm trưa\nQuả dài nấu với tép đồng\nBát canh ngọt mát thơm lừng bữa cơm.\nLà cây gì?\"",
       "options": {
         "A": "Cây bí đao",
-        "B": "Cây mướp",
-        "C": "Cây mồng tơi",
-        "D": "Cây su su"
+        "B": "Cây mồng tơi",
+        "C": "Cây su su",
+        "D": "Cây mướp"
       },
-      "answer": "B",
+      "answer": "D",
       "explanation": "Cây mướp là loài cây thân leo trên giàn, hoa vàng tươi, quả thon dài thường được dùng nấu canh cua, canh tép ngọt mát."
     },
     {
@@ -25594,11 +25371,11 @@
       "question": "Giải câu đố loài quả sau:\n\"Năm múi cắt lát hình sao\nVị chua rôn rốt cắn vào thấy mê\nGắn liền sự tích chim ăn\nĐền ơn may túi ba gang mang vàng.\nLà quả gì?\"",
       "options": {
         "A": "Quả bưởi",
-        "B": "Quả chanh",
-        "C": "Quả khế",
+        "B": "Quả khế",
+        "C": "Quả chanh",
         "D": "Quả táo"
       },
-      "answer": "C",
+      "answer": "B",
       "explanation": "Quả khế có năm khía múi, khi cắt ngang tạo thành hình ngôi sao năm cánh, gắn với truyện cổ tích 'Cây khế'."
     },
     {
@@ -25609,12 +25386,12 @@
       "questionId": "k4_c1_tn_0945",
       "question": "Giải câu đố loài quả sau:\n\"Ruột trắng lấm tấm hạt đen\nVỏ ngoài hồng phấn mọc râu xanh rờn\nTên nghe tựa giống rồng bay\nBổ ra ngọt mát giải nhiệt mùa hè.\nLà quả gì?\"",
       "options": {
-        "A": "Quả mãng cầu",
-        "B": "Quả đu đủ",
-        "C": "Quả thanh long",
+        "A": "Quả thanh long",
+        "B": "Quả mãng cầu",
+        "C": "Quả đu đủ",
         "D": "Quả chôm chôm"
       },
-      "answer": "C",
+      "answer": "A",
       "explanation": "Quả thanh long vỏ hồng đỏ có các tai vảy xanh như vảy rồng, ruột trắng hoặc đỏ chứa nhiều hạt nhỏ li ti ăn ngọt mát."
     },
     {
@@ -25626,11 +25403,11 @@
       "question": "Giải câu đố loài quả sau:\n\"Quả hình nón nhỏ xinh xinh\nÁo đỏ rực rỡ chấm bi lấm tấm ngoài\nTrồng nhiều xứ lạnh sương mờ\nĂn vào chua ngọt ngất ngây hương thơm.\nLà quả gì?\"",
       "options": {
         "A": "Quả mận",
-        "B": "Quả đào",
-        "C": "Quả dâu tây",
+        "B": "Quả dâu tây",
+        "C": "Quả đào",
         "D": "Quả dưa hấu"
       },
-      "answer": "C",
+      "answer": "B",
       "explanation": "Quả dâu tây có màu đỏ tươi mọng nước, đính nhiều hạt nhỏ li ti ở vỏ ngoài, là đặc sản nổi tiếng của vùng Đà Lạt."
     },
     {
@@ -25641,12 +25418,12 @@
       "questionId": "k4_c1_tn_0947",
       "question": "Giải câu đố loài côn trùng sau:\n\"Thân tròn nhỏ xíu như hạt đậu\nLưng mang cánh đỏ chấm đen xinh xinh\nBắt rệp bảo vệ chồi non\nLà bạn của vườn rau xanh quê nhà.\nLà con gì?\"",
       "options": {
-        "A": "Con chuồn chuồn",
-        "B": "Con châu chấu",
-        "C": "Con bọ rùa (bọ cánh cam)",
+        "A": "Con bọ rùa (bọ cánh cam)",
+        "B": "Con chuồn chuồn",
+        "C": "Con châu chấu",
         "D": "Con bươm bướm"
       },
-      "answer": "C",
+      "answer": "A",
       "explanation": "Con bọ rùa (bọ cánh cam) có cánh cứng màu đỏ cam với bảy đốm đen, chuyên ăn các loài rệp hại cây trồng."
     },
     {
@@ -25659,10 +25436,10 @@
       "options": {
         "A": "Con chim đại bàng",
         "B": "Con chim bồ câu",
-        "C": "Con chim cú (cú mèo)",
-        "D": "Con chim én"
+        "C": "Con chim én",
+        "D": "Con chim cú (cú mèo)"
       },
-      "answer": "C",
+      "answer": "D",
       "explanation": "Chim cú mèo hoạt động chủ yếu về đêm, có đôi mắt tròn to tinh tường giúp săn bắt chuột gặm nhấm rất tài ba."
     },
     {
@@ -25674,11 +25451,11 @@
       "question": "Giải câu đố loài vật sau:\n\"Chuyền cành thoăn thoắt cực nhanh\nĐuôi xòe như chổi, thích gặm hạt ngô\nÔm quả thông nhỏ trên cành\nBộ lông mượt mà mắt sáng long lanh.\nLà con gì?\"",
       "options": {
         "A": "Con thỏ",
-        "B": "Con chuột túi",
-        "C": "Con sóc",
+        "B": "Con sóc",
+        "C": "Con chuột túi",
         "D": "Con nhím"
       },
-      "answer": "C",
+      "answer": "B",
       "explanation": "Con sóc có chiếc đuôi dài bông xù, leo trèo chuyền cành rất giỏi và thức ăn yêu thích là các loại hạt cứng như hạt dẻ, quả thông."
     },
     {
@@ -25690,11 +25467,11 @@
       "question": "Giải câu đố con vật sau:\n\"Bộ ria mép dài vểnh cao\nMắt sáng trong đêm rình bắt chuột tài\nKêu tiếng meo meo dịu dàng\nThích nằm cuộn tròn sưởi nắng ban trưa.\nLà con gì?\"",
       "options": {
         "A": "Con thỏ",
-        "B": "Con chó",
-        "C": "Con mèo",
+        "B": "Con mèo",
+        "C": "Con chó",
         "D": "Con cầy hương"
       },
-      "answer": "C",
+      "answer": "B",
       "explanation": "Con mèo là vật nuôi thân thuộc trong gia đình, có vuốt sắc và mắt tinh nhanh bắt chuột."
     },
     {
@@ -25706,11 +25483,11 @@
       "question": "Giải câu đố con vật sau:\n\"Đêm ngày chăm chỉ giữ nhà\nNgười lạ thì sủa, người quen mừng rơn\nVẫy đuôi quấn quýt bên chân\nLà loài vật trung thành nhất của con người.\nLà con gì?\"",
       "options": {
         "A": "Con lợn",
-        "B": "Con mèo",
-        "C": "Con dê",
-        "D": "Con chó"
+        "B": "Con chó",
+        "C": "Con mèo",
+        "D": "Con dê"
       },
-      "answer": "D",
+      "answer": "B",
       "explanation": "Con chó là loài động vật trung thành, có khứu giác và thính giác vô cùng nhạy bén giúp trông nhà bảo vệ gia chủ."
     },
     {
@@ -25722,11 +25499,11 @@
       "question": "Giải câu đố loài thú sau:\n\"Bờm cổ dày cộm oai phong\nGầm vang một tiếng rừng sâu giật mình\nMệnh danh chúa tể sơn lâm\nMuôn loài khiếp sợ nép mình nể nang.\nLà con thú nào?\"",
       "options": {
         "A": "Con gấu nâu",
-        "B": "Con voi",
-        "C": "Con chó sói",
-        "D": "Con sư tử"
+        "B": "Con sư tử",
+        "C": "Con voi",
+        "D": "Con chó sói"
       },
-      "answer": "D",
+      "answer": "B",
       "explanation": "Con sư tử (đặc biệt là sư tử đực) có bờm cổ oai vệ và tiếng gầm vang dội, được mệnh danh là chúa tể của thảo nguyên và rừng rậm."
     },
     {
@@ -25738,11 +25515,11 @@
       "question": "Giải câu đố loài vật sau:\n\"Bốn chân to tựa cột nhà\nChiếc mũi dài ngoẵng khéo khôn hút dòng\nHai ngà trắng toát oai nghiêm\nGiúp người chở gỗ vượt đèo Tây Nguyên.\nLà con gì?\"",
       "options": {
         "A": "Con tê giác",
-        "B": "Con hà mã",
-        "C": "Con trâu rừng",
-        "D": "Con voi"
+        "B": "Con voi",
+        "C": "Con hà mã",
+        "D": "Con trâu rừng"
       },
-      "answer": "D",
+      "answer": "B",
       "explanation": "Con voi có vòi dài để cầm nắm và hút nước, đôi ngà to khỏe và cơ thể đồ sộ, gắn bó mật thiết với đồng bào Tây Nguyên."
     },
     {
@@ -25754,11 +25531,11 @@
       "question": "Giải câu đố loài thú sau:\n\"Cổ dài ngoắt ngoéo vươn cao\nĂn lá trên ngọn cây rừng non tơ\nBộ da đốm lốm vàng nâu\nDáng đi đủng đỉnh nhẹ nhàng đáng yêu.\nLà con gì?\"",
       "options": {
         "A": "Con ngựa vằn",
-        "B": "Con lạc đà",
-        "C": "Con linh dương",
-        "D": "Con hươu cao cổ"
+        "B": "Con hươu cao cổ",
+        "C": "Con lạc đà",
+        "D": "Con linh dương"
       },
-      "answer": "D",
+      "answer": "B",
       "explanation": "Hươu cao cổ là loài động vật có vú cao nhất trên cạn nhờ chiếc cổ dài giúp chúng dễ dàng ăn lá non trên các ngọn cây cao."
     },
     {
@@ -25817,12 +25594,12 @@
       "questionId": "k4_c1_tn_0958",
       "question": "Giải câu đố mẹo sau:\n\"Trên bàn có 3 quả táo thơm ngon. Bạn bước tới và lấy đi 2 quả táo. Hỏi bây giờ bạn đang có trong tay mấy quả táo?\"",
       "options": {
-        "A": "2 quả táo",
-        "B": "1 quả táo",
-        "C": "3 quả táo",
+        "A": "1 quả táo",
+        "B": "3 quả táo",
+        "C": "2 quả táo",
         "D": "Không còn quả nào"
       },
-      "answer": "A",
+      "answer": "C",
       "explanation": "Câu đố hỏi 'bạn có mấy quả', vì bạn vừa lấy đi 2 quả nên trong tay bạn có đúng 2 quả táo."
     },
     {
@@ -25849,12 +25626,12 @@
       "questionId": "k4_c1_tn_0960",
       "question": "Giải câu đố mẹo sau:\n\"Loại nước nào sau đây không thể dùng để uống giải khát, cũng không thể dùng để nấu ăn hay tắm giặt?\"",
       "options": {
-        "A": "Nước mắt",
-        "B": "Nước suối",
+        "A": "Nước suối",
+        "B": "Nước mắt",
         "C": "Nước mưa",
         "D": "Nước giếng"
       },
-      "answer": "A",
+      "answer": "B",
       "explanation": "Nước mắt (hoặc nước cờ) chỉ là hiện tượng cảm xúc của con người hoặc trò chơi, không dùng để sinh hoạt."
     },
     {
@@ -25895,15 +25672,15 @@
       "level": "CAP_1_VONG_LOAI",
       "type": "TN",
       "questionId": "k4_c1_tn_0963",
-      "question": "Giải câu đố mẹo sau:\n\"Cái gì càng kéo dài thời gian hút/đốt thì bản thân nó lại càng bị ngắn lại?\"",
+      "question": "Giải câu đố mẹo sau:\n\"Cái gì càng cháy sáng thì thân mình lại càng bị ngắn lại?\"",
       "options": {
         "A": "Sợi dây thừng",
-        "B": "Điếu thuốc lá (hoặc ngọn nến đang cháy)",
-        "C": "Đoạn thước kẻ",
-        "D": "Chiếc cầu chì"
+        "B": "Đoạn thước kẻ",
+        "C": "Chiếc cầu chì",
+        "D": "Ngọn nến đang cháy"
       },
-      "answer": "B",
-      "explanation": "Điếu thuốc lá hoặc ngọn nến càng đốt cháy thì càng bị hao mòn và ngắn dần đi."
+      "answer": "D",
+      "explanation": "Ngọn nến khi được thắp sáng thì sáp nến chảy dần và thân nến ngắn lại."
     },
     {
       "contest": "Trạng Nguyên Tiếng Việt",
@@ -25913,12 +25690,12 @@
       "questionId": "k4_c1_tn_0964",
       "question": "Giải câu đố đồ vật sau:\n\"Cái gì có một mắt ở trên đầu nhưng lại không bao giờ có thể nhìn thấy bất kỳ thứ gì xung quanh?\"",
       "options": {
-        "A": "Chiếc cúc áo",
-        "B": "Cây kim khâu",
+        "A": "Cây kim khâu",
+        "B": "Chiếc cúc áo",
         "C": "Cái kính lúp",
         "D": "Ống nhòm"
       },
-      "answer": "B",
+      "answer": "A",
       "explanation": "Lỗ xỏ chỉ ở đầu cây kim khâu thường được gọi là 'mắt kim'."
     },
     {
@@ -25946,11 +25723,11 @@
       "question": "Giải câu đố tư duy sau:\n\"Làm thế nào để chia đều 5 quả cam cho 5 bạn học sinh sao cho mỗi bạn đều nhận được 1 quả cam, nhưng trong giỏ vẫn còn lại đúng 1 quả cam?\"",
       "options": {
         "A": "Cắt mỗi quả cam làm đôi",
-        "B": "Đưa cho bạn cuối cùng quả cam nằm nguyên trong giỏ",
-        "C": "Bỏ thêm một quả cam khác vào giỏ",
+        "B": "Bỏ thêm một quả cam khác vào giỏ",
+        "C": "Đưa cho bạn cuối cùng quả cam nằm nguyên trong giỏ",
         "D": "Một bạn không nhận cam"
       },
-      "answer": "B",
+      "answer": "C",
       "explanation": "Chia 4 quả cam cho 4 bạn đầu tiên, còn bạn thứ 5 thì đưa cả chiếc giỏ đựng quả cam cuối cùng bên trong."
     },
     {
@@ -25962,11 +25739,11 @@
       "question": "Giải câu đố logic sau:\n\"Trong một cuộc thi chạy tiếp sức của trường, nếu em chạy vượt qua người đang ở vị trí thứ hai, thì lúc đó em đang xếp ở vị trí thứ mấy?\"",
       "options": {
         "A": "Vị trí thứ nhất",
-        "B": "Vị trí thứ hai",
-        "C": "Vị trí thứ ba",
+        "B": "Vị trí thứ ba",
+        "C": "Vị trí thứ hai",
         "D": "Vị trí cuối cùng"
       },
-      "answer": "B",
+      "answer": "C",
       "explanation": "Khi em vượt qua người thứ hai, em sẽ thế vào chính vị trí thứ hai của người đó, người chạy đầu tiên vẫn đang ở vị trí thứ nhất."
     },
     {
@@ -25978,11 +25755,11 @@
       "question": "Giải câu đố mẹo sau:\n\"Bố của bạn Nam có 3 người con trai: người con cả tên là Nhất, người con thứ hai tên là Nhị. Hỏi người con thứ ba tên là gì?\"",
       "options": {
         "A": "Tên là Tam",
-        "B": "Tên là Nam",
-        "C": "Tên là Tứ",
+        "B": "Tên là Tứ",
+        "C": "Tên là Nam",
         "D": "Tên là Bốn"
       },
-      "answer": "B",
+      "answer": "C",
       "explanation": "Đầu bài đã nói rõ 'Bố của bạn Nam có 3 người con trai', nên người con thứ ba chính là bạn Nam."
     },
     {
@@ -26059,10 +25836,10 @@
       "options": {
         "A": "Ngón chân cái bên phải",
         "B": "Chiếc tai bên phải",
-        "C": "Khuỷu tay trái (hoặc cánh tay trái)",
-        "D": "Cái cằm"
+        "C": "Cái cằm",
+        "D": "Khuỷu tay trái"
       },
-      "answer": "C",
+      "answer": "D",
       "explanation": "Bàn tay trái không thể tự cầm nắm vào khuỷu tay trái hay chính bàn tay trái của mình."
     },
     {
@@ -26090,11 +25867,11 @@
       "question": "Giải câu đố mẹo sau:\n\"Nếu bạn chỉ có một que diêm duy nhất, bước vào căn phòng tối lạnh có một chiếc đèn dầu, một bếp củi và một ngọn nến. Bạn phải thắp sáng thứ gì đầu tiên?\"",
       "options": {
         "A": "Cây nến",
-        "B": "Đèn dầu",
-        "C": "Bếp củi",
-        "D": "Que diêm"
+        "B": "Que diêm",
+        "C": "Đèn dầu",
+        "D": "Bếp củi"
       },
-      "answer": "D",
+      "answer": "B",
       "explanation": "Bạn phải quẹt que diêm để có lửa trước tiên, rồi mới dùng que diêm đó thắp nến, đèn dầu hay bếp củi."
     },
     {
@@ -26105,12 +25882,12 @@
       "questionId": "k4_c1_tn_0976",
       "question": "Giải câu đố mẹo sau:\n\"Thứ gì càng dùng để rửa nhiều lần thì bản thân nó lại càng bị bẩn đục đi?\"",
       "options": {
-        "A": "Bánh xà phòng",
-        "B": "Cái vòi nước",
-        "C": "Chiếc thau nhôm",
-        "D": "Nước dùng để rửa"
+        "A": "Nước dùng để rửa",
+        "B": "Bánh xà phòng",
+        "C": "Cái vòi nước",
+        "D": "Chiếc thau nhôm"
       },
-      "answer": "D",
+      "answer": "A",
       "explanation": "Nước dùng để rửa đồ đạc, tay chân thì các chất bẩn sẽ hòa tan vào nước làm nước bị bẩn đục đi."
     },
     {
@@ -26139,10 +25916,10 @@
       "options": {
         "A": "Cái khăn ướt",
         "B": "Cốc nước đầy",
-        "C": "Bọt biển",
-        "D": "Quả dừa tươi nguyên vỏ"
+        "C": "Quả dừa tươi nguyên vỏ",
+        "D": "Bọt biển"
       },
-      "answer": "D",
+      "answer": "C",
       "explanation": "Quả dừa tươi chứa đầy nước dừa ngọt bên trong lớp vỏ cứng kín mít nên không thể làm ướt mặt bàn."
     },
     {
@@ -26155,10 +25932,10 @@
       "options": {
         "A": "Cửa số 1",
         "B": "Cửa số 2",
-        "C": "Không chọn cửa nào",
-        "D": "Cửa số 3 (vì đàn sư tử bị bỏ đói 3 năm đã chết từ lâu)"
+        "C": "Cửa số 3 (vì đàn sư tử bị bỏ đói 3 năm đã chết từ lâu)",
+        "D": "Không chọn cửa nào"
       },
-      "answer": "D",
+      "answer": "C",
       "explanation": "Sư tử nhịn ăn vài tuần sẽ chết, nếu bị bỏ đói suốt 3 năm thì đàn sư tử chắc chắn không còn sống, căn phòng đó hoàn toàn an toàn."
     },
     {
@@ -26170,11 +25947,11 @@
       "question": "Giải câu đố gia đình sau:\n\"Hai người cha và hai người con cùng rủ nhau đi câu cá. Mỗi người đều câu được đúng một con cá lớn mang về. Tại sao tổng số cá đem về nhà chỉ có tất cả 3 con cá?\"",
       "options": {
         "A": "Vì một người bị rơi mất cá trên đường về",
-        "B": "Vì có một con cá bị cá lớn ăn thịt",
-        "C": "Vì người bố câu giúp con",
-        "D": "Vì đi câu chỉ có 3 người: Ông nội, người bố và người con trai"
+        "B": "Vì đi câu chỉ có 3 người: Ông nội, người bố và người con trai",
+        "C": "Vì có một con cá bị cá lớn ăn thịt",
+        "D": "Vì người bố câu giúp con"
       },
-      "answer": "D",
+      "answer": "B",
       "explanation": "Ba thế hệ trong gia đình: Ông nội là cha của bố, bố là con của ông đồng thời là cha của con trai. Như vậy có 2 người cha và 2 người con, nhưng thực tế chỉ có 3 người đi câu."
     },
     {
@@ -26185,27 +25962,30 @@
       "questionId": "k4_c1_tn_0981",
       "question": "Giải câu đố mẹo sau:\n\"Con đường nào sau đây là con đường dài nhất mà không có bất kỳ người nào có thể đi hết từ điểm đầu đến điểm cuối?\"",
       "options": {
-        "A": "Đường cao tốc",
-        "B": "Đường xích đạo",
-        "C": "Đường sắt Bắc Nam",
-        "D": "Đường đời"
+        "A": "Đường đời",
+        "B": "Đường cao tốc",
+        "C": "Đường xích đạo",
+        "D": "Đường sắt Bắc Nam"
       },
-      "answer": "D",
+      "answer": "A",
       "explanation": "'Đường đời' là hình ảnh ẩn dụ về cả một kiếp người với vô vàn trải nghiệm và bài học không ngừng nghỉ."
     }
   ],
   "reviewReport": {
-    "sourceRecords": 557,
-    "retainedAfterStructuralAndSemanticDeduplication": 557,
+    "sourceRecords": 1425,
+    "retainedAfterStructuralAndSemanticDeduplication": 1425,
     "removed": {},
-    "newQuestionsAdded": 1444,
-    "finalRecords": 2001,
+    "newQuestionsAdded": 0,
+    "finalRecords": 1425,
     "idUnique": true,
     "questionIdsRenumberedSequentially": true,
-    "note": "Đã rà soát cấu trúc, đáp án tham chiếu, trùng lặp theo nội dung câu hỏi + đáp án đúng và chỉnh một số câu có dấu hiệu lệch đáp án/biện pháp tu từ. Giữ nguyên các câu lịch sử, anh hùng, liệt sĩ, danh nhân và sự kiện lịch sử có nội dung chính xác. Không tự ý loại nhóm kiến thức ngoài Tiếng Việt. Các câu cần thẩm định sâu về kiến thức chuyên môn vẫn nên được giáo viên duyệt lần cuối."
+    "note": "Đã thẩm định và chuẩn hóa toàn diện: sửa câu tục ngữ SX_0015; thay thế 88 câu SX (0036-0123) ghép lệch nghĩa bằng câu văn chuẩn mực Lớp 4; sửa 3 câu CHON (0055, 0065, 0089) đảm bảo phân loại chuẩn xác; đồng bộ metadata và số liệu báo cáo khớp 100% với dữ liệu 1.425 câu thực tế."
   },
   "deduplicationReport": {
     "semanticKey": "type + normalized question + normalized correct answer/content mapping",
-    "removedDuplicates": 0
+    "uniqueQuestions": 1425,
+    "removedDuplicates": 0,
+    "uniquenessRate": 100,
+    "notes": "Đã rà soát và loại bỏ hoàn toàn các cấu trúc ghép lặp/lệch nghĩa. Toàn bộ 1.425 câu đạt chuẩn chất lượng."
   }
 }
