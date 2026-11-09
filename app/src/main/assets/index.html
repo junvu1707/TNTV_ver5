@@ -8383,45 +8383,48 @@
 
   function handleMode2SubmitClick() {
     saveFillAnswer30();
+    if (typeof SoundEngine !== 'undefined' && SoundEngine.playClick) SoundEngine.playClick();
     const answeredCount = Object.keys(AppState.userAnswers30).length;
-
-    if (answeredCount >= 30) {
-      checkIfAll30QuestionsAnswered();
-      return;
-    }
+    const isCompletedAll = answeredCount >= 30;
 
     const modalContainer = document.getElementById('modal-container');
     if (!modalContainer) return;
+
     modalContainer.innerHTML = `
-      <div class="fixed inset-0 z-50 bg-black/75 backdrop-blur-sm flex items-center justify-center p-4">
-        <div class="scroll-card max-w-sm w-full p-5 sm:p-6 bg-gradient-to-b from-amber-50 via-white to-orange-50/70 rounded-3xl text-center shadow-2xl border-4 border-amber-400 relative overflow-hidden">
+      <div class="fixed inset-0 z-50 bg-black/75 backdrop-blur-sm flex items-center justify-center p-4" onclick="closeModal()">
+        <div class="scroll-card max-w-sm w-full p-5 sm:p-6 bg-gradient-to-b from-amber-50 via-white to-amber-100/70 rounded-3xl text-center shadow-2xl border-4 border-amber-400 relative overflow-hidden" onclick="event.stopPropagation()">
+
           <!-- Hình Đại Diện Nhân Vật Chibi Sinh Động -->
           <div class="relative w-20 h-20 mx-auto mb-3">
             <div class="w-20 h-20 rounded-full border-4 border-amber-400 bg-gradient-to-tr from-amber-200 to-yellow-100 shadow-md p-1 overflow-hidden flex items-center justify-center">
               ${getCurrentAvatarHtml(64)}
             </div>
-            <span class="absolute -bottom-1 -right-1 bg-amber-400 text-amber-950 border border-amber-200 rounded-full w-7 h-7 flex items-center justify-center text-sm shadow">✨</span>
+            <span class="absolute -bottom-1 -right-1 bg-amber-400 text-amber-950 border border-amber-200 rounded-full w-7 h-7 flex items-center justify-center text-sm shadow animate-bounce">👑</span>
           </div>
 
           <!-- Huy hiệu Tiến độ -->
-          <div class="inline-block bg-amber-100 text-amber-900 border border-amber-300 text-xs font-black px-3 py-1 rounded-full mb-2.5 shadow-sm">
-            🎯 Tiến độ: ${answeredCount}/30 câu
+          <div class="inline-block ${isCompletedAll ? 'bg-emerald-100 text-emerald-800 border-emerald-300' : 'bg-amber-100 text-amber-900 border-amber-300'} text-xs font-black px-3 py-1 rounded-full mb-2.5 border shadow-sm">
+            🎯 Tiến độ: ${answeredCount}/30 câu ${isCompletedAll ? '(Hoàn thành)' : ''}
           </div>
 
           <h3 class="text-base sm:text-lg font-black text-amber-950 mb-2 leading-snug">
-            Xác Nhận Nộp Bài Thi
+            Xác nhận nộp bài
           </h3>
+
           <p class="text-slate-600 text-xs sm:text-sm mb-5 leading-relaxed font-medium">
-            Bé mới làm được <b>${answeredCount}/30</b> câu hỏi. Các câu chưa làm sẽ không có điểm. Bé có chắc chắn muốn nộp bài ngay để tính điểm không?
+            ${isCompletedAll
+              ? 'Bé đã hoàn thành trọn vẹn <b>30/30 câu hỏi</b>. Bé có muốn nộp bài thi ngay để tính điểm không?'
+              : `Bé mới làm được <b>${answeredCount}/30</b> câu hỏi. Các câu chưa làm sẽ không có điểm. Bé có chắc chắn muốn nộp bài ngay để tính điểm không?`
+            }
           </p>
 
-          <!-- Bộ nút 3D sinh động -->
+          <!-- Bộ 2 nút: "Xem lại" và "Nộp bài tính điểm" -->
           <div class="flex gap-2.5">
-            <button onclick="closeModal()" class="flex-1 btn-3d px-3 py-2.5 rounded-xl border-2 border-slate-300 font-extrabold text-slate-700 bg-slate-100 hover:bg-slate-200 text-xs sm:text-sm">
-              ◄ Làm Tiếp
+            <button onclick="closeModal()" class="flex-1 btn-3d px-3 py-2.5 rounded-xl border-2 border-slate-300 font-extrabold text-slate-700 bg-slate-100 hover:bg-slate-200 text-xs sm:text-sm transition-all active:scale-95">
+              Xem lại
             </button>
-            <button onclick="closeModal(); finishExamMode2();" class="flex-1 btn-3d btn-3d-red py-2.5 rounded-xl font-black text-white text-xs sm:text-sm shadow-md flex items-center justify-center gap-1">
-              <span>Nộp Bài Tính Điểm</span>
+            <button onclick="closeModal(); finishExamMode2();" class="flex-1 btn-3d btn-3d-green py-2.5 rounded-xl font-black text-white text-xs sm:text-sm shadow-md flex items-center justify-center gap-1 transition-all active:scale-95">
+              <span>Nộp bài tính điểm</span>
               <span>✓</span>
             </button>
           </div>
@@ -8436,11 +8439,6 @@
     SoundEngine.playDrum();
     AppState.userAnswers30[AppState.currentQuestionIndex] = optIdx;
     renderExamMode2Question();
-
-    const totalAnswered = Object.keys(AppState.userAnswers30).length;
-    if (totalAnswered >= 30) {
-      checkIfAll30QuestionsAnswered();
-    }
   }
 
   // Ghi nhận đáp án Điền từ tự động
