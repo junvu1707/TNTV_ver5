@@ -28,9 +28,9 @@ class GitHubQuestionRepository(private val context: Context) {
 
   companion object {
     private const val TAG = "GitHubQuestionRepo"
-    private const val BASE_URL = "https://raw.githubusercontent.com/junvu1707/Trangsinhi_de/main/"
-    private const val COMMITS_API_URL = "https://api.github.com/repos/junvu1707/Trangsinhi_de/commits?per_page=1"
-    private const val CONTENTS_API_URL = "https://api.github.com/repos/junvu1707/Trangsinhi_de/contents"
+    private const val BASE_URL = "https://raw.githubusercontent.com/junvu1707/Trangsinhi_de/refs/heads/V1/"
+    private const val COMMITS_API_URL = "https://api.github.com/repos/junvu1707/Trangsinhi_de/commits?sha=V1&per_page=1"
+    private const val CONTENTS_API_URL = "https://api.github.com/repos/junvu1707/Trangsinhi_de/contents?ref=V1"
 
     private const val PREFS_NAME = "github_question_sync_prefs"
     private const val KEY_LAST_COMMIT_SHA = "last_commit_sha"
@@ -60,11 +60,12 @@ class GitHubQuestionRepository(private val context: Context) {
 
     /**
      * Lấy đường dẫn Raw URL GitHub trực tiếp (Direct Mapping) theo Lớp (1..5) và Round (1..4)
+     * Branch V1: https://raw.githubusercontent.com/junvu1707/Trangsinhi_de/refs/heads/V1/grade_X_round_Y.json
      */
     fun getDirectRawUrl(grade: Int, changOrRound: Int): String {
       val safeGrade = if (grade in 1..5) grade else 1
       val round = mapChangToRound(changOrRound)
-      return "https://raw.githubusercontent.com/junvu1707/Trangsinhi_de/refs/heads/main/grade%20${safeGrade}_round%20${round}.json"
+      return "https://raw.githubusercontent.com/junvu1707/Trangsinhi_de/refs/heads/V1/grade_${safeGrade}_round_${round}.json"
     }
 
     /**

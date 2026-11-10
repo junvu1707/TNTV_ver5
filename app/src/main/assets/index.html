@@ -6150,13 +6150,13 @@
   function getDirectGitHubRawUrl(grade, chang) {
     const safeGrade = (grade >= 1 && grade <= 5) ? grade : 1;
     const round = mapChangToRound(chang);
-    return `https://raw.githubusercontent.com/junvu1707/Trangsinhi_de/refs/heads/main/grade%20${safeGrade}_round%20${round}.json`;
+    return `https://raw.githubusercontent.com/junvu1707/Trangsinhi_de/refs/heads/V1/grade_${safeGrade}_round_${round}.json`;
   }
 
   function getLocalAssetFileName(grade, chang) {
     const safeGrade = (grade >= 1 && grade <= 5) ? grade : 1;
     const round = mapChangToRound(chang);
-    return `grade ${safeGrade}_round ${round}.json`;
+    return `grade_${safeGrade}_round_${round}.json`;
   }
 
   // Chuẩn hóa câu hỏi từ JSON bên ngoài (TN, DT, NOI, SX, ...) để hiển thị mượt mà trên giao diện 30 câu
