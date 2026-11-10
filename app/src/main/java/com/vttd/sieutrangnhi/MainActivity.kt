@@ -64,6 +64,11 @@ class MainActivity : ComponentActivity() {
     examGenerator = DynamicExamGenerator(githubRepo)
 
     vipPrefs = VipPreferenceManager(this)
+    val smartSyncManager = SmartExamSyncManager(this, vipPrefs)
+    smartSyncManager.performSmartSync { updatedCount ->
+      Log.d("MainActivity", "[SmartSync] Tự động đồng bộ hoàn tất: $updatedCount file bộ đề thi được cập nhật.")
+    }
+
     adManager = AdManager(this, vipPrefs)
     vipDialogManager = VipDialogManager(this)
 
