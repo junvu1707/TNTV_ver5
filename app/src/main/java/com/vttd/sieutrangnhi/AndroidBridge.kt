@@ -90,6 +90,25 @@ class AndroidBridge(
   }
 
   @JavascriptInterface
+  fun getGithubChibisJson(): String {
+    return activity?.chibiManager?.getCachedChibisJson() ?: ""
+  }
+
+  @JavascriptInterface
+  fun fetchGithubChibis() {
+    val act = activity ?: return
+    act.chibiManager.fetchAndCacheChibis { jsonStr ->
+      act.runOnUiThread {
+        val safeJson = jsonStr.replace("'", "\\'").replace("\n", " ")
+        webViewProvider()?.evaluateJavascript(
+          "if (window.onGithubChibisUpdated) { window.onGithubChibisUpdated('$safeJson'); }",
+          null
+        )
+      }
+    }
+  }
+
+  @JavascriptInterface
   fun getVipLevel(): Int {
     return activity?.vipPrefs?.getVipLevel() ?: VipPreferenceManager.VIP_LEVEL_0
   }

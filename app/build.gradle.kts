@@ -40,16 +40,16 @@ fun isValidAdMobUnitId(id: String?): Boolean {
 
 val envProps = loadEnvProperties()
 val rawAdmobAppId = envProps.getProperty("ADMOB_APP_ID")
-val admobAppId = if (isValidAdMobAppId(rawAdmobAppId)) rawAdmobAppId!! else "ca-app-pub-3940256099942544~3347511713"
+val admobAppId = if (isValidAdMobAppId(rawAdmobAppId)) rawAdmobAppId!! else "ca-app-pub-7383644594217353~9391875406"
 
 val rawBannerId = envProps.getProperty("BANNER_ID")
-val bannerId = if (isValidAdMobUnitId(rawBannerId)) rawBannerId!! else "ca-app-pub-3940256099942544/6300978111"
+val bannerId = if (isValidAdMobUnitId(rawBannerId)) rawBannerId!! else "ca-app-pub-7383644594217353/2876623853"
 
 val rawInterstitialId = envProps.getProperty("INTERSTITIAL_ID")
-val interstitialId = if (isValidAdMobUnitId(rawInterstitialId)) rawInterstitialId!! else "ca-app-pub-3940256099942544/1033173712"
+val interstitialId = if (isValidAdMobUnitId(rawInterstitialId)) rawInterstitialId!! else "ca-app-pub-7383644594217353/1513385389"
 
 val rawRewardedId = envProps.getProperty("REWARDED_ID")
-val rewardedId = if (isValidAdMobUnitId(rawRewardedId)) rawRewardedId!! else "ca-app-pub-3940256099942544/5224354917"
+val rewardedId = if (isValidAdMobUnitId(rawRewardedId)) rawRewardedId!! else "ca-app-pub-7383644594217353/6574140372"
 
 val emailjsServiceId = envProps.getProperty("EMAILJS_SERVICE_ID") ?: ""
 val emailjsTemplateId = envProps.getProperty("EMAILJS_TEMPLATE_ID") ?: ""
@@ -63,8 +63,8 @@ android {
     applicationId = "com.vttd.sieutrangnhi"
     minSdk = 24
     targetSdk = 36
-    versionCode =12
-    versionName = "1.0.12"
+    versionCode =13
+    versionName = "1.0.13"
 
     testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 

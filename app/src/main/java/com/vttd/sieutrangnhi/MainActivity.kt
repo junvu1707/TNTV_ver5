@@ -59,6 +59,7 @@ class MainActivity : ComponentActivity() {
 
     // 1. Khởi tạo Manager, GitHub Repo, Exam Generator, AdManager & Billing
     chibiManager = ChibiManager(this)
+    chibiManager.fetchAndCacheChibis()
     githubRepo = GitHubQuestionRepository(this)
     githubRepo.syncAllGradesInBackground()
     examGenerator = DynamicExamGenerator(githubRepo)

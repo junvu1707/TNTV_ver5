@@ -457,7 +457,7 @@
     return GITHUB_CHIBI_BASE_URL + encodeURIComponent(trimmed);
   }
 
-  const AVATAR_LOOKBOOKS = [
+  let AVATAR_LOOKBOOKS = [
     {
       id: 'chibi_cong_chua_toc_may',
       name: 'Siêu Trạng Nhí',
@@ -603,6 +603,51 @@
       config: { hair: 'hair_ngan_bupbe', outfit: 'outfit_ao_dai_hoa', glasses: 'glasses_none', accessory: 'acc_no_cai_toc' }
     }
   ];
+
+  function loadDynamicChibis(jsonInput) {
+    if (!jsonInput) return;
+    try {
+      let list = (typeof jsonInput === 'string') ? JSON.parse(jsonInput) : jsonInput;
+      if (Array.isArray(list) && list.length > 0) {
+        AVATAR_LOOKBOOKS = list.map(item => ({
+          id: item.id || ('chibi_' + Math.random().toString(36).substring(2, 7)),
+          name: item.name || 'Nhân vật Chibi',
+          image: item.image || 'app_logo.png',
+          sub: item.sub || '',
+          price: typeof item.price === 'number' ? item.price : 500,
+          trialPrice: typeof item.trialPrice === 'number' ? item.trialPrice : 150,
+          config: item.config || { hair: 'hair_lang_tu', outfit: 'outfit_hoc_sinh', glasses: 'glasses_none', accessory: 'acc_no_cai_toc' }
+        }));
+        const modalContainer = document.getElementById('modal-container');
+        if (modalContainer && modalContainer.innerHTML.includes('Cửa Hàng Hình Mẫu Chibi')) {
+          openAvatarModal();
+        }
+      }
+    } catch (e) {
+      console.warn('Lỗi parse danh sách Chibi động:', e);
+    }
+  }
+
+  window.onGithubChibisUpdated = function(jsonStr) {
+    loadDynamicChibis(jsonStr);
+  };
+
+  try {
+    if (window.AndroidBridge && typeof window.AndroidBridge.getGithubChibisJson === 'function') {
+      const cachedChibisStr = window.AndroidBridge.getGithubChibisJson();
+      if (cachedChibisStr) {
+        loadDynamicChibis(cachedChibisStr);
+      }
+      if (typeof window.AndroidBridge.fetchGithubChibis === 'function') {
+        window.AndroidBridge.fetchGithubChibis();
+      }
+    } else {
+      fetch(GITHUB_CHIBI_BASE_URL + 'chibis.json')
+        .then(res => res.json())
+        .then(data => loadDynamicChibis(data))
+        .catch(err => console.warn('Lỗi fetch chibis.json trên Web:', err));
+    }
+  } catch (_e) {}
 
   const AVATAR_ITEMS = {};
 
