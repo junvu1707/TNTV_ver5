@@ -202,10 +202,7 @@ class MainActivity : ComponentActivity() {
 
       loadUrl("file:///android_asset/index.html")
     }
-    webView = wv
-    rootLayout.addView(wv)
-
-    // Khung chứa Banner Ad ở chân màn hình
+    // Khung chứa Banner Ad ở đầu màn hình (phía trên WebView)
     val bContainer = FrameLayout(this).apply {
       layoutParams = LinearLayout.LayoutParams(
         ViewGroup.LayoutParams.MATCH_PARENT,
@@ -215,6 +212,7 @@ class MainActivity : ComponentActivity() {
     }
     bannerContainer = bContainer
     rootLayout.addView(bContainer)
+    rootLayout.addView(wv)
 
     setContentView(rootLayout)
 
